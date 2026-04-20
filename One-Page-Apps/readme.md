@@ -1,4 +1,4 @@
-# Tools der Stand-der-Technik-Bibliothek
+# Tools der NTT zur Bearbeitung von OSCAL Dateien im Kontext BSI Grundschutz++
 
 Diese Sammlung enthält Werkzeuge zur Erstellung, Verwaltung und Dokumentation von **Systemsicherheitsprofilen (SSP)** im Kontext nutzergenerierter Inhalte. Die Tools sind webbasiert (HTML/JS) und ermöglichen einen durchgängigen Workflow von der Planung bis zur Zertifizierung und dem Abarbeiten der Festellungen.
 
@@ -200,4 +200,5 @@ Halte dich strikt an diese Übergabepunkte. Falls du die Namen der exportierten 
 ## Technische Hinweise
 
 * **Datenschutz:** Alle Tools arbeiten rein clientseitig. Es werden keine Daten an einen Server übertragen; die Speicherung erfolgt lokal über den JSON-Export.
+* **KI Nutzung:** Sollte ein API Key eingetragen sein, werden Daten an die KI-Cloud übermittelt.
 * **Beiträge:** Fehler oder Verbesserungsvorschläge können über die [GitHub Issues](https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/issues) gemeldet werden.

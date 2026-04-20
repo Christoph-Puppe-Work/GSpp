@@ -19,9 +19,11 @@ Das Repository umfasst insbesondere folgende Bereiche:
 
 - [`Gpp-ai-tool`](./Gpp-ai-tool) – Python-basiertes KI-Werkzeug zur automatisierten Erstellung und Anreicherung von OSCAL-Komponentendefinitionen
 - [`One-Page-Apps`](./One-Page-Apps) – browserbasierte HTML/JS-Werkzeuge für Modellierung, SSP-Bearbeitung, Audit und Maßnahmenplanung
+- [`kataloge`](./kataloge) – produktive OSCAL-Kataloge zu anderen Themen
+- [`ED23-Baustein-komponenten`](./ED23-Baustein-komponenten) – produktive OSCAL-Kataloge (Komponentendefinitionen) auf Basis des IT-Grundschutz Edition 2023
 - [`zielobjektkategorien`](./zielobjektkategorien) – strukturierte OSCAL-Profile und OSCAL-Komponenten auf Basis von Zielobjektkategorien
 - [`hilfsdateien`](./hilfsdateien) – Mapping-, Referenz- und Arbeitsdateien zur Unterstützung der Werkzeuge und Inhalte
-- [`beispiel-kataloge`](./beispiel-kataloge) – Beispielkataloge im OSCAL-Format für Demonstration, Tests und Weiterverarbeitung
+- [`beispiel-kataloge`](./beispiel-kataloge) – Beispielkataloge im OSCAL-Format für Demonstration, Tests und Experimente
 
 ## Repository-Struktur
 
@@ -29,6 +31,7 @@ Das Repository umfasst insbesondere folgende Bereiche:
 Grundschutz-Plus-Plus-Tools/
 ├── Gpp-ai-tool/
 ├── One-Page-Apps/
+├── ED23-Baustein-komponenten/
 ├── zielobjektkategorien/
 │   ├── profile/
 │   └── komponenten/
@@ -199,9 +202,37 @@ Dieses Unterverzeichnis enthält historische oder abgelöste Varianten einzelner
 
 ---
 
+### `kataloge`
+
+Dieses Verzeichnis enthält produktive OSCAL-Kataloge aus anderen Quellen.
+
+#### Zweck
+
+Diese Kataloge sind in das OSCAL Katalog Format konvertierte Sicherheitsstandards, die aktuell gültig sind, aber vom Herausgeber nicht als OSCAL bereitgestellt wurden. Es wird keine Garantie übernommen, dass immer die aktuellste Version hier abgelegt ist oder das die Dateien ohne Fehler sind!
+
+---
+
+### `ED23-Baustein-komponenten`
+
+Dieses Verzeichnis enthält produktive OSCAL-Kataloge in Form von Komponentendefinitionen, die auf den Bausteinen des BSI IT-Grundschutz Edition 2023 basieren.
+
+#### Zweck
+
+Die Komponenten in diesem Verzeichnis dienen als produktive Grundlage für:
+
+- Die automatisierte Erstellung und Anreicherung von System Security Plans (SSP).
+- Die detaillierte Dokumentation von Umsetzungsmaßnahmen.
+- Die Durchführung von Audits auf Basis von Reifegraden (Maturity Levels).
+
+#### Inhalt
+
+Die Dateien sind nach den Bausteinen der Edition 2023 benannt und enthalten "enhanced" Beschreibungen, die über die reinen Anforderungen hinausgehen und konkrete Implementierungsvorschläge sowie Prüfhinweise liefern.
+
+---
+
 ### `zielobjektkategorien`
 
-Dieses Verzeichnis enthält die fachlich strukturierte Sammlung von OSCAL-Dateien auf Basis von Zielobjektkategorien.
+Dieses Verzeichnis enthält die fachlich strukturierte Sammlung von OSCAL-Dateien auf Basis von GS++ Zielobjektkategorien wie sie in der offiziellen Methodik definiert sind.
 
 Es ist der inhaltliche Kernbestand für wiederverwendbare Grundschutz++-Artefakte. Die Dateien sind so benannt, dass sie die jeweilige Zielobjektkategorie klar erkennen lassen und direkt in Werkzeugen, Referenzen oder eigenen Arbeitsabläufen verwendet werden können.
 
@@ -331,11 +362,13 @@ Die Beispielkataloge sind besonders nützlich für:
 
 Die Verzeichnisse sind bewusst so angelegt, dass sie zusammen einen nachvollziehbaren Arbeitsfluss unterstützen:
 
-1. **Inhalte auswählen** – passende Zielobjektkategorie in `zielobjektkategorien/` identifizieren.
-2. **Grundlage modellieren** – mit den Apps in `One-Page-Apps/` Profile und SSPs erzeugen bzw. bearbeiten.
-3. **Hilfsdaten einbinden** – Referenz- und Mapping-Dateien aus `hilfsdateien/` zur Unterstützung von Zuordnung, Parsing oder Kontextualisierung nutzen.
-4. **Automatisieren und anreichern** – mit `Gpp-ai-tool/` Komponenten, Zuordnungen oder ergänzende Beschreibungen programmatisch erzeugen.
-5. **Beispiele und Tests durchführen** – mit den Dateien in `beispiel-kataloge/` Workflows demonstrieren und validieren.
+1. **Katalog wählen** – Basiskatalog in `kataloge/` identifizieren.
+2. **Inhalte auswählen** – passende Zielobjektkategorie in `zielobjektkategorien/` identifizieren.
+3. **Umsetzung festlegen** – produktive Implementierungsbausteine aus `ED23-Baustein-komponenten/` wählen.
+4. **Grundlage modellieren** – mit den Apps in `One-Page-Apps/` Profile und SSPs erzeugen bzw. bearbeiten.
+5. **Hilfsdaten einbinden** – Referenz- und Mapping-Dateien aus `hilfsdateien/` zur Unterstützung von Zuordnung, Parsing oder Kontextualisierung nutzen.
+6. **Automatisieren und anreichern** – mit `Gpp-ai-tool/` Komponenten, Zuordnungen oder ergänzende Beschreibungen programmatisch erzeugen.
+7. **Beispiele und Tests durchführen** – mit den Dateien in `beispiel-kataloge/` Workflows demonstrieren und validieren.
 
 ## Für wen dieses Repository gedacht ist
 
@@ -354,6 +387,18 @@ Dieses Repository richtet sich insbesondere an:
 - Die One-Page-Apps eignen sich für direkte interaktive Nutzung im Browser.
 - Die Artefakte unter `zielobjektkategorien/`, `hilfsdateien/` und `beispiel-kataloge/` eignen sich für Import, Weiterverarbeitung, Analyse und Referenzierung.
 - `Gpp-ai-tool/` ist der technische Bereich für reproduzierbare, skript- und pipelinegestützte Verarbeitung.
+
+## Haftungsausschluss
+
+Die in diesem Repository bereitgestellten Werkzeuge, Kataloge, Profile und sonstigen OSCAL-Artefakte dienen der Unterstützung bei der praktischen Umsetzung von Informationssicherheitsstandards. Trotz sorgfältiger Erstellung und Prüfung kann keine Gewähr für die Richtigkeit, Vollständigkeit, Aktualität oder Fehlerfreiheit der Inhalte und Werkzeuge übernommen werden.
+
+Insbesondere gilt:
+
+- Die Nutzung der bereitgestellten Inhalte erfolgt auf eigene Gefahr.
+- Die bereitgestellten OSCAL-Dateien ersetzen keine fachliche Beratung oder offizielle Prüfung/Zertifizierung.
+- Die Haftung für Schäden, die aus der Nutzung der Werkzeuge oder Daten entstehen, ist ausgeschlossen, soweit gesetzlich zulässig.
+- Für die Übereinstimmung mit offiziellen Publikationen des BSI oder anderer Stellen wird keine Gewähr übernommen; im Zweifelsfall sind die Originaldokumente der Herausgeber maßgeblich.
+- Es wird keine Garantie übernommen, dass konvertierte oder angereicherte Kataloge stets dem aktuellsten Stand der zugrunde liegenden Standards entsprechen.
 
 ## Referenzierung
 

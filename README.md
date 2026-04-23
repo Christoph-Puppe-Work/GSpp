@@ -4,6 +4,10 @@ Dieses Repository bündelt Werkzeuge, OSCAL-Artefakte, Zielobjektkategorien, Hil
 
 Es dient als technische Arbeitsbasis, als zitierfähige Referenz für Publikationen und als zentrale Heimat für wiederverwendbare Inhalte rund um Profile, Komponenten, Prüfunterlagen, Kataloge und unterstützende Automatisierung.
 
+## Werbeblock
+
+In meinem Buch gibt es umfangreiche Analysen und Einen Ausblick auf die Zukunft: [1 Jahr Grundschutz++](https://www.amazon.de/dp/B0GY1HPT89)
+
 ## Ziel des Repositories
 
 `Grundschutz-Plus-Plus-Tools` verfolgt vier Ziele:

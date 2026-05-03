@@ -1,19 +1,16 @@
-import os
 import logging
+import os
 from mcp.server.fastmcp import FastMCP
 from GSpp_MCP.server.catalog import Catalog
 from GSpp_MCP.server.search import SearchIndex
 from GSpp_MCP.server.tools import controls, groups, zielobjekte, search
 
-# Configure logging
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s")
 logger = logging.getLogger("GSpp-MCP")
 
-# Load configuration from environment variables (populated by Terraform)
 CATALOG_PATH = os.getenv("CATALOG_PATH", "GSpp_MCP/data/Grundschutz++-catalog.json")
 MAPPING_PATH = os.getenv("MAPPING_PATH", "GSpp_MCP/data/zielobjekt_controls.json")
 
-# Initialize Catalog and Search Index
 logger.info(f"Loading catalog from {CATALOG_PATH}...")
 catalog = Catalog(CATALOG_PATH, MAPPING_PATH)
 search_index = SearchIndex()
@@ -21,12 +18,10 @@ search_index = SearchIndex()
 logger.info("Indexing controls for search...")
 for control in catalog.list_controls():
     text = f"{control['id']} {control['title']} {control['prose']} {control['guidance']}"
-    search_index.add_document(control['id'], text)
+    search_index.add_document(control["id"], text)
 
-# Initialize FastMCP
-mcp = FastMCP("GSpp-MCP")
+mcp = FastMCP("GSpp-MCP", host="0.0.0.0", port="8080")
 
-# Register Tools
 @mcp.tool()
 def get_control(control_id: str):
     """Get a specific control by ID."""
@@ -63,4 +58,4 @@ def search_controls(query: str):
     return search.search_controls(catalog, search_index, query)
 
 if __name__ == "__main__":
-    mcp.run()
+    mcp.run(transport="streamable-http")

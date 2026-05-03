@@ -2,13 +2,12 @@ FROM python:3.12-slim
 
 WORKDIR /app
 
-# Install dependencies
-COPY GSpp_MCP/pyproject.toml .
+# Install dependencies and project
+COPY pyproject.toml .
+COPY __init__.py ./GSpp_MCP/
+COPY server ./GSpp_MCP/server
+COPY data ./GSpp_MCP/data
 RUN pip install --no-cache-dir .
-
-# Copy source code and data
-COPY GSpp_MCP/server ./GSpp_MCP/server
-COPY GSpp_MCP/data ./GSpp_MCP/data
 
 # Set environment variables
 ENV CATALOG_PATH=/app/GSpp_MCP/data/Grundschutz++-catalog.json

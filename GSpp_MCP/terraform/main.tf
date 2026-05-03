@@ -1,3 +1,8 @@
+provider "google" {
+  project = var.project_id
+  region  = var.region
+}
+
 resource "google_project_service" "required_apis" {
   for_each = toset([
     "run.googleapis.com",
@@ -25,6 +30,7 @@ resource "google_cloud_run_v2_service" "mcp_service" {
   name     = "gs-plus-plus-mcp"
   location = var.region
   ingress  = "INGRESS_TRAFFIC_ALL"
+  deletion_protection = false
 
   template {
     service_account = google_service_account.mcp_runtime_sa.email

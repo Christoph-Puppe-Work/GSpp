@@ -4,10 +4,12 @@ WORKDIR /app
 
 # Install dependencies and project
 COPY pyproject.toml .
-COPY __init__.py ./GSpp_MCP/
-COPY server ./GSpp_MCP/server
-COPY data ./GSpp_MCP/data
+COPY GSpp_MCP/ ./GSpp_MCP/
 RUN pip install --no-cache-dir .
+
+# Create and switch to non-root user
+RUN useradd -m appuser
+USER appuser
 
 # Set environment variables
 ENV CATALOG_PATH=/app/GSpp_MCP/data/Grundschutz++-catalog.json

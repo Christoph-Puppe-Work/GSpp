@@ -12,8 +12,11 @@ class SearchIndex:
             return []
         # Lowercase and split on non-alphanumeric
         tokens = re.findall(r'\w+', text.lower())
-        # Basic German stopword list (could be expanded)
-        stopwords = {'der', 'die', 'das', 'und', 'in', 'zu', 'den', 'von', 'für', 'mit', 'ist', 'im', 'des', 'auf', 'nicht'}
+        # Basic German stopword list
+        stopwords = {
+            'der', 'die', 'das', 'und', 'in', 'zu', 'den', 'von', 'für', 'mit', 'ist', 'im', 'des', 'auf', 'nicht',
+            'ein', 'eine', 'einen', 'oder', 'aber', 'auch', 'dem', 'dass', 'wenn', 'zur', 'zum'
+        }
         return [t for t in tokens if len(t) > 2 and t not in stopwords]
 
     def add_document(self, doc_id: str, text: str):

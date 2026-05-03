@@ -30,6 +30,8 @@ class Catalog:
             with open(self.mapping_path, 'r', encoding='utf-8') as f:
                 mapping_data = json.load(f)
                 # Assuming the structure from zielobjekt_controls.json
+                if "zielobjekt_controls_map" not in mapping_data:
+                    logger.warning(f"Key 'zielobjekt_controls_map' missing in {self.mapping_path}")
                 self.zielobjekt_map = mapping_data.get("zielobjekt_controls_map", {})
 
             if os.path.exists(self.csv_path):
@@ -94,8 +96,7 @@ class Catalog:
                 "prose": prose,
                 "guidance": guidance,
                 "props": props,
-                # Store full control for expanded retrieval if needed
-                "raw": control
+                # "raw" removed to reduce memory footprint. Use get_control_raw tool instead.
             }
 
             # Recurse into sub-controls if any
@@ -111,6 +112,37 @@ class Catalog:
 
     def get_control(self, control_id: str) -> Optional[Dict[str, Any]]:
         return self.controls.get(control_id)
+
+    def get_control_raw(self, control_id: str) -> Optional[Dict[str, Any]]:
+        """Finds the raw OSCAL control in the original catalog by its ID."""
+        catalog_root = self.raw_catalog.get("catalog", {})
+        groups = catalog_root.get("groups", [])
+        return self._find_control_raw_recursive(groups, control_id)
+
+    def _find_control_raw_recursive(self, groups: List[Dict[str, Any]], control_id: str) -> Optional[Dict[str, Any]]:
+        for group in groups:
+            # Check controls in this group
+            for control in group.get("controls", []):
+                if control.get("id") == control_id:
+                    return control
+                # Check sub-controls
+                found = self._find_sub_control_raw_recursive(control.get("controls", []), control_id)
+                if found:
+                    return found
+            # Check subgroups
+            found = self._find_control_raw_recursive(group.get("groups", []), control_id)
+            if found:
+                return found
+        return None
+
+    def _find_sub_control_raw_recursive(self, controls: List[Dict[str, Any]], control_id: str) -> Optional[Dict[str, Any]]:
+        for control in controls:
+            if control.get("id") == control_id:
+                return control
+            found = self._find_sub_control_raw_recursive(control.get("controls", []), control_id)
+            if found:
+                return found
+        return None
 
     def list_controls(self) -> List[Dict[str, Any]]:
         return list(self.controls.values())

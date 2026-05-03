@@ -1,0 +1,22 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: grundschutz-pp-orchestrator
+spec:
+  template:
+    spec:
+      containers:
+      - image: gcr.io/YOUR_PROJECT_ID/grundschutz-pp-orchestrator
+        env:
+        - name: GOOGLE_CLOUD_PROJECT
+          value: "ntt-de-grundschutz-dev"
+        - name: GOOGLE_CLOUD_LOCATION
+          value: "europe-west3"
+        - name: GCS_BUCKET_NAME
+          value: "gs-pp-tooling-dev"
+        - name: BSI_GPP_MCP_MODE
+          value: "sse"
+        - name: BSI_GPP_MCP_URL
+          value: "https://bsi-gpp-mcp-xxx.a.run.app/sse"
+        - name: ORCHESTRATOR_MODEL
+          value: "gemini-2.0-flash"

@@ -53,6 +53,11 @@ def controls_for_zielobjekt(category_id: str):
     return zielobjekte.controls_for_zielobjekt(catalog, category_id)
 
 @mcp.tool()
+def get_oscal_profile(category_id: str):
+    """Generate an OSCAL profile for a specific Zielobjekt category."""
+    return zielobjekte.get_oscal_profile(catalog, category_id)
+
+@mcp.tool()
 def search_controls(query: str):
     """Search for controls using a keyword query."""
     return search.search_controls(catalog, search_index, query)

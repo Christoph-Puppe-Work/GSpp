@@ -1,5 +1,9 @@
 import json
 import logging
+import uuid
+import os
+import csv
+from datetime import datetime, timezone
 from typing import Any, Dict, List, Optional
 
 logger = logging.getLogger(__name__)
@@ -8,9 +12,13 @@ class Catalog:
     def __init__(self, catalog_path: str, mapping_path: str):
         self.catalog_path = catalog_path
         self.mapping_path = mapping_path
+        # CSV path is assumed to be in the same directory as the mapping file
+        self.csv_path = os.path.join(os.path.dirname(mapping_path), "zielobjektkategorien.csv")
+
         self.controls: Dict[str, Dict[str, Any]] = {}
         self.groups: Dict[str, Dict[str, Any]] = {}
         self.zielobjekt_map: Dict[str, List[str]] = {}
+        self.zielobjekt_name_map: Dict[str, str] = {}
 
         self._load_data()
         self._index_catalog()
@@ -23,6 +31,13 @@ class Catalog:
                 mapping_data = json.load(f)
                 # Assuming the structure from zielobjekt_controls.json
                 self.zielobjekt_map = mapping_data.get("zielobjekt_controls_map", {})
+
+            if os.path.exists(self.csv_path):
+                with open(self.csv_path, 'r', encoding='utf-8') as f:
+                    reader = csv.DictReader(f)
+                    for row in reader:
+                        if 'UUID' in row and 'Zielobjekt' in row:
+                            self.zielobjekt_name_map[row['UUID'].strip()] = row['Zielobjekt'].strip()
         except Exception as e:
             logger.error(f"Failed to load catalog or mapping data: {e}")
             raise
@@ -111,3 +126,45 @@ class Catalog:
 
     def controls_for_zielobjekt(self, category_id: str) -> List[str]:
         return self.zielobjekt_map.get(category_id, [])
+
+    def get_oscal_profile(self, category_id: str) -> Optional[Dict[str, Any]]:
+        """Constructs an OSCAL profile for a given Zielobjekt category."""
+        controls = self.controls_for_zielobjekt(category_id)
+        if not controls:
+            return None
+
+        zielobjekt_name = ""
+        if category_id == "Methodik" or category_id.endswith("_prozesse") or category_id.endswith("prozesse"):
+            zielobjekt_name = category_id
+        elif category_id in self.zielobjekt_name_map:
+            zielobjekt_name = self.zielobjekt_name_map[category_id]
+        else:
+            logger.warning(f"No name found for Zielobjekt with ID {category_id}.")
+            zielobjekt_name = category_id
+
+        profile_uuid = str(uuid.uuid4())
+        now_utc = datetime.now(timezone.utc).isoformat()
+        catalog_url = "https://raw.githubusercontent.com/BSI-Bund/Stand-der-Technik-Bibliothek/refs/heads/main/Anwenderkataloge/Grundschutz%2B%2B/Grundschutz%2B%2B-catalog.json"
+
+        profile = {
+            "profile": {
+                "uuid": profile_uuid,
+                "metadata": {
+                    "title": f"{category_id} {zielobjekt_name}",
+                    "last-modified": now_utc,
+                    "version": "0.0.1",
+                    "oscal-version": "1.1.3"
+                },
+                "imports": [
+                    {
+                        "href": catalog_url,
+                        "include-controls": [
+                            {
+                                "with-ids": controls
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+        return profile

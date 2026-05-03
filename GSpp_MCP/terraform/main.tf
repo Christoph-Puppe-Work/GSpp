@@ -52,11 +52,10 @@ resource "google_cloud_run_v2_service" "mcp_service" {
   depends_on = [google_project_service.required_apis]
 }
 
-# No public access by default, as requested.
-# Explicitly commented out to avoid accidental exposure.
-# resource "google_cloud_run_v2_service_iam_member" "no_auth" {
-#   location = google_cloud_run_v2_service.mcp_service.location
-#   name     = google_cloud_run_v2_service.mcp_service.name
-#   role     = "roles/run.invoker"
-#   member   = "allUsers"
-# }
+# Public access for the MCP service.
+resource "google_cloud_run_v2_service_iam_member" "public_access" {
+  location = google_cloud_run_v2_service.mcp_service.location
+  name     = google_cloud_run_v2_service.mcp_service.name
+  role     = "roles/run.invoker"
+  member   = "allUsers"
+}

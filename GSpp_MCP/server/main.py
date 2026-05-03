@@ -20,7 +20,7 @@ for control in catalog.list_controls():
     text = f"{control['id']} {control['title']} {control['prose']} {control['guidance']}"
     search_index.add_document(control["id"], text)
 
-mcp = FastMCP("GSpp-MCP", host="0.0.0.0", port="8080")
+mcp = FastMCP("GSpp-MCP")
 
 @mcp.tool()
 def get_control(control_id: str):
@@ -63,4 +63,5 @@ def search_controls(query: str):
     return search.search_controls(catalog, search_index, query)
 
 if __name__ == "__main__":
-    mcp.run(transport="streamable-http")
+    port = int(os.getenv("PORT", "8080"))
+    mcp.run(transport="streamable-http", host="0.0.0.0", port=port)

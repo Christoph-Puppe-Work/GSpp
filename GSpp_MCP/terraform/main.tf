@@ -1,5 +1,6 @@
 resource "google_project_service" "required_apis" {
   for_each = toset([
+    "cloudresourcemanager.googleapis.com",
     "run.googleapis.com",
     "artifactregistry.googleapis.com",
     "cloudbuild.googleapis.com",
@@ -14,6 +15,25 @@ resource "google_artifact_registry_repository" "mcp_repo" {
   repository_id = "mcp-server-repo"
   format        = "DOCKER"
   depends_on    = [google_project_service.required_apis]
+}
+
+resource "null_resource" "build_and_push_image" {
+  triggers = {
+    always_run = timestamp()
+  }
+
+  provisioner "local-exec" {
+    command = <<EOT
+      gcloud builds submit ${path.module}/.. \
+        --project ${var.project_id} \
+        --tag ${var.region}-docker.pkg.dev/${var.project_id}/${google_artifact_registry_repository.mcp_repo.repository_id}/gs-plus-plus-mcp:latest
+    EOT
+  }
+
+  depends_on = [
+    google_artifact_registry_repository.mcp_repo,
+    google_project_service.required_apis
+  ]
 }
 
 resource "google_service_account" "mcp_runtime_sa" {
@@ -49,7 +69,10 @@ resource "google_cloud_run_v2_service" "mcp_service" {
     }
   }
 
-  depends_on = [google_project_service.required_apis]
+  depends_on = [
+    google_project_service.required_apis,
+    null_resource.build_and_push_image
+  ]
 }
 
 # No public access by default, as requested.

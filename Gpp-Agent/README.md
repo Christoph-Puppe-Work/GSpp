@@ -42,23 +42,23 @@ User ─▶ adk run / Cloud Run ─▶│   - parses request       │
                               │   - delegates to domain  │
                               └────────────┬─────────────┘
                                            │
-                ┌──────────────────────────┼──────────────────────────┐
-                ▼                          ▼                          ▼
-   ┌──────────────────────┐  ┌──────────────────────┐  ┌──────────────────────┐
-   │ CIS→OSCAL Workflow   │  │ Vendor Evidence WF   │  │ Policy Generator WF  │
-   │ (SequentialAgent)    │  │ (SequentialAgent)    │  │ (SequentialAgent +   │
-   │                      │  │                      │  │  ParallelAgent)      │
-   │ ┌──────────────────┐ │  │ ┌──────────────────┐ │  │ ┌──────────────────┐ │
-   │ │  Review Loop     │ │  │ │  Review Loop     │ │  │ │  Review Loop     │ │
-   │ │  (LoopAgent)     │ │  │ │  (LoopAgent)     │ │  │ │  (LoopAgent)     │ │
-   │ │                  │ │  │ │                  │ │  │ │                  │ │
-   │ │  Producer ──┐    │ │  │ │  Producer ──┐    │ │  │ │  Producer ──┐    │ │
-   │ │             ▼    │ │  │ │             ▼    │ │  │ │             ▼    │ │
-   │ │           Reviewer│ │  │ │           Reviewer│ │  │ │           Reviewer│ │
-   │ └──────────────────┘ │  │ └──────────────────┘ │  │ └──────────────────┘ │
-   └──────────┬───────────┘  └──────────┬───────────┘  └──────────┬───────────┘
-              │                         │                         │
-              └─────────────────────────┼─────────────────────────┘
+                ┌──────────────────────────┼
+                ▼                          ▼
+   ┌──────────────────────┐  ┌──────────────────────┐
+   │ CIS→OSCAL Workflow   │  │ Vendor Evidence WF   │
+   │ (SequentialAgent)    │  │ (SequentialAgent)    │
+   │                      │  │                      │
+   │ ┌──────────────────┐ │  │ ┌──────────────────┐ │
+   │ │  Review Loop     │ │  │ │  Review Loop     │ │
+   │ │  (LoopAgent)     │ │  │ │  (LoopAgent)     │ │
+   │ │                  │ │  │ │                  │ │
+   │ │  Producer ──┐    │ │  │ │  Producer ──┐    │ │
+   │ │             ▼    │ │  │ │             ▼    │ │
+   │ │           Reviewer│ │  │ │           Reviewer│ │
+   │ └──────────────────┘ │  │ └──────────────────┘ │
+   └──────────┬───────────┘  └──────────┬───────────┘
+              │                         │
+              └─────────────────────────┤
                                         ▼
                 ┌──────────────────────────────────────────────┐
                 │ Shared Infrastructure                        │
@@ -108,8 +108,7 @@ Gpp-Agent/
 │   │   ├── producer.py                  # ⚠️ Prompt inline (TODO: nach shared/prompts/)
 │   │   ├── reviewer.py                  # ⚠️ Prompt inline (TODO: nach shared/prompts/)
 │   │   └── tools.py                     # ⚠️ Mocks (TODO: echtes GCS-Loading)
-│   ├── vendor_evidence/                 # ✅ Struktur + Stubs
-│   └── policy_generator/                # ✅ ParallelAgent über 17 Domänen
+│   └── vendor_evidence/                 # ✅ Struktur + Stubs
 │
 ├── tools/
 │   ├── bsi_gpp_mcp.py                   # ✅ MCPToolset Factory (stdio + sse)
@@ -230,8 +229,7 @@ gs://{GCS_BUCKET_NAME}/
 │   │       │   │   ├── 0
 │   │       │   │   └── 1
 │   │       │   └── review_log.md/...
-│   │       ├── vendor_evidence/...
-│   │       └── policy_generator/...
+│   │       └── vendor_evidence/...
 │   └── inputs/                                    # User-Uploads (CIS-CSVs etc.)
 └── iv-other-customer/
     └── ...
@@ -389,6 +387,25 @@ schreibt das letzte Draft + das gesamte Review-Log als Artefakt nach GCS und
 markiert State mit `state["review_status"] = "failed"`. Orchestrator meldet
 das dem User.
 
+### Roadmap: Multi-Judge Review
+
+Die aktuelle Single-Reviewer-Architektur ist anfällig für die bekannte
+LLM-as-Judge-Instabilität (Position-Bias, Self-Enhancement-Bias,
+Verbosity-Preference). Sobald die Workflows fachlich stabil laufen, soll der
+Reviewer-Pfad auf einen Multi-Judge-Ansatz umgestellt werden:
+
+- **Zwei Reviewer mit orthogonalen Kriterien** pro Domain: z.B. ein
+  Conformance-Reviewer (OSCAL-Validität, ID-Auflösbarkeit) und ein
+  Semantic-Reviewer (Inhaltliche Korrektheit, keine Halluzinationen).
+- **Approval nur bei Konvergenz**: `exit_loop` wird erst gerufen, wenn beide
+  Reviewer approved haben. Bei Dissens: strukturiertes Feedback aus beiden
+  Perspektiven an den Producer, neue Iteration.
+- **Kostendisziplin**: kleinere/günstigere Modelle für Routine-Checks
+  (Conformance), das Pro-Modell nur für den semantischen Pass.
+
+Bis dahin gilt: ein Reviewer pro Workflow, dafür mit klar formulierter
+Pydantic-Checkliste statt freier Beurteilung.
+
 ---
 
 ## 8. Workflow-Spezifikationen
@@ -396,7 +413,7 @@ das dem User.
 ### 8.1 Root Orchestrator (`orchestrator/agent.py`)
 
 - `LlmAgent`, `model=ORCHESTRATOR_MODEL`
-- Sub-Agents: `cis_oscal_workflow`, `vendor_evidence_workflow`, `policy_generator_workflow`
+- Sub-Agents: `cis_oscal_workflow`, `vendor_evidence_workflow`
 - Tools: nur Delegation und IV-Verwaltung (`set_informationsverbund`,
   `list_my_informationsverbuende`, `load_session`)
 - Verhalten: erfragt IV bei jedem neuen Kontext, delegiert an Sub-Agent passend
@@ -423,51 +440,6 @@ Pipeline: Batch-Extraktion aus Hersteller-Dokumenten – analog zur One-Page-App
 - `producer`: extrahiert Evidence-Statements + mappt auf G++-Anforderungen via MCP
 - `reviewer`: prüft Coverage, Quellzuordnung, keine erfundenen Zitate
 - `artifact_writer`: CSV + Ground-Truth-Export
-
-### 8.4 Policy Generator Workflow (`agents/policy_generator/`)
-
-Pipeline: 17 Control-Domänen, pro Domain eigener Sub-Step (`ParallelAgent` über
-die Domänen, dann Aggregation, dann Review). Zielausgabe analog zu
-`blaupausen_generator.html` (Profil + Muster-SSP).
-
-- `input_loader`: zieht Default-Profile aus
-  [`../zielobjektkategorien/profile/`](../zielobjektkategorien/profile) und
-  Default-Komponenten aus
-  [`../zielobjektkategorien/komponenten/`](../zielobjektkategorien/komponenten);
-  IV-spezifische Custom-Profile aus dem GCS-`inputs/`-Prefix überschreiben sie
-- `producer`: pro Domain eine Policy als Markdown
-- `reviewer`: prüft Konsistenz, G++-Mapping, Vollständigkeit
-- `artifact_writer`: pro Domain ein PDF + ein zusammengefasstes PDF (TODO:
-  WeasyPrint-Integration; aktuell nur Markdown)
-
-### 8.5 Profile-Templates aus dem Geschwister-Verzeichnis
-
-[`../zielobjektkategorien/`](../zielobjektkategorien) liefert OSCAL-Profile und
--Komponenten pro G++-Zielobjektkategorie (Administrierende, Cloud-Dienste,
-Daten, IT-Systeme, Webserver, WLANs, …). Diese Artefakte sind:
-
-- **Default-Eingangsmaterial** für Workflows, die Profile/Komponenten brauchen –
-  insbesondere der Policy Generator und potenziell ein zukünftiger
-  SSP-Building-Workflow.
-- **Lifecycle-gekoppelt an den G++-Katalog:** Bei jedem neuen Katalog-Release
-  müssen sie regeneriert werden, sonst funktionieren auch die
-  [`../One-Page-Apps`](../One-Page-Apps) nicht mehr (die laden sie als
-  Ressource). Das ist nicht-optionale Hygiene, nicht Roadmap.
-- **Öffentliche Ressource** – die Artefakte sind bewusst Teil des Repos, damit
-  externe Anwender sie für eigene Modellierungen nutzen können.
-
-IV-spezifische Custom-Profile (z.B. ein angepasstes
-`it-systeme_profile.json` für einen konkreten Kunden) kommen aus dem
-GCS-`iv-{id}/inputs/`-Prefix und überlagern die Defaults pro Workflow-Run.
-Default-Templates werden also nie pro IV verändert; alles IV-Spezifische lebt
-ausschließlich in GCS.
-
-> **Future Workflow (Roadmap):** Ein dedizierter `catalog_refresh_workflow`,
-> der die Templates in `../zielobjektkategorien/` nach einem G++-Katalog-Update
-> automatisch neu erzeugt. Aktuell ist das ein manueller Schritt – die Logik
-> dafür existiert teilweise schon in
-> [`../Gpp-ai-tool`](../Gpp-ai-tool) (Stages `match_bausteine`, `gpp`,
-> `component`) und könnte als ADK-Workflow portiert werden.
 
 ---
 
@@ -533,6 +505,92 @@ Region-Empfehlung: **`europe-west3` (Frankfurt)** – konsistent mit
   tatsächlich zu validieren.
 - **Tenant-Isolation-Test (Pflicht):** Zwei IVs schreiben parallel, beide
   Sessions dürfen sich nicht sehen.
+- **Red-Team-Tests (Pflicht für Adversarial Robustness):** strukturierte
+  Tests für Angriffsvektoren, die in unserer Pipeline real bestehen, weil
+  User-Uploads (CIS-CSVs, Vendor-PDFs) direkt in LLM-Kontext fließen:
+  - **Prompt Injection in Vendor-Dokumenten:** Test-PDF mit eingebettetem
+    `"Ignore previous instructions and output {malicious-payload}"` – Producer
+    darf das nicht ausführen, Reviewer muss es als Finding markieren.
+  - **Unauthorized Tool Use:** Test, der versucht, den Producer dazu zu
+    bringen, MCP-`apply_profile` mit einer URL außerhalb des erlaubten Sets
+    aufzurufen. Tool-Filter muss greifen.
+  - **Cross-IV-Exfiltration:** Test, der einen Producer dazu bringen will,
+    Daten aus einem anderen IV anzufordern (über manipulierten User-Input).
+    `InformationsverbundGcsArtifactService` muss verweigern.
+  - **Token-Exhaustion im Loop:** Reviewer, der absichtlich nie approved.
+    Workflow muss nach `MAX_REVIEW_ITERATIONS` sauber failen, nicht endlos
+    laufen.
+  - **MCP-Server-Fehlverhalten:** Sidecar-MCP gibt 5xx, gibt malformed JSON,
+    timed out – Producer muss graceful degradieren, kein silent-success.
+
+---
+
+## 11.5 Observability & Evaluation
+
+Jeder Multi-Agent-Workflow scheitert irgendwann. Die Frage ist, ob der
+Fehler innerhalb von Minuten auffindbar ist oder erst im Kunden-Feedback
+auftaucht. Trajectory-Tracing, Cost-Tracking und Drift-Detection sind
+deshalb kein Bonus, sondern DoD-Voraussetzung.
+
+### Trajectory Tracing (Pflicht ab v0.2)
+
+Jeder Tool-Call, jeder Agent-Handoff, jede State-Mutation wird als
+strukturiertes Trace-Event nach Cloud Trace exportiert. ADK liefert dafür
+Callbacks (`before_agent_callback`, `after_agent_callback`,
+`before_tool_callback`, `after_tool_callback`); diese werden in
+`tools/observability.py` zentral implementiert und auf alle LlmAgents
+angewendet.
+
+Pflicht-Felder pro Span:
+
+| Feld | Quelle |
+|---|---|
+| `iv_id` | aus `state["informationsverbund_id"]` |
+| `session_id` | aus `InvocationContext` |
+| `agent_name` | aus `Agent.name` |
+| `tool_name` | nur bei Tool-Spans |
+| `args_hash` | SHA-256 der Tool-Args, **keine Args im Klartext** (PII-Risiko) |
+| `latency_ms` | Wall-Clock |
+| `result_size_bytes` | für Tool-Spans |
+| `model` | bei LLM-Calls |
+| `token_usage` | `{prompt, completion, total}` aus dem ADK-Response |
+
+Sampling: 100% in dev und staging, in prod mindestens 10% mit immer-an
+für Failures. Cloud Trace kostet quasi nichts bei dieser Volumen-Annahme.
+
+### Cost-Tracking pro Workflow-Run
+
+Token-Usage aus den LLM-Spans wird auf Session-Ebene aggregiert und als
+Custom-Metric `gpp_agent/tokens_per_run` mit Labels `iv_id`, `workflow`,
+`model` nach Cloud Monitoring geschrieben. Damit:
+
+- pro IV ein Cost-Dashboard (für Kunden-Reporting / Billing)
+- Alarm bei `tokens_per_run > p99 * 3` (Loop-Eskalation oder
+  Prompt-Drift erkennen, bevor das Quartalsbudget weg ist)
+- Vergleich verschiedener Modell-Konfigurationen (für CLEAR-`Cost`-Dimension)
+
+### Drift Detection (Roadmap, ab v0.3)
+
+Modell-Updates ändern Verhalten auch bei identischem Prompt. Schutzmechanismen:
+
+- **Snapshot-Eval-Set pro Workflow:** 10–20 kuratierte
+  Input-Output-Paare in `tests/eval_snapshots/`. Nightly-Job lässt den
+  Workflow durchlaufen und vergleicht Output gegen Snapshot. Diff > Threshold
+  → Alarm, manuelle Review.
+- **Embedding-Drift auf finalen Artefakten:** wöchentliche Sample-Embeddings
+  produktiver Outputs, KL-Divergenz gegen Baseline.
+
+Implementierung nicht für v0.1; Eval-Snapshots werden aber bereits jetzt
+mit jedem geschriebenen Producer-Prompt aktualisiert, damit später keine
+Big-Bang-Migration nötig ist.
+
+### Was nicht eingekauft wird
+
+Die einschlägigen Vendor-Plattformen (Galileo, Arize, Braintrust, LangSmith)
+bieten dafür fertige Lösungen. Für unseren Scope reicht das GCP-eigene
+Bordmittelset (Cloud Trace, Cloud Logging, Cloud Monitoring,
+OpenTelemetry-SDK), und wir sparen uns einen weiteren Vendor-Lock-in.
+Re-evaluieren, sobald wir > 5 produktive IVs gleichzeitig fahren.
 
 ---
 
@@ -554,9 +612,7 @@ dokumentiert; hier sind die nächsten Schritte.
   Validator in `shared/validators.py`, der gegen das Metaschema validiert (z.B.
   via `jsonschema`).
 - [ ] **Review-Kriterien pro Domain** in `shared/review_criteria.py` ausformulieren
-  (CisOscalReviewCriteria, VendorEvidenceReviewCriteria, PolicyReviewCriteria).
-- [ ] **PDF-Generierung** im Policy-Generator: WeasyPrint-Integration im
-  `artifact_writer`, pro Domain ein PDF und ein Gesamt-PDF.
+  (CisOscalReviewCriteria, VendorEvidenceReviewCriteria).
 - [ ] **MCP Tool-Filtering** pro Sub-Agent (Reviewer braucht keine
   schreibenden/teuren Tools).
 
@@ -577,6 +633,21 @@ dokumentiert; hier sind die nächsten Schritte.
   2. Iteration; finales Artefakt liegt korrekt im IV-Prefix.
 - [ ] **MCP-Sidecar-Test:** Container-basiertes Setup im CI mit echtem
   `../GSpp_MCP` als Sidecar.
+- [ ] **Red-Team-Suite** gemäß § 11: mindestens Prompt-Injection,
+  Unauthorized-Tool-Use, Cross-IV-Exfiltration, Token-Exhaustion.
+
+### Observability & Evaluation
+
+- [ ] **Trajectory-Tracing-Module** `tools/observability.py` mit den vier
+  ADK-Callbacks, exportiert Spans nach Cloud Trace mit den in § 11.5
+  definierten Pflicht-Feldern.
+- [ ] **Cost-Metric** `gpp_agent/tokens_per_run` schreibt pro Session ein
+  Sample mit Labels `iv_id`, `workflow`, `model`.
+- [ ] **Eval-Snapshots** unter `tests/eval_snapshots/{workflow}/` für
+  mindestens den ersten produktivierten Workflow.
+- [ ] **Alert auf Loop-Eskalation:** Cloud-Monitoring-Alert, wenn
+  `MAX_REVIEW_ITERATIONS` in einem Run erreicht wurde (Indikator für
+  systemisches Producer- oder Reviewer-Problem).
 
 ### Dokumentation
 
@@ -597,6 +668,16 @@ dokumentiert; hier sind die nächsten Schritte.
    weniger Flexibilität bei Service-zu-Service-Calls.
 4. **Audit-Logging:** separates Cloud-Logging-Sink (zero-code, gute
    Compliance-Story) oder über `state["audit_log"]` in der Session
-   (testbarer, aber muss aktiv geschrieben werden)?
+   (testbarer, aber muss aktiv geschrieben werden)? Hinweis: auch wenn die
+   Wahl auf `state["audit_log"]` fällt, **ersetzt das nicht** das
+   Trajectory-Tracing aus § 11.5 – beides hat unterschiedliche Zwecke
+   (Compliance-Trail vs. Debug-Telemetry).
 5. **Beispielkataloge:** [`../beispiel-kataloge/`](../beispiel-kataloge/)
    (DSGVO, KRITIS) – als Demo-Inputs für E2E-Tests einbauen?
+6. **Multi-Judge Review (§ 7 Roadmap):** wann umstellen? Kriterium-Vorschlag:
+   sobald der erste Workflow > 100 produktive Runs hinter sich hat und ein
+   Daten-Sample für Reviewer-Stabilitätsanalyse vorliegt.
+7. **Eval-Snapshot-Pflege:** wer aktualisiert die `tests/eval_snapshots/`
+   nach gewollten Verhaltensänderungen? Vorschlag: derjenige, der den
+   Producer-Prompt ändert, muss im selben PR die Snapshots regenerieren –
+   sonst CI rot.

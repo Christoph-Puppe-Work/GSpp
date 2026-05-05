@@ -1,7 +1,7 @@
 #!/bin/bash
 
 BASE_URL=${1:-"http://localhost:8080"}
-TARGET_URL="${BASE_URL%/}/mcp/sse"
+TARGET_URL="${BASE_URL%/}/sse"
 SSE_LOG="sse_output.log"
 
 echo "--- COMPREHENSIVE MCP TEST ---"
@@ -15,7 +15,7 @@ SSE_PID=$!
 # Wait for the endpoint to appear in the log
 echo "Waiting for session initialization..."
 for i in {1..10}; do
-    if grep -q "data: /mcp/messages" "$SSE_LOG"; then
+    if grep -q "messages?sessionId" "$SSE_LOG"; then
         break
     fi
     sleep 1

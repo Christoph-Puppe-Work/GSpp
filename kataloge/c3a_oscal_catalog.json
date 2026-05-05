@@ -1,0 +1,2242 @@
+{
+  "catalog": {
+    "uuid": "c8be4770-f68b-4935-ac54-ff3946163410",
+    "metadata": {
+      "title": "BSI C3A Criteria enabling Cloud Computing Autonomy",
+      "published": "2026-05-03T00:00:00+02:00",
+      "last-modified": "2026-05-03T18:12:43Z",
+      "version": "1.0",
+      "oscal-version": "1.1.2",
+      "props": [
+        {
+          "name": "keywords",
+          "value": "C3A, cloud computing autonomy, BSI, security criteria, sovereign cloud"
+        }
+      ],
+      "roles": [
+        {
+          "id": "publisher",
+          "title": "Bundesamt für Sicherheit in der Informationstechnik (BSI)"
+        }
+      ],
+      "parties": [
+        {
+          "uuid": "18328dda-39e5-4671-be9a-f61727df529d",
+          "type": "organization",
+          "name": "Bundesamt für Sicherheit in der Informationstechnik (BSI)",
+          "short-name": "BSI",
+          "links": [
+            {
+              "href": "https://www.bsi.bund.de",
+              "rel": "homepage"
+            }
+          ],
+          "addresses": [
+            {
+              "addr-lines": [
+                "Godesberger Allee 185-189"
+              ],
+              "city": "Bonn",
+              "postal-code": "53175",
+              "country": "DE"
+            }
+          ]
+        }
+      ],
+      "responsible-parties": [
+        {
+          "role-id": "publisher",
+          "party-uuids": [
+            "18328dda-39e5-4671-be9a-f61727df529d"
+          ]
+        }
+      ]
+    },
+    "groups": [
+      {
+        "id": "SOV-1",
+        "title": "SOV-1 Strategic Sovereignty",
+        "controls": [
+          {
+            "id": "SOV-1-01",
+            "class": "C3A-Catalog",
+            "title": "Jurisdiction",
+            "params": [
+              {
+                "id": "sov-1-01-prm1",
+                "props": [
+                  {
+                    "name": "alt-identifier",
+                    "value": "146dcfec-5e62-4196-b69b-41f964e2f428",
+                    "ns": "https://placeholder.example/ns"
+                  }
+                ],
+                "label": "Normreferenzen",
+                "values": [
+                  "BSI C3A"
+                ]
+              }
+            ],
+            "props": [
+              {
+                "name": "alt-identifier",
+                "value": "d0c0a0c8-46f0-4c28-ada4-d7b5c070203d",
+                "ns": "https://placeholder.example/ns"
+              },
+              {
+                "name": "sec_level",
+                "value": "normal-SdT",
+                "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces/security_level.csv"
+              },
+              {
+                "name": "effort_level",
+                "value": "1",
+                "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces/effort_level.csv"
+              },
+              {
+                "name": "tags",
+                "value": "C3A, SOV-1, Jurisdiction",
+                "ns": "https://placeholder.example/ns"
+              }
+            ],
+            "parts": [
+              {
+                "id": "SOV-1-01_stm",
+                "name": "statement",
+                "props": [
+                  {
+                    "name": "result",
+                    "value": "Jurisdiction",
+                    "ns": "https://placeholder.example/ns"
+                  },
+                  {
+                    "name": "action_word",
+                    "value": "umsetzen",
+                    "ns": "https://placeholder.example/ns"
+                  },
+                  {
+                    "name": "modal_verb",
+                    "value": "MUSS",
+                    "ns": "https://placeholder.example/ns"
+                  }
+                ],
+                "prose": "C1: Der Cloud-Dienstanbieter muss unter EU-Gerichtsbarkeit, mit Vertrags-Governance und Streitbeilegung, agieren. C2: Der Cloud-Dienstanbieter muss unter deutscher Gerichtsbarkeit, mit Vertrags-Governance und Streitbeilegung, agieren."
+              },
+              {
+                "id": "SOV-1-01_gdn",
+                "name": "guidance",
+                "prose": "Wenn Cloud-Service-Kunden Einschränkungen für Deutschland auferlegen, sollten diese gerechtfertigt sein, und es sollte sichergestellt werden, dass ihre Umsetzung, zum Beispiel in Beschaffungsverfahren, aus Gründen der öffentlichen Sicherheit rechtlich zulässig ist.",
+                "props": [
+                  {
+                    "name": "modal_verb",
+                    "value": "SOLLTE",
+                    "ns": "https://placeholder.example/ns"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "SOV-1-02",
+            "class": "C3A-Catalog",
+            "title": "Registered Office",
+            "params": [
+              {
+                "id": "sov-1-02-prm1",
+                "props": [
+                  {
+                    "name": "alt-identifier",
+                    "value": "226cd576-5ed0-4b76-852a-98499e42e207",
+                    "ns": "https://placeholder.example/ns"
+                  }
+                ],
+                "label": "Normreferenzen",
+                "values": [
+                  "BSI C3A"
+                ]
+              }
+            ],
+            "props": [
+              {
+                "name": "alt-identifier",
+                "value": "63b61b3d-9712-4ebd-9d4c-0af5b78e4249",
+                "ns": "https://placeholder.example/ns"
+              },
+              {
+                "name": "sec_level",
+                "value": "normal-SdT",
+                "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces/security_level.csv"
+              },
+              {
+                "name": "effort_level",
+                "value": "1",
+                "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces/effort_level.csv"
+              },
+              {
+                "name": "tags",
+                "value": "C3A, SOV-1, Registered Office",
+                "ns": "https://placeholder.example/ns"
+              }
+            ],
+            "parts": [
+              {
+                "id": "SOV-1-02_stm",
+                "name": "statement",
+                "props": [
+                  {
+                    "name": "result",
+                    "value": "Registered Office",
+                    "ns": "https://placeholder.example/ns"
+                  },
+                  {
+                    "name": "action_word",
+                    "value": "umsetzen",
+                    "ns": "https://placeholder.example/ns"
+                  },
+                  {
+                    "name": "modal_verb",
+                    "value": "MUSS",
+                    "ns": "https://placeholder.example/ns"
+                  }
+                ],
+                "prose": "C1: Der Cloud-Dienstanbieter muss einen eingetragenen Hauptsitz in der EU haben. C2: Der Cloud-Dienstanbieter muss einen eingetragenen Hauptsitz in Deutschland haben."
+              },
+              {
+                "id": "SOV-1-02_gdn",
+                "name": "guidance",
+                "prose": "Wenn der Cloud-Dienstanbieter einen Subunternehmer für die Erbringung von Dienstleistungen, wie z.B. den Betrieb, einsetzt, muss dieser Subunternehmer ebenfalls die Kriterien erfüllen.\nWenn Einschränkungen von Cloud-Service-Kunden für die EU oder Deutschland auferlegt werden, sollten diese gerechtfertigt sein, und es sollte sichergestellt werden, dass ihre Umsetzung rechtlich zulässig ist.",
+                "props": [
+                  {
+                    "name": "modal_verb",
+                    "value": "MUSS",
+                    "ns": "https://placeholder.example/ns"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "SOV-1-03",
+            "class": "C3A-Catalog",
+            "title": "CSP Effective Control",
+            "params": [
+              {
+                "id": "sov-1-03-prm1",
+                "props": [
+                  {
+                    "name": "alt-identifier",
+                    "value": "48997ef9-da23-4b9d-ba92-86880e380724",
+                    "ns": "https://placeholder.example/ns"
+                  }
+                ],
+                "label": "Normreferenzen",
+                "values": [
+                  "BSI C3A"
+                ]
+              }
+            ],
+            "props": [
+              {
+                "name": "alt-identifier",
+                "value": "cdf780f0-3196-42d0-a592-7b09aca11076",
+                "ns": "https://placeholder.example/ns"
+              },
+              {
+                "name": "sec_level",
+                "value": "normal-SdT",
+                "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces/security_level.csv"
+              },
+              {
+                "name": "effort_level",
+                "value": "1",
+                "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces/effort_level.csv"
+              },
+              {
+                "name": "tags",
+                "value": "C3A, SOV-1, CSP Effective Control",
+                "ns": "https://placeholder.example/ns"
+              }
+            ],
+            "parts": [
+              {
+                "id": "SOV-1-03_stm",
+                "name": "statement",
+                "props": [
+                  {
+                    "name": "result",
+                    "value": "CSP Effective Control",
+                    "ns": "https://placeholder.example/ns"
+                  },
+                  {
+                    "name": "action_word",
+                    "value": "umsetzen",
+                    "ns": "https://placeholder.example/ns"
+                  },
+                  {
+                    "name": "modal_verb",
+                    "value": "MUSS",
+                    "ns": "https://placeholder.example/ns"
+                  }
+                ],
+                "prose": "C1: Der Cloud-Dienstanbieter muss von einem oder mehreren EU-Unternehmen tatsächlich kontrolliert werden. Der Cloud-Dienstanbieter muss sicherstellen, dass die tatsächlichen Kontrollen für Cloud-Service-Kunden transparent sind. C2: Der Cloud-Dienstanbieter muss unter der tatsächlichen Kontrolle eines oder mehrerer deutscher Unternehmen stehen. Der Cloud-Dienstanbieter muss sicherstellen, dass die tatsächlichen Kontrollen für Cloud-Service-Kunden transparent sind."
+              },
+              {
+                "id": "SOV-1-03_gdn",
+                "name": "guidance",
+                "prose": "Effektive Kontrolle in diesem Zusammenhang bedeutet die Möglichkeit, direkten oder indirekten Einfluss auszuüben oder die wichtigsten strategischen, finanziellen oder operativen Entscheidungen von Nicht-EU-Unternehmen zu bestimmen.\nWenn Einschränkungen von Cloud-Service-Kunden für die EU oder Deutschland auferlegt werden, sollten diese gerechtfertigt sein, und es sollte sichergestellt werden, dass ihre Umsetzung rechtlich zulässig ist.",
+                "props": [
+                  {
+                    "name": "modal_verb",
+                    "value": "SOLLTE",
+                    "ns": "https://placeholder.example/ns"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "SOV-1-04",
+            "class": "C3A-Catalog",
+            "title": "CSP Control Change",
+            "params": [
+              {
+                "id": "sov-1-04-prm1",
+                "props": [
+                  {
+                    "name": "alt-identifier",
+                    "value": "d0dae292-bcf0-4c03-8901-aa8f585bb140",
+                    "ns": "https://placeholder.example/ns"
+                  }
+                ],
+                "label": "Normreferenzen",
+                "values": [
+                  "BSI C3A"
+                ]
+              }
+            ],
+            "props": [
+              {
+                "name": "alt-identifier",
+                "value": "8a05248e-a19e-47fc-b8ae-7c9e68994b80",
+                "ns": "https://placeholder.example/ns"
+              },
+              {
+                "name": "sec_level",
+                "value": "normal-SdT",
+                "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces/security_level.csv"
+              },
+              {
+                "name": "effort_level",
+                "value": "1",
+                "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces/effort_level.csv"
+              },
+              {
+                "name": "tags",
+                "value": "C3A, SOV-1, CSP Control Change",
+                "ns": "https://placeholder.example/ns"
+              }
+            ],
+            "parts": [
+              {
+                "id": "SOV-1-04_stm",
+                "name": "statement",
+                "props": [
+                  {
+                    "name": "result",
+                    "value": "CSP Control Change",
+                    "ns": "https://placeholder.example/ns"
+                  },
+                  {
+                    "name": "action_word",
+                    "value": "umsetzen",
+                    "ns": "https://placeholder.example/ns"
+                  },
+                  {
+                    "name": "modal_verb",
+                    "value": "MUSS",
+                    "ns": "https://placeholder.example/ns"
+                  }
+                ],
+                "prose": "C: Der Cloud-Dienstanbieter muss Cloud-Service-Kunden 90 Tage im Voraus über tatsächliche Änderungen informieren, die die Kontrolle des Cloud-Dienstanbieters betreffen und die mit dem Cloud-Dienst verbundenen C3A-Kontrollen untergraben oder beeinträchtigen könnten, einschließlich wesentlicher Änderungen der Eigentums-, Beteiligungs- oder Governance-Beziehungen des Cloud-Dienstanbieters."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "SOV-2",
+        "title": "SOV-2 Legal & Jurisdictional Sovereignty",
+        "controls": [
+          {
+            "id": "SOV-2-01",
+            "class": "C3A-Catalog",
+            "title": "Extraterritorial Exposure",
+            "params": [
+              {
+                "id": "sov-2-01-prm1",
+                "props": [
+                  {
+                    "name": "alt-identifier",
+                    "value": "e4e4a78d-71f7-4d8e-9e3f-d2da1a816b0c",
+                    "ns": "https://placeholder.example/ns"
+                  }
+                ],
+                "label": "Normreferenzen",
+                "values": [
+                  "BSI C3A"
+                ]
+              }
+            ],
+            "props": [
+              {
+                "name": "alt-identifier",
+                "value": "0effa8c5-e76f-4cdd-8c5b-3f900972e928",
+                "ns": "https://placeholder.example/ns"
+              },
+              {
+                "name": "sec_level",
+                "value": "normal-SdT",
+                "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces/security_level.csv"
+              },
+              {
+                "name": "effort_level",
+                "value": "1",
+                "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces/effort_level.csv"
+              },
+              {
+                "name": "tags",
+                "value": "C3A, SOV-2, Extraterritorial Exposure",
+                "ns": "https://placeholder.example/ns"
+              }
+            ],
+            "parts": [
+              {
+                "id": "SOV-2-01_stm",
+                "name": "statement",
+                "props": [
+                  {
+                    "name": "result",
+                    "value": "Extraterritorial Exposure",
+                    "ns": "https://placeholder.example/ns"
+                  },
+                  {
+                    "name": "action_word",
+                    "value": "umsetzen",
+                    "ns": "https://placeholder.example/ns"
+                  },
+                  {
+                    "name": "modal_verb",
+                    "value": "MUSS",
+                    "ns": "https://placeholder.example/ns"
+                  }
+                ],
+                "prose": "C: Der Cloud-Dienstanbieter muss mindestens einmal jährlich jedes Nicht-EU-Recht identifizieren, das sich direkt auf die bereitgestellten Cloud-Dienste bezieht und grenzüberschreitende Auswirkungen auf die Verfügbarkeit von Cloud-Diensten und die Vertraulichkeit und Integrität der vom Kunden erstellten Daten hat. Sie müssen auch eine strukturierte Risikobewertung durchführen, um die aus diesen Gesetzen resultierenden Risiken zu bewerten."
+              }
+            ]
+          },
+          {
+            "id": "SOV-2-02",
+            "class": "C3A-Catalog",
+            "title": "Audit Rights",
+            "params": [
+              {
+                "id": "sov-2-02-prm1",
+                "props": [
+                  {
+                    "name": "alt-identifier",
+                    "value": "8aa059ee-9eaa-4b03-8056-014e7787a276",
+                    "ns": "https://placeholder.example/ns"
+                  }
+                ],
+                "label": "Normreferenzen",
+                "values": [
+                  "BSI C3A"
+                ]
+              }
+            ],
+            "props": [
+              {
+                "name": "alt-identifier",
+                "value": "8488b33d-0ca2-4025-ba87-1143e34dcd35",
+                "ns": "https://placeholder.example/ns"
+              },
+              {
+                "name": "sec_level",
+                "value": "normal-SdT",
+                "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces/security_level.csv"
+              },
+              {
+                "name": "effort_level",
+                "value": "1",
+                "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces/effort_level.csv"
+              },
+              {
+                "name": "tags",
+                "value": "C3A, SOV-2, Audit Rights",
+                "ns": "https://placeholder.example/ns"
+              }
+            ],
+            "parts": [
+              {
+                "id": "SOV-2-02_stm",
+                "name": "statement",
+                "props": [
+                  {
+                    "name": "result",
+                    "value": "Audit Rights",
+                    "ns": "https://placeholder.example/ns"
+                  },
+                  {
+                    "name": "action_word",
+                    "value": "umsetzen",
+                    "ns": "https://placeholder.example/ns"
+                  },
+                  {
+                    "name": "modal_verb",
+                    "value": "MUSS",
+                    "ns": "https://placeholder.example/ns"
+                  }
+                ],
+                "prose": "C1: Der Cloud-Dienstanbieter muss Verfahren dokumentieren, die es der zuständigen föderalen oder nationalen Cybersicherheitsbehörde ermöglichen, die Einhaltung der C3A-Kriterien durch ein Audit zu überprüfen. Die zuständige Behörde ist diejenige in dem Land, in dem sich das Rechenzentrum befindet. C2: Der Cloud-Dienstanbieter muss Verfahren dokumentieren, die es der deutschen Bundesverwaltung ermöglichen, die Einhaltung der C3A-Kriterien durch ein Audit zu überprüfen."
+              },
+              {
+                "id": "SOV-2-02_gdn",
+                "name": "guidance",
+                "prose": "Die Prüfrechte können sich aus einem Vertrag oder Gesetz ableiten, das der föderalen oder nationalen Behörde ausdrücklich das Recht vorbehält, Audits durchzuführen. Wenn möglich, versucht die Behörde, bestehende Audits (z. B. BSI C5, SOC 2 Type 2) zu nutzen, bevor sie ein Audit durchführt.\nJedes Audit soll in Übereinstimmung mit den strengen Sicherheits- und Vertraulichkeitsprotokollen des Cloud-Dienstanbieters durchgeführt werden, einschließlich festgelegter Kündigungsfristen, um die Daten anderer Mandanten und die Integrität des Rechenzentrums zu schützen. Während die Kosten eine kommerzielle Angelegenheit sind, ist das Recht auf Prüfung ein regulatorisches Mandat. Die Gebühren sollen nicht so hoch sein, dass dieses Recht faktisch verweigert wird.",
+                "props": [
+                  {
+                    "name": "modal_verb",
+                    "value": "SOLL",
+                    "ns": "https://placeholder.example/ns"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "SOV-2-03",
+            "class": "C3A-Catalog",
+            "title": "State of Defense Takeover",
+            "params": [
+              {
+                "id": "sov-2-03-prm1",
+                "props": [
+                  {
+                    "name": "alt-identifier",
+                    "value": "7fa4470d-54fc-4ef5-b5f1-4bab2a560e60",
+                    "ns": "https://placeholder.example/ns"
+                  }
+                ],
+                "label": "Normreferenzen",
+                "values": [
+                  "BSI C3A"
+                ]
+              }
+            ],
+            "props": [
+              {
+                "name": "alt-identifier",
+                "value": "cf5f77b1-3f06-469a-abc9-c6200e6b6123",
+                "ns": "https://placeholder.example/ns"
+              },
+              {
+                "name": "sec_level",
+                "value": "normal-SdT",
+                "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces/security_level.csv"
+              },
+              {
+                "name": "effort_level",
+                "value": "1",
+                "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces/effort_level.csv"
+              },
+              {
+                "name": "tags",
+                "value": "C3A, SOV-2, State of Defense Takeover",
+                "ns": "https://placeholder.example/ns"
+              }
+            ],
+            "parts": [
+              {
+                "id": "SOV-2-03_stm",
+                "name": "statement",
+                "props": [
+                  {
+                    "name": "result",
+                    "value": "State of Defense Takeover",
+                    "ns": "https://placeholder.example/ns"
+                  },
+                  {
+                    "name": "action_word",
+                    "value": "umsetzen",
+                    "ns": "https://placeholder.example/ns"
+                  },
+                  {
+                    "name": "modal_verb",
+                    "value": "MUSS",
+                    "ns": "https://placeholder.example/ns"
+                  }
+                ],
+                "prose": "C1: Wenn ein EU-Mitgliedstaat den Verteidigungsfall ausruft, muss der Cloud-Dienstanbieter dem EU-Mitgliedstaat im Rahmen der rechtlichen Möglichkeiten die Übernahme der für den Betrieb der Cloud erforderlichen Fähigkeiten, einschließlich der erforderlichen physischen Vermögenswerte und des Personals, ermöglichen. C2: Wenn Deutschland den Verteidigungsfall ausruft, muss der Cloud-Dienstanbieter der deutschen Bundesverwaltung im Rahmen der rechtlichen Möglichkeiten die Übernahme der für den Betrieb der Cloud erforderlichen Fähigkeiten, einschließlich der erforderlichen materiellen Vermögenswerte und des Personals, ermöglichen."
+              },
+              {
+                "id": "SOV-2-03_gdn",
+                "name": "guidance",
+                "prose": "Dies bedeutet in der Regel, dass der Cloud-Dienstanbieter die Dokumentation, den Quellcode und die Administrationstools in einem portablen Format vorliegen hat, sodass eine Bundesverwaltung sie nutzen kann.",
+                "props": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "SOV-3",
+        "title": "SOV-3 Data Sovereignty",
+        "controls": [
+          {
+            "id": "SOV-3-01",
+            "class": "C3A-Catalog",
+            "title": "Data Residence",
+            "params": [
+              {
+                "id": "sov-3-01-prm1",
+                "props": [
+                  {
+                    "name": "alt-identifier",
+                    "value": "e55076d5-6ba2-490a-9944-d4267113a686",
+                    "ns": "https://placeholder.example/ns"
+                  }
+                ],
+                "label": "Normreferenzen",
+                "values": [
+                  "BSI C3A"
+                ]
+              }
+            ],
+            "props": [
+              {
+                "name": "alt-identifier",
+                "value": "175bd3b0-6c11-4d8c-82d5-680c711d2835",
+                "ns": "https://placeholder.example/ns"
+              },
+              {
+                "name": "sec_level",
+                "value": "normal-SdT",
+                "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces/security_level.csv"
+              },
+              {
+                "name": "effort_level",
+                "value": "1",
+                "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces/effort_level.csv"
+              },
+              {
+                "name": "tags",
+                "value": "C3A, SOV-3, Data Residence",
+                "ns": "https://placeholder.example/ns"
+              }
+            ],
+            "parts": [
+              {
+                "id": "SOV-3-01_stm",
+                "name": "statement",
+                "props": [
+                  {
+                    "name": "result",
+                    "value": "Data Residence",
+                    "ns": "https://placeholder.example/ns"
+                  },
+                  {
+                    "name": "action_word",
+                    "value": "umsetzen",
+                    "ns": "https://placeholder.example/ns"
+                  },
+                  {
+                    "name": "modal_verb",
+                    "value": "MUSS",
+                    "ns": "https://placeholder.example/ns"
+                  }
+                ],
+                "prose": "C1: Ein Cloud-Service-Kunde muss überprüfen können, wo seine vom Cloud-Dienst abgeleiteten Daten, Cloud-Service-Kundendaten und Kontodaten gespeichert und verarbeitet werden. C2: Der Cloud-Dienstanbieter muss eine Serviceoption bereitstellen, bei der vom Cloud-Dienst abgeleitete Daten und Kontodaten ausschließlich in der EU gespeichert und verarbeitet werden. C3: Der Cloud-Dienstanbieter muss eine Serviceoption bereitstellen, bei der Cloud-Service-Kundendaten ausschließlich in der EU gespeichert und verarbeitet werden. C4: Der Cloud-Dienstanbieter muss eine Serviceoption bereitstellen, bei der Cloud-Service-Kundendaten ausschließlich in Deutschland gespeichert und verarbeitet werden. C5: Der Cloud-Dienstanbieter muss eine Serviceoption bereitstellen, bei der Daten des Cloud-Dienstanbieters ausschließlich in der EU gespeichert und verarbeitet werden."
+              },
+              {
+                "id": "SOV-3-01_gdn",
+                "name": "guidance",
+                "prose": "Wenn ein Cloud-Dienstanbieter neben der EU oder Deutschland auch an anderen Standorten/Regionen tätig ist, muss der Ort/die Region der Verarbeitung und Speicherung für den Cloud-Service-Kunden eindeutig identifizierbar sein.",
+                "props": [
+                  {
+                    "name": "modal_verb",
+                    "value": "MUSS",
+                    "ns": "https://placeholder.example/ns"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "SOV-3-02",
+            "class": "C3A-Catalog",
+            "title": "External Key Management",
+            "params": [
+              {
+                "id": "sov-3-02-prm1",
+                "props": [
+                  {
+                    "name": "alt-identifier",
+                    "value": "a14ad905-6fb1-4730-9ebf-d9fdebb3dfc5",
+                    "ns": "https://placeholder.example/ns"
+                  }
+                ],
+                "label": "Normreferenzen",
+                "values": [
+                  "BSI C3A"
+                ]
+              }
+            ],
+            "props": [
+              {
+                "name": "alt-identifier",
+                "value": "abbea083-5cde-488b-b78e-b690561df11a",
+                "ns": "https://placeholder.example/ns"
+              },
+              {
+                "name": "sec_level",
+                "value": "normal-SdT",
+                "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces/security_level.csv"
+              },
+              {
+                "name": "effort_level",
+                "value": "1",
+                "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces/effort_level.csv"
+              },
+              {
+                "name": "tags",
+                "value": "C3A, SOV-3, External Key Management",
+                "ns": "https://placeholder.example/ns"
+              }
+            ],
+            "parts": [
+              {
+                "id": "SOV-3-02_stm",
+                "name": "statement",
+                "props": [
+                  {
+                    "name": "result",
+                    "value": "External Key Management",
+                    "ns": "https://placeholder.example/ns"
+                  },
+                  {
+                    "name": "action_word",
+                    "value": "umsetzen",
+                    "ns": "https://placeholder.example/ns"
+                  },
+                  {
+                    "name": "modal_verb",
+                    "value": "MUSS",
+                    "ns": "https://placeholder.example/ns"
+                  }
+                ],
+                "prose": "C: Der Cloud-Dienstanbieter muss die Integration externer Verschlüsselungsschlüssel-Managementsysteme zum Erstellen, Verwalten und Speichern von Verschlüsselungsschlüsseln außerhalb der Cloud-Dienstanbieterumgebung für die Nutzung von IaaS und PaaS ermöglichen oder funktional gleichwertige Mechanismen bereitstellen, die sicherstellen, dass der Kunde die Verschlüsselungsschlüssel nur außerhalb der Cloud-Dienstanbieterumgebung erstellen, verwalten und speichern kann. AC: Der Cloud-Dienstanbieter muss die Integration externer Schlüsselmanagementsysteme zum Erstellen, Verwalten und Speichern von Schlüsseln außerhalb der Cloud-Umgebung auch für SaaS ermöglichen oder funktional gleichwertige Mechanismen bereitstellen, die sicherstellen, dass der Kunde die Verschlüsselungsschlüssel nur außerhalb der Cloud-Dienstanbieterumgebung erstellen, verwalten und speichern kann."
+              },
+              {
+                "id": "SOV-3-02_gdn",
+                "name": "guidance",
+                "prose": "Die Integration externer Schlüsselmanagementsysteme für IaaS und PaaS ist weit verbreitet und allgemein standardisiert. Bei SaaS-Lösungen sind externe Verschlüsselungsschlüssel-Managementsysteme weniger verbreitet; daher sollten Cloud-Dienstanbieter externe Verschlüsselungsschlüssel-Managementfunktionen für SaaS unterstützen, sofern dies technisch machbar und für die Servicearchitektur angemessen ist. Wenn dieses Kriterium nur für einige SaaS erfüllt ist, muss der Cloud-Dienstanbieter dem Cloud-Service-Kunden eine Liste dieser Dienste zur Verfügung stellen.",
+                "props": [
+                  {
+                    "name": "modal_verb",
+                    "value": "SOLLTE",
+                    "ns": "https://placeholder.example/ns"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "SOV-3-03",
+            "class": "C3A-Catalog",
+            "title": "External Identity Provider",
+            "params": [
+              {
+                "id": "sov-3-03-prm1",
+                "props": [
+                  {
+                    "name": "alt-identifier",
+                    "value": "fb63fa8c-4a69-4f62-9f26-b18c5056638d",
+                    "ns": "https://placeholder.example/ns"
+                  }
+                ],
+                "label": "Normreferenzen",
+                "values": [
+                  "BSI C3A"
+                ]
+              }
+            ],
+            "props": [
+              {
+                "name": "alt-identifier",
+                "value": "6088e415-1d61-48ff-8e2a-c0e5a31ffc4f",
+                "ns": "https://placeholder.example/ns"
+              },
+              {
+                "name": "sec_level",
+                "value": "normal-SdT",
+                "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces/security_level.csv"
+              },
+              {
+                "name": "effort_level",
+                "value": "1",
+                "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces/effort_level.csv"
+              },
+              {
+                "name": "tags",
+                "value": "C3A, SOV-3, External Identity Provider",
+                "ns": "https://placeholder.example/ns"
+              }
+            ],
+            "parts": [
+              {
+                "id": "SOV-3-03_stm",
+                "name": "statement",
+                "props": [
+                  {
+                    "name": "result",
+                    "value": "External Identity Provider",
+                    "ns": "https://placeholder.example/ns"
+                  },
+                  {
+                    "name": "action_word",
+                    "value": "umsetzen",
+                    "ns": "https://placeholder.example/ns"
+                  },
+                  {
+                    "name": "modal_verb",
+                    "value": "MUSS",
+                    "ns": "https://placeholder.example/ns"
+                  }
+                ],
+                "prose": "C: Der Cloud-Dienstanbieter muss die standardbasierte Integration externer Identitätsanbieter für die Authentifizierung und Zugriffsverwaltung für den Cloud-Dienst unterstützen. AC1: Die Integration eines externen Identitätsanbieters muss über offene, nicht-proprietäre Standards implementiert werden. AC2: Der Anbieter muss ein zustandsloses Authentifizierungsmodell unterstützen, das die Erstellung und Kopien von Konten im Verzeichnis des Anbieters nicht vorschreibt. AC3: Die Autorisierung muss über dynamische Ansprüche und Attribute steuerbar sein, die direkt vom externen Identitätsanbieter des Kunden ausgestellt werden."
+              }
+            ]
+          },
+          {
+            "id": "SOV-3-04",
+            "class": "C3A-Catalog",
+            "title": "Logging and Monitoring",
+            "params": [
+              {
+                "id": "sov-3-04-prm1",
+                "props": [
+                  {
+                    "name": "alt-identifier",
+                    "value": "f4cd42c1-a9de-49e6-affe-6fb542f0c295",
+                    "ns": "https://placeholder.example/ns"
+                  }
+                ],
+                "label": "Normreferenzen",
+                "values": [
+                  "BSI C3A"
+                ]
+              }
+            ],
+            "props": [
+              {
+                "name": "alt-identifier",
+                "value": "ee2a613a-1525-4ef6-9660-5d14d7ef2550",
+                "ns": "https://placeholder.example/ns"
+              },
+              {
+                "name": "sec_level",
+                "value": "normal-SdT",
+                "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces/security_level.csv"
+              },
+              {
+                "name": "effort_level",
+                "value": "1",
+                "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces/effort_level.csv"
+              },
+              {
+                "name": "tags",
+                "value": "C3A, SOV-3, Logging and Monitoring",
+                "ns": "https://placeholder.example/ns"
+              }
+            ],
+            "parts": [
+              {
+                "id": "SOV-3-04_stm",
+                "name": "statement",
+                "props": [
+                  {
+                    "name": "result",
+                    "value": "Logging and Monitoring",
+                    "ns": "https://placeholder.example/ns"
+                  },
+                  {
+                    "name": "action_word",
+                    "value": "umsetzen",
+                    "ns": "https://placeholder.example/ns"
+                  },
+                  {
+                    "name": "modal_verb",
+                    "value": "MUSS",
+                    "ns": "https://placeholder.example/ns"
+                  }
+                ],
+                "prose": "C: Der Cloud-Dienstanbieter muss den Kunden die Möglichkeit bieten, Protokolle von Verwaltungs- und Datenzugriffsaktivitäten im Zusammenhang mit Cloud-Service-Kundendaten aufzuzeichnen, aufzubewahren und zu überprüfen. Diese Protokolle müssen es Kunden ermöglichen, zu erkennen, wann ein Zugriff stattgefunden hat, welche Identität mit der Anfrage verbunden ist und welcher relevante betriebliche Kontext über die Protokollierungsfunktionen des Dienstes verfügbar ist. AC1: Der Protokollierungsdienst muss durch den Echtzeitzugriff über standardisierte Open-Source-APIs volle Datentransparenz gewährleisten. AC2: Der Dienst muss granulare Filterung unterstützen."
+              }
+            ]
+          },
+          {
+            "id": "SOV-3-05",
+            "class": "C3A-Catalog",
+            "title": "Client-Side Encryption",
+            "params": [
+              {
+                "id": "sov-3-05-prm1",
+                "props": [
+                  {
+                    "name": "alt-identifier",
+                    "value": "77228db0-a99e-480d-acf1-c8148b9c120b",
+                    "ns": "https://placeholder.example/ns"
+                  }
+                ],
+                "label": "Normreferenzen",
+                "values": [
+                  "BSI C3A"
+                ]
+              }
+            ],
+            "props": [
+              {
+                "name": "alt-identifier",
+                "value": "4f40aad5-8256-480c-ab5a-153974e30ca4",
+                "ns": "https://placeholder.example/ns"
+              },
+              {
+                "name": "sec_level",
+                "value": "normal-SdT",
+                "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces/security_level.csv"
+              },
+              {
+                "name": "effort_level",
+                "value": "1",
+                "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces/effort_level.csv"
+              },
+              {
+                "name": "tags",
+                "value": "C3A, SOV-3, Client-Side Encryption",
+                "ns": "https://placeholder.example/ns"
+              }
+            ],
+            "parts": [
+              {
+                "id": "SOV-3-05_stm",
+                "name": "statement",
+                "props": [
+                  {
+                    "name": "result",
+                    "value": "Client-Side Encryption",
+                    "ns": "https://placeholder.example/ns"
+                  },
+                  {
+                    "name": "action_word",
+                    "value": "umsetzen",
+                    "ns": "https://placeholder.example/ns"
+                  },
+                  {
+                    "name": "modal_verb",
+                    "value": "MUSS",
+                    "ns": "https://placeholder.example/ns"
+                  }
+                ],
+                "prose": "C: Der Cloud-Dienstanbieter muss die clientseitige Verschlüsselung von Cloud-Service-Kundendaten ermöglichen. Wenn die Cloud-Service-Kundendaten innerhalb der Cloud-Umgebung übertragen, verarbeitet oder gespeichert werden, müssen sie mit einem privaten Schlüssel verschlüsselt werden, der dem Cloud-Service-Kunden nur außerhalb der Cloud-Dienstanbieterumgebung zur Verfügung steht."
+              },
+              {
+                "id": "SOV-3-05_gdn",
+                "name": "guidance",
+                "prose": "Wenn dieses Kriterium nur für einige Cloud-Dienste erfüllt ist, muss der Cloud-Dienstanbieter dem Cloud-Service-Kunden eine Liste dieser Dienste zur Verfügung stellen.",
+                "props": [
+                  {
+                    "name": "modal_verb",
+                    "value": "MUSS",
+                    "ns": "https://placeholder.example/ns"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "SOV-4",
+        "title": "SOV-4 Operational Sovereignty",
+        "controls": [
+          {
+            "id": "SOV-4-01",
+            "class": "C3A-Catalog",
+            "title": "Operating Personnel",
+            "params": [
+              {
+                "id": "sov-4-01-prm1",
+                "props": [
+                  {
+                    "name": "alt-identifier",
+                    "value": "e6e5f51a-f8b7-4f81-a825-d92d173f1fe9",
+                    "ns": "https://placeholder.example/ns"
+                  }
+                ],
+                "label": "Normreferenzen",
+                "values": [
+                  "BSI C3A"
+                ]
+              }
+            ],
+            "props": [
+              {
+                "name": "alt-identifier",
+                "value": "d6aed419-2ac5-4387-bd44-e90029701056",
+                "ns": "https://placeholder.example/ns"
+              },
+              {
+                "name": "sec_level",
+                "value": "normal-SdT",
+                "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces/security_level.csv"
+              },
+              {
+                "name": "effort_level",
+                "value": "1",
+                "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces/effort_level.csv"
+              },
+              {
+                "name": "tags",
+                "value": "C3A, SOV-4, Operating Personnel",
+                "ns": "https://placeholder.example/ns"
+              }
+            ],
+            "parts": [
+              {
+                "id": "SOV-4-01_stm",
+                "name": "statement",
+                "props": [
+                  {
+                    "name": "result",
+                    "value": "Operating Personnel",
+                    "ns": "https://placeholder.example/ns"
+                  },
+                  {
+                    "name": "action_word",
+                    "value": "umsetzen",
+                    "ns": "https://placeholder.example/ns"
+                  },
+                  {
+                    "name": "modal_verb",
+                    "value": "MUSS",
+                    "ns": "https://placeholder.example/ns"
+                  }
+                ],
+                "prose": "C1: Alle Mitarbeiter, die logischen oder physischen Zugang zu der für den Betrieb des Cloud-Dienstes verwendeten Infrastruktur haben, sowie diejenigen, die für den Kundensupport verantwortlich sind, und alle Personen, die die Verwaltungskontrolle über den Cloud-Dienstanbieter ausüben, müssen EU-Bürger mit Hauptwohnsitz in der EU sein. C2: Alle Mitarbeiter, die logischen oder physischen Zugang zu der für den Betrieb des Cloud-Dienstes verwendeten Infrastruktur haben, sowie diejenigen, die für den Kundensupport verantwortlich sind, und alle Personen, die die Verwaltungskontrolle über den Cloud-Dienstanbieter ausüben, müssen EU-Bürger mit Hauptwohnsitz in Deutschland sein. C3: Das Betriebspersonal ist Teil einer Organisation, die eine eigenständige europäische Organisation sein muss."
+              }
+            ]
+          },
+          {
+            "id": "SOV-4-02",
+            "class": "C3A-Catalog",
+            "title": "Remote Work",
+            "params": [
+              {
+                "id": "sov-4-02-prm1",
+                "props": [
+                  {
+                    "name": "alt-identifier",
+                    "value": "0633514c-d42c-4083-8c77-2ce81c0341f1",
+                    "ns": "https://placeholder.example/ns"
+                  }
+                ],
+                "label": "Normreferenzen",
+                "values": [
+                  "BSI C3A"
+                ]
+              }
+            ],
+            "props": [
+              {
+                "name": "alt-identifier",
+                "value": "65cc99fb-e79c-447d-a169-6508a2cd8306",
+                "ns": "https://placeholder.example/ns"
+              },
+              {
+                "name": "sec_level",
+                "value": "normal-SdT",
+                "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces/security_level.csv"
+              },
+              {
+                "name": "effort_level",
+                "value": "1",
+                "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces/effort_level.csv"
+              },
+              {
+                "name": "tags",
+                "value": "C3A, SOV-4, Remote Work",
+                "ns": "https://placeholder.example/ns"
+              }
+            ],
+            "parts": [
+              {
+                "id": "SOV-4-02_stm",
+                "name": "statement",
+                "props": [
+                  {
+                    "name": "result",
+                    "value": "Remote Work",
+                    "ns": "https://placeholder.example/ns"
+                  },
+                  {
+                    "name": "action_word",
+                    "value": "umsetzen",
+                    "ns": "https://placeholder.example/ns"
+                  },
+                  {
+                    "name": "modal_verb",
+                    "value": "MUSS",
+                    "ns": "https://placeholder.example/ns"
+                  }
+                ],
+                "prose": "C1: Der Cloud-Dienstanbieter muss organisatorische und technische Maßnahmen implementieren, die sicherstellen, dass der administrative Zugriff auf Systeme, die zum Betrieb des Cloud-Dienstes verwendet werden, über Zugriffspfade innerhalb der EU erfolgt. Administrativer Zugriff von Standorten außerhalb der EU muss technisch eingeschränkt werden, außer in eng definierten und kontrollierten Ausnahmeszenarien, die zusätzlichen Autorisierungs- und Überwachungskontrollen unterliegen. C2: Der Cloud-Dienstanbieter muss organisatorische und technische Maßnahmen implementieren, die sicherstellen, dass der administrative Zugriff auf Systeme, die zum Betrieb des Cloud-Dienstes verwendet werden, über Zugriffspfade innerhalb der EU erfolgt. Administrativer Zugriff von Standorten außerhalb Deutschlands muss technisch eingeschränkt werden, außer in eng definierten und kontrollierten Ausnahmeszenarien, die zusätzlichen Autorisierungs- und Überwachungskontrollen unterliegen."
+              }
+            ]
+          },
+          {
+            "id": "SOV-4-03",
+            "class": "C3A-Catalog",
+            "title": "Redundant connectivity providers",
+            "params": [
+              {
+                "id": "sov-4-03-prm1",
+                "props": [
+                  {
+                    "name": "alt-identifier",
+                    "value": "c42f49bb-87d4-4f69-b8c8-5278aa7bc90f",
+                    "ns": "https://placeholder.example/ns"
+                  }
+                ],
+                "label": "Normreferenzen",
+                "values": [
+                  "BSI C3A"
+                ]
+              }
+            ],
+            "props": [
+              {
+                "name": "alt-identifier",
+                "value": "1161105a-e6db-464f-9312-f22793d459b6",
+                "ns": "https://placeholder.example/ns"
+              },
+              {
+                "name": "sec_level",
+                "value": "normal-SdT",
+                "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces/security_level.csv"
+              },
+              {
+                "name": "effort_level",
+                "value": "1",
+                "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces/effort_level.csv"
+              },
+              {
+                "name": "tags",
+                "value": "C3A, SOV-4, Redundant connectivity providers",
+                "ns": "https://placeholder.example/ns"
+              }
+            ],
+            "parts": [
+              {
+                "id": "SOV-4-03_stm",
+                "name": "statement",
+                "props": [
+                  {
+                    "name": "result",
+                    "value": "Redundant connectivity providers",
+                    "ns": "https://placeholder.example/ns"
+                  },
+                  {
+                    "name": "action_word",
+                    "value": "umsetzen",
+                    "ns": "https://placeholder.example/ns"
+                  },
+                  {
+                    "name": "modal_verb",
+                    "value": "MUSS",
+                    "ns": "https://placeholder.example/ns"
+                  }
+                ],
+                "prose": "C: Der Cloud-Dienstanbieter muss redundante und unabhängige Konnektivität für die Bereitstellung des souveränen Cloud-Dienstes sicherstellen. Im Falle einer Störung eines Konnektivitätsanbieters müssen alternative Konnektivitätsanbieter in der Lage sein, die Konnektivität gemäß den vertraglichen Service Level Agreements aufrechtzuerhalten. Mindestens einer der Konnektivitätsanbieter muss ein Unternehmen mit Sitz in der EU sein. AC: Mindestens einer der Konnektivitätsanbieter ist nicht Teil der Unternehmensstruktur des Cloud-Dienstanbieters."
+              }
+            ]
+          },
+          {
+            "id": "SOV-4-04",
+            "class": "C3A-Catalog",
+            "title": "SOC",
+            "params": [
+              {
+                "id": "sov-4-04-prm1",
+                "props": [
+                  {
+                    "name": "alt-identifier",
+                    "value": "75971d3e-ae40-4a43-9c62-59a08248a4ea",
+                    "ns": "https://placeholder.example/ns"
+                  }
+                ],
+                "label": "Normreferenzen",
+                "values": [
+                  "BSI C3A"
+                ]
+              }
+            ],
+            "props": [
+              {
+                "name": "alt-identifier",
+                "value": "7cb5ac1c-d875-4cf6-b40b-7bd51bdf50e5",
+                "ns": "https://placeholder.example/ns"
+              },
+              {
+                "name": "sec_level",
+                "value": "normal-SdT",
+                "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces/security_level.csv"
+              },
+              {
+                "name": "effort_level",
+                "value": "1",
+                "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces/effort_level.csv"
+              },
+              {
+                "name": "tags",
+                "value": "C3A, SOV-4, SOC",
+                "ns": "https://placeholder.example/ns"
+              }
+            ],
+            "parts": [
+              {
+                "id": "SOV-4-04_stm",
+                "name": "statement",
+                "props": [
+                  {
+                    "name": "result",
+                    "value": "SOC",
+                    "ns": "https://placeholder.example/ns"
+                  },
+                  {
+                    "name": "action_word",
+                    "value": "umsetzen",
+                    "ns": "https://placeholder.example/ns"
+                  },
+                  {
+                    "name": "modal_verb",
+                    "value": "MUSS",
+                    "ns": "https://placeholder.example/ns"
+                  }
+                ],
+                "prose": "C1: Der Cloud-Dienstanbieter muss sicherstellen, dass Security Operations Center (SOC)-Funktionen für die angebotenen Cloud-Dienste innerhalb der EU eingerichtet und betrieben werden. Im Falle einer Trennung (SOV-4-10) muss ein eigenständiges und gleichwertiges SOC in der EU bereitgestellt werden. C2: Der Cloud-Dienstanbieter muss sicherstellen, dass Security Operations Center (SOC)-Funktionen für die angebotenen Cloud-Dienste innerhalb Deutschlands eingerichtet und betrieben werden. Im Falle einer Trennung (SOV-4-10) muss ein eigenständiges und gleichwertiges SOC in Deutschland bereitgestellt werden."
+              }
+            ]
+          },
+          {
+            "id": "SOV-4-05",
+            "class": "C3A-Catalog",
+            "title": "Ingress Data Control",
+            "params": [
+              {
+                "id": "sov-4-05-prm1",
+                "props": [
+                  {
+                    "name": "alt-identifier",
+                    "value": "40d40afd-88ce-4700-bb48-bb41f94cd48b",
+                    "ns": "https://placeholder.example/ns"
+                  }
+                ],
+                "label": "Normreferenzen",
+                "values": [
+                  "BSI C3A"
+                ]
+              }
+            ],
+            "props": [
+              {
+                "name": "alt-identifier",
+                "value": "89f124a1-9bfe-477c-9605-1ef1394c60b6",
+                "ns": "https://placeholder.example/ns"
+              },
+              {
+                "name": "sec_level",
+                "value": "normal-SdT",
+                "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces/security_level.csv"
+              },
+              {
+                "name": "effort_level",
+                "value": "1",
+                "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces/effort_level.csv"
+              },
+              {
+                "name": "tags",
+                "value": "C3A, SOV-4, Ingress Data Control",
+                "ns": "https://placeholder.example/ns"
+              }
+            ],
+            "parts": [
+              {
+                "id": "SOV-4-05_stm",
+                "name": "statement",
+                "props": [
+                  {
+                    "name": "result",
+                    "value": "Ingress Data Control",
+                    "ns": "https://placeholder.example/ns"
+                  },
+                  {
+                    "name": "action_word",
+                    "value": "umsetzen",
+                    "ns": "https://placeholder.example/ns"
+                  },
+                  {
+                    "name": "modal_verb",
+                    "value": "MUSS",
+                    "ns": "https://placeholder.example/ns"
+                  }
+                ],
+                "prose": "C: Alle Software-Updates und Betriebsdaten, die den Cloud-Dienst betreffen, müssen in einem gesicherten, vom Cloud-Dienstanbieter verwalteten und kontrollierten Netzwerkbereich empfangen, autorisiert und validiert werden. Der Cloud-Dienstanbieter muss Updates auf bekannte Schwachstellen überprüfen und kontrollieren. Updates müssen eine Dokumentation enthalten, die den Anforderungen des Cloud-Dienstanbieters entspricht. Der Update-Prozess muss auf kontrollierten Change-Management-Prozessen basieren. AC1: Der Cloud-Dienstanbieter muss den sicheren Netzwerkbereich (z. B. DMZ) auf dedizierten physischen Geräten implementieren. AC2: Der Cloud-Dienstanbieter muss der zuständigen Cybersicherheitsbehörde auf Anfrage technische Dokumentationen zur Implementierung des Kriteriums SOV-4-05-C zur Verfügung stellen, in Übereinstimmung mit geltendem Recht und etablierten Aufsichts-, Kooperationsvereinbarungen oder Prüfmechanismen. Die zuständige Behörde ist diejenige in dem Land, in dem sich das Rechenzentrum befindet. Solche Informationen können durch geeignete Vertraulichkeitsschutzmaßnahmen und sichere Offenlegungsverfahren bereitgestellt werden."
+              },
+              {
+                "id": "SOV-4-05_gdn",
+                "name": "guidance",
+                "prose": "Eine Schwachstelle gilt als bekannt, wenn sie in der European Union Vulnerability Database (EUVD) oder im Common Vulnerabilities and Exposures (CVE) Program des National Institute of Standards and Technology (NIST) aufgeführt ist.",
+                "props": []
+              }
+            ]
+          },
+          {
+            "id": "SOV-4-06",
+            "class": "C3A-Catalog",
+            "title": "Update threat analysis",
+            "params": [
+              {
+                "id": "sov-4-06-prm1",
+                "props": [
+                  {
+                    "name": "alt-identifier",
+                    "value": "1359aa24-2eb2-4bc4-83f2-2a6baa79dd0a",
+                    "ns": "https://placeholder.example/ns"
+                  }
+                ],
+                "label": "Normreferenzen",
+                "values": [
+                  "BSI C3A"
+                ]
+              }
+            ],
+            "props": [
+              {
+                "name": "alt-identifier",
+                "value": "349ca45a-a953-4b4d-a059-867bb951ae83",
+                "ns": "https://placeholder.example/ns"
+              },
+              {
+                "name": "sec_level",
+                "value": "normal-SdT",
+                "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces/security_level.csv"
+              },
+              {
+                "name": "effort_level",
+                "value": "1",
+                "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces/effort_level.csv"
+              },
+              {
+                "name": "tags",
+                "value": "C3A, SOV-4, Update threat analysis",
+                "ns": "https://placeholder.example/ns"
+              }
+            ],
+            "parts": [
+              {
+                "id": "SOV-4-06_stm",
+                "name": "statement",
+                "props": [
+                  {
+                    "name": "result",
+                    "value": "Update threat analysis",
+                    "ns": "https://placeholder.example/ns"
+                  },
+                  {
+                    "name": "action_word",
+                    "value": "umsetzen",
+                    "ns": "https://placeholder.example/ns"
+                  },
+                  {
+                    "name": "modal_verb",
+                    "value": "MUSS",
+                    "ns": "https://placeholder.example/ns"
+                  }
+                ],
+                "prose": "C: Bei der Verwendung von Drittanbieter-Software in der Verantwortung des Cloud-Dienstanbieters muss der Cloud-Dienstanbieter vor der Bereitstellung eine risikobasierte Sicherheitsanalyse implementieren, einschließlich Maßnahmen zur Erkennung und Eindämmung von bösartigem Code, Viren, Spyware und Ransomware."
+              }
+            ]
+          },
+          {
+            "id": "SOV-4-07",
+            "class": "C3A-Catalog",
+            "title": "Data exchange monitoring",
+            "params": [
+              {
+                "id": "sov-4-07-prm1",
+                "props": [
+                  {
+                    "name": "alt-identifier",
+                    "value": "4ad081a1-430b-4cbd-9868-f25940452c4b",
+                    "ns": "https://placeholder.example/ns"
+                  }
+                ],
+                "label": "Normreferenzen",
+                "values": [
+                  "BSI C3A"
+                ]
+              }
+            ],
+            "props": [
+              {
+                "name": "alt-identifier",
+                "value": "5c3a4126-59ac-4646-9517-0e0b2cfe473c",
+                "ns": "https://placeholder.example/ns"
+              },
+              {
+                "name": "sec_level",
+                "value": "normal-SdT",
+                "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces/security_level.csv"
+              },
+              {
+                "name": "effort_level",
+                "value": "1",
+                "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces/effort_level.csv"
+              },
+              {
+                "name": "tags",
+                "value": "C3A, SOV-4, Data exchange monitoring",
+                "ns": "https://placeholder.example/ns"
+              }
+            ],
+            "parts": [
+              {
+                "id": "SOV-4-07_stm",
+                "name": "statement",
+                "props": [
+                  {
+                    "name": "result",
+                    "value": "Data exchange monitoring",
+                    "ns": "https://placeholder.example/ns"
+                  },
+                  {
+                    "name": "action_word",
+                    "value": "umsetzen",
+                    "ns": "https://placeholder.example/ns"
+                  },
+                  {
+                    "name": "modal_verb",
+                    "value": "MUSS",
+                    "ns": "https://placeholder.example/ns"
+                  }
+                ],
+                "prose": "C: Alle vom Cloud-Dienst abgeleiteten Daten, Cloud-Service-Kundendaten und Kontodaten, die zwischen dem Cloud-Dienstanbieter und Dritten ausgetauscht werden, müssen immer überwacht, kontrolliert und protokolliert werden. Um dies zu tun, muss der Cloud-Dienstanbieter einen dokumentierten Prozess einrichten. Die Dokumentation muss regelmäßig, mindestens einmal im Jahr, überprüft und aktualisiert werden.\nDer Cloud-Dienstanbieter muss dokumentieren, welche Art von Daten mit Dritten ausgetauscht wird. Diese Dokumentation muss sicherstellen, dass klar ist, welche Daten an welche Partei fließen, und dies kann auch sinnvoll aggregiert werden. Der Cloud-Dienstanbieter muss diese Dokumentation dem Cloud-Service-Kunden zur Verfügung stellen. Es ist akzeptabel, dass diese nur dem Kunden zur Verfügung gestellt wird, wenn er sich bereit erklärt hat, die Informationen vertraulich zu behandeln und nicht öffentlich bekannt zu geben.\nDer Cloud-Dienstanbieter muss das Austauschformat klar definieren und als Teil der Datenaustauschdokumentation dokumentieren."
+              },
+              {
+                "id": "SOV-4-07_gdn",
+                "name": "guidance",
+                "prose": "Im Kontext dieser Anforderung gilt ein Cloud-Service-Kunde nicht als Dritter. Ein verbundenes Unternehmen innerhalb derselben Unternehmensgruppe wird als Dritter eingestuft.",
+                "props": []
+              }
+            ]
+          },
+          {
+            "id": "SOV-4-08",
+            "class": "C3A-Catalog",
+            "title": "Data exchange gateways",
+            "params": [
+              {
+                "id": "sov-4-08-prm1",
+                "props": [
+                  {
+                    "name": "alt-identifier",
+                    "value": "6b53e363-e485-4ec9-ad01-a7f722fab90a",
+                    "ns": "https://placeholder.example/ns"
+                  }
+                ],
+                "label": "Normreferenzen",
+                "values": [
+                  "BSI C3A"
+                ]
+              }
+            ],
+            "props": [
+              {
+                "name": "alt-identifier",
+                "value": "ecfd23b2-ccc7-496b-8395-7778958cb0ae",
+                "ns": "https://placeholder.example/ns"
+              },
+              {
+                "name": "sec_level",
+                "value": "normal-SdT",
+                "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces/security_level.csv"
+              },
+              {
+                "name": "effort_level",
+                "value": "1",
+                "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces/effort_level.csv"
+              },
+              {
+                "name": "tags",
+                "value": "C3A, SOV-4, Data exchange gateways",
+                "ns": "https://placeholder.example/ns"
+              }
+            ],
+            "parts": [
+              {
+                "id": "SOV-4-08_stm",
+                "name": "statement",
+                "props": [
+                  {
+                    "name": "result",
+                    "value": "Data exchange gateways",
+                    "ns": "https://placeholder.example/ns"
+                  },
+                  {
+                    "name": "action_word",
+                    "value": "umsetzen",
+                    "ns": "https://placeholder.example/ns"
+                  },
+                  {
+                    "name": "modal_verb",
+                    "value": "MUSS",
+                    "ns": "https://placeholder.example/ns"
+                  }
+                ],
+                "prose": "C: Der Cloud-Dienstanbieter muss alle Datenaustausche zwischen dem Cloud-Dienstanbieter und Dritten von Cloud-Dienst-abgeleiteten Daten, Cloud-Service-Kundendaten und Kontodaten dokumentieren, definieren und visualisieren (über ein Datenflussdiagramm). Der Datenaustausch darf nur über bekannte Gateways erfolgen. Die Dokumentation muss Datenursprünge, Ziele, Transportprotokolle, Datentyp und Sicherheitsmechanismen zum Schutz dieser Austausche klar identifizieren. Die Dokumentation muss regelmäßig, mindestens einmal jährlich, überprüft und aktualisiert werden. Diese Dokumentation muss nicht öffentlich zugänglich gemacht werden. AC: Der Cloud-Dienstanbieter muss das Datenflussdiagramm der zuständigen Cybersicherheitsbehörde auf Anfrage in Übereinstimmung mit geltendem Recht und etablierten Aufsichts-, Kooperationsvereinbarungen oder Prüfmechanismen zur Verfügung stellen. Die zuständige Behörde ist diejenige in dem Land, in dem sich das Rechenzentrum befindet. Solche Informationen können durch geeignete Vertraulichkeitsschutzmaßnahmen und sichere Offenlegungsverfahren bereitgestellt werden."
+              },
+              {
+                "id": "SOV-4-08_gdn",
+                "name": "guidance",
+                "prose": "Im Kontext dieser Anforderung gilt ein Cloud-Service-Kunde nicht als Dritter. Ein verbundenes Unternehmen innerhalb derselben Unternehmensgruppe wird als Dritter eingestuft.",
+                "props": []
+              }
+            ]
+          },
+          {
+            "id": "SOV-4-09",
+            "class": "C3A-Catalog",
+            "title": "Disconnect",
+            "params": [
+              {
+                "id": "sov-4-09-prm1",
+                "props": [
+                  {
+                    "name": "alt-identifier",
+                    "value": "511f959c-7a43-47b6-8319-d49363335138",
+                    "ns": "https://placeholder.example/ns"
+                  }
+                ],
+                "label": "Normreferenzen",
+                "values": [
+                  "BSI C3A"
+                ]
+              }
+            ],
+            "props": [
+              {
+                "name": "alt-identifier",
+                "value": "6d0042a4-210c-4f47-93c7-41de4a64132c",
+                "ns": "https://placeholder.example/ns"
+              },
+              {
+                "name": "sec_level",
+                "value": "normal-SdT",
+                "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces/security_level.csv"
+              },
+              {
+                "name": "effort_level",
+                "value": "1",
+                "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces/effort_level.csv"
+              },
+              {
+                "name": "tags",
+                "value": "C3A, SOV-4, Disconnect",
+                "ns": "https://placeholder.example/ns"
+              }
+            ],
+            "parts": [
+              {
+                "id": "SOV-4-09_stm",
+                "name": "statement",
+                "props": [
+                  {
+                    "name": "result",
+                    "value": "Disconnect",
+                    "ns": "https://placeholder.example/ns"
+                  },
+                  {
+                    "name": "action_word",
+                    "value": "umsetzen",
+                    "ns": "https://placeholder.example/ns"
+                  },
+                  {
+                    "name": "modal_verb",
+                    "value": "MUSS",
+                    "ns": "https://placeholder.example/ns"
+                  }
+                ],
+                "prose": "C: Der Cloud-Dienstanbieter muss in der Lage sein, alle Nicht-EU-Netzwerkverbindungen zur Cloud zu trennen, ohne die Verfügbarkeit, Integrität, Authentizität und Vertraulichkeit des Cloud-Dienstes zu beeinträchtigen. Dies umfasst alle eingehenden Updates und den Datenaustausch mit Nicht-EU-Einheiten (einschließlich, aber nicht beschränkt auf: externe Heartbeat-Signale und globale Lizenzvalidierungsserver), die in der Verantwortung des Cloud-Dienstanbieters liegen.\nDer Cloud-Dienstanbieter muss einen Prozess etablieren und dokumentieren, wann und wie eine Trennung durchgeführt wird. Dieser Prozess muss von Nicht-EU-Einheiten unabhängig sein. Der Cloud-Dienstanbieter muss diese Dokumentation regelmäßig, mindestens einmal im Jahr, aktualisieren.\nDer Cloud-Dienstanbieter muss mindestens einmal jährlich Trennungstests durchführen, um die Verfügbarkeit aller Cloud-Dienste im Falle einer Trennung von den Nicht-EU-Netzwerkverbindungen sicherzustellen. Der Cloud-Dienstanbieter muss diese Tests als Teil der oben genannten Dokumentationen dokumentieren. Die Dokumentation muss unter anderem die Ergebnisse des durchgeführten Tests enthalten. AC: Der Cloud-Dienstanbieter muss der zuständigen Cybersicherheitsbehörde auf Anfrage die Dokumentation des Trennungsprozesses und der Trennungstests in Übereinstimmung mit geltendem Recht und etablierten Aufsichts-, Kooperationsvereinbarungen oder Prüfmechanismen zur Verfügung stellen. Gegebenenfalls kann der Cloud-Dienstanbieter unterstützende Dokumentationen vorlegen. Die zuständige Behörde ist diejenige in dem Land, in dem sich das Rechenzentrum befindet. Solche Informationen können durch geeignete Vertraulichkeitsschutzmaßnahmen und sichere Offenlegungsverfahren bereitgestellt werden."
+              },
+              {
+                "id": "SOV-4-09_gdn",
+                "name": "guidance",
+                "prose": "Im Kontext der Trennungsanforderung sind Netzwerkverbindungen zwischen dem Cloud-Dienstanbieter und Cloud-Service-Kunden vom Geltungsbereich der Trennungsfähigkeit ausgenommen.",
+                "props": []
+              }
+            ]
+          },
+          {
+            "id": "SOV-4-10",
+            "class": "C3A-Catalog",
+            "title": "Reconnect",
+            "params": [
+              {
+                "id": "sov-4-10-prm1",
+                "props": [
+                  {
+                    "name": "alt-identifier",
+                    "value": "51e5e875-11cf-4854-a767-78de7fa41ba1",
+                    "ns": "https://placeholder.example/ns"
+                  }
+                ],
+                "label": "Normreferenzen",
+                "values": [
+                  "BSI C3A"
+                ]
+              }
+            ],
+            "props": [
+              {
+                "name": "alt-identifier",
+                "value": "39140df4-1c05-4db7-8143-1f2250d849a2",
+                "ns": "https://placeholder.example/ns"
+              },
+              {
+                "name": "sec_level",
+                "value": "normal-SdT",
+                "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces/security_level.csv"
+              },
+              {
+                "name": "effort_level",
+                "value": "1",
+                "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces/effort_level.csv"
+              },
+              {
+                "name": "tags",
+                "value": "C3A, SOV-4, Reconnect",
+                "ns": "https://placeholder.example/ns"
+              }
+            ],
+            "parts": [
+              {
+                "id": "SOV-4-10_stm",
+                "name": "statement",
+                "props": [
+                  {
+                    "name": "result",
+                    "value": "Reconnect",
+                    "ns": "https://placeholder.example/ns"
+                  },
+                  {
+                    "name": "action_word",
+                    "value": "umsetzen",
+                    "ns": "https://placeholder.example/ns"
+                  },
+                  {
+                    "name": "modal_verb",
+                    "value": "MUSS",
+                    "ns": "https://placeholder.example/ns"
+                  }
+                ],
+                "prose": "C: Der Cloud-Dienstanbieter muss in der Lage sein, alle Nicht-EU-Verbindungen nach einer Trennung gemäß Kriterium SOV-4-9-C (\"Disconnect\") wiederherzustellen, und verfügt über einen Prozess zur Installation von Updates, wenn die Cloud-Umgebung für maximal 90 Tage getrennt war.\nDer Prozess zur Installation von Updates, wenn die Cloud-Umgebung für höchstens 90 Tage getrennt war, muss ebenfalls getestet werden."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "SOV-5",
+        "title": "SOV-5 Supply Chain Sovereignty",
+        "controls": [
+          {
+            "id": "SOV-5-01",
+            "class": "C3A-Catalog",
+            "title": "Software Dependencies",
+            "params": [
+              {
+                "id": "sov-5-01-prm1",
+                "props": [
+                  {
+                    "name": "alt-identifier",
+                    "value": "85a4a876-9761-4866-9b48-b32839050f33",
+                    "ns": "https://placeholder.example/ns"
+                  }
+                ],
+                "label": "Normreferenzen",
+                "values": [
+                  "BSI C3A"
+                ]
+              }
+            ],
+            "props": [
+              {
+                "name": "alt-identifier",
+                "value": "7d35c7d9-0750-4385-81ba-933ca6380be3",
+                "ns": "https://placeholder.example/ns"
+              },
+              {
+                "name": "sec_level",
+                "value": "normal-SdT",
+                "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces/security_level.csv"
+              },
+              {
+                "name": "effort_level",
+                "value": "1",
+                "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces/effort_level.csv"
+              },
+              {
+                "name": "tags",
+                "value": "C3A, SOV-5, Software Dependencies",
+                "ns": "https://placeholder.example/ns"
+              }
+            ],
+            "parts": [
+              {
+                "id": "SOV-5-01_stm",
+                "name": "statement",
+                "props": [
+                  {
+                    "name": "result",
+                    "value": "Software Dependencies",
+                    "ns": "https://placeholder.example/ns"
+                  },
+                  {
+                    "name": "action_word",
+                    "value": "umsetzen",
+                    "ns": "https://placeholder.example/ns"
+                  },
+                  {
+                    "name": "modal_verb",
+                    "value": "MUSS",
+                    "ns": "https://placeholder.example/ns"
+                  }
+                ],
+                "prose": "C: Der Cloud-Dienstanbieter muss für jeden Cloud-Dienst die verwendeten Softwarekomponenten und deren jeweilige Herkunftsländer identifizieren. Eine Liste der relevanten Softwarelieferanten und ihres Landes oder ihrer Länder für jeden Dienst muss zusammengestellt und Cloud-Service-Kunden auf Anfrage zur Verfügung gestellt werden.\nDie Identifizierung der Softwarekomponenten sollte auf einer Software Bill of Materials (SBOM) (z. B. TR-03183-2) basieren oder ein vergleichbares Qualitätsniveau erreichen. AC: Der Cloud-Dienstanbieter muss einen risikobasierten Prozess zur Identifizierung und Minderung von Abhängigkeiten von externen Softwarelieferanten aufrechterhalten, die für den Betrieb des Cloud-Dienstes relevant sind. Wenn kritische Abhängigkeiten identifiziert werden, muss der Cloud-Dienstanbieter geeignete Minderungsstrategien implementieren und architektonische Flexibilität bewahren, die den Austausch von Softwarekomponenten ermöglicht. Ist dies technisch und vernünftigerweise nicht machbar, müssen diese Informationen dem Cloud-Service-Kunden angemessen zur Verfügung gestellt werden."
+              },
+              {
+                "id": "SOV-5-01_gdn",
+                "name": "guidance",
+                "prose": "Die Begriffe Softwarekomponenten und Softwarelieferanten beziehen sich ausschließlich auf Software, die vom Cloud-Dienstanbieter zur Bereitstellung des Cloud-Dienstes verwendet wird. Von Kunden oder Marktplatzanbietern bereitgestellte Software ist ausgeschlossen. Softwarekomponenten unter weit verbreiteten Open-Source-Lizenzen können von der Ursprungsmeldung ausgeschlossen werden, wenn die Lizenzbedingungen die Weitergabe solcher Informationen einschränken.\nTR-03183 aktuelle Version: https://www.bsi.bund.de/dok/TR-03183. Die Qualität der SBOM sollte den Anforderungen der TR-03183 entsprechen oder vergleichbare Alternativen nutzen.\nEs ist akzeptabel, dass dies dem Kunden nur zur Verfügung gestellt wird, wenn er zugestimmt hat, die Informationen vertraulich zu behandeln und nicht öffentlich bekannt zu geben.",
+                "props": [
+                  {
+                    "name": "modal_verb",
+                    "value": "SOLLTE",
+                    "ns": "https://placeholder.example/ns"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "SOV-5-02",
+            "class": "C3A-Catalog",
+            "title": "Hardware Dependencies",
+            "params": [
+              {
+                "id": "sov-5-02-prm1",
+                "props": [
+                  {
+                    "name": "alt-identifier",
+                    "value": "04a6cfbc-a2d1-4f8a-a234-835ffa700922",
+                    "ns": "https://placeholder.example/ns"
+                  }
+                ],
+                "label": "Normreferenzen",
+                "values": [
+                  "BSI C3A"
+                ]
+              }
+            ],
+            "props": [
+              {
+                "name": "alt-identifier",
+                "value": "f2de39bd-5115-4e9e-9481-267ba5daf9f6",
+                "ns": "https://placeholder.example/ns"
+              },
+              {
+                "name": "sec_level",
+                "value": "normal-SdT",
+                "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces/security_level.csv"
+              },
+              {
+                "name": "effort_level",
+                "value": "1",
+                "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces/effort_level.csv"
+              },
+              {
+                "name": "tags",
+                "value": "C3A, SOV-5, Hardware Dependencies",
+                "ns": "https://placeholder.example/ns"
+              }
+            ],
+            "parts": [
+              {
+                "id": "SOV-5-02_stm",
+                "name": "statement",
+                "props": [
+                  {
+                    "name": "result",
+                    "value": "Hardware Dependencies",
+                    "ns": "https://placeholder.example/ns"
+                  },
+                  {
+                    "name": "action_word",
+                    "value": "umsetzen",
+                    "ns": "https://placeholder.example/ns"
+                  },
+                  {
+                    "name": "modal_verb",
+                    "value": "MUSS",
+                    "ns": "https://placeholder.example/ns"
+                  }
+                ],
+                "prose": "C: Der Cloud-Dienstanbieter muss ein dokumentiertes Inventar der zur Bereitstellung von Cloud-Diensten verwendeten Hardwarekomponenten führen. Eine Liste der relevanten Hardwarelieferanten und ihres Landes oder ihrer Länder muss zusammengestellt und Cloud-Service-Kunden auf Anfrage zur Verfügung gestellt werden. AC: Der Cloud-Dienstanbieter muss einen risikobasierten Prozess zur Identifizierung und Minderung von Abhängigkeiten von Hardwarelieferanten aufrechterhalten, die für den Betrieb des Cloud-Dienstes relevant sind. Wenn kritische Abhängigkeiten identifiziert werden, muss der Cloud-Dienstanbieter Minderungsstrategien implementieren und architektonische Flexibilität bewahren, die den Austausch von Hardwarekomponenten ermöglicht. Ist dies technisch und betrieblich nicht machbar, müssen diese Informationen dem Cloud-Service-Kunden angemessen zur Verfügung gestellt werden."
+              },
+              {
+                "id": "SOV-5-02_gdn",
+                "name": "guidance",
+                "prose": "Es ist akzeptabel, dass dies dem Kunden nur zur Verfügung gestellt wird, wenn er zugestimmt hat, die Informationen vertraulich zu behandeln und nicht öffentlich bekannt zu geben.",
+                "props": []
+              }
+            ]
+          },
+          {
+            "id": "SOV-5-03",
+            "class": "C3A-Catalog",
+            "title": "External Service Dependencies",
+            "params": [
+              {
+                "id": "sov-5-03-prm1",
+                "props": [
+                  {
+                    "name": "alt-identifier",
+                    "value": "6054e656-8989-45ac-a6e5-459c199bd042",
+                    "ns": "https://placeholder.example/ns"
+                  }
+                ],
+                "label": "Normreferenzen",
+                "values": [
+                  "BSI C3A"
+                ]
+              }
+            ],
+            "props": [
+              {
+                "name": "alt-identifier",
+                "value": "6da4f570-5750-4053-93e9-07f8b76d5e81",
+                "ns": "https://placeholder.example/ns"
+              },
+              {
+                "name": "sec_level",
+                "value": "normal-SdT",
+                "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces/security_level.csv"
+              },
+              {
+                "name": "effort_level",
+                "value": "1",
+                "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces/effort_level.csv"
+              },
+              {
+                "name": "tags",
+                "value": "C3A, SOV-5, External Service Dependencies",
+                "ns": "https://placeholder.example/ns"
+              }
+            ],
+            "parts": [
+              {
+                "id": "SOV-5-03_stm",
+                "name": "statement",
+                "props": [
+                  {
+                    "name": "result",
+                    "value": "External Service Dependencies",
+                    "ns": "https://placeholder.example/ns"
+                  },
+                  {
+                    "name": "action_word",
+                    "value": "umsetzen",
+                    "ns": "https://placeholder.example/ns"
+                  },
+                  {
+                    "name": "modal_verb",
+                    "value": "MUSS",
+                    "ns": "https://placeholder.example/ns"
+                  }
+                ],
+                "prose": "C: Der Cloud-Dienstanbieter muss ein dokumentiertes Inventar genutzter externer Cloud-Dienste führen, die für die Bereitstellung des Cloud-Dienstes erforderlich sind. Die Liste mit Informationen zu den relevanten externen Dienstleistern und dem Land oder den Ländern der Leistungserbringung oder Entwicklung muss Cloud-Service-Kunden zur Verfügung gestellt werden. AC: Der Cloud-Dienstanbieter muss einen dokumentierten Prozess zur Identifizierung und Verwaltung externer Serviceabhängigkeiten aufrechterhalten, die für die Bereitstellung des Cloud-Dienstes relevant sind. Wenn kritische Abhängigkeiten identifiziert werden, muss der Cloud-Dienstanbieter Minderungsstrategien implementieren und architektonische Flexibilität bewahren, die den Austausch von Serviceabhängigkeiten ermöglicht. Ist dies technisch und betrieblich nicht machbar, müssen diese Informationen dem Cloud-Service-Kunden angemessen zur Verfügung gestellt werden."
+              },
+              {
+                "id": "SOV-5-03_gdn",
+                "name": "guidance",
+                "prose": "Externe Dienste beziehen sich ausschließlich auf Dienste, die für die Bereitstellung des Cloud-Dienstes selbst funktional erforderlich sind. In diesem Zusammenhang beziehen sich externe Cloud-Dienste auf Dienste, die von Cloud-Drittanbietern bereitgestellt werden, die in die Bereitstellung des primären Cloud-Dienstes integriert sind, aber von separaten Anbietern betrieben und gewartet werden.\nEs ist akzeptabel, dass dies dem Kunden nur zur Verfügung gestellt wird, wenn er zugestimmt hat, die Informationen vertraulich zu behandeln und nicht öffentlich bekannt zu geben.",
+                "props": []
+              }
+            ]
+          },
+          {
+            "id": "SOV-5-04",
+            "class": "C3A-Catalog",
+            "title": "Export Restriction",
+            "params": [
+              {
+                "id": "sov-5-04-prm1",
+                "props": [
+                  {
+                    "name": "alt-identifier",
+                    "value": "8f9c8a1f-3909-42cf-b74f-3db746c54387",
+                    "ns": "https://placeholder.example/ns"
+                  }
+                ],
+                "label": "Normreferenzen",
+                "values": [
+                  "BSI C3A"
+                ]
+              }
+            ],
+            "props": [
+              {
+                "name": "alt-identifier",
+                "value": "1e931c64-e36d-4db9-886f-12a99cc48f07",
+                "ns": "https://placeholder.example/ns"
+              },
+              {
+                "name": "sec_level",
+                "value": "normal-SdT",
+                "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces/security_level.csv"
+              },
+              {
+                "name": "effort_level",
+                "value": "1",
+                "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces/effort_level.csv"
+              },
+              {
+                "name": "tags",
+                "value": "C3A, SOV-5, Export Restriction",
+                "ns": "https://placeholder.example/ns"
+              }
+            ],
+            "parts": [
+              {
+                "id": "SOV-5-04_stm",
+                "name": "statement",
+                "props": [
+                  {
+                    "name": "result",
+                    "value": "Export Restriction",
+                    "ns": "https://placeholder.example/ns"
+                  },
+                  {
+                    "name": "action_word",
+                    "value": "umsetzen",
+                    "ns": "https://placeholder.example/ns"
+                  },
+                  {
+                    "name": "modal_verb",
+                    "value": "MUSS",
+                    "ns": "https://placeholder.example/ns"
+                  }
+                ],
+                "prose": "C: Der Cloud-Dienstanbieter muss dokumentierte Prozesse aufrechterhalten, um Risiken im Zusammenhang mit Exportbeschränkungen oder Unterbrechungen der Lieferkette zu identifizieren und zu mindern, die sich auf Software, externe Dienste und Hardware auswirken, die bei der Bereitstellung des Cloud-Dienstes verwendet werden. Wenn solche Einschränkungen den Betrieb des Cloud-Dienstes wesentlich beeinträchtigen können, muss der Cloud-Dienstanbieter die betroffenen Kunden informieren."
+              }
+            ]
+          },
+          {
+            "id": "SOV-5-05",
+            "class": "C3A-Catalog",
+            "title": "Capacity Management",
+            "params": [
+              {
+                "id": "sov-5-05-prm1",
+                "props": [
+                  {
+                    "name": "alt-identifier",
+                    "value": "93ee587b-44c0-47c3-8a9f-82c8e567cc05",
+                    "ns": "https://placeholder.example/ns"
+                  }
+                ],
+                "label": "Normreferenzen",
+                "values": [
+                  "BSI C3A"
+                ]
+              }
+            ],
+            "props": [
+              {
+                "name": "alt-identifier",
+                "value": "d481a454-84cb-40e2-bf12-f6b90fe05cbd",
+                "ns": "https://placeholder.example/ns"
+              },
+              {
+                "name": "sec_level",
+                "value": "normal-SdT",
+                "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces/security_level.csv"
+              },
+              {
+                "name": "effort_level",
+                "value": "1",
+                "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces/effort_level.csv"
+              },
+              {
+                "name": "tags",
+                "value": "C3A, SOV-5, Capacity Management",
+                "ns": "https://placeholder.example/ns"
+              }
+            ],
+            "parts": [
+              {
+                "id": "SOV-5-05_stm",
+                "name": "statement",
+                "props": [
+                  {
+                    "name": "result",
+                    "value": "Capacity Management",
+                    "ns": "https://placeholder.example/ns"
+                  },
+                  {
+                    "name": "action_word",
+                    "value": "umsetzen",
+                    "ns": "https://placeholder.example/ns"
+                  },
+                  {
+                    "name": "modal_verb",
+                    "value": "MUSS",
+                    "ns": "https://placeholder.example/ns"
+                  }
+                ],
+                "prose": "C1: Das Kapazitätsmanagement muss in der EU gemäß C5 durchgeführt werden. C2: Das Kapazitätsmanagement muss in Deutschland gemäß C5 durchgeführt werden."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "SOV-6",
+        "title": "SOV-6 Technology Sovereignty",
+        "controls": [
+          {
+            "id": "SOV-6-01",
+            "class": "C3A-Catalog",
+            "title": "Source Code Availability",
+            "params": [
+              {
+                "id": "sov-6-01-prm1",
+                "props": [
+                  {
+                    "name": "alt-identifier",
+                    "value": "5f0421e0-1814-4a3f-b059-de2c5c8d148f",
+                    "ns": "https://placeholder.example/ns"
+                  }
+                ],
+                "label": "Normreferenzen",
+                "values": [
+                  "BSI C3A"
+                ]
+              }
+            ],
+            "props": [
+              {
+                "name": "alt-identifier",
+                "value": "835f8267-b4dd-41c5-8772-790cc8bbf645",
+                "ns": "https://placeholder.example/ns"
+              },
+              {
+                "name": "sec_level",
+                "value": "normal-SdT",
+                "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces/security_level.csv"
+              },
+              {
+                "name": "effort_level",
+                "value": "1",
+                "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces/effort_level.csv"
+              },
+              {
+                "name": "tags",
+                "value": "C3A, SOV-6, Source Code Availability",
+                "ns": "https://placeholder.example/ns"
+              }
+            ],
+            "parts": [
+              {
+                "id": "SOV-6-01_stm",
+                "name": "statement",
+                "props": [
+                  {
+                    "name": "result",
+                    "value": "Source Code Availability",
+                    "ns": "https://placeholder.example/ns"
+                  },
+                  {
+                    "name": "action_word",
+                    "value": "umsetzen",
+                    "ns": "https://placeholder.example/ns"
+                  },
+                  {
+                    "name": "modal_verb",
+                    "value": "MUSS",
+                    "ns": "https://placeholder.example/ns"
+                  }
+                ],
+                "prose": "C: Der Cloud-Dienstanbieter muss ein Backup des Quellcodes in der EU haben, das nicht älter als 24 Stunden ist und mindestens 5 Versionen der Cloud-Dienste enthält, sodass der Betrieb des Cloud-Dienstes jederzeit ohne externe Abhängigkeiten möglich ist. Dies umfasst alle Infrastructure-as-Code-Build-Skripte und Bereitstellungs-Toolchains.\nDas lokale Quellcode-Backup muss eine Dokumentation enthalten, die es dem Cloud-Dienstanbieter ermöglicht, unabhängig mit dem Quellcode zu arbeiten und ihn jederzeit ohne externe Abhängigkeiten weiterzuentwickeln."
+              }
+            ]
+          },
+          {
+            "id": "SOV-6-02",
+            "class": "C3A-Catalog",
+            "title": "Continuous Service Delivery",
+            "params": [
+              {
+                "id": "sov-6-02-prm1",
+                "props": [
+                  {
+                    "name": "alt-identifier",
+                    "value": "0f03143a-8a2c-4857-846b-dbcb224b3adb",
+                    "ns": "https://placeholder.example/ns"
+                  }
+                ],
+                "label": "Normreferenzen",
+                "values": [
+                  "BSI C3A"
+                ]
+              }
+            ],
+            "props": [
+              {
+                "name": "alt-identifier",
+                "value": "9b8f2b7e-1757-4f36-9105-73be093b1dce",
+                "ns": "https://placeholder.example/ns"
+              },
+              {
+                "name": "sec_level",
+                "value": "normal-SdT",
+                "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces/security_level.csv"
+              },
+              {
+                "name": "effort_level",
+                "value": "1",
+                "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces/effort_level.csv"
+              },
+              {
+                "name": "tags",
+                "value": "C3A, SOV-6, Continuous Service Delivery",
+                "ns": "https://placeholder.example/ns"
+              }
+            ],
+            "parts": [
+              {
+                "id": "SOV-6-02_stm",
+                "name": "statement",
+                "props": [
+                  {
+                    "name": "result",
+                    "value": "Continuous Service Delivery",
+                    "ns": "https://placeholder.example/ns"
+                  },
+                  {
+                    "name": "action_word",
+                    "value": "umsetzen",
+                    "ns": "https://placeholder.example/ns"
+                  },
+                  {
+                    "name": "modal_verb",
+                    "value": "MUSS",
+                    "ns": "https://placeholder.example/ns"
+                  }
+                ],
+                "prose": "C: Im Falle der Trennung von Dritten muss der Cloud-Dienstanbieter dokumentierte Notfallstrategien aufrechterhalten, die eine kontinuierliche sichere Bereitstellung der Cloud-Dienste gewährleisten. Diese Strategien können alternative Softwarelieferanten, interne Behebungsfunktionen oder kompensierende Sicherheitskontrollen umfassen. AC: Im Falle einer Störung oder des Verlusts eines externen Softwareanbieters muss der Cloud-Dienstanbieter die Fähigkeit aufrechterhalten, Software-Schwachstellen zu beheben und notwendige Änderungen zu implementieren.\nDer Cloud-Anbieter muss spezielles technisches Personal und lokale Build-Umgebungen vorhalten, die erforderlich sind, um Notfall-Sicherheitspatches für die Cloud-Dienste unabhängig von Dritten zu kompilieren, zu testen und bereitzustellen."
+              }
+            ]
+          },
+          {
+            "id": "SOV-6-03",
+            "class": "C3A-Catalog",
+            "title": "Software Development",
+            "params": [
+              {
+                "id": "sov-6-03-prm1",
+                "props": [
+                  {
+                    "name": "alt-identifier",
+                    "value": "7e32c8ac-3aa4-453b-9bca-0259502c1c5a",
+                    "ns": "https://placeholder.example/ns"
+                  }
+                ],
+                "label": "Normreferenzen",
+                "values": [
+                  "BSI C3A"
+                ]
+              }
+            ],
+            "props": [
+              {
+                "name": "alt-identifier",
+                "value": "268371ec-0e6f-47e9-bdb8-6322738e2f1e",
+                "ns": "https://placeholder.example/ns"
+              },
+              {
+                "name": "sec_level",
+                "value": "normal-SdT",
+                "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces/security_level.csv"
+              },
+              {
+                "name": "effort_level",
+                "value": "1",
+                "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces/effort_level.csv"
+              },
+              {
+                "name": "tags",
+                "value": "C3A, SOV-6, Software Development",
+                "ns": "https://placeholder.example/ns"
+              }
+            ],
+            "parts": [
+              {
+                "id": "SOV-6-03_stm",
+                "name": "statement",
+                "props": [
+                  {
+                    "name": "result",
+                    "value": "Software Development",
+                    "ns": "https://placeholder.example/ns"
+                  },
+                  {
+                    "name": "action_word",
+                    "value": "umsetzen",
+                    "ns": "https://placeholder.example/ns"
+                  },
+                  {
+                    "name": "modal_verb",
+                    "value": "MUSS",
+                    "ns": "https://placeholder.example/ns"
+                  }
+                ],
+                "prose": "C: Der Cloud-Dienstanbieter muss sicherstellen, dass autorisiertes Personal Zugriff auf die Softwareentwicklungstools und -umgebungen hat, die zur Wartung und Aktualisierung der Cloud-Dienste erforderlich sind.\nDer Cloud-Dienstanbieter muss auch dokumentierte Notfallverfahren für Szenarien aufrechterhalten, in denen der Zugriff auf kritische Softwareentwicklungstools oder Entwicklungsumgebungsabhängigkeiten unterbrochen ist, um sicherzustellen, dass die Fähigkeit zur Wartung und Aktualisierung der Cloud-Dienste weiterhin besteht."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

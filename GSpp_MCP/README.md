@@ -9,6 +9,10 @@ as they transition from browser-only tools into agentic workflows.
 > Status: early. Catalog parsing and core tools first. Profile resolution and
 > SSP-authoring helpers come later, when the agent-side actually needs them.
 
+> **Note on Implementation Status (v0.1):** This server is currently in early
+> release. Features marked with 🚧 in this README are on the roadmap and not
+> yet implemented.
+
 ## Why this exists
 
 The One-Page-Apps currently embed (or fetch) the catalog client-side and ship
@@ -33,48 +37,56 @@ This server gives agents the catalog as a tool, not as a file.
 - Format: OSCAL 1.1.x catalog (JSON).
 - License: CC BY-SA 4.0 — attribution and share-alike apply to any
   derivative output, including agent responses that paraphrase requirement
-  text. The server emits a `_attribution` field on every response.
+  text. The server aims to emit a `_attribution` field on every response 🚧.
 - The catalog is **baked into the container image** at build time, not fetched
   at runtime. Reproducible builds, no GitHub-rate-limit surprises during a cold
   start, and deterministic image hashes for audit trails.
 
 A scheduled GitHub Action rebuilds and redeploys the image when BSI publishes
-a new commit on the catalog path (see `.github/workflows/catalog-watch.yml`).
+a new commit on the catalog path (see `.github/workflows/catalog-watch.yml` 🚧).
 
 ## Grundschutz++ specifics worth knowing
 
 A generic OSCAL server would miss what makes G++ usable:
 
 - **Modalverb namespace.** Each requirement carries a `modalverb` property
-  (`MUSS`, `SOLLTE`) drawn from the BSI namespace CSV. The server exposes this
-  as a first-class filter on `list_controls` and `search_controls`.
+  (`MUSS`, `SOLLTE`) drawn from the BSI namespace CSV. 🚧
 - **Stufen / Leistungszahlen.** G++ replaced the old Basis / Standard /
-  Erhöhter-Schutzbedarf trichotomy with dynamic thresholds. The `stufen`
-  namespace property is preserved on every control and queryable.
+  Erhöhter-Schutzbedarf trichotomy with dynamic thresholds. 🚧
 - **Zielobjektkategorien.** Controls are scoped to standardized asset
   categories. `list_zielobjektkategorien` and `controls_for_zielobjekt` are
   separate tools because asset-to-control mapping is the most common agent
   query and deserves its own surface.
 - **German prose.** No translation, no normalization. Search is German-aware
-  (lowercase, Umlaut folding, `ß → ss`, German stop-words removed).
+  (lowercase, German stop-words removed).
 
-## MCP tool surface
+## Implemented in v0.1
 
-Minimum useful set, all read-only:
+Minimum useful set of read-only tools:
 
 | Tool | Purpose |
 | --- | --- |
-| `catalog_info` | Metadata block, OSCAL version, last-modified, control count |
-| `list_groups` | Group hierarchy (IDs, titles, control counts) |
-| `list_controls` | IDs + titles only, filterable by group, modalverb, stufe |
-| `get_control` | Full control; opt-in expansion of statement, params, links |
-| `search_controls` | Ranked IDs from an in-memory inverted index |
-| `get_parameter` | Parameter definition + select values |
-| `find_referencing_controls` | Backrefs from a control ID |
+| `list_groups` | Group hierarchy (IDs, titles, parent_id) |
+| `get_group` | Get specific group metadata |
+| `list_controls` | List all controls (IDs, titles, prose, guidance) |
+| `get_control` | Get specific control details (slimmed down) |
+| `get_control_raw` | Full OSCAL control JSON |
+| `search_controls` | Keyword search using an in-memory index |
 | `list_zielobjektkategorien` | Asset categories defined by the catalog |
 | `controls_for_zielobjekt` | Controls applicable to an asset category |
+| `get_oscal_profile` | Generate an OSCAL profile for a category |
 
-Stubbed for later, returning `not-implemented`:
+## Roadmap (Unimplemented)
+
+- **Filters.** Filter `list_controls` and `search_controls` by modalverb, stufe, or group.
+- **`catalog_info`.** Metadata block, OSCAL version, last-modified, control count.
+- **`get_parameter`.** Parameter definition + select values.
+- **`find_referencing_controls`.** Backlinks from a control ID.
+- **Attribution.** Automatic `_attribution` block on every response.
+- **Validation.** JSON-schema validation of catalog on load.
+- **Health check.** `/healthz` endpoint for startup probes.
+- **Observability.** Structured JSON logs, OpenTelemetry tracing.
+- **CI/CD.** GitHub workflows for CI and catalog watching.
 
 - `apply_profile(profile_uri)` — profile resolution with param overrides,
   alters, includes/excludes. Real subsystem; deferred until an agent needs it.
@@ -112,45 +124,27 @@ emission belong in separate MCP servers with their own permission model.
 - **Transport.** Streamable HTTP. SSE-only is deprecated in the current MCP
   spec; Cloud Run handles long-lived streaming responses fine but caps a
   single request at 60 minutes by default — adequate for catalog queries.
-- **State.** Stateless beyond the parsed catalog. No DB, no Redis. A second
-  instance (Cloud Run autoscaler) holds its own copy. ~50 MB resident at
-  baseline; Cloud Run minimum (256 MiB) is enough but the service is
-  configured for 512 MiB to leave room for the inverted index.
-- **Cold start.** Aim for < 3 seconds end-to-end. Catalog is loaded eagerly
-  in the module import, not lazily on first request, so the first call after
-  a scale-from-zero is not penalized.
+- **State.** Stateless beyond the parsed catalog. No DB, no Redis.
+- **Cold start.** Catalog is loaded eagerly on startup.
 
 ## Repository layout
 
 ```
 .
-├── README.md
-├── pyproject.toml
-├── Dockerfile
-├── server/
-│   ├── __init__.py
-│   ├── main.py              # FastMCP entrypoint, tool registration
-│   ├── catalog.py           # parse + index the OSCAL JSON
-│   ├── search.py            # inverted index, German tokenizer
-│   ├── tools/
-│   │   ├── controls.py
-│   │   ├── groups.py
-│   │   ├── params.py
-│   │   ├── search.py
-│   │   └── zielobjekte.py
-│   └── schemas/
-│       └── oscal-catalog-1.1.2.json
-├── data/
-│   └── Grundschutz++-catalog.json   # baked in at build time
-├── tests/
-│   ├── test_catalog.py
-│   ├── test_search.py
-│   └── fixtures/
-│       └── mini-catalog.json
-└── .github/
-    └── workflows/
-        ├── ci.yml
-        └── catalog-watch.yml
+└── GSpp_MCP/
+    ├── README.md
+    ├── pyproject.toml
+    ├── Dockerfile
+    ├── __init__.py
+    ├── server/
+    │   ├── main.py          # FastMCP entrypoint
+    │   ├── catalog.py       # parse + index
+    │   ├── search.py        # search logic
+    │   └── tools/           # tool implementations
+    ├── data/                # catalog & mapping data
+    ├── scripts/             # local run & deploy scripts
+    ├── terraform/           # GCP infra
+    └── tests/               # basic tests
 ```
 
 ## Local development
@@ -200,7 +194,7 @@ gcloud run deploy gs-plus-plus-mcp \
   --port          8080 \
   --no-allow-unauthenticated \
   --service-account gs-mcp-runtime@${PROJECT_ID}.iam.gserviceaccount.com \
-  --set-env-vars  CATALOG_PATH=/app/data/Grundschutz++-catalog.json
+  --set-env-vars  CATALOG_PATH=/app/GSpp_MCP/data/Grundschutz++-catalog.json,MAPPING_PATH=/app/GSpp_MCP/data/zielobjekt_controls.json
 ```
 
 `--source` builds the image with Cloud Build using the included `Dockerfile`.

@@ -57,6 +57,10 @@ resource "google_cloud_run_v2_service" "mcp_service" {
     containers {
       image = "${var.region}-docker.pkg.dev/${var.project_id}/${google_artifact_registry_repository.mcp_repo.repository_id}/gs-plus-plus-mcp:latest"
 
+      ports {
+        container_port = 8080
+      }
+
       resources {
         limits = {
           cpu    = "1"

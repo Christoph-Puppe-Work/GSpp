@@ -11,6 +11,14 @@ dependencies = [
 ]
 requires-python = ">=3.12"
 
+[project.optional-dependencies]
+dev = [
+    "pytest",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["GSpp_MCP"]
+
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"

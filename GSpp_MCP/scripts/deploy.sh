@@ -14,5 +14,6 @@ gcloud run deploy "$IMAGE_NAME" \
   --image "$FULL_IMAGE_NAME" \
   --region "$REGION" \
   --platform managed \
-  --allow-unauthenticated \
+  --no-allow-unauthenticated \
+  --port 8080 \
   --set-env-vars "CATALOG_PATH=/app/GSpp_MCP/data/Grundschutz++-catalog.json,MAPPING_PATH=/app/GSpp_MCP/data/zielobjekt_controls.json"

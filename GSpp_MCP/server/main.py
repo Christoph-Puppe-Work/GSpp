@@ -21,8 +21,13 @@ for control in catalog.list_controls():
     text = f"{control['id']} {control['title']} {control['prose']} {control['guidance']}"
     search_index.add_document(control["id"], text)
 
-mcp = FastMCP("GSpp-MCP")
-
+port = int(os.getenv("PORT", "8080"))
+mcp = FastMCP(
+    "GSpp-MCP",
+    host="0.0.0.0",
+    port=port,
+    # stateless_http=True,   # uncomment if you want stateless mode
+)
 @mcp.tool()
 def get_control(control_id: str) -> Optional[Dict[str, Any]]:
     """Get a specific control by ID."""
@@ -72,4 +77,5 @@ if __name__ == "__main__":
     # Explicitly read PORT from environment, defaulting to 8080
     port = int(os.getenv("PORT", "8080"))
     logger.info(f"Starting GSpp-MCP server on port {port}")
-    mcp.run(transport="streamable-http", host="0.0.0.0", port=port)
+
+    mcp.run(transport="streamable-http")

@@ -66,6 +66,10 @@ sleep 1
 send_request "tools/call" "{\"name\": \"list_groups\", \"arguments\": {}}" "call-list-groups"
 sleep 2
 
+# Test verify_oscal_json with an invalid assessment-plan object to check for validation errors
+send_request "tools/call" "{\"name\": \"verify_oscal_json\", \"arguments\": {\"json_content\": \"{\\\"assessment-plan\\\": {}}\"}}" "call-verify-json"
+sleep 2
+
 # 4. Shutdown SSE and show results
 kill $SSE_PID
 echo -e "\n--- Captured Responses ---"

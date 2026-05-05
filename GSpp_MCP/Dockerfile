@@ -15,6 +15,7 @@ USER appuser
 # Set environment variables
 ENV CATALOG_PATH=/app/GSpp_MCP/data/Grundschutz++-catalog.json
 ENV MAPPING_PATH=/app/GSpp_MCP/data/zielobjekt_controls.json
+ENV OSCAL_SCHEMAS_DIR=/app/GSpp_MCP/OSCAL_schemas
 ENV PYTHONPATH=/app
 
 # Expose port for Cloud Run

@@ -1,42 +1,66 @@
 #!/bin/bash
 # Test all MCP tools via Streamable-HTTP transport (POST /mcp)
+# Captures Mcp-Session-Id from initialize and passes it to all subsequent calls.
 
 BASE_URL=${1:-"http://localhost:8080"}
 MCP_URL="${BASE_URL%/}/mcp"
+ACCEPT="Accept: application/json, text/event-stream"
+CONTENT="Content-Type: application/json"
+SESSION_ID=""
 
 echo "--- COMPREHENSIVE MCP TEST (Streamable-HTTP) ---"
 echo "Endpoint: $MCP_URL"
 echo ""
 
-# Helper: send a JSON-RPC request and pretty-print the response
+# 1. Initialize — capture session ID from response header
+echo "=== initialize ==="
+INIT_RESPONSE=$(curl -s -i -X POST "$MCP_URL" \
+  -H "$CONTENT" \
+  -H "$ACCEPT" \
+  -d '{
+    "jsonrpc": "2.0",
+    "id": "init-1",
+    "method": "initialize",
+    "params": {
+      "protocolVersion": "2024-11-05",
+      "capabilities": {},
+      "clientInfo": {"name": "test-client", "version": "1.0.0"}
+    }
+  }')
+
+# Extract session ID from Mcp-Session-Id header (case-insensitive)
+SESSION_ID=$(echo "$INIT_RESPONSE" | grep -i "mcp-session-id" | sed 's/.*: //;s/\r//')
+
+if [ -z "$SESSION_ID" ]; then
+    echo "ERROR: No Mcp-Session-Id returned by server."
+    echo "$INIT_RESPONSE"
+    exit 1
+fi
+
+# Print the JSON body from the init response
+echo "$INIT_RESPONSE" | sed -n '/^{/,$p' | python3 -m json.tool 2>/dev/null
+echo "Session ID: $SESSION_ID"
+echo ""
+
+# Helper: send a JSON-RPC request with session header, pretty-print response
 send_request() {
     local label=$1
     local body=$2
     echo "=== $label ==="
     curl -s -X POST "$MCP_URL" \
-      -H "Content-Type: application/json" \
-      -H "Accept: application/json, text/event-stream" \
+      -H "$CONTENT" \
+      -H "$ACCEPT" \
+      -H "Mcp-Session-Id: $SESSION_ID" \
       -d "$body" | python3 -m json.tool 2>/dev/null || echo "(no JSON response)"
     echo ""
 }
 
-# 1. Initialize session
-send_request "initialize" '{
-  "jsonrpc": "2.0",
-  "id": "init-1",
-  "method": "initialize",
-  "params": {
-    "protocolVersion": "2024-11-05",
-    "capabilities": {},
-    "clientInfo": {"name": "test-client", "version": "1.0.0"}
-  }
-}'
-
-# 2. Send initialized notification (no id, no response expected)
+# 2. Send initialized notification
 echo "=== notifications/initialized ==="
 curl -s -X POST "$MCP_URL" \
-  -H "Content-Type: application/json" \
-  -H "Accept: application/json, text/event-stream" \
+  -H "$CONTENT" \
+  -H "$ACCEPT" \
+  -H "Mcp-Session-Id: $SESSION_ID" \
   -d '{"jsonrpc": "2.0", "method": "notifications/initialized"}' > /dev/null
 echo "(notification sent)"
 echo ""

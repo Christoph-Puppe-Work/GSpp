@@ -43,15 +43,24 @@ echo "Session ID: $SESSION_ID"
 echo ""
 
 # Helper: send a JSON-RPC request with session header, pretty-print response
+# Handles both plain JSON and SSE-framed (data: ...) responses.
 send_request() {
     local label=$1
     local body=$2
     echo "=== $label ==="
-    curl -s -X POST "$MCP_URL" \
+    RESPONSE=$(curl -s -X POST "$MCP_URL" \
       -H "$CONTENT" \
       -H "$ACCEPT" \
       -H "Mcp-Session-Id: $SESSION_ID" \
-      -d "$body" | python3 -m json.tool 2>/dev/null || echo "(no JSON response)"
+      -d "$body")
+
+    # Try plain JSON first; if that fails, extract from SSE "data:" lines
+    echo "$RESPONSE" | python3 -m json.tool 2>/dev/null
+    if [ $? -ne 0 ]; then
+        echo "$RESPONSE" | grep "^data: " | sed 's/^data: //' | while read -r line; do
+            echo "$line" | python3 -m json.tool 2>/dev/null || echo "$line"
+        done
+    fi
     echo ""
 }
 

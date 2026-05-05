@@ -4,8 +4,9 @@ WORKDIR /app
 
 # Install dependencies and project
 COPY pyproject.toml .
-COPY GSpp_MCP/ ./GSpp_MCP/
-RUN pip install --no-cache-dir .
+# Copy all local files into a subdirectory named GSpp_MCP
+COPY . ./GSpp_MCP/
+RUN pip install --no-cache-dir ./GSpp_MCP/
 
 # Create and switch to non-root user
 RUN useradd -m appuser

@@ -1,7 +1,12 @@
 import logging
 import os
-from mcp.server.fastmcp import FastMCP
+import uvicorn
 from typing import Any, Dict, List, Optional
+from mcp.server.fastmcp import FastMCP
+from mcp.server.fastmcp.server import TransportSecuritySettings
+from starlette.applications import Starlette
+from starlette.routing import Route, Mount
+from starlette.responses import JSONResponse
 from GSpp_MCP.server.catalog import Catalog
 from GSpp_MCP.server.search import SearchIndex
 from GSpp_MCP.server.tools import controls, groups, zielobjekte, search
@@ -21,7 +26,14 @@ for control in catalog.list_controls():
     text = f"{control['id']} {control['title']} {control['prose']} {control['guidance']}"
     search_index.add_document(control["id"], text)
 
-mcp = FastMCP("GSpp-MCP")
+mcp = FastMCP(
+    "GSpp-MCP",
+    transport_security=TransportSecuritySettings(
+        enable_dns_rebinding_protection=False,
+        allowed_hosts=["*"],
+        allowed_origins=["*"]
+    )
+)
 
 @mcp.tool()
 def get_control(control_id: str) -> Optional[Dict[str, Any]]:
@@ -68,8 +80,21 @@ def search_controls(query: str) -> List[Dict[str, Any]]:
     """Search for controls using a keyword query."""
     return search.search_controls(catalog, search_index, query)
 
+# Define the health check endpoint
+async def health_check(request):
+    return JSONResponse({"status": "ok"})
+
+# Create the main Starlette application
+# Mount the FastMCP instance at /mcp
+app = Starlette(
+    routes=[
+        Route("/healthz", endpoint=health_check),
+        Mount("/mcp", app=mcp.sse_app()),
+    ]
+)
+
 if __name__ == "__main__":
     # Explicitly read PORT from environment, defaulting to 8080
     port = int(os.getenv("PORT", "8080"))
     logger.info(f"Starting GSpp-MCP server on port {port}")
-    mcp.run(transport="streamable-http", host="0.0.0.0", port=port)
+    uvicorn.run(app, host="0.0.0.0", port=port)

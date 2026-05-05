@@ -18,7 +18,7 @@ echo "Step 1: Initializing session via SSE..."
 INIT_RESPONSE=$(curl -s -m 5 -X GET -H "Accept: text/event-stream" "$TARGET_URL")
 
 # Extract the endpoint (which includes the sessionId) from the SSE data: line
-SESSION_PATH=$(echo "$INIT_RESPONSE" | grep -m 1 "data: " | sed 's/data: //')
+SESSION_PATH=$(echo "$INIT_RESPONSE" | grep -m 1 "data: " | sed 's/data: //;s/\r//')
 
 if [ -z "$SESSION_PATH" ]; then
     echo "Error: Could not retrieve sessionId from $TARGET_URL"

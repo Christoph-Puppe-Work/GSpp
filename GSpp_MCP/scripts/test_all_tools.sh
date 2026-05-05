@@ -1,7 +1,7 @@
 #!/bin/bash
 
 BASE_URL=${1:-"http://localhost:8080"}
-TARGET_URL="${BASE_URL%/}/sse"
+TARGET_URL="${BASE_URL%/}/mcp/sse"
 SSE_LOG="sse_output.log"
 
 echo "--- COMPREHENSIVE MCP TEST ---"

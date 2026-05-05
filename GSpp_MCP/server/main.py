@@ -26,6 +26,8 @@ mcp = FastMCP(
     "GSpp-MCP",
     host="0.0.0.0",
     port=port,
+    sse_path="/mcp/sse",
+    message_path="/mcp/messages",
     # stateless_http=True,   # uncomment if you want stateless mode
 )
 @mcp.tool()

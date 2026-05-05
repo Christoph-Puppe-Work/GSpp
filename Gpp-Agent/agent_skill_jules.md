@@ -56,7 +56,7 @@ Three Gemini IDs are in scope. Do not invent others. Read these in code, never h
 |---|---|---|
 | `gemini-3.1-pro-preview` | Producer in workflows — anything where mapping or extraction quality directly determines artifact correctness | 1M context, 64k output, `thinking_level: high` default. Most expensive ($2/$12 per 1M tok). |
 | `gemini-3-flash-preview` | Reviewer in all workflows, Orchestrator routing, catalog_resolver | "Pro-level intelligence at Flash speed". Cheaper, faster. Set `thinking_level: medium` for review tasks. |
-| `gemini-3.1-flash-lite-preview` | input_loader, artifact_writer, HITL controllers, simple checker agents that just read state | Cheapest ($0.25/$1.50). Use for high-frequency / mechanical agents. |
+| `gemini-3.1-flash-lite-preview` | input_loader, get_gcs_writer, HITL controllers, simple checker agents that just read state | Cheapest ($0.25/$1.50). Use for high-frequency / mechanical agents. |
 
 **Don't:**
 - Default everything to Pro "to be safe". A Reviewer on Pro is 4–10x more expensive than on Flash for marginal quality gain.
@@ -116,6 +116,7 @@ async def get_cis_oscal_workflow() -> SequentialAgent:
     hitl_validation_loop = LoopAgent(
         name="hitl_validation_loop",
         sub_agents=[await get_hitl_controller(), await get_mcp_validator()],
+        max_iterations=int(os.environ.get("MAX_HITL_ITERATIONS", "5")),
         # Validator agent uses `verify_oscal_json`. 
         # Sets escalate=True ONLY if validation passes.
     )
@@ -227,7 +228,7 @@ async for event in runner.run_async(
 ):
     ...
 ```
-Anything that bypasses `user_id`-encoding or the dedicated GcsStorageService is a **tenant-isolation violation**.
+Anything that bypasses `user_id`-encoding or the dedicated get_gcs_writer is a **tenant-isolation violation**.
 
 ---
 

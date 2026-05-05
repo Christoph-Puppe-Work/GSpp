@@ -4,7 +4,7 @@ from mcp.server.fastmcp import FastMCP
 from typing import Any, Dict, List, Optional
 from GSpp_MCP.server.catalog import Catalog
 from GSpp_MCP.server.search import SearchIndex
-from GSpp_MCP.server.tools import controls, groups, zielobjekte, search
+from GSpp_MCP.server.tools import controls, groups, zielobjekte, search, validation
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s")
 logger = logging.getLogger("GSpp-MCP")
@@ -72,6 +72,11 @@ def get_oscal_profile(category_id: str) -> Optional[Dict[str, Any]]:
 def search_controls(query: str) -> List[Dict[str, Any]]:
     """Search for controls using a keyword query."""
     return search.search_controls(catalog, search_index, query)
+
+@mcp.tool()
+def verify_oscal_json(json_content: str) -> Dict[str, Any]:
+    """Verifies OSCAL JSON content against the BSI OSCAL schemas. Returns status and errors."""
+    return validation.verify_oscal_json(json_content)
 
 if __name__ == "__main__":
     # Explicitly read PORT from environment, defaulting to 8080

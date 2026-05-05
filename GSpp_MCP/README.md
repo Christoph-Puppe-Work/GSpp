@@ -75,6 +75,7 @@ Minimum useful set of read-only tools:
 | `list_zielobjektkategorien` | Asset categories defined by the catalog |
 | `controls_for_zielobjekt` | Controls applicable to an asset category |
 | `get_oscal_profile` | Generate an OSCAL profile for a category |
+| `verify_oscal_json` | Verifies OSCAL JSON files against the schemas in `OSCAL_schemas/` |
 
 ## Roadmap (Unimplemented)
 

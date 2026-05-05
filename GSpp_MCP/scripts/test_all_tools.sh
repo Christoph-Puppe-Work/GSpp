@@ -1,78 +1,84 @@
 #!/bin/bash
+# Test all MCP tools via Streamable-HTTP transport (POST /mcp)
 
 BASE_URL=${1:-"http://localhost:8080"}
-TARGET_URL="${BASE_URL%/}/mcp/sse"
-SSE_LOG="sse_output.log"
+MCP_URL="${BASE_URL%/}/mcp"
 
-echo "--- COMPREHENSIVE MCP TEST ---"
-rm -f "$SSE_LOG"
+echo "--- COMPREHENSIVE MCP TEST (Streamable-HTTP) ---"
+echo "Endpoint: $MCP_URL"
+echo ""
 
-# 1. Start SSE connection in background
-echo "Step 1: Opening SSE connection..."
-curl -N -s -H "Accept: text/event-stream" "$TARGET_URL" > "$SSE_LOG" &
-SSE_PID=$!
-
-# Wait for the endpoint to appear in the log
-echo "Waiting for session initialization..."
-for i in {1..10}; do
-    if grep -q "messages?sessionId" "$SSE_LOG"; then
-        break
-    fi
-    sleep 1
-done
-
-INIT_RESPONSE=$(cat "$SSE_LOG")
-SESSION_PATH=$(echo "$INIT_RESPONSE" | grep -m 1 "data: " | sed 's/data: //;s/\r//')
-
-if [ -z "$SESSION_PATH" ]; then
-    echo "Error: Could not retrieve sessionId"
-    cat "$SSE_LOG"
-    kill $SSE_PID
-    exit 1
-fi
-
-if [[ "$SESSION_PATH" == http* ]]; then
-    POST_URL="$SESSION_PATH"
-else
-    POST_URL="${BASE_URL%/}${SESSION_PATH}"
-fi
-
-echo "Session initialized. POST URL: $POST_URL"
-
-# Function to send a request
+# Helper: send a JSON-RPC request and pretty-print the response
 send_request() {
-    local method=$1
-    local params=$2
-    local id=$3
-    echo "Calling $method ($id)..."
-    curl -s -X POST "$POST_URL" \
+    local label=$1
+    local body=$2
+    echo "=== $label ==="
+    curl -s -X POST "$MCP_URL" \
       -H "Content-Type: application/json" \
-      -d "{\"jsonrpc\": \"2.0\", \"id\": \"$id\", \"method\": \"$method\", \"params\": $params}" > /dev/null
+      -H "Accept: application/json" \
+      -d "$body" | python3 -m json.tool 2>/dev/null || echo "(no JSON response)"
+    echo ""
 }
 
-# 2. Initialization Sequence
-send_request "initialize" "{\"protocolVersion\": \"2024-11-05\", \"capabilities\": {}, \"clientInfo\": {\"name\": \"test-client\", \"version\": \"1.0.0\"}}" "init-1"
-sleep 1
-# Notifications don't have an ID
-echo "Sending notifications/initialized..."
-curl -s -X POST "$POST_URL" \
+# 1. Initialize session
+send_request "initialize" '{
+  "jsonrpc": "2.0",
+  "id": "init-1",
+  "method": "initialize",
+  "params": {
+    "protocolVersion": "2024-11-05",
+    "capabilities": {},
+    "clientInfo": {"name": "test-client", "version": "1.0.0"}
+  }
+}'
+
+# 2. Send initialized notification (no id, no response expected)
+echo "=== notifications/initialized ==="
+curl -s -X POST "$MCP_URL" \
   -H "Content-Type: application/json" \
-  -d "{\"jsonrpc\": \"2.0\", \"method\": \"notifications/initialized\"}" > /dev/null
-sleep 1
+  -H "Accept: application/json" \
+  -d '{"jsonrpc": "2.0", "method": "notifications/initialized"}' > /dev/null
+echo "(notification sent)"
+echo ""
 
-# 3. Call various tools
-send_request "tools/list" "{}" "list-tools"
-sleep 1
-send_request "tools/call" "{\"name\": \"list_groups\", \"arguments\": {}}" "call-list-groups"
-sleep 2
+# 3. List available tools
+send_request "tools/list" '{
+  "jsonrpc": "2.0",
+  "id": "list-tools",
+  "method": "tools/list",
+  "params": {}
+}'
 
-# Test verify_oscal_json with an invalid assessment-plan object to check for validation errors
-send_request "tools/call" "{\"name\": \"verify_oscal_json\", \"arguments\": {\"json_content\": \"{\\\"assessment-plan\\\": {}}\"}}" "call-verify-json"
-sleep 2
+# 4. Call list_groups
+send_request "list_groups" '{
+  "jsonrpc": "2.0",
+  "id": "call-list-groups",
+  "method": "tools/call",
+  "params": {"name": "list_groups", "arguments": {}}
+}'
 
-# 4. Shutdown SSE and show results
-kill $SSE_PID
-echo -e "\n--- Captured Responses ---"
-grep "data: " "$SSE_LOG" | sed 's/data: //' | grep "jsonrpc" | while read -r line; do
-    echo "$line" | python3 -m json.tool || echo "$line"
-done
+# 5. Call get_control with a sample ID
+send_request "get_control (BER.1.1)" '{
+  "jsonrpc": "2.0",
+  "id": "call-get-control",
+  "method": "tools/call",
+  "params": {"name": "get_control", "arguments": {"control_id": "BER.1.1"}}
+}'
+
+# 6. Call search_controls
+send_request "search_controls (Netzwerk)" '{
+  "jsonrpc": "2.0",
+  "id": "call-search",
+  "method": "tools/call",
+  "params": {"name": "search_controls", "arguments": {"query": "Netzwerk"}}
+}'
+
+# 7. Call verify_oscal_json with an intentionally invalid document
+send_request "verify_oscal_json (invalid assessment-plan)" '{
+  "jsonrpc": "2.0",
+  "id": "call-verify-json",
+  "method": "tools/call",
+  "params": {"name": "verify_oscal_json", "arguments": {"json_content": "{\"assessment-plan\": {}}"}}
+}'
+
+echo "--- TEST COMPLETE ---"

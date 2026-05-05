@@ -26,8 +26,7 @@ mcp = FastMCP(
     "GSpp-MCP",
     host="0.0.0.0",
     port=port,
-    sse_path="/mcp/sse",
-    message_path="/mcp/messages",
+    # streamable_http_path defaults to "/mcp" — matches test script and Cloud Run
     # stateless_http=True,   # uncomment if you want stateless mode
 )
 @mcp.tool()

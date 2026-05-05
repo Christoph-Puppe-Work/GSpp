@@ -1,0 +1,30 @@
+[project]
+name = "gpp-agent"
+version = "0.1.0"
+description = "ADK-based multi-agent system for Grundschutz++ workflows"
+authors = [
+    { name = "Gpp-Agent Team" }
+]
+dependencies = [
+    "google-adk[otel-gcp]>=0.1.0",
+    "google-cloud-storage>=2.0.0",
+    "pydantic>=2.0.0",
+    "mcp[cli]>=0.1.0",
+    "pyyaml>=6.0.0",
+    "opentelemetry-api>=1.20.0",
+    "jsonschema>=4.0.0",
+]
+requires-python = ">=3.12"
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-asyncio>=0.20.0",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["."]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

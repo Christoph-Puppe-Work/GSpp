@@ -13,6 +13,22 @@ This skill is opinionated. It assumes the README under `Gpp-Agent/README.md` is
 the spec and this document is the implementation manual. **Read the README first.**
 Verzeichnisstruktur, Tenancy-Modell und DoD-Liste werden hier nicht wiederholt.
 
+**Fundamental Workflow Rules:**
+1. **Always start by reading `Gpp-Agent/tasks.md`** to understand the current progress and pending items.
+2. **Always end by updating `Gpp-Agent/tasks.md`** to reflect the work done and any new findings or questions.
+
+---
+
+## Implementation Learnings (Working Memory)
+
+- **ADK Architecture**: Use `SequentialAgent` for linear workflows and `LoopAgent` for iterative tasks like Peer-Review.
+- **Escalation Management**: `LoopAgent` propagates `escalate=True` upwards. Wrap loops in `EscalationBarrier` (custom agent in `tools/`) to prevent premature termination of parent `SequentialAgent`.
+- **Import Patterns**: Always import the Runner from the root: `from google.adk import Runner`. Avoid `google.adk.runner`.
+- **Multi-Tenancy**: Enforce IV-isolation via `user_id` parsing (`{caller}::iv::{iv_id}`). Use the extracted `iv_id` for GCS prefixing and OpenTelemetry tagging.
+- **Prompts**: Keep instructions in `shared/prompts/*.md`. Use the `load_prompt` utility which automatically handles YAML frontmatter stripping.
+- **Tool Filtering**: Reviewer agents must have read-only tools. Producer agents have broad access. Use `McpClientService.get_bsi_gpp_toolset(allow=[...])` for granular control.
+- **JSON Validation**: Every artifact must be validated against OSCAL schemas via `SchemaValidator` before saving to GCS.
+
 ---
 
 ## When to use

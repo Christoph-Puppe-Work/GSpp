@@ -1,6 +1,5 @@
 import os
 from google.adk.agents import LlmAgent
-from google.adk import Runner
 from .ssp_generator.workflow import get_ssp_generator_workflow
 
 def _extract_iv_id(user_id: str) -> str:

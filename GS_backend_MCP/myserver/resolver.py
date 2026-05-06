@@ -1,6 +1,7 @@
 import logging
 import hashlib
 import json
+from datetime import datetime, timezone
 from typing import Any, Dict, Optional
 from GS_backend_MCP.myserver.gcp import storage
 from GS_backend_MCP.myserver.gcp.storage import OscalModel
@@ -34,28 +35,44 @@ def resolve_profile(iv_id: str, profile_id: str) -> Dict[str, Any]:
     # 3. Resolution Logic (Tailoring)
     logger.info(f"Resolving profile {profile_id} for IV {iv_id}")
 
-    # Placeholder for actual BSI GS++ tailoring logic
-    # In a real implementation, this would:
-    # - Load the base BSI Catalog (catalog-id from profile imports)
-    # - Apply 'alter' directives
-    # - Apply 'set-parameter' values
+    # 3.1 Load base BSI Catalog
+    try:
+        base_catalog = storage.read_oscal_model(iv_id, OscalModel.CATALOG)
+    except FileNotFoundError:
+        logger.warning(f"Base catalog not found for IV {iv_id}. Using empty catalog for resolution.")
+        base_catalog = {"catalog": {"groups": [], "metadata": {}}}
 
-    # 3.1 Load base BSI Catalog (mocked for now, should load from storage or bundled)
-    # base_catalog = storage.read_oscal_model(iv_id, OscalModel.CATALOG)
+    # 3.2 Extract Profile Directives
+    profile = profile_data.get("profile", {})
+    imports = profile.get("imports", [])
+    set_parameters = profile.get("set-parameters", [])
 
-    # 3.2 Apply Profile 'alter' directives
     # 3.3 Apply Profile 'set-parameter' values
+    # In OSCAL, parameters can be set in the catalog or profile.
+    # Here we merge profile parameters into the catalog's parameter list.
+    catalog_obj = base_catalog.get("catalog", {})
+    if "params" not in catalog_obj:
+        catalog_obj["params"] = []
 
-    # This is a high-level structure of a tailored catalog
-    resolved_catalog = {
-        "catalog": {
-            "uuid": profile_data.get("profile", {}).get("uuid"),
-            "metadata": profile_data.get("profile", {}).get("metadata", {}),
-            "groups": [], # In production, these are populated from the base catalog after applying 'alter'
-            "params": profile_data.get("profile", {}).get("set-parameters", []),
-            "remarks": "Resolved via G++ Profile Resolution Engine. Tailoring applied based on profile directives."
-        }
-    }
+    # Simple merge of parameters by ID
+    param_map = {p["id"]: p for p in catalog_obj["params"]}
+    for sp in set_parameters:
+        p_id = sp.get("param-id")
+        if p_id in param_map:
+            param_map[p_id].update(sp)
+        else:
+            param_map[p_id] = sp
+
+    catalog_obj["params"] = list(param_map.values())
+
+    # 3.4 Apply Profile 'alter' directives (Simplified)
+    # In a full implementation, this would handle additions/removals/modifications of controls.
+    # For now, we update the metadata to reflect resolution.
+
+    catalog_obj["metadata"]["last-modified"] = datetime.now(timezone.utc).isoformat()
+    catalog_obj["remarks"] = f"Resolved via G++ Profile Resolution Engine. Based on profile {profile_id}. Profile Hash: {profile_hash[:8]}"
+
+    resolved_catalog = base_catalog
 
     # 4. Update Cache
     RESOLVED_CATALOG_CACHE[profile_hash] = resolved_catalog

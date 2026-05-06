@@ -1,0 +1,18 @@
+[project]
+name = "gpp-context-mcp"
+version = "1.0.0"
+description = "G++ OSCAL Context Management MCP Server"
+authors = [
+    { name = "Jules", email = "jules@example.com" }
+]
+requires-python = ">=3.11"
+dependencies = [
+    "mcp>=1.2.1",
+    "jsonschema>=4.21.0",
+    "google-cloud-storage>=2.16.0",
+    "jsonpatch>=1.33"
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="de" class="h-full bg-slate-900">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,58 +22,102 @@
             max-height: 0;
             opacity: 0;
         }
+
         .collapsible-content.open {
             max-height: 5000px;
             opacity: 1;
             overflow: visible;
         }
-        .chevron-icon { transition: transform 0.3s ease; }
-        .chevron-icon.open { transform: rotate(90deg); }
-        .search-result-item:hover { background-color: #334155; }
-        
+
+        .chevron-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .chevron-icon.open {
+            transform: rotate(90deg);
+        }
+
+        .search-result-item:hover {
+            background-color: #334155;
+        }
+
         .loader {
-            border: 4px solid #334155; border-top: 4px solid #10b981;
-            border-radius: 50%; width: 40px; height: 40px;
+            border: 4px solid #334155;
+            border-top: 4px solid #10b981;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
             animation: spin 1s linear infinite;
         }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-        
-        .custom-scroll::-webkit-scrollbar { width: 6px; height: 6px; }
-        .custom-scroll::-webkit-scrollbar-track { background: #1e293b; }
-        .custom-scroll::-webkit-scrollbar-thumb { background: #475569; border-radius: 3px; }
-        .custom-scroll::-webkit-scrollbar-thumb:hover { background: #64748b; }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .custom-scroll::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+
+        .custom-scroll::-webkit-scrollbar-track {
+            background: #1e293b;
+        }
+
+        .custom-scroll::-webkit-scrollbar-thumb {
+            background: #475569;
+            border-radius: 3px;
+        }
+
+        .custom-scroll::-webkit-scrollbar-thumb:hover {
+            background: #64748b;
+        }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
+
 <body class="h-full p-4 md:p-8 font-sans text-slate-200">
 
     <div class="max-w-6xl mx-auto bg-slate-800 p-6 md:p-8 rounded-2xl shadow-2xl border border-slate-700">
-        
-        <header class="mb-8 pb-6 border-b border-slate-700 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
 
-<div style="background-color: #070e27; padding: 15px; text-align: center; border-bottom: 3px solid #0072bc; margin-bottom: 15px; border-radius: 4px;">
-    <img src="https://mc-8afc6902-e56c-432c-8c3f-3991-cdn-endpoint.azureedge.net/-/media/project/emea/shared/global-logo/globallogo_nttdata_white_resized.png?extension=webp&hash=82AED889DCD1D6C0BA76C56A5F81B4C6" alt="NTT DATA Logo" style="max-width: 150px; height: auto;">
-</div>
+        <header
+            class="mb-8 pb-6 border-b border-slate-700 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+
+            <div
+                style="background-color: #070e27; padding: 15px; text-align: center; border-bottom: 3px solid #0072bc; margin-bottom: 15px; border-radius: 4px;">
+                <img src="https://mc-8afc6902-e56c-432c-8c3f-3991-cdn-endpoint.azureedge.net/-/media/project/emea/shared/global-logo/globallogo_nttdata_white_resized.png?extension=webp&hash=82AED889DCD1D6C0BA76C56A5F81B4C6"
+                    alt="NTT DATA Logo" style="max-width: 150px; height: auto;">
+            </div>
 
             <div>
                 <h1 class="text-3xl font-bold text-white">OSCAL Blaupausen Generator</h1>
                 <p class="mt-2 text-slate-400 text-sm max-w-2xl leading-relaxed">
-                    Methodik-GS++ Komplettpaket: Basis-Methodik, Prozesse, Muster-Assets, integrierte Risikoanalyse und Generierung von Profile & SSP.
+                    Methodik-GS++ Komplettpaket: Basis-Methodik, Prozesse, Muster-Assets, integrierte Risikoanalyse und
+                    Generierung von Profile & SSP.
                 </p>
             </div>
             <div class="flex items-center gap-3 flex-wrap">
-                <input type="file" id="ssp-file-input" accept=".json,application/json" multiple class="hidden" onchange="handleSSPFileLoad(event)">
-                <button onclick="document.getElementById('ssp-file-input').click()" class="px-4 py-2 rounded-lg text-sm font-semibold bg-slate-700 hover:bg-slate-600 text-slate-200 border border-slate-600 flex items-center shadow-sm transition-colors">
+                <input type="file" id="ssp-file-input" accept=".json,application/json" multiple class="hidden"
+                    onchange="handleSSPFileLoad(event)">
+                <button onclick="document.getElementById('ssp-file-input').click()"
+                    class="px-4 py-2 rounded-lg text-sm font-semibold bg-slate-700 hover:bg-slate-600 text-slate-200 border border-slate-600 flex items-center shadow-sm transition-colors">
                     📂 Bestehenden SSP öffnen
                 </button>
-                <div id="catalog-status" class="px-4 py-2 rounded-lg text-sm font-semibold bg-slate-700 text-slate-300 border border-slate-600 flex items-center shadow-sm">
+                <div id="catalog-status"
+                    class="px-4 py-2 rounded-lg text-sm font-semibold bg-slate-700 text-slate-300 border border-slate-600 flex items-center shadow-sm">
                     <span class="w-2.5 h-2.5 rounded-full bg-amber-500 mr-3 animate-pulse"></span>
                     Lade Basis-Katalog...
                 </div>
             </div>
         </header>
 
-        <div id="loading-overlay" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-[100] hidden flex-col items-center justify-center">
+        <div id="loading-overlay"
+            class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-[100] hidden flex-col items-center justify-center">
             <div class="bg-slate-800 p-8 rounded-2xl shadow-2xl flex flex-col items-center border border-slate-700">
                 <div class="loader mb-4"></div>
                 <p id="loading-text" class="text-lg font-semibold text-white">Verarbeite Daten...</p>
@@ -84,14 +129,18 @@
         </div>
 
         <div class="mt-8 pt-6 border-t border-slate-700 flex flex-col md:flex-row items-center justify-between gap-6">
-            <label class="flex items-center space-x-3 text-white cursor-pointer bg-slate-900/50 p-4 rounded-xl border border-slate-600 hover:border-emerald-500 transition-colors w-full md:w-auto">
-                <input type="checkbox" id="generate-ssp-checkbox" checked class="form-checkbox h-5 w-5 text-emerald-500 rounded border-slate-600 bg-slate-700 focus:ring-emerald-500 focus:ring-offset-slate-800">
+            <label
+                class="flex items-center space-x-3 text-white cursor-pointer bg-slate-900/50 p-4 rounded-xl border border-slate-600 hover:border-emerald-500 transition-colors w-full md:w-auto">
+                <input type="checkbox" id="generate-ssp-checkbox" checked
+                    class="form-checkbox h-5 w-5 text-emerald-500 rounded border-slate-600 bg-slate-700 focus:ring-emerald-500 focus:ring-offset-slate-800">
                 <div>
                     <span class="font-bold block text-sm">Optionalen Muster-SSP generieren</span>
-                    <span class="text-xs text-slate-400 font-normal">Verknüpft Profil, Methodik, Prozesse und Assets.</span>
+                    <span class="text-xs text-slate-400 font-normal">Verknüpft Profil, Methodik, Prozesse und
+                        Assets.</span>
                 </div>
             </label>
-            <button onclick="generateBlueprintPackage()" class="w-full md:w-auto bg-emerald-600 text-white font-bold py-4 px-8 rounded-xl shadow-lg hover:bg-emerald-500 focus:ring-4 focus:ring-emerald-500/50 transition-all transform hover:-translate-y-0.5">
+            <button onclick="generateBlueprintPackage()"
+                class="w-full md:w-auto bg-emerald-600 text-white font-bold py-4 px-8 rounded-xl shadow-lg hover:bg-emerald-500 focus:ring-4 focus:ring-emerald-500/50 transition-all transform hover:-translate-y-0.5">
                 Blaupause Paket generieren
             </button>
         </div>
@@ -99,57 +148,80 @@
 
     <!-- Modals -->
     <!-- Modal 1: Tailoring & Modify (Profile) -->
-    <div id="modify-modal" class="hidden fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-[90] overflow-y-auto h-full w-full flex items-center justify-center">
-        <div class="modal-container bg-slate-800 w-11/12 md:max-w-2xl mx-auto rounded-xl shadow-2xl border border-slate-700 flex flex-col max-h-[90vh]">
+    <div id="modify-modal"
+        class="hidden fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-[90] overflow-y-auto h-full w-full flex items-center justify-center">
+        <div
+            class="modal-container bg-slate-800 w-11/12 md:max-w-2xl mx-auto rounded-xl shadow-2xl border border-slate-700 flex flex-col max-h-[90vh]">
             <div class="px-6 py-4 border-b border-slate-700 flex justify-between items-center bg-slate-800/50">
                 <div>
                     <h3 class="text-xl font-bold text-white">Control anpassen</h3>
                     <p class="text-sm text-emerald-400 font-mono mt-1 font-semibold" id="m-control-id"></p>
-                    <p class="text-xs text-slate-400 mt-1">Kontext: <span id="m-context-name" class="font-bold text-slate-200"></span></p>
+                    <p class="text-xs text-slate-400 mt-1">Kontext: <span id="m-context-name"
+                            class="font-bold text-slate-200"></span></p>
                 </div>
-                <button onclick="closeModifyModal()" class="text-slate-400 hover:text-white text-2xl font-bold transition-colors">&times;</button>
+                <button onclick="closeModifyModal()"
+                    class="text-slate-400 hover:text-white text-2xl font-bold transition-colors">&times;</button>
             </div>
 
             <div class="flex-1 overflow-y-auto custom-scroll p-6">
                 <div class="bg-slate-900 border border-slate-700 rounded-lg p-4 mb-6">
                     <h4 class="text-xs font-bold text-slate-400 uppercase mb-2">Original-Text aus Katalog</h4>
                     <h5 id="m-catalog-title" class="font-bold text-slate-200 text-sm mb-1"></h5>
-                    <div id="m-catalog-prose" class="text-sm text-slate-400 max-h-32 overflow-y-auto custom-scroll whitespace-pre-line leading-relaxed border-l-2 border-slate-600 pl-3"></div>
+                    <div id="m-catalog-prose"
+                        class="text-sm text-slate-400 max-h-32 overflow-y-auto custom-scroll whitespace-pre-line leading-relaxed border-l-2 border-slate-600 pl-3">
+                    </div>
                 </div>
 
                 <div class="flex border-b border-slate-700 mb-5">
-                    <button id="tab-param-btn" class="flex-1 py-2 text-center text-emerald-400 border-b-2 border-emerald-500 font-bold text-sm transition-colors" onclick="switchModifyTab('param')">Parameter setzen</button>
-                    <button id="tab-alter-btn" class="flex-1 py-2 text-center text-slate-400 hover:text-slate-200 border-b-2 border-transparent font-medium text-sm transition-colors" onclick="switchModifyTab('alter')">Text ergänzen (Alter)</button>
+                    <button id="tab-param-btn"
+                        class="flex-1 py-2 text-center text-emerald-400 border-b-2 border-emerald-500 font-bold text-sm transition-colors"
+                        onclick="switchModifyTab('param')">Parameter setzen</button>
+                    <button id="tab-alter-btn"
+                        class="flex-1 py-2 text-center text-slate-400 hover:text-slate-200 border-b-2 border-transparent font-medium text-sm transition-colors"
+                        onclick="switchModifyTab('alter')">Text ergänzen (Alter)</button>
                 </div>
 
                 <div id="tab-param-content" class="space-y-4">
                     <div>
                         <label class="block text-xs font-bold text-slate-400 uppercase mb-1">Parameter ID</label>
                         <div class="flex rounded-lg overflow-hidden border border-slate-600">
-                            <span id="m-param-prefix" class="px-3 py-2 bg-slate-700 text-slate-400 text-sm font-mono border-r border-slate-600"></span>
-                            <input type="text" id="m-param-suffix" class="flex-1 px-3 py-2 bg-slate-800 text-white text-sm font-mono focus:outline-none" placeholder="_prm_1">
+                            <span id="m-param-prefix"
+                                class="px-3 py-2 bg-slate-700 text-slate-400 text-sm font-mono border-r border-slate-600"></span>
+                            <input type="text" id="m-param-suffix"
+                                class="flex-1 px-3 py-2 bg-slate-800 text-white text-sm font-mono focus:outline-none"
+                                placeholder="_prm_1">
                         </div>
                     </div>
                     <div>
-                        <label class="block text-xs font-bold text-slate-400 uppercase mb-1">Neuer Wert (Überschreiben)</label>
-                        <input type="text" id="m-param-value" class="w-full px-4 py-2 bg-slate-800 border border-slate-600 rounded-lg text-sm text-white focus:ring-2 focus:ring-emerald-500 outline-none">
+                        <label class="block text-xs font-bold text-slate-400 uppercase mb-1">Neuer Wert
+                            (Überschreiben)</label>
+                        <input type="text" id="m-param-value"
+                            class="w-full px-4 py-2 bg-slate-800 border border-slate-600 rounded-lg text-sm text-white focus:ring-2 focus:ring-emerald-500 outline-none">
                     </div>
-                    <button type="button" onclick="addModification('param')" class="w-full py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-500 text-sm font-bold shadow-md transition-colors">Parameter speichern</button>
+                    <button type="button" onclick="addModification('param')"
+                        class="w-full py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-500 text-sm font-bold shadow-md transition-colors">Parameter
+                        speichern</button>
                 </div>
 
                 <div id="tab-alter-content" class="hidden space-y-4">
                     <div>
-                        <label class="block text-xs font-bold text-slate-400 uppercase mb-1">Position der Ergänzung</label>
-                        <select id="m-alter-pos" class="w-full px-4 py-2 border border-slate-600 rounded-lg text-sm bg-slate-800 text-white focus:ring-2 focus:ring-emerald-500 outline-none">
+                        <label class="block text-xs font-bold text-slate-400 uppercase mb-1">Position der
+                            Ergänzung</label>
+                        <select id="m-alter-pos"
+                            class="w-full px-4 py-2 border border-slate-600 rounded-lg text-sm bg-slate-800 text-white focus:ring-2 focus:ring-emerald-500 outline-none">
                             <option value="ending">Am Ende anfügen (ending)</option>
                             <option value="starting">Am Anfang einfügen (starting)</option>
                         </select>
                     </div>
                     <div>
-                        <label class="block text-xs font-bold text-slate-400 uppercase mb-1">Zusätzlicher Text (Prose)</label>
-                        <textarea id="m-alter-text" rows="3" class="w-full px-4 py-2 border border-slate-600 rounded-lg text-sm bg-slate-800 text-white focus:ring-2 focus:ring-emerald-500 outline-none"></textarea>
+                        <label class="block text-xs font-bold text-slate-400 uppercase mb-1">Zusätzlicher Text
+                            (Prose)</label>
+                        <textarea id="m-alter-text" rows="3"
+                            class="w-full px-4 py-2 border border-slate-600 rounded-lg text-sm bg-slate-800 text-white focus:ring-2 focus:ring-emerald-500 outline-none"></textarea>
                     </div>
-                    <button type="button" onclick="addModification('alter')" class="w-full py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-500 text-sm font-bold shadow-md transition-colors">Text-Ergänzung speichern</button>
+                    <button type="button" onclick="addModification('alter')"
+                        class="w-full py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-500 text-sm font-bold shadow-md transition-colors">Text-Ergänzung
+                        speichern</button>
                 </div>
 
                 <div class="mt-8 pt-4 border-t border-slate-700">
@@ -158,45 +230,57 @@
                 </div>
             </div>
             <div class="px-6 py-4 border-t border-slate-700 flex justify-end bg-slate-800/50">
-                <button onclick="closeModifyModal()" class="px-5 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white hover:bg-slate-600 text-sm font-bold transition-colors">Schließen</button>
+                <button onclick="closeModifyModal()"
+                    class="px-5 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white hover:bg-slate-600 text-sm font-bold transition-colors">Schließen</button>
             </div>
         </div>
     </div>
 
     <!-- Modal 2: Risk Control Search & Custom -->
-    <div id="search-modal" class="hidden fixed inset-0 bg-slate-900/80 backdrop-blur-sm overflow-y-auto h-full w-full z-[95] flex items-center justify-center">
+    <div id="search-modal"
+        class="hidden fixed inset-0 bg-slate-900/80 backdrop-blur-sm overflow-y-auto h-full w-full z-[95] flex items-center justify-center">
         <div class="relative mx-auto p-6 border w-full max-w-3xl shadow-2xl rounded-xl bg-slate-800 border-slate-700">
             <div class="flex justify-between items-center mb-4">
                 <h3 class="text-xl font-bold text-white">Mitigierendes Control hinzufügen</h3>
-                <button id="close-search-modal-button" class="text-slate-400 hover:text-white text-2xl font-bold">&times;</button>
+                <button id="close-search-modal-button"
+                    class="text-slate-400 hover:text-white text-2xl font-bold">&times;</button>
             </div>
-            
+
             <div class="border-b border-slate-700 mb-4">
                 <nav class="-mb-px flex space-x-8" aria-label="Tabs">
-                    <button id="tab-search" class="tab-button border-emerald-500 text-emerald-400 py-3 px-1 border-b-2 font-medium text-sm transition-colors" data-target="tab-content-search">Katalog-Suche</button>
-                    <button id="tab-custom" class="tab-button border-transparent text-slate-400 hover:text-slate-200 hover:border-slate-600 py-3 px-1 border-b-2 font-medium text-sm transition-colors" data-target="tab-content-custom">Benutzerdefiniert</button>
+                    <button id="tab-search"
+                        class="tab-button border-emerald-500 text-emerald-400 py-3 px-1 border-b-2 font-medium text-sm transition-colors"
+                        data-target="tab-content-search">Katalog-Suche</button>
+                    <button id="tab-custom"
+                        class="tab-button border-transparent text-slate-400 hover:text-slate-200 hover:border-slate-600 py-3 px-1 border-b-2 font-medium text-sm transition-colors"
+                        data-target="tab-content-custom">Benutzerdefiniert</button>
                 </nav>
             </div>
 
             <div id="tab-content-search" class="tab-content">
-                <input type="text" id="catalog-search-input" placeholder="Regex / Suchen nach ID oder Titel..." class="mb-4 block w-full rounded-lg border-slate-600 bg-slate-700 text-white shadow-sm focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm px-4 py-2">
+                <input type="text" id="catalog-search-input" placeholder="Regex / Suchen nach ID oder Titel..."
+                    class="mb-4 block w-full rounded-lg border-slate-600 bg-slate-700 text-white shadow-sm focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm px-4 py-2">
                 <div id="catalog-search-results" class="space-y-2 max-h-80 overflow-y-auto custom-scroll"></div>
             </div>
 
             <div id="tab-content-custom" class="tab-content hidden space-y-4">
                 <div>
                     <label class="block text-sm font-medium text-slate-300 mb-1">Control ID (z.B. CUSTOM.1)</label>
-                    <input type="text" id="custom-control-id" class="block w-full rounded-lg border-slate-600 bg-slate-700 text-white focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm px-4 py-2">
+                    <input type="text" id="custom-control-id"
+                        class="block w-full rounded-lg border-slate-600 bg-slate-700 text-white focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm px-4 py-2">
                 </div>
                 <div>
                     <label class="block text-sm font-medium text-slate-300 mb-1">Titel</label>
-                    <input type="text" id="custom-control-title" class="block w-full rounded-lg border-slate-600 bg-slate-700 text-white focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm px-4 py-2">
+                    <input type="text" id="custom-control-title"
+                        class="block w-full rounded-lg border-slate-600 bg-slate-700 text-white focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm px-4 py-2">
                 </div>
                 <div>
                     <label class="block text-sm font-medium text-slate-300 mb-1">Statement (Anforderungstext)</label>
-                    <textarea id="custom-control-statement" rows="4" class="block w-full rounded-lg border-slate-600 bg-slate-700 text-white focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm px-4 py-2"></textarea>
+                    <textarea id="custom-control-statement" rows="4"
+                        class="block w-full rounded-lg border-slate-600 bg-slate-700 text-white focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm px-4 py-2"></textarea>
                 </div>
-                <button id="add-custom-control-button" class="w-full bg-emerald-600 text-white font-medium py-2 px-4 rounded-lg shadow-md hover:bg-emerald-500 transition duration-150 mt-2">
+                <button id="add-custom-control-button"
+                    class="w-full bg-emerald-600 text-white font-medium py-2 px-4 rounded-lg shadow-md hover:bg-emerald-500 transition duration-150 mt-2">
                     Custom Control erstellen & zuweisen
                 </button>
             </div>
@@ -210,7 +294,7 @@
         const API_URL_GPLUS = 'https://api.github.com/repos/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/contents/zielobjektkategorien/komponenten';
         const API_URL_PRAKTIKEN = 'https://api.github.com/repos/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/contents/zielobjektkategorien/komponenten';
         const PRAKTIKEN_FILE_SUFFIX = 'prozesse-component.json';
-        
+
         const METHODIK_URLS = {
             standard: 'https://raw.githubusercontent.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/refs/heads/main/zielobjektkategorien/komponenten/methodik-component.json',
             enhanced: 'https://raw.githubusercontent.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/refs/heads/main/ED23-Baustein-komponenten/DE/methodik_isms-component.json'
@@ -227,11 +311,11 @@
             },
             {
                 name: 'C5:2026 OSCAL Katalog',
-                href: 'https://raw.githubusercontent.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/refs/heads/main/hilfsdateien/c5-2026-oscal-catalog.json'
+                href: 'https://raw.githubusercontent.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/refs/heads/main/kataloge/c5-2026-oscal-catalog.json'
             },
             {
                 name: ' C3A - Criteria enabling Cloud Computing Autonomy',
-                href: 'https://raw.githubusercontent.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/refs/heads/main/hilfsdateien/c3a_oscal_catalog.json'
+                href: 'https://raw.githubusercontent.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/refs/heads/main/kataloge/c3a_oscal_catalog.json'
             }
         ];
 
@@ -248,15 +332,15 @@
             groupTitles: new Map(), // Gruppen-ID (upper) → Titel aus Basis-Katalog
             methodik: { type: 'standard', url: METHODIK_URLS.standard, controls: new Set(), uuid: '' },
             praktiken: new Map(), // Speichert gewählte Prozesse { id, name, url, controls: Set() }
-            manualControls: new Set(), 
-            modifications: new Map(), 
-            components: [], 
+            manualControls: new Set(),
+            modifications: new Map(),
+            components: [],
             riskData: [],
             customControls: new Map()
         };
 
         let currentActiveControlId = null;
-        let currentModifySourceId = null; 
+        let currentModifySourceId = null;
         let currentRiskUuidForSearch = null;
 
         // --- INIT ---
@@ -346,23 +430,23 @@
             const MODALVERB_NS = 'https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces/modalverb.csv';
 
             function indexCat(items) {
-                if(!items) return;
+                if (!items) return;
                 items.forEach(i => {
                     if (i.id) {
                         let text = i.title;
                         let modalverb = '';
-                        if(i.props) {
+                        if (i.props) {
                             const mv = i.props.find(p => p.ns === MODALVERB_NS);
-                            if(mv) modalverb = mv.value;
+                            if (mv) modalverb = mv.value;
                         }
-                        if(i.parts) {
+                        if (i.parts) {
                             const prosePart = i.parts.find(p => p.name === 'statement' || p.prose);
-                            if(prosePart && prosePart.prose) text = prosePart.prose;
-                            if(!modalverb) {
+                            if (prosePart && prosePart.prose) text = prosePart.prose;
+                            if (!modalverb) {
                                 i.parts.forEach(part => {
-                                    if(part.props && !modalverb) {
+                                    if (part.props && !modalverb) {
                                         const mv = part.props.find(p => p.ns === MODALVERB_NS);
-                                        if(mv) modalverb = mv.value;
+                                        if (mv) modalverb = mv.value;
                                     }
                                 });
                             }
@@ -375,8 +459,8 @@
                             catalogName: catalogRef.name || catalogData?.catalog?.metadata?.title || 'OSCAL Katalog'
                         });
                     }
-                    if(i.controls) indexCat(i.controls);
-                    if(i.groups) indexCat(i.groups);
+                    if (i.controls) indexCat(i.controls);
+                    if (i.groups) indexCat(i.groups);
                 });
             }
 
@@ -419,7 +503,7 @@
                 baseCatalog.controls = new Set(controlEntries.keys());
                 mergeControlsIntoIndex(controlEntries);
                 indexCatalogGroups(data);
-                
+
                 statusEl.className = "px-4 py-2 rounded-lg text-sm font-semibold bg-emerald-900/50 text-emerald-400 border border-emerald-700 flex items-center shadow-sm";
                 statusEl.innerHTML = `✓ Katalog aktiv (${bpState.controlsIndex.size} Controls)`;
             } catch (e) {
@@ -505,7 +589,7 @@
             });
         }
 
-        window.addCatalogFromInput = async function() {
+        window.addCatalogFromInput = async function () {
             const input = document.getElementById('catalog-url-input');
             const rawUrl = input.value.trim();
             if (!rawUrl) return alert('Bitte eine Katalog-URL eingeben.');
@@ -529,7 +613,7 @@
             }
         }
 
-        window.addPresetCatalog = async function(index) {
+        window.addPresetCatalog = async function (index) {
             const preset = PRESET_ADDITIONAL_CATALOGS[index];
             if (!preset) return;
             if (catalogAlreadyPresent(normalizeGitHubCatalogUrl(preset.href))) {
@@ -552,7 +636,7 @@
             }
         }
 
-        window.removeCatalog = function(index) {
+        window.removeCatalog = function (index) {
             if (index <= 0) return;
             const removed = bpState.catalogs[index];
             if (!removed) return;
@@ -597,6 +681,7 @@
                         <button onclick="addPresetCatalog(0)" class="px-4 py-2 bg-slate-700 text-cyan-300 border border-cyan-700 rounded-lg hover:bg-slate-600 transition-colors text-sm font-semibold">+ KRITIS</button>
                         <button onclick="addPresetCatalog(1)" class="px-4 py-2 bg-slate-700 text-cyan-300 border border-cyan-700 rounded-lg hover:bg-slate-600 transition-colors text-sm font-semibold">+ DSGVO</button>
                         <button onclick="addPresetCatalog(2)" class="px-4 py-2 bg-slate-700 text-cyan-300 border border-cyan-700 rounded-lg hover:bg-slate-600 transition-colors text-sm font-semibold">+ C5:2026</button>
+                        <button onclick="addPresetCatalog(3)" class="px-4 py-2 bg-slate-700 text-cyan-300 border border-cyan-700 rounded-lg hover:bg-slate-600 transition-colors text-sm font-semibold">+ C3A </button>
                     </div>
                     <ul id="catalogs-list" class="space-y-2"></ul>
                 </div>
@@ -654,22 +739,22 @@
             `;
         }
 
-        window.switchMethodik = async function(type) {
+        window.switchMethodik = async function (type) {
             toggleLoader(true, `Lade ${type} Methodik...`);
             try {
                 const res = await fetch(METHODIK_URLS[type]);
                 const data = await res.json();
-                
+
                 bpState.methodik.type = type;
                 bpState.methodik.url = METHODIK_URLS[type];
                 bpState.methodik.controls = new Set();
                 bpState.methodik.uuid = data['component-definition']?.uuid || crypto.randomUUID();
 
-                if(data['component-definition'] && data['component-definition'].components) {
+                if (data['component-definition'] && data['component-definition'].components) {
                     data['component-definition'].components.forEach(c => {
-                        if(c['control-implementations']) {
+                        if (c['control-implementations']) {
                             c['control-implementations'].forEach(ci => {
-                                if(ci['implemented-requirements']) {
+                                if (ci['implemented-requirements']) {
                                     ci['implemented-requirements'].forEach(req => {
                                         bpState.methodik.controls.add(req['control-id']);
                                     });
@@ -678,10 +763,10 @@
                         }
                     });
                 }
-                
+
                 document.getElementById('methodik-status').innerHTML = `✓ Methodik (${type}) geladen und ${bpState.methodik.controls.size} Controls zugewiesen.`;
                 renderTailoredList();
-            } catch(e) {
+            } catch (e) {
                 document.getElementById('methodik-status').innerHTML = `⚠️ Fehler beim Laden der Methodik!`;
                 console.error(e);
             } finally {
@@ -694,9 +779,9 @@
                 const res = await fetch(API_URL_PRAKTIKEN);
                 const data = await res.json();
                 const container = document.getElementById('praktiken-container');
-                
+
                 const processFiles = data.filter(file => file.name.endsWith(PRAKTIKEN_FILE_SUFFIX));
-                
+
                 if (processFiles.length === 0) {
                     container.innerHTML = '<div class="text-slate-500 text-sm">Keine Prozess-Komponenten gefunden.</div>';
                     return;
@@ -720,13 +805,13 @@
                     `;
                 }).join('');
 
-            } catch(e) {
+            } catch (e) {
                 document.getElementById('praktiken-container').innerHTML = '<div class="text-red-400 text-sm">Fehler beim Laden der Prozesse.</div>';
             }
         }
 
-        window.togglePraktik = async function(checkbox, url, label, id) {
-            if(checkbox.checked) {
+        window.togglePraktik = async function (checkbox, url, label, id) {
+            if (checkbox.checked) {
                 toggleLoader(true, `Lade Prozess: ${label}...`);
                 try {
                     const res = await fetch(url);
@@ -753,7 +838,7 @@
                     }
 
                     bpState.praktiken.set(url, { id: id, name: label, url: url, controls: extractedControls });
-                } catch(e) {
+                } catch (e) {
                     alert(`Fehler beim Verarbeiten von ${label}: ` + e.message);
                     checkbox.checked = false;
                 } finally {
@@ -769,19 +854,19 @@
             try {
                 const [r1, r2] = await Promise.all([fetch(API_URL_NUTZERGEN), fetch(API_URL_GPLUS)]);
                 const d1 = await r1.json(); const d2 = await r2.json();
-                
+
                 const ddN = document.getElementById('dd-nutzer');
                 const ddG = document.getElementById('dd-gplus');
-                
+
                 ddN.innerHTML = '<option value="" disabled selected>Asset wählen...</option>';
-                d1.filter(i => i.name.endsWith('.json') && !i.name.includes('methodik')).forEach(f => ddN.appendChild(new Option(f.name.replace('.json',''), f.download_url)));
-                
+                d1.filter(i => i.name.endsWith('.json') && !i.name.includes('methodik')).forEach(f => ddN.appendChild(new Option(f.name.replace('.json', ''), f.download_url)));
+
                 ddG.innerHTML = '<option value="" disabled selected>Asset wählen...</option>';
-                d2.filter(i => i.name.endsWith('.json') && !i.name.endsWith(PRAKTIKEN_FILE_SUFFIX)).forEach(f => ddG.appendChild(new Option(f.name.replace('.json',''), f.download_url)));
+                d2.filter(i => i.name.endsWith('.json') && !i.name.endsWith(PRAKTIKEN_FILE_SUFFIX)).forEach(f => ddG.appendChild(new Option(f.name.replace('.json', ''), f.download_url)));
 
                 ddN.addEventListener('change', () => ddG.selectedIndex = 0);
                 ddG.addEventListener('change', () => ddN.selectedIndex = 0);
-            } catch(e) {}
+            } catch (e) { }
         }
 
         async function addAssetComponent() {
@@ -789,10 +874,10 @@
             const ddG = document.getElementById('dd-gplus');
             const customNameInput = document.getElementById('asset-custom-name');
             const stateInput = document.getElementById('asset-state');
-            
+
             let url = '', originalName = '';
-            if(ddN.value) { url = ddN.value; originalName = ddN.options[ddN.selectedIndex].text; }
-            else if(ddG.value) { url = ddG.value; originalName = ddG.options[ddG.selectedIndex].text; }
+            if (ddN.value) { url = ddN.value; originalName = ddN.options[ddN.selectedIndex].text; }
+            else if (ddG.value) { url = ddG.value; originalName = ddG.options[ddG.selectedIndex].text; }
             else return alert("Bitte wähle ein Asset.");
 
             const finalName = customNameInput.value.trim() || originalName;
@@ -804,13 +889,13 @@
             try {
                 const res = await fetch(url);
                 const data = await res.json();
-                
+
                 const extractedControls = new Set();
-                if(data['component-definition'] && data['component-definition'].components) {
+                if (data['component-definition'] && data['component-definition'].components) {
                     data['component-definition'].components.forEach(c => {
-                        if(c['control-implementations']) {
+                        if (c['control-implementations']) {
                             c['control-implementations'].forEach(ci => {
-                                if(ci['implemented-requirements']) {
+                                if (ci['implemented-requirements']) {
                                     ci['implemented-requirements'].forEach(req => {
                                         extractedControls.add(req['control-id']);
                                     });
@@ -820,15 +905,15 @@
                     });
                 }
 
-                bpState.components.push({ 
-                    id: crypto.randomUUID(), 
-                    name: finalName, 
-                    source: url, 
-                    state: finalState, 
+                bpState.components.push({
+                    id: crypto.randomUUID(),
+                    name: finalName,
+                    source: url,
+                    state: finalState,
                     schutzbedarf: finalSchutzbedarf,
                     controls: extractedControls
                 });
-                
+
                 ddN.selectedIndex = 0; ddG.selectedIndex = 0;
                 customNameInput.value = '';
                 stateInput.selectedIndex = 0;
@@ -837,7 +922,7 @@
                 renderAssetsList();
                 renderTailoredList();
                 refreshRiskUI();
-            } catch(e) {
+            } catch (e) {
                 alert("Fehler beim Verarbeiten des Assets: " + e.message);
             } finally {
                 toggleLoader(false);
@@ -847,7 +932,7 @@
         function renderAssetsList() {
             const list = document.getElementById('assets-list');
             list.innerHTML = '';
-            if(bpState.components.length === 0) {
+            if (bpState.components.length === 0) {
                 list.innerHTML = `<li class="text-slate-500 text-sm italic">Keine optionalen Assets geladen.</li>`;
                 return;
             }
@@ -869,11 +954,11 @@
                 `;
             });
         }
-        
-        window.removeAsset = function(i) { 
-            bpState.components.splice(i, 1); 
-            renderAssetsList(); 
-            renderTailoredList(); 
+
+        window.removeAsset = function (i) {
+            bpState.components.splice(i, 1);
+            renderAssetsList();
+            renderTailoredList();
             refreshRiskUI();
         }
 
@@ -891,10 +976,10 @@
             `;
         }
 
-        window.addManualControl = function() {
+        window.addManualControl = function () {
             const inp = document.getElementById('manual-control-input');
             const cid = inp.value.trim().toUpperCase();
-            if(!cid) return;
+            if (!cid) return;
             bpState.manualControls.add(cid);
             inp.value = '';
             renderTailoredList(document.getElementById('tailoring-search-input')?.value || '');
@@ -902,21 +987,21 @@
 
         function renderTailoredList(filterTerm = '') {
             const list = document.getElementById('tailored-list');
-            if(!list) return;
+            if (!list) return;
             list.innerHTML = '';
 
             const term = filterTerm.toLowerCase().trim();
 
             function renderGroup(title, badgeHtml, controlsSet, sourceId, isOpenDefault) {
-                if(!controlsSet || controlsSet.size === 0) return '';
-                
+                if (!controlsSet || controlsSet.size === 0) return '';
+
                 const filteredControls = Array.from(controlsSet).sort().filter(cid => {
                     if (!term) return true;
                     const info = bpState.controlsIndex.get(cid);
                     return cid.toLowerCase().includes(term) || (info?.title || '').toLowerCase().includes(term);
                 });
 
-                if (filteredControls.length === 0) return ''; 
+                if (filteredControls.length === 0) return '';
 
                 const shouldBeOpen = term.length > 0 ? true : isOpenDefault;
                 const openClass = shouldBeOpen ? 'open' : '';
@@ -935,7 +1020,7 @@
                         </button>
                         <ul id="content-${sourceId}" class="${displayClass} p-3 space-y-2 bg-slate-900/50">
                 `;
-                
+
                 filteredControls.forEach(cid => {
                     const info = bpState.controlsIndex.get(cid);
                     const modKey = `${sourceId}||${cid}`;
@@ -943,7 +1028,7 @@
                     const isMuss = info?.modalverb?.toUpperCase() === 'MUSS';
 
                     let badges = mods.length > 0 ? `<span class="bg-blue-900/50 text-blue-300 border border-blue-700 text-[10px] px-2 py-0.5 rounded font-bold ml-2">${mods.length} Anpassungen</span>` : '';
-                    if(isMuss) badges += `<span class="bg-red-900/50 text-red-300 border border-red-700 text-[10px] px-2 py-0.5 rounded font-bold ml-1">MUSS</span>`;
+                    if (isMuss) badges += `<span class="bg-red-900/50 text-red-300 border border-red-700 text-[10px] px-2 py-0.5 rounded font-bold ml-1">MUSS</span>`;
 
                     html += `
                         <li class="bg-slate-900 border border-slate-700 rounded-lg p-3 flex justify-between items-center group hover:border-slate-500 transition-colors">
@@ -956,10 +1041,10 @@
                             </div>
                             <div class="flex items-center gap-2 flex-shrink-0 opacity-100 md:opacity-0 group-hover:opacity-100 transition-opacity">
                                 <button onclick="openModifyModal('${cid}', '${sourceId}', '${title.replace(/'/g, "\\'")}')" class="px-3 py-1.5 bg-slate-700 text-blue-300 hover:bg-slate-600 rounded text-xs font-bold transition-colors">⚙️ Modify</button>
-                                ${isMuss 
-                                    ? `<button disabled class="px-3 py-1.5 bg-slate-800/50 text-slate-600 border border-slate-700 rounded text-xs font-bold cursor-not-allowed" title="MUSS-Anforderung kann nicht entfernt werden">🔒</button>`
-                                    : `<button onclick="removeControl('${cid}', '${sourceId}')" class="px-3 py-1.5 bg-slate-800 text-red-400 hover:bg-slate-700 border border-slate-700 rounded text-xs font-bold transition-colors">✕</button>` 
-                                }
+                                ${isMuss
+                            ? `<button disabled class="px-3 py-1.5 bg-slate-800/50 text-slate-600 border border-slate-700 rounded text-xs font-bold cursor-not-allowed" title="MUSS-Anforderung kann nicht entfernt werden">🔒</button>`
+                            : `<button onclick="removeControl('${cid}', '${sourceId}')" class="px-3 py-1.5 bg-slate-800 text-red-400 hover:bg-slate-700 border border-slate-700 rounded text-xs font-bold transition-colors">✕</button>`
+                        }
                             </div>
                         </li>
                     `;
@@ -970,29 +1055,29 @@
 
             let fullHtml = '';
             fullHtml += renderGroup('Zwingende Basis Methodik', '<span class="px-2 py-0.5 rounded bg-emerald-900 text-emerald-300 text-[10px] font-bold">🔒 BASE</span>', bpState.methodik.controls, bpState.methodik.uuid, true);
-            
+
             bpState.praktiken.forEach(p => {
                 fullHtml += renderGroup(`Prozess: ${p.name}`, '<span class="px-2 py-0.5 rounded bg-blue-900 text-blue-300 text-[10px] font-bold">🔄 PRAKTIK</span>', p.controls, p.id, false);
             });
-            
+
             bpState.components.forEach(c => {
                 fullHtml += renderGroup(`Asset: ${c.name}`, '<span class="px-2 py-0.5 rounded bg-indigo-900 text-indigo-300 text-[10px] font-bold">📦 ASSET</span>', c.controls, c.id, false);
             });
-            
+
             bpState.catalogs.slice(1).forEach(catalog => {
                 fullHtml += renderGroup(`Katalog: ${catalog.name}`, '<span class="px-2 py-0.5 rounded bg-cyan-900 text-cyan-300 text-[10px] font-bold">📚 KATALOG</span>', catalog.controls, catalog.id, false);
             });
 
             fullHtml += renderGroup('Manuell im Profil (Global)', '<span class="px-2 py-0.5 rounded bg-slate-700 text-slate-300 text-[10px] font-bold">✍️ MANUELL</span>', bpState.manualControls, 'manual', true);
 
-            if(fullHtml === '') fullHtml = `<div class="text-slate-500 text-sm italic p-4 bg-slate-900 rounded-lg border border-slate-700 text-center">Keine Controls vorhanden oder Filter trifft nicht zu.</div>`;
+            if (fullHtml === '') fullHtml = `<div class="text-slate-500 text-sm italic p-4 bg-slate-900 rounded-lg border border-slate-700 text-center">Keine Controls vorhanden oder Filter trifft nicht zu.</div>`;
             list.innerHTML = fullHtml;
         }
 
-        window.toggleSubSection = function(sourceId) {
+        window.toggleSubSection = function (sourceId) {
             const content = document.getElementById(`content-${sourceId}`);
             const icon = document.getElementById(`icon-${sourceId}`);
-            if(content.classList.contains('hidden')) {
+            if (content.classList.contains('hidden')) {
                 content.classList.remove('hidden');
                 icon.classList.add('open');
             } else {
@@ -1001,13 +1086,13 @@
             }
         }
 
-        window.removeControl = function(cid, sourceId) { 
+        window.removeControl = function (cid, sourceId) {
             const info = bpState.controlsIndex.get(cid);
-            if(info?.modalverb?.toUpperCase() === 'MUSS') return;
+            if (info?.modalverb?.toUpperCase() === 'MUSS') return;
 
-            if(sourceId === 'manual') {
+            if (sourceId === 'manual') {
                 bpState.manualControls.delete(cid);
-            } else if(sourceId === bpState.methodik.uuid) {
+            } else if (sourceId === bpState.methodik.uuid) {
                 bpState.methodik.controls.delete(cid);
             } else {
                 let found = false;
@@ -1016,19 +1101,19 @@
                 }
                 if (!found) {
                     const catalog = bpState.catalogs.find(c => c.id === sourceId);
-                    if(catalog) { catalog.controls.delete(cid); found = true; }
+                    if (catalog) { catalog.controls.delete(cid); found = true; }
                 }
                 if (!found) {
                     const comp = bpState.components.find(c => c.id === sourceId);
-                    if(comp) comp.controls.delete(cid);
+                    if (comp) comp.controls.delete(cid);
                 }
             }
-            bpState.modifications.delete(`${sourceId}||${cid}`); 
-            renderTailoredList(document.getElementById('tailoring-search-input')?.value || ''); 
+            bpState.modifications.delete(`${sourceId}||${cid}`);
+            renderTailoredList(document.getElementById('tailoring-search-input')?.value || '');
         }
 
         // --- MODIFY MODAL LOGIC ---
-        window.openModifyModal = function(cid, sourceId, sourceName) {
+        window.openModifyModal = function (cid, sourceId, sourceName) {
             currentActiveControlId = cid;
             currentModifySourceId = sourceId;
 
@@ -1042,46 +1127,46 @@
             document.getElementById('m-param-suffix').value = '_prm_1';
             document.getElementById('m-param-value').value = '';
             document.getElementById('m-alter-text').value = '';
-            
+
             refreshModifyList();
-            
+
             const modal = document.getElementById('modify-modal');
             modal.classList.remove('hidden');
             switchModifyTab('param');
         }
 
-        window.closeModifyModal = function() {
+        window.closeModifyModal = function () {
             document.getElementById('modify-modal').classList.add('hidden');
             currentActiveControlId = null;
             currentModifySourceId = null;
             renderTailoredList(document.getElementById('tailoring-search-input')?.value || '');
         }
 
-        window.switchModifyTab = function(t) {
+        window.switchModifyTab = function (t) {
             document.getElementById('tab-param-content').style.display = t === 'param' ? 'block' : 'none';
             document.getElementById('tab-alter-content').style.display = t === 'alter' ? 'block' : 'none';
             document.getElementById('tab-param-btn').className = t === 'param' ? "flex-1 py-2 text-center text-emerald-400 border-b-2 border-emerald-500 font-bold text-sm" : "flex-1 py-2 text-center text-slate-500 hover:text-slate-300 border-b-2 border-transparent font-medium text-sm";
             document.getElementById('tab-alter-btn').className = t === 'alter' ? "flex-1 py-2 text-center text-emerald-400 border-b-2 border-emerald-500 font-bold text-sm" : "flex-1 py-2 text-center text-slate-500 hover:text-slate-300 border-b-2 border-transparent font-medium text-sm";
         }
 
-        window.addModification = function(type) {
-            if(!currentActiveControlId || !currentModifySourceId) return;
+        window.addModification = function (type) {
+            if (!currentActiveControlId || !currentModifySourceId) return;
             const modKey = `${currentModifySourceId}||${currentActiveControlId}`;
             const mods = bpState.modifications.get(modKey) || [];
-            
-            if(type === 'param') {
+
+            if (type === 'param') {
                 const s = document.getElementById('m-param-suffix').value.trim();
                 const v = document.getElementById('m-param-value').value.trim();
-                if(!s || !v) return;
+                if (!s || !v) return;
                 const pid = `${currentActiveControlId}${s}`;
                 const idx = mods.findIndex(m => m.type === 'set-parameter' && m.paramId === pid);
-                if(idx > -1) mods.splice(idx, 1);
+                if (idx > -1) mods.splice(idx, 1);
                 mods.push({ type: 'set-parameter', paramId: pid, value: v });
                 document.getElementById('m-param-value').value = '';
             } else {
                 const pos = document.getElementById('m-alter-pos').value;
                 const txt = document.getElementById('m-alter-text').value.trim();
-                if(!txt) return;
+                if (!txt) return;
                 mods.push({ type: 'alter', position: pos, text: txt });
                 document.getElementById('m-alter-text').value = '';
             }
@@ -1097,7 +1182,7 @@
             mods.forEach((m, i) => {
                 const li = document.createElement('li');
                 li.className = "flex justify-between items-center bg-slate-900 p-2.5 rounded border border-slate-700 shadow-sm text-sm";
-                if(m.type === 'set-parameter') {
+                if (m.type === 'set-parameter') {
                     li.innerHTML = `<div><span class="font-bold text-emerald-400 bg-emerald-900/50 px-1.5 py-0.5 rounded text-[10px] mr-2 uppercase">Param</span> <span class="font-mono text-slate-300">${m.paramId}</span> = <span class="italic text-white">"${m.value}"</span></div>`;
                 } else {
                     li.innerHTML = `<div><span class="font-bold text-purple-400 bg-purple-900/50 px-1.5 py-0.5 rounded text-[10px] mr-2 uppercase">Alter</span> <span class="text-slate-500 text-xs uppercase">(${m.position})</span> <span class="italic text-slate-300 truncate inline-block max-w-[200px] align-bottom ml-2">"${m.text}"</span></div>`;
@@ -1106,9 +1191,9 @@
                 list.appendChild(li);
             });
         }
-        window.removeMod = function(i) { 
-            bpState.modifications.get(`${currentModifySourceId}||${currentActiveControlId}`).splice(i, 1); 
-            refreshModifyList(); 
+        window.removeMod = function (i) {
+            bpState.modifications.get(`${currentModifySourceId}||${currentActiveControlId}`).splice(i, 1);
+            refreshModifyList();
         }
 
         // --- SECTION 4: RISK ANALYSIS ---
@@ -1124,11 +1209,11 @@
             `;
         }
 
-        window.addNewRisk = function() {
+        window.addNewRisk = function () {
             bpState.riskData.push({
                 uuid: crypto.randomUUID(), title: "Neues Risiko", description: "", threat: "",
-                likelihood: "medium", impact: "medium", 
-                targetComponent: "global", 
+                likelihood: "medium", impact: "medium",
+                targetComponent: "global",
                 mitigatingControls: []
             });
             refreshRiskUI();
@@ -1137,7 +1222,7 @@
         function refreshRiskUI() {
             const container = document.getElementById('risk-list-container');
             if (!container) return;
-            
+
             const openSections = new Set();
             document.querySelectorAll('#risk-list-container .collapsible-content.open').forEach(el => openSections.add(el.id));
 
@@ -1162,33 +1247,33 @@
                 `;
             }
 
-            if(bpState.riskData.length === 0) {
+            if (bpState.riskData.length === 0) {
                 container.innerHTML = warningHtml + `<p class="text-slate-500 text-sm italic text-center py-6 bg-slate-900 rounded-lg border border-slate-700">Noch keine Risiken definiert.</p>`;
                 return;
             }
 
-            container.innerHTML = warningHtml + bpState.riskData.map(r => 
+            container.innerHTML = warningHtml + bpState.riskData.map(r =>
                 createCollapsibleSection(`risk-${r.uuid}`, `${r.title} (${r.mitigatingControls.length} Controls)`, renderRiskEditor(r), openSections.has(`risk-${r.uuid}-content`))
             ).join('');
-            
+
             attachCollapsibleListeners();
         }
 
         function renderRiskEditor(risk) {
             const lOpts = ['low', 'medium', 'high', 'very-high'];
-            const escapes = str => (str||'').replace(/"/g, '&quot;');
-            
+            const escapes = str => (str || '').replace(/"/g, '&quot;');
+
             let controlsHtml = risk.mitigatingControls.length === 0 ? '<p class="text-sm text-slate-500 italic">Keine Controls ausgewählt.</p>' : '<ul class="space-y-2">';
             risk.mitigatingControls.forEach((c, idx) => {
-                let badge = c.source === 'catalog' ? `<span class="ml-2 px-2 text-[10px] uppercase font-bold rounded-full bg-blue-900 text-blue-300 border border-blue-700">Katalog</span>` 
-                                                   : `<span class="ml-2 px-2 text-[10px] uppercase font-bold rounded-full bg-emerald-900 text-emerald-300 border border-emerald-700">Custom</span>`;
+                let badge = c.source === 'catalog' ? `<span class="ml-2 px-2 text-[10px] uppercase font-bold rounded-full bg-blue-900 text-blue-300 border border-blue-700">Katalog</span>`
+                    : `<span class="ml-2 px-2 text-[10px] uppercase font-bold rounded-full bg-emerald-900 text-emerald-300 border border-emerald-700">Custom</span>`;
                 controlsHtml += `
                     <li class="flex justify-between items-center p-2.5 bg-slate-900 border border-slate-700 rounded-lg">
                         <span class="text-sm text-white font-mono">${c.id} ${badge}</span>
                         <button onclick="removeControlFromRisk('${risk.uuid}', ${idx})" class="text-red-400 hover:text-red-300 font-bold px-2">✕</button>
                     </li>`;
             });
-            if(risk.mitigatingControls.length > 0) controlsHtml += '</ul>';
+            if (risk.mitigatingControls.length > 0) controlsHtml += '</ul>';
 
             let componentOptions = `<option value="global" ${risk.targetComponent === 'global' ? 'selected' : ''}>Systemweit (Global)</option>`;
             bpState.components.forEach(c => {
@@ -1215,13 +1300,13 @@
                         <div>
                             <label class="block text-xs font-semibold text-slate-400 mb-1">Eintrittswahrscheinlichkeit</label>
                             <select name="likelihood" class="w-full px-3 py-2 bg-slate-900 border border-slate-600 rounded-lg text-sm text-white focus:outline-none focus:border-emerald-500">
-                                ${lOpts.map(o => `<option value="${o}" ${risk.likelihood===o?'selected':''}>${o}</option>`).join('')}
+                                ${lOpts.map(o => `<option value="${o}" ${risk.likelihood === o ? 'selected' : ''}>${o}</option>`).join('')}
                             </select>
                         </div>
                         <div>
                             <label class="block text-xs font-semibold text-slate-400 mb-1">Schadenausmaß</label>
                             <select name="impact" class="w-full px-3 py-2 bg-slate-900 border border-slate-600 rounded-lg text-sm text-white focus:outline-none focus:border-emerald-500">
-                                ${lOpts.map(o => `<option value="${o}" ${risk.impact===o?'selected':''}>${o}</option>`).join('')}
+                                ${lOpts.map(o => `<option value="${o}" ${risk.impact === o ? 'selected' : ''}>${o}</option>`).join('')}
                             </select>
                         </div>
                     </div>
@@ -1242,9 +1327,9 @@
                 </div>`;
         }
 
-        window.updateRiskDetails = function(uuid, el) {
+        window.updateRiskDetails = function (uuid, el) {
             const risk = bpState.riskData.find(r => r.uuid === uuid);
-            if(!risk) return;
+            if (!risk) return;
 
             const newTarget = el.querySelector('[name="targetComponent"]').value;
 
@@ -1271,30 +1356,30 @@
             risk.description = el.querySelector('[name="description"]').value;
             risk.likelihood = el.querySelector('[name="likelihood"]').value;
             risk.impact = el.querySelector('[name="impact"]').value;
-            
+
             const section = document.querySelector(`[data-section-id="risk-${uuid}"]`);
-            if(section) section.querySelector('h2').textContent = `${risk.title} (${risk.mitigatingControls.length} Controls)`;
+            if (section) section.querySelector('h2').textContent = `${risk.title} (${risk.mitigatingControls.length} Controls)`;
         }
 
         function cleanupCustomControls() {
             const usedCustom = new Set();
             bpState.riskData.forEach(r => r.mitigatingControls.forEach(c => {
-                if(c.source === 'custom') usedCustom.add(c.id);
+                if (c.source === 'custom') usedCustom.add(c.id);
             }));
             for (let key of bpState.customControls.keys()) {
                 if (!usedCustom.has(key)) bpState.customControls.delete(key);
             }
         }
 
-        window.deleteRisk = function(uuid) {
+        window.deleteRisk = function (uuid) {
             const risk = bpState.riskData.find(r => r.uuid === uuid);
-            if(risk) {
+            if (risk) {
                 risk.mitigatingControls.forEach(c => {
-                    if(c.source === 'catalog') {
-                        if(risk.targetComponent === 'global') bpState.manualControls.delete(c.id);
+                    if (c.source === 'catalog') {
+                        if (risk.targetComponent === 'global') bpState.manualControls.delete(c.id);
                         else {
                             const comp = bpState.components.find(comp => comp.id === risk.targetComponent);
-                            if(comp) comp.controls.delete(c.id);
+                            if (comp) comp.controls.delete(c.id);
                         }
                     }
                 });
@@ -1305,16 +1390,16 @@
             renderTailoredList();
         }
 
-        window.removeControlFromRisk = function(uuid, idx) {
+        window.removeControlFromRisk = function (uuid, idx) {
             const risk = bpState.riskData.find(r => r.uuid === uuid);
-            if(risk) {
+            if (risk) {
                 const removedControl = risk.mitigatingControls.splice(idx, 1)[0];
-                if(removedControl.source === 'catalog') {
-                    if(risk.targetComponent === 'global') {
+                if (removedControl.source === 'catalog') {
+                    if (risk.targetComponent === 'global') {
                         bpState.manualControls.delete(removedControl.id);
                     } else {
                         const comp = bpState.components.find(c => c.id === risk.targetComponent);
-                        if(comp) comp.controls.delete(removedControl.id);
+                        if (comp) comp.controls.delete(removedControl.id);
                     }
                     renderTailoredList();
                 }
@@ -1324,7 +1409,7 @@
         }
 
         // --- RISK MODAL (SEARCH & CUSTOM) ---
-        window.openRiskSearchModal = function(uuid) {
+        window.openRiskSearchModal = function (uuid) {
             currentRiskUuidForSearch = uuid;
             document.getElementById('search-modal').classList.remove('hidden');
             document.getElementById('tab-search').click();
@@ -1354,8 +1439,8 @@
                 const id = document.getElementById('custom-control-id').value.trim();
                 const title = document.getElementById('custom-control-title').value.trim();
                 const stmt = document.getElementById('custom-control-statement').value.trim();
-                if(!id || !title || !stmt) return alert("Alle Felder ausfüllen.");
-                
+                if (!id || !title || !stmt) return alert("Alle Felder ausfüllen.");
+
                 bpState.customControls.set(id, { id, title, statement: stmt, source: 'custom' });
                 addControlToRisk({ id, source: 'custom' });
                 document.getElementById('search-modal').classList.add('hidden');
@@ -1370,9 +1455,9 @@
             query = query.toLowerCase().trim();
             const resultsDiv = document.getElementById('catalog-search-results');
             const results = [];
-            
+
             for (const [id, data] of bpState.controlsIndex.entries()) {
-                if(query.length === 0 || id.toLowerCase().includes(query) || data.title.toLowerCase().includes(query)) {
+                if (query.length === 0 || id.toLowerCase().includes(query) || data.title.toLowerCase().includes(query)) {
                     results.push({ id, title: data.title });
                 }
             }
@@ -1391,19 +1476,19 @@
             `).join('');
         }
 
-        window.addControlToRisk = function(controlData) {
+        window.addControlToRisk = function (controlData) {
             const risk = bpState.riskData.find(r => r.uuid === currentRiskUuidForSearch);
-            if(!risk) return;
-            if(risk.mitigatingControls.some(c => c.id === controlData.id)) return alert("Control bereits zugeordnet.");
-            
+            if (!risk) return;
+            if (risk.mitigatingControls.some(c => c.id === controlData.id)) return alert("Control bereits zugeordnet.");
+
             risk.mitigatingControls.push(controlData);
-            
-            if(controlData.source === 'catalog') {
+
+            if (controlData.source === 'catalog') {
                 if (risk.targetComponent === 'global') {
                     bpState.manualControls.add(controlData.id);
                 } else {
                     const comp = bpState.components.find(c => c.id === risk.targetComponent);
-                    if(comp) comp.controls.add(controlData.id);
+                    if (comp) comp.controls.add(controlData.id);
                 }
                 renderTailoredList();
             }
@@ -1415,7 +1500,7 @@
         // --- SECTION 5: EXPORTS (OSCAL GENERATION) ---
 
         // --- SSP / PROFILE IMPORT (open existing and continue working on it) ---
-        window.handleSSPFileLoad = async function(event) {
+        window.handleSSPFileLoad = async function (event) {
             const files = Array.from(event.target.files || []);
             event.target.value = ''; // allow re-selecting same file later
             if (files.length === 0) return;
@@ -1465,7 +1550,7 @@
                 baseCatalog.controls = new Set(entries.keys());
                 mergeControlsIntoIndex(entries);
                 indexCatalogGroups(data);
-            } catch(e) { console.warn('Basis-Katalog konnte nicht neu indiziert werden', e); }
+            } catch (e) { console.warn('Basis-Katalog konnte nicht neu indiziert werden', e); }
 
             bpState.praktiken = new Map();
             bpState.manualControls = new Set();
@@ -1521,7 +1606,7 @@
                     if (reuseUuid) catalog.id = reuseUuid;
                     mergeControlsIntoIndex(catalog.controlEntries || new Map());
                     bpState.catalogs.push(catalog);
-                } catch(e) {
+                } catch (e) {
                     console.warn('Zusätzlicher Katalog konnte nicht geladen werden:', href, e);
                 }
             }
@@ -1559,7 +1644,7 @@
                             if (radio) radio.checked = true;
                             const statusEl = document.getElementById('methodik-status');
                             if (statusEl) statusEl.innerHTML = `✓ Methodik (${type}) geladen und ${controls.size} Controls zugewiesen.`;
-                        } catch(e) { console.warn('Methodik konnte nicht geladen werden', e); }
+                        } catch (e) { console.warn('Methodik konnte nicht geladen werden', e); }
                         continue;
                     }
 
@@ -1586,7 +1671,7 @@
                                 });
                             }
                             bpState.praktiken.set(href, { id: c.uuid, name, url: href, controls });
-                        } catch(e) { console.warn('Praktik konnte nicht geladen werden', href, e); }
+                        } catch (e) { console.warn('Praktik konnte nicht geladen werden', href, e); }
                         continue;
                     }
 
@@ -1610,7 +1695,7 @@
                                 schutzbedarf: schutzProp?.value || 'normal-SdT',
                                 controls
                             });
-                        } catch(e) { console.warn('Asset konnte nicht geladen werden', href, e); }
+                        } catch (e) { console.warn('Asset konnte nicht geladen werden', href, e); }
                     }
                 }
 
@@ -1638,7 +1723,7 @@
                                 const decoded = base64DecodeUnicode(a.base64.value);
                                 const parsed = JSON.parse(decoded);
                                 if (Array.isArray(parsed.risks)) bpState.riskData = parsed.risks;
-                            } catch(e) { console.warn('Risk-Attachment konnte nicht dekodiert werden', e); }
+                            } catch (e) { console.warn('Risk-Attachment konnte nicht dekodiert werden', e); }
                         }
                     });
                 });
@@ -1716,7 +1801,7 @@
                                     const decoded = base64DecodeUnicode(a.base64.value);
                                     const parsed = JSON.parse(decoded);
                                     if (Array.isArray(parsed.risks)) bpState.riskData = parsed.risks;
-                                } catch(e) {}
+                                } catch (e) { }
                             }
                         });
                     });
@@ -1742,12 +1827,12 @@
         function generateBlueprintPackage() {
             const t = bpState.metadata.title || "Blaupause";
             const profileData = generateProfile(t);
-            
-            const safeName = t.replace(/\s+/g,'_');
+
+            const safeName = t.replace(/\s+/g, '_');
             downloadJSON(profileData, `${safeName}_Profile.json`);
-            
+
             const generateSSPCheckbox = document.getElementById('generate-ssp-checkbox');
-            if(generateSSPCheckbox && generateSSPCheckbox.checked) {
+            if (generateSSPCheckbox && generateSSPCheckbox.checked) {
                 const sspData = generateSSP(t, profileData.profile.uuid);
                 setTimeout(() => downloadJSON(sspData, `${safeName}_SSP.json`), 600);
             }
@@ -1765,11 +1850,11 @@
             bpState.modifications.forEach((mods, key) => {
                 const [sourceId, cid] = key.split('||');
                 const validSource = sourceId === 'manual' || sourceId === bpState.methodik.uuid || Array.from(bpState.praktiken.values()).some(p => p.id === sourceId) || bpState.catalogs.some(c => c.id === sourceId) || bpState.components.some(c => c.id === sourceId);
-                if(!validSource) return;
+                if (!validSource) return;
                 mods.forEach(m => {
-                    if(m.type === 'set-parameter') setParams.push({ "param-id": m.paramId, values: [m.value] });
+                    if (m.type === 'set-parameter') setParams.push({ "param-id": m.paramId, values: [m.value] });
                     else {
-                        if(!altersMap.has(cid)) altersMap.set(cid, []);
+                        if (!altersMap.has(cid)) altersMap.set(cid, []);
                         altersMap.get(cid).push({ position: m.position, parts: [{ name: "statement", prose: m.text }] });
                     }
                 });
@@ -1799,7 +1884,7 @@
             bpState.praktiken.forEach(p => p.controls.forEach(cid => baseImportReqIds.add(cid)));
             bpState.components.forEach(c => c.controls.forEach(cid => baseImportReqIds.add(cid)));
 
-            if(baseImportReqIds.size > 0 && profile.profile.imports.length > 0) {
+            if (baseImportReqIds.size > 0 && profile.profile.imports.length > 0) {
                 profile.profile.imports[0]["include-controls"] = [{ "with-ids": Array.from(baseImportReqIds).sort() }];
             }
 
@@ -1818,7 +1903,7 @@
                 });
             });
 
-            if(bpState.riskData.length > 0) {
+            if (bpState.riskData.length > 0) {
                 const riskUuid = crypto.randomUUID();
                 profile.profile["back-matter"].resources.push({
                     uuid: riskUuid, title: "Risikoanalyse", description: "Details der Risikoanalyse",
@@ -1828,12 +1913,12 @@
                 profile.profile.metadata.props.push({ name: "risk-analysis-details-ref", value: `#${riskUuid}` });
             }
 
-            if(setParams.length > 0 || alters.length > 0 || bpState.customControls.size > 0) {
+            if (setParams.length > 0 || alters.length > 0 || bpState.customControls.size > 0) {
                 profile.profile.modify = {};
-                if(setParams.length > 0) profile.profile.modify["set-parameters"] = setParams;
-                if(alters.length > 0) profile.profile.modify.alters = alters;
-                
-                if(bpState.customControls.size > 0) {
+                if (setParams.length > 0) profile.profile.modify["set-parameters"] = setParams;
+                if (alters.length > 0) profile.profile.modify.alters = alters;
+
+                if (bpState.customControls.size > 0) {
                     profile.profile.modify.inserts = [{
                         position: "ending",
                         controls: Array.from(bpState.customControls.values()).map(c => ({
@@ -1853,27 +1938,27 @@
         }
 
         function generateSSP(t, profileUuid) {
-            const sysUuid = crypto.randomUUID(); 
+            const sysUuid = crypto.randomUUID();
             const riskCompUuid = crypto.randomUUID();
             const additionalCatalogs = bpState.catalogs.slice(1);
 
             const sspComponents = [
                 { uuid: sysUuid, type: "this-system", title: `System: ${t}`, status: { state: "operational" }, description: "Das übergeordnete System dieser Blaupause." },
-                { 
-                    uuid: riskCompUuid, 
-                    type: "process", 
-                    title: "Risikoanalyse Controls", 
+                {
+                    uuid: riskCompUuid,
+                    type: "process",
+                    title: "Risikoanalyse Controls",
                     description: "Übergreifende mitigierende Controls aus der Risikoanalyse sowie global manuell hinzugefügte Maßnahmen.",
-                    status: { state: "operational" } 
+                    status: { state: "operational" }
                 },
-                { 
-					uuid: bpState.methodik.uuid, 
-					type: "service", 
-					title: `Basis Methodik (${bpState.methodik.type})`, 
-					description: `Instanz 'Basis Methodik', basierend auf Komponentendefinition ${bpState.methodik.url.split('/').pop()}.`,
-					status: { state: "operational" }, 
-					links: [{ href: bpState.methodik.url, rel: "component-definition" }]
-				}
+                {
+                    uuid: bpState.methodik.uuid,
+                    type: "service",
+                    title: `Basis Methodik (${bpState.methodik.type})`,
+                    description: `Instanz 'Basis Methodik', basierend auf Komponentendefinition ${bpState.methodik.url.split('/').pop()}.`,
+                    status: { state: "operational" },
+                    links: [{ href: bpState.methodik.url, rel: "component-definition" }]
+                }
             ];
 
             bpState.praktiken.forEach(p => {
@@ -1886,25 +1971,25 @@
                     links: [{ href: p.url, rel: "component-definition" }]
                 });
             });
-            
-			bpState.components.forEach(c => {
-				sspComponents.push({ 
-					uuid: c.id, 
-					type: "service", 
-					title: c.name, 
-					description: `Instanz '${c.name}', basierend auf Komponentendefinition ${c.source.split('/').pop()}.`,
-					status: { state: c.state || "operational" }, 
-					props: [
-						{
-							name: "sicherheitsniveau",
-							ns: "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces/sicherheitsniveau.csv",
-							value: c.schutzbedarf || "normal-SdT",
-							remarks: `Schutzbedarf des Assets '${c.name}': ${c.schutzbedarf || 'normal-SdT'}. Festgelegt im Rahmen der Blaupausen-Erstellung.`
-						}
-					],
-					links: [{ href: c.source, rel: "component-definition" }]
-				});
-			});
+
+            bpState.components.forEach(c => {
+                sspComponents.push({
+                    uuid: c.id,
+                    type: "service",
+                    title: c.name,
+                    description: `Instanz '${c.name}', basierend auf Komponentendefinition ${c.source.split('/').pop()}.`,
+                    status: { state: c.state || "operational" },
+                    props: [
+                        {
+                            name: "sicherheitsniveau",
+                            ns: "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces/sicherheitsniveau.csv",
+                            value: c.schutzbedarf || "normal-SdT",
+                            remarks: `Schutzbedarf des Assets '${c.name}': ${c.schutzbedarf || 'normal-SdT'}. Festgelegt im Rahmen der Blaupausen-Erstellung.`
+                        }
+                    ],
+                    links: [{ href: c.source, rel: "component-definition" }]
+                });
+            });
 
             additionalCatalogs.forEach(catalog => {
                 sspComponents.push({
@@ -1924,7 +2009,7 @@
                     links: [{ href: catalog.href, rel: "catalog" }]
                 });
             });
-			
+
             bpState.riskData.forEach(r => {
                 const targetUuid = r.targetComponent === 'global' ? riskCompUuid : r.targetComponent;
                 const comp = sspComponents.find(c => c.uuid === targetUuid);
@@ -1982,7 +2067,7 @@
                 } else if (bpState.manualControls.has(cid)) {
                     addByComp(riskCompUuid, "Manuell hinzugefügte Maßnahme.");
                 }
-                
+
                 bpState.praktiken.forEach(p => {
                     if (p.controls.has(cid)) {
                         addByComp(p.id, "Control direkt aus dem referenzierten Prozess-Profil.");
@@ -2008,14 +2093,14 @@
                 "system-security-plan": {
                     uuid: crypto.randomUUID(),
                     metadata: { title: `${t} - Muster-SSP`, version: bpState.metadata.version, "last-modified": new Date().toISOString(), "oscal-version": "1.1.3", remarks: bpState.metadata.description, props: bpState.catalogs.slice(1).map(catalog => ({ name: 'source-catalog', ns: OSCAL_NAMESPACES.sourceProfile, value: catalog.href, remarks: catalog.name || 'Zusätzlicher OSCAL Katalog' })) },
-                    "import-profile": { href: `${t.replace(/\s+/g,'_')}_Profile.json` },
+                    "import-profile": { href: `${t.replace(/\s+/g, '_')}_Profile.json` },
                     "system-characteristics": { "system-ids": [{ id: crypto.randomUUID() }], "system-name": `${t} Muster-Verbund`, description: "Generiert aus Blaupause", status: { state: "operational" }, props: bpState.catalogs.slice(1).map(catalog => ({ name: 'referenced-catalog', ns: OSCAL_NAMESPACES.sourceCatalog, value: catalog.href, remarks: catalog.name || 'Zusätzlicher OSCAL Katalog' })) },
                     "system-implementation": { components: sspComponents },
                     "control-implementation": { description: "Spezifische Risikomitigierung, manuelle Controls und Prozesse", "implemented-requirements": reqs.length > 0 ? reqs : [{ uuid: crypto.randomUUID(), "control-id": "PLACEHOLDER", description: "Empty" }] }
                 }
             };
 
-            if(bpState.riskData.length > 0) {
+            if (bpState.riskData.length > 0) {
                 const riskUuid = crypto.randomUUID();
                 ssp["system-security-plan"]["back-matter"] = {
                     resources: [{
@@ -2038,6 +2123,7 @@
             a.click(); document.body.removeChild(a); URL.revokeObjectURL(a.href);
         }
     </script>
-<div style="text-align:center; padding:20px; color:#94a3b8;">&copy; 2024 NTT DATA Deutschland SE</div>
+    <div style="text-align:center; padding:20px; color:#94a3b8;">&copy; 2024 NTT DATA Deutschland SE</div>
 </body>
+
 </html>

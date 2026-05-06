@@ -28,26 +28,26 @@ This document outlines the phased implementation plan for the G++ OSCAL Context 
 - [x] Initialize the FastMCP server skeleton with the 8 hardcoded `OscalModel` enums.
 - [x] Pre-load the 8 NIST OSCAL 1.2.2 JSON schemas into memory (RAM) at startup for Zero-Trust local validation.
 - [x] Implement the `create_oscal_model` tool:
-  - Generate the initial JSON document based on agent payload.
-  - Perform local air-gapped `jsonschema` validation against the pre-loaded schemas.
-  - Add necessary OSCAL 1.2.2 metadata (UUIDs, Timestamps).
-  - Write the successful draft as an initial snapshot (e.g., `save_v1.json`) to GCP Storage.
+  - [x] Generate the initial JSON document based on agent payload.
+  - [x] Perform local air-gapped `jsonschema` validation against the pre-loaded schemas.
+  - [x] Add necessary OSCAL 1.2.2 metadata (UUIDs, Timestamps).
+  - [x] Write the successful draft as an initial snapshot (e.g., `save_v1.json`) to GCP Storage.
 
 ## Phase 5: Reading (Extractors & Profile Resolution)
 - [x] Implement read tools to return isolated, pre-filtered fragments (preventing the "Lost-in-the-Middle" LLM effect):
-  - **SSP:** `get_ssp_inventory`, `get_ssp_implementation`.
-  - **Assessment (AP & AR):** `get_assessment_subjects`, `get_assessment_controls`, `get_assessment_findings`.
-  - **POA&M:** `get_poam_items`.
+  - [x] **SSP:** `get_ssp_inventory`, `get_ssp_implementation`.
+  - [x] **Assessment (AP & AR):** `get_assessment_subjects`, `get_assessment_controls`, `get_assessment_findings`.
+  - [x] **POA&M:** `get_poam_items`.
 - [x] Implement the **Profile Resolution Engine**:
-  - Load the base BSI Catalog (local cache).
-  - Resolve `alter` and `set-parameter` directives from the Profile.
-  - Implement RAM caching with invalidation based on the SHA-256 hash of the Profile snapshot.
+  - [x] Load the base BSI Catalog (local cache).
+  - [x] Resolve `alter` and `set-parameter` directives from the Profile. (Simplified implementation)
+  - [x] Implement RAM caching with invalidation based on the SHA-256 hash of the Profile snapshot.
 
 ## Phase 6: Manipulating (Maker-Checker Loop & Snapshots)
 - [x] Implement the `update_oscal_model` tool for state mutation.
 - [x] Implement the In-Memory Transaction Loop:
-  - **Draft Phase:** Fetch the last valid snapshot from GCP, merge the patch/update into the JSON tree in RAM.
-  - **Validation Phase:** Validate the entire RAM draft against the local schema.
-  - **Commit Phase:** If valid, save the result as a new snapshot version (e.g., `save_v2.json`) to GCP. Do NOT overwrite existing snapshots.
+  - [x] **Draft Phase:** Fetch the last valid snapshot from GCP, merge the patch/update into the JSON tree in RAM.
+  - [x] **Validation Phase:** Validate the entire RAM draft against the local schema.
+  - [x] **Commit Phase:** If valid, save the result as a new snapshot version (e.g., `save_v2.json`) to GCP. Do NOT overwrite existing snapshots.
 - [x] Implement Maker-Checker feedback:
-  - If validation fails, explicitly raise `jsonschema.ValidationError` with the exact stack trace and JSON path so the Agent can correct its payload.
+  - [x] If validation fails, explicitly raise `jsonschema.ValidationError` with the exact stack trace and JSON path so the Agent can correct its payload.

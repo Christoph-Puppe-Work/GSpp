@@ -34,3 +34,37 @@ def test_get_subjects():
     subjects = assessment_extractor.get_subjects(results)
     assert len(subjects) == 1
     assert subjects[0]["id"] == "s1"
+
+def test_filter_assessment_controls():
+    results = {
+        "assessment-results": {
+            "reviewed-controls": {
+                "control-selections": [
+                    {"include-controls": [{"control-id": "AC-1"}, {"control-id": "AC-2"}]}
+                ]
+            },
+            "results": [
+                {
+                    "reviewed-controls": {
+                        "control-selections": [
+                            {"include-controls": [{"control-id": "AC-1"}]}
+                        ]
+                    }
+                }
+            ]
+        }
+    }
+
+    # All controls
+    controls = assessment_extractor.filter_assessment_controls(results)
+    assert len(controls) == 2
+
+    # Selected only
+    controls = assessment_extractor.filter_assessment_controls(results, selected_only=True)
+    assert len(controls) == 1
+    assert controls[0]["control-id"] == "AC-1"
+
+    # Regex filter
+    controls = assessment_extractor.filter_assessment_controls(results, regex_filter="AC-2")
+    assert len(controls) == 1
+    assert controls[0]["control-id"] == "AC-2"

@@ -34,14 +34,15 @@ This document outlines the phased implementation plan for the G++ OSCAL Context 
   - [x] Write the successful draft as an initial snapshot (e.g., `save_v1.json`) to GCP Storage.
 
 ## Phase 5: Reading (Extractors & Profile Resolution)
-- [x] Implement read tools to return isolated, pre-filtered fragments (preventing the "Lost-in-the-Middle" LLM effect):
-  - [x] **SSP:** `get_ssp_inventory`, `get_ssp_implementation`.
-  - [x] **Assessment (AP & AR):** `get_assessment_subjects`, `get_assessment_controls`, `get_assessment_findings`.
+- [ ] Implement read tools to return isolated, pre-filtered fragments (preventing the "Lost-in-the-Middle" LLM effect):
+  - [ ] **SSP:** `get_ssp_inventory`, `get_ssp_implementation` (add `role_id` filter).
+  - [ ] **Assessment (AP & AR):** `get_assessment_subjects` (correctly use AP/AR), `get_assessment_controls` (add `selected_only`, resolve UUIDs to SSP names), `get_assessment_findings`.
   - [x] **POA&M:** `get_poam_items`.
-- [x] Implement the **Profile Resolution Engine**:
+- [ ] Implement the **Profile Resolution Engine**:
   - [x] Load the base BSI Catalog (local cache).
   - [x] Resolve `alter` and `set-parameter` directives from the Profile. (Simplified implementation)
   - [x] Implement RAM caching with invalidation based on the SHA-256 hash of the Profile snapshot.
+  - [ ] **BSI Local Resolution:** Automatically load the baked-in BSI catalog when a profile references the BSI GitHub URI in its `href`.
 
 ## Phase 6: Manipulating (Maker-Checker Loop & Snapshots)
 - [x] Implement the `update_oscal_model` tool for state mutation.
@@ -51,3 +52,8 @@ This document outlines the phased implementation plan for the G++ OSCAL Context 
   - [x] **Commit Phase:** If valid, save the result as a new snapshot version (e.g., `save_v2.json`) to GCP. Do NOT overwrite existing snapshots.
 - [x] Implement Maker-Checker feedback:
   - [x] If validation fails, explicitly raise `jsonschema.ValidationError` with the exact stack trace and JSON path so the Agent can correct its payload.
+
+## Phase 7: Extended Artifact Management & Snapshots
+- [ ] Implement `list_oscal_models`: Tool to list all initialized models for a tenant.
+- [ ] Implement `get_oscal_model_raw`: Tool to retrieve the full original JSON content (with version support).
+- [ ] Implement `list_oscal_model_versions`: Tool to list all available snapshot versions for a specific model.

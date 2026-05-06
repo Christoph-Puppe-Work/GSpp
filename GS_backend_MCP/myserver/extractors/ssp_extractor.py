@@ -18,18 +18,28 @@ def filter_inventory(ssp: Dict[str, Any], regex_filter: str) -> List[Dict[str, A
             filtered.append(item)
     return filtered
 
-def filter_implemented_requirements(ssp: Dict[str, Any], status: str) -> List[Dict[str, Any]]:
-    """Extracts controls matching a specific implementation status."""
+def filter_implemented_requirements(ssp: Dict[str, Any], status: str | None = None, role_id: str | None = None) -> List[Dict[str, Any]]:
+    """
+    Extracts controls matching a specific implementation status or assigned to a role.
+    """
     control_implementation = ssp.get("system-security-plan", {}).get("control-implementation", {})
     implemented_requirements = control_implementation.get("implemented-requirements", [])
 
-    if not status:
+    if not status and not role_id:
         return implemented_requirements
 
     filtered = []
     for req in implemented_requirements:
-        # Check overall status or specific statement status
-        # This is a simplified extraction
-        if req.get("status", {}).get("state") == status:
+        match = True
+        if status and req.get("status", {}).get("state") != status:
+            match = False
+
+        if role_id:
+            # Check for role in responsible-roles
+            roles = req.get("responsible-roles", [])
+            if not any(r.get("role-id") == role_id for r in roles):
+                match = False
+
+        if match:
             filtered.append(req)
     return filtered

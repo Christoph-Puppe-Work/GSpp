@@ -1,10 +1,15 @@
 import pytest
-from GSpp_MCP.server.catalog import Catalog
-from GSpp_MCP.server.search import SearchIndex
+from server.catalog import Catalog
+from server.search import SearchIndex
+
+import os
 
 @pytest.fixture
 def catalog():
-    return Catalog("GSpp_MCP/data/Grundschutz++-catalog.json", "GSpp_MCP/data/zielobjekt_controls.json")
+    base_dir = os.path.dirname(os.path.dirname(__file__))
+    catalog_path = os.path.join(base_dir, "data", "Grundschutz++-catalog.json")
+    mapping_path = os.path.join(base_dir, "data", "zielobjekt_controls.json")
+    return Catalog(catalog_path, mapping_path)
 
 def test_catalog_load(catalog):
     assert len(catalog.controls) > 0

@@ -231,9 +231,18 @@ resource "google_cloud_run_v2_service" "gpp_agent_service" {
       image = "${var.region}-docker.pkg.dev/${var.project_id}/${google_artifact_registry_repository.agentic_repo.repository_id}/gpp-agent:latest"
       ports { container_port = 8000 }
       resources { limits = { cpu = "2", memory = "2Gi" } }
-      env { name = "ANWENDER_MCP_URL", value = google_cloud_run_v2_service.gspp_mcp_service.uri }
-      env { name = "BACKEND_MCP_URL", value = google_cloud_run_v2_service.backend_mcp_service.uri }
-      env { name = "GOOGLE_CLOUD_PROJECT", value = var.project_id }
+      env {
+        name = "ANWENDER_MCP_URL"
+        value = google_cloud_run_v2_service.gspp_mcp_service.uri
+      }
+      env {
+        name = "BACKEND_MCP_URL"
+        value = google_cloud_run_v2_service.backend_mcp_service.uri
+      }
+      env {
+        name = "GOOGLE_CLOUD_PROJECT"
+        value = var.project_id
+      }
     }
   }
   depends_on = [null_resource.build_and_push_agent]
@@ -278,7 +287,10 @@ resource "google_cloud_run_v2_service" "frontend_service" {
       image = "${var.region}-docker.pkg.dev/${var.project_id}/${google_artifact_registry_repository.agentic_repo.repository_id}/gpp-frontend:latest"
       ports { container_port = 3000 }
       resources { limits = { cpu = "1", memory = "512Mi" } }
-      env { name = "AGENT_URL", value = "${google_cloud_run_v2_service.gpp_agent_service.uri}/copilotkit" }
+      env {
+        name = "AGENT_URL"
+        value = "${google_cloud_run_v2_service.gpp_agent_service.uri}/copilotkit"
+      }
     }
   }
   depends_on = [null_resource.build_and_push_frontend]

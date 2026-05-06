@@ -7,9 +7,9 @@
   - [x] Verzeichnisstruktur (`agents/`, `services/`, `tools/`, `shared/`, `tests/`) initialisiert.
   - [x] `__init__.py` Dateien zur Paket-Erkennung hinzugefügt.
 - [x] **Kern-Services:**
-  - [x] `GcsStorageService` für mandantenfähige Speicherung (IV-namespacing) implementiert.
-  - [x] `McpClientService` für BSI-Katalog-Integration implementiert.
-  - [x] `SchemaValidator` für OSCAL-Validierung implementiert.
+  - [x] Duale `McpClientService`-Architektur (`GSpp_MCP` für BSI-Katalog und `GS_backend_MCP` für State & Speicherung) implementiert.
+  - [x] Lokaler `temp_file_service` für sicheres Handling von Datei-Uploads implementiert.
+  - [x] GCS und Schema-Validierung an den `GS_backend_MCP` ausgelagert.
 - [x] **Infrastruktur & Shared:**
   - [x] `EscalationBarrier` zur ADK-Loop-Steuerung implementiert.
   - [x] `exit_loop` Utility für saubere Loop-Terminierung.
@@ -25,19 +25,16 @@
 ## Offene Aufgaben (To Do)
 - [ ] **Erweiterung SSP-Generator:**
   - [ ] Implementierung des Human-in-the-Loop (HITL) Controllers.
-  - [ ] Integration des `GcsStorageService` als Writer am Ende des Workflows.
-  - [ ] Multimodaler Upload von Asset-Listen.
+  - [ ] Multimodaler Upload von Asset-Listen über temporäre lokale Dateien verfeinern.
 - [ ] **Weitere Phasen implementieren:**
   - [ ] Phase 2: SSP-Ausfüllen (Umsetzungsstatus & KI-Assistent).
   - [ ] Phase 3: Assessment Plan & Results.
   - [ ] Phase 4: POA&M-Generator.
 - [ ] **Testing:**
-  - [ ] Integration-Tests mit realem/mocked MCP-Server.
+  - [ ] Integration-Tests mit den beiden realem/mocked MCP-Servern (`GSpp_MCP` & `GS_backend_MCP`).
   - [ ] Red-Team Tests (Prompt Injection, Tenant Isolation).
-  - [ ] Schema-Validierungstests gegen echte BSI-Schemas.
 
 ## Offene Fragen & Klärungspunkte
-1. **MCP Transport:** Welcher Transport-Typ wird für den `GSpp_MCP` Server in der Zielumgebung primär genutzt (SSE/HTTP oder Stdio)? Aktuell ist SSE/HTTP als Standard in `McpClientService` hinterlegt.
-2. **Schema-Pfad:** Wo genau liegen die OSCAL-Schemas in der Produktionsumgebung? (`GSpp_MCP/OSCAL_schemas/` vs `hilfsdateien/`).
-3. **HITL Interface:** Wie erfolgt die Interaktion im HITL-Schritt? (Web-UI Integration vs. CLI-Prompting).
-4. **Authentifizierung:** Wie werden die `user_id` Credentials (`caller_principal`) an den Agenten übergeben, um die IV-Namespacing Logik sicher zu befeuern?
+1. **MCP Transport:** Welcher Transport-Typ wird für die MCP Server in der Zielumgebung primär genutzt (SSE/HTTP oder Stdio)? Aktuell ist SSE/HTTP als Standard hinterlegt.
+2. **HITL Interface:** Wie erfolgt die Interaktion im HITL-Schritt? (Web-UI Integration vs. CLI-Prompting).
+3. **Authentifizierung:** Wie werden die `user_id` Credentials (`caller_principal`) an den Agenten übergeben, um die IV-Namespacing Logik beim Backend sicher zu befeuern?

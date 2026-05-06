@@ -8,10 +8,10 @@ description: Build Python MCP (Model Context Protocol) servers deployed to GCP C
 This skill captures the architectural decisions and coding patterns for shipping the production Python MCP server for G++ on Cloud Run. Read it end-to-end before writing or modifying any MCP server code. Skipping these patterns produces silent failures, corrupt GCP savepoints, or deploy timeouts.
 
 **Fundamental Workflow Rules:**
-1. **use Skill**: `Gpp-Agent/mcp_backend_MCP_skill_jules.md`
-2. **Always start by reading `Gpp-Agent/tasks.md`** to understand the current progress and pending items.
-3. **Always end by updating `Gpp-Agent/tasks.md`** to reflect the work done.
-4. **New Skill entries:** Update `Gpp-Agent/mcp_backend_MCP_skill_jules.md` if new learning makes you deviate from this skill.
+1. **use Skill**: `GS_backend_MCP/mcp_backend_MCP_skill_jules.md`
+2. **Always start by reading `GS_backend_MCP/tasks.md`** to understand the current progress and pending items.
+3. **Always end by updating `GS_backend_MCP/tasks.md`** to reflect the work done.
+4. **New Skill entries:** Update `GS_backend_MCP/mcp_backend_MCP_skill_jules.md` if new learning makes you deviate from this skill.
 
 ## Verified Stack (May 2026)
 

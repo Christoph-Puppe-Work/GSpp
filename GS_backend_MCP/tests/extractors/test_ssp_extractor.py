@@ -49,3 +49,29 @@ def test_filter_implemented_requirements():
     results = ssp_extractor.filter_implemented_requirements(ssp, "planned")
     assert len(results) == 1
     assert results[0]["control-id"] == "AC-2"
+
+def test_filter_implemented_requirements_role():
+    ssp = {
+        "system-security-plan": {
+            "control-implementation": {
+                "implemented-requirements": [
+                    {
+                        "control-id": "AC-1",
+                        "responsible-roles": [{"role-id": "ciso"}]
+                    },
+                    {
+                        "control-id": "AC-2",
+                        "responsible-roles": [{"role-id": "admin"}]
+                    }
+                ]
+            }
+        }
+    }
+
+    results = ssp_extractor.filter_implemented_requirements(ssp, role_id="ciso")
+    assert len(results) == 1
+    assert results[0]["control-id"] == "AC-1"
+
+    results = ssp_extractor.filter_implemented_requirements(ssp, role_id="admin")
+    assert len(results) == 1
+    assert results[0]["control-id"] == "AC-2"

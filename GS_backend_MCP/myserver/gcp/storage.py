@@ -11,7 +11,13 @@ BUCKET_NAME = os.getenv("BUCKET_NAME")
 if not BUCKET_NAME:
     logger.warning("BUCKET_NAME environment variable not set. GCP Storage operations will fail.")
 
-client = storage.Client()
+_client = None
+
+def get_storage_client():
+    global _client
+    if _client is None:
+        _client = storage.Client()
+    return _client
 
 class OscalModel(str, Enum):
     ASSESSMENT_PLAN = "assessment-plan"
@@ -31,6 +37,7 @@ def _get_path(iv_id: str, model: OscalModel, version: Optional[str] = None) -> s
 
 def read_oscal_model(iv_id: str, model: OscalModel, version: Optional[str] = None) -> Dict[str, Any]:
     """Reads an OSCAL model from GCP Storage."""
+    client = get_storage_client()
     bucket = client.bucket(BUCKET_NAME)
     path = _get_path(iv_id, model, version)
     blob = bucket.blob(path)
@@ -47,6 +54,7 @@ def write_oscal_model(iv_id: str, model: OscalModel, data: Dict[str, Any]) -> st
     Writes an OSCAL model to GCP Storage.
     Implements versioned snapshots.
     """
+    client = get_storage_client()
     bucket = client.bucket(BUCKET_NAME)
 
     # 1. Determine next version number
@@ -85,6 +93,27 @@ def write_oscal_model(iv_id: str, model: OscalModel, data: Dict[str, Any]) -> st
 
 def list_snapshots(iv_id: str, model: OscalModel) -> list[str]:
     """Lists all available snapshot versions for a model."""
+    client = get_storage_client()
     prefix = f"ivs/{iv_id}/{model.value}/save_v"
     blobs = client.list_blobs(BUCKET_NAME, prefix=prefix)
     return [b.name.split("/")[-1].replace(".json", "") for b in blobs]
+
+def list_models(iv_id: str) -> list[str]:
+    """Lists all initialized OSCAL models for a tenant (IV)."""
+    client = get_storage_client()
+    prefix = f"ivs/{iv_id}/"
+    iterator = client.list_blobs(BUCKET_NAME, prefix=prefix, delimiter='/')
+    # Consume iterator to populate prefixes
+    list(iterator)
+
+    models = []
+    for p in iterator.prefixes:
+        # p is like 'ivs/iv-123/ssp/'
+        model_name = p.rstrip('/').split('/')[-1]
+        try:
+            OscalModel(model_name)
+            models.append(model_name)
+        except ValueError:
+            # Not a valid OscalModel directory
+            continue
+    return models

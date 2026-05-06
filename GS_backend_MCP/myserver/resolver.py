@@ -1,6 +1,7 @@
 import logging
 import hashlib
 import json
+import os
 from datetime import datetime, timezone
 from typing import Any, Dict, Optional
 from GS_backend_MCP.myserver.gcp import storage
@@ -36,11 +37,35 @@ def resolve_profile(iv_id: str, profile_id: str) -> Dict[str, Any]:
     logger.info(f"Resolving profile {profile_id} for IV {iv_id}")
 
     # 3.1 Load base BSI Catalog
-    try:
-        base_catalog = storage.read_oscal_model(iv_id, OscalModel.CATALOG)
-    except FileNotFoundError:
-        logger.warning(f"Base catalog not found for IV {iv_id}. Using empty catalog for resolution.")
-        base_catalog = {"catalog": {"groups": [], "metadata": {}}}
+    profile = profile_data.get("profile", {})
+    imports = profile.get("imports", [])
+
+    base_catalog = None
+
+    # Check if any import points to the official BSI Grundschutz++ catalog URI
+    bsi_uri = "BSI-Bund/Stand-der-Technik-Bibliothek/refs/heads/main/Anwenderkataloge/Grundschutz%2B%2B/Grundschutz%2B%2B-catalog.json"
+    use_local_bsi = False
+    for imp in imports:
+        href = imp.get("href", "")
+        if bsi_uri in href:
+            use_local_bsi = True
+            break
+
+    if use_local_bsi:
+        local_path = os.path.join(os.path.dirname(__file__), "..", "assets", "Grundschutz++-catalog.json")
+        if os.path.exists(local_path):
+            logger.info(f"Using local baked-in BSI catalog from {local_path}")
+            with open(local_path, "r") as f:
+                base_catalog = json.load(f)
+        else:
+            logger.warning(f"Local BSI catalog not found at {local_path}, falling back to storage.")
+
+    if not base_catalog:
+        try:
+            base_catalog = storage.read_oscal_model(iv_id, OscalModel.CATALOG)
+        except FileNotFoundError:
+            logger.warning(f"Base catalog not found for IV {iv_id}. Using empty catalog for resolution.")
+            base_catalog = {"catalog": {"groups": [], "metadata": {}}}
 
     # 3.2 Extract Profile Directives
     profile = profile_data.get("profile", {})

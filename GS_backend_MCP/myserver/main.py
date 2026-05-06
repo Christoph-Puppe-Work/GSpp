@@ -180,11 +180,11 @@ def get_ssp_inventory(ctx: Context, regex_filter: str | None = None) -> List[Dic
     return ssp_extractor.filter_inventory(ssp_data, regex_filter)
 
 @mcp.tool()
-def get_ssp_implementation(ctx: Context, status: str | None = None) -> List[Dict]:
-    """Extracts controls matching a specific implementation status."""
+def get_ssp_implementation(ctx: Context, status: str | None = None, role_id: str | None = None) -> List[Dict]:
+    """Extracts controls matching a specific implementation status or assigned to a role."""
     iv_id = get_iv_id(ctx)
     ssp_data = storage.read_oscal_model(iv_id, OscalModel.SSP)
-    return ssp_extractor.filter_implemented_requirements(ssp_data, status)
+    return ssp_extractor.filter_implemented_requirements(ssp_data, status, role_id)
 
 # --- Assessment Tools ----------------------------------------------------
 
@@ -196,18 +196,24 @@ def get_assessment_findings(ctx: Context, risk_level: str | None = None, state: 
     return assessment_extractor.get_findings(ar_data, risk_level, state)
 
 @mcp.tool()
-def get_assessment_controls(ctx: Context, regex_filter: str | None = None) -> List[Dict]:
+def get_assessment_controls(ctx: Context, regex_filter: str | None = None, selected_only: bool = False) -> List[Dict]:
     """Filters controls examined in the assessment."""
     iv_id = get_iv_id(ctx)
     ar_data = storage.read_oscal_model(iv_id, OscalModel.ASSESSMENT_RESULTS)
-    return assessment_extractor.filter_assessment_controls(ar_data, regex_filter)
+    return assessment_extractor.filter_assessment_controls(ar_data, regex_filter, selected_only)
 
 @mcp.tool()
 def get_assessment_subjects(ctx: Context) -> List[Dict]:
-    """Extracts assessment subjects from Assessment Results."""
+    """Extracts assessment subjects from Assessment Results or Assessment Plan."""
     iv_id = get_iv_id(ctx)
-    ar_data = storage.read_oscal_model(iv_id, OscalModel.ASSESSMENT_RESULTS)
-    return assessment_extractor.get_subjects(ar_data)
+    try:
+        data = storage.read_oscal_model(iv_id, OscalModel.ASSESSMENT_RESULTS)
+    except FileNotFoundError:
+        try:
+            data = storage.read_oscal_model(iv_id, OscalModel.ASSESSMENT_PLAN)
+        except FileNotFoundError:
+            return []
+    return assessment_extractor.get_subjects(data)
 
 # --- POA&M Tools ---------------------------------------------------------
 
@@ -217,6 +223,26 @@ def get_poam_items(ctx: Context) -> List[Dict]:
     iv_id = get_iv_id(ctx)
     poam_data = storage.read_oscal_model(iv_id, OscalModel.POAM)
     return poam_extractor.get_poam_items(poam_data)
+
+# --- Artifact Management Tools -------------------------------------------
+
+@mcp.tool()
+def list_oscal_models(ctx: Context) -> List[str]:
+    """Lists all initialized OSCAL models for the current tenant (IV)."""
+    iv_id = get_iv_id(ctx)
+    return storage.list_models(iv_id)
+
+@mcp.tool()
+def get_oscal_model_raw(model_enum: OscalModel, ctx: Context, version: str | None = None) -> Dict[str, Any]:
+    """Retrieves the full original JSON content of an OSCAL model (with version support)."""
+    iv_id = get_iv_id(ctx)
+    return storage.read_oscal_model(iv_id, model_enum, version)
+
+@mcp.tool()
+def list_oscal_model_versions(model_enum: OscalModel, ctx: Context) -> List[str]:
+    """Lists all available snapshot versions for a specific model."""
+    iv_id = get_iv_id(ctx)
+    return storage.list_snapshots(iv_id, model_enum)
 
 # --- Profile Resolution Tools --------------------------------------------
 

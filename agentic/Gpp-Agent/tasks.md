@@ -27,10 +27,10 @@
   - [ ] Implementierung des Human-in-the-Loop (HITL) Controllers (siehe Frontend-Integration).
   - [ ] Multimodaler Upload von Asset-Listen über temporäre lokale Dateien verfeinern.
 - [ ] **ADK Best Practice Refactoring (Review Findings):**
-  - [ ] **Session & State Management:** Manuelles Parsing der `user_id` durch das ADK `Firestore Session Service` Plugin ersetzen, um Multi-Tenancy (iv_id) und Gesprächshistorien nativ und persistiert zu verwalten.
-  - [ ] **Error Recovery (Reflect and Retry):** ADK's `Reflect and Retry` Plugin für die strict JSON OSCAL-Validierung integrieren, damit der Agent Schema-Fehler selbstständig korrigieren kann, bevor er fehlschlägt.
+  - [x] **Session & State Management:** Manuelles Parsing der `user_id` durch das ADK `Firestore Session Service` Plugin (in `app.py`) ersetzt, um Multi-Tenancy (iv_id) und Gesprächshistorien nativ und persistiert in Firestore zu verwalten.
+  - [x] **Error Recovery (Reflect and Retry):** ADK's `Reflect and Retry` Plugin für die strict JSON OSCAL-Validierung integriert (siehe `app.py`), damit der Agent Schema-Fehler selbstständig korrigieren kann, bevor er fehlschlägt.
 - [ ] **Frontend Integration (CopilotKit & AG-UI):**
-  - [ ] Scaffold eines Next.js/React Frontends mit `npx copilotkit@latest create -f adk`.
+  - [x] Scaffold eines Next.js/React Frontends (manuell angelegt unter `agentic/frontend`).
   - [ ] Implementierung der Chat-UI zur Kommunikation mit dem Gpp-Agenten (`adk web` nur noch für Backend-Dev nutzen).
   - [ ] Integration von **Generative UI** Komponenten für Tool-Calls (z.B. visuelle Darstellung und Freigabe-Formulare für erstellte SSPs).
   - [ ] Umsetzung von Shared State zwischen ADK-Agent und CopilotKit Frontend, um den Human-in-the-Loop (HITL) Approval-Prozess interaktiv abzubilden.
@@ -42,7 +42,7 @@
   - [ ] Integration-Tests mit den beiden realem/mocked MCP-Servern (`GSpp_MCP` & `GS_backend_MCP`).
   - [ ] Red-Team Tests (Prompt Injection, Tenant Isolation).
 
-## Offene Fragen & Klärungspunkte
-1. **MCP Transport:** Welcher Transport-Typ wird für die MCP Server in der Zielumgebung primär genutzt (SSE/HTTP oder Stdio)? Aktuell ist SSE/HTTP als Standard hinterlegt.
-2. **HITL Interface:** Da nun CopilotKit & AG-UI als Frontend-Stack vorgesehen sind, muss definiert werden, wie der Freigabe-Workflow in der Generative UI exakt aussehen soll (z.B. Diff-View für OSCAL JSON).
-3. **Authentifizierung:** Wie werden die `user_id` Credentials (`caller_principal`) an den Agenten übergeben, um die IV-Namespacing Logik beim Backend sicher zu befeuern?
+## Geklärte Architektur-Entscheidungen
+1. **MCP Transport:** Der Transport-Typ für die MCP-Server (z.B. `GS_backend_MCP`) ist auf `streamable-http` festgelegt (siehe `myserver/main.py`). Dies ermöglicht eine performante HTTP-basierte Kommunikation.
+2. **HITL Interface:** Ein technischer "Diff-View" für OSCAL JSON ist nicht gewünscht. Für den Human-in-the-Loop Workflow über CopilotKit/AG-UI muss eine menschenlesbare, fachlich verständliche Repräsentation der Änderungen via Generative UI gebaut werden, keine bloße Code-Ansicht.
+3. **Authentifizierung:** Die Authentifizierung erfolgt initial im Web-Frontend. Die Benutzer-Identität (`user_id`) wird von dort aus an den Agenten weitergereicht, welcher diese für das Multi-Tenancy-Routing (IV-Namespacing) beim Backend nutzt.

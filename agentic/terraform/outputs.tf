@@ -17,3 +17,13 @@ output "gpp_agent_service_account_email" {
   value       = google_service_account.gpp_agent_sa.email
   description = "The email address of the Gpp-Agent's dedicated Service Account"
 }
+
+output "gpp_agent_url" {
+  value       = google_cloud_run_v2_service.gpp_agent_service.uri
+  description = "The URL of the Gpp-Agent ADK API Server"
+}
+
+output "frontend_url" {
+  value       = google_cloud_run_v2_service.frontend_service.uri
+  description = "The public URL of the G++ Frontend Dashboard"
+}

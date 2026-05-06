@@ -205,3 +205,89 @@ resource "google_cloud_run_v2_service_iam_member" "gspp_mcp_invoker" {
   role     = "roles/run.invoker"
   member   = "serviceAccount:${google_service_account.gpp_agent_sa.email}"
 }
+
+# --- Gpp-Agent Deployment ---
+resource "null_resource" "build_and_push_agent" {
+  triggers = { always_run = timestamp() }
+  provisioner "local-exec" {
+    command = <<EOT
+      gcloud builds submit ${path.module}/../Gpp-Agent \
+        --project ${var.project_id} \
+        --tag ${var.region}-docker.pkg.dev/${var.project_id}/${google_artifact_registry_repository.agentic_repo.repository_id}/gpp-agent:latest
+    EOT
+  }
+  depends_on = [google_artifact_registry_repository.agentic_repo, google_project_service.required_apis]
+}
+
+resource "google_cloud_run_v2_service" "gpp_agent_service" {
+  name     = "gpp-agent"
+  location = var.region
+  ingress  = "INGRESS_TRAFFIC_ALL"
+  deletion_protection = false
+
+  template {
+    service_account = google_service_account.gpp_agent_sa.email
+    containers {
+      image = "${var.region}-docker.pkg.dev/${var.project_id}/${google_artifact_registry_repository.agentic_repo.repository_id}/gpp-agent:latest"
+      ports { container_port = 8000 }
+      resources { limits = { cpu = "2", memory = "2Gi" } }
+      env { name = "ANWENDER_MCP_URL", value = google_cloud_run_v2_service.gspp_mcp_service.uri }
+      env { name = "BACKEND_MCP_URL", value = google_cloud_run_v2_service.backend_mcp_service.uri }
+      env { name = "GOOGLE_CLOUD_PROJECT", value = var.project_id }
+    }
+  }
+  depends_on = [null_resource.build_and_push_agent]
+}
+
+# 4. Frontend Service Account
+resource "google_service_account" "frontend_sa" {
+  account_id   = "gpp-frontend-sa"
+  display_name = "G++ Frontend Service Account"
+}
+
+# Security: Only Frontend can invoke ADK Agent
+resource "google_cloud_run_v2_service_iam_member" "agent_invoker" {
+  location = google_cloud_run_v2_service.gpp_agent_service.location
+  name     = google_cloud_run_v2_service.gpp_agent_service.name
+  role     = "roles/run.invoker"
+  member   = "serviceAccount:${google_service_account.frontend_sa.email}"
+}
+
+# --- Frontend Deployment ---
+resource "null_resource" "build_and_push_frontend" {
+  triggers = { always_run = timestamp() }
+  provisioner "local-exec" {
+    command = <<EOT
+      gcloud builds submit ${path.module}/../frontend \
+        --project ${var.project_id} \
+        --tag ${var.region}-docker.pkg.dev/${var.project_id}/${google_artifact_registry_repository.agentic_repo.repository_id}/gpp-frontend:latest
+    EOT
+  }
+  depends_on = [google_artifact_registry_repository.agentic_repo, google_project_service.required_apis]
+}
+
+resource "google_cloud_run_v2_service" "frontend_service" {
+  name     = "gpp-frontend"
+  location = var.region
+  ingress  = "INGRESS_TRAFFIC_ALL"
+  deletion_protection = false
+
+  template {
+    service_account = google_service_account.frontend_sa.email
+    containers {
+      image = "${var.region}-docker.pkg.dev/${var.project_id}/${google_artifact_registry_repository.agentic_repo.repository_id}/gpp-frontend:latest"
+      ports { container_port = 3000 }
+      resources { limits = { cpu = "1", memory = "512Mi" } }
+      env { name = "AGENT_URL", value = "${google_cloud_run_v2_service.gpp_agent_service.uri}/copilotkit" }
+    }
+  }
+  depends_on = [null_resource.build_and_push_frontend]
+}
+
+# Public access to Frontend
+resource "google_cloud_run_v2_service_iam_member" "frontend_public" {
+  location = google_cloud_run_v2_service.frontend_service.location
+  name     = google_cloud_run_v2_service.frontend_service.name
+  role     = "roles/run.invoker"
+  member   = "allUsers"
+}

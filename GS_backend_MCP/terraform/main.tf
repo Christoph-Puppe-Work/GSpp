@@ -23,9 +23,9 @@ resource "google_storage_bucket" "oscal_storage" {
   force_destroy = false
 }
 
-resource "google_artifact_registry_repository" "mcp_repo" {
+resource "google_artifact_registry_repository" "gpp_backend_mcp" {
   location      = var.region
-  repository_id = "gpp-mcp-repo"
+  repository_id = "mcp-server-repo"
   format        = "DOCKER"
   depends_on    = [google_project_service.required_apis]
 }
@@ -37,14 +37,15 @@ resource "null_resource" "build_and_push_image" {
 
   provisioner "local-exec" {
     command = <<EOT
-      gcloud builds submit ${path.module}/.. \
+      gcloud builds submit ${path.module}/../.. \
         --project ${var.project_id} \
-        --tag ${var.region}-docker.pkg.dev/${var.project_id}/${google_artifact_registry_repository.mcp_repo.repository_id}/gpp-context-mcp:latest
+        --config ${path.module}/cloudbuild.yaml \
+        --substitutions=_TAG=${var.region}-docker.pkg.dev/${var.project_id}/${google_artifact_registry_repository.gpp_backend_mcp.repository_id}/gpp-backend-mcp:latest
     EOT
   }
 
   depends_on = [
-    google_artifact_registry_repository.mcp_repo,
+    google_artifact_registry_repository.gpp_backend_mcp,
     google_project_service.required_apis
   ]
 }
@@ -61,7 +62,7 @@ resource "google_storage_bucket_iam_member" "mcp_storage_admin" {
 }
 
 resource "google_cloud_run_v2_service" "mcp_service" {
-  name     = "gpp-context-mcp"
+  name     = "gpp-backend-mcp"
   location = var.region
   ingress  = "INGRESS_TRAFFIC_ALL"
   deletion_protection = false
@@ -69,7 +70,7 @@ resource "google_cloud_run_v2_service" "mcp_service" {
   template {
     service_account = google_service_account.mcp_runtime_sa.email
     containers {
-      image = "${var.region}-docker.pkg.dev/${var.project_id}/${google_artifact_registry_repository.mcp_repo.repository_id}/gpp-context-mcp:latest"
+      image = "${var.region}-docker.pkg.dev/${var.project_id}/${google_artifact_registry_repository.gpp_backend_mcp.repository_id}/gpp-backend-mcp:latest"
 
       ports {
         container_port = 8080

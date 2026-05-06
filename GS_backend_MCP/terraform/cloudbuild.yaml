@@ -1,0 +1,5 @@
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', '${_TAG}', '-f', 'GS_backend_MCP/terraform/Dockerfile.mcp', '.']
+images:
+- '${_TAG}'

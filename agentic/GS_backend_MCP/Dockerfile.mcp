@@ -3,8 +3,8 @@ COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
 WORKDIR /app
 
 # Copy the package source
-COPY GS_backend_MCP/ ./GS_backend_MCP/
-COPY GS_backend_MCP/pyproject.toml ./
+COPY . ./GS_backend_MCP/
+COPY pyproject.toml ./
 
 # Tell hatchling where the package is, as it doesn't match the project name
 RUN echo '\n[tool.hatch.build.targets.wheel]\npackages = ["GS_backend_MCP"]' >> pyproject.toml

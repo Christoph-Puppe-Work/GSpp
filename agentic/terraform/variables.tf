@@ -9,8 +9,8 @@ variable "region" {
   default     = "europe-west3"
 }
 
-variable "agent_service_account" {
-  type        = string
-  description = "The service account email of the Gpp-Agent to allow invocation"
-  default     = ""
+variable "allowed_user_emails" {
+  type        = list(string)
+  description = "A list of email addresses allowed to interact with the ADK agent via impersonation"
+  default     = []
 }

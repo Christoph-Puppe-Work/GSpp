@@ -14,4 +14,4 @@ RUN uv pip install --system -e .
 EXPOSE 8000
 
 # Start ADK Agent API server (Production)
-CMD ["adk", "api", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["adk", "api_server", "--host", "0.0.0.0", "--port", "8000"]

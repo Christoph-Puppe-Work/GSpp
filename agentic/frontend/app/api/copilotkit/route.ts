@@ -11,6 +11,7 @@ async function getGcpIdentityToken(audience: string): Promise<string | null> {
     const res = await fetch(metadataUrl, {
       headers: { "Metadata-Flavor": "Google" },
       signal: AbortSignal.timeout(1000),
+      cache: "no-store",
     });
     if (res.ok) return res.text();
   } catch {

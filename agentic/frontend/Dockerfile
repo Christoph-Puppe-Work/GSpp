@@ -1,4 +1,4 @@
-FROM node:20-alpine AS builder
+FROM node:23-alpine AS builder
 WORKDIR /app
 
 # Install dependencies
@@ -9,7 +9,7 @@ RUN npm install
 COPY . .
 RUN npm run build
 
-FROM node:20-alpine AS runner
+FROM node:23-alpine AS runner
 WORKDIR /app
 ENV NODE_ENV production
 ENV PORT 3000

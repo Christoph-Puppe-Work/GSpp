@@ -6,9 +6,6 @@ WORKDIR /app
 COPY . ./GS_backend_MCP/
 COPY pyproject.toml ./
 
-# Tell hatchling where the package is, as it doesn't match the project name
-RUN echo '\n[tool.hatch.build.targets.wheel]\npackages = ["GS_backend_MCP"]' >> pyproject.toml
-
 # Now we can sync
 RUN uv sync --no-dev
 

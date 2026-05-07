@@ -207,3 +207,25 @@ Zudem werden dedizierte Service Accounts, ein GCS Bucket für die OSCAL Artefakt
    BACKEND_MCP_URL=https://gpp-backend-mcp-...a.run.app
    ```
    Da der Terraform-Code dir (`allowed_user_emails`) das Recht `roles/iam.serviceAccountTokenCreator` auf den `gpp_agent_sa` gibt, kannst du den Agenten weiterhin lokal via `adk web` entwickeln, aber er greift nun sicher auf die echten, in der Cloud gehosteten Backend-Systeme zu.
+
+---
+
+## Schnelle Code-Deployments (Ohne Terraform)
+
+Terraform ist ideal für das initiale Setup und Änderungen an der Infrastruktur (IAM, Datenbanken, Buckets). Wenn du jedoch **nur den Code** eines Containers (z. B. Agent oder Frontend) aktualisierst, ist `terraform apply` sehr langsam. Zudem wird eine bestehende `:latest` Version in Cloud Run durch Terraform oft nicht neu gezogen, wenn sich der Tag-Name nicht ändert.
+
+Nutze für schnelle Entwicklungszyklen (Fast-Deployments) den direkten `gcloud` Befehl. Dieser lädt deinen Code hoch, baut das Image via Cloud Build und erzwingt eine sofortige neue Revision im Cloud Run Service – ohne den Terraform-State zu überschreiben (Terraform ignoriert Image-Updates dank spezieller `lifecycle` Blöcke in der `main.tf`).
+
+**Beispiel: Update des Gpp-Agenten**
+```bash
+cd agentic/Gpp-Agent
+gcloud run deploy gpp-agent --source . --region europe-west3
+```
+
+**Beispiel: Update des Frontends**
+```bash
+cd agentic/frontend
+gcloud run deploy gpp-frontend --source . --region europe-west3
+```
+
+*(Passe die `--region` an, falls du nicht in `europe-west3` deployt hast).*

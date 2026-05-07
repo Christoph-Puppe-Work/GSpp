@@ -27,3 +27,13 @@ output "frontend_url" {
   value       = google_cloud_run_v2_service.frontend_service.uri
   description = "The public URL of the G++ Frontend Dashboard"
 }
+
+output "project_id" {
+  value       = var.project_id
+  description = "The configured GCP Project ID"
+}
+
+output "region" {
+  value       = var.region
+  description = "The configured GCP Region"
+}

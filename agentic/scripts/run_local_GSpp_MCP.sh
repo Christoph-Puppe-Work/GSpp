@@ -1,4 +1,5 @@
 #!/bin/bash
+cd "$(dirname "$0")/../GSpp_MCP"
 export CATALOG_PATH="data/Grundschutz++-catalog.json"
 export MAPPING_PATH="data/zielobjekt_controls.json"
 export PORT=${PORT:-8080}

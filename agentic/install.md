@@ -212,20 +212,18 @@ Zudem werden dedizierte Service Accounts, ein GCS Bucket für die OSCAL Artefakt
 
 ## Schnelle Code-Deployments (Ohne Terraform)
 
-Terraform ist ideal für das initiale Setup und Änderungen an der Infrastruktur (IAM, Datenbanken, Buckets). Wenn du jedoch **nur den Code** eines Containers (z. B. Agent oder Frontend) aktualisierst, ist `terraform apply` sehr langsam. Zudem wird eine bestehende `:latest` Version in Cloud Run durch Terraform oft nicht neu gezogen, wenn sich der Tag-Name nicht ändert.
+Terraform ist ideal für das initiale Setup und Änderungen an der Infrastruktur (IAM, Datenbanken, Buckets). Wenn du jedoch **nur den Code** eines Containers aktualisierst, nutze die bereitgestellten Deployment-Skripte im Ordner `agentic/scripts/`.
 
-Nutze für schnelle Entwicklungszyklen (Fast-Deployments) den direkten `gcloud` Befehl. Dieser lädt deinen Code hoch, baut das Image via Cloud Build und erzwingt eine sofortige neue Revision im Cloud Run Service – ohne den Terraform-State zu überschreiben (Terraform ignoriert Image-Updates dank spezieller `lifecycle` Blöcke in der `main.tf`).
+Diese Skripte bauen dein Container-Image sicher im vorkonfigurierten `agentic-repo` und erzwingen eine sofortige neue Revision im Cloud Run Service – ohne den Terraform-State zu überschreiben.
 
-**Beispiel: Update des Gpp-Agenten**
-```bash
-cd agentic/Gpp-Agent
-gcloud run deploy gpp-agent --source . --region europe-west3
-```
+**Verfügbare Skripte:**
+- `./scripts/deploy_frontend.sh`
+- `./scripts/deploy_Gpp-Agent.sh`
+- `./scripts/deploy_GS_backend_MCP.sh`
+- `./scripts/deploy_GSpp_MCP.sh`
 
 **Beispiel: Update des Frontends**
 ```bash
-cd agentic/frontend
-gcloud run deploy gpp-frontend --source . --region europe-west3
+cd agentic
+./scripts/deploy_frontend.sh
 ```
-
-*(Passe die `--region` an, falls du nicht in `europe-west3` deployt hast).*

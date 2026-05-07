@@ -28,7 +28,7 @@ resource "google_artifact_registry_repository" "agentic_repo" {
 # --- Database ---
 resource "google_firestore_database" "default" {
   project     = var.project_id
-  name        = "(default)"
+  name        = "gpp-agent-db"
   location_id = var.region
   type        = "FIRESTORE_NATIVE"
 
@@ -142,6 +142,12 @@ resource "google_cloud_run_v2_service" "backend_mcp_service" {
     }
   }
 
+  lifecycle {
+    ignore_changes = [
+      template[0].containers[0].image
+    ]
+  }
+
   depends_on = [
     google_project_service.required_apis,
     null_resource.build_and_push_backend_mcp
@@ -210,6 +216,12 @@ resource "google_cloud_run_v2_service" "gspp_mcp_service" {
     }
   }
 
+  lifecycle {
+    ignore_changes = [
+      template[0].containers[0].image
+    ]
+  }
+
   depends_on = [
     google_project_service.required_apis,
     null_resource.build_and_push_gspp_mcp
@@ -263,6 +275,13 @@ resource "google_cloud_run_v2_service" "gpp_agent_service" {
       }
     }
   }
+
+  lifecycle {
+    ignore_changes = [
+      template[0].containers[0].image
+    ]
+  }
+
   depends_on = [null_resource.build_and_push_agent]
 }
 
@@ -311,6 +330,13 @@ resource "google_cloud_run_v2_service" "frontend_service" {
       }
     }
   }
+
+  lifecycle {
+    ignore_changes = [
+      template[0].containers[0].image
+    ]
+  }
+
   depends_on = [null_resource.build_and_push_frontend]
 }
 

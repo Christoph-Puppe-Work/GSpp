@@ -170,6 +170,12 @@ Wenn du das System produktiv in die Google Cloud deployen möchtest, nutze die b
 
 Das Terraform-Skript baut automatisch die Docker-Images aller vier Komponenten (`GSpp_MCP`, `GS_backend_MCP`, `Gpp-Agent` und `frontend`), pusht sie in eine neue Artifact Registry und deployed sie als sichere, unabhängig skalierende **Cloud Run Services**. 
 
+**WICHTIG**: In einer neues Subscription muss erst die ressource management API aktiviert werden:
+
+```bash
+gcloud services enable cloudresourcemanager.googleapis.com serviceusage.googleapis.com
+```
+
 Zudem werden dedizierte Service Accounts, ein GCS Bucket für die OSCAL Artefakte und präzise IAM-Bindungen erstellt nach dem *Zero Trust* Prinzip:
 - Nur der Agent darf die MCP-Server aufrufen.
 - Nur das Frontend darf den Agent aufrufen.

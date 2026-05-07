@@ -1,44 +1,62 @@
 import os
 from google.adk.agents import LlmAgent
-from shared.prompts import load_prompt
+from google.adk.code_executors import AgentEngineSandboxCodeExecutor
 from services.mcp_client_service import McpClientService
-from tools.temp_file_service import read_temp_file
 
 async def get_producer() -> LlmAgent:
     mcp_service = McpClientService()
 
-    # Anwenderkatalog Tools (Read-Only Info)
+    # Pattern 2 & 3: Focused toolsets for specialists
     anwender_tools = mcp_service.get_anwender_toolset(allow=[
         "list_groups", "get_group", "list_controls", "get_control",
         "get_control_raw", "search_controls", "list_zielobjektkategorien",
         "controls_for_zielobjekt", "get_oscal_profile"
     ])
 
-    # Backend MCP Tools (Artifact Management)
     backend_tools = mcp_service.get_backend_toolset(allow=[
         "create_oscal_model", "update_oscal_model", "get_ssp_inventory",
         "get_ssp_implementation", "get_assessment_subjects",
         "get_assessment_controls", "get_assessment_findings", "get_poam_items"
     ])
 
-    tools = list(anwender_tools) + list(backend_tools)
-
-    agent = LlmAgent(
-        name="ssp_producer",
+    bsi_researcher = LlmAgent(
+        name="bsi_researcher",
         model=os.environ.get("PRODUCER_MODEL", "gemini-3.1-pro-preview"),
-        instructions=load_prompt("ssp_generator/producer"),
-        tools=tools,
+        mode="task",
+        instructions="You are a BSI security catalog specialist. Retrieve requirements and controls.",
+        tools=anwender_tools,
     )
 
-    # Add local temp file reader for handling uploads
-    @agent.tool
-    def read_uploaded_file(filepath: str) -> str:
-        """Reads a temporary uploaded file (e.g., CSV, text) for parsing and deletes it immediately."""
-        try:
-            content = read_temp_file(filepath)
-            return content
-        finally:
-            from tools.temp_file_service import delete_temp_file
-            delete_temp_file(filepath)
+    oscal_writer = LlmAgent(
+        name="oscal_writer",
+        model=os.environ.get("PRODUCER_MODEL", "gemini-3.1-pro-preview"),
+        mode="task",
+        instructions="You are an OSCAL standard specialist. Update OSCAL JSON models securely.",
+        tools=backend_tools,
+    )
 
-    return agent
+    # Pattern 5: Sandboxed Executor (replaces local read_uploaded_file tool)
+    data_parser = LlmAgent(
+        name="data_parser",
+        model=os.environ.get("PRODUCER_MODEL", "gemini-3.1-pro-preview"),
+        mode="task",
+        code_executor=AgentEngineSandboxCodeExecutor(
+            sandbox_resource_name=os.environ.get("SANDBOX_RESOURCE_NAME", "projects/local-dev/sandboxes/mock"),
+        ),
+        instructions="""You are a data analysis specialist. You write and execute python code 
+        in a sandbox to parse uploaded asset inventories (e.g. CSVs) and return structured data."""
+    )
+
+    # Coordinator
+    coordinator = LlmAgent(
+        name="ssp_producer",
+        model=os.environ.get("PRODUCER_MODEL", "gemini-3.1-pro-preview"),
+        sub_agents=[bsi_researcher, oscal_writer, data_parser],
+        instructions="""You coordinate the SSP production process.
+        1. Use data_parser to extract structured info from user uploads.
+        2. Use bsi_researcher to query BSI catalogs for relevant controls.
+        3. Use oscal_writer to compile everything into the OSCAL SSP artifact.
+        """,
+    )
+
+    return coordinator

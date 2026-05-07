@@ -1,23 +1,31 @@
 import os
-from google.adk.agents import LoopAgent, SequentialAgent
+from google.adk import Workflow, Event
 from tools.escalation_barrier import EscalationBarrier
 from .producer import get_producer
 from .reviewer import get_reviewer
 
-async def get_ssp_generator_workflow() -> SequentialAgent:
+def validate_oscal(node_input):
+    # Deterministic validation using your GS_backend_MCP tools or local jsonschema
+    # Placeholder for actual validation logic
+    errors = [] # perform_oscal_validation(node_input)
+    if errors:
+        return Event(route="invalid", message={"errors": errors, "draft": node_input})
+    return Event(route="valid", message=node_input)
+
+async def get_ssp_generator_workflow():
     producer = await get_producer()
     reviewer = await get_reviewer()
 
-    review_loop = LoopAgent(
+    ssp_workflow = Workflow(
         name="ssp_review_loop",
-        sub_agents=[producer, reviewer],
-        max_iterations=int(os.environ.get("MAX_REVIEW_ITERATIONS", "3")),
-    )
-
-    return SequentialAgent(
-        name="ssp_generator_workflow",
-        sub_agents=[
-            EscalationBarrier(name="review_barrier", inner=review_loop),
-            # In a full implementation, we'd add HITL and GCS Writer here
+        edges=[
+            ("START", producer),
+            (producer, validate_oscal),
+            (validate_oscal, {
+                "invalid": producer, # Automatically loops back
+                "valid": reviewer    # Proceeds to reviewer
+            }),
         ],
     )
+
+    return EscalationBarrier(name="review_barrier", inner=ssp_workflow)

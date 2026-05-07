@@ -3,7 +3,6 @@ from google.adk.agents import LlmAgent
 from shared.prompts import load_prompt
 from shared.schemas import ReviewCriteria
 from services.mcp_client_service import McpClientService
-from tools.exit_loop import exit_loop
 
 async def get_reviewer() -> LlmAgent:
     mcp_service = McpClientService()
@@ -27,10 +26,5 @@ async def get_reviewer() -> LlmAgent:
         tools=tools,
         response_format=ReviewCriteria,
     )
-
-    @agent.tool
-    def approve_artifact(reason: str, tool_context) -> dict:
-        """Call this to approve the artifact and exit the review loop."""
-        return exit_loop(reason, tool_context)
 
     return agent

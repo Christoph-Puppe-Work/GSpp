@@ -1,7 +1,6 @@
 import asyncio
 import os
 from google.adk.apps.app import App
-from google.adk.plugins import ReflectAndRetryToolPlugin
 from google.adk.sessions.firestore import FirestoreSessionService
 from google.cloud import firestore
 from agents.orchestrator import get_orchestrator
@@ -24,12 +23,7 @@ def create_app() -> App:
         name="gpp_agent",
         root_agent=orchestrator,
         session_service=session_service,
-        plugins=[
-            # Integriert das Reflect and Retry Plugin.
-            # Wenn der Backend-MCP bei der OSCAL-Validierung einen JSON-Fehler wirft (z.B. fehlendes Feld),
-            # fängt das Plugin diesen ab und lässt das LLM das JSON reparieren, ohne den Main-Loop zu stören.
-            ReflectAndRetryToolPlugin(max_retries=3)
-        ]
+        plugins=[]
     )
 
 # Die 'app' Instanz wird automatisch von der 'adk web' / 'adk api' CLI gefunden

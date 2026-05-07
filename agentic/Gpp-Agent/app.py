@@ -20,7 +20,8 @@ def create_app() -> App:
     )
     
     return App(
-        name="gpp_agent",
+        # Rename from 'gpp_agent' to 'default' so CopilotKit automatically finds it
+        name="default",
         root_agent=orchestrator,
         session_service=session_service,
         plugins=[]

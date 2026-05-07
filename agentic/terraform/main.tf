@@ -10,7 +10,8 @@ resource "google_project_service" "required_apis" {
     "artifactregistry.googleapis.com",
     "cloudbuild.googleapis.com",
     "iam.googleapis.com",
-    "storage.googleapis.com"
+    "storage.googleapis.com",
+    "firestore.googleapis.com"
   ])
   service            = each.key
   disable_on_destroy = false
@@ -22,6 +23,16 @@ resource "google_artifact_registry_repository" "agentic_repo" {
   repository_id = "agentic-repo"
   format        = "DOCKER"
   depends_on    = [google_project_service.required_apis]
+}
+
+# --- Database ---
+resource "google_firestore_database" "default" {
+  project     = var.project_id
+  name        = "(default)"
+  location_id = var.region
+  type        = "FIRESTORE_NATIVE"
+
+  depends_on = [google_project_service.required_apis]
 }
 
 # --- Shared Storage ---
@@ -68,6 +79,13 @@ resource "google_service_account_iam_binding" "agent_token_creator" {
   members = [
     for email in var.allowed_user_emails : "user:${email}"
   ]
+}
+
+# Grant the Gpp-Agent SA read/write access to Firestore
+resource "google_project_iam_member" "agent_firestore_user" {
+  project = var.project_id
+  role    = "roles/datastore.user"
+  member  = "serviceAccount:${google_service_account.gpp_agent_sa.email}"
 }
 
 # --- Backend MCP Deployment ---

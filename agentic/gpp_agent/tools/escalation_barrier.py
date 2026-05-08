@@ -1,10 +1,10 @@
 from typing import AsyncGenerator
-from google.adk.agents import BaseAgent, LoopAgent
+from google.adk.agents import BaseAgent
 from google.adk.agents.invocation_context import InvocationContext
 from google.adk.events import Event
 
 class EscalationBarrier(BaseAgent):
-    inner: LoopAgent
+    inner: BaseAgent
 
     def __init__(self, *, name: str, inner: LoopAgent, **kwargs):
         super().__init__(name=name, sub_agents=[inner], **kwargs)

@@ -14,8 +14,8 @@ async def get_orchestrator() -> LlmAgent:
 
     return LlmAgent(
         name="orchestrator",
-        model=os.environ.get("ORCHESTRATOR_MODEL", "gemini-3-flash-preview"),
-        instructions="""You are the gpp_agent Orchestrator.
+        model=os.environ.get("ORCHESTRATOR_MODEL", "gemini-2.5-flash"),
+        instruction="""You are the gpp_agent Orchestrator.
 Your job is to route user requests to the appropriate sub-agent or workflow.
 The system supports:
 1. SSP-Generator (Modelling, Asset integration, Risk Analysis)

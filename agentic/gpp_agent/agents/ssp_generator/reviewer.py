@@ -21,10 +21,10 @@ async def get_reviewer() -> LlmAgent:
 
     agent = LlmAgent(
         name="ssp_reviewer",
-        model=os.environ.get("REVIEWER_MODEL", "gemini-3-flash-preview"),
-        instructions=load_prompt("ssp_generator/reviewer"),
+        model=os.environ.get("REVIEWER_MODEL", "gemini-2.5-flash"),
+        instruction=load_prompt("ssp_generator/reviewer"),
         tools=tools,
-        response_format=ReviewCriteria,
+        output_schema=ReviewCriteria,
     )
 
     return agent

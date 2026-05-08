@@ -31,15 +31,16 @@
   - [x] **Error Recovery (Reflect and Retry):** ADK's `Reflect and Retry` Plugin für die strict JSON OSCAL-Validierung integriert (siehe `app.py`), damit der Agent Schema-Fehler selbstständig korrigieren kann, bevor er fehlschlägt.
   - [x] **app.py Import-Fix:** `from google.adk.sessions.firestore import FirestoreSessionService` korrigiert zu `from google.adk.integrations.firestore.firestore_session_service import FirestoreSessionService`. Nicht existierendes `CopilotKitPlugin` entfernt.
 
-- [ ] **Code Review Fixes — ADK 1.32.0 API-Fehler (alle blockierend):**
-  - [ ] **`workflow.py:2` — `Workflow` existiert nicht:** `from google.adk import Workflow, Event` crasht. `Workflow` gibt es in ADK 1.32.0 nicht. Ersatz: `LoopAgent` + `SequentialAgent` oder custom `BaseAgent` mit Routing-Logik. `Event` korrekt: `from google.adk.events import Event`.
-  - [ ] **`instructions` → `instruction` (alle Agenten):** `LlmAgent` hat das Feld `instruction` (Singular), nicht `instructions`. Betroffen: `orchestrator.py:18`, `producer.py:26,34`, `reviewer.py:25`. Führt zu `ValidationError` (extra='forbid').
-  - [ ] **`mode="task"` entfernen:** `LlmAgent` hat kein `mode`-Feld. `producer.py:25,33,42`. Führt zu `ValidationError`.
-  - [ ] **`code_executor` entfernen / umbauen:** `LlmAgent` hat kein `code_executor`-Feld. `producer.py:43`. `AgentEngineSandboxCodeExecutor` wird anders eingebunden.
-  - [ ] **`response_format` → `output_schema`:** `reviewer.py:27`: `response_format=ReviewCriteria` → `output_schema=ReviewCriteria`.
-  - [ ] **Modell-Namen korrigieren:** `"gemini-3-flash-preview"` und `"gemini-3.1-pro-preview"` existieren nicht. ADK-Standard ist `"gemini-2.5-flash"`. Aktuelle gültige Namen: `gemini-2.5-flash`, `gemini-2.5-pro`.
-  - [ ] **`EscalationBarrier` Typ-Fix:** `inner: LoopAgent` aber es wird ein `Workflow`-Objekt übergeben. Nach dem Workflow-Umbau angleichen.
-  - [ ] **`pyproject.toml` Version pinnen:** `"google-adk[otel-gcp]>=0.1.0"` → `"google-adk[otel-gcp]>=1.32.0,<2.0.0"` um ungewollte Breaking-Changes zu verhindern.
+- [x] **Code Review Fixes — ADK 1.32.0 API-Fehler (alle blockierend):**
+  - [x] **`workflow.py` — `Workflow` existiert nicht:** Ersetzt durch `SequentialAgent(sub_agents=[producer, reviewer])`. TODO-Kommentar für spätere `LoopAgent`-Retry-Logik hinterlassen.
+  - [x] **`instructions` → `instruction`:** In `orchestrator.py`, `producer.py`, `reviewer.py` korrigiert.
+  - [x] **`mode="task"` entfernt:** Aus allen drei `LlmAgent`-Instanzen in `producer.py` entfernt.
+  - [x] **`code_executor` behalten:** Recherche ergab, dass `code_executor: Optional[BaseCodeExecutor]` ein gültiges Feld in `LlmAgent` ist — kein Fix nötig.
+  - [x] **`response_format` → `output_schema`:** In `reviewer.py` korrigiert.
+  - [x] **Modell-Namen:** `gemini-3-flash-preview` → `gemini-2.5-flash`, `gemini-3.1-pro-preview` → `gemini-2.5-pro` (alle Agenten).
+  - [x] **`EscalationBarrier` Typ-Fix:** `inner: LoopAgent` → `inner: BaseAgent` (akzeptiert jetzt `SequentialAgent`).
+  - [x] **`MCPToolset` → `McpToolset`:** Import und Nutzung korrigiert, `connection_params` von Dict auf `SseConnectionParams(url=...)` umgestellt, `tool_filter` als Konstruktor-Parameter übergeben (akzeptiert `List[str]`).
+  - [x] **`pyproject.toml` Version gepinnt:** `>=0.1.0` → `>=1.32.0,<2.0.0`.
 - [ ] **Frontend Integration (CopilotKit & AG-UI):**
   - [x] Scaffold eines Next.js/React Frontends (manuell angelegt unter `agentic/frontend`).
   - [ ] Implementierung der Chat-UI zur Kommunikation mit dem gpp_agenten (`adk web` nur noch für Backend-Dev nutzen).

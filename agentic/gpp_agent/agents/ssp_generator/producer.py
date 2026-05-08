@@ -21,38 +21,35 @@ async def get_producer() -> LlmAgent:
 
     bsi_researcher = LlmAgent(
         name="bsi_researcher",
-        model=os.environ.get("PRODUCER_MODEL", "gemini-3.1-pro-preview"),
-        mode="task",
-        instructions="You are a BSI security catalog specialist. Retrieve requirements and controls.",
+        model=os.environ.get("PRODUCER_MODEL", "gemini-2.5-pro"),
+        instruction="You are a BSI security catalog specialist. Retrieve requirements and controls.",
         tools=anwender_tools,
     )
 
     oscal_writer = LlmAgent(
         name="oscal_writer",
-        model=os.environ.get("PRODUCER_MODEL", "gemini-3.1-pro-preview"),
-        mode="task",
-        instructions="You are an OSCAL standard specialist. Update OSCAL JSON models securely.",
+        model=os.environ.get("PRODUCER_MODEL", "gemini-2.5-pro"),
+        instruction="You are an OSCAL standard specialist. Update OSCAL JSON models securely.",
         tools=backend_tools,
     )
 
     # Pattern 5: Sandboxed Executor (replaces local read_uploaded_file tool)
     data_parser = LlmAgent(
         name="data_parser",
-        model=os.environ.get("PRODUCER_MODEL", "gemini-3.1-pro-preview"),
-        mode="task",
+        model=os.environ.get("PRODUCER_MODEL", "gemini-2.5-pro"),
         code_executor=AgentEngineSandboxCodeExecutor(
             sandbox_resource_name=os.environ.get("SANDBOX_RESOURCE_NAME", "projects/local-dev/sandboxes/mock"),
         ),
-        instructions="""You are a data analysis specialist. You write and execute python code 
+        instruction="""You are a data analysis specialist. You write and execute python code
         in a sandbox to parse uploaded asset inventories (e.g. CSVs) and return structured data."""
     )
 
     # Coordinator
     coordinator = LlmAgent(
         name="ssp_producer",
-        model=os.environ.get("PRODUCER_MODEL", "gemini-3.1-pro-preview"),
+        model=os.environ.get("PRODUCER_MODEL", "gemini-2.5-pro"),
         sub_agents=[bsi_researcher, oscal_writer, data_parser],
-        instructions="""You coordinate the SSP production process.
+        instruction="""You coordinate the SSP production process.
         1. Use data_parser to extract structured info from user uploads.
         2. Use bsi_researcher to query BSI catalogs for relevant controls.
         3. Use oscal_writer to compile everything into the OSCAL SSP artifact.

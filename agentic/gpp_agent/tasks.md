@@ -29,6 +29,17 @@
 - [ ] **ADK Best Practice Refactoring (Review Findings):**
   - [x] **Session & State Management:** Manuelles Parsing der `user_id` durch das ADK `Firestore Session Service` Plugin (in `app.py`) ersetzt, um Multi-Tenancy (iv_id) und Gesprächshistorien nativ und persistiert in Firestore zu verwalten.
   - [x] **Error Recovery (Reflect and Retry):** ADK's `Reflect and Retry` Plugin für die strict JSON OSCAL-Validierung integriert (siehe `app.py`), damit der Agent Schema-Fehler selbstständig korrigieren kann, bevor er fehlschlägt.
+  - [x] **app.py Import-Fix:** `from google.adk.sessions.firestore import FirestoreSessionService` korrigiert zu `from google.adk.integrations.firestore.firestore_session_service import FirestoreSessionService`. Nicht existierendes `CopilotKitPlugin` entfernt.
+
+- [ ] **Code Review Fixes — ADK 1.32.0 API-Fehler (alle blockierend):**
+  - [ ] **`workflow.py:2` — `Workflow` existiert nicht:** `from google.adk import Workflow, Event` crasht. `Workflow` gibt es in ADK 1.32.0 nicht. Ersatz: `LoopAgent` + `SequentialAgent` oder custom `BaseAgent` mit Routing-Logik. `Event` korrekt: `from google.adk.events import Event`.
+  - [ ] **`instructions` → `instruction` (alle Agenten):** `LlmAgent` hat das Feld `instruction` (Singular), nicht `instructions`. Betroffen: `orchestrator.py:18`, `producer.py:26,34`, `reviewer.py:25`. Führt zu `ValidationError` (extra='forbid').
+  - [ ] **`mode="task"` entfernen:** `LlmAgent` hat kein `mode`-Feld. `producer.py:25,33,42`. Führt zu `ValidationError`.
+  - [ ] **`code_executor` entfernen / umbauen:** `LlmAgent` hat kein `code_executor`-Feld. `producer.py:43`. `AgentEngineSandboxCodeExecutor` wird anders eingebunden.
+  - [ ] **`response_format` → `output_schema`:** `reviewer.py:27`: `response_format=ReviewCriteria` → `output_schema=ReviewCriteria`.
+  - [ ] **Modell-Namen korrigieren:** `"gemini-3-flash-preview"` und `"gemini-3.1-pro-preview"` existieren nicht. ADK-Standard ist `"gemini-2.5-flash"`. Aktuelle gültige Namen: `gemini-2.5-flash`, `gemini-2.5-pro`.
+  - [ ] **`EscalationBarrier` Typ-Fix:** `inner: LoopAgent` aber es wird ein `Workflow`-Objekt übergeben. Nach dem Workflow-Umbau angleichen.
+  - [ ] **`pyproject.toml` Version pinnen:** `"google-adk[otel-gcp]>=0.1.0"` → `"google-adk[otel-gcp]>=1.32.0,<2.0.0"` um ungewollte Breaking-Changes zu verhindern.
 - [ ] **Frontend Integration (CopilotKit & AG-UI):**
   - [x] Scaffold eines Next.js/React Frontends (manuell angelegt unter `agentic/frontend`).
   - [ ] Implementierung der Chat-UI zur Kommunikation mit dem gpp_agenten (`adk web` nur noch für Backend-Dev nutzen).

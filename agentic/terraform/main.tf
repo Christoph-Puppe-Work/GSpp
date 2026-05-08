@@ -31,7 +31,7 @@ resource "google_artifact_registry_repository" "agentic_repo" {
 # --- Database ---
 resource "google_firestore_database" "default" {
   project     = var.project_id
-  name        = "gpp_agent-db"
+  name        = "gpp-agent-db"
   location_id = var.region
   type        = "FIRESTORE_NATIVE"
 
@@ -69,7 +69,7 @@ resource "google_service_account" "gspp_mcp_sa" {
 
 # 3. gpp_agent (ADK) Service Account
 resource "google_service_account" "gpp_agent_sa" {
-  account_id   = "gpp_agent-sa"
+  account_id   = "gpp-agent-sa"
   display_name = "G++ Agent (ADK) Service Account"
 }
 
@@ -260,7 +260,7 @@ resource "null_resource" "build_and_push_agent" {
 }
 
 resource "google_cloud_run_v2_service" "gpp_agent_service" {
-  name     = "gpp_agent"
+  name     = "gpp-agent"
   location = var.region
   ingress  = "INGRESS_TRAFFIC_ALL"
   deletion_protection = false

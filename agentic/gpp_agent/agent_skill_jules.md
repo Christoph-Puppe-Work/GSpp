@@ -1,21 +1,21 @@
 ---
-name: gpp-agent-coding
-description: "Build, extend or debug the Gpp-Agent — the ADK-based multi-agent system for Grundschutz++ workflows that lives under Gpp-Agent/ in the GSpp monorepo. Use this skill whenever code changes touch any Python file under Gpp-Agent/ (orchestrator, agents, services, tools, shared, tests). Covers the dependency stack (parse pyproject.toml dynamically), the canonical Maker-Checker (Producer/Reviewer) pattern with HITL, the Informationsverbund multi-tenancy convention encoded in user_id, the GSpp_MCP toolset factory, native OpenTelemetry instrumentation, current Gemini model assignment per agent role, and the red-team/tenant-isolation test classes that are non-negotiable Definition-of-Done items. Read this BEFORE writing or modifying any Gpp-Agent code."
+name: gpp_agent-coding
+description: "Build, extend or debug the gpp_agent — the ADK-based multi-agent system for Grundschutz++ workflows that lives under gpp_agent/ in the GSpp monorepo. Use this skill whenever code changes touch any Python file under gpp_agent/ (orchestrator, agents, services, tools, shared, tests). Covers the dependency stack (parse pyproject.toml dynamically), the canonical Maker-Checker (Producer/Reviewer) pattern with HITL, the Informationsverbund multi-tenancy convention encoded in user_id, the GSpp_MCP toolset factory, native OpenTelemetry instrumentation, current Gemini model assignment per agent role, and the red-team/tenant-isolation test classes that are non-negotiable Definition-of-Done items. Read this BEFORE writing or modifying any gpp_agent code."
 ---
 
-# Gpp-Agent — Coding Skill
+# gpp_agent — Coding Skill
 
-A working manual for writing, extending and reviewing code in `Gpp-Agent/`, the
+A working manual for writing, extending and reviewing code in `gpp_agent/`, the
 ADK-based multi-agent system that ports the One-Page-App workflows server-side
 with peer-review quality control, Human-in-the-Loop (HITL) interventions, and per-Informationsverbund GCS persistence.
 
-This skill is opinionated. It assumes the README under `Gpp-Agent/README.md` is
+This skill is opinionated. It assumes the README under `gpp_agent/README.md` is
 the spec and this document is the implementation manual. **Read the README first.**
 Verzeichnisstruktur, Tenancy-Modell und DoD-Liste werden hier nicht wiederholt.
 
 **Fundamental Workflow Rules:**
-1. **Always start by reading `Gpp-Agent/tasks.md`** to understand the current progress and pending items.
-2. **Always end by updating `Gpp-Agent/tasks.md`** to reflect the work done and any new findings or questions.
+1. **Always start by reading `gpp_agent/tasks.md`** to understand the current progress and pending items.
+2. **Always end by updating `gpp_agent/tasks.md`** to reflect the work done and any new findings or questions.
 
 ---
 
@@ -33,7 +33,7 @@ Verzeichnisstruktur, Tenancy-Modell und DoD-Liste werden hier nicht wiederholt.
 
 ## When to use
 
-- Any code change under `Gpp-Agent/`
+- Any code change under `gpp_agent/`
 - Adding a new domain workflow following the 4 phases (SSP-Generator, SSP-Ausfüllen, AP/AR, POA&M).
 - Implementing Maker-Checker loops (Producer/Reviewer) and HITL pause logic.
 - Diagnosing why a LoopAgent doesn't terminate or why the post-loop step never runs.
@@ -41,7 +41,7 @@ Verzeichnisstruktur, Tenancy-Modell und DoD-Liste werden hier nicht wiederholt.
 - Fixing IV-namespacing or session-service issues.
 - Adding observability hooks or red-team test cases.
 
-Do **not** use this skill for changes outside `Gpp-Agent/` (use the appropriate
+Do **not** use this skill for changes outside `gpp_agent/` (use the appropriate
 sibling README/skill), or for high-level architecture decisions.
 
 ---
@@ -138,7 +138,7 @@ async def get_cis_oscal_workflow() -> SequentialAgent:
     )
 
     return SequentialAgent(
-        name="Gpp-Agent",
+        name="gpp_agent",
         sub_agents=[
             await get_input_loader(),
             EscalationBarrier(name="review_barrier", inner=review_loop),

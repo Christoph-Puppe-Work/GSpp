@@ -15,12 +15,12 @@ output "oscal_storage_bucket" {
 
 output "gpp_agent_service_account_email" {
   value       = google_service_account.gpp_agent_sa.email
-  description = "The email address of the Gpp-Agent's dedicated Service Account"
+  description = "The email address of the gpp_agent's dedicated Service Account"
 }
 
 output "gpp_agent_url" {
   value       = google_cloud_run_v2_service.gpp_agent_service.uri
-  description = "The URL of the Gpp-Agent ADK API Server"
+  description = "The URL of the gpp_agent ADK API Server"
 }
 
 output "frontend_url" {

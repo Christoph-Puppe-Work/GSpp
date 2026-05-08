@@ -1,4 +1,4 @@
-# Gpp-Agentic Ecosystem Installation Guide
+# gpp_agentic Ecosystem Installation Guide
 
 Dieses Dokument beschreibt detailliert die Einrichtung der gesamten `agentic` Architektur auf einer lokalen Entwicklungsmaschine. Das System besteht aus drei zentralen Python-Komponenten und (zukünftig) einem React/Next.js Frontend.
 
@@ -6,7 +6,7 @@ Dieses Dokument beschreibt detailliert die Einrichtung der gesamten `agentic` Ar
 
 1. **`GSpp_MCP`**: Der Anwender MCP Server. Stellt read-only Zugriff auf BSI Grundschutz Kataloge, Controls und OSCAL Schemas bereit.
 2. **`GS_backend_MCP`**: Der Backend MCP Server. Verwaltet den Status (State), speichert Artefakte (via Google Cloud Storage - GCS) und führt strikte OSCAL JSON-Validierungen aus.
-3. **`Gpp-Agent`**: Das zentrale ADK (Agent Development Kit) Multi-Agenten-System, das Workflows (wie den SSP-Generator) orchestriert.
+3. **`gpp_agent`**: Das zentrale ADK (Agent Development Kit) Multi-Agenten-System, das Workflows (wie den SSP-Generator) orchestriert.
 4. **`Frontend`** (CopilotKit / AG-UI): Das interaktive Human-in-the-Loop Web-Interface (noch zu implementieren).
 
 ---
@@ -104,14 +104,14 @@ gcloud config set project DEIN_PROJEKT_ID
 
 ---
 
-## Schritt 4: Gpp-Agent (ADK System) einrichten
+## Schritt 4: gpp_agent (ADK System) einrichten
 
-Der Gpp-Agent verbindet sich mit den beiden laufenden MCP Servern und führt die Workflows aus.
+Der gpp_agent verbindet sich mit den beiden laufenden MCP Servern und führt die Workflows aus.
 
 1. **In das Verzeichnis wechseln**:
    Öffne ein drittes Terminal.
    ```bash
-   cd agentic/Gpp-Agent
+   cd agentic/gpp_agent
    ```
 2. **Abhängigkeiten installieren**:
    ```bash
@@ -168,7 +168,7 @@ Der Gpp-Agent verbindet sich mit den beiden laufenden MCP Servern und führt die
 
 Wenn du das System produktiv in die Google Cloud deployen möchtest, nutze die bereitgestellten Terraform-Skripte im Verzeichnis `agentic/terraform`.
 
-Das Terraform-Skript baut automatisch die Docker-Images aller vier Komponenten (`GSpp_MCP`, `GS_backend_MCP`, `Gpp-Agent` und `frontend`), pusht sie in eine neue Artifact Registry und deployed sie als sichere, unabhängig skalierende **Cloud Run Services**. 
+Das Terraform-Skript baut automatisch die Docker-Images aller vier Komponenten (`GSpp_MCP`, `GS_backend_MCP`, `gpp_agent` und `frontend`), pusht sie in eine neue Artifact Registry und deployed sie als sichere, unabhängig skalierende **Cloud Run Services**. 
 
 **WICHTIG**: In einer neues Subscription muss erst die ressource management API aktiviert werden:
 
@@ -201,7 +201,7 @@ Zudem werden dedizierte Service Accounts, ein GCS Bucket für die OSCAL Artefakt
    ```
 5. **Nach dem Deployment (Agent konfigurieren)**:
    Nach erfolgreichem `terraform apply` erhältst du (via `outputs.tf`) die Cloud Run URLs für beide MCP Server.
-   Aktualisiere die `.env` Datei in deinem lokalen `Gpp-Agent` Verzeichnis, um nicht mehr auf localhost, sondern auf die Cloud Run Services zu verweisen:
+   Aktualisiere die `.env` Datei in deinem lokalen `gpp_agent` Verzeichnis, um nicht mehr auf localhost, sondern auf die Cloud Run Services zu verweisen:
    ```env
    ANWENDER_MCP_URL=https://gs-plus-plus-mcp-...a.run.app
    BACKEND_MCP_URL=https://gpp-backend-mcp-...a.run.app
@@ -218,7 +218,7 @@ Diese Skripte bauen dein Container-Image sicher im vorkonfigurierten `agentic-re
 
 **Verfügbare Skripte:**
 - `./scripts/deploy_frontend.sh`
-- `./scripts/deploy_Gpp-Agent.sh`
+- `./scripts/deploy_gpp_agent.sh`
 - `./scripts/deploy_GS_backend_MCP.sh`
 - `./scripts/deploy_GSpp_MCP.sh`
 

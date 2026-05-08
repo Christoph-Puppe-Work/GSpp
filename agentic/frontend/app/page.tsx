@@ -43,14 +43,14 @@ export default function Home() {
           G++ Compliance Management
         </h1>
         <p className="text-center text-gray-600 max-w-2xl mx-auto text-lg">
-          Willkommen beim Gpp-Agenten. Öffnen Sie die Chat-Sidebar auf der rechten Seite, um den Workflow für Ihren Informationsverbund zu starten.
+          Willkommen beim gpp_agenten. Öffnen Sie die Chat-Sidebar auf der rechten Seite, um den Workflow für Ihren Informationsverbund zu starten.
         </p>
       </div>
 
       <CopilotSidebar 
         defaultOpen={true} 
         labels={{
-          title: "Gpp-Agent",
+          title: "gpp_agent",
           initial: "Hallo! Ich bin dein G++ Compliance Agent. Wie kann ich beim System Security Plan helfen?",
         }}
       />

@@ -1,4 +1,4 @@
-# Gpp-Agent Tasks & Progress
+# gpp_agent Tasks & Progress
 
 ## Erledigte Aufgaben (Completed)
 - [x] **Projekt-Setup & Infrastruktur:**
@@ -17,7 +17,7 @@
   - [x] Zentraler Prompt-Loader für Markdown-Templates.
   - [x] Gemeinsame Pydantic-Schemas (`ReviewCriteria`).
 - [x] **Agenten & Workflows:**
-  - [x] `Gpp-Agent` zur Intent-Steuerung implementiert.
+  - [x] `gpp_agent` zur Intent-Steuerung implementiert.
   - [x] `Phase 1: SSP-Generator` (Producer/Reviewer Maker-Checker Loop) implementiert.
 - [x] **Qualitätssicherung:**
   - [x] Unit-Tests für Orchestrator und Prompt-Loading erfolgreich durchgeführt.
@@ -31,7 +31,7 @@
   - [x] **Error Recovery (Reflect and Retry):** ADK's `Reflect and Retry` Plugin für die strict JSON OSCAL-Validierung integriert (siehe `app.py`), damit der Agent Schema-Fehler selbstständig korrigieren kann, bevor er fehlschlägt.
 - [ ] **Frontend Integration (CopilotKit & AG-UI):**
   - [x] Scaffold eines Next.js/React Frontends (manuell angelegt unter `agentic/frontend`).
-  - [ ] Implementierung der Chat-UI zur Kommunikation mit dem Gpp-Agenten (`adk web` nur noch für Backend-Dev nutzen).
+  - [ ] Implementierung der Chat-UI zur Kommunikation mit dem gpp_agenten (`adk web` nur noch für Backend-Dev nutzen).
   - [ ] Integration von **Generative UI** Komponenten für Tool-Calls (z.B. visuelle Darstellung und Freigabe-Formulare für erstellte SSPs).
   - [ ] Umsetzung von Shared State zwischen ADK-Agent und CopilotKit Frontend, um den Human-in-the-Loop (HITL) Approval-Prozess interaktiv abzubilden.
 - [ ] **Weitere Phasen implementieren:**

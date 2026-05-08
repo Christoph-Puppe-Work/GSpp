@@ -1,6 +1,6 @@
-# G++ Compliance Management Agent (Gpp-Agent)
+# G++ Compliance Management Agent (gpp_agent)
 
-Der Gpp-Agent ist ein multimodales, KI-gestütztes Multi-Agenten-System, dessen Hauptzweck es ist, den Nutzer durch den gesamten OSCAL-Prozess (Open Security Controls Assessment Language) nach BSI Grundschutz++ zu führen.
+Der gpp_agent ist ein multimodales, KI-gestütztes Multi-Agenten-System, dessen Hauptzweck es ist, den Nutzer durch den gesamten OSCAL-Prozess (Open Security Controls Assessment Language) nach BSI Grundschutz++ zu führen.
 
 ## Kernfunktionen
 
@@ -13,7 +13,7 @@ Der Gpp-Agent ist ein multimodales, KI-gestütztes Multi-Agenten-System, dessen 
 
 ## Qualitätssicherung: Peer-Review & Human-in-the-Loop (HITL)
 
-Um höchste Qualitätsstandards und BSI-Konformität sicherzustellen, setzt der Gpp-Agent auf ein zweistufiges Kontrollsystem:
+Um höchste Qualitätsstandards und BSI-Konformität sicherzustellen, setzt der gpp_agent auf ein zweistufiges Kontrollsystem:
 
 ### 1. KI-gestütztes Peer-Review (Agent-to-Agent)
 Innerhalb des Multi-Agenten-Systems wird konsequent das "Maker-Checker"-Prinzip angewandt:

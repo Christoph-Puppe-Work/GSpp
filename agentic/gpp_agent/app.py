@@ -11,7 +11,7 @@ def create_app() -> App:
     
     # Firestore Client für Session & State Management
     project_id = os.environ.get("GOOGLE_CLOUD_PROJECT")
-    db = firestore.Client(project=project_id, database="gpp-agent-db") if project_id else firestore.Client(database="gpp-agent-db")
+    db = firestore.Client(project=project_id, database="gpp_agent-db") if project_id else firestore.Client(database="gpp_agent-db")
     
     # Initialisierung des Firestore Session Services (Multi-Tenancy fähig)
     session_service = FirestoreSessionService(

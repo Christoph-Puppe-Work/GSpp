@@ -2,7 +2,7 @@
 set -e
 
 # Navigate to the agent directory
-cd "$(dirname "$0")/../Gpp-Agent"
+cd "$(dirname "$0")/../gpp_agent"
 
 echo "Fetching variables from Terraform..."
 TF_DIR="$(dirname "$0")/../terraform"
@@ -11,7 +11,7 @@ REGION=$(terraform -chdir="$TF_DIR" output -raw region)
 ANWENDER_MCP_URL=$(terraform -chdir="$TF_DIR" output -raw gspp_mcp_url)
 BACKEND_MCP_URL=$(terraform -chdir="$TF_DIR" output -raw backend_mcp_url)
 REPO="agentic-repo"
-SERVICE_NAME="gpp-agent"
+SERVICE_NAME="gpp_agent"
 IMAGE_TAG="${REGION}-docker.pkg.dev/${PROJECT_ID}/${REPO}/${SERVICE_NAME}:latest"
 
 echo "=== Building $SERVICE_NAME ==="

@@ -31,7 +31,7 @@ resource "google_artifact_registry_repository" "agentic_repo" {
 # --- Database ---
 resource "google_firestore_database" "default" {
   project     = var.project_id
-  name        = "gpp-agent-db"
+  name        = "gpp_agent-db"
   location_id = var.region
   type        = "FIRESTORE_NATIVE"
 
@@ -67,13 +67,13 @@ resource "google_service_account" "gspp_mcp_sa" {
   display_name = "GSpp MCP Service Account"
 }
 
-# 3. Gpp-Agent (ADK) Service Account
+# 3. gpp_agent (ADK) Service Account
 resource "google_service_account" "gpp_agent_sa" {
-  account_id   = "gpp-agent-sa"
+  account_id   = "gpp_agent-sa"
   display_name = "G++ Agent (ADK) Service Account"
 }
 
-# Allow authorized users to generate tokens for the Gpp-Agent service account
+# Allow authorized users to generate tokens for the gpp_agent service account
 # This effectively grants them the identity of the agent when interacting via ADK
 resource "google_service_account_iam_binding" "agent_token_creator" {
   service_account_id = google_service_account.gpp_agent_sa.name
@@ -84,14 +84,14 @@ resource "google_service_account_iam_binding" "agent_token_creator" {
   ]
 }
 
-# Grant the Gpp-Agent SA read/write access to Firestore
+# Grant the gpp_agent SA read/write access to Firestore
 resource "google_project_iam_member" "agent_firestore_user" {
   project = var.project_id
   role    = "roles/datastore.user"
   member  = "serviceAccount:${google_service_account.gpp_agent_sa.email}"
 }
 
-# Grant the Gpp-Agent SA permission to call Gemini (Vertex AI)
+# Grant the gpp_agent SA permission to call Gemini (Vertex AI)
 resource "google_project_iam_member" "agent_vertex_user" {
   project = var.project_id
   role    = "roles/aiplatform.user"
@@ -246,21 +246,21 @@ resource "google_cloud_run_v2_service_iam_member" "gspp_mcp_invoker" {
   member   = "serviceAccount:${google_service_account.gpp_agent_sa.email}"
 }
 
-# --- Gpp-Agent Deployment ---
+# --- gpp_agent Deployment ---
 resource "null_resource" "build_and_push_agent" {
   triggers = { always_run = timestamp() }
   provisioner "local-exec" {
     command = <<EOT
-      gcloud builds submit ${path.module}/../Gpp-Agent \
+      gcloud builds submit ${path.module}/../gpp_agent \
         --project ${var.project_id} \
-        --tag ${var.region}-docker.pkg.dev/${var.project_id}/${google_artifact_registry_repository.agentic_repo.repository_id}/gpp-agent:latest
+        --tag ${var.region}-docker.pkg.dev/${var.project_id}/${google_artifact_registry_repository.agentic_repo.repository_id}/gpp_agent:latest
     EOT
   }
   depends_on = [google_artifact_registry_repository.agentic_repo, google_project_service.required_apis]
 }
 
 resource "google_cloud_run_v2_service" "gpp_agent_service" {
-  name     = "gpp-agent"
+  name     = "gpp_agent"
   location = var.region
   ingress  = "INGRESS_TRAFFIC_ALL"
   deletion_protection = false
@@ -271,7 +271,7 @@ resource "google_cloud_run_v2_service" "gpp_agent_service" {
       min_instance_count = 1
     }
     containers {
-      image = "${var.region}-docker.pkg.dev/${var.project_id}/${google_artifact_registry_repository.agentic_repo.repository_id}/gpp-agent:latest"
+      image = "${var.region}-docker.pkg.dev/${var.project_id}/${google_artifact_registry_repository.agentic_repo.repository_id}/gpp_agent:latest"
       ports { container_port = 8000 }
       resources { limits = { cpu = "2", memory = "2Gi" } }
       env {

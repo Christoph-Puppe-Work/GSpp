@@ -3,7 +3,7 @@ import { CopilotKit } from "@copilotkit/react-core";
 import "@copilotkit/react-ui/styles.css";
 
 export const metadata = {
-  title: "Gpp-Agent Frontend",
+  title: "gpp_agent Frontend",
   description: "Human-in-the-Loop Interface for Grundschutz++",
 };
 

@@ -1,32 +1,37 @@
 "use client";
 
 import { CopilotSidebar } from "@copilotkit/react-ui";
-import { useRenderToolCall } from "@copilotkit/react-core";
+import { useCopilotAction } from "@copilotkit/react-core";
 
 export default function Home() {
-  
+
   // Hier registrieren wir unsere Generative UI für HITL (Human-In-The-Loop)
-  useRenderToolCall({
+  useCopilotAction({
     name: "approve_artifact",
-    render: (props) => {
-      const { args, status } = props;
-      
+    render: ({ args, status, respond }) => {
+
       // Wenn der Agent ein Artefakt vorlegt, rendern wir ein benutzerfreundliches Review-Formular
       return (
         <div className="p-4 bg-gray-100 rounded-lg shadow mt-2">
           <h3 className="font-bold text-lg text-blue-800 mb-2">Freigabe erforderlich (HITL)</h3>
           <p className="text-sm mb-4">Der Agent bittet um Prüfung des OSCAL Artefakts.</p>
-          
+
           <div className="bg-white p-2 rounded mb-4 overflow-auto max-h-48 text-xs border border-gray-300">
             <pre>{JSON.stringify(args, null, 2)}</pre>
           </div>
-          
-          {status !== "complete" && (
+
+          {status === "executing" && (
             <div className="flex gap-2">
-              <button className="bg-green-600 text-white px-4 py-2 rounded font-medium hover:bg-green-700 transition">
+              <button
+                className="bg-green-600 text-white px-4 py-2 rounded font-medium hover:bg-green-700 transition"
+                onClick={() => respond?.("approved")}
+              >
                 Freigeben
               </button>
-              <button className="bg-red-600 text-white px-4 py-2 rounded font-medium hover:bg-red-700 transition">
+              <button
+                className="bg-red-600 text-white px-4 py-2 rounded font-medium hover:bg-red-700 transition"
+                onClick={() => respond?.("rejected")}
+              >
                 Ablehnen
               </button>
             </div>

@@ -1,5 +1,6 @@
 import logging
 import os
+from google.cloud import error_reporting
 from mcp.server.fastmcp import FastMCP
 from typing import Any, Dict, List, Optional
 from GSpp_MCP.server.catalog import Catalog
@@ -8,6 +9,13 @@ from GSpp_MCP.server.tools import controls, groups, zielobjekte, search, validat
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s")
 logger = logging.getLogger("GSpp-MCP")
+
+# Initialize Google Cloud Error Reporting
+try:
+    error_reporting.Client()
+    logger.info("Google Cloud Error Reporting initialized.")
+except Exception as e:
+    logger.warning(f"Could not initialize Error Reporting: {e}")
 
 CATALOG_PATH = os.getenv("CATALOG_PATH", "GSpp_MCP/data/Grundschutz++-catalog.json")
 MAPPING_PATH = os.getenv("MAPPING_PATH", "GSpp_MCP/data/zielobjekt_controls.json")

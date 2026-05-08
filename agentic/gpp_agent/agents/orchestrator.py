@@ -13,7 +13,7 @@ async def get_orchestrator() -> LlmAgent:
     ssp_generator = await get_ssp_generator_workflow()
 
     return LlmAgent(
-        name="orchestrator",
+        name="gpp_agent",
         model=os.environ.get("ORCHESTRATOR_MODEL", "gemini-2.5-flash"),
         instruction="""You are the gpp_agent Orchestrator.
 Your job is to route user requests to the appropriate sub-agent or workflow.

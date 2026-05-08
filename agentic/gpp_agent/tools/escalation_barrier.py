@@ -1,5 +1,5 @@
 from typing import AsyncGenerator
-from google.adk.agents import BaseAgent
+from google.adk.agents import BaseAgent, LoopAgent
 from google.adk.agents.invocation_context import InvocationContext
 from google.adk.events import Event
 

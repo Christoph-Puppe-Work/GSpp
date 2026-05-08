@@ -1,5 +1,15 @@
 import { NextRequest } from "next/server";
 import { CopilotRuntime, copilotRuntimeNextJSAppRouterEndpoint } from "@copilotkit/runtime";
+const { ErrorReporting } = require("@google-cloud/error-reporting");
+
+// Initialize Google Cloud Error Reporting
+let errors: any = null;
+try {
+  errors = new ErrorReporting();
+  console.log("[Frontend] Google Cloud Error Reporting initialized.");
+} catch (e) {
+  console.warn("[Frontend] Could not initialize Error Reporting:", e);
+}
 
 // Fetches a Google Cloud identity token for Cloud Run-to-Cloud Run authentication.
 // Returns null when running locally (no metadata server available).
@@ -40,6 +50,12 @@ export const POST = async (req: NextRequest) => {
   const serviceBaseUrl = new URL(agentUrl).origin;
   const identityToken = await getGcpIdentityToken(serviceBaseUrl);
 
+  if (identityToken) {
+    console.log(`[Frontend] Using identity token for audience: ${serviceBaseUrl}`);
+  } else {
+    console.log(`[Frontend] No identity token available (Local Dev or Metadata server unreachable).`);
+  }
+
   const { handleRequest } = copilotRuntimeNextJSAppRouterEndpoint({
     runtime: new CopilotRuntime({
       remoteEndpoints: [
@@ -65,15 +81,21 @@ export const POST = async (req: NextRequest) => {
     // We clone the response so we don't consume the stream needed by the client
     const responseClone = response.clone();
     
+    console.log(`[Frontend] Agent response status: ${response.status}`);
+    console.log(`[Frontend] Agent response headers:`, JSON.stringify(Object.fromEntries(response.headers.entries()), null, 2));
+
     responseClone.text().then((text: string) => {
-      console.log(`\n[Frontend] Agent Answer Content (Status: ${response.status}):\n${text}\n=============================\n`);
+      console.log(`\n[Frontend] Agent Answer Content:\n${text}\n=============================\n`);
     }).catch((e: any) => {
       console.log(`\n[Frontend] Failed to read agent answer content:`, e);
     });
 
     return response;
-  } catch (error) {
+  } catch (error: any) {
     console.error(`\n[Frontend] Error calling Agent:`, error);
+    if (errors) {
+      errors.report(error);
+    }
     throw error;
   }
 };

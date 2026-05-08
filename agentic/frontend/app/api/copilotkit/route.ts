@@ -13,19 +13,23 @@ async function getGcpIdentityToken(audience: string): Promise<string | null> {
       signal: AbortSignal.timeout(1000),
       cache: "no-store",
     });
-    if (res.ok) return res.text();
-  } catch {
-    // Not running on GCP (local dev) — skip auth
+    if (res.ok) return await res.text();
+    console.warn(`GCP Identity Token fetch failed: ${res.status} ${res.statusText}`);
+  } catch (e) {
+    // Not running on GCP (local dev) or metadata server unreachable
+    console.info("GCP Metadata server not reachable, skipping identity token fetch.");
   }
   return null;
 }
 
 export const POST = async (req: NextRequest) => {
   const agentUrl = process.env.AGENT_URL || "http://127.0.0.1:8000/copilotkit";
+  console.log(`CopilotKit Route: Calling Agent at ${agentUrl}`);
 
   // The Cloud Run identity token audience must be the service base URL (no path).
   const serviceBaseUrl = new URL(agentUrl).origin;
   const identityToken = await getGcpIdentityToken(serviceBaseUrl);
+  if (identityToken) console.log("GCP Identity Token acquired successfully.");
 
   const { handleRequest } = copilotRuntimeNextJSAppRouterEndpoint({
     runtime: new CopilotRuntime({

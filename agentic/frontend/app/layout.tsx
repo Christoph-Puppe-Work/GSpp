@@ -15,7 +15,7 @@ export default function RootLayout({
   return (
     <html lang="de">
       <body>
-        <CopilotKit runtimeUrl="/api/copilotkit">
+        <CopilotKit runtimeUrl="/api/copilotkit" agent="gpp_agent">
           {children}
         </CopilotKit>
       </body>

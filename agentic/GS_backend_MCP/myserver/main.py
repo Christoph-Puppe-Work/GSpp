@@ -1,5 +1,6 @@
 import logging
 import os
+from google.cloud import error_reporting
 import json
 import uuid
 import copy
@@ -31,6 +32,13 @@ def deep_update(base: Dict[str, Any], patch: Dict[str, Any]):
 # --- Logging & Config -----------------------------------------------------
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("GppContextMCP")
+
+# Initialize Google Cloud Error Reporting
+try:
+    error_reporting.Client()
+    logger.info("Google Cloud Error Reporting initialized.")
+except Exception as e:
+    logger.warning(f"Could not initialize Error Reporting: {e}")
 PORT = int(os.getenv("PORT", "8080"))
 
 # --- Schema Pre-Loading (Performance) -------------------------------------

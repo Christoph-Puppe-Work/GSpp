@@ -1,11 +1,24 @@
 import asyncio
 import os
+import logging
 from google.adk.apps.app import App
 from google.adk.integrations.firestore.firestore_session_service import FirestoreSessionService
 from google.cloud import firestore
+from google.cloud import error_reporting
 from agents.orchestrator import get_orchestrator
 
+# Configure logging to DEBUG for better diagnostics
+logging.basicConfig(level=logging.DEBUG)
+logger = logging.getLogger("gpp_agent")
+
 def create_app() -> App:
+    # Initialize Google Cloud Error Reporting
+    try:
+        error_reporting.Client()
+        logger.info("Google Cloud Error Reporting initialized.")
+    except Exception as e:
+        logger.warning(f"Could not initialize Error Reporting: {e}")
+
     # Orchestrator-Agent laden (inklusive aller Sub-Agenten wie ssp_generator)
     orchestrator = asyncio.run(get_orchestrator())
 

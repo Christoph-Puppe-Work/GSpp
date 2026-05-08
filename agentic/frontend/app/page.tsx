@@ -6,9 +6,13 @@ import { useCopilotAction } from "@copilotkit/react-core";
 export default function Home() {
 
   // Hier registrieren wir unsere Generative UI für HITL (Human-In-The-Loop)
-  useCopilotAction({
+  (useCopilotAction as any)({
     name: "approve_artifact",
-    render: ({ args, status, respond }) => {
+    handler: async (args: any) => {
+      console.log("Artifact approved:", args);
+      return "Artifact approved";
+    },
+    render: ({ args, status, handler }: any) => {
 
       // Wenn der Agent ein Artefakt vorlegt, rendern wir ein benutzerfreundliches Review-Formular
       return (
@@ -24,13 +28,13 @@ export default function Home() {
             <div className="flex gap-2">
               <button
                 className="bg-green-600 text-white px-4 py-2 rounded font-medium hover:bg-green-700 transition"
-                onClick={() => respond?.("approved")}
+                onClick={() => handler?.("approved")}
               >
                 Freigeben
               </button>
               <button
                 className="bg-red-600 text-white px-4 py-2 rounded font-medium hover:bg-red-700 transition"
-                onClick={() => respond?.("rejected")}
+                onClick={() => handler?.("rejected")}
               >
                 Ablehnen
               </button>

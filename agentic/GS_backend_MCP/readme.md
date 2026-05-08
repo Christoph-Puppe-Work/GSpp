@@ -6,7 +6,7 @@
 
 ## 1. Systemübersicht & Motivation
 
-Das Gpp-Agentensystem orchestriert LLMs, um Nutzer durch den BSI Grundschutz++ Prozess zu führen. Dieser MCP-Server ist nicht nur ein reiner "Context Manager", der Daten bereitstellt, sondern fungiert als der zentrale **State-Manager und das exklusive Interface** für die Agenten zum Lesen, Manipulieren und Validieren von Compliance-Artefakten.
+Der Gpp-Agent orchestriert LLMs, um Nutzer durch den BSI Grundschutz++ Prozess zu führen. Dieser MCP-Server ist nicht nur ein reiner "Context Manager", der Daten bereitstellt, sondern fungiert als der zentrale **State-Manager und das exklusive Interface** für die Agenten zum Lesen, Manipulieren und Validieren von Compliance-Artefakten.
 
 OSCAL-Dateien weisen zwei für LLMs hochproblematische Eigenschaften auf:
 1. **Volumen:** Sie wachsen schnell auf mehrere Megabyte an (Lost-in-the-Middle-Effekt).

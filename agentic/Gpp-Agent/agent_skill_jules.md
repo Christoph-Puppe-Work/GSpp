@@ -138,7 +138,7 @@ async def get_cis_oscal_workflow() -> SequentialAgent:
     )
 
     return SequentialAgent(
-        name="domain_workflow",
+        name="Gpp-Agent",
         sub_agents=[
             await get_input_loader(),
             EscalationBarrier(name="review_barrier", inner=review_loop),

@@ -10,8 +10,11 @@ resource "google_project_service" "required_apis" {
     "artifactregistry.googleapis.com",
     "cloudbuild.googleapis.com",
     "iam.googleapis.com",
+    "iamcredentials.googleapis.com",
     "storage.googleapis.com",
-    "firestore.googleapis.com"
+    "firestore.googleapis.com",
+    "aiplatform.googleapis.com",
+    "cloudtrace.googleapis.com"
   ])
   service            = each.key
   disable_on_destroy = false
@@ -85,6 +88,13 @@ resource "google_service_account_iam_binding" "agent_token_creator" {
 resource "google_project_iam_member" "agent_firestore_user" {
   project = var.project_id
   role    = "roles/datastore.user"
+  member  = "serviceAccount:${google_service_account.gpp_agent_sa.email}"
+}
+
+# Grant the Gpp-Agent SA permission to call Gemini (Vertex AI)
+resource "google_project_iam_member" "agent_vertex_user" {
+  project = var.project_id
+  role    = "roles/aiplatform.user"
   member  = "serviceAccount:${google_service_account.gpp_agent_sa.email}"
 }
 
@@ -257,6 +267,9 @@ resource "google_cloud_run_v2_service" "gpp_agent_service" {
 
   template {
     service_account = google_service_account.gpp_agent_sa.email
+    scaling {
+      min_instance_count = 1
+    }
     containers {
       image = "${var.region}-docker.pkg.dev/${var.project_id}/${google_artifact_registry_repository.agentic_repo.repository_id}/gpp-agent:latest"
       ports { container_port = 8000 }

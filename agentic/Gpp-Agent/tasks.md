@@ -17,7 +17,7 @@
   - [x] Zentraler Prompt-Loader für Markdown-Templates.
   - [x] Gemeinsame Pydantic-Schemas (`ReviewCriteria`).
 - [x] **Agenten & Workflows:**
-  - [x] `Orchestrator-Agent` zur Intent-Steuerung implementiert.
+  - [x] `Gpp-Agent` zur Intent-Steuerung implementiert.
   - [x] `Phase 1: SSP-Generator` (Producer/Reviewer Maker-Checker Loop) implementiert.
 - [x] **Qualitätssicherung:**
   - [x] Unit-Tests für Orchestrator und Prompt-Loading erfolgreich durchgeführt.

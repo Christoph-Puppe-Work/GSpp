@@ -22,4 +22,5 @@ gcloud run deploy $SERVICE_NAME \
   --image $IMAGE_TAG \
   --region $REGION \
   --project $PROJECT_ID \
+  --min-instances 1 \
   --set-env-vars "ANWENDER_MCP_URL=${ANWENDER_MCP_URL},BACKEND_MCP_URL=${BACKEND_MCP_URL},GOOGLE_CLOUD_PROJECT=${PROJECT_ID}"

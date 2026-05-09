@@ -24,10 +24,9 @@ ANWENDER_PORT="${ANWENDER_PORT:-8080}"
 BACKEND_PORT="${BACKEND_PORT:-8081}"
 
 # ─── Central venv ───────────────────────────────────────────────────────────────
-if [ ! -d "$VENV_DIR" ]; then
-    echo "Setting up central venv in agentic/ (first run)..."
-    uv sync --all-packages --project "$AGENTIC_DIR"
-fi
+echo "Syncing central venv in agentic/..."
+uv sync --all-packages --project "$AGENTIC_DIR"
+
 if [ "${VIRTUAL_ENV:-}" != "$VENV_DIR" ]; then
     # shellcheck source=/dev/null
     source "$VENV_DIR/bin/activate"
@@ -39,12 +38,15 @@ cd "$APP_DIR"
 if [ ! -f .env ]; then
     echo "Generating .env from Terraform outputs..."
     if ! [ -d "$TF_DIR" ] || ! terraform -chdir="$TF_DIR" output -json > /dev/null 2>&1; then
-        echo "ERROR: Terraform-Outputs nicht verfügbar. Run terraform apply oder erstelle .env manuell."
-        exit 1
+        echo "WARNING: Terraform-Outputs nicht verfügbar. Bitte manuell eingeben:"
+        read -p "Enter Project ID: " PROJECT_ID
+        read -p "Enter Region (e.g., europe-west1): " LOCATION
+        read -p "Enter GCS Bucket name: " BUCKET
+    else
+        PROJECT_ID=$(terraform -chdir="$TF_DIR" output -raw project_id)
+        LOCATION=$(terraform -chdir="$TF_DIR" output -raw region)
+        BUCKET=$(terraform -chdir="$TF_DIR" output -raw oscal_storage_bucket)
     fi
-    PROJECT_ID=$(terraform -chdir="$TF_DIR" output -raw project_id)
-    LOCATION=$(terraform -chdir="$TF_DIR" output -raw region)
-    BUCKET=$(terraform -chdir="$TF_DIR" output -raw oscal_storage_bucket)
     sed -e "s|your-project-id|$PROJECT_ID|g" \
         -e "s|your-gcs-bucket-name|$BUCKET|g" \
         -e "s|your-location|$LOCATION|g" \
@@ -98,7 +100,7 @@ MCP_PIDS+=($!)
 
 echo "Starting GS_backend_MCP on port $BACKEND_PORT..."
 PORT="$BACKEND_PORT" \
-python -m myserver.main --transport sse --port "$BACKEND_PORT" &
+python -m GS_backend_MCP.myserver.main --transport sse --port "$BACKEND_PORT" &
 MCP_PIDS+=($!)
 
 # Warten bis beide MCP-Server erreichbar sind

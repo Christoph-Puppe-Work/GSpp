@@ -10,10 +10,9 @@ VENV_DIR="$AGENTIC_DIR/.venv"
 export PORT="${PORT:-8000}"
 
 # ─── Central venv ───────────────────────────────────────────────────────────────
-if [ ! -d "$VENV_DIR" ]; then
-    echo "Setting up central venv in agentic/ (first run)..."
-    uv sync --all-packages --project "$AGENTIC_DIR"
-fi
+echo "Syncing central venv in agentic/..."
+uv sync --all-packages --project "$AGENTIC_DIR"
+
 if [ "${VIRTUAL_ENV:-}" != "$VENV_DIR" ]; then
     # shellcheck source=/dev/null
     source "$VENV_DIR/bin/activate"
@@ -26,16 +25,19 @@ if [ ! -f .env ]; then
     echo "Generating .env from Terraform outputs..."
 
     if ! [ -d "$TF_DIR" ] || ! terraform -chdir="$TF_DIR" output -json > /dev/null 2>&1; then
-        echo "ERROR: Terraform-Outputs nicht verfügbar in $TF_DIR"
-        echo "       Run: terraform -chdir=$TF_DIR init && terraform -chdir=$TF_DIR apply"
-        exit 1
+        echo "WARNING: Terraform-Outputs nicht verfügbar. Bitte manuell eingeben:"
+        read -p "Enter Project ID: " PROJECT_ID
+        read -p "Enter Region (e.g., europe-west1): " LOCATION
+        read -p "Enter GCS Bucket name: " BUCKET
+        read -p "Enter GSPP MCP URL (e.g., http://localhost:8080): " GSPP_MCP_URL
+        read -p "Enter Backend MCP URL (e.g., http://localhost:8081): " BACKEND_MCP_URL
+    else
+        PROJECT_ID=$(terraform -chdir="$TF_DIR" output -raw project_id)
+        LOCATION=$(terraform -chdir="$TF_DIR" output -raw region)
+        BUCKET=$(terraform -chdir="$TF_DIR" output -raw oscal_storage_bucket)
+        GSPP_MCP_URL=$(terraform -chdir="$TF_DIR" output -raw gspp_mcp_url)
+        BACKEND_MCP_URL=$(terraform -chdir="$TF_DIR" output -raw backend_mcp_url)
     fi
-
-    PROJECT_ID=$(terraform -chdir="$TF_DIR" output -raw project_id)
-    LOCATION=$(terraform -chdir="$TF_DIR" output -raw region)
-    BUCKET=$(terraform -chdir="$TF_DIR" output -raw oscal_storage_bucket)
-    GSPP_MCP_URL=$(terraform -chdir="$TF_DIR" output -raw gspp_mcp_url)
-    BACKEND_MCP_URL=$(terraform -chdir="$TF_DIR" output -raw backend_mcp_url)
 
     sed -e "s|your-project-id|$PROJECT_ID|g" \
         -e "s|your-gcs-bucket-name|$BUCKET|g" \

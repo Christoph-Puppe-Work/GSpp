@@ -12,7 +12,7 @@ export PORT="${PORT:-8000}"
 # ─── Central venv ───────────────────────────────────────────────────────────────
 if [ ! -d "$VENV_DIR" ]; then
     echo "Setting up central venv in agentic/ (first run)..."
-    uv sync --project "$AGENTIC_DIR"
+    uv sync --all-packages --project "$AGENTIC_DIR"
 fi
 if [ "${VIRTUAL_ENV:-}" != "$VENV_DIR" ]; then
     # shellcheck source=/dev/null
@@ -88,10 +88,20 @@ done
 # Stale .adk-DBs aufräumen
 find "$AGENTIC_DIR" -type d -name ".adk" -not -path "*/.venv/*" -exec rm -rf {} + 2>/dev/null || true
 
+# ─── Ephemeral agents-dir for adk web ─────────────────────────────────────────
+# `adk web <agents_dir>` discovers `<agents_dir>/<agent_name>/agent.py`. We
+# build a throwaway directory containing exactly one symlink to gpp_agent,
+# which keeps the Dev-UI dropdown clean and avoids a persistent placeholder
+# directory in the repo (cf. the old `_adk_apps/`).
+ADK_AGENTS_DIR="$(mktemp -d -t gpp-adk-agents-XXXXXX)"
+ln -s "$APP_DIR" "$ADK_AGENTS_DIR/gpp_agent"
+trap 'rm -rf "$ADK_AGENTS_DIR"' EXIT
+
 # ─── Start ─────────────────────────────────────────────────────────────────────
 cd "$AGENTIC_DIR"
 echo ""
 echo "Starting gpp_agent on port $PORT"
 echo "Dev-UI: http://localhost:$PORT/dev-ui/"
+echo "  agents_dir = $ADK_AGENTS_DIR (symlink → $APP_DIR)"
 echo ""
-exec adk web --host 0.0.0.0 --port "$PORT" _adk_apps
+exec adk web --host 0.0.0.0 --port "$PORT" "$ADK_AGENTS_DIR"

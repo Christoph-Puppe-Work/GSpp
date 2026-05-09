@@ -11,7 +11,7 @@ export PORT=${PORT:-8081}
 # ─── Central venv ───────────────────────────────────────────────────────────────
 if [ ! -d "$VENV_DIR" ]; then
     echo "Setting up central venv in agentic/ (first run)..."
-    uv sync --project "$AGENTIC_DIR"
+    uv sync --all-packages --project "$AGENTIC_DIR"
 fi
 if [ "${VIRTUAL_ENV:-}" != "$VENV_DIR" ]; then
     # shellcheck source=/dev/null

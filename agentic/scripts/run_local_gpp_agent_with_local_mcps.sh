@@ -2,9 +2,8 @@
 # run_local_gpp_agent_with_local_mcps.sh
 #
 # Variante zum Inner-Dev-Loop, wenn du gleichzeitig an MCP-Tools entwickelst.
-# Erwartet, dass die beiden MCP-Server in separaten Terminals laufen:
-#   ./run_local_GSpp_MCP.sh        # Port 8080 (Anwender)
-#   ./run_local_GS_backend_MCP.sh  # Port 8081 (Backend)
+# Startet beide MCP-Server als Hintergrundprozesse und räumt sie beim
+# Beenden automatisch auf — alles in einem Terminal.
 #
 # Überschreibt die MCP-URLs aus .env zur Laufzeit auf localhost — die .env
 # selbst bleibt unangetastet, damit du jederzeit zum Cloud-Run-Setup
@@ -27,7 +26,7 @@ BACKEND_PORT="${BACKEND_PORT:-8081}"
 # ─── Central venv ───────────────────────────────────────────────────────────────
 if [ ! -d "$VENV_DIR" ]; then
     echo "Setting up central venv in agentic/ (first run)..."
-    uv sync --project "$AGENTIC_DIR"
+    uv sync --all-packages --project "$AGENTIC_DIR"
 fi
 if [ "${VIRTUAL_ENV:-}" != "$VENV_DIR" ]; then
     # shellcheck source=/dev/null
@@ -76,39 +75,68 @@ if ! gcloud services list --enabled --project="$GOOGLE_CLOUD_PROJECT" \
 fi
 echo "  Vertex AI API enabled"
 
-mcp_missing=0
+cd "$AGENTIC_DIR"
+
+# ─── MCP-Server als Hintergrundprozesse starten ──────────────────────────────
+MCP_PIDS=()
+
+cleanup() {
+    echo ""
+    echo "Stopping MCP servers..."
+    for pid in "${MCP_PIDS[@]}"; do
+        kill "$pid" 2>/dev/null && wait "$pid" 2>/dev/null || true
+    done
+    [ -n "${ADK_AGENTS_DIR:-}" ] && rm -rf "$ADK_AGENTS_DIR"
+}
+trap cleanup EXIT INT TERM
+
+echo "Starting GSpp-MCP on port $ANWENDER_PORT..."
+CATALOG_PATH="GSpp_MCP/data/Grundschutz++-catalog.json" \
+MAPPING_PATH="GSpp_MCP/data/zielobjekt_controls.json" \
+PORT="$ANWENDER_PORT" \
+python -m GSpp_MCP.server.main &
+MCP_PIDS+=($!)
+
+echo "Starting GS_backend_MCP on port $BACKEND_PORT..."
+PORT="$BACKEND_PORT" \
+python -m myserver.main --transport sse --port "$BACKEND_PORT" &
+MCP_PIDS+=($!)
+
+# Warten bis beide MCP-Server erreichbar sind
+echo "Waiting for MCP servers to become ready..."
+MAX_WAIT=30
 for url in "$ANWENDER_MCP_URL" "$BACKEND_MCP_URL"; do
-    if ! curl -s -o /dev/null --max-time 2 "$url/mcp" 2>/dev/null; then
-        echo "  ERROR: $url nicht erreichbar"
-        mcp_missing=1
-    else
-        echo "  $url ok"
-    fi
+    elapsed=0
+    while ! curl -s -o /dev/null --max-time 2 "$url/mcp" 2>/dev/null; do
+        sleep 1
+        elapsed=$((elapsed + 1))
+        if [ "$elapsed" -ge "$MAX_WAIT" ]; then
+            echo "ERROR: $url nicht erreichbar nach ${MAX_WAIT}s"
+            exit 1
+        fi
+    done
+    echo "  $url ok"
 done
-if [ "$mcp_missing" = "1" ]; then
-    cat <<EOF
-
-MCP-Server laufen nicht. Starte sie in zwei separaten Terminals:
-
-  Terminal 2:  $SCRIPT_DIR/run_local_GSpp_MCP.sh
-  Terminal 3:  $SCRIPT_DIR/run_local_GS_backend_MCP.sh
-
-Wenn deine MCPs auf anderen Ports laufen, überschreib mit
-  ANWENDER_PORT=9080 BACKEND_PORT=9081 $0
-EOF
-    exit 1
-fi
 
 # Stale .adk-DBs aufräumen
 find "$AGENTIC_DIR" -type d -name ".adk" -not -path "*/.venv/*" -exec rm -rf {} + 2>/dev/null || true
 
+# ─── Ephemeral agents-dir for adk web ─────────────────────────────────────────
+# `adk web <agents_dir>` discovers `<agents_dir>/<agent_name>/agent.py`. We
+# build a throwaway directory containing exactly one symlink to gpp_agent,
+# which keeps the Dev-UI dropdown clean and avoids a persistent placeholder
+# directory in the repo (cf. the old `_adk_apps/`). The existing `cleanup`
+# trap (defined above) already removes this dir on EXIT/INT/TERM.
+ADK_AGENTS_DIR="$(mktemp -d -t gpp-adk-agents-XXXXXX)"
+ln -s "$APP_DIR" "$ADK_AGENTS_DIR/gpp_agent"
+
 # ─── Start ─────────────────────────────────────────────────────────────────────
-cd "$AGENTIC_DIR"
 cat <<EOF
 
 Starting gpp_agent on port $PORT (LOCAL MCPs)
   Anwender-MCP:  $ANWENDER_MCP_URL
   Backend-MCP:   $BACKEND_MCP_URL
+  agents_dir   : $ADK_AGENTS_DIR (symlink → $APP_DIR)
 Dev-UI: http://localhost:$PORT/dev-ui/
 
 EOF
@@ -116,4 +144,5 @@ EOF
 export GOOGLE_ADK_LOG_LEVEL=DEBUG
 export LOG_LEVEL=DEBUG
 
-exec adk web --host 0.0.0.0 --port "$PORT" _adk_apps
+# kein exec — damit der EXIT-Trap die MCP-Prozesse aufräumen kann
+adk web --host 0.0.0.0 --port "$PORT" "$ADK_AGENTS_DIR"

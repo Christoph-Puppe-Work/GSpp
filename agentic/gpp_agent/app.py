@@ -1,50 +1,21 @@
-import asyncio
-import os
-import logging
-from google.adk.apps.app import App
-from google.adk.integrations.firestore.firestore_session_service import FirestoreSessionService
-from google.cloud import firestore
-from google.cloud import error_reporting
-from agents.orchestrator import get_orchestrator
+"""Backward-compatibility shim — see ``gpp_agent.agent`` for the real entrypoint.
 
-# Configure logging to DEBUG for better diagnostics
-logging.basicConfig(level=logging.DEBUG)
-logger = logging.getLogger("gpp_agent")
+The previous version of this module attempted to construct an ``App`` with a
+``session_service=`` keyword argument, which is not a valid field on
+``google.adk.apps.app.App`` (Pydantic ``extra="forbid"``). It also lived in a
+location that ADK's auto-discovery did not look at, so it was never actually
+exercised. The agent now lives in ``gpp_agent/agent.py`` (the location ADK's
+``AgentLoader`` searches for ``app`` and ``root_agent``).
 
-def create_app() -> App:
-    # Initialize Google Cloud Error Reporting
-    try:
-        error_reporting.Client()
-        logger.info("Google Cloud Error Reporting initialized.")
-    except Exception as e:
-        logger.warning(f"Could not initialize Error Reporting: {e}")
+This file is kept only to avoid breaking external callers that still do
+``from gpp_agent.app import app``.
+"""
 
-    # Orchestrator-Agent laden (inklusive aller Sub-Agenten wie ssp_generator)
-    orchestrator = get_orchestrator()
+from __future__ import annotations
 
-    # Ensure the root agent name is set to 'gpp_agent' for consistent discovery
-    if hasattr(orchestrator, 'name'):
-        orchestrator.name = "gpp_agent"
+from .agent import app, root_agent
 
-    # Firestore Client für Session & State Management
-    project_id = os.environ.get("GOOGLE_CLOUD_PROJECT")
-    db = firestore.Client(project=project_id, database="gpp_agent-db") if project_id else firestore.Client()
+# Legacy aliases
+gpp_agent = app
 
-    # Initialisierung des Firestore Session Services (Multi-Tenancy fähig)
-    session_service = FirestoreSessionService(
-        client=db,
-        collection_name="gpp_agent_sessions"
-    )
-
-    return App(
-        name="gpp_agent",  # This must match the 'appName' in your test script
-        root_agent=orchestrator,
-        session_service=session_service,
-        plugins=[]
-    )
-
-# Naming the variable 'gpp_agent' helps the ADK loader register the app under this specific name
-gpp_agent = create_app()
-
-# Provide 'app' as an alias for uvicorn or CLI auto-discovery compatibility
-app = gpp_agent
+__all__ = ["app", "root_agent", "gpp_agent"]

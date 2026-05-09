@@ -9,8 +9,8 @@ def _extract_iv_id(user_id: str) -> str:
         return parts[1]
     return "unknown-iv"
 
-async def get_orchestrator() -> LlmAgent:
-    ssp_generator = await get_ssp_generator_workflow()
+def get_orchestrator() -> LlmAgent:
+    ssp_generator = get_ssp_generator_workflow()
 
     return LlmAgent(
         name="gpp_agent",

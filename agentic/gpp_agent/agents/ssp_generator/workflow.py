@@ -8,9 +8,9 @@ from .reviewer import get_reviewer
 # the generated OSCAL passes validation. For now, a single sequential pass
 # (producer → reviewer) is used.
 
-async def get_ssp_generator_workflow():
-    producer = await get_producer()
-    reviewer = await get_reviewer()
+def get_ssp_generator_workflow():
+    producer =  get_producer()
+    reviewer =  get_reviewer()
 
     ssp_workflow = SequentialAgent(
         name="ssp_review_loop",

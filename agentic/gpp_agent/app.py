@@ -20,7 +20,7 @@ def create_app() -> App:
         logger.warning(f"Could not initialize Error Reporting: {e}")
 
     # Orchestrator-Agent laden (inklusive aller Sub-Agenten wie ssp_generator)
-    orchestrator = asyncio.run(get_orchestrator())
+    orchestrator = get_orchestrator()
 
     # Ensure the root agent name is set to 'gpp_agent' for consistent discovery
     if hasattr(orchestrator, 'name'):

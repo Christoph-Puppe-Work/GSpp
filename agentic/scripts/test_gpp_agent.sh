@@ -1,17 +1,17 @@
 #!/bin/bash
-# Test the gpp_agent (ADK API Server) locally or deployed.
+# Test the gpp-agent (ADK API Server) locally or deployed.
 
 BASE_URL=${1:-"http://127.0.0.1:8000"}
 TOKEN=${2:-""}
 
 # Example of how to use this script with gcloud:
-# ./scripts/test_gpp_agent.sh https://gpp_agent-xxx.run.app $(gcloud auth print-identity-token)
+# ./scripts/test_gpp-agent.sh https://gpp-agent-xxx.run.app $(gcloud auth print-identity-token)
 
-APP_NAME="gpp_agent"
+APP_NAME="gpp-agent"
 USER_ID="test_user"
 SESSION_ID="test_session_$(date +%s)"
 
-echo "--- Testing gpp_agent ---"
+echo "--- Testing gpp-agent ---"
 echo "Target URL: $BASE_URL"
 if [ -n "$TOKEN" ]; then
   echo "Using provided Bearer token for authentication."

@@ -1,5 +1,5 @@
 #!/bin/bash
-# run_local_gpp_agent_with_local_mcps.sh
+# run_local_gpp-agent_with_local_mcps.sh
 #
 # Variante zum Inner-Dev-Loop, wenn du gleichzeitig an MCP-Tools entwickelst.
 # Startet beide MCP-Server als Hintergrundprozesse und räumt sie beim
@@ -7,13 +7,13 @@
 #
 # Überschreibt die MCP-URLs aus .env zur Laufzeit auf localhost — die .env
 # selbst bleibt unangetastet, damit du jederzeit zum Cloud-Run-Setup
-# (run_local_gpp_agent.sh) zurückwechseln kannst.
+# (run_local_gpp-agent.sh) zurückwechseln kannst.
 
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 AGENTIC_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
-APP_DIR="$AGENTIC_DIR/gpp_agent"
+APP_DIR="$AGENTIC_DIR/gpp-agent"
 TF_DIR="$AGENTIC_DIR/terraform"
 VENV_DIR="$AGENTIC_DIR/.venv"
 
@@ -121,12 +121,13 @@ done
 find "$AGENTIC_DIR" -type d -name ".adk" -not -path "*/.venv/*" -exec rm -rf {} + 2>/dev/null || true
 
 # ─── Start ─────────────────────────────────────────────────────────────────────
+cd "$APP_DIR"
 cat <<EOF
 
-Starting gpp_agent on port $PORT (LOCAL MCPs)
+Starting gpp-agent on port $PORT (LOCAL MCPs)
   Anwender-MCP:  $ANWENDER_MCP_URL
   Backend-MCP:   $BACKEND_MCP_URL
-  agents_dir   : $AGENTIC_DIR
+  agents_dir   : $APP_DIR
 Dev-UI: http://localhost:$PORT/dev-ui/
 
 EOF
@@ -135,4 +136,4 @@ export GOOGLE_ADK_LOG_LEVEL=DEBUG
 export LOG_LEVEL=DEBUG
 
 # kein exec — damit der EXIT-Trap die MCP-Prozesse aufräumen kann
-adk web --host 0.0.0.0 --port "$PORT" .
+agents-cli playground --host 0.0.0.0 --port "$PORT"

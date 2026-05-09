@@ -42,6 +42,11 @@ Ask the user: Option A (simple single-project) or Option B (full CI/CD pipeline 
 | `agents-cli scaffold enhance` | Add deployment target or CI/CD to project |
 | `agents-cli scaffold upgrade` | Upgrade project to latest version |
 
+## Helper Scripts
+For convenience, we use helper scripts located in the root `scripts/` directory:
+- `scripts/run_local_gpp_agent.sh` and `scripts/run_local_gpp_agent_with_local_mcps.sh`: Set up the environment (reading from Terraform) and run `agents-cli playground` internally to start the agent locally.
+- `scripts/deploy_gpp_agent.sh`: Gathers infrastructure variables from Terraform and issues `agents-cli deploy`.
+
 ---
 
 ## Operational Guidelines for Coding Agents

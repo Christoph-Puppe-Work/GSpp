@@ -3,7 +3,7 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 AGENTIC_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
-APP_DIR="$AGENTIC_DIR/gpp_agent"
+APP_DIR="$AGENTIC_DIR/gpp-agent"
 TF_DIR="$AGENTIC_DIR/terraform"
 VENV_DIR="$AGENTIC_DIR/.venv"
 
@@ -89,12 +89,10 @@ done
 find "$AGENTIC_DIR" -type d -name ".adk" -not -path "*/.venv/*" -exec rm -rf {} + 2>/dev/null || true
 
 # ─── Start ─────────────────────────────────────────────────────────────────────
-cd "$AGENTIC_DIR"
+cd "$APP_DIR"
 echo ""
-echo "Starting gpp_agent on port $PORT"
+echo "Starting gpp-agent on port $PORT"
 echo "Dev-UI: http://localhost:$PORT/dev-ui/"
-echo "  agents_dir = $AGENTIC_DIR"
-echo "  [DEBUG] The following directories will be detected as apps by ADK:"
-ls -1d */ | sed 's/\/$//' | awk '{print "    - " $0}'
+echo "  agents_dir = $APP_DIR"
 echo ""
-exec adk web --host 0.0.0.0 --port "$PORT" .
+exec agents-cli playground --host 0.0.0.0 --port "$PORT"

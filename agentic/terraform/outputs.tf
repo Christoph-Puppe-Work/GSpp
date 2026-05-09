@@ -1,3 +1,27 @@
+# Copyright 2026 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     https://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+output "app_service_account_email" {
+  description = "Application service account email"
+  value       = google_service_account.app_sa.email
+}
+
+output "logs_bucket_name" {
+  description = "Logs storage bucket name"
+  value       = google_storage_bucket.logs_data_bucket.name
+}
+
 output "backend_mcp_url" {
   value       = google_cloud_run_v2_service.backend_mcp_service.uri
   description = "The URL of the Backend MCP server"
@@ -11,16 +35,6 @@ output "gspp_mcp_url" {
 output "oscal_storage_bucket" {
   value       = google_storage_bucket.oscal_storage.name
   description = "The name of the GCS bucket used for OSCAL storage"
-}
-
-output "gpp_agent_service_account_email" {
-  value       = google_service_account.gpp_agent_sa.email
-  description = "The email address of the gpp_agent's dedicated Service Account"
-}
-
-output "gpp_agent_url" {
-  value       = google_cloud_run_v2_service.gpp_agent_service.uri
-  description = "The URL of the gpp_agent ADK API Server"
 }
 
 output "frontend_url" {

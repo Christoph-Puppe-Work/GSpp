@@ -24,13 +24,20 @@ cd "$APP_DIR"
 if [ ! -f .env ]; then
     echo "Generating .env from Terraform outputs..."
 
-    if ! [ -d "$TF_DIR" ] || ! terraform -chdir="$TF_DIR" output -json > /dev/null 2>&1; then
+    TF_OUTPUTS=$(terraform -chdir="$TF_DIR" output -json 2>/dev/null || echo "{}")
+    if ! [ -d "$TF_DIR" ] || [ "$TF_OUTPUTS" = "{}" ]; then
         echo "WARNING: Terraform-Outputs nicht verfügbar. Bitte manuell eingeben:"
-        read -p "Enter Project ID: " PROJECT_ID
-        read -p "Enter Region (e.g., europe-west1): " LOCATION
-        read -p "Enter GCS Bucket name: " BUCKET
-        read -p "Enter GSPP MCP URL (e.g., http://localhost:8080): " GSPP_MCP_URL
-        read -p "Enter Backend MCP URL (e.g., http://localhost:8081): " BACKEND_MCP_URL
+        read -rp "Enter Project ID: " PROJECT_ID
+        read -rp "Enter Region (e.g., europe-west1): " LOCATION
+        read -rp "Enter GCS Bucket name: " BUCKET
+        read -rp "Enter GSPP MCP URL (e.g., http://localhost:8080): " GSPP_MCP_URL
+        read -rp "Enter Backend MCP URL (e.g., http://localhost:8081): " BACKEND_MCP_URL
+        for var in PROJECT_ID LOCATION BUCKET GSPP_MCP_URL BACKEND_MCP_URL; do
+            if [ -z "${!var}" ]; then
+                echo "ERROR: $var darf nicht leer sein."
+                exit 1
+            fi
+        done
     else
         PROJECT_ID=$(terraform -chdir="$TF_DIR" output -raw project_id)
         LOCATION=$(terraform -chdir="$TF_DIR" output -raw region)

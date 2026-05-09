@@ -2,12 +2,22 @@
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-APP_DIR="$SCRIPT_DIR/../gpp_agent"
-PARENT_DIR="$SCRIPT_DIR/.."
-TF_DIR="$SCRIPT_DIR/../terraform"
+AGENTIC_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
+APP_DIR="$AGENTIC_DIR/gpp_agent"
+TF_DIR="$AGENTIC_DIR/terraform"
+VENV_DIR="$AGENTIC_DIR/.venv"
 
 export PORT="${PORT:-8000}"
-export PYTHONPATH="${PYTHONPATH:-}:$APP_DIR:$PARENT_DIR"
+
+# ─── Central venv ───────────────────────────────────────────────────────────────
+if [ ! -d "$VENV_DIR" ]; then
+    echo "Setting up central venv in agentic/ (first run)..."
+    uv sync --project "$AGENTIC_DIR"
+fi
+if [ "${VIRTUAL_ENV:-}" != "$VENV_DIR" ]; then
+    # shellcheck source=/dev/null
+    source "$VENV_DIR/bin/activate"
+fi
 
 cd "$APP_DIR"
 
@@ -35,11 +45,8 @@ if [ ! -f .env ]; then
         .env.example > .env
 
     echo ".env generated:"
-    echo "  project=$PROJECT_ID"
-    echo "  location=$LOCATION"
-    echo "  bucket=$BUCKET"
-    echo "  anwender_mcp=$GSPP_MCP_URL"
-    echo "  backend_mcp=$BACKEND_MCP_URL"
+    echo "  project=$PROJECT_ID  location=$LOCATION  bucket=$BUCKET"
+    echo "  anwender_mcp=$GSPP_MCP_URL  backend_mcp=$BACKEND_MCP_URL"
 fi
 
 set -a; source .env; set +a
@@ -71,7 +78,6 @@ if ! gcloud services list --enabled --project="$GOOGLE_CLOUD_PROJECT" \
 fi
 echo "  Vertex AI API enabled"
 
-# MCP-Erreichbarkeit (HTTPS für Cloud Run, HTTP für localhost; -k erlaubt Cloud-Run-Redirects)
 for url in "${ANWENDER_MCP_URL:-}" "${BACKEND_MCP_URL:-}"; do
     [ -z "$url" ] && continue
     if ! curl -s -o /dev/null --max-time 5 -L -k "$url/mcp" 2>/dev/null; then
@@ -80,12 +86,12 @@ for url in "${ANWENDER_MCP_URL:-}" "${BACKEND_MCP_URL:-}"; do
 done
 
 # Stale .adk-DBs aufräumen
-find "$PARENT_DIR" -type d -name ".adk" -not -path "*/.venv/*" -exec rm -rf {} + 2>/dev/null || true
+find "$AGENTIC_DIR" -type d -name ".adk" -not -path "*/.venv/*" -exec rm -rf {} + 2>/dev/null || true
 
 # ─── Start ─────────────────────────────────────────────────────────────────────
-cd "$PARENT_DIR"
+cd "$AGENTIC_DIR"
 echo ""
 echo "Starting gpp_agent on port $PORT"
 echo "Dev-UI: http://localhost:$PORT/dev-ui/"
 echo ""
-exec uv run adk web --host 0.0.0.0 --port "$PORT" _adk_apps
+exec adk web --host 0.0.0.0 --port "$PORT" _adk_apps

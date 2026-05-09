@@ -1,11 +1,25 @@
 #!/bin/bash
-cd "$(dirname "$0")/../GSpp_MCP"
+set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+AGENTIC_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
+VENV_DIR="$AGENTIC_DIR/.venv"
+
 export CATALOG_PATH="data/Grundschutz++-catalog.json"
 export MAPPING_PATH="data/zielobjekt_controls.json"
 export PORT=${PORT:-8080}
-export PYTHONPATH=$PYTHONPATH:.
-# Add parent directory so that GSpp_MCP is found as a package if we are in the repo root
-export PYTHONPATH=$PYTHONPATH:$(pwd)/..
 
+# ─── Central venv ───────────────────────────────────────────────────────────────
+if [ ! -d "$VENV_DIR" ]; then
+    echo "Setting up central venv in agentic/ (first run)..."
+    uv sync --project "$AGENTIC_DIR"
+fi
+if [ "${VIRTUAL_ENV:-}" != "$VENV_DIR" ]; then
+    # shellcheck source=/dev/null
+    source "$VENV_DIR/bin/activate"
+fi
+
+# ─── Start ──────────────────────────────────────────────────────────────────────
 echo "Starting GSpp-MCP server locally on port $PORT..."
-python3 -m GSpp_MCP.server.main
+cd "$AGENTIC_DIR/GSpp_MCP"
+exec python -m GSpp_MCP.server.main

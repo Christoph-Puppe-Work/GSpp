@@ -13,20 +13,30 @@
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-APP_DIR="$SCRIPT_DIR/../gpp_agent"
-PARENT_DIR="$SCRIPT_DIR/.."
-TF_DIR="$SCRIPT_DIR/../terraform"
+AGENTIC_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
+APP_DIR="$AGENTIC_DIR/gpp_agent"
+TF_DIR="$AGENTIC_DIR/terraform"
+VENV_DIR="$AGENTIC_DIR/.venv"
 
 export PORT="${PORT:-8000}"
-export PYTHONPATH="${PYTHONPATH:-}:$APP_DIR:$PARENT_DIR"
 
 # Ports überschreibbar, falls dein lokales MCP-Setup andere benutzt
 ANWENDER_PORT="${ANWENDER_PORT:-8080}"
 BACKEND_PORT="${BACKEND_PORT:-8081}"
 
+# ─── Central venv ───────────────────────────────────────────────────────────────
+if [ ! -d "$VENV_DIR" ]; then
+    echo "Setting up central venv in agentic/ (first run)..."
+    uv sync --project "$AGENTIC_DIR"
+fi
+if [ "${VIRTUAL_ENV:-}" != "$VENV_DIR" ]; then
+    # shellcheck source=/dev/null
+    source "$VENV_DIR/bin/activate"
+fi
+
 cd "$APP_DIR"
 
-# ─── .env erzeugen, falls noch keine existiert (gleiche Logik wie main-Script) ─
+# ─── .env erzeugen, falls noch keine existiert ─────────────────────────────────
 if [ ! -f .env ]; then
     echo "Generating .env from Terraform outputs..."
     if ! [ -d "$TF_DIR" ] || ! terraform -chdir="$TF_DIR" output -json > /dev/null 2>&1; then
@@ -45,21 +55,19 @@ fi
 
 set -a; source .env; set +a
 
-# ─── MCP-URLs auf localhost überschreiben (das ist der Sinn dieses Scripts) ───
+# ─── MCP-URLs auf localhost überschreiben ──────────────────────────────────────
 export ANWENDER_MCP_URL="http://localhost:$ANWENDER_PORT"
 export BACKEND_MCP_URL="http://localhost:$BACKEND_PORT"
 
 # ─── Sanity-Checks ─────────────────────────────────────────────────────────────
 echo "Sanity checks (local-MCP mode)..."
 
-# 1. ADC für Gemini/Vertex
 if ! gcloud auth application-default print-access-token > /dev/null 2>&1; then
     echo "ERROR: kein ADC-Token. Run: gcloud auth application-default login"
     exit 1
 fi
 echo "  ADC ok"
 
-# 2. Vertex-AI API
 if ! gcloud services list --enabled --project="$GOOGLE_CLOUD_PROJECT" \
         --filter="config.name:aiplatform.googleapis.com" --format="value(config.name)" \
         2>/dev/null | grep -q aiplatform; then
@@ -68,7 +76,6 @@ if ! gcloud services list --enabled --project="$GOOGLE_CLOUD_PROJECT" \
 fi
 echo "  Vertex AI API enabled"
 
-# 3. MCPs MÜSSEN laufen — ohne sie ist der Agent funktionsunfähig
 mcp_missing=0
 for url in "$ANWENDER_MCP_URL" "$BACKEND_MCP_URL"; do
     if ! curl -s -o /dev/null --max-time 2 "$url/mcp" 2>/dev/null; then
@@ -92,11 +99,11 @@ EOF
     exit 1
 fi
 
-# 4. Stale .adk-DBs aufräumen
-find "$PARENT_DIR" -type d -name ".adk" -not -path "*/.venv/*" -exec rm -rf {} + 2>/dev/null || true
+# Stale .adk-DBs aufräumen
+find "$AGENTIC_DIR" -type d -name ".adk" -not -path "*/.venv/*" -exec rm -rf {} + 2>/dev/null || true
 
 # ─── Start ─────────────────────────────────────────────────────────────────────
-cd "$PARENT_DIR"
+cd "$AGENTIC_DIR"
 cat <<EOF
 
 Starting gpp_agent on port $PORT (LOCAL MCPs)
@@ -106,11 +113,7 @@ Dev-UI: http://localhost:$PORT/dev-ui/
 
 EOF
 
-# Im Script vor `exec uv run …` einfügen:
 export GOOGLE_ADK_LOG_LEVEL=DEBUG
 export LOG_LEVEL=DEBUG
 
-# Oder ad-hoc:
-GOOGLE_ADK_LOG_LEVEL=DEBUG ./agentic/scripts/run_local_gpp_agent_with_local_mcps.sh
-
-exec uv run adk web --host 0.0.0.0 --port "$PORT" _adk_apps
+exec adk web --host 0.0.0.0 --port "$PORT" _adk_apps

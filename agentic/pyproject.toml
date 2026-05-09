@@ -1,0 +1,9 @@
+[project]
+name = "gpp-workspace"
+version = "0.1.0"
+requires-python = ">=3.12"
+# Workspace root — no direct dependencies here; each member declares its own.
+dependencies = []
+
+[tool.uv.workspace]
+members = ["gpp_agent", "GSpp_MCP", "GS_backend_MCP"]

@@ -94,5 +94,7 @@ echo ""
 echo "Starting gpp_agent on port $PORT"
 echo "Dev-UI: http://localhost:$PORT/dev-ui/"
 echo "  agents_dir = $AGENTIC_DIR"
+echo "  [DEBUG] The following directories will be detected as apps by ADK:"
+ls -1d */ | sed 's/\/$//' | awk '{print "    - " $0}'
 echo ""
 exec adk web --host 0.0.0.0 --port "$PORT" .

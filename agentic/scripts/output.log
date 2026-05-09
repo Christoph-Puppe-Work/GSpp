@@ -1,0 +1,31 @@
+Sanity checks (local-MCP mode)...
+  ADC ok
+  Vertex AI API enabled
+Starting GSpp-MCP on port 8080...
+Starting GS_backend_MCP on port 8081...
+Waiting for MCP servers to become ready...
+INFO:     127.0.0.1:53236 - "GET /mcp HTTP/1.1" 406 Not Acceptable
+  http://localhost:8080 ok
+INFO:     127.0.0.1:36102 - "GET /mcp HTTP/1.1" 406 Not Acceptable
+  http://localhost:8081 ok
+
+Starting gpp_agent on port 8000 (LOCAL MCPs)
+  Anwender-MCP:  http://localhost:8080
+  Backend-MCP:   http://localhost:8081
+  agents_dir   : /home/christoph_puppe/work/GSpp/agentic
+Dev-UI: http://localhost:8000/dev-ui/
+
+
++-----------------------------------------------------------------------------+
+| ADK Web Server started                                                      |
+|                                                                             |
+| For local testing, access at http://0.0.0.0:8000.                         |
++-----------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------+
+| ADK Web Server shutting down...                                             |
++-----------------------------------------------------------------------------+
+
+
+Stopping MCP servers...

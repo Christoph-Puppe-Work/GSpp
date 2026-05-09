@@ -86,7 +86,6 @@ cleanup() {
     for pid in "${MCP_PIDS[@]}"; do
         kill "$pid" 2>/dev/null && wait "$pid" 2>/dev/null || true
     done
-    [ -n "${ADK_AGENTS_DIR:-}" ] && rm -rf "$ADK_AGENTS_DIR"
 }
 trap cleanup EXIT INT TERM
 
@@ -121,22 +120,13 @@ done
 # Stale .adk-DBs aufräumen
 find "$AGENTIC_DIR" -type d -name ".adk" -not -path "*/.venv/*" -exec rm -rf {} + 2>/dev/null || true
 
-# ─── Ephemeral agents-dir for adk web ─────────────────────────────────────────
-# `adk web <agents_dir>` discovers `<agents_dir>/<agent_name>/agent.py`. We
-# build a throwaway directory containing exactly one symlink to gpp_agent,
-# which keeps the Dev-UI dropdown clean and avoids a persistent placeholder
-# directory in the repo (cf. the old `_adk_apps/`). The existing `cleanup`
-# trap (defined above) already removes this dir on EXIT/INT/TERM.
-ADK_AGENTS_DIR="$(mktemp -d -t gpp-adk-agents-XXXXXX)"
-ln -s "$APP_DIR" "$ADK_AGENTS_DIR/gpp_agent"
-
 # ─── Start ─────────────────────────────────────────────────────────────────────
 cat <<EOF
 
 Starting gpp_agent on port $PORT (LOCAL MCPs)
   Anwender-MCP:  $ANWENDER_MCP_URL
   Backend-MCP:   $BACKEND_MCP_URL
-  agents_dir   : $ADK_AGENTS_DIR (symlink → $APP_DIR)
+  agents_dir   : $AGENTIC_DIR
 Dev-UI: http://localhost:$PORT/dev-ui/
 
 EOF
@@ -145,4 +135,4 @@ export GOOGLE_ADK_LOG_LEVEL=DEBUG
 export LOG_LEVEL=DEBUG
 
 # kein exec — damit der EXIT-Trap die MCP-Prozesse aufräumen kann
-adk web --host 0.0.0.0 --port "$PORT" "$ADK_AGENTS_DIR"
+adk web --host 0.0.0.0 --port "$PORT" .

@@ -88,20 +88,11 @@ done
 # Stale .adk-DBs aufräumen
 find "$AGENTIC_DIR" -type d -name ".adk" -not -path "*/.venv/*" -exec rm -rf {} + 2>/dev/null || true
 
-# ─── Ephemeral agents-dir for adk web ─────────────────────────────────────────
-# `adk web <agents_dir>` discovers `<agents_dir>/<agent_name>/agent.py`. We
-# build a throwaway directory containing exactly one symlink to gpp_agent,
-# which keeps the Dev-UI dropdown clean and avoids a persistent placeholder
-# directory in the repo (cf. the old `_adk_apps/`).
-ADK_AGENTS_DIR="$(mktemp -d -t gpp-adk-agents-XXXXXX)"
-ln -s "$APP_DIR" "$ADK_AGENTS_DIR/gpp_agent"
-trap 'rm -rf "$ADK_AGENTS_DIR"' EXIT
-
 # ─── Start ─────────────────────────────────────────────────────────────────────
 cd "$AGENTIC_DIR"
 echo ""
 echo "Starting gpp_agent on port $PORT"
 echo "Dev-UI: http://localhost:$PORT/dev-ui/"
-echo "  agents_dir = $ADK_AGENTS_DIR (symlink → $APP_DIR)"
+echo "  agents_dir = $AGENTIC_DIR"
 echo ""
-exec adk web --host 0.0.0.0 --port "$PORT" "$ADK_AGENTS_DIR"
+exec adk web --host 0.0.0.0 --port "$PORT" .

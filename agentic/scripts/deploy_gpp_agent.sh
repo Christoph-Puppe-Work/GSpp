@@ -11,7 +11,7 @@ REGION=$(terraform -chdir="$TF_DIR" output -raw region)
 ANWENDER_MCP_URL=$(terraform -chdir="$TF_DIR" output -raw gspp_mcp_url)
 BACKEND_MCP_URL=$(terraform -chdir="$TF_DIR" output -raw backend_mcp_url)
 REPO="agentic-repo"
-SERVICE_NAME="gpp_agent"
+SERVICE_NAME="gpp-agent"
 IMAGE_TAG="${REGION}-docker.pkg.dev/${PROJECT_ID}/${REPO}/${SERVICE_NAME}:latest"
 
 echo "=== Building $SERVICE_NAME ==="

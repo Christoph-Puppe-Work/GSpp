@@ -16,7 +16,7 @@ Phase 5 (Remediation) is reachable from Phase 4 (Audit) **only** through the
 | Agent framework   | **ADK 2.0 Workflow API** (`google-adk>=2.0.0a1`) — pre-GA / Beta. APIs may change before GA. |
 | Root agent        | `Workflow(name="gpp_agent", state_schema=WorkflowState, edges=...)` — see [`app/agents/orchestrator.py`](app/agents/orchestrator.py:1). |
 | Resumability      | `ResumabilityConfig(is_resumable=True)` on the `App` — see [`app/agent.py`](app/agent.py:1). |
-| Storage namespace | `name="gpp_agent_v2"` on the `App`, separate from any leftover ADK 1.x sessions. |
+| Storage namespace | `App.name="app"` — must equal the agent directory name because `adk web` / `agents-cli playground` derive the runner `app_name` from the filesystem path; isolate from any leftover ADK 1.x sessions by renaming the agent directory or wiping dev sessions. |
 | Deployment target | Vertex AI Agent Runtime (`agent_runtime`).                                              |
 | CI/CD runner      | Cloud Build (`cloud_build`).                                                            |
 | Session storage   | Agent Platform Sessions (managed automatically by Agent Runtime).                       |

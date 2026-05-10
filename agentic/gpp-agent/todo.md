@@ -74,7 +74,7 @@ flowchart LR
 - [x] Run `uv sync --prerelease=allow`. → installed `google-adk==2.0.0b1`.
 - [x] Sanity-check: imports `Workflow`, `RequestInput`, `ResumabilityConfig`, `Agent` all OK on 2.0.0b1.
 - [ ] Verify Agent Runtime support during the first dev deploy. If `agents-cli deploy` fails, capture the error in this file and switch to ADK 1.x fallback plan (see Appendix). **(deferred — requires explicit user confirmation per [`AGENTS.md`](AGENTS.md:27))**
-- [x] **Storage isolation**: app renamed to `name="gpp_agent_v2"` — see [`app/agent.py`](app/agent.py:33).
+- [x] **Storage isolation**: App.name kept as `"app"` (must match the agent directory `app/`); to isolate from leftover ADK 1.x sessions, rename the directory or wipe dev sessions. See [`app/agent.py`](app/agent.py:33).
 
 ## Phase B: Schemas & State Contract (`app/schemas.py`)
 
@@ -169,7 +169,7 @@ The conditional routing follows the docs syntax `(node, {route: target})`.
   )
   ```
 - [x] Keep the existing `GOOGLE_CLOUD_*` env bootstrap as-is ✓
-- [x] Decision: renamed `name="app"` → `name="gpp_agent_v2"` ✓ (App name isolated from any leftover 1.x storage).
+- [x] Decision: kept `App.name="app"` to satisfy the `adk web` / `agents-cli` runner-derived `app_name` rule. Storage isolation is achieved by renaming the agent directory or wiping dev sessions, not via `App.name`.
 
 ## Phase G: Legacy Code Removal
 

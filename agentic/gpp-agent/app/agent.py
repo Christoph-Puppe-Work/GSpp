@@ -24,10 +24,18 @@ except Exception:
 # https://adk.dev/runtime/resume/ .
 root_agent = get_workflow()
 
-# `name="gpp_agent_v2"` — separate storage namespace from any leftover
-# ADK 1.x sessions that may have used `name="gpp_agent"` or `name="app"`.
+# IMPORTANT: `App.name` MUST equal the agent directory name (here: "app").
+# `adk web` and `agents-cli playground` derive the runner's `app_name`
+# from the filesystem path (the directory containing `agent.py`). A
+# mismatch raises:
+#     SessionNotFoundError("...runner is configured with app name 'X', but
+#     the root agent was loaded from .../app, which implies app name
+#     'app'...").
+# Storage isolation from any leftover ADK 1.x sessions is achieved by
+# either wiping dev sessions or by renaming the agent directory itself
+# (e.g. `app/` → `gpp_agent_v2/`) — NOT via the `App.name` field.
 app = App(
-    name="gpp_agent_v2",
+    name="app",
     root_agent=root_agent,
     resumability_config=ResumabilityConfig(is_resumable=True),
 )

@@ -30,8 +30,8 @@ def get_classifier_agent() -> LlmAgent:
     return LlmAgent(
         name="classifier",
         model=os.environ.get("CLASSIFIER_MODEL", _DEFAULT_MODEL),
-        mode="single_turn",
-        instruction=f"{identity}\n\n---\n\n{classifier_prompt}",
+        mode="task",
+        instruction=f"{identity}\n\n---\n\n{classifier_prompt}\n\n",
         output_schema=ClassifierOutput,
         output_key="classifier_route",
         description=(

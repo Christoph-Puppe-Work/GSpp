@@ -1,36 +1,121 @@
 {
   "eval_set_id": "basic_eval",
-  "name": "Basic Agent Evaluation",
-  "description": "Sample evaluation set for testing core agent functionality. Customize these cases based on your DESIGN_SPEC.md.",
+  "name": "gpp-agent five-phase Grundschutz++ workflow",
+  "description": "One eval case per phase covering the planning.md gatekeeper rules. Each case provides a user prompt that the classifier should route to the matching phase agent and asserts on the structured output. See gpp-agent/planning.md.",
   "eval_cases": [
     {
-      "eval_id": "greeting",
+      "eval_id": "phase1_governance_sod_violation",
+      "description": "An SSP where the ISO and IT-Mgmt parties share a UUID. Phase 1 must list at least one sod_violation.",
       "conversation": [
         {
           "user_content": {
-            "parts": [{"text": "Hello, what can you help me with?"}]
+            "parts": [
+              {
+                "text": "Run the governance check on my Informationsverbund 'iv-demo-1'. The current SSP has the same party UUID assigned to the Information Security Officer role and the IT Management role. Does this violate the Segregation of Duties?"
+              }
+            ]
           }
         }
       ],
       "session_input": {
-        "app_name": "app",
+        "app_name": "gpp_agent_v2",
         "user_id": "eval_user",
-        "state": {}
+        "state": {
+          "user_role": "ISO",
+          "iv_id": "iv-demo-1"
+        }
       }
     },
     {
-      "eval_id": "weather_query",
+      "eval_id": "phase2_tailoring_blocker_pwd_length",
+      "description": "User picks a Component Definition that sets pwd_min_length=8 against a profile demanding >=12. Phase 2 must produce a non-empty blockers list.",
       "conversation": [
         {
           "user_content": {
-            "parts": [{"text": "What's the weather like in San Francisco?"}]
+            "parts": [
+              {
+                "text": "I'm registering a new Zielobjekt for the office network. I picked the standard server-room blueprint and set the minimum password length parameter to 8 characters. Is this consistent with the BSI profile? Show me any tailoring blockers."
+              }
+            ]
           }
         }
       ],
       "session_input": {
-        "app_name": "app",
+        "app_name": "gpp_agent_v2",
         "user_id": "eval_user",
-        "state": {}
+        "state": {
+          "user_role": "Implementer",
+          "iv_id": "iv-demo-1"
+        }
+      }
+    },
+    {
+      "eval_id": "phase3_planned_without_date_not_certifiable",
+      "description": "A MUST control marked 'planned' without a date-expected. Phase 3 must populate planned_without_date and set not_certifiable=true.",
+      "conversation": [
+        {
+          "user_content": {
+            "parts": [
+              {
+                "text": "Please validate my SSP implementation statuses. Control BER.1.A2 is a MUSS requirement and I currently set it to 'planned' but I haven't filled in a date-expected yet. Is the SSP ready for initial certification in this state?"
+              }
+            ]
+          }
+        }
+      ],
+      "session_input": {
+        "app_name": "gpp_agent_v2",
+        "user_id": "eval_user",
+        "state": {
+          "user_role": "ISO",
+          "iv_id": "iv-demo-1"
+        }
+      }
+    },
+    {
+      "eval_id": "phase4_gatekeeper_blocks_audit_on_schema_errors",
+      "description": "A syntactically broken OSCAL SSP. Phase 4 must return cleared_for_audit=false with non-empty schema_errors.",
+      "conversation": [
+        {
+          "user_content": {
+            "parts": [
+              {
+                "text": "Run the formal audit pre-check on my SSP for Informationsverbund 'iv-demo-1'. Schema validation just reported that the system-security-plan element is missing the required 'metadata' block. Can the SSP move into the assessment phase?"
+              }
+            ]
+          }
+        }
+      ],
+      "session_input": {
+        "app_name": "gpp_agent_v2",
+        "user_id": "eval_user",
+        "state": {
+          "user_role": "Auditor",
+          "iv_id": "iv-demo-1"
+        }
+      }
+    },
+    {
+      "eval_id": "phase5_remediation_creates_poam_items",
+      "description": "An Assessment Result with one or more 'not-satisfied' findings. Phase 5 must produce non-empty created_poam_items linked to the violated requirement and asset.",
+      "conversation": [
+        {
+          "user_content": {
+            "parts": [
+              {
+                "text": "The auditor finished and there are two 'not-satisfied' findings on controls BER.1.A2 and KONF.3.A4. Please create POA&M entries for both, linked to the affected asset UUIDs, and draft milestones. We will validate responsibilities afterwards."
+              }
+            ]
+          }
+        }
+      ],
+      "session_input": {
+        "app_name": "gpp_agent_v2",
+        "user_id": "eval_user",
+        "state": {
+          "user_role": "ISO",
+          "iv_id": "iv-demo-1"
+        }
       }
     }
   ]

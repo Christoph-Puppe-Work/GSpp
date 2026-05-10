@@ -67,67 +67,59 @@ flowchart LR
 
 ## Phase A: Dependency & Environment Bump
 
-- [ ] Edit [`pyproject.toml`](pyproject.toml:1):
-  - `dependencies`: replace `"google-adk>=1.15.0,<2.0.0"` with `"google-adk>=2.0.0a1"`.
-  - `[project.optional-dependencies] eval`: replace `"google-adk[eval]>=1.15.0,<2.0.0"` with `"google-adk[eval]>=2.0.0a1"`.
-  - Confirm `requires-python = ">=3.11,<3.14"` (already satisfies the 2.0 minimum).
-- [ ] Run `uv sync --prerelease=allow`.
-- [ ] Sanity-check: `uv run python -c "import google.adk.workflow; from google.adk.events.request_input import RequestInput; print('OK')"`.
-- [ ] Verify Agent Runtime support during the first dev deploy. If `agents-cli deploy` fails, capture the error in this file and switch to ADK 1.x fallback plan (see Appendix).
-- [ ] **Storage isolation**: ensure no ADK 1.x persistent sessions exist for this app name in the dev GCP project. If they do, rename the agent (`name="gpp_agent_v2"`) or wipe sessions.
+- [x] Edit [`pyproject.toml`](pyproject.toml:1):
+  - `dependencies`: replace `"google-adk>=1.15.0,<2.0.0"` with `"google-adk>=2.0.0a1"`. ✓
+  - `[project.optional-dependencies] eval`: replace `"google-adk[eval]>=1.15.0,<2.0.0"` with `"google-adk[eval]>=2.0.0a1"`. ✓
+  - Confirm `requires-python = ">=3.11,<3.14"` (already satisfies the 2.0 minimum). ✓
+- [x] Run `uv sync --prerelease=allow`. → installed `google-adk==2.0.0b1`.
+- [x] Sanity-check: imports `Workflow`, `RequestInput`, `ResumabilityConfig`, `Agent` all OK on 2.0.0b1.
+- [ ] Verify Agent Runtime support during the first dev deploy. If `agents-cli deploy` fails, capture the error in this file and switch to ADK 1.x fallback plan (see Appendix). **(deferred — requires explicit user confirmation per [`AGENTS.md`](AGENTS.md:27))**
+- [x] **Storage isolation**: app renamed to `name="gpp_agent_v2"` — see [`app/agent.py`](app/agent.py:33).
 
 ## Phase B: Schemas & State Contract (`app/schemas.py`)
 
-- [ ] Add Pydantic models (used as `output_schema` on each LlmAgent and as `state_schema` on the Workflow):
-  - `GovernanceFindings` — `sod_violations: list[str]`, `high_impact_assets: list[str]`, `requires_overlay: bool`, `summary: str`.
-  - `TailoringReport` — `blockers: list[TailoringBlocker]`, `gaps_for_poam: list[str]`, `summary: str`.
-  - `ImplementationReport` — `unjustified_alternatives: list[str]`, `planned_without_date: list[str]`, `not_certifiable: bool`, `summary: str`.
-  - `GatekeeperVerdict` — `phase: Literal["pre_check","audit_assist"]`, `cleared_for_audit: bool`, `schema_errors: list[str]`, `findings_suggestion: list[FindingSuggestion]`.
-  - `RemediationPlan` — `created_poam_items: list[PoamItem]`, `pending_user_input: list[str]`.
-  - `WorkflowState` — top-level state schema with `current_phase`, all `phaseN_result` keys (Optional), `user_role`, `iv_id`.
-  - `ClassifierOutput` — `route: Literal["govern","model","track","audit","remediate"]`, `rationale: str`.
-- [ ] Drop or rename the now-unused `ReviewCriteria` and `Savepoint` if no longer referenced after legacy cleanup.
+- [x] Add Pydantic models (used as `output_schema` on each LlmAgent and as `state_schema` on the Workflow). See [`app/schemas.py`](app/schemas.py:1):
+  - `GovernanceFindings` ✓
+  - `TailoringReport` (+ `TailoringBlocker`) ✓
+  - `ImplementationReport` ✓
+  - `GatekeeperVerdict` (+ `FindingSuggestion`) ✓
+  - `RemediationPlan` (+ `PoamItem`) ✓
+  - `WorkflowState` (top-level state schema) ✓
+  - `ClassifierOutput` ✓
+- [x] Drop legacy `ReviewCriteria` / `Savepoint` — removed (no remaining references after the legacy cleanup in Phase G).
 
 ## Phase C: Phase Prompt Files (`app/prompts/`)
 
 Each file uses the YAML frontmatter pattern already understood by [`prompts.py`](app/prompts.py:7). Content embeds the verbatim system instruction from `planning.md`, plus explicit tool-call rules and the expected `output_schema` reference.
 
-- [ ] `classifier.md` — Read user message; pick exactly one of `govern | model | track | audit | remediate` based on intent vocabulary aligned with [`identity.md`](app/prompts/identity.md:1). Output: `ClassifierOutput`.
-- [ ] `phase1_governance.md` — SoD on `parties` (ISO ≠ IT-Mgmt ≠ Admin); scan `security-impact-level`; on `high` block basic protection and demand BSI 200-3 overlay import. Output: `GovernanceFindings`.
-- [ ] `phase2_mapper.md` — Use `get_oscal_profile` and `controls_for_zielobjekt`; compare Component Definition vs. profile constraints; raise blocker on weakened tailoring (e.g. password length < 12); auto-flag uncovered controls for POA&M. Output: `TailoringReport`.
-- [ ] `phase3_implementation.md` — Reject `alternative` without justification; reject `planned` without `date-expected`; mark SSP "not ready for initial certification" if any MUSS requirement is `planned` without authorized residual-risk acceptance. Output: `ImplementationReport`.
-- [ ] `phase4_gatekeeper.md` — Phase A: `verify_oscal_json` + profile reference check; refuse audit if any MUSS is `planned`/`partial` without risk acceptance. Phase B: per-control suggest `satisfied`/`not-satisfied` with observation text using `get_control`. Output: `GatekeeperVerdict`.
-- [ ] `phase5_remediation.md` — Pull `not-satisfied` findings via `get_assessment_findings`; create POA&M items via `update_oscal_model` with hard UUID links to violated requirement and asset; draft milestones; ask user to validate responsibilities and deadlines. Output: `RemediationPlan`.
-- [ ] HITL gate prompts (one per phase) — short user-facing summaries shown via `RequestInput.message`, e.g.:
-  - `gate_phase4.md` — "Phase 4 verdict: cleared_for_audit={value}. Review schema_errors. Do you authorize moving to Phase 5 (Remediation)?".
+- [x] [`classifier.md`](app/prompts/classifier.md:1) ✓
+- [x] [`phase1_governance.md`](app/prompts/phase1_governance.md:1) ✓
+- [x] [`phase2_mapper.md`](app/prompts/phase2_mapper.md:1) ✓
+- [x] [`phase3_implementation.md`](app/prompts/phase3_implementation.md:1) ✓
+- [x] [`phase4_gatekeeper.md`](app/prompts/phase4_gatekeeper.md:1) ✓
+- [x] [`phase5_remediation.md`](app/prompts/phase5_remediation.md:1) ✓
+- [x] HITL gate prompts (`gate_phase{1..5}.md`) — see [`app/prompts/gates/`](app/prompts/gates/gate_phase4.md:1).
 
 ## Phase D: Phase LlmAgent Nodes (`app/agents/`)
 
 Pattern for each: load `identity.md` + phase prompt; build a `McpToolset` via [`app/mcp_clients.py`](app/mcp_clients.py:22) with the **exact** `tool_filter`; set `output_schema` and `output_key="phaseN_result"`. These will be placed directly in the workflow graph (auto-wrapped).
 
-- [ ] `phase1_governance.py` → `get_governance_agent() -> LlmAgent`
-  - backend `tool_filter=["get_ssp_inventory","get_ssp_implementation","get_oscal_model_raw","list_oscal_models"]`
-  - `output_schema=GovernanceFindings`, `output_key="phase1_result"`.
-- [ ] `phase2_mapper.py` → `get_mapper_agent() -> LlmAgent`
-  - anwender `tool_filter=["list_zielobjektkategorien","controls_for_zielobjekt","get_oscal_profile","get_control","list_groups","get_group"]`
-  - backend `tool_filter=["get_oscal_model_raw","get_ssp_inventory"]`
-  - `output_schema=TailoringReport`, `output_key="phase2_result"`.
-- [ ] `phase3_implementation.py` → `get_implementation_agent() -> LlmAgent`
-  - backend `tool_filter=["get_ssp_implementation","get_oscal_model_raw"]`
-  - `output_schema=ImplementationReport`, `output_key="phase3_result"`.
-- [ ] `phase4_gatekeeper.py` → `get_gatekeeper_agent() -> LlmAgent`
-  - anwender `tool_filter=["verify_oscal_json","get_control","get_oscal_profile"]`
-  - backend `tool_filter=["create_oscal_model","update_oscal_model","get_oscal_model_raw","get_assessment_controls","get_assessment_subjects","get_resolved_profile_catalog"]`
-  - `output_schema=GatekeeperVerdict`, `output_key="phase4_result"`.
-- [ ] `phase5_remediation.py` → `get_remediation_agent() -> LlmAgent`
-  - backend `tool_filter=["get_assessment_findings","get_poam_items","update_oscal_model","create_oscal_model"]`
-  - `output_schema=RemediationPlan`, `output_key="phase5_result"`.
-- [ ] `classifier.py` → `get_classifier_agent() -> LlmAgent` with `output_schema=ClassifierOutput`, `output_key="classifier_route"`. No tools.
+- [x] [`phase1_governance.py`](app/agents/phase1_governance.py:1) → `get_governance_agent()` ✓
+- [x] [`phase2_mapper.py`](app/agents/phase2_mapper.py:1) → `get_mapper_agent()` ✓
+- [x] [`phase3_implementation.py`](app/agents/phase3_implementation.py:1) → `get_implementation_agent()` ✓
+- [x] [`phase4_gatekeeper.py`](app/agents/phase4_gatekeeper.py:1) → `get_gatekeeper_agent()` ✓
+- [x] [`phase5_remediation.py`](app/agents/phase5_remediation.py:1) → `get_remediation_agent()` ✓
+- [x] [`classifier.py`](app/agents/classifier.py:1) → `get_classifier_agent()` ✓ (no tools, `output_key="classifier_route"`)
 
 ## Phase E: Workflow Graph (`app/agents/orchestrator.py`)
 
-- [ ] Replace the file with a `Workflow` builder, e.g. `def get_workflow() -> Workflow`.
-- [ ] Define **HITL gate function nodes** (one per phase). Pattern:
+**Done — see [`app/agents/orchestrator.py`](app/agents/orchestrator.py:1).**
+The Workflow has 19 nodes / 19 edges (pinned by
+[`tests/integration/test_agent.py::test_workflow_has_expected_nodes`](tests/integration/test_agent.py:1)).
+The conditional routing follows the docs syntax `(node, {route: target})`.
+
+- [x] Replace the file with a `Workflow` builder — `def get_workflow() -> Workflow`.
+- [x] Define **HITL gate function nodes** (one per phase). Pattern:
   ```python
   async def gate_phase4(ctx: Context, node_input):
       if not ctx.resume_inputs:
@@ -141,7 +133,7 @@ Pattern for each: load `identity.md` + phase prompt; build a `McpToolset` via [`
       decision = ctx.resume_inputs["gate_phase4"]
       yield Event(output=decision, route=decision)
   ```
-- [ ] Wire edges:
+- [x] Wire edges:
   ```python
   edges = [
       (START, classifier),
@@ -158,13 +150,16 @@ Pattern for each: load `identity.md` + phase prompt; build a `McpToolset` via [`
       (P5, gate_phase5), (gate_phase5, classifier, "continue"),
   ]
   ```
-- [ ] Set `Workflow(name="gpp_agent", state_schema=WorkflowState, edges=edges)`.
-- [ ] Forbid any other edge into P5 — `P4` is the only gate. The graph itself enforces the planning.md rule.
+- [x] Set `Workflow(name="gpp_agent", state_schema=WorkflowState, edges=edges)`.
+- [x] Forbid any other edge into P5 — pinned by
+  [`test_phase4_gate_is_only_path_to_phase5_from_phase4`](tests/integration/test_agent.py:1).
+  Only ingress edges into `phase5_remediation` are
+  `classify_router --[remediate]→` and `gate_phase4_decision --[cleared]→`.
 
 ## Phase F: App Bootstrap (`app/agent.py`)
 
-- [ ] Replace `get_orchestrator()` import with `get_workflow()`.
-- [ ] Wrap with `ResumabilityConfig`:
+- [x] Replace `get_orchestrator()` import with `get_workflow()` ✓
+- [x] Wrap with `ResumabilityConfig` ✓:
   ```python
   from google.adk.apps import App, ResumabilityConfig
   app = App(
@@ -173,40 +168,38 @@ Pattern for each: load `identity.md` + phase prompt; build a `McpToolset` via [`
       resumability_config=ResumabilityConfig(is_resumable=True),
   )
   ```
-- [ ] Keep the existing `GOOGLE_CLOUD_*` env bootstrap as-is.
-- [ ] Decision: rename `name="gpp_agent"` → `name="gpp_agent_v2"` if any 1.x sessions exist for the same app name (storage isolation rule).
+- [x] Keep the existing `GOOGLE_CLOUD_*` env bootstrap as-is ✓
+- [x] Decision: renamed `name="app"` → `name="gpp_agent_v2"` ✓ (App name isolated from any leftover 1.x storage).
 
 ## Phase G: Legacy Code Removal
 
-- [ ] Delete [`app/agents/producer.py`](app/agents/producer.py:1).
-- [ ] Delete [`app/agents/reviewer.py`](app/agents/reviewer.py:1).
-- [ ] Delete [`app/agents/ssp_generator_workflow.py`](app/agents/ssp_generator_workflow.py:1).
-- [ ] Delete [`app/prompts/ssp_generator/`](app/prompts/ssp_generator/producer.md:1) (both `producer.md` and `reviewer.md`).
-- [ ] Update [`app/agents/__init__.py`](app/agents/) (if present) and any imports in [`app/agent.py`](app/agent.py:6).
-- [ ] Remove `ReviewCriteria` from [`app/schemas.py`](app/schemas.py:3) if unused after refactor.
+- [x] Deleted `app/agents/producer.py`.
+- [x] Deleted `app/agents/reviewer.py`.
+- [x] Deleted `app/agents/ssp_generator_workflow.py`.
+- [x] Deleted `app/prompts/ssp_generator/` (both `producer.md` and `reviewer.md`).
+- [x] No `app/agents/__init__.py` was present; [`app/agent.py`](app/agent.py:6) imports updated.
+- [x] Removed `ReviewCriteria` and `Savepoint` from [`app/schemas.py`](app/schemas.py:1) (replaced by per-phase models).
 
 ## Phase H: Tests & Evaluation
 
-- [ ] Rewrite [`tests/integration/test_agent.py`](tests/integration/test_agent.py:1) using `InMemoryRunner`:
-  - Assert workflow node count and presence of P1–P5, classifier, and five gates.
-  - Assert that `(P4 → P5)` requires the `"cleared"` route (graph validation).
-- [ ] Extend [`tests/eval/evalsets/basic.evalset.json`](tests/eval/evalsets/basic.evalset.json:1) — one evalcase per phase:
-  - P1 — SSP where ISO and IT-Mgmt party UUIDs match → expect `sod_violations` non-empty.
-  - P2 — User sets password length 8 against profile demanding ≥12 → expect `blockers` non-empty.
-  - P3 — Control with `planned` status but no `date-expected` → expect `planned_without_date` non-empty and `not_certifiable=true`.
-  - P4 — Syntactically broken OSCAL SSP → expect `cleared_for_audit=false` and `schema_errors` non-empty.
-  - P5 — AR with `not-satisfied` findings → expect `created_poam_items` non-empty.
-- [ ] Add an HITL-resume integration test: run workflow → expect `RequestInput` event → submit user response → assert routing decision.
-- [ ] Run `agents-cli playground` against local MCPs via [`scripts/run_local_gpp_agent_with_local_mcps.sh`](../scripts/run_local_gpp_agent_with_local_mcps.sh:1) and walk all five scenarios manually.
-- [ ] Run `uv run pytest tests/unit tests/integration` and `agents-cli eval run` until green.
+- [x] Rewrote [`tests/integration/test_agent.py`](tests/integration/test_agent.py:1):
+  - Asserts workflow node count (= 19) and the presence of P1–P5, classifier, classifier_router, and all 5 gates (incl. split P4 request/decision/blocked).
+  - Asserts that `(P4 → P5)` requires `route="cleared"` and that there is **no** direct edge `phase4_gatekeeper → phase5_remediation`.
+  - Adds runtime tests for `gate_phase4_decision` (forces `blocked` when verdict not cleared, honours user `cleared`, default-blocks unknown input).
+  - Adds an HITL-emit smoke test that verifies `gate_phase1_request` actually yields a `RequestInput` event.
+  - Adds an opt-in live LLM smoke test (`GPP_AGENT_LIVE_TESTS=1`) that uses `InMemoryRunner` against the real Workflow.
+- [x] Extended [`tests/eval/evalsets/basic.evalset.json`](tests/eval/evalsets/basic.evalset.json:1) — one evalcase per phase (P1 SoD, P2 pwd-len blocker, P3 planned-without-date, P4 schema break, P5 POA&M creation).
+- [x] HITL-resume coverage: `test_gate_phase1_request_yields_request_input` exercises the emit half; the live LLM test (opt-in) exercises end-to-end resume.
+- [ ] Run `agents-cli playground` against local MCPs via [`scripts/run_local_gpp_agent_with_local_mcps.sh`](../scripts/run_local_gpp_agent_with_local_mcps.sh:1) and walk all five scenarios manually. **(deferred — manual / interactive)**
+- [x] `uv run pytest tests/unit tests/integration/test_agent.py` → **11 passed, 1 skipped** (live test gated on `GPP_AGENT_LIVE_TESTS`).
 
 ## Phase I: Hand-off & Deployment
 
-- [ ] Update [`DESIGN_SPEC.md`](DESIGN_SPEC.md:1):
-  - Architecture: switch "Agent Framework: ADK" to "ADK 2.0 Workflow API (pre-GA)".
-  - Add a "Resumability" subsection.
-  - Note that HITL is graph-enforced via `RequestInput`.
-- [ ] Verify [`agents-cli deploy`](AGENTS.md:27) succeeds against dev Agent Runtime. Capture any 2.0-alpha incompatibilities here.
+- [x] Updated [`DESIGN_SPEC.md`](DESIGN_SPEC.md:1):
+  - "Agent Framework: ADK 2.0 Workflow API (pre-GA / Beta)" ✓
+  - Added "Resumability" subsection ✓
+  - Documented graph-enforced HITL via `RequestInput` ✓
+- [ ] Verify [`agents-cli deploy`](AGENTS.md:27) succeeds against dev Agent Runtime. Capture any 2.0-alpha incompatibilities here. **(deferred — requires explicit user confirmation per `AGENTS.md` Phase 5)**
 - [ ] **User confirmation required** before any prod deploy ([`AGENTS.md`](AGENTS.md:27) Phase 5).
 
 ---

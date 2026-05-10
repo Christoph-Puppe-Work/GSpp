@@ -1,9 +1,12 @@
 import os
 from google.adk.agents import Agent
 from app.mcp_clients import McpClientService
+from app.prompts import load_prompt
 
 def get_producer() -> Agent:
     mcp_service = McpClientService()
+    identity_prompt = load_prompt("identity")
+    producer_prompt = load_prompt("ssp_generator/producer")
     
     # Anwender tools (BSI catalog and verify_oscal_json)
     anwender_tools = mcp_service.get_anwender_toolset(allow=None)
@@ -14,7 +17,7 @@ def get_producer() -> Agent:
     bsi_researcher = Agent(
         name="bsi_researcher",
         model=os.environ.get("PRODUCER_MODEL", "gemini-3.1-pro-preview"),
-        instruction="You are a BSI security catalog specialist. Retrieve requirements and controls.",
+        instruction=f"{identity_prompt}\n\nYou are a BSI security catalog specialist. Retrieve requirements and controls.",
         tools=[anwender_tools],
         description="Delegated to for querying BSI catalogs for relevant controls.",
     )
@@ -22,9 +25,7 @@ def get_producer() -> Agent:
     oscal_writer = Agent(
         name="oscal_writer",
         model=os.environ.get("PRODUCER_MODEL", "gemini-3.1-pro-preview"),
-        instruction="""You are an OSCAL standard specialist. Update OSCAL JSON models securely.
-        CRITICAL: Before writing any OSCAL models using the backend tools, you MUST validate your JSON payload using the `verify_oscal_json` tool from the Anwender tools.
-        """,
+        instruction=f"{identity_prompt}\n\n,{producer_prompt}",
         tools=[backend_tools, anwender_tools],
         description="Delegated to for compiling and writing the OSCAL SSP artifact.",
     )
@@ -39,8 +40,7 @@ def get_producer() -> Agent:
             name="data_parser",
             model=os.environ.get("PRODUCER_MODEL", "gemini-3.1-pro-preview"),
             code_executor=VertexAiCodeExecutor(sandbox_resource_name=sandbox_resource),
-            instruction="""You are a data analysis specialist. You write and execute python code
-            in a sandbox to parse uploaded asset inventories (e.g. CSVs) and return structured data.""",
+            instruction=f"{identity_prompt}\n\nYou are a data analysis specialist. You write and execute python code\n            in a sandbox to parse uploaded asset inventories (e.g. CSVs) and return structured data.",
             description="Delegated to for extracting structured info from user uploads via code execution.",
         )
         sub_agents.append(data_parser)
@@ -49,10 +49,6 @@ def get_producer() -> Agent:
         name="ssp_producer",
         model=os.environ.get("PRODUCER_MODEL", "gemini-3.1-pro-preview"),
         sub_agents=sub_agents,
-        instruction="""You coordinate the SSP production process.
-        1. Use data_parser to extract structured info from user uploads (if available).
-        2. Use bsi_researcher to query BSI catalogs for relevant controls.
-        3. Use oscal_writer to compile everything into the OSCAL SSP artifact.
-        """,
+        instruction=f"{identity_prompt}\n\n{producer_prompt}",
         description="Main producer agent for generating SSP and interacting with catalogs.",
     )

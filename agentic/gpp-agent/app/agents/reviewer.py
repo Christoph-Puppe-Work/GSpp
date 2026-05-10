@@ -6,6 +6,8 @@ from app.mcp_clients import McpClientService
 
 def get_reviewer() -> Agent:
     mcp_service = McpClientService()
+    identity_prompt = load_prompt("identity")
+    reviewer_prompt = load_prompt("ssp_generator/reviewer")
 
     # Reviewer has read-only tools to verify content
     anwender_tools = mcp_service.get_anwender_toolset(allow=[
@@ -20,7 +22,7 @@ def get_reviewer() -> Agent:
     agent = Agent(
         name="ssp_reviewer",
         model=os.environ.get("REVIEWER_MODEL", "gemini-2.5-flash"),
-        instruction=load_prompt("ssp_generator/reviewer"),
+        instruction=f"{identity_prompt}\n\n{reviewer_prompt}",
         tools=[anwender_tools, backend_tools],
         output_schema=ReviewCriteria,
         output_key="review_feedback",

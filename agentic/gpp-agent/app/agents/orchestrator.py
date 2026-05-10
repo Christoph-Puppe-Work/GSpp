@@ -1,14 +1,16 @@
 import os
 from google.adk.agents import Agent
 from app.agents.ssp_generator_workflow import get_ssp_generator_workflow
+from app.prompts import load_prompt
 
 def get_orchestrator() -> Agent:
     ssp_generator_loop = get_ssp_generator_workflow()
+    identity_prompt = load_prompt("identity")
 
     return Agent(
         name="gpp_agent",
         model=os.environ.get("ORCHESTRATOR_MODEL", "gemini-3.1-pro-preview"),
-        instruction="""You are the gpp_agent Orchestrator.
+        instruction=f"{identity_prompt}\n\n" + """You are the gpp_agent Orchestrator.
 Your job is to route user requests to the appropriate sub-agent or workflow.
 The system supports:
 1. SSP-Generator (Modelling, Asset integration, Risk Analysis)

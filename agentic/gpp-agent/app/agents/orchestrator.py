@@ -95,12 +95,21 @@ def _render_gate_message(template_id: str, **fields: Any) -> str:
 # ---------------------------------------------------------------------------
 
 
-def classify_router(node_input: Any) -> Event:
-    """Read the `ClassifierOutput` from the classifier agent and emit
+def classify_router(ctx: InvocationContext, node_input: Any) -> Event:
+    """Read the `ClassifierOutput` from state and emit
     `Event(route=...)` so the next graph edge dispatches to the right phase
-    agent. Also writes the chosen route into state for downstream gates.
+    agent. If no route is set, emit Event(route="chat") to loop back.
     """
-    decision = _coerce_classifier(node_input)
+    raw = ctx.session.state.get("classifier_route")
+    
+    if not raw:
+        return Event(route="chat")
+        
+    decision = _coerce_classifier(raw)
+    
+    # Optional: clean up state so we don't route immediately if we return to classifier
+    # ctx.session.state.pop("classifier_route", None)
+    
     return Event(
         route=decision.route,
         state={"current_phase": decision.route},
@@ -324,10 +333,11 @@ def get_workflow(mcp: McpClientService | None = None) -> Workflow:
         # 1. Entry: classifier picks the route
         ("START", classifier, classify_router),
 
-        # 2. Dispatch to one of five phase agents
+        # 2. Dispatch to one of five phase agents (or chat loop)
         (
             classify_router,
             {
+                "chat":      classifier,
                 "govern":    p1,
                 "model":     p2,
                 "track":     p3,

@@ -227,6 +227,10 @@ class WorkflowState(BaseModel):
         default=None,
         description="The route picked by the classifier in the current invocation.",
     )
+    classifier_route: Optional[ClassifierOutput] = Field(
+        default=None,
+        description="The raw structural output from the classifier agent.",
+    )
     user_role: Optional[str] = Field(
         default=None,
         description=(

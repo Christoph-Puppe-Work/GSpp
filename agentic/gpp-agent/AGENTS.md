@@ -44,7 +44,8 @@ Ask the user: Option A (simple single-project) or Option B (full CI/CD pipeline 
 
 ## Helper Scripts
 For convenience, we use helper scripts located in the root `scripts/` directory:
-- `scripts/run_local_gpp_agent.sh` and `scripts/run_local_gpp_agent_with_local_mcps.sh`: Set up the environment (reading from Terraform) and run `agents-cli playground` internally to start the agent locally.
+- `scripts/run_local_gpp_agent_with_local_mcps.sh`: Use this script for local testing. It sets up the environment and runs `agents-cli playground` internally to start the agent locally with local MCP servers.
+- `scripts/run_local_gpp_agent.sh`: Starts the agent locally reading from Terraform (for testing without local MCP overrides).
 - `scripts/deploy_gpp_agent.sh`: Gathers infrastructure variables from Terraform and issues `agents-cli deploy`.
 
 ---
@@ -55,6 +56,6 @@ For convenience, we use helper scripts located in the root `scripts/` directory:
 - **NEVER change the model** unless explicitly asked.
 - **Model 404 errors**: Fix `GOOGLE_CLOUD_LOCATION` (e.g., `global` instead of `europe-west3`), not the model name.
 - **ADK tool imports**: Import the tool instance, not the module: `from google.adk.tools.load_web_page import load_web_page`
-- **Run Python with `uv`**: `uv run python script.py`. Run `agents-cli install` first.
+- **Run Python with `.venv`**: Always source `(GIT_ROOT)/agentic/.venv/bin/activate` because it is the one shared environment for all tools. Do not use `uv run` if it isolates dependencies away from the shared `.venv`.
 - **Stop on repeated errors**: If the same error appears 3+ times, fix the root cause instead of retrying.
 - **Terraform conflicts** (Error 409): Use `terraform import` instead of retrying creation.

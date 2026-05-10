@@ -7,7 +7,7 @@ TOKEN=${2:-""}
 # Example of how to use this script with gcloud:
 # ./scripts/test_gpp-agent.sh https://gpp-agent-xxx.run.app $(gcloud auth print-identity-token)
 
-APP_NAME="gpp-agent"
+APP_NAME="app"
 USER_ID="test_user"
 SESSION_ID="test_session_$(date +%s)"
 
@@ -55,7 +55,16 @@ make_request "GET" "/copilotkit/info"
 echo -e "\n"
 
 # 3. Send a Query to ADK /run
-echo "=== 3. Send a Query (/run) ==="
+echo "=== 3. Create Session (/create-session) ==="
+CREATE_SESSION_PAYLOAD="{
+  \"appName\": \"$APP_NAME\",
+  \"userId\": \"$USER_ID\",
+  \"sessionId\": \"$SESSION_ID\"
+}"
+make_request "POST" "/create_session" "$CREATE_SESSION_PAYLOAD"
+echo -e "\n"
+
+echo "=== 4. Send a Query (/run) ==="
 PAYLOAD="{
   \"appName\": \"$APP_NAME\",
   \"userId\": \"$USER_ID\",
@@ -72,8 +81,8 @@ echo -e "\n"
 
 echo "--- TEST COMPLETE ---"
 
-# 4. CopilotKit POST Endpoint
-echo "=== 4. CopilotKit Endpoint (/copilotkit) ==="
+# 5. CopilotKit POST Endpoint
+echo "=== 5. CopilotKit Endpoint (/copilotkit) ==="
 # Provide a typical CopilotKit payload (simplified)
 PAYLOAD_CK="{
   \"messages\": [

@@ -1,9 +1,9 @@
 import { NextRequest } from "next/server";
 import { CopilotRuntime, copilotRuntimeNextJSAppRouterEndpoint } from "@copilotkit/runtime";
-const { ErrorReporting } = require("@google-cloud/error-reporting");
+import { ErrorReporting } from "@google-cloud/error-reporting";
 
 // Initialize Google Cloud Error Reporting
-let errors: any = null;
+let errors: ErrorReporting | null = null;
 try {
   errors = new ErrorReporting();
   console.log("[Frontend] Google Cloud Error Reporting initialized.");
@@ -38,14 +38,6 @@ export const POST = async (req: NextRequest) => {
   console.log(`\n=== COPILOTKIT CONNECTION ===`);
   console.log(`[Frontend] Target Agent URL: ${agentUrl}`);
 
-  try {
-    const reqClone = req.clone();
-    const reqBody = await reqClone.json();
-    console.log(`[Frontend] Request payload sent to agent:\n`, JSON.stringify(reqBody, null, 2));
-  } catch (e) {
-    console.log(`[Frontend] Request payload (unparseable):`, e);
-  }
-
   // The Cloud Run identity token audience must be the service base URL (no path).
   const serviceBaseUrl = new URL(agentUrl).origin;
   const identityToken = await getGcpIdentityToken(serviceBaseUrl);
@@ -77,19 +69,8 @@ export const POST = async (req: NextRequest) => {
   try {
     const response = await handleRequest(req);
     
-    // Log the answer content
-    // We clone the response so we don't consume the stream needed by the client
-    const responseClone = response.clone();
-    
     console.log(`[Frontend] Agent response status: ${response.status}`);
-    console.log(`[Frontend] Agent response headers:`, JSON.stringify(Object.fromEntries(response.headers.entries()), null, 2));
-
-    responseClone.text().then((text: string) => {
-      console.log(`\n[Frontend] Agent Answer Content:\n${text}\n=============================\n`);
-    }).catch((e: any) => {
-      console.log(`\n[Frontend] Failed to read agent answer content:`, e);
-    });
-
+    
     return response;
   } catch (error: any) {
     console.error(`\n[Frontend] Error calling Agent:`, error);

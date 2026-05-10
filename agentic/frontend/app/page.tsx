@@ -6,11 +6,26 @@ import { useCopilotAction } from "@copilotkit/react-core";
 export default function Home() {
 
   // Hier registrieren wir unsere Generative UI für HITL (Human-In-The-Loop)
-  (useCopilotAction as any)({
+  useCopilotAction({
     name: "approve_artifact",
+    description: "Request human approval for the generated OSCAL artifact.",
+    parameters: [
+      {
+        name: "artifact_type",
+        type: "string",
+        description: "The type of artifact (e.g., SSP, PoAM).",
+        required: true,
+      },
+      {
+        name: "content",
+        type: "string",
+        description: "The JSON string representation of the artifact.",
+        required: true,
+      }
+    ],
     handler: async (args: any) => {
       console.log("Artifact approved:", args);
-      return "Artifact approved";
+      return "Artifact approval requested";
     },
     render: ({ args, status, handler }: any) => {
 

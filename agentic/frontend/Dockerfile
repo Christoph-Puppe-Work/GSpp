@@ -13,6 +13,7 @@ FROM node:23-alpine AS runner
 WORKDIR /app
 ENV NODE_ENV production
 ENV PORT 3000
+ENV HOSTNAME="0.0.0.0"
 
 # Copy standalone build from builder
 COPY --from=builder /app/package.json ./package.json

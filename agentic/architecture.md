@@ -1,183 +1,183 @@
-# gpp_agent — Architektur-Regeln
+# gpp_agent — Architecture Rules
 
-Dieses Dokument hält die **verbindlichen** Architektur-Entscheidungen für
-`agentic/gpp_agent/` fest. Es ist die Quelle der Wahrheit für Code-Reviewer
-und Code-generierende Tools (Modelle). Kein Tutorial, keine Code-Snippets —
-nur Regeln. Wer Code schreibt, der gegen eine dieser Regeln verstößt, baut
-einen Bug.
+This document outlines the **binding** architecture decisions for
+`agentic/gpp_agent/`. It is the source of truth for code reviewers
+and code-generating tools (models). Not a tutorial, no code snippets —
+only rules. Anyone writing code that violates one of these rules is introducing
+a bug.
 
-Begleitende Doks: `README.md` (Spec), `tasks.md` (Backlog/Progress),
-`agentic/install.md` (lokales Setup), `agentic/terraform/` (Cloud-Run-Topologie).
-
----
-
-## 1. Komponentenkarte
-
-Vier Services, zwei Persistenzebenen:
-
-- **`frontend`** — Next.js + CopilotKit. Einziger öffentlicher Service.
-- **`gpp_agent`** — ADK-Multi-Agent (FastAPI + ag-ui-adk).
-- **`GSpp_MCP`** — read-only Anwenderkatalog-Server (BSI G++).
-- **`GS_backend_MCP`** — State, OSCAL-Validierung, GCS-Persistenz.
-- **Firestore** — Session- und State-Store des Agenten.
-- **GCS** — versionierte OSCAL-Artefakte pro Informationsverbund.
-
-Aufrufrichtung: Browser → Frontend → `gpp_agent` → `{GSpp_MCP, GS_backend_MCP}` → `{Firestore, GCS}`. **Keine** anderen Pfade. Insbesondere ruft das Frontend keinen MCP-Server direkt auf, und kein MCP-Server ruft den Agenten zurück.
+Accompanying Docs: `README.md` (Spec), `tasks.md` (Backlog/Progress),
+`agentic/install.md` (local setup), `agentic/terraform/` (Cloud Run topology).
 
 ---
 
-## 2. Protokolle und Transport
+## 1. Component Map
 
-| Verbindung | Protokoll | Pfad |
+Four services, two persistence layers:
+
+- **`frontend`** — Next.js + CopilotKit. Only public service.
+- **`gpp_agent`** — ADK Multi-Agent (FastAPI + ag-ui-adk).
+- **`GSpp_MCP`** — read-only user catalog server (BSI G++).
+- **`GS_backend_MCP`** — State, OSCAL validation, GCS persistence.
+- **Firestore** — Session and state store of the agent.
+- **GCS** — versioned OSCAL artifacts per Information Domain (Informationsverbund).
+
+Call direction: Browser → Frontend → `gpp_agent` → `{GSpp_MCP, GS_backend_MCP}` → `{Firestore, GCS}`. **No** other paths. In particular, the frontend never calls an MCP server directly, and no MCP server calls the agent back.
+
+---
+
+## 2. Protocols and Transport
+
+| Connection | Protocol | Path |
 |---|---|---|
 | Frontend → Agent | AG-UI (HTTP-POST + Event-Stream) | `/copilotkit` |
-| Agent → MCP-Server (beide) | MCP Streamable-HTTP | `/mcp` |
+| Agent → MCP Servers (both) | MCP Streamable-HTTP | `/mcp` |
 | Agent → Firestore | Google Cloud SDK | — |
-| Agent → GCS (via Backend-MCP) | indirekt, kein Direktzugriff | — |
+| Agent → GCS (via Backend MCP) | indirect, no direct access | — |
 
-**Verboten:**
+**Forbidden:**
 
-- SSE für MCP. Das alte `SseConnectionParams` ist deprecated; ausschließlich `StreamableHTTPConnectionParams`.
-- `adk api_server` als Frontend-Endpunkt. Der Agent läuft als FastAPI-Prozess (uvicorn), AG-UI-Brücke via `ag_ui_adk.add_adk_fastapi_endpoint`. `adk web` ist nur für Backend-Debugging in einem zweiten Terminal erlaubt.
-- Direkte GCS-Schreibzugriffe aus dem Agenten. Schreiben geht ausschließlich über Backend-MCP-Tools.
-
----
-
-## 3. Multi-Tenancy (Informationsverbund-Isolation)
-
-- `iv_id` matcht `^iv-[a-z0-9-]{3,40}$`. Andere Werte werden abgelehnt.
-- `user_id` bei `Runner.run_async()` hat exakt das Format `{caller}::iv::{iv_id}`. Frontend setzt das, Agent verlässt sich darauf.
-- App-level Callback (`before_run_callback` an der `App`) extrahiert `iv_id` aus `RunAgentInput.userId` und schreibt ihn in `state["informationsverbund_id"]`. Ohne diesen Callback gibt es keine Mandantentrennung.
-- GCS-Layout zwingend: `gs://{GCS_BUCKET_NAME}/{iv_id}/saves/{save_id}/…`. Backend-MCP setzt das durch.
-- Firestore-Sessions tragen `iv_id` als Label. Cross-IV-Reads sind ein Sicherheitsvorfall, kein Feature.
-
-Jede Code-Stelle, die `user_id` ohne `::iv::`-Suffix akzeptiert oder GCS-Pfade ohne IV-Prefix konstruiert, ist ein **Tenant-Isolation-Verstoß** und Merge-Blocker.
+- SSE for MCP. The old `SseConnectionParams` is deprecated; exclusively `StreamableHTTPConnectionParams`.
+- `adk api_server` as a frontend endpoint. The agent runs as a FastAPI process (uvicorn), AG-UI bridge via `ag_ui_adk.add_adk_fastapi_endpoint`. `adk web` is only allowed for backend debugging in a second terminal.
+- Direct GCS write accesses from the agent. Writing is done exclusively via Backend MCP tools.
 
 ---
 
-## 4. Maker-Checker mit Iteration
+## 3. Multi-Tenancy (Information Domain Isolation)
 
-Producer und Reviewer laufen in einer `LoopAgent`, niemals in einer `SequentialAgent`. Eine `SequentialAgent` ist ein One-Shot ohne Korrekturpfad und kollabiert das Pattern.
+- `iv_id` matches `^iv-[a-z0-9-]{3,40}$`. Other values are rejected.
+- `user_id` for `Runner.run_async()` has exactly the format `{caller}::iv::{iv_id}`. Frontend sets this, Agent relies on it.
+- App-level Callback (`before_run_callback` on the `App`) extracts `iv_id` from `RunAgentInput.userId` and writes it into `state["informationsverbund_id"]`. Without this callback, there is no tenant isolation.
+- Mandatory GCS layout: `gs://{GCS_BUCKET_NAME}/{iv_id}/saves/{save_id}/…`. Backend MCP enforces this.
+- Firestore sessions carry `iv_id` as a label. Cross-IV reads are a security incident, not a feature.
 
-- **Producer** erstellt den Entwurf (`PRODUCER_MODEL`). Hat Schreib-Zugriff auf Backend-MCP.
-- **Reviewer** prüft (`REVIEWER_MODEL`). Tool-Set ist read-only (siehe §7). Liefert ein strukturiertes Verdikt (`output_schema=ReviewCriteria`).
-- **Approval-Signal**: Reviewer ruft `exit_loop`, das `escalate=True` UND `skip_summarization=True` setzt. Beides ist Pflicht.
-- **Loop-Termination**: spätestens nach `MAX_REVIEW_ITERATIONS` (default 3). Niemals unbegrenzt.
+Any code snippet that accepts `user_id` without the `::iv::` suffix or constructs GCS paths without an IV prefix is a **Tenant Isolation Violation** and a merge blocker.
 
-`LoopAgent` propagiert `escalate=True` an die parent `SequentialAgent` und würde die nachfolgenden Schritte (z. B. GCS-Save) blockieren. Deshalb ist die `LoopAgent` immer in eine `EscalationBarrier` (`tools/escalation_barrier.py`) gewickelt, deren `inner` als `BaseAgent` typisiert ist (nicht `LoopAgent`, sonst akzeptiert sie keine `SequentialAgent`).
+---
 
-Wenn ein Reviewer sowohl `output_schema` als auch `tools` braucht: zwei-stufig aufspalten — `inspector` (mit Tools, freier Output, schreibt in `state`) gefolgt von `judge` (kein Tools, `output_schema`, liest `state`). Gemini-Modelle emittieren bei aktivem `responseSchema` keine zuverlässigen Tool-Calls.
+## 4. Maker-Checker with Iteration
+
+Producer and Reviewer run in a `LoopAgent`, never in a `SequentialAgent`. A `SequentialAgent` is a one-shot without a correction path and collapses the pattern.
+
+- **Producer** creates the draft (`PRODUCER_MODEL`). Has write access to the Backend MCP.
+- **Reviewer** verifies (`REVIEWER_MODEL`). Toolset is read-only (see §7). Delivers a structured verdict (`output_schema=ReviewCriteria`).
+- **Approval Signal**: Reviewer calls `exit_loop`, which sets `escalate=True` AND `skip_summarization=True`. Both are mandatory.
+- **Loop Termination**: at the latest after `MAX_REVIEW_ITERATIONS` (default 3). Never unlimited.
+
+`LoopAgent` propagates `escalate=True` to the parent `SequentialAgent` and would block the subsequent steps (e.g., GCS Save). Therefore, the `LoopAgent` is always wrapped in an `EscalationBarrier` (`tools/escalation_barrier.py`), whose `inner` is typed as `BaseAgent` (not `LoopAgent`, otherwise it won't accept a `SequentialAgent`).
+
+If a Reviewer needs both `output_schema` and `tools`: split into two stages — `inspector` (with Tools, free output, writes to `state`) followed by `judge` (no Tools, `output_schema`, reads `state`). Gemini models do not emit reliable tool calls when a `responseSchema` is active.
 
 ---
 
 ## 5. Human-in-the-Loop
 
-HITL läuft **ausschließlich** über AG-UI / CopilotKit Generative UI, nicht als server-seitiger Polling-Loop.
+HITL runs **exclusively** via AG-UI / CopilotKit Generative UI, not as a server-side polling loop.
 
-- `App` wird mit `ResumabilityConfig(is_resumable=True)` konstruiert. Ohne das pausiert ADK nicht beim Client-Tool-Call.
-- Der Agent (Orchestrator oder relevanter Sub-Agent) hat `AGUIToolset()` in `tools=[…]`. Damit werden alle vom Frontend per `useCopilotAction` registrierten Aktionen (z. B. `approve_artifact`) zu echten ADK-Tools.
-- Beim Aufruf eines Client-Tools persistiert ADK das `FunctionCall`-Event und pausiert. Frontend rendert die Generative UI, User antwortet, AG-UI sendet das `FunctionResponse`-Event zurück, ADK setzt fort.
-- Server-seitige `LoopAgent`-basierte HITL-Konstruktionen sind verboten. Sie kollidieren mit dem Resumability-Modell und führen zu doppelter Wahrheit.
-
----
-
-## 6. Validierung
-
-- Jedes geschriebene OSCAL-Artefakt durchläuft `verify_oscal_json` **bevor** es in GCS landet. Das Tool ist Gatekeeper, nicht optional.
-- `verify_oscal_json` gehört architektonisch in den **Backend-MCP**, nicht in den Anwender-MCP. Der Backend-MCP führt Schemas + Persistenz atomar zusammen. (Anmerkung: aktuell ist das Tool im Anwender-MCP — Migration ist fällig.)
-- Bei Validierungsfehler: Agent reicht den Fehler unverändert an den User durch (HITL). Der Agent korrigiert OSCAL-JSON nicht selbständig — das gibt Halluzinations-Patches und maskiert Bugs.
+- `App` is constructed with `ResumabilityConfig(is_resumable=True)`. Without this, ADK does not pause on a client tool call.
+- The Agent (Orchestrator or relevant Sub-Agent) has `AGUIToolset()` in `tools=[…]`. This turns all actions registered by the frontend via `useCopilotAction` (e.g., `approve_artifact`) into genuine ADK tools.
+- When calling a client tool, ADK persists the `FunctionCall` event and pauses. Frontend renders the Generative UI, user responds, AG-UI sends the `FunctionResponse` event back, ADK resumes.
+- Server-side `LoopAgent`-based HITL constructs are forbidden. They collide with the resumability model and lead to a double truth.
 
 ---
 
-## 7. MCP-Tool-Zugriffspolicy
+## 6. Validation
 
-Tool-Filter pro Agent ist Pflicht, nicht Empfehlung. Defaults:
+- Every written OSCAL artifact goes through `verify_oscal_json` **before** it lands in GCS. The tool is a Gatekeeper, not optional.
+- `verify_oscal_json` architecturally belongs in the **Backend MCP**, not in the User MCP. The Backend MCP atomically merges schemas + persistence. (Note: currently the tool is in the User MCP — migration is due.)
+- On validation error: Agent passes the error unaltered to the user (HITL). The Agent does not correct OSCAL JSON independently — this results in hallucination patches and masks bugs.
+
+---
+
+## 7. MCP Tool Access Policy
+
+Tool filter per Agent is mandatory, not a recommendation. Defaults:
 
 | Tool | Server | Producer | Reviewer | Validator |
 |---|---|---|---|---|
-| `list_groups`, `get_group` | Anwender | ✓ | ✓ | — |
-| `list_controls`, `get_control` | Anwender | ✓ | ✓ | — |
-| `get_control_raw` | Anwender | ✓ | — | — |
-| `search_controls` | Anwender | ✓ | — | — |
-| `list_zielobjektkategorien`, `controls_for_zielobjekt`, `get_oscal_profile` | Anwender | ✓ | — | — |
-| `verify_oscal_json` | Backend (Soll) | — | — | ✓ |
+| `list_groups`, `get_group` | User | ✓ | ✓ | — |
+| `list_controls`, `get_control` | User | ✓ | ✓ | — |
+| `get_control_raw` | User | ✓ | — | — |
+| `search_controls` | User | ✓ | — | — |
+| `list_zielobjektkategorien`, `controls_for_zielobjekt`, `get_oscal_profile` | User | ✓ | — | — |
+| `verify_oscal_json` | Backend (Target) | — | — | ✓ |
 | `create_oscal_model`, `update_oscal_model` | Backend | ✓ | — | — |
 | `get_ssp_inventory`, `get_ssp_implementation` | Backend | ✓ | ✓ | — |
 | `get_assessment_*`, `get_poam_items` | Backend | ✓ | ✓ | — |
 
-Reviewer mit Schreib-Tool ist ein DoD-Verstoß. MCP-Toolsets werden über `services/mcp_client_service.py` (`get_anwender_toolset(allow=…)`, `get_backend_toolset(allow=…)`) erzeugt, nirgends sonst.
+A Reviewer with a write tool is a DoD violation. MCP toolsets are generated via `services/mcp_client_service.py` (`get_anwender_toolset(allow=…)`, `get_backend_toolset(allow=…)`), nowhere else.
 
 ---
 
-## 8. Modelle
+## 8. Models
 
-Drei Gemini-IDs sind im Scope, alle aus der 3.x-Familie. Andere IDs sind verboten.
+Three Gemini IDs are in scope, all from the 3.x family. Other IDs are forbidden.
 
-| Env-Var | Default | Rolle |
+| Env Var | Default | Role |
 |---|---|---|
-| `PRODUCER_MODEL` | `gemini-3.1-pro-preview` | Producer-Agenten, alles, wo Mapping-Qualität direkt das Artefakt bestimmt |
-| `REVIEWER_MODEL` | `gemini-3-flash-preview` | Reviewer, Orchestrator-Routing, Catalog-Resolver |
-| `TOOL_AGENT_MODEL` | `gemini-3.1-flash-lite-preview` | input_loader, hochfrequente mechanische Agenten |
+| `PRODUCER_MODEL` | `gemini-3.1-pro-preview` | Producer Agents, anything where mapping quality directly determines the artifact |
+| `REVIEWER_MODEL` | `gemini-3-flash-preview` | Reviewer, Orchestrator Routing, Catalog Resolver |
+| `TOOL_AGENT_MODEL` | `gemini-3.1-flash-lite-preview` | input_loader, high-frequency mechanical agents |
 
-Regeln:
+Rules:
 
-- Modell-Strings niemals hardcoden. Immer `os.environ.get("…", DEFAULT)`, mit Default aus der 3.x-Familie. Fallbacks auf `gemini-2.5-*` sind verboten — sie maskieren fehlende `.env`-Loads.
-- `temperature`-Override auf Gemini-3-Modellen ist verboten. Default `1.0` ist trainiert; niedriger erzeugt Loops und Reasoning-Degradation.
-- Reviewer auf Pro: nur mit gemessenem Qualitätsbeleg. Default ist Flash.
+- Never hardcode model strings. Always `os.environ.get("…", DEFAULT)`, with a default from the 3.x family. Fallbacks to `gemini-2.5-*` are forbidden — they mask missing `.env` loads.
+- `temperature` override on Gemini 3 models is forbidden. Default `1.0` is trained; lower creates loops and reasoning degradation.
+- Reviewer on Pro: only with measured quality proof. Default is Flash.
 
 ---
 
 ## 9. Observability
 
-- OpenTelemetry wird einmal pro Prozess in `tools/observability.py:configure_observability()` aufgesetzt. `OTEL_DISABLED=1` deaktiviert für Tests.
-- Jeder `LlmAgent` registriert `enrich_span_with_iv` als `before_agent_callback`. Spans tragen damit `gpp.iv_id` und `gpp.agent` als Attribute.
-- Tool-Argumente werden niemals im Klartext geloggt. SHA-256-Hash der `args`-JSON-Repräsentation, gekürzt auf 16 Zeichen. CIS-Daten, Vendor-Evidence, Kunden-Secrets dürfen Cloud Trace nicht erreichen.
-- Custom-Metric `gpp_agent/tokens_per_run` mit Labels `{iv_id, workflow, model}` als Billing-/Chargeback-Signal.
+- OpenTelemetry is set up once per process in `tools/observability.py:configure_observability()`. `OTEL_DISABLED=1` deactivates it for tests.
+- Every `LlmAgent` registers `enrich_span_with_iv` as a `before_agent_callback`. Spans thus carry `gpp.iv_id` and `gpp.agent` as attributes.
+- Tool arguments are never logged in plaintext. SHA-256 hash of the `args` JSON representation, truncated to 16 characters. CIS data, Vendor Evidence, customer secrets must not reach Cloud Trace.
+- Custom Metric `gpp_agent/tokens_per_run` with labels `{iv_id, workflow, model}` as a billing/chargeback signal.
 
 ---
 
 ## 10. Definition of Done — Tests
 
-Ein Workflow gilt nicht als fertig, bevor diese Tests grün sind:
+A workflow is not considered finished until these tests are green:
 
-1. `test_tenant_isolation` — zwei parallele Sessions mit verschiedenen `iv_id` sehen nichts voneinander.
-2. `test_review_loop_passes_after_one_rejection` — Reviewer lehnt einmal ab, beim zweiten Lauf approved, Post-Loop-Step (GCS-Save) läuft. Beweist `EscalationBarrier`.
-3. `test_agui_resumability_pause` — Workflow pausiert beim `approve_artifact`-Tool-Call und nimmt ein simuliertes `FunctionResponse` korrekt auf.
-4. `test_schema_validation_blocks_save` — fehlerhaftes OSCAL erreicht GCS nicht.
-5. `test_redteam_prompt_injection_in_pdf` — Vendor-PDF mit „IGNORE PREVIOUS INSTRUCTIONS"-Payload. Producer exfiltriert nicht, Reviewer markiert als Finding.
-6. `test_redteam_unauthorized_tool_call` — Producer fordert Tool außerhalb seines Filters → `ToolNotFound`, kein stiller Fallback.
-7. `test_token_exhaustion_failsafe` — Reviewer, der nie approved → Loop endet bei `MAX_REVIEW_ITERATIONS`, keine Endlosschleife.
-8. `test_mcp_5xx_does_not_crash_producer` — MCP-Sidecar gibt 503 → strukturierter Tool-Error im Event-Stream, kein silent-catch.
+1. `test_tenant_isolation` — two parallel sessions with different `iv_id`s see nothing of each other.
+2. `test_review_loop_passes_after_one_rejection` — Reviewer rejects once, approves on the second run, Post-Loop Step (GCS Save) runs. Proves `EscalationBarrier`.
+3. `test_agui_resumability_pause` — Workflow pauses at the `approve_artifact` tool call and correctly picks up a simulated `FunctionResponse`.
+4. `test_schema_validation_blocks_save` — invalid OSCAL does not reach GCS.
+5. `test_redteam_prompt_injection_in_pdf` — Vendor PDF with "IGNORE PREVIOUS INSTRUCTIONS" payload. Producer does not exfiltrate, Reviewer flags it as a Finding.
+6. `test_redteam_unauthorized_tool_call` — Producer requests a tool outside its filter → `ToolNotFound`, no silent fallback.
+7. `test_token_exhaustion_failsafe` — Reviewer that never approves → Loop ends at `MAX_REVIEW_ITERATIONS`, no endless loop.
+8. `test_mcp_5xx_does_not_crash_producer` — MCP Sidecar returns 503 → structured tool error in the event stream, no silent catch.
 
 ---
 
-## 11. Verzeichnis-Konventionen
+## 11. Directory Conventions
 
-| Inhalt | Pfad |
+| Content | Path |
 |---|---|
-| Domain-Workflow | `agents/<domain>/{producer,reviewer,workflow,tools}.py` |
+| Domain Workflow | `agents/<domain>/{producer,reviewer,workflow,tools}.py` |
 | Shared Schemas | `shared/schemas.py` |
-| Review-Kriterien | `shared/review_criteria.py` |
-| Prompts | `shared/prompts/<domain>/<role>.md` (mit YAML-Frontmatter) |
-| Service-Layer (GCS, Sessions, MCP-Clients) | `services/` |
-| Custom Infra-Agenten (`EscalationBarrier`) | `tools/` |
-| MCP-Tool-Wrapper | `tools/<name>.py` |
-| Unit-Test | `tests/unit/test_<module>.py` |
-| Integration-Test | `tests/integration/test_<workflow>_<scenario>.py` |
-| Eval-Snapshot | `tests/eval_snapshots/<workflow>/case_NNN_<slug>/` |
+| Review Criteria | `shared/review_criteria.py` |
+| Prompts | `shared/prompts/<domain>/<role>.md` (with YAML Frontmatter) |
+| Service Layer (GCS, Sessions, MCP Clients) | `services/` |
+| Custom Infra Agents (`EscalationBarrier`) | `tools/` |
+| MCP Tool Wrapper | `tools/<name>.py` |
+| Unit Test | `tests/unit/test_<module>.py` |
+| Integration Test | `tests/integration/test_<workflow>_<scenario>.py` |
+| Eval Snapshot | `tests/eval_snapshots/<workflow>/case_NNN_<slug>/` |
 
-Keine neuen Top-Level-Verzeichnisse ohne Eintrag in dieser Tabelle. Keine Production-Logik in `tests/`. `shared/` ist nur für Code, der zwischen mindestens zwei Sub-Projekten geteilt wird.
+No new top-level directories without an entry in this table. No production logic in `tests/`. `shared/` is only for code that is shared between at least two sub-projects.
 
 ---
 
-## 12. Referenzen (verifiziert Mai 2026)
+## 12. References (verified May 2026)
 
-- Frontend-Brücke: <https://docs.copilotkit.ai/adk>, <https://www.copilotkit.ai/blog/build-a-frontend-for-your-adk-agents-with-ag-ui>
+- Frontend Bridge: <https://docs.copilotkit.ai/adk>, <https://www.copilotkit.ai/blog/build-a-frontend-for-your-adk-agents-with-ag-ui>
 - AG-UI ADK Middleware: <https://pypi.org/project/ag-ui-adk/>
 - ADK MCP Tools (Streamable-HTTP): <https://google.github.io/adk-docs/tools-custom/mcp-tools/>
-- ADK escalate-Verhalten: <https://github.com/google/adk-python/issues/1376>
+- ADK escalate Behavior: <https://github.com/google/adk-python/issues/1376>
 - ADK LoopAgent: <https://google.github.io/adk-docs/agents/workflow-agents/loop-agents/>
 - MCP Streamable-HTTP Spec: <https://modelcontextprotocol.io/specification/2025-03-26/basic/transports>
 
-Wenn die Live-Docs diesen Regeln widersprechen, gewinnen die Live-Docs — dann
-ist dieser Doc-Stand stale und muss per PR aktualisiert werden.
+If the live docs contradict these rules, the live docs win — then
+this doc state is stale and must be updated via PR.

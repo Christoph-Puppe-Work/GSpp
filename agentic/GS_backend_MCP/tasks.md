@@ -1,4 +1,4 @@
-# Implementation Plan: G++ OSCAL Context- und State-Manager (MCP Server)
+# Implementation Plan: G++ OSCAL Context and State Manager (MCP Server)
 
 This document outlines the phased implementation plan for the G++ OSCAL Context Management MCP Server deployed on GCP Cloud Run.
 

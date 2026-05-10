@@ -1,82 +1,82 @@
 # gpp_agentic Ecosystem Installation Guide
 
-Dieses Dokument beschreibt detailliert die Einrichtung der gesamten `agentic` Architektur auf einer lokalen Entwicklungsmaschine. Das System besteht aus drei zentralen Python-Komponenten und (zukünftig) einem React/Next.js Frontend.
+This document details the setup of the entire `agentic` architecture on a local development machine. The system consists of three central Python components and (in the future) a React/Next.js frontend.
 
-## Architektur-Überblick
+## Architecture Overview
 
-1. **`GSpp_MCP`**: Der Anwender MCP Server. Stellt read-only Zugriff auf BSI Grundschutz Kataloge, Controls und OSCAL Schemas bereit.
-2. **`GS_backend_MCP`**: Der Backend MCP Server. Verwaltet den Status (State), speichert Artefakte (via Google Cloud Storage - GCS) und führt strikte OSCAL JSON-Validierungen aus.
-3. **`gpp_agent`**: Das zentrale ADK (Agent Development Kit) Multi-Agenten-System, das Workflows (wie den SSP-Generator) orchestriert.
-4. **`Frontend`** (CopilotKit / AG-UI): Das interaktive Human-in-the-Loop Web-Interface (noch zu implementieren).
-
----
-
-## Voraussetzungen
-
-- **Python**: Version 3.12 oder höher.
-- **Node.js**: Version 20+ (für das zukünftige CopilotKit Frontend und ADK CLI Tools).
-- **Google Cloud SDK (gcloud)**: Zur Authentifizierung gegen GCS und Cloud Trace.
-- **uv (empfohlen)** oder `pip` für schnelles Python Dependency Management.
+1. **`GSpp_MCP`**: The User MCP Server. Provides read-only access to BSI Grundschutz catalogs, controls, and OSCAL schemas.
+2. **`GS_backend_MCP`**: The Backend MCP Server. Manages state, stores artifacts (via Google Cloud Storage - GCS), and performs strict OSCAL JSON validations.
+3. **`gpp_agent`**: The central ADK (Agent Development Kit) Multi-Agent System that orchestrates workflows (such as the SSP Generator).
+4. **`Frontend`** (CopilotKit / AG-UI): The interactive Human-in-the-Loop Web-Interface (yet to be implemented).
 
 ---
 
-## Schritt 1: Lokale Google Cloud Authentifizierung
+## Prerequisites
 
-Da der `GS_backend_MCP` Artefakte im GCP Bucket ablegt und OpenTelemetry-Daten an Cloud Trace gesendet werden, müssen lokale Application Default Credentials (ADC) gesetzt werden.
+- **Python**: Version 3.12 or higher.
+- **Node.js**: Version 20+ (for the future CopilotKit Frontend and ADK CLI Tools).
+- **Google Cloud SDK (gcloud)**: For authentication against GCS and Cloud Trace.
+- **uv (recommended)** or `pip` for fast Python dependency management.
+
+---
+
+## Step 1: Local Google Cloud Authentication
+
+Since the `GS_backend_MCP` stores artifacts in the GCP Bucket and sends OpenTelemetry data to Cloud Trace, local Application Default Credentials (ADC) must be set.
 
 ```bash
-# Login in Google Cloud und Erstellung der application_default_credentials.json
+# Login to Google Cloud and create application_default_credentials.json
 gcloud auth application-default login
 
-# Projekt setzen (ersetze DEIN_PROJEKT_ID)
-gcloud config set project DEIN_PROJEKT_ID
+# Set project (replace YOUR_PROJECT_ID)
+gcloud config set project YOUR_PROJECT_ID
 ```
 
 ---
 
-## Schritt 2: GSpp_MCP (Anwenderkatalog) einrichten
+## Step 2: Set up GSpp_MCP (User Catalog)
 
-1. **In das Verzeichnis wechseln**:
+1. **Change to the directory**:
    ```bash
    cd agentic/GSpp_MCP
    ```
-2. **Abhängigkeiten installieren**:
-   Nutze `uv` für die beste Performance (oder `pip install -e .`):
+2. **Install dependencies**:
+   Use `uv` for the best performance (or `pip install -e .`):
    ```bash
    uv venv
-   # Unter Windows:
+   # On Windows:
    .venv\Scripts\activate
-   # Unter Linux/Mac:
+   # On Linux/Mac:
    source .venv/bin/activate
    
    uv pip install -e .
    ```
-3. **Konfiguration**:
-   Erstelle eine `.env` (falls benötigt) basierend auf einer `.env.example`.
-4. **Server starten**:
-   Starten des MCP Servers im SSE-Modus (Server-Sent Events) für die Kommunikation über HTTP (Standard-Port ist üblicherweise 8080).
+3. **Configuration**:
+   Create a `.env` file (if needed) based on a `.env.example`.
+4. **Start the server**:
+   Start the MCP Server in SSE mode (Server-Sent Events) for communication over HTTP (default port is usually 8080).
    ```bash
-   # (Abhängig vom in pyproject.toml definierten Entrypoint)
-   # Beispiel:
+   # (Depending on the entry point defined in pyproject.toml)
+   # Example:
    python -m server.main --transport sse --port 8080
    ```
-5. **Installation verifizieren**:
-   Führe das Test-Skript aus, um sicherzustellen, dass alle MCP-Tools (Anwenderkatalog) korrekt funktionieren.
-   *(Öffne dazu ein neues Terminal im `GSpp_MCP` Verzeichnis)*:
+5. **Verify installation**:
+   Run the test script to ensure all MCP tools (user catalog) are functioning correctly.
+   *(To do this, open a new terminal in the `GSpp_MCP` directory)*:
    ```bash
    ./scripts/test_all_tools.sh
    ```
 
 ---
 
-## Schritt 3: GS_backend_MCP (State & Storage) einrichten
+## Step 3: Set up GS_backend_MCP (State & Storage)
 
-1. **In das Verzeichnis wechseln**:
-   Öffne ein neues Terminal.
+1. **Change to the directory**:
+   Open a new terminal.
    ```bash
    cd agentic/GS_backend_MCP
    ```
-2. **Abhängigkeiten installieren**:
+2. **Install dependencies**:
    ```bash
    uv venv
    # Windows:
@@ -84,145 +84,145 @@ gcloud config set project DEIN_PROJEKT_ID
    
    uv pip install -e .
    ```
-3. **Konfiguration**:
-   Erstelle eine `.env` Datei:
+3. **Configuration**:
+   Create a `.env` file:
    ```env
-   # WICHTIG: Definiere hier deinen GCP Bucket Namen
-   GCP_BUCKET_NAME=mein-gspp-agent-bucket
+   # IMPORTANT: Define your GCP Bucket name here
+   GCP_BUCKET_NAME=my-gspp-agent-bucket
    ```
-4. **Server starten**:
-   Starten des Backend MCP Servers im SSE-Modus auf einem anderen Port (z.B. 8081).
+4. **Start the server**:
+   Start the Backend MCP Server in SSE mode on a different port (e.g. 8081).
    ```bash
    python -m myserver.main --transport sse --port 8081
    ```
-5. **Installation verifizieren**:
-   Führe das Test-Skript aus, um die GCS-Speicherung und OSCAL-Schema Validierung zu testen.
-   *(Öffne dazu ein neues Terminal im `GS_backend_MCP` Verzeichnis)*:
+5. **Verify installation**:
+   Run the test script to test GCS storage and OSCAL schema validation.
+   *(To do this, open a new terminal in the `GS_backend_MCP` directory)*:
    ```bash
    ./scripts/test_all_tools.sh
    ```
 
 ---
 
-## Schritt 4: gpp_agent (ADK System) einrichten
+## Step 4: Set up gpp_agent (ADK System)
 
-Der gpp_agent verbindet sich mit den beiden laufenden MCP Servern und führt die Workflows aus.
+The gpp_agent connects to the two running MCP servers and executes the workflows.
 
-1. **In das Verzeichnis wechseln**:
-   Öffne ein drittes Terminal.
+1. **Change to the directory**:
+   Open a third terminal.
    ```bash
    cd agentic/gpp_agent
    ```
-2. **Abhängigkeiten installieren**:
+2. **Install dependencies**:
    ```bash
    uv venv
    # Windows:
    .venv\Scripts\activate
    
-   # Dies installiert google-adk, pydantic, mcp[cli], etc.
+   # This installs google-adk, pydantic, mcp[cli], etc.
    uv pip install -e .
    ```
-3. **Konfiguration**:
-   Kopiere die `.env.example` zu `.env` und passe die URLs an:
+3. **Configuration**:
+   Copy the `.env.example` to `.env` and adjust the URLs:
    ```bash
    cp .env.example .env
    ```
-   **Inhalt der `.env` (Beispiel)**:
+   **Contents of `.env` (Example)**:
    ```env
    # MCP Server Endpoints (SSE)
    ANWENDER_MCP_URL=http://localhost:8080
    BACKEND_MCP_URL=http://localhost:8081
    
-   # Agent Modelle
+   # Agent Models
    ORCHESTRATOR_MODEL=gemini-3-flash-preview
    PRODUCER_MODEL=gemini-3.1-pro-preview
    REVIEWER_MODEL=gemini-3-flash-preview
    
    # API Keys
-   GOOGLE_API_KEY=dein-gemini-api-key
+   GOOGLE_API_KEY=your-gemini-api-key
    
-   # OpenTelemetry Projekt
-   GOOGLE_CLOUD_PROJECT=DEIN_PROJEKT_ID
+   # OpenTelemetry Project
+   GOOGLE_CLOUD_PROJECT=YOUR_PROJECT_ID
    ```
-4. **Testen des Agenten via ADK Web**:
-   Da das finale Frontend noch fehlt, nutzen wir die integrierte ADK Web-Oberfläche für lokale Entwicklungstests.
+4. **Test the agent via ADK Web**:
+   Since the final frontend is still missing, we use the integrated ADK Web interface for local development tests.
    ```bash
    adk web --port 3000
    ```
-   Der Agent ist nun unter `http://localhost:3000` erreichbar.
+   The agent is now accessible at `http://localhost:3000`.
 
 ---
 
-## Schritt 5: Frontend Integration (CopilotKit / AG-UI) - *Zukünftig*
+## Step 5: Frontend Integration (CopilotKit / AG-UI) - *Future*
 
-*Sobald das Next.js Frontend implementiert ist, lauten die Schritte:*
+*Once the Next.js frontend is implemented, the steps will be:*
 
-1. In ein neues Verzeichnis im Root (z.B. `agentic/frontend`) wechseln.
-2. Abhänigkeiten installieren: `npm install`
-3. Verbindungs-URLs zum ADK Agent Server (`http://localhost:8000` standardmäßig über AG-UI/FastAPI) in der `.env.local` hinterlegen.
-4. Starten mit `npm run dev`.
+1. Change to a new directory in the root (e.g. `agentic/frontend`).
+2. Install dependencies: `npm install`
+3. Store connection URLs to the ADK Agent Server (`http://localhost:8000` by default via AG-UI/FastAPI) in the `.env.local`.
+4. Start with `npm run dev`.
 
 ---
 
-## Infrastruktur Deployment (Terraform & Cloud Run)
+## Infrastructure Deployment (Terraform & Cloud Run)
 
-Wenn du das System produktiv in die Google Cloud deployen möchtest, nutze die bereitgestellten Terraform-Skripte im Verzeichnis `agentic/terraform`.
+If you want to deploy the system into production on the Google Cloud, use the provided Terraform scripts in the `agentic/terraform` directory.
 
-Das Terraform-Skript baut automatisch die Docker-Images aller vier Komponenten (`GSpp_MCP`, `GS_backend_MCP`, `gpp_agent` und `frontend`), pusht sie in eine neue Artifact Registry und deployed sie als sichere, unabhängig skalierende **Cloud Run Services**. 
+The Terraform script automatically builds the Docker images of all four components (`GSpp_MCP`, `GS_backend_MCP`, `gpp_agent`, and `frontend`), pushes them to a new Artifact Registry, and deploys them as secure, independently scaling **Cloud Run Services**.
 
-**WICHTIG**: In einer neues Subscription muss erst die ressource management API aktiviert werden:
+**IMPORTANT**: In a new subscription, the resource management API must first be enabled:
 
 ```bash
 gcloud services enable cloudresourcemanager.googleapis.com serviceusage.googleapis.com
 ```
 
-Zudem werden dedizierte Service Accounts, ein GCS Bucket für die OSCAL Artefakte und präzise IAM-Bindungen erstellt nach dem *Zero Trust* Prinzip:
-- Nur der Agent darf die MCP-Server aufrufen.
-- Nur das Frontend darf den Agent aufrufen.
-- Nur das Frontend ist öffentlich (`allUsers`) erreichbar.
+In addition, dedicated Service Accounts, a GCS Bucket for the OSCAL artifacts, and precise IAM bindings are created following the *Zero Trust* principle:
+- Only the agent is allowed to call the MCP servers.
+- Only the frontend is allowed to call the agent.
+- Only the frontend is publicly accessible (`allUsers`).
 
-1. **Voraussetzungen für Terraform prüfen**:
-   Stelle sicher, dass `terraform` lokal installiert ist und du weiterhin in gcloud eingeloggt bist (`gcloud auth application-default login`).
-2. **In das Terraform-Verzeichnis wechseln**:
+1. **Check prerequisites for Terraform**:
+   Ensure that `terraform` is installed locally and that you are still logged into gcloud (`gcloud auth application-default login`).
+2. **Change to the Terraform directory**:
    ```bash
    cd agentic/terraform
    ```
-3. **Variablen anpassen**:
-   Prüfe die `variables.tf` (bzw. erstelle eine `terraform.tfvars` Datei) und setze zwingend deine `project_id`, `region` und `allowed_user_emails` (Nutzer, die den Agenten lokal mit Cloud-Rechten ausführen dürfen).
-4. **Terraform initialisieren und anwenden**:
+3. **Adjust variables**:
+   Check the `variables.tf` (or create a `terraform.tfvars` file) and strictly set your `project_id`, `region`, and `allowed_user_emails` (users who are allowed to run the agent locally with cloud permissions).
+4. **Initialize and apply Terraform**:
    ```bash
    terraform init
    
-   # Zeigt an, welche Ressourcen (Cloud Run, Buckets, SAs) erstellt werden
+   # Shows which resources (Cloud Run, Buckets, SAs) will be created
    terraform plan
    
-   # Führt das Deployment durch (Docker Builds werden via Cloud Build getriggert)
+   # Executes the deployment (Docker builds are triggered via Cloud Build)
    terraform apply
    ```
-5. **Nach dem Deployment (Agent konfigurieren)**:
-   Nach erfolgreichem `terraform apply` erhältst du (via `outputs.tf`) die Cloud Run URLs für beide MCP Server.
-   Aktualisiere die `.env` Datei in deinem lokalen `gpp_agent` Verzeichnis, um nicht mehr auf localhost, sondern auf die Cloud Run Services zu verweisen:
+5. **After Deployment (Configure Agent)**:
+   After a successful `terraform apply`, you will receive (via `outputs.tf`) the Cloud Run URLs for both MCP servers.
+   Update the `.env` file in your local `gpp_agent` directory to point to the Cloud Run Services instead of localhost:
    ```env
    ANWENDER_MCP_URL=https://gs-plus-plus-mcp-...a.run.app
    BACKEND_MCP_URL=https://gpp-backend-mcp-...a.run.app
    ```
-   Da der Terraform-Code dir (`allowed_user_emails`) das Recht `roles/iam.serviceAccountTokenCreator` auf den `gpp_agent_sa` gibt, kannst du den Agenten weiterhin lokal via `adk web` entwickeln, aber er greift nun sicher auf die echten, in der Cloud gehosteten Backend-Systeme zu.
+   Since the Terraform code grants you (`allowed_user_emails`) the `roles/iam.serviceAccountTokenCreator` role on the `gpp_agent_sa`, you can continue to develop the agent locally via `adk web`, but it now securely accesses the real, cloud-hosted backend systems.
 
 ---
 
-## Schnelle Code-Deployments (Ohne Terraform)
+## Fast Code Deployments (Without Terraform)
 
-Terraform ist ideal für das initiale Setup und Änderungen an der Infrastruktur (IAM, Datenbanken, Buckets). Wenn du jedoch **nur den Code** eines Containers aktualisierst, nutze die bereitgestellten Deployment-Skripte im Ordner `agentic/scripts/`.
+Terraform is ideal for the initial setup and changes to the infrastructure (IAM, databases, buckets). However, if you **only update the code** of a container, use the provided deployment scripts in the `agentic/scripts/` folder.
 
-Diese Skripte bauen dein Container-Image sicher im vorkonfigurierten `agentic-repo` und erzwingen eine sofortige neue Revision im Cloud Run Service – ohne den Terraform-State zu überschreiben.
+These scripts securely build your container image in the pre-configured `agentic-repo` and enforce an immediate new revision in the Cloud Run Service – without overwriting the Terraform state.
 
-**Verfügbare Skripte:**
+**Available Scripts:**
 - `./scripts/deploy_frontend.sh`
 - `./scripts/deploy_gpp_agent.sh`
 - `./scripts/deploy_GS_backend_MCP.sh`
 - `./scripts/deploy_GSpp_MCP.sh`
 
-**Beispiel: Update des Frontends**
+**Example: Frontend Update**
 ```bash
 cd agentic
 ./scripts/deploy_frontend.sh

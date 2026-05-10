@@ -60,12 +60,20 @@ Die Lese-Werkzeuge reduzieren das Token-Volumen für die Agenten drastisch und l
 * `get_ssp_implementation(status, role_id)`: Extrahiert Controls aus der `control-implementation` (z.B. Filter auf alle Controls, die dem CISO zugewiesen sind).
 
 ### 4.2. Assessment (AP & AR)
-* `get_assessment_subjects(regex_filter)`: Liefert die Prüfgegenstände aus dem Assessment Plan.
+* `get_assessment_subjects()`: Liefert die Prüfgegenstände aus den Assessment Results oder dem Assessment Plan.
 * `get_assessment_controls(regex_filter, selected_only)`: Löst UUIDs zum SSP auf, damit Agenten nach tatsächlichen Control-Namen suchen können.
 * `get_assessment_findings(risk_level, state)`: Extrahiert Befunde (z. B. "not-satisfied") aus den Assessment Results.
 
 ### 4.3. POA&M (Plan of Action and Milestones)
-* `get_poam_items(status, due_before)`: Liefert den Maßnahmenplan inklusive Meilensteinen aus dem aktuellen Snapshot.
+* `get_poam_items()`: Liefert den Maßnahmenplan inklusive Meilensteinen aus dem aktuellen Snapshot.
+
+### 4.4. Artifact Management
+* `list_oscal_models()`: Listet alle initialisierten OSCAL-Modelle für den aktuellen Mandanten (IV) auf.
+* `get_oscal_model_raw(model_enum, version?)`: Gibt den vollständigen Original-JSON-Inhalt eines OSCAL-Modells zurück (mit optionaler Versions-Auswahl).
+* `list_oscal_model_versions(model_enum)`: Listet alle verfügbaren Snapshot-Versionen für ein bestimmtes Modell auf.
+
+### 4.5. Profile Resolution
+* `get_resolved_profile_catalog(profile_id)`: Löst ein OSCAL-Profil in einen maßgeschneiderten Katalog auf (Tailoring).
 
 ---
 

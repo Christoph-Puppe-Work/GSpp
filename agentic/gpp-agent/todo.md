@@ -212,3 +212,12 @@ Keep this only if Agent Runtime rejects ADK 2.0 alpha during the first dev deplo
 2. Replace `Workflow` with a router `Agent(sub_agents=[P1..P5])`.
 3. Replace `RequestInput` HITL with `LongRunningFunctionTool` per phase (1.x mechanism for runtime-paused HITL — stronger than instruction-only gates).
 4. Replace conditional edges with a `BaseAgent` `EscalationChecker` per phase that inspects `phaseN_result` and yields `EventActions(escalate=True)` when blocking conditions are detected.
+
+## Bug Fixes
+
+- [x] **Automatic Function Calling Error**: Fixed a `ValueError` during JSON Schema generation for the `route_to_phase` tool by changing the context parameter from `InvocationContext` to `ToolContext` (which is properly skipped by ADK's `FunctionTool` schema builder).
+- [x] **Endless Tool Loop / Missing Jump**: Fixed an issue where the `classifier` agent would repeatedly call the `route_to_phase` tool instead of yielding to the graph. The agent's prompt was conflicting (told to call `finish_task` instead of `route_to_phase`), causing cognitive dissonance. Fixed the prompt, and switched state mutation to `tool_context.session.state` so the global session state is updated properly, allowing the `classify_router` to pick it up and transition to the target phase.
+
+## Open Bugs
+
+- [ ] **Classifier Jump-Back Bug**: The `classifier` agent calls `route_to_phase`, but the workflow jumps back to the `chat` loop instead of routing to the target phase. `classify_router` seems to be failing to read the state correctly or the edge routing is flawed.

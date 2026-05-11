@@ -43,6 +43,15 @@ The graph contains **19 nodes** (`__START__` + classifier + classifier_router
 and edges is pinned by the structural tests in
 [`tests/integration/test_agent.py`](tests/integration/test_agent.py:1).
 
+### Workflow routing contract
+
+The classifier does not route by natural-language output alone. It uses the
+`route_to_phase` tool, which must write the selected route through
+`ToolContext.state` so ADK records a state delta. The tool skips summarization
+after recording the route so control returns to the Workflow router instead of
+giving the classifier another chance to call the routing tool in the same
+invocation.
+
 ### Per-phase agents
 
 | Phase | LlmAgent                          | Output schema          | MCP tool filter (anwender / backend)                                                                  |
@@ -57,6 +66,11 @@ All phase agents run in `mode="single_turn"` so they return immediately to
 the workflow graph after producing their structured output. Each agent's
 output is also written to session state via `output_key="phaseN_result"` so
 HITL gates and downstream phases can inspect it.
+
+Tool filters are phase capability boundaries, not loop guards. They should
+reflect the process requirements for each phase. Runtime tool loops must be
+fixed by inspecting ADK events, FunctionResponses, state deltas, and MCP
+auth/session propagation, not by removing required tools from a phase.
 
 ### State contract
 
@@ -87,6 +101,10 @@ so:
 - Tools may be re-executed at most once on resume — phase 5 explicitly
   de-duplicates POA&M creation by checking `get_poam_items` before
   `update_oscal_model` / `create_oscal_model`.
+
+The workflow is designed for long-running SSP creation and review. Global
+step caps are not a primary safety mechanism; HITL gates, resumability,
+idempotent tool behavior, and explicit validation boundaries provide control.
 
 ### Human-In-The-Loop (HITL) — graph-enforced
 
@@ -128,6 +146,10 @@ direct edge `phase4_gatekeeper → phase5_remediation`.
   profiles, controls, OSCAL validation.
 - **MCP Server `GS_backend_MCP` (backend)** — Tenant-scoped OSCAL persistence
   (SSP / AP / AR / POA&M reads, mutations).
+- **MCP session context** - backend MCP tools require an authenticated session
+  user id in `{caller}::iv::{iv_id}` form. Local development fallbacks are
+  diagnostic convenience only; they must not be treated as proof that tenant
+  isolation is correctly propagated.
 - **`verify_oscal_json`** — schema validation; called explicitly by Phase 4.
 - **GCS-backed savepoints** — handled by the backend MCP, not by the agent.
 
@@ -135,6 +157,9 @@ direct edge `phase4_gatekeeper → phase5_remediation`.
 
 - **Strict data isolation** — different `iv_id` (tenants) must have isolated
   save directories in GCP Cloud Storage. Enforced by the backend MCP.
+- **Local fallback IVs are not a tenant-isolation fix** - they may keep local
+  development runs moving, but production correctness requires the MCP session
+  context to carry the real IV.
 - **Mandatory validation** — Phase 4 always calls `verify_oscal_json` before
   it can set `cleared_for_audit = true`.
 - **Graph-enforced HITL** — see the "HITL — graph-enforced" subsection above.

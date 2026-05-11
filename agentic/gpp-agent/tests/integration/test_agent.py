@@ -221,6 +221,33 @@ def test_classify_router_ends_without_route() -> None:
     assert event.actions.route is None
 
 
+def test_phase1_governance_allows_one_backend_tool_call() -> None:
+    """Phase 1 exposes only the raw SSP read and blocks repeat MCP calls."""
+    from app.agents import phase1_governance
+
+    tool_context = SimpleNamespace(state={})
+
+    assert phase1_governance._BACKEND_TOOLS == ["get_oscal_model_raw"]
+    assert (
+        phase1_governance._block_phase1_tool_retry(
+            SimpleNamespace(name="get_oscal_model_raw"),
+            {"model_enum": "ssp"},
+            tool_context,
+        )
+        is None
+    )
+    assert tool_context.state[phase1_governance._PHASE1_TOOL_CALL_COUNT_KEY] == 1
+
+    blocked = phase1_governance._block_phase1_tool_retry(
+        SimpleNamespace(name="get_oscal_model_raw"),
+        {"model_enum": "ssp"},
+        tool_context,
+    )
+
+    assert blocked is not None
+    assert blocked["error"] == "phase1_tool_retry_blocked"
+
+
 @pytest.mark.asyncio
 async def test_gate_phase4_decision_forces_blocked_when_verdict_is_not_cleared() -> None:
     """Even if the user replies `cleared`, the gate must force `blocked` when

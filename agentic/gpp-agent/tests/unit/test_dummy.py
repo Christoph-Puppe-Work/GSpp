@@ -25,3 +25,16 @@ def test_classifier_prompt_routes_new_ssp_to_govern() -> None:
     assert 'route="govern"' in prompt
     assert "Do not ask" in prompt
     assert "route_to_phase" in prompt
+
+
+def test_phase1_prompt_uses_one_backend_read_attempt() -> None:
+    """Phase 1 must not fan out across backend tools after a failed read."""
+    from app.prompts import load_prompt
+
+    prompt = load_prompt("phase1_governance")
+
+    assert "Call exactly one backend tool" in prompt
+    assert "get_oscal_model_raw" in prompt
+    assert 'model_enum = "ssp"' in prompt
+    assert "Do not retry failed tool calls" in prompt
+    assert "Do not call `list_oscal_models`" in prompt

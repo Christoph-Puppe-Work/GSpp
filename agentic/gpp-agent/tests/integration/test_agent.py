@@ -21,7 +21,7 @@ Gemini call or live MCP servers — they pin the planning.md guarantees:
   + 12 gate function nodes).
 - Phase 5 (Remediation) is reachable from Phase 4 (Gatekeeper) **only** via
   the `gate_phase4_decision` node on `route="cleared"`.
-- The classifier_router emits the five phase route values plus a chat fallback.
+- The classifier_router emits exactly the five phase route values.
 - `gate_phase4_decision` forces `route="blocked"` whenever the underlying
   `phase4_result.cleared_for_audit` is `False`, regardless of the user's
   reply. This is the runtime half of the "P4 is the only gate to P5" rule.
@@ -88,9 +88,9 @@ def test_workflow_has_expected_nodes() -> None:
     assert len(node_names) == 19, f"Expected 19 nodes, got {len(node_names)}"
 
 
-def test_classifier_router_maps_phase_routes_and_chat_fallback() -> None:
-    """`classify_router` emits the five canonical route values plus a chat
-    fallback that loops back to the classifier."""
+def test_classifier_router_maps_five_routes() -> None:
+    """`classify_router` emits exactly the five canonical route values, each
+    pointing at the matching phase agent."""
     from app.agent import root_agent
 
     edges_from_router = {
@@ -99,7 +99,6 @@ def test_classifier_router_maps_phase_routes_and_chat_fallback() -> None:
         if e.from_node.name == "classify_router"
     }
     assert edges_from_router == {
-        "chat": "classifier",
         "govern": "phase1_governance",
         "model": "phase2_mapper",
         "track": "phase3_implementation",
@@ -212,13 +211,14 @@ def test_classify_router_routes_from_session_state() -> None:
     assert event.actions.state_delta == {"current_phase": "audit"}
 
 
-def test_classify_router_falls_back_to_chat_without_route() -> None:
-    """No routing state means the classifier should continue chatting."""
+def test_classify_router_ends_without_route() -> None:
+    """No routing state means the invocation ends after the classifier's
+    natural-language response."""
     from app.agents.orchestrator import classify_router
 
     event = classify_router(_ctx_with_state({}), None)
 
-    assert event.actions.route == "chat"
+    assert event.actions.route is None
 
 
 @pytest.mark.asyncio

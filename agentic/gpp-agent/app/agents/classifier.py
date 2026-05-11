@@ -1,8 +1,7 @@
 """Phase classifier — picks one of govern|model|track|audit|remediate.
 
-This is a tool-less LLM node sitting at the top of the workflow graph.
-It runs in `single_turn` mode (workflow graph requirement) and writes its
-decision to `state["classifier_route"]` via `output_key`.
+This LLM node sits at the top of the workflow graph and writes its routing
+decision into workflow state via the `route_to_phase` tool.
 """
 
 import os
@@ -26,7 +25,7 @@ def route_to_phase(route: str, rationale: str, tool_context: ToolContext) -> str
         route: The chosen phase (govern, model, track, audit, remediate).
         rationale: Why this phase was chosen.
     """
-    tool_context.session.state["classifier_route"] = {"route": route, "rationale": rationale}
+    tool_context.state["classifier_route"] = {"route": route, "rationale": rationale}
     return f"Routing decision made: {route}. The system will now transition to this phase."
 
 

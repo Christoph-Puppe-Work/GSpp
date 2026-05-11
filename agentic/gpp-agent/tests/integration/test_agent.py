@@ -21,8 +21,7 @@ Gemini call or live MCP servers — they pin the planning.md guarantees:
   + 12 gate function nodes).
 - Phase 5 (Remediation) is reachable from Phase 4 (Gatekeeper) **only** via
   the `gate_phase4_decision` node on `route="cleared"`.
-- The classifier_router emits exactly five route values that each map to one
-  phase agent.
+- The classifier_router emits the five phase route values plus a chat fallback.
 - `gate_phase4_decision` forces `route="blocked"` whenever the underlying
   `phase4_result.cleared_for_audit` is `False`, regardless of the user's
   reply. This is the runtime half of the "P4 is the only gate to P5" rule.
@@ -89,9 +88,9 @@ def test_workflow_has_expected_nodes() -> None:
     assert len(node_names) == 19, f"Expected 19 nodes, got {len(node_names)}"
 
 
-def test_classifier_router_maps_five_routes() -> None:
-    """`classify_router` emits exactly the five canonical route values, each
-    pointing at the matching phase agent."""
+def test_classifier_router_maps_phase_routes_and_chat_fallback() -> None:
+    """`classify_router` emits the five canonical route values plus a chat
+    fallback that loops back to the classifier."""
     from app.agent import root_agent
 
     edges_from_router = {
@@ -100,6 +99,7 @@ def test_classifier_router_maps_five_routes() -> None:
         if e.from_node.name == "classify_router"
     }
     assert edges_from_router == {
+        "chat": "classifier",
         "govern": "phase1_governance",
         "model": "phase2_mapper",
         "track": "phase3_implementation",
@@ -165,6 +165,56 @@ def _ctx_with_state(state: dict) -> SimpleNamespace:
     """Build a minimal mock `InvocationContext` whose `.session.state` reads
     from the provided dict — enough for the gate functions under test."""
     return SimpleNamespace(session=SimpleNamespace(state=state))
+
+
+def test_route_to_phase_writes_via_tool_context_state() -> None:
+    """Tool state writes must go through ToolContext.state so ADK records them
+    as state deltas and the next workflow node can read classifier_route."""
+    from app.agents.classifier import route_to_phase
+
+    state = {}
+    tool_context = SimpleNamespace(state=state)
+
+    result = route_to_phase(
+        "audit",
+        "The user asked for the audit pre-check.",
+        tool_context,
+    )
+
+    assert state["classifier_route"] == {
+        "route": "audit",
+        "rationale": "The user asked for the audit pre-check.",
+    }
+    assert "audit" in result
+
+
+def test_classify_router_routes_from_session_state() -> None:
+    """Once ADK applies the tool state delta, classify_router must dispatch to
+    the selected phase instead of falling back to chat."""
+    from app.agents.orchestrator import classify_router
+
+    ctx = _ctx_with_state(
+        {
+            "classifier_route": {
+                "route": "audit",
+                "rationale": "The user asked for the audit pre-check.",
+            }
+        }
+    )
+
+    event = classify_router(ctx, None)
+
+    assert event.actions.route == "audit"
+    assert event.actions.state_delta == {"current_phase": "audit"}
+
+
+def test_classify_router_falls_back_to_chat_without_route() -> None:
+    """No routing state means the classifier should continue chatting."""
+    from app.agents.orchestrator import classify_router
+
+    event = classify_router(_ctx_with_state({}), None)
+
+    assert event.actions.route == "chat"
 
 
 @pytest.mark.asyncio

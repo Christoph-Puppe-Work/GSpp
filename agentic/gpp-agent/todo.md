@@ -220,4 +220,4 @@ Keep this only if Agent Runtime rejects ADK 2.0 alpha during the first dev deplo
 
 ## Open Bugs
 
-- [ ] **Classifier Jump-Back Bug**: The `classifier` agent calls `route_to_phase`, but the workflow jumps back to the `chat` loop instead of routing to the target phase. `classify_router` seems to be failing to read the state correctly or the edge routing is flawed.
+- [x] **Classifier Jump-Back Bug**: The `classifier` agent calls `route_to_phase`, but the workflow jumps back to the `chat` loop instead of routing to the target phase. Root cause: the tool wrote directly to `tool_context.session.state`, bypassing ADK's tracked tool state delta. Fixed by writing through `tool_context.state`, which lets `classify_router` read `classifier_route` on the next workflow node.

@@ -169,11 +169,14 @@ def _ctx_with_state(state: dict) -> SimpleNamespace:
 
 def test_route_to_phase_writes_via_tool_context_state() -> None:
     """Tool state writes must go through ToolContext.state so ADK records them
-    as state deltas and the next workflow node can read classifier_route."""
+    as state deltas and the next workflow node can read classifier_route.
+    The tool must also skip summarization so the classifier does not receive
+    its own FunctionResponse and call route_to_phase again."""
     from app.agents.classifier import route_to_phase
 
     state = {}
-    tool_context = SimpleNamespace(state=state)
+    actions = SimpleNamespace(skip_summarization=False)
+    tool_context = SimpleNamespace(state=state, actions=actions)
 
     result = route_to_phase(
         "audit",
@@ -185,6 +188,7 @@ def test_route_to_phase_writes_via_tool_context_state() -> None:
         "route": "audit",
         "rationale": "The user asked for the audit pre-check.",
     }
+    assert actions.skip_summarization is True
     assert "audit" in result
 
 

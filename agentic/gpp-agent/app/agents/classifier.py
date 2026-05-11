@@ -26,6 +26,7 @@ def route_to_phase(route: str, rationale: str, tool_context: ToolContext) -> str
         rationale: Why this phase was chosen.
     """
     tool_context.state["classifier_route"] = {"route": route, "rationale": rationale}
+    tool_context.actions.skip_summarization = True
     return f"Routing decision made: {route}. The system will now transition to this phase."
 
 

@@ -22,6 +22,7 @@ export PORT="${PORT:-8000}"
 # Ports überschreibbar, falls dein lokales MCP-Setup andere benutzt
 ANWENDER_PORT="${ANWENDER_PORT:-8080}"
 BACKEND_PORT="${BACKEND_PORT:-8081}"
+GPP_BACKEND_DEV_IV_ID="${GPP_BACKEND_DEV_IV_ID:-local-dev}"
 
 # ─── Central venv ───────────────────────────────────────────────────────────────
 echo "Syncing central venv in agentic/..."
@@ -106,6 +107,8 @@ python -m GSpp_MCP.server.main &
 MCP_PIDS+=($!)
 
 echo "Starting GS_backend_MCP on port $BACKEND_PORT..."
+GPP_BACKEND_ALLOW_DEV_IV_FALLBACK=1 \
+GPP_BACKEND_DEV_IV_ID="$GPP_BACKEND_DEV_IV_ID" \
 PORT="$BACKEND_PORT" \
 python -m GS_backend_MCP.myserver.main --transport sse --port "$BACKEND_PORT" &
 MCP_PIDS+=($!)
@@ -145,6 +148,7 @@ cat <<EOF
 Starting gpp-agent on port $PORT (LOCAL MCPs)
   Anwender-MCP:  $ANWENDER_MCP_URL
   Backend-MCP:   $BACKEND_MCP_URL
+  Backend IV:    $GPP_BACKEND_DEV_IV_ID (local dev fallback)
   agents_dir   : $APP_DIR
 Dev-UI: http://localhost:$PORT/dev-ui/
 

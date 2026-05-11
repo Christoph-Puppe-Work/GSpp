@@ -33,7 +33,7 @@ def route_to_phase(route: str, rationale: str, tool_context: ToolContext) -> str
 def get_classifier_agent() -> LlmAgent:
     """Return the classifier LlmAgent.
 
-    Interactive chat agent that talks to the user and uses the `route_to_phase`
+    Single-turn workflow agent that talks to the user and uses the `route_to_phase`
     tool when ready. The router function in the Workflow graph reads
     `state["classifier_route"]` and emits an Event with the corresponding `route` value.
     """
@@ -45,7 +45,7 @@ def get_classifier_agent() -> LlmAgent:
     return LlmAgent(
         name="classifier",
         model=os.environ.get("CLASSIFIER_MODEL", _DEFAULT_MODEL),
-        mode="chat",
+        mode="single_turn",
         instruction=f"{identity}\n\n---\n\n{classifier_prompt}\n\n",
         tools=[tool],
         description=(

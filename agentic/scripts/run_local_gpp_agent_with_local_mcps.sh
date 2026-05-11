@@ -113,17 +113,26 @@ MCP_PIDS+=($!)
 # Warten bis beide MCP-Server erreichbar sind
 echo "Waiting for MCP servers to become ready..."
 MAX_WAIT=30
-for url in "$ANWENDER_MCP_URL" "$BACKEND_MCP_URL"; do
-    elapsed=0
-    while ! curl -s -o /dev/null --max-time 2 "$url/mcp" 2>/dev/null; do
+
+wait_for_port() {
+    local label="$1"
+    local host="$2"
+    local port="$3"
+    local elapsed=0
+
+    while ! (echo > "/dev/tcp/$host/$port") >/dev/null 2>&1; do
         sleep 1
         elapsed=$((elapsed + 1))
         if [ "$elapsed" -ge "$MAX_WAIT" ]; then
-            echo "ERROR: $url nicht erreichbar nach ${MAX_WAIT}s"
+            echo "ERROR: $label nicht erreichbar nach ${MAX_WAIT}s"
             exit 1
         fi
     done
-    echo "  $url ok"
+    echo "  $label ok"
+}
+
+for port in "$ANWENDER_PORT" "$BACKEND_PORT"; do
+    wait_for_port "http://localhost:$port" "127.0.0.1" "$port"
 done
 
 # Stale .adk-DBs aufräumen

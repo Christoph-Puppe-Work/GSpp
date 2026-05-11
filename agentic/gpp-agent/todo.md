@@ -216,7 +216,8 @@ Keep this only if Agent Runtime rejects ADK 2.0 alpha during the first dev deplo
 ## Bug Fixes
 
 - [x] **Automatic Function Calling Error**: Fixed a `ValueError` during JSON Schema generation for the `route_to_phase` tool by changing the context parameter from `InvocationContext` to `ToolContext` (which is properly skipped by ADK's `FunctionTool` schema builder).
-- [x] **Endless Tool Loop / Missing Jump**: Fixed an issue where the `classifier` agent would repeatedly call the `route_to_phase` tool instead of yielding to the graph. The agent's prompt was conflicting (told to call `finish_task` instead of `route_to_phase`), causing cognitive dissonance. Fixed the prompt, and switched state mutation to `tool_context.session.state` so the global session state is updated properly, allowing the `classify_router` to pick it up and transition to the target phase.
+- [x] **Endless Tool Loop / Missing Jump**: Fixed an issue where the `classifier` agent would repeatedly call the `route_to_phase` tool instead of yielding to the graph. The agent's prompt was conflicting (told to call `finish_task` instead of `route_to_phase`), causing cognitive dissonance. Fixed the prompt, and switched state mutation to `tool_context.state` so ADK records the routing decision as a state delta, allowing the `classify_router` to pick it up and transition to the target phase.
+- [x] **Over-cautious Classifier Confirmation**: Fixed a case where "I want to create/start a new SSP" was recognized as Phase 1 but the classifier asked for a separate confirmation instead of routing. Added direct routing triggers for new SSP / Informationsverbund / Grundschutz++ process requests, especially for experienced ISMS/GRC users.
 
 ## Open Bugs
 

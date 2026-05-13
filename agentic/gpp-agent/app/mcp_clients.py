@@ -26,11 +26,26 @@ class McpClientService:
 
     def _toolset(self, base_url: str, allow: list[str] | None) -> McpToolset:
         url = f"{base_url}/mcp"
-        token = _id_token_for(base_url)
-        headers = {"Authorization": f"Bearer {token}"} if token else {}
+
+        def header_provider(readonly_context) -> dict[str, str]:
+            headers = {}
+            token = _id_token_for(base_url)
+            if token:
+                headers["Authorization"] = f"Bearer {token}"
+
+            # Propagate ADK user session context for backend tenant isolation
+            if readonly_context and hasattr(readonly_context, "session") and readonly_context.session:
+                user_id = getattr(readonly_context.session, "user_id", None)
+                if user_id:
+                    # HTTP headers should be robust against casing
+                    headers["X-Gpp-User-Id"] = user_id
+
+            return headers
+
         return McpToolset(
-            connection_params=StreamableHTTPConnectionParams(url=url, headers=headers),
+            connection_params=StreamableHTTPConnectionParams(url=url),
             tool_filter=allow,
+            header_provider=header_provider,
         )
 
     def get_anwender_toolset(self, allow=None):

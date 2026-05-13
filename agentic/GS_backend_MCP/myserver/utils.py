@@ -9,10 +9,19 @@ def get_iv_id(ctx: Context) -> str:
     Extracts IV-ID from the authenticated session context.
     Expected format: caller::iv::iv-12345
     """
-    # In newer mcp SDK, access might differ, but based on skill:
-    # ctx.request_context.session.user_id
+    user_id = None
+
     try:
-        user_id = ctx.request_context.session.user_id
+        # 1. Check HTTP headers explicitly propagated by ADK's dynamic header provider.
+        if hasattr(ctx, "request_context") and hasattr(ctx.request_context, "meta") and isinstance(ctx.request_context.meta, dict):
+            headers = ctx.request_context.meta.get("headers", {})
+            # ASGI/FastAPI typically lowercases headers
+            user_id = headers.get("x-gpp-user-id")
+
+        # 2. Check the FastMCP session object (legacy / standard way)
+        if not user_id and hasattr(ctx, "request_context") and hasattr(ctx.request_context, "session"):
+            user_id = getattr(ctx.request_context.session, "user_id", None)
+
         if not user_id or "::iv::" not in user_id:
             fallback_iv_id = _get_dev_fallback_iv_id()
             if fallback_iv_id:
@@ -29,8 +38,10 @@ def get_iv_id(ctx: Context) -> str:
 
         iv_id = user_id.split("::iv::")[1]
         return iv_id
-    except AttributeError:
-        logger.error("Could not find session info in context")
+    except ValueError:
+        raise
+    except Exception as e:
+        logger.error(f"Could not find session info in context: {e}")
         fallback_iv_id = _get_dev_fallback_iv_id()
         if fallback_iv_id:
             logger.warning(

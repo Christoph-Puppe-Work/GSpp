@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BSI G++ OSCAL Generator</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <!-- PDF.js for local browser PDF parsing -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script>pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';</script>
+
+  <style>
+    :root {
+      --bg-deep:        oklch(0.13 0.02 280);
+      --bg-elev-1:      oklch(0.95 0.005 280 / 0.04);
+      --bg-elev-2:      oklch(0.95 0.005 280 / 0.06);
+      --bg-elev-3:      oklch(0.95 0.005 280 / 0.08);
+      --border-1:       oklch(0.95 0.005 280 / 0.06);
+      --border-2:       oklch(0.95 0.005 280 / 0.10);
+      --text-primary:   oklch(0.95 0.005 280);
+      --text-secondary: oklch(0.75 0.02 280);
+      --text-tertiary:  oklch(0.65 0.02 280);
+      --text-quiet:     oklch(0.55 0.02 280);
+      --accent:         oklch(0.7  0.18 300);
+      --accent-soft:    oklch(0.7  0.18 300 / 0.15);
+      --accent-glow:    oklch(0.7  0.18 300 / 0.4);
+      --red:            oklch(0.65 0.2 25);
+      --amber:          oklch(0.80 0.15 80);
+      --green:          oklch(0.75 0.18 145);
+      --blue:           oklch(0.70 0.15 240);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      background: var(--bg-deep);
+      color: var(--text-primary);
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      line-height: 1.5;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    ::selection { background: oklch(0.7 0.18 300 / 0.35); color: var(--text-primary); }
+    
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: var(--bg-elev-3); border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+    .glass {
+      background: var(--bg-elev-1);
+      border: 1px solid var(--border-1);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-radius: 12px;
+    }
+
+    h1, h2, h3, h4 { font-weight: 600; }
+    h2 { font-size: 16px; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+    
+    input, select, textarea, button {
+      font-family: inherit; font-size: inherit; color: inherit;
+      background: var(--bg-elev-1); border: 1px solid var(--border-1);
+      border-radius: 6px; padding: 6px 10px; outline: none; transition: all 0.2s ease;
+    }
+    input:focus, select:focus, textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent-soft); }
+    
+    textarea { font-family: 'JetBrains Mono', monospace; font-size: 13px; resize: vertical; line-height: 1.4; }
+    
+    button { cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 6px; font-weight: 500; }
+    button:hover:not(:disabled) { background: var(--bg-elev-2); border-color: var(--border-2); }
+    button:disabled { opacity: 0.5; cursor: not-allowed; }
+    button.primary { background: var(--accent); border-color: transparent; color: #fff; box-shadow: 0 6px 20px var(--accent-glow); }
+    button.primary:hover:not(:disabled) { filter: brightness(1.1); transform: translateY(-1px); }
+
+    .badge {
+      display: inline-flex; padding: 2px 8px; border-radius: 12px; font-size: 11px; font-weight: 600;
+      font-family: 'JetBrains Mono', monospace; text-transform: uppercase; letter-spacing: 0.5px;
+    }
+    .badge.green { background: oklch(0.75 0.18 145 / 0.15); color: var(--green); border: 1px solid oklch(0.75 0.18 145 / 0.3); }
+    .badge.amber { background: oklch(0.80 0.15 80 / 0.15); color: var(--amber); border: 1px solid oklch(0.80 0.15 80 / 0.3); }
+    .badge.red { background: oklch(0.65 0.2 25 / 0.15); color: var(--red); border: 1px solid oklch(0.65 0.2 25 / 0.3); }
+    .badge.blue { background: oklch(0.70 0.15 240 / 0.15); color: var(--blue); border: 1px solid oklch(0.70 0.15 240 / 0.3); }
+    .badge.violet { background: var(--accent-soft); color: var(--accent); border: 1px solid oklch(0.7 0.18 300 / 0.3); }
+
+    /* Layout Shell */
+    #topbar {
+      height: 64px; border-bottom: 1px solid var(--border-1); display: flex; align-items: center;
+      padding: 0 24px; gap: 16px; background: oklch(0.95 0.005 280 / 0.02); backdrop-filter: blur(20px); z-index: 10;
+    }
+    #topbar .brand { font-weight: 700; font-size: 16px; display: flex; align-items: center; gap: 8px; }
+    
+    #workspace { display: flex; flex: 1; min-height: 0; z-index: 5; }
+    
+    #rail {
+      width: 260px; flex-shrink: 0; border-right: 1px solid var(--border-1); padding: 20px;
+      display: flex; flex-direction: column; gap: 24px; overflow-y: auto;
+      background: oklch(0.95 0.005 280 / 0.02);
+    }
+    .rail-group { display: flex; flex-direction: column; gap: 12px; }
+    .rail-group label { font-size: 12px; font-weight: 500; color: var(--text-secondary); display: flex; flex-direction: column; gap: 6px; }
+    
+    #main {
+      flex: 1; padding: 32px; overflow-y: auto; display: flex; flex-direction: column; gap: 24px; scroll-behavior: smooth;
+    }
+
+    #console {
+      height: 220px; border-top: 1px solid var(--border-1); display: flex; flex-direction: column;
+      background: oklch(0.95 0.005 280 / 0.02); backdrop-filter: blur(20px); z-index: 10;
+    }
+    #console-header {
+      padding: 8px 16px; border-bottom: 1px solid var(--border-1); display: flex; justify-content: space-between;
+      font-size: 12px; color: var(--text-secondary); font-family: 'JetBrains Mono', monospace;
+    }
+    #console-logs {
+      flex: 1; padding: 12px 16px; overflow-y: auto; font-family: 'JetBrains Mono', monospace; font-size: 12px;
+      display: flex; flex-direction: column; gap: 4px;
+    }
+    .log-line { display: flex; gap: 12px; word-break: break-all; }
+    .log-time { color: var(--text-quiet); flex-shrink: 0; }
+    .log-msg { flex: 1; }
+    .log-info { color: var(--blue); }
+    .log-ok { color: var(--green); }
+    .log-warn { color: var(--amber); }
+    .log-err { color: var(--red); }
+    .log-debug { color: var(--text-quiet); }
+
+    /* Specific Components */
+    .card { padding: 20px; display: flex; flex-direction: column; gap: 16px; }
+    
+    .drop-zone {
+      border: 2px dashed var(--border-2); border-radius: 8px; padding: 40px 20px; text-align: center;
+      transition: all 0.2s ease; cursor: pointer; color: var(--text-secondary);
+    }
+    .drop-zone.dragover { background: var(--accent-soft); border-color: var(--accent); color: var(--text-primary); }
+    
+    .prompt-header { display: flex; justify-content: space-between; align-items: flex-end; }
+    .prompt-label { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--accent); }
+    .prompt-warning { margin-top: -10px; color: var(--amber); font-size: 12px; display: none; }
+
+    .progress-container { width: 100%; display: flex; flex-direction: column; gap: 8px; }
+    .progress-header { display: flex; justify-content: space-between; font-size: 12px; font-family: 'JetBrains Mono', monospace; }
+    .progress-track { height: 2px; background: var(--border-1); overflow: hidden; border-radius: 1px; }
+    .progress-fill { height: 100%; background: var(--accent); width: 0%; transition: width 0.2s ease; }
+    .progress-fill.done { background: var(--green); }
+
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; }
+    .stat-card { padding: 16px; display: flex; flex-direction: column; gap: 16px; align-items: center; }
+    .hbar-row { display: flex; align-items: center; gap: 12px; width: 100%; font-size: 12px; }
+    .hbar-label { width: 100px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-family: 'JetBrains Mono', monospace; }
+    .hbar-track { flex: 1; height: 6px; background: var(--border-1); border-radius: 3px; overflow: hidden; }
+    .hbar-fill { height: 100%; border-radius: 3px; }
+    .hbar-value { width: 30px; text-align: right; font-family: 'JetBrains Mono', monospace; }
+
+    .result-card { border-left: 3px solid transparent; }
+    .result-card.conf-high { border-left-color: var(--green); }
+    .result-card.conf-medium { border-left-color: var(--amber); }
+    .result-card.conf-low { border-left-color: var(--red); }
+    .result-card.status-error { border-left-color: var(--text-quiet); opacity: 0.7; }
+    
+    .result-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; }
+    .result-meta { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--text-secondary); margin-bottom: 8px; }
+    .result-body { color: var(--text-secondary); margin-bottom: 12px; }
+    .mapped-controls { display: flex; flex-direction: column; gap: 8px; margin-top: 12px; padding-top: 12px; border-top: 1px dashed var(--border-1); }
+    .control-item { display: flex; gap: 8px; align-items: center; font-size: 13px; }
+    .control-id { font-family: 'JetBrains Mono', monospace; color: var(--accent); }
+
+    .toolbar { display: flex; gap: 12px; margin-bottom: 16px; }
+    
+    .hidden { display: none !important; }
+  </style>
+</head>
+<body>
+  <div style="position:fixed;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,oklch(0.4 0.18 300/.5),transparent 70%);top:-200px;left:-100px;filter:blur(60px);pointer-events:none;z-index:0"></div>
+  <div style="position:fixed;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,oklch(0.4 0.16 240/.4),transparent 70%);bottom:-300px;right:-200px;filter:blur(80px);pointer-events:none;z-index:0"></div>
+  <div style="position:fixed;inset:0;opacity:0.03;pointer-events:none;z-index:0;background-image:url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22><filter id=%22n%22><feTurbulence baseFrequency=%220.9%22/></filter><rect width=%22100%22 height=%22100%22 filter=%22url(%23n)%22/></svg>')"></div>
+
+  <header id="topbar">
+    <div class="brand">◈ G++ OSCAL Factory</div>
+    <div style="flex:1"></div>
+    <div class="badge violet">One-Page Pattern</div>
+  </header>
+
+  <div id="workspace">
+    <!-- Configuration Rail -->
+    <aside id="rail">
+      <div class="rail-group">
+        <label>
+          Gemini API Key
+          <input type="password" id="cfg-key" placeholder="AIzaSy..." />
+        </label>
+        <div style="font-size:11px;color:var(--text-quiet)">Stored locally. Needs <a href="https://aistudio.google.com/app/apikey" target="_blank" style="color:var(--accent)">Google AI Studio</a> key.</div>
+      </div>
+      
+      <div class="rail-group">
+        <label>
+          Model
+          <select id="cfg-model">
+            <option value="gemini-3-flash-preview">Gemini 3 Flash (Fast, Free tier)</option>
+            <option value="gemini-3.1-flash-lite-preview">Gemini 3.1 Flash Lite (Bulk)</option>
+            <option value="gemini-3.1-pro-preview">Gemini 3.1 Pro (Best logic)</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="rail-group">
+        <label>
+          Concurrency (Pool Size)
+          <input type="number" id="cfg-concurrency" value="4" min="1" max="15" />
+        </label>
+      </div>
+
+      <div class="rail-group">
+        <label>
+          Thinking Level
+          <select id="cfg-thinking">
+            <option value="minimal">Minimal</option>
+            <option value="low">Low</option>
+            <option value="medium" selected>Medium</option>
+            <option value="high">High</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="rail-group">
+        <label style="flex-direction:row; align-items:center; cursor:pointer;">
+          <input type="checkbox" id="cfg-grounding" checked />
+          Enable Google Search Grounding
+        </label>
+        <div style="font-size:11px;color:var(--text-quiet)">Crucial for mapping to new G++ Anwenderkatalog if model knowledge is old.</div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main id="main">
+      
+      <!-- Input Section -->
+      <section class="card glass" id="card-input">
+        <h2>◐ 1. Input Baustein</h2>
+        <div class="drop-zone" id="drop-zone">
+          <div style="font-size: 24px; margin-bottom: 8px;">📄</div>
+          <div>Drag & Drop BSI Baustein PDF here</div>
+          <div style="font-size: 12px; opacity: 0.6; margin-top: 4px;">or click to browse</div>
+          <input type="file" id="file-input" accept="application/pdf" style="display:none">
+        </div>
+        <div style="text-align:center; color:var(--text-quiet); font-size:12px;">— OR PASTE RAW TEXT —</div>
+        <textarea id="raw-text" placeholder="Paste extracted Baustein text here..." style="min-height: 100px;"></textarea>
+      </section>
+
+      <!-- Prompts Section -->
+      <section class="card glass" id="card-prompts">
+        <h2>✎ 2. Pipeline Prompts</h2>
+        
+        <!-- Stage 1: Extractor -->
+        <div class="prompt-group">
+          <div class="prompt-header">
+            <div class="prompt-label">STAGE_EXTRACT_PROMPT</div>
+            <button id="btn-reset-p1" class="badge">Reset</button>
+          </div>
+          <textarea id="prompt-p1" style="min-height: 160px; margin-top: 8px; width: 100%;"></textarea>
+          <div id="warn-p1" class="prompt-warning">Warning: Missing {raw_text} placeholder</div>
+        </div>
+
+        <!-- Stage 2: Target Mapping -->
+        <div class="prompt-group" style="margin-top: 16px;">
+          <div class="prompt-header">
+            <div class="prompt-label">STAGE_ZIELOBJEKT_PROMPT</div>
+            <button id="btn-reset-p2" class="badge">Reset</button>
+          </div>
+          <textarea id="prompt-p2" style="min-height: 120px; margin-top: 8px; width: 100%;"></textarea>
+          <div id="warn-p2" class="prompt-warning">Warning: Missing {baustein_id} or {baustein_title} placeholder</div>
+        </div>
+
+        <!-- Stage 3: Control Matching -->
+        <div class="prompt-group" style="margin-top: 16px;">
+          <div class="prompt-header">
+            <div class="prompt-label">STAGE_MATCHING_PROMPT</div>
+            <button id="btn-reset-p3" class="badge">Reset</button>
+          </div>
+          <textarea id="prompt-p3" style="min-height: 180px; margin-top: 8px; width: 100%;"></textarea>
+          <div id="warn-p3" class="prompt-warning">Warning: Missing {req_id}, {req_title}, {req_text}, or {zielobjekt}</div>
+        </div>
+      </section>
+
+      <!-- Run / Progress Section -->
+      <section class="card glass" id="card-run">
+        <div style="display: flex; gap: 12px; align-items: center;">
+          <button id="btn-run" class="primary" style="padding: 10px 24px;">▶ Start Processing Pipeline</button>
+          <button id="btn-cancel" class="hidden">■ Cancel</button>
+          <div id="run-status" style="font-family:'JetBrains Mono', monospace; font-size: 12px; color: var(--text-secondary);">Waiting for input...</div>
+        </div>
+        <div class="progress-container" id="progress-container" style="margin-top: 16px; display: none;">
+          <div class="progress-header">
+            <span id="prog-phase">Phase...</span>
+            <span id="prog-counts">0 / 0</span>
+          </div>
+          <div class="progress-track">
+            <div class="progress-fill" id="prog-fill"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Stats Section -->
+      <section class="card glass hidden" id="card-stats">
+        <h2>⬡ Analysis Stats</h2>
+        <div class="stats-grid" id="stats-grid">
+           <!-- Charts injected here -->
+        </div>
+      </section>
+
+      <!-- Results & Export Section -->
+      <section class="card glass hidden" id="card-results">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+          <h2>▣ 3. Results & OSCAL</h2>
+          <div class="toolbar" style="margin:0;">
+            <button id="btn-export-json" class="primary">⤓ Download OSCAL JSON</button>
+          </div>
+        </div>
+        
+        <div id="baustein-meta" style="margin-bottom: 24px; padding: 16px; background: var(--bg-elev-2); border-radius: 8px;">
+          <!-- Meta injected here -->
+        </div>
+
+        <div id="results-list" style="display: flex; flex-direction: column; gap: 16px;">
+          <!-- Result cards injected here -->
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <footer id="console">
+    <div id="console-header">
+      <span>LOG CONSOLE <span id="log-count" style="opacity:0.5; margin-left:8px;">0 lines</span></span>
+      <div style="display:flex; gap:16px;">
+        <label style="cursor:pointer;"><input type="checkbox" id="log-autoscroll" checked> Autoscroll</label>
+        <button id="btn-clear-log" style="background:none; border:none; padding:0; color:var(--text-quiet);">Clear</button>
+      </div>
+    </div>
+    <div id="console-logs"></div>
+  </footer>
+
+  <script>
+    // --- UTILITIES ---
+    const $ = id => document.getElementById(id);
+    const sleep = ms => new Promise(r => setTimeout(r, ms));
+    const escapeHtml = s => (s||'').toString().replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[m]);
+    
+    // Config Persistence
+    const bindConfig = (id) => {
+      const el = $(id);
+      if (localStorage.getItem(id)) {
+        if(el.type === 'checkbox') el.checked = localStorage.getItem(id) === 'true';
+        else el.value = localStorage.getItem(id);
+      }
+      el.addEventListener('change', () => {
+        if(el.type === 'checkbox') localStorage.setItem(id, el.checked);
+        else localStorage.setItem(id, el.value);
+      });
+    };
+    ['cfg-key', 'cfg-model', 'cfg-concurrency', 'cfg-thinking', 'cfg-grounding'].forEach(bindConfig);
+
+    // --- LOGGER ---
+    let logLineCount = 0;
+    const l = {
+      _log: (level, msg) => {
+        const d = new Date();
+        const time = `${d.getHours().toString().padStart(2,'0')}:${d.getMinutes().toString().padStart(2,'0')}:${d.getSeconds().toString().padStart(2,'0')}.${d.getMilliseconds().toString().padStart(3,'0')}`;
+        const row = document.createElement('div');
+        row.className = `log-line log-${level}`;
+        row.innerHTML = `<span class="log-time">[${time}]</span><span class="log-msg">${escapeHtml(msg)}</span>`;
+        $('console-logs').appendChild(row);
+        $('log-count').textContent = `${++logLineCount} lines`;
+        if ($('log-autoscroll').checked) $('console-logs').scrollTop = $('console-logs').scrollHeight;
+      },
+      info: m => l._log('info', m),
+      ok: m => l._log('ok', m),
+      warn: m => l._log('warn', m),
+      err: m => l._log('err', m),
+      debug: m => l._log('debug', m)
+    };
+    $('btn-clear-log').addEventListener('click', () => { $('console-logs').innerHTML = ''; logLineCount = 0; $('log-count').textContent = '0 lines'; });
+
+    // --- PROMPTS STATE & MANAGEMENT ---
+    const DEFAULTS = {
+      p1: `You are a BSI Grundschutz compliance expert. Parse the following raw text extracted from a BSI IT-Grundschutz-Baustein PDF.
+Extract the metadata (ID, Title) and a list of all technical and organizational requirements (Anforderungen).
+
+Return STRICTLY valid JSON matching this schema:
+{
+  "baustein_id": "e.g. SYS.1.1",
+  "baustein_title": "e.g. Allgemeiner Server",
+  "description": "Brief 1-2 sentence summary of the Baustein",
+  "requirements": [
+    {
+      "id": "e.g. SYS.1.1.A1",
+      "type": "Basis | Standard | Erhöht",
+      "title": "Title of the requirement",
+      "text": "Full text of the requirement"
+    }
+  ]
+}
+
+Raw Text:
+{raw_text}`,
+      
+      p2: `Based on the following BSI IT-Grundschutz-Baustein, determine which G++ (Grundschutz Plus Plus) Zielobjekt(e) (Target Objects) this maps to. 
+G++ Zielobjekte are the modern target components in the Anwenderkatalog (e.g., Server, Client, Netzwerkkomponente, IT-System, Anwendung).
+
+Baustein ID: {baustein_id}
+Baustein Title: {baustein_title}
+Description: {baustein_description}
+
+Return ONLY valid JSON matching this schema:
+{
+  "zielobjekte": ["List", "of", "applicable", "G++", "target objects"],
+  "reasoning": "Brief explanation"
+}`,
+
+      p3: `You are a BSI IT-Grundschutz and G++ (Grundschutz++) mapping expert.
+Your task is to map a legacy/standard BSI requirement (Anforderung) to the new G++ Anwenderkatalog Controls.
+
+Target Object Context: {zielobjekt}
+Requirement ID: {req_id}
+Requirement Title: {req_title}
+Requirement Text: {req_text}
+
+Identify 1 to 5 specific G++ Controls that implement this requirement. If you cannot find an exact G++ match, suggest the closest generic control approach.
+
+Return ONLY valid JSON matching this schema:
+{
+  "matched_controls": [
+    {
+      "control_id": "e.g. GPP.SRV.01",
+      "control_title": "Short title of G++ control",
+      "match_confidence": "high | medium | low",
+      "justification": "Why this control fulfills the requirement"
+    }
+  ]
+}`
+    };
+
+    function bindPrompt(id, def, checks) {
+      const el = $(`prompt-${id}`);
+      const warn = $(`warn-${id}`);
+      const btn = $(`btn-reset-${id}`);
+      const storageKey = `prompt-${id}-v1`;
+      
+      el.value = localStorage.getItem(storageKey) || def;
+      
+      const validate = () => {
+        const val = el.value;
+        const missing = checks.find(c => !val.includes(c));
+        warn.style.display = missing ? 'block' : 'none';
+        localStorage.setItem(storageKey, val);
+      };
+      
+      el.addEventListener('input', validate);
+      btn.addEventListener('click', () => { el.value = def; validate(); });
+      validate();
+      return () => {
+        let v = el.value;
+        if (!v.trim()) v = def;
+        checks.forEach(c => { if(!v.includes(c)) v += `\n\nFallback injected: ${c}`; });
+        return v;
+      };
+    }
+
+    const getP1 = bindPrompt('p1', DEFAULTS.p1, ['{raw_text}']);
+    const getP2 = bindPrompt('p2', DEFAULTS.p2, ['{baustein_id}', '{baustein_title}']);
+    const getP3 = bindPrompt('p3', DEFAULTS.p3, ['{req_id}', '{req_title}', '{req_text}', '{zielobjekt}']);
+
+    // --- GEMINI API INFRASTRUCTURE ---
+    const stripFences = s => s.replace(/^\s*```(?:json)?/i, "").replace(/```\s*$/i, "").trim();
+    function extractJson(text) {
+      const trim = text.trim();
+      try { return JSON.parse(trim); } catch {}
+      const stripped = stripFences(trim);
+      try { return JSON.parse(stripped); } catch {}
+      const s = stripped.indexOf("{"), e = stripped.lastIndexOf("}");
+      if (s >= 0 && e > s) {
+        try { return JSON.parse(stripped.slice(s, e + 1)); } catch {}
+      }
+      throw new Error("could not extract JSON from response");
+    }
+
+    let state = { cancel: false, running: false, baustein: null, zielobjekte: [], results: [] };
+
+    async function llmOnce(prompt, useSchema = false) {
+      const apiKey = $('cfg-key').value;
+      if (!apiKey) throw new Error("API Key missing");
+      const model = $('cfg-model').value;
+      const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`;
+      
+      const payload = {
+        contents: [{ role: "user", parts: [{ text: prompt }] }],
+        generationConfig: {
+          responseMimeType: "application/json",
+          thinkingConfig: { thinkingLevel: $('cfg-thinking').value }
+        }
+      };
+
+      if ($('cfg-grounding').checked) {
+        payload.tools = [{ googleSearch: {} }];
+        // Grounding conflicts with strict schema in REST currently, so we rely on prompt + extractJson
+      }
+
+      const res = await fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "x-goog-api-key": apiKey },
+        body: JSON.stringify(payload)
+      });
+      
+      if (!res.ok) {
+        const err = await res.text();
+        throw new Error(`API Error ${res.status}: ${err.substring(0, 200)}...`);
+      }
+      
+      const data = await res.json();
+      return (data.candidates?.[0]?.content?.parts || []).map(p => p.text || "").join("\n");
+    }
+
+    async function llm(prompt, label = "call") {
+      const retries = 2;
+      let attempt = 0;
+      while (true) {
+        if (state.cancel) throw new Error("cancelled");
+        try {
+          const t0 = performance.now();
+          const text = await llmOnce(prompt);
+          l.debug(`${label} ← ${(text.length/1024).toFixed(1)}kb in ${Math.round(performance.now()-t0)}ms`);
+          return text;
+        } catch (e) {
+          attempt++;
+          if (attempt > retries || e.message.includes('API Key')) throw e;
+          const wait = 500 * Math.pow(2, attempt - 1);
+          l.warn(`${label} failed (${e.message}) — retry ${attempt}/${retries} in ${wait}ms`);
+          await sleep(wait);
+        }
+      }
+    }
+
+    // --- WORKER POOL ---
+    async function runPool(tasks, limit, onProgress) {
+      const results = new Array(tasks.length);
+      let done = 0, next = 0;
+      const workers = Array.from({ length: Math.min(limit, tasks.length) }, async () => {
+        while (next < tasks.length) {
+          const i = next++;
+          if (state.cancel) { results[i] = { cancelled: true }; done++; onProgress?.(done, tasks.length); continue; }
+          try { results[i] = await tasks[i](); }
+          catch (e) { results[i] = { error: e }; }
+          done++;
+          onProgress?.(done, tasks.length);
+        }
+      });
+      await Promise.all(workers);
+      return results;
+    }
+
+    function showProgress(phase, done, total) {
+      $('progress-container').style.display = 'flex';
+      $('prog-phase').textContent = phase;
+      $('prog-counts').textContent = `${done} / ${total}`;
+      const pct = total > 0 ? (done / total) * 100 : 0;
+      const fill = $('prog-fill');
+      fill.style.width = `${pct}%`;
+      if (done === total && total > 0) {
+        fill.classList.add('done');
+        setTimeout(() => { if(!state.running) $('progress-container').style.display = 'none'; fill.classList.remove('done'); }, 1000);
+      } else {
+        fill.classList.remove('done');
+      }
+    }
+
+    // --- PDF PARSING ---
+    const dropZone = $('drop-zone');
+    const fileInput = $('file-input');
+    
+    dropZone.addEventListener('click', () => fileInput.click());
+    dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('dragover'); });
+    dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
+    dropZone.addEventListener('drop', e => {
+      e.preventDefault(); dropZone.classList.remove('dragover');
+      if (e.dataTransfer.files.length) handlePdf(e.dataTransfer.files[0]);
+    });
+    fileInput.addEventListener('change', e => { if (e.target.files.length) handlePdf(e.target.files[0]); });
+
+    async function handlePdf(file) {
+      if (file.type !== 'application/pdf') return l.err("File is not a PDF");
+      l.info(`Reading PDF: ${file.name} (${Math.round(file.size/1024)}kb)`);
+      try {
+        const buffer = await file.arrayBuffer();
+        const pdf = await pdfjsLib.getDocument({data: buffer}).promise;
+        let text = '';
+        for (let i = 1; i <= pdf.numPages; i++) {
+          const page = await pdf.getPage(i);
+          const content = await page.getTextContent();
+          text += content.items.map(it => it.str).join(' ') + '\n';
+        }
+        $('raw-text').value = text;
+        l.ok(`Extracted ${text.length} chars from ${pdf.numPages} pages.`);
+      } catch (e) {
+        l.err(`PDF read error: ${e.message}`);
+      }
+    }
+
+    // --- UI RENDERERS ---
+    function updateStatus(msg) { $('run-status').textContent = msg; }
+    
+    function renderResults() {
+      $('card-results').classList.remove('hidden');
+      $('card-stats').classList.remove('hidden');
+      
+      // Render Meta
+      if (state.baustein) {
+        $('baustein-meta').innerHTML = `
+          <div style="font-size: 16px; font-weight: 600; color: var(--accent); margin-bottom: 4px;">
+            ${escapeHtml(state.baustein.baustein_id)}: ${escapeHtml(state.baustein.baustein_title)}
+          </div>
+          <div style="color: var(--text-secondary); margin-bottom: 12px;">${escapeHtml(state.baustein.description)}</div>
+          <div style="display:flex; gap: 8px;">
+            <span class="badge blue">Zielobjekte: ${escapeHtml(state.zielobjekte.join(', ') || 'None')}</span>
+            <span class="badge violet">Reqs: ${state.results.length}</span>
+          </div>
+        `;
+      }
+
+      // Render List
+      const html = state.results.map((r, i) => {
+        const req = r.item;
+        let statusClass = 'status-pending';
+        let bodyHtml = `<div style="color:var(--text-quiet)">Processing...</div>`;
+        
+        if (r.error) {
+          statusClass = 'status-error';
+          bodyHtml = `<div style="color:var(--red)">Failed: ${escapeHtml(r.error)}</div>`;
+        } else if (r.analysis) {
+          const controls = r.analysis.matched_controls || [];
+          if (controls.length === 0) {
+            statusClass = 'conf-low';
+            bodyHtml = `<div style="color:var(--amber)">No G++ controls matched.</div>`;
+          } else {
+            // grab highest confidence for card border
+            const confs = controls.map(c => c.match_confidence).join('');
+            if (confs.includes('high')) statusClass = 'conf-high';
+            else if (confs.includes('medium')) statusClass = 'conf-medium';
+            else statusClass = 'conf-low';
+
+            bodyHtml = `
+              <div class="mapped-controls">
+                ${controls.map(c => `
+                  <div class="control-item">
+                    <span class="badge ${c.match_confidence === 'high' ? 'green' : c.match_confidence === 'medium' ? 'amber' : 'red'}">${c.match_confidence}</span>
+                    <span class="control-id">${escapeHtml(c.control_id)}</span>
+                    <span style="color:var(--text-primary)">${escapeHtml(c.control_title)}</span>
+                  </div>
+                  <div style="font-size:12px; color:var(--text-quiet); margin-left: 54px;">${escapeHtml(c.justification)}</div>
+                `).join('')}
+              </div>
+            `;
+          }
+        }
+
+        return `
+          <div class="card glass result-card ${statusClass}">
+            <div class="result-header">
+              <div>
+                <div class="result-meta">${escapeHtml(req.id)} · ${escapeHtml(req.type)}</div>
+                <div style="font-weight:600; color:var(--text-primary); margin-bottom: 6px;">${escapeHtml(req.title)}</div>
+                <div class="result-body">${escapeHtml(req.text)}</div>
+              </div>
+            </div>
+            ${bodyHtml}
+          </div>
+        `;
+      }).join('');
+      $('results-list').innerHTML = html;
+      
+      renderStats();
+    }
+
+    function renderStats() {
+      const completed = state.results.filter(r => r.analysis);
+      if (completed.length === 0) return;
+
+      let typeCounts = { 'Basis': 0, 'Standard': 0, 'Erhöht': 0 };
+      let confCounts = { 'high': 0, 'medium': 0, 'low': 0 };
+      
+      state.results.forEach(r => {
+        if (r.item && r.item.type) typeCounts[r.item.type] = (typeCounts[r.item.type] || 0) + 1;
+        if (r.analysis && r.analysis.matched_controls) {
+          r.analysis.matched_controls.forEach(c => {
+            const conf = (c.match_confidence || 'low').toLowerCase();
+            confCounts[conf] = (confCounts[conf] || 0) + 1;
+          });
+        }
+      });
+
+      const donutChart = (slices, size = 160) => {
+        const total = slices.reduce((s, x) => s + x.value, 0);
+        if (total === 0) return `<svg width="${size}" height="${size}"></svg>`;
+        const cx = size/2, cy = size/2, r = size/2 - 8, ri = r * 0.6;
+        let a = -Math.PI/2;
+        const paths = slices.filter(s => s.value > 0).map(s => {
+          const sweep = (s.value / total) * Math.PI * 2;
+          const a1 = a, a2 = a + sweep; a = a2;
+          const x1 = cx + r*Math.cos(a1), y1 = cy + r*Math.sin(a1);
+          const x2 = cx + r*Math.cos(a2), y2 = cy + r*Math.sin(a2);
+          const xi1 = cx + ri*Math.cos(a1), yi1 = cy + ri*Math.sin(a1);
+          const xi2 = cx + ri*Math.cos(a2), yi2 = cy + ri*Math.sin(a2);
+          const large = sweep > Math.PI ? 1 : 0;
+          return `<path d="M ${x1} ${y1} A ${r} ${r} 0 ${large} 1 ${x2} ${y2} L ${xi2} ${yi2} A ${ri} ${ri} 0 ${large} 0 ${xi1} ${yi1} Z" fill="${s.color}" />`;
+        }).join("");
+        return `<svg viewBox="0 0 ${size} ${size}" width="${size}" height="${size}">${paths}
+          <text x="${cx}" y="${cy-2}" text-anchor="middle" dominant-baseline="central" fill="currentColor" font-family="JetBrains Mono" font-size="22" font-weight="600">${total}</text>
+          <text x="${cx}" y="${cy+18}" text-anchor="middle" fill="currentColor" opacity="0.55" font-family="JetBrains Mono" font-size="9" letter-spacing="1.5">MAPPINGS</text></svg>`;
+      };
+
+      const hBarRows = (items) => {
+        const max = Math.max(1, ...items.map(i => i.value));
+        return items.map(i => `
+          <div class="hbar-row">
+            <div class="hbar-label">${escapeHtml(i.label)}</div>
+            <div class="hbar-track"><div class="hbar-fill" style="width:${(i.value/max)*100}%; background:${i.color}"></div></div>
+            <div class="hbar-value">${i.value}</div>
+          </div>`).join("");
+      };
+
+      const slices = [
+        { label: 'High', value: confCounts['high'], color: 'var(--green)' },
+        { label: 'Medium', value: confCounts['medium'], color: 'var(--amber)' },
+        { label: 'Low', value: confCounts['low'], color: 'var(--red)' }
+      ];
+
+      const typeBars = [
+        { label: 'Basis', value: typeCounts['Basis'], color: 'var(--blue)' },
+        { label: 'Standard', value: typeCounts['Standard'], color: 'var(--accent)' },
+        { label: 'Erhöht', value: typeCounts['Erhöht'], color: 'var(--amber)' }
+      ];
+
+      $('stats-grid').innerHTML = `
+        <div class="stat-card glass">
+          <div style="font-size:12px; font-family:'JetBrains Mono',monospace; color:var(--text-secondary);">MATCH CONFIDENCE</div>
+          ${donutChart(slices)}
+          <div style="display:flex; gap:12px; font-size:11px; margin-top:8px;">
+            <span style="color:var(--green)">■ High</span>
+            <span style="color:var(--amber)">■ Medium</span>
+            <span style="color:var(--red)">■ Low</span>
+          </div>
+        </div>
+        <div class="stat-card glass" style="align-items: flex-start;">
+          <div style="font-size:12px; font-family:'JetBrains Mono',monospace; color:var(--text-secondary); margin-bottom:12px;">REQUIREMENT TYPES</div>
+          <div style="width:100%; display:flex; flex-direction:column; gap:12px;">
+            ${hBarRows(typeBars)}
+          </div>
+        </div>
+      `;
+    }
+
+    // --- PIPELINE EXECUTION ---
+    $('btn-cancel').addEventListener('click', () => { state.cancel = true; l.warn("Cancel requested..."); });
+
+    $('btn-run').addEventListener('click', async () => {
+      const rawText = $('raw-text').value.trim();
+      if (!rawText) return alert("Please provide Baustein PDF or raw text first.");
+      if (!$('cfg-key').value) return alert("API Key required.");
+
+      state = { cancel: false, running: true, baustein: null, zielobjekte: [], results: [] };
+      $('btn-run').classList.add('hidden');
+      $('btn-cancel').classList.remove('hidden');
+      $('card-results').classList.add('hidden');
+      $('card-stats').classList.add('hidden');
+      $('results-list').innerHTML = '';
+      
+      try {
+        // PHASE 1: Extract Baustein Structure
+        updateStatus("Phase 1/3: Extracting requirements from raw text...");
+        l.info("Starting extraction phase...");
+        showProgress("Extracting", 0, 1);
+        
+        let p1Prompt = getP1().replace('{raw_text}', rawText);
+        let extOut = await llm(p1Prompt, "Extraction");
+        state.baustein = extractJson(extOut);
+        
+        if (!state.baustein.requirements || !Array.isArray(state.baustein.requirements)) {
+          throw new Error("Extractor did not return a valid requirements array.");
+        }
+        l.ok(`Extracted Baustein: ${state.baustein.baustein_id} with ${state.baustein.requirements.length} requirements.`);
+        showProgress("Extracting", 1, 1);
+
+        // Populate initial result cards
+        state.results = state.baustein.requirements.map(req => ({
+          item: req, analysis: null, error: null
+        }));
+        renderResults();
+
+        // PHASE 2: Determine Zielobjekte
+        updateStatus("Phase 2/3: Mapping to G++ Zielobjekte...");
+        l.info("Determining G++ Target Objects...");
+        showProgress("Target Mapping", 0, 1);
+        
+        let p2Prompt = getP2()
+          .replace('{baustein_id}', state.baustein.baustein_id || '')
+          .replace('{baustein_title}', state.baustein.baustein_title || '')
+          .replace('{baustein_description}', state.baustein.description || '');
+        
+        let targetOut = await llm(p2Prompt, "Zielobjekt Mapping");
+        const targetJson = extractJson(targetOut);
+        state.zielobjekte = targetJson.zielobjekte || [];
+        l.ok(`Mapped to Zielobjekte: ${state.zielobjekte.join(', ')}`);
+        showProgress("Target Mapping", 1, 1);
+        renderResults();
+
+        // PHASE 3: Match Requirements (Parallel Pool)
+        updateStatus("Phase 3/3: Matching requirements to G++ controls...");
+        const concurrency = parseInt($('cfg-concurrency').value) || 4;
+        l.info(`Starting matching pool with concurrency ${concurrency}...`);
+        
+        const zielobjektStr = state.zielobjekte.join(', ');
+        const tasks = state.results.map((r, idx) => async () => {
+          try {
+            let prompt = getP3()
+              .replace('{req_id}', r.item.id || '')
+              .replace('{req_title}', r.item.title || '')
+              .replace('{req_text}', r.item.text || '')
+              .replace('{zielobjekt}', zielobjektStr);
+            
+            const out = await llm(prompt, `Match [${idx+1}/${state.results.length}]`);
+            r.analysis = extractJson(out);
+          } catch (e) {
+            r.error = e.message;
+          }
+        });
+
+        await runPool(tasks, concurrency, (d, t) => {
+          showProgress("Matching Controls", d, t);
+          renderResults(); // Live updates
+        });
+
+        state.results.forEach(r => { if (!r.analysis && !r.error) r.error = "Cancelled"; });
+        renderResults();
+        
+        if (state.cancel) {
+          l.warn("Pipeline cancelled by user.");
+          updateStatus("Cancelled.");
+        } else {
+          l.ok("Pipeline complete.");
+          updateStatus("Done. Ready for export.");
+        }
+
+      } catch (e) {
+        l.err(`Pipeline failed: ${e.message}`);
+        updateStatus(`Failed: ${e.message}`);
+      } finally {
+        state.running = false;
+        $('btn-run').classList.remove('hidden');
+        $('btn-cancel').classList.add('hidden');
+      }
+    });
+
+    // --- OSCAL GENERATION ---
+    $('btn-export-json').addEventListener('click', () => {
+      if (!state.baustein || state.results.length === 0) return alert("No results to export.");
+      
+      const uuid = () => crypto.randomUUID();
+      const isoTime = new Date().toISOString();
+
+      // Assemble mapped requirements into OSCAL implemented-requirements
+      const implementedReqs = state.results
+        .filter(r => r.analysis && r.analysis.matched_controls && r.analysis.matched_controls.length > 0)
+        .flatMap(r => {
+          return r.analysis.matched_controls.map(ctrl => {
+             return {
+               "uuid": uuid(),
+               "control-id": ctrl.control_id,
+               "description": `Mapped from ${r.item.id}: ${r.item.title}\nJustification: ${ctrl.justification}`,
+               "props": [
+                 { "name": "bsi-source-req-id", "value": r.item.id },
+                 { "name": "bsi-req-type", "value": r.item.type || "Basis" },
+                 { "name": "mapping-confidence", "value": ctrl.match_confidence }
+               ]
+             };
+          });
+        });
+
+      // Wrap in basic Component Definition
+      const oscal = {
+        "component-definition": {
+          "uuid": uuid(),
+          "metadata": {
+            "title": `G++ Mapping for ${state.baustein.baustein_id}`,
+            "last-modified": isoTime,
+            "version": "1.0",
+            "oscal-version": "1.1.2"
+          },
+          "components": [
+            {
+              "uuid": uuid(),
+              "type": "software",
+              "title": `Target Component: ${state.zielobjekte.join(', ') || 'System'}`,
+              "description": `Component implementing requirements from ${state.baustein.baustein_id}: ${state.baustein.baustein_title}`,
+              "control-implementations": [
+                {
+                  "uuid": uuid(),
+                  "source": "https://bsi.bund.de/gpp-anwenderkatalog",
+                  "description": "G++ Anwenderkatalog mappings",
+                  "implemented-requirements": implementedReqs
+                }
+              ]
+            }
+          ]
+        }
+      };
+
+      const blob = new Blob([JSON.stringify(oscal, null, 2)], {type: 'application/json'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `oscal_cdef_${state.baustein.baustein_id.replace(/\./g, '_')}.json`;
+      a.click();
+      URL.revokeObjectURL(url);
+      l.info(`Exported OSCAL JSON for ${state.baustein.baustein_id}`);
+    });
+  </script>
+</body>
+</html>

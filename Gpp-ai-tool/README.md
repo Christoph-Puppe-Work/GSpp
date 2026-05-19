@@ -1,84 +1,99 @@
-# Grundschutz++ (G++) AI Tool
+# Gpp-ai-tool
 
-Welcome to the **Grundschutz++ AI Tool**. This application provides an automated, AI-driven pipeline for generating [OSCAL 1.1.3](https://pages.nist.gov/OSCAL/) Component Definitions. 
+Gpp-ai-tool is a Python-based automation framework designed to facilitate the migration from BSI IT-Grundschutz Edition 2023 (Ed2023) to the modernized Grundschutz++ (G++) methodology using OSCAL 1.1.3 component definitions.
 
-Its primary purpose is to facilitate the migration from the traditional, module-based **BSI IT-Grundschutz Edition 2023 (Ed2023)** to the modernized, data-centric, and inheritance-driven **Grundschutz++ (G++)** methodology.
+The tool leverages Google Vertex AI (Gemini) to perform semantic mapping and enrich OSCAL components with AI-generated implementation details.
 
-By leveraging Python and Google Cloud Vertex AI (Gemini), this tool maps old BSI requirements to new G++ controls and enriches them with detailed, AI-generated implementation guidance across different maturity levels.
+## Key Features
 
-## Features
+- **Automated Migration (Mapping):** Maps Ed2023 "Bausteine" to G++ "Zielobjekte" and Ed2023 "Anforderungen" to G++ "Kontrollen".
+- **AI-Powered Enrichment:** Generates detailed implementation descriptions for maturity levels 1-5 and performs automated classifications (NIST, ISMS, CIA).
+- **Multi-Stage Pipeline:** Modular architecture allowing for individual stage execution or full pipeline runs.
+- **Robust Integration:** Built-in support for Google Cloud Storage and Vertex AI.
 
-- **Automated Mapping:** Intelligently maps legacy BSI *Bausteine* (modules) to G++ *Zielobjekte* (target objects), and specifically maps individual BSI *Anforderungen* (requirements) to G++ *Kontrollen* (controls) using a strict 1:1 relationship.
-- **Contextual Enrichment:** Uses Gemini AI to generate rich implementation details, including detailed statements, guidance, and assessment methods for maturity levels 1-5.
-- **Classification:** Automatically assigns relevant metadata such as NIST Class, ISMS Phase, and CIA Impact to the newly mapped controls.
-- **OSCAL Generation:** Outputs standards-compliant OSCAL profiles and component definitions for seamless integration into modern GRC (Governance, Risk, and Compliance) tools.
-- **Asynchronous Execution:** Highly parallelized architecture for fast processing using robust retry mechanisms and error handling.
+## Installation
 
-## Pipeline Architecture
+### Prerequisites
 
-The application operates as a multi-stage data processing pipeline. Each stage is designed to complete a specific part of the migration and enrichment process.
+- Python 3.9 or higher
+- Access to a Google Cloud Project with Vertex AI and Cloud Storage enabled
+- `gcloud` CLI installed and authenticated
 
-### The 6 Stages of Processing
+### Setup
 
-1. **Stage: Strip (`stage_strip`)**
-   - **Purpose:** Prepares the input data.
-   - **Action:** Cleans and converts source documents (like BSI compendiums and G++ definitions) into clean Markdown format. This provides the optimal context for the AI models in later stages.
+1.  **Clone the repository and navigate to the project directory:**
+    ```bash
+    cd Gpp-ai-tool
+    ```
 
-2. **Stage: GPP (`stage_gpp`)**
-   - **Purpose:** Establishes the target baseline.
-   - **Action:** Deterministically processes the G++ compendium to build a hierarchy of controls. It figures out the full pool of available G++ controls applicable to each specific *Zielobjekt* based on inheritance rules.
+2.  **Create and activate a virtual environment:**
+    ```bash
+    python3 -m venv venv
+    source venv/bin/activate
+    ```
 
-3. **Stage: Match Bausteine (`stage_match_bausteine`)**
-   - **Purpose:** High-level migration mapping.
-   - **Action:** Uses AI to semantically map each relevant BSI Ed2023 *Baustein* to exactly one appropriate G++ *Zielobjekt*.
+3.  **Install the dependencies:**
+    ```bash
+    pip install -r src/requirements.txt
+    ```
 
-4. **Stage: Matching (`stage_matching`)**
-   - **Purpose:** Detailed migration mapping.
-   - **Action:** For every BSI *Anforderung* within a mapped *Baustein*, the AI determines the single most appropriate G++ *Kontrolle*. This search is strictly limited to the control pool established in `stage_gpp` for the target *Zielobjekt*, ensuring highly accurate, context-aware 1:1 mapping.
+## Configuration
 
-5. **Stage: Profiles (`stage_profiles`)**
-   - **Purpose:** Generate intermediary OSCAL structures.
-   - **Action:** Deterministically creates an OSCAL Profile for each *Zielobjekt*. These profiles contain references to all the applicable G++ controls required.
+The tool is configured via environment variables. Create a `.env` file or export them in your shell:
 
-6. **Stage: Component Generation (`stage_component`)**
-   - **Purpose:** AI Enrichment and final output generation.
-   - **Action:** This is the most intensive stage. The AI (Gemini Pro) ingests the matched G++ controls and the contextual background of the original BSI Baustein. It then generates comprehensive OSCAL Component Definitions. This includes writing detailed implementation prose for Maturity Levels 1 through 5 (Statement, Guidance, Assessment) and determining standard classifications (NIST, ISMS, CIA). 
-
-*Note: The generated components are based on the full profile of the Zielobjekt (from Stage 2), meaning they provide a complete control implementation framework, contextualized by the migrated BSI data.*
-
-## Prerequisites
-
-To run this tool, you will need:
-
-- **Python 3.10+**
-- **Google Cloud Platform (GCP) Account** with Vertex AI API enabled.
-- **GCP Credentials:** Set up via `gcloud auth application-default login` or by setting the `GOOGLE_APPLICATION_CREDENTIALS` environment variable.
-- Required Python packages (install via `pip install -r requirements.txt`).
+| Variable | Description | Required |
+| :--- | :--- | :--- |
+| `GCP_PROJECT_ID` | Your Google Cloud Project ID | Yes |
+| `BUCKET_NAME` | GCS bucket for input/output artifacts | Yes |
+| `AI_ENDPOINT_ID` | Vertex AI Endpoint ID (or model name) | Yes |
+| `REGION` | GCP Region (default: `global`) | No |
+| `SOURCE_PREFIX` | GCS path prefix for source files | Yes |
+| `OUTPUT_PREFIX` | GCS path prefix for output files | Yes |
+| `TEST` | Set to `true` for test mode (default: `false`) | No |
+| `MAX_CONCURRENT_AI_REQUESTS` | Limit parallel AI calls (default: `5`) | No |
 
 ## Usage
 
-The application is orchestrated via a command-line interface. You can run the entire pipeline from start to finish, or execute individual stages.
+### Local Execution
 
-### Running the Full Pipeline
-
-To execute all stages sequentially:
+Use the provided helper script to run the pipeline locally:
 
 ```bash
-python src/main.py
+./scripts/run_local.sh [stage_name]
 ```
 
-### Running a Specific Stage
+To run the full pipeline, omit the stage name:
+```bash
+./scripts/run_local.sh
+```
 
-If you need to re-run a specific part of the process (e.g., during testing or debugging), you can specify the `--stage` argument:
+### Available Pipeline Stages
+
+You can run specific stages using the `--stage` argument:
+
+- `stage_strip`: Pre-processes and cleans source data.
+- `stage_gpp`: Determines applicable G++ controls for target objects.
+- `stage_match_bausteine`: Maps BSI Bausteine to G++ Zielobjekte.
+- `stage_matching`: Performs semantic matching of requirements to controls.
+- `stage_profiles`: Generates OSCAL profiles.
+- `stage_component`: Generates the final enriched OSCAL component definitions.
+
+## Deployment
+
+The tool is designed to run as a Google Cloud Run Job. Use the deployment script:
 
 ```bash
-# Example: Run only the Baustein matching stage
-python src/main.py --stage stage_match_bausteine
-
-# Available stages:
-# stage_strip, stage_gpp, stage_match_bausteine, stage_matching, stage_profiles, stage_component
+./scripts/deploy.sh <GCP_PROJECT_ID> <GCP_REGION>
 ```
 
-## Known Limitations
+## How-To / Workflow
 
-Please review `issues.md` for a detailed breakdown of current architectural constraints and AI generation considerations, such as the strict 1:1 mapping limitation and potential output variability due to AI temperature settings.
+1.  **Preparation:** Upload your source BSI Ed2023 artifacts and G++ reference data to the configured GCS bucket.
+2.  **Mapping:** The tool first establishes a 1:1 mapping between old blocks and new target objects.
+3.  **Matching:** AI analyzes the semantic meaning of requirements to find the best-fitting G++ control.
+4.  **Enrichment:** For each matched control, Gemini generates implementation guidance and maturity level descriptions based on the original BSI context.
+5.  **Finalization:** The tool outputs valid OSCAL 1.1.3 JSON files ready for use in G++ compatible tools.
+
+---
+
+For more technical details, refer to [G++ Automatisierte Erstellung Zielobjekte-Bausteine.md](./G++%20Automatisierte%20Erstellung%20Zielobjekte-Bausteine.md).

@@ -1,931 +1,2484 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BSI G++ OSCAL Generator</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-  <!-- PDF.js for local browser PDF parsing -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
-  <script>pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';</script>
+<meta charset="utf-8">
+<title>G++ OSCAL Component Creator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<style>
+:root {
+  --bg-deep:        oklch(0.13 0.02 280);
+  --bg-elev-1:      oklch(0.95 0.005 280 / 0.04);
+  --bg-elev-2:      oklch(0.95 0.005 280 / 0.06);
+  --bg-elev-3:      oklch(0.95 0.005 280 / 0.08);
+  --border-1:       oklch(0.95 0.005 280 / 0.06);
+  --border-2:       oklch(0.95 0.005 280 / 0.10);
+  --text-primary:   oklch(0.95 0.005 280);
+  --text-secondary: oklch(0.75 0.02 280);
+  --text-tertiary:  oklch(0.65 0.02 280);
+  --text-quiet:     oklch(0.55 0.02 280);
+  --accent:         oklch(0.7  0.18 300);
+  --accent-soft:    oklch(0.7  0.18 300 / 0.15);
+  --accent-glow:    oklch(0.7  0.18 300 / 0.4);
+  --red:            oklch(0.65 0.20 25);
+  --amber:          oklch(0.80 0.15 80);
+  --green:          oklch(0.75 0.18 145);
+  --blue:           oklch(0.70 0.15 240);
+  --rail-w: 260px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;height:100%;width:100%;overflow:hidden}
+body{
+  font-family:'Inter',system-ui,sans-serif;
+  background:var(--bg-deep);color:var(--text-primary);font-size:13px;line-height:1.5;
+}
+::selection{background:oklch(0.7 0.18 300 / 0.35);color:var(--text-primary)}
+::-webkit-scrollbar{width:6px;height:6px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:oklch(0.95 0.005 280 / 0.1);border-radius:3px}
+::-webkit-scrollbar-thumb:hover{background:var(--accent-soft)}
+.aurora-1{position:fixed;width:600px;height:600px;border-radius:50%;
+  background:radial-gradient(circle,oklch(0.4 0.18 300 / 0.5),transparent 70%);
+  top:-200px;left:-100px;filter:blur(60px);pointer-events:none;z-index:0}
+.aurora-2{position:fixed;width:700px;height:700px;border-radius:50%;
+  background:radial-gradient(circle,oklch(0.4 0.16 240 / 0.4),transparent 70%);
+  bottom:-300px;right:-200px;filter:blur(80px);pointer-events:none;z-index:0}
+.noise{position:fixed;inset:0;opacity:0.03;pointer-events:none;z-index:0;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100'><filter id='n'><feTurbulence baseFrequency='0.9'/></filter><rect width='100' height='100' filter='url(%23n)'/></svg>")}
 
-  <style>
-    :root {
-      --bg-deep:        oklch(0.13 0.02 280);
-      --bg-elev-1:      oklch(0.95 0.005 280 / 0.04);
-      --bg-elev-2:      oklch(0.95 0.005 280 / 0.06);
-      --bg-elev-3:      oklch(0.95 0.005 280 / 0.08);
-      --border-1:       oklch(0.95 0.005 280 / 0.06);
-      --border-2:       oklch(0.95 0.005 280 / 0.10);
-      --text-primary:   oklch(0.95 0.005 280);
-      --text-secondary: oklch(0.75 0.02 280);
-      --text-tertiary:  oklch(0.65 0.02 280);
-      --text-quiet:     oklch(0.55 0.02 280);
-      --accent:         oklch(0.7  0.18 300);
-      --accent-soft:    oklch(0.7  0.18 300 / 0.15);
-      --accent-glow:    oklch(0.7  0.18 300 / 0.4);
-      --red:            oklch(0.65 0.2 25);
-      --amber:          oklch(0.80 0.15 80);
-      --green:          oklch(0.75 0.18 145);
-      --blue:           oklch(0.70 0.15 240);
-    }
+.shell{position:relative;z-index:1;display:flex;flex-direction:column;height:100vh}
+.topbar{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 24px;height:62px;flex:0 0 62px;
+  background:var(--bg-elev-1);backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border-1);
+}
+.brand{display:flex;align-items:center;gap:12px}
+.brand-icon{width:28px;height:28px;display:flex;align-items:center;justify-content:center;
+  background:var(--accent-soft);border-radius:8px;color:var(--accent);font-size:16px}
+.brand-name{font-weight:600;letter-spacing:-0.01em}
+.brand-sub{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-quiet);
+  letter-spacing:0.05em;text-transform:uppercase;margin-left:8px}
+.meta-pills{display:flex;gap:8px;align-items:center}
+.pill{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.1em;
+  padding:4px 10px;border-radius:99px;background:var(--bg-elev-2);
+  color:var(--text-tertiary);border:1px solid var(--border-1);text-transform:uppercase}
+.pill.live{color:var(--green)}
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    
-    body {
-      background: var(--bg-deep);
-      color: var(--text-primary);
-      font-family: 'Inter', sans-serif;
-      font-size: 14px;
-      line-height: 1.5;
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-    }
+.main{display:flex;flex:1;min-height:0;overflow:hidden}
+.rail{
+  width:var(--rail-w);flex:0 0 var(--rail-w);
+  background:var(--bg-elev-1);border-right:1px solid var(--border-1);
+  display:flex;flex-direction:column;overflow:hidden;
+}
+.rail-scroll{overflow-y:auto;flex:1;padding:18px 16px 24px;min-height:0}
+.rail-section{margin-bottom:22px}
+.rail-label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.15em;
+  text-transform:uppercase;color:var(--text-quiet);margin-bottom:10px;display:flex;
+  align-items:center;justify-content:space-between}
+.rail-label .glyph{color:var(--accent)}
+.field{margin-bottom:10px}
+.field label{display:block;font-size:11px;color:var(--text-tertiary);margin-bottom:4px;
+  font-weight:500}
+.field input,.field select,.field textarea{
+  width:100%;background:var(--bg-elev-2);border:1px solid var(--border-1);
+  color:var(--text-primary);font-family:'JetBrains Mono',monospace;font-size:11px;
+  padding:7px 9px;border-radius:7px;outline:none;transition:border-color .15s ease;
+}
+.field input:focus,.field select:focus,.field textarea:focus{
+  border-color:var(--accent);box-shadow:0 0 0 2px var(--accent-soft)}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.toggle{display:flex;align-items:center;gap:8px;padding:8px 10px;background:var(--bg-elev-2);
+  border:1px solid var(--border-1);border-radius:7px;cursor:pointer;font-size:11px;
+  margin-bottom:6px;transition:all .15s ease}
+.toggle:hover{background:var(--bg-elev-3)}
+.toggle input{margin:0;accent-color:var(--accent)}
+.toggle .desc{color:var(--text-tertiary);font-size:10px;margin-top:2px;display:block}
 
-    ::selection { background: oklch(0.7 0.18 300 / 0.35); color: var(--text-primary); }
-    
-    ::-webkit-scrollbar { width: 6px; height: 6px; }
-    ::-webkit-scrollbar-track { background: transparent; }
-    ::-webkit-scrollbar-thumb { background: var(--bg-elev-3); border-radius: 3px; }
-    ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+.splitter{width:4px;flex:0 0 4px;background:transparent;cursor:col-resize;
+  transition:background .15s ease;position:relative}
+.splitter:hover,.splitter.dragging{background:var(--accent-soft)}
 
-    .glass {
-      background: var(--bg-elev-1);
-      border: 1px solid var(--border-1);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-radius: 12px;
-    }
+.work{flex:1;min-width:0;display:flex;flex-direction:column;overflow:hidden}
+.work-scroll{flex:1;overflow-y:auto;min-height:0;padding:24px 32px}
 
-    h1, h2, h3, h4 { font-weight: 600; }
-    h2 { font-size: 16px; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
-    
-    input, select, textarea, button {
-      font-family: inherit; font-size: inherit; color: inherit;
-      background: var(--bg-elev-1); border: 1px solid var(--border-1);
-      border-radius: 6px; padding: 6px 10px; outline: none; transition: all 0.2s ease;
-    }
-    input:focus, select:focus, textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent-soft); }
-    
-    textarea { font-family: 'JetBrains Mono', monospace; font-size: 13px; resize: vertical; line-height: 1.4; }
-    
-    button { cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 6px; font-weight: 500; }
-    button:hover:not(:disabled) { background: var(--bg-elev-2); border-color: var(--border-2); }
-    button:disabled { opacity: 0.5; cursor: not-allowed; }
-    button.primary { background: var(--accent); border-color: transparent; color: #fff; box-shadow: 0 6px 20px var(--accent-glow); }
-    button.primary:hover:not(:disabled) { filter: brightness(1.1); transform: translateY(-1px); }
+.card{
+  background:var(--bg-elev-1);border:1px solid var(--border-1);
+  backdrop-filter:blur(20px);border-radius:12px;padding:20px 22px;margin-bottom:18px;
+}
+.card-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.card-title{display:flex;align-items:center;gap:10px;font-weight:600;font-size:14px}
+.card-title .num{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.15em;
+  color:var(--accent);background:var(--accent-soft);padding:3px 8px;border-radius:4px;
+  text-transform:uppercase}
+.card-title .glyph{color:var(--accent);font-size:18px}
+.card-desc{color:var(--text-tertiary);font-size:12px;margin-top:-6px;margin-bottom:14px}
 
-    .badge {
-      display: inline-flex; padding: 2px 8px; border-radius: 12px; font-size: 11px; font-weight: 600;
-      font-family: 'JetBrains Mono', monospace; text-transform: uppercase; letter-spacing: 0.5px;
-    }
-    .badge.green { background: oklch(0.75 0.18 145 / 0.15); color: var(--green); border: 1px solid oklch(0.75 0.18 145 / 0.3); }
-    .badge.amber { background: oklch(0.80 0.15 80 / 0.15); color: var(--amber); border: 1px solid oklch(0.80 0.15 80 / 0.3); }
-    .badge.red { background: oklch(0.65 0.2 25 / 0.15); color: var(--red); border: 1px solid oklch(0.65 0.2 25 / 0.3); }
-    .badge.blue { background: oklch(0.70 0.15 240 / 0.15); color: var(--blue); border: 1px solid oklch(0.70 0.15 240 / 0.3); }
-    .badge.violet { background: var(--accent-soft); color: var(--accent); border: 1px solid oklch(0.7 0.18 300 / 0.3); }
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:9px 16px;border-radius:8px;font-size:12px;font-weight:500;
+  border:1px solid var(--border-2);background:var(--bg-elev-2);color:var(--text-primary);
+  cursor:pointer;transition:all .15s ease;font-family:inherit;
+}
+.btn:hover{background:var(--bg-elev-3);border-color:var(--accent-soft)}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:white;font-weight:600;
+  box-shadow:0 6px 20px var(--accent-glow)}
+.btn.primary:hover{background:oklch(0.75 0.18 300)}
+.btn.ghost{background:transparent}
+.btn.danger{color:var(--red);border-color:oklch(0.65 0.2 25 / 0.3)}
+.btn.sm{padding:5px 10px;font-size:11px}
 
-    /* Layout Shell */
-    #topbar {
-      height: 64px; border-bottom: 1px solid var(--border-1); display: flex; align-items: center;
-      padding: 0 24px; gap: 16px; background: oklch(0.95 0.005 280 / 0.02); backdrop-filter: blur(20px); z-index: 10;
-    }
-    #topbar .brand { font-weight: 700; font-size: 16px; display: flex; align-items: center; gap: 8px; }
-    
-    #workspace { display: flex; flex: 1; min-height: 0; z-index: 5; }
-    
-    #rail {
-      width: 260px; flex-shrink: 0; border-right: 1px solid var(--border-1); padding: 20px;
-      display: flex; flex-direction: column; gap: 24px; overflow-y: auto;
-      background: oklch(0.95 0.005 280 / 0.02);
-    }
-    .rail-group { display: flex; flex-direction: column; gap: 12px; }
-    .rail-group label { font-size: 12px; font-weight: 500; color: var(--text-secondary); display: flex; flex-direction: column; gap: 6px; }
-    
-    #main {
-      flex: 1; padding: 32px; overflow-y: auto; display: flex; flex-direction: column; gap: 24px; scroll-behavior: smooth;
-    }
+.dropzone{
+  border:1.5px dashed var(--border-2);border-radius:10px;padding:24px;
+  text-align:center;color:var(--text-tertiary);cursor:pointer;
+  transition:all .15s ease;background:var(--bg-elev-2);
+}
+.dropzone:hover,.dropzone.drag{border-color:var(--accent);background:var(--accent-soft);
+  color:var(--text-primary)}
+.dropzone .glyph{font-size:24px;color:var(--accent);display:block;margin-bottom:8px}
+.dropzone-info{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-quiet);
+  margin-top:8px;display:block;letter-spacing:0.05em}
 
-    #console {
-      height: 220px; border-top: 1px solid var(--border-1); display: flex; flex-direction: column;
-      background: oklch(0.95 0.005 280 / 0.02); backdrop-filter: blur(20px); z-index: 10;
-    }
-    #console-header {
-      padding: 8px 16px; border-bottom: 1px solid var(--border-1); display: flex; justify-content: space-between;
-      font-size: 12px; color: var(--text-secondary); font-family: 'JetBrains Mono', monospace;
-    }
-    #console-logs {
-      flex: 1; padding: 12px 16px; overflow-y: auto; font-family: 'JetBrains Mono', monospace; font-size: 12px;
-      display: flex; flex-direction: column; gap: 4px;
-    }
-    .log-line { display: flex; gap: 12px; word-break: break-all; }
-    .log-time { color: var(--text-quiet); flex-shrink: 0; }
-    .log-msg { flex: 1; }
-    .log-info { color: var(--blue); }
-    .log-ok { color: var(--green); }
-    .log-warn { color: var(--amber); }
-    .log-err { color: var(--red); }
-    .log-debug { color: var(--text-quiet); }
+.url-row{display:flex;gap:8px;margin-bottom:8px}
+.url-row input{flex:1;background:var(--bg-elev-2);border:1px solid var(--border-1);
+  color:var(--text-primary);font-family:'JetBrains Mono',monospace;font-size:11px;
+  padding:8px 10px;border-radius:7px;outline:none}
+.url-row input:focus{border-color:var(--accent)}
 
-    /* Specific Components */
-    .card { padding: 20px; display: flex; flex-direction: column; gap: 16px; }
-    
-    .drop-zone {
-      border: 2px dashed var(--border-2); border-radius: 8px; padding: 40px 20px; text-align: center;
-      transition: all 0.2s ease; cursor: pointer; color: var(--text-secondary);
-    }
-    .drop-zone.dragover { background: var(--accent-soft); border-color: var(--accent); color: var(--text-primary); }
-    
-    .prompt-header { display: flex; justify-content: space-between; align-items: flex-end; }
-    .prompt-label { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--accent); }
-    .prompt-warning { margin-top: -10px; color: var(--amber); font-size: 12px; display: none; }
+.prompt-block{margin-bottom:16px;padding:14px 16px;background:var(--bg-elev-2);
+  border:1px solid var(--border-1);border-radius:10px}
+.prompt-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.prompt-label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.15em;
+  text-transform:uppercase;color:var(--text-tertiary);font-weight:600}
+.prompt-label .stage{color:var(--accent);margin-right:6px}
+.prompt-actions{display:flex;gap:6px;align-items:center}
+.prompt-warn{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--amber);
+  margin-top:6px;display:none;letter-spacing:0.05em}
+.prompt-warn.show{display:block}
+.prompt-ta{
+  width:100%;background:var(--bg-deep);border:1px solid var(--border-1);
+  color:var(--text-primary);font-family:'JetBrains Mono',monospace;font-size:11px;
+  padding:10px 12px;border-radius:7px;outline:none;resize:vertical;
+  min-height:180px;line-height:1.55;
+}
+.prompt-ta:focus{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent-soft)}
 
-    .progress-container { width: 100%; display: flex; flex-direction: column; gap: 8px; }
-    .progress-header { display: flex; justify-content: space-between; font-size: 12px; font-family: 'JetBrains Mono', monospace; }
-    .progress-track { height: 2px; background: var(--border-1); overflow: hidden; border-radius: 1px; }
-    .progress-fill { height: 100%; background: var(--accent); width: 0%; transition: width 0.2s ease; }
-    .progress-fill.done { background: var(--green); }
+.run-bar{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.run-bar .grow{flex:1}
+.testdrive{display:flex;align-items:center;gap:8px;font-size:11px;
+  color:var(--text-tertiary);cursor:pointer;user-select:none}
+.testdrive input{accent-color:var(--amber)}
 
-    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; }
-    .stat-card { padding: 16px; display: flex; flex-direction: column; gap: 16px; align-items: center; }
-    .hbar-row { display: flex; align-items: center; gap: 12px; width: 100%; font-size: 12px; }
-    .hbar-label { width: 100px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-family: 'JetBrains Mono', monospace; }
-    .hbar-track { flex: 1; height: 6px; background: var(--border-1); border-radius: 3px; overflow: hidden; }
-    .hbar-fill { height: 100%; border-radius: 3px; }
-    .hbar-value { width: 30px; text-align: right; font-family: 'JetBrains Mono', monospace; }
+.progress-track{height:1px;background:var(--border-1);overflow:hidden;
+  margin-top:14px;border-radius:1px}
+.progress-fill{height:100%;background:var(--accent);width:0%;
+  transition:width .25s ease}
+.progress-fill.done{background:var(--green)}
+.progress-meta{display:flex;justify-content:space-between;margin-top:8px;
+  font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-quiet);
+  letter-spacing:0.05em}
 
-    .result-card { border-left: 3px solid transparent; }
-    .result-card.conf-high { border-left-color: var(--green); }
-    .result-card.conf-medium { border-left-color: var(--amber); }
-    .result-card.conf-low { border-left-color: var(--red); }
-    .result-card.status-error { border-left-color: var(--text-quiet); opacity: 0.7; }
-    
-    .result-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; }
-    .result-meta { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--text-secondary); margin-bottom: 8px; }
-    .result-body { color: var(--text-secondary); margin-bottom: 12px; }
-    .mapped-controls { display: flex; flex-direction: column; gap: 8px; margin-top: 12px; padding-top: 12px; border-top: 1px dashed var(--border-1); }
-    .control-item { display: flex; gap: 8px; align-items: center; font-size: 13px; }
-    .control-id { font-family: 'JetBrains Mono', monospace; color: var(--accent); }
+.testdrive-banner{display:none;padding:10px 14px;border-radius:8px;margin-bottom:14px;
+  background:oklch(0.80 0.15 80 / 0.1);border:1px solid oklch(0.80 0.15 80 / 0.3);
+  color:var(--amber);font-size:11px;font-family:'JetBrains Mono',monospace;
+  letter-spacing:0.05em}
+.testdrive-banner.show{display:block}
 
-    .toolbar { display: flex; gap: 12px; margin-bottom: 16px; }
-    
-    .hidden { display: none !important; }
-  </style>
-</head>
-<body>
-  <div style="position:fixed;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,oklch(0.4 0.18 300/.5),transparent 70%);top:-200px;left:-100px;filter:blur(60px);pointer-events:none;z-index:0"></div>
-  <div style="position:fixed;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,oklch(0.4 0.16 240/.4),transparent 70%);bottom:-300px;right:-200px;filter:blur(80px);pointer-events:none;z-index:0"></div>
-  <div style="position:fixed;inset:0;opacity:0.03;pointer-events:none;z-index:0;background-image:url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22><filter id=%22n%22><feTurbulence baseFrequency=%220.9%22/></filter><rect width=%22100%22 height=%22100%22 filter=%22url(%23n)%22/></svg>')"></div>
+.stage-line{display:flex;gap:12px;margin-bottom:16px}
+.stage-pip{flex:1;padding:10px 12px;border-radius:8px;background:var(--bg-elev-2);
+  border:1px solid var(--border-1);display:flex;align-items:center;gap:10px}
+.stage-pip.active{border-color:var(--accent);background:var(--accent-soft)}
+.stage-pip.done{border-color:oklch(0.75 0.18 145 / 0.5)}
+.stage-pip .pn{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--accent);
+  background:var(--bg-deep);padding:2px 7px;border-radius:4px;letter-spacing:0.1em}
+.stage-pip .pt{font-size:11px;color:var(--text-tertiary)}
+.stage-pip.active .pt{color:var(--text-primary)}
+.stage-pip .pdot{margin-left:auto;width:6px;height:6px;border-radius:50%;
+  background:var(--text-quiet)}
+.stage-pip.active .pdot{background:var(--accent);animation:pulse 1.4s ease infinite}
+.stage-pip.done .pdot{background:var(--green)}
+@keyframes pulse{0%,100%{opacity:.4}50%{opacity:1}}
 
-  <header id="topbar">
-    <div class="brand">◈ G++ OSCAL Factory</div>
-    <div style="flex:1"></div>
-    <div class="badge violet">One-Page Pattern</div>
-  </header>
+.result-section{margin-top:6px}
+.req-row{display:grid;grid-template-columns:90px 1fr 110px 130px;gap:14px;align-items:start;
+  padding:10px 12px;background:var(--bg-elev-2);border:1px solid var(--border-1);
+  border-radius:8px;margin-bottom:6px;font-size:11.5px;line-height:1.5}
+.req-row.miss{border-color:oklch(0.65 0.2 25 / 0.3);background:oklch(0.65 0.2 25 / 0.04)}
+.req-row.pending{opacity:.6}
+.req-id{font-family:'JetBrains Mono',monospace;color:var(--accent);font-size:10.5px;
+  letter-spacing:0.05em;display:flex;align-items:center;gap:5px}
+.req-id .mv{color:var(--text-quiet);font-size:9px;padding:1px 5px;border-radius:3px;
+  background:var(--bg-deep);letter-spacing:0.05em}
+.req-title{color:var(--text-primary)}
+.req-title .rationale{color:var(--text-quiet);font-size:10.5px;margin-top:3px;line-height:1.5}
+.req-ctrl{font-family:'JetBrains Mono',monospace;color:var(--green);font-size:10.5px}
+.req-ctrl.miss{color:var(--red)}
+.req-conf{display:flex;align-items:center;gap:6px;font-size:10.5px;color:var(--text-quiet);
+  font-family:'JetBrains Mono',monospace}
+.conf-bar{flex:1;height:3px;background:var(--bg-deep);border-radius:2px;overflow:hidden}
+.conf-bar > div{height:100%;background:var(--accent);border-radius:2px}
 
-  <div id="workspace">
-    <!-- Configuration Rail -->
-    <aside id="rail">
-      <div class="rail-group">
-        <label>
-          Gemini API Key
-          <input type="password" id="cfg-key" placeholder="AIzaSy..." />
-        </label>
-        <div style="font-size:11px;color:var(--text-quiet)">Stored locally. Needs <a href="https://aistudio.google.com/app/apikey" target="_blank" style="color:var(--accent)">Google AI Studio</a> key.</div>
-      </div>
-      
-      <div class="rail-group">
-        <label>
-          Model
-          <select id="cfg-model">
-            <option value="gemini-3-flash-preview">Gemini 3 Flash (Fast, Free tier)</option>
-            <option value="gemini-3.1-flash-lite-preview">Gemini 3.1 Flash Lite (Bulk)</option>
-            <option value="gemini-3.1-pro-preview">Gemini 3.1 Pro (Best logic)</option>
-          </select>
-        </label>
-      </div>
+.zo-card{padding:14px 16px;background:var(--bg-elev-2);border:1px solid var(--border-1);
+  border-radius:10px;margin-bottom:10px}
+.zo-card.primary{border-color:var(--accent);background:var(--accent-soft)}
+.zo-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
+.zo-name{font-weight:600;font-size:12.5px}
+.zo-type{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-quiet);
+  letter-spacing:0.1em;text-transform:uppercase}
+.zo-rationale{color:var(--text-tertiary);font-size:11.5px;line-height:1.55}
 
-      <div class="rail-group">
-        <label>
-          Concurrency (Pool Size)
-          <input type="number" id="cfg-concurrency" value="4" min="1" max="15" />
-        </label>
-      </div>
-
-      <div class="rail-group">
-        <label>
-          Thinking Level
-          <select id="cfg-thinking">
-            <option value="minimal">Minimal</option>
-            <option value="low">Low</option>
-            <option value="medium" selected>Medium</option>
-            <option value="high">High</option>
-          </select>
-        </label>
-      </div>
-
-      <div class="rail-group">
-        <label style="flex-direction:row; align-items:center; cursor:pointer;">
-          <input type="checkbox" id="cfg-grounding" checked />
-          Enable Google Search Grounding
-        </label>
-        <div style="font-size:11px;color:var(--text-quiet)">Crucial for mapping to new G++ Anwenderkatalog if model knowledge is old.</div>
-      </div>
-    </aside>
-
-    <!-- Main Content Area -->
-    <main id="main">
-      
-      <!-- Input Section -->
-      <section class="card glass" id="card-input">
-        <h2>◐ 1. Input Baustein</h2>
-        <div class="drop-zone" id="drop-zone">
-          <div style="font-size: 24px; margin-bottom: 8px;">📄</div>
-          <div>Drag & Drop BSI Baustein PDF here</div>
-          <div style="font-size: 12px; opacity: 0.6; margin-top: 4px;">or click to browse</div>
-          <input type="file" id="file-input" accept="application/pdf" style="display:none">
-        </div>
-        <div style="text-align:center; color:var(--text-quiet); font-size:12px;">— OR PASTE RAW TEXT —</div>
-        <textarea id="raw-text" placeholder="Paste extracted Baustein text here..." style="min-height: 100px;"></textarea>
-      </section>
-
-      <!-- Prompts Section -->
-      <section class="card glass" id="card-prompts">
-        <h2>✎ 2. Pipeline Prompts</h2>
-        
-        <!-- Stage 1: Extractor -->
-        <div class="prompt-group">
-          <div class="prompt-header">
-            <div class="prompt-label">STAGE_EXTRACT_PROMPT</div>
-            <button id="btn-reset-p1" class="badge">Reset</button>
-          </div>
-          <textarea id="prompt-p1" style="min-height: 160px; margin-top: 8px; width: 100%;"></textarea>
-          <div id="warn-p1" class="prompt-warning">Warning: Missing {raw_text} placeholder</div>
-        </div>
-
-        <!-- Stage 2: Target Mapping -->
-        <div class="prompt-group" style="margin-top: 16px;">
-          <div class="prompt-header">
-            <div class="prompt-label">STAGE_ZIELOBJEKT_PROMPT</div>
-            <button id="btn-reset-p2" class="badge">Reset</button>
-          </div>
-          <textarea id="prompt-p2" style="min-height: 120px; margin-top: 8px; width: 100%;"></textarea>
-          <div id="warn-p2" class="prompt-warning">Warning: Missing {baustein_id} or {baustein_title} placeholder</div>
-        </div>
-
-        <!-- Stage 3: Control Matching -->
-        <div class="prompt-group" style="margin-top: 16px;">
-          <div class="prompt-header">
-            <div class="prompt-label">STAGE_MATCHING_PROMPT</div>
-            <button id="btn-reset-p3" class="badge">Reset</button>
-          </div>
-          <textarea id="prompt-p3" style="min-height: 180px; margin-top: 8px; width: 100%;"></textarea>
-          <div id="warn-p3" class="prompt-warning">Warning: Missing {req_id}, {req_title}, {req_text}, or {zielobjekt}</div>
-        </div>
-      </section>
-
-      <!-- Run / Progress Section -->
-      <section class="card glass" id="card-run">
-        <div style="display: flex; gap: 12px; align-items: center;">
-          <button id="btn-run" class="primary" style="padding: 10px 24px;">▶ Start Processing Pipeline</button>
-          <button id="btn-cancel" class="hidden">■ Cancel</button>
-          <div id="run-status" style="font-family:'JetBrains Mono', monospace; font-size: 12px; color: var(--text-secondary);">Waiting for input...</div>
-        </div>
-        <div class="progress-container" id="progress-container" style="margin-top: 16px; display: none;">
-          <div class="progress-header">
-            <span id="prog-phase">Phase...</span>
-            <span id="prog-counts">0 / 0</span>
-          </div>
-          <div class="progress-track">
-            <div class="progress-fill" id="prog-fill"></div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Stats Section -->
-      <section class="card glass hidden" id="card-stats">
-        <h2>⬡ Analysis Stats</h2>
-        <div class="stats-grid" id="stats-grid">
-           <!-- Charts injected here -->
-        </div>
-      </section>
-
-      <!-- Results & Export Section -->
-      <section class="card glass hidden" id="card-results">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
-          <h2>▣ 3. Results & OSCAL</h2>
-          <div class="toolbar" style="margin:0;">
-            <button id="btn-export-json" class="primary">⤓ Download OSCAL JSON</button>
-          </div>
-        </div>
-        
-        <div id="baustein-meta" style="margin-bottom: 24px; padding: 16px; background: var(--bg-elev-2); border-radius: 8px;">
-          <!-- Meta injected here -->
-        </div>
-
-        <div id="results-list" style="display: flex; flex-direction: column; gap: 16px;">
-          <!-- Result cards injected here -->
-        </div>
-      </section>
-
-    </main>
-  </div>
-
-  <footer id="console">
-    <div id="console-header">
-      <span>LOG CONSOLE <span id="log-count" style="opacity:0.5; margin-left:8px;">0 lines</span></span>
-      <div style="display:flex; gap:16px;">
-        <label style="cursor:pointer;"><input type="checkbox" id="log-autoscroll" checked> Autoscroll</label>
-        <button id="btn-clear-log" style="background:none; border:none; padding:0; color:var(--text-quiet);">Clear</button>
-      </div>
-    </div>
-    <div id="console-logs"></div>
-  </footer>
-
-  <script>
-    // --- UTILITIES ---
-    const $ = id => document.getElementById(id);
-    const sleep = ms => new Promise(r => setTimeout(r, ms));
-    const escapeHtml = s => (s||'').toString().replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[m]);
-    
-    // Config Persistence
-    const bindConfig = (id) => {
-      const el = $(id);
-      if (localStorage.getItem(id)) {
-        if(el.type === 'checkbox') el.checked = localStorage.getItem(id) === 'true';
-        else el.value = localStorage.getItem(id);
-      }
-      el.addEventListener('change', () => {
-        if(el.type === 'checkbox') localStorage.setItem(id, el.checked);
-        else localStorage.setItem(id, el.value);
-      });
-    };
-    ['cfg-key', 'cfg-model', 'cfg-concurrency', 'cfg-thinking', 'cfg-grounding'].forEach(bindConfig);
-
-    // --- LOGGER ---
-    let logLineCount = 0;
-    const l = {
-      _log: (level, msg) => {
-        const d = new Date();
-        const time = `${d.getHours().toString().padStart(2,'0')}:${d.getMinutes().toString().padStart(2,'0')}:${d.getSeconds().toString().padStart(2,'0')}.${d.getMilliseconds().toString().padStart(3,'0')}`;
-        const row = document.createElement('div');
-        row.className = `log-line log-${level}`;
-        row.innerHTML = `<span class="log-time">[${time}]</span><span class="log-msg">${escapeHtml(msg)}</span>`;
-        $('console-logs').appendChild(row);
-        $('log-count').textContent = `${++logLineCount} lines`;
-        if ($('log-autoscroll').checked) $('console-logs').scrollTop = $('console-logs').scrollHeight;
-      },
-      info: m => l._log('info', m),
-      ok: m => l._log('ok', m),
-      warn: m => l._log('warn', m),
-      err: m => l._log('err', m),
-      debug: m => l._log('debug', m)
-    };
-    $('btn-clear-log').addEventListener('click', () => { $('console-logs').innerHTML = ''; logLineCount = 0; $('log-count').textContent = '0 lines'; });
-
-    // --- PROMPTS STATE & MANAGEMENT ---
-    const DEFAULTS = {
-      p1: `You are a BSI Grundschutz compliance expert. Parse the following raw text extracted from a BSI IT-Grundschutz-Baustein PDF.
-Extract the metadata (ID, Title) and a list of all technical and organizational requirements (Anforderungen).
-
-Return STRICTLY valid JSON matching this schema:
-{
-  "baustein_id": "e.g. SYS.1.1",
-  "baustein_title": "e.g. Allgemeiner Server",
-  "description": "Brief 1-2 sentence summary of the Baustein",
-  "requirements": [
-    {
-      "id": "e.g. SYS.1.1.A1",
-      "type": "Basis | Standard | Erhöht",
-      "title": "Title of the requirement",
-      "text": "Full text of the requirement"
-    }
-  ]
+.output-area{
+  width:100%;min-height:280px;background:var(--bg-deep);border:1px solid var(--border-1);
+  color:var(--text-primary);font-family:'JetBrains Mono',monospace;font-size:11px;
+  padding:14px 16px;border-radius:8px;outline:none;resize:vertical;line-height:1.55;
 }
 
-Raw Text:
-{raw_text}`,
-      
-      p2: `Based on the following BSI IT-Grundschutz-Baustein, determine which G++ (Grundschutz Plus Plus) Zielobjekt(e) (Target Objects) this maps to. 
-G++ Zielobjekte are the modern target components in the Anwenderkatalog (e.g., Server, Client, Netzwerkkomponente, IT-System, Anwendung).
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.stat-sub{padding:14px 16px;background:var(--bg-elev-2);border:1px solid var(--border-1);
+  border-radius:10px}
+.stat-head{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.15em;
+  text-transform:uppercase;color:var(--text-quiet);margin-bottom:12px;display:flex;
+  align-items:center;justify-content:space-between}
+.donut-wrap{display:flex;align-items:center;gap:14px}
+.donut-legend{flex:1;display:flex;flex-direction:column;gap:5px;font-size:10.5px}
+.legend-row{display:flex;align-items:center;gap:8px}
+.legend-dot{width:8px;height:8px;border-radius:50%}
+.legend-label{color:var(--text-tertiary);flex:1}
+.legend-val{font-family:'JetBrains Mono',monospace;color:var(--text-primary)}
+.hbar-row{display:grid;grid-template-columns:100px 1fr 30px;gap:8px;align-items:center;
+  margin-bottom:5px;font-size:10.5px}
+.hbar-label{font-family:'JetBrains Mono',monospace;color:var(--text-tertiary);
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.hbar-track{height:5px;background:var(--bg-deep);border-radius:3px;overflow:hidden}
+.hbar-fill{height:100%;border-radius:3px;transition:width .25s ease}
+.hbar-value{font-family:'JetBrains Mono',monospace;color:var(--text-primary);text-align:right}
 
-Baustein ID: {baustein_id}
-Baustein Title: {baustein_title}
-Description: {baustein_description}
+.console{flex:0 0 220px;background:var(--bg-elev-1);border-top:1px solid var(--border-1);
+  display:flex;flex-direction:column;backdrop-filter:blur(20px)}
+.console-head{padding:8px 16px;border-bottom:1px solid var(--border-1);display:flex;
+  align-items:center;justify-content:space-between;font-family:'JetBrains Mono',monospace;
+  font-size:10px;letter-spacing:0.15em;color:var(--text-quiet);text-transform:uppercase}
+.console-actions{display:flex;align-items:center;gap:10px}
+.console-body{flex:1;overflow-y:auto;padding:8px 16px;font-family:'JetBrains Mono',monospace;
+  font-size:10.5px;line-height:1.6;min-height:0}
+.log-line{display:flex;gap:10px;padding:1px 0}
+.log-ts{color:var(--text-quiet);flex:0 0 auto}
+.log-lvl{flex:0 0 38px;text-transform:uppercase;font-weight:600;letter-spacing:0.05em}
+.log-msg{flex:1;color:var(--text-secondary);word-break:break-word}
+.log-info .log-lvl{color:var(--blue)}
+.log-ok   .log-lvl{color:var(--green)}
+.log-warn .log-lvl{color:var(--amber)}
+.log-err  .log-lvl{color:var(--red)}
+.log-debug .log-lvl{color:var(--text-quiet)}
+.log-debug .log-msg{color:var(--text-quiet)}
 
-Return ONLY valid JSON matching this schema:
-{
-  "zielobjekte": ["List", "of", "applicable", "G++", "target objects"],
-  "reasoning": "Brief explanation"
-}`,
+.hidden{display:none !important}
+.muted{color:var(--text-quiet)}
+.chip{display:inline-flex;align-items:center;gap:5px;padding:3px 8px;border-radius:99px;
+  background:var(--bg-elev-2);border:1px solid var(--border-1);
+  font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:0.05em;
+  color:var(--text-tertiary);text-transform:uppercase}
+.chip.ok{color:var(--green);border-color:oklch(0.75 0.18 145 / 0.3)}
+.chip.warn{color:var(--amber);border-color:oklch(0.8 0.15 80 / 0.3)}
+.chip.err{color:var(--red);border-color:oklch(0.65 0.2 25 / 0.3)}
+.chip.accent{color:var(--accent);border-color:var(--accent-soft)}
 
-      p3: `You are a BSI IT-Grundschutz and G++ (Grundschutz++) mapping expert.
-Your task is to map a legacy/standard BSI requirement (Anforderung) to the new G++ Anwenderkatalog Controls.
+.validation-block{margin-top:10px;padding:10px 12px;border-radius:8px;
+  border:1px solid var(--border-1);border-left-width:3px;
+  background:oklch(0.95 0.005 280 / 0.03);font-size:11px;line-height:1.55}
+.validation-block.confirmed       { border-left-color: oklch(0.75 0.18 145 / 0.8) }
+.validation-block.minor_corrections{ border-left-color: oklch(0.80 0.15 80 / 0.8) }
+.validation-block.major_issues    { border-left-color: oklch(0.65 0.20 50 / 0.8) }
+.validation-block.incorrect       { border-left-color: oklch(0.65 0.20 25 / 0.8) }
+.validation-block.uncertain       { border-left-color: var(--text-quiet) }
+.validation-block .vh{font-family:'JetBrains Mono',monospace;font-size:9.5px;
+  letter-spacing:0.1em;text-transform:uppercase;color:var(--text-quiet);
+  margin-bottom:5px;display:flex;gap:8px;align-items:center}
+.validation-block .vissues{color:var(--text-secondary);margin-top:4px}
+.validation-block .vissues li{margin-left:14px}
 
-Target Object Context: {zielobjekt}
-Requirement ID: {req_id}
-Requirement Title: {req_title}
-Requirement Text: {req_text}
+.filter-bar{display:flex;gap:8px;align-items:center;margin-bottom:10px;flex-wrap:wrap}
+</style>
+</head>
+<body>
 
-Identify 1 to 5 specific G++ Controls that implement this requirement. If you cannot find an exact G++ match, suggest the closest generic control approach.
+<div class="aurora-1"></div>
+<div class="aurora-2"></div>
+<div class="noise"></div>
 
-Return ONLY valid JSON matching this schema:
-{
-  "matched_controls": [
-    {
-      "control_id": "e.g. GPP.SRV.01",
-      "control_title": "Short title of G++ control",
-      "match_confidence": "high | medium | low",
-      "justification": "Why this control fulfills the requirement"
-    }
-  ]
-}`
-    };
+<div class="shell">
 
-    function bindPrompt(id, def, checks) {
-      const el = $(`prompt-${id}`);
-      const warn = $(`warn-${id}`);
-      const btn = $(`btn-reset-${id}`);
-      const storageKey = `prompt-${id}-v1`;
-      
-      el.value = localStorage.getItem(storageKey) || def;
-      
-      const validate = () => {
-        const val = el.value;
-        const missing = checks.find(c => !val.includes(c));
-        warn.style.display = missing ? 'block' : 'none';
-        localStorage.setItem(storageKey, val);
-      };
-      
-      el.addEventListener('input', validate);
-      btn.addEventListener('click', () => { el.value = def; validate(); });
-      validate();
-      return () => {
-        let v = el.value;
-        if (!v.trim()) v = def;
-        checks.forEach(c => { if(!v.includes(c)) v += `\n\nFallback injected: ${c}`; });
-        return v;
-      };
-    }
+  <div class="topbar">
+    <div class="brand">
+      <div class="brand-icon">◬</div>
+      <div>
+        <div class="brand-name">G++ OSCAL Component Creator</div>
+      </div>
+      <span class="brand-sub">build 0.6.0 · description=Anforderungs-Name · statement=Implementation-Prosa</span>
+    </div>
+    <div class="meta-pills">
+      <span id="status-pill" class="pill">bereit</span>
+      <span class="pill live">● Gemini 3</span>
+    </div>
+  </div>
 
-    const getP1 = bindPrompt('p1', DEFAULTS.p1, ['{raw_text}']);
-    const getP2 = bindPrompt('p2', DEFAULTS.p2, ['{baustein_id}', '{baustein_title}']);
-    const getP3 = bindPrompt('p3', DEFAULTS.p3, ['{req_id}', '{req_title}', '{req_text}', '{zielobjekt}']);
+  <div class="main">
 
-    // --- GEMINI API INFRASTRUCTURE ---
-    const stripFences = s => s.replace(/^\s*```(?:json)?/i, "").replace(/```\s*$/i, "").trim();
-    function extractJson(text) {
-      const trim = text.trim();
-      try { return JSON.parse(trim); } catch {}
-      const stripped = stripFences(trim);
-      try { return JSON.parse(stripped); } catch {}
-      const s = stripped.indexOf("{"), e = stripped.lastIndexOf("}");
-      if (s >= 0 && e > s) {
-        try { return JSON.parse(stripped.slice(s, e + 1)); } catch {}
-      }
-      throw new Error("could not extract JSON from response");
-    }
+    <div class="rail">
+      <div class="rail-scroll">
 
-    let state = { cancel: false, running: false, baustein: null, zielobjekte: [], results: [] };
-
-    async function llmOnce(prompt, useSchema = false) {
-      const apiKey = $('cfg-key').value;
-      if (!apiKey) throw new Error("API Key missing");
-      const model = $('cfg-model').value;
-      const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`;
-      
-      const payload = {
-        contents: [{ role: "user", parts: [{ text: prompt }] }],
-        generationConfig: {
-          responseMimeType: "application/json",
-          thinkingConfig: { thinkingLevel: $('cfg-thinking').value }
-        }
-      };
-
-      if ($('cfg-grounding').checked) {
-        payload.tools = [{ googleSearch: {} }];
-        // Grounding conflicts with strict schema in REST currently, so we rely on prompt + extractJson
-      }
-
-      const res = await fetch(url, {
-        method: "POST",
-        headers: { "Content-Type": "application/json", "x-goog-api-key": apiKey },
-        body: JSON.stringify(payload)
-      });
-      
-      if (!res.ok) {
-        const err = await res.text();
-        throw new Error(`API Error ${res.status}: ${err.substring(0, 200)}...`);
-      }
-      
-      const data = await res.json();
-      return (data.candidates?.[0]?.content?.parts || []).map(p => p.text || "").join("\n");
-    }
-
-    async function llm(prompt, label = "call") {
-      const retries = 2;
-      let attempt = 0;
-      while (true) {
-        if (state.cancel) throw new Error("cancelled");
-        try {
-          const t0 = performance.now();
-          const text = await llmOnce(prompt);
-          l.debug(`${label} ← ${(text.length/1024).toFixed(1)}kb in ${Math.round(performance.now()-t0)}ms`);
-          return text;
-        } catch (e) {
-          attempt++;
-          if (attempt > retries || e.message.includes('API Key')) throw e;
-          const wait = 500 * Math.pow(2, attempt - 1);
-          l.warn(`${label} failed (${e.message}) — retry ${attempt}/${retries} in ${wait}ms`);
-          await sleep(wait);
-        }
-      }
-    }
-
-    // --- WORKER POOL ---
-    async function runPool(tasks, limit, onProgress) {
-      const results = new Array(tasks.length);
-      let done = 0, next = 0;
-      const workers = Array.from({ length: Math.min(limit, tasks.length) }, async () => {
-        while (next < tasks.length) {
-          const i = next++;
-          if (state.cancel) { results[i] = { cancelled: true }; done++; onProgress?.(done, tasks.length); continue; }
-          try { results[i] = await tasks[i](); }
-          catch (e) { results[i] = { error: e }; }
-          done++;
-          onProgress?.(done, tasks.length);
-        }
-      });
-      await Promise.all(workers);
-      return results;
-    }
-
-    function showProgress(phase, done, total) {
-      $('progress-container').style.display = 'flex';
-      $('prog-phase').textContent = phase;
-      $('prog-counts').textContent = `${done} / ${total}`;
-      const pct = total > 0 ? (done / total) * 100 : 0;
-      const fill = $('prog-fill');
-      fill.style.width = `${pct}%`;
-      if (done === total && total > 0) {
-        fill.classList.add('done');
-        setTimeout(() => { if(!state.running) $('progress-container').style.display = 'none'; fill.classList.remove('done'); }, 1000);
-      } else {
-        fill.classList.remove('done');
-      }
-    }
-
-    // --- PDF PARSING ---
-    const dropZone = $('drop-zone');
-    const fileInput = $('file-input');
-    
-    dropZone.addEventListener('click', () => fileInput.click());
-    dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('dragover'); });
-    dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
-    dropZone.addEventListener('drop', e => {
-      e.preventDefault(); dropZone.classList.remove('dragover');
-      if (e.dataTransfer.files.length) handlePdf(e.dataTransfer.files[0]);
-    });
-    fileInput.addEventListener('change', e => { if (e.target.files.length) handlePdf(e.target.files[0]); });
-
-    async function handlePdf(file) {
-      if (file.type !== 'application/pdf') return l.err("File is not a PDF");
-      l.info(`Reading PDF: ${file.name} (${Math.round(file.size/1024)}kb)`);
-      try {
-        const buffer = await file.arrayBuffer();
-        const pdf = await pdfjsLib.getDocument({data: buffer}).promise;
-        let text = '';
-        for (let i = 1; i <= pdf.numPages; i++) {
-          const page = await pdf.getPage(i);
-          const content = await page.getTextContent();
-          text += content.items.map(it => it.str).join(' ') + '\n';
-        }
-        $('raw-text').value = text;
-        l.ok(`Extracted ${text.length} chars from ${pdf.numPages} pages.`);
-      } catch (e) {
-        l.err(`PDF read error: ${e.message}`);
-      }
-    }
-
-    // --- UI RENDERERS ---
-    function updateStatus(msg) { $('run-status').textContent = msg; }
-    
-    function renderResults() {
-      $('card-results').classList.remove('hidden');
-      $('card-stats').classList.remove('hidden');
-      
-      // Render Meta
-      if (state.baustein) {
-        $('baustein-meta').innerHTML = `
-          <div style="font-size: 16px; font-weight: 600; color: var(--accent); margin-bottom: 4px;">
-            ${escapeHtml(state.baustein.baustein_id)}: ${escapeHtml(state.baustein.baustein_title)}
+        <div class="rail-section">
+          <div class="rail-label"><span><span class="glyph">◇</span> Modell</span></div>
+          <div class="field">
+            <label>API-Key</label>
+            <input id="api-key" type="password" placeholder="x-goog-api-key">
           </div>
-          <div style="color: var(--text-secondary); margin-bottom: 12px;">${escapeHtml(state.baustein.description)}</div>
-          <div style="display:flex; gap: 8px;">
-            <span class="badge blue">Zielobjekte: ${escapeHtml(state.zielobjekte.join(', ') || 'None')}</span>
-            <span class="badge violet">Reqs: ${state.results.length}</span>
+          <div class="field">
+            <label>Modell</label>
+            <select id="model">
+              <option value="gemini-3.1-pro-preview">gemini-3.1-pro-preview</option>
+              <option value="gemini-3-flash-preview">gemini-3-flash-preview</option>
+              <option value="gemini-3.1-flash-lite-preview">gemini-3.1-flash-lite-preview</option>
+            </select>
           </div>
-        `;
-      }
+          <div class="field">
+            <label>Thinking-Level</label>
+            <select id="thinking">
+              <option value="minimal">minimal</option>
+              <option value="low">low</option>
+              <option value="medium" selected>medium</option>
+              <option value="high">high</option>
+            </select>
+          </div>
+        </div>
 
-      // Render List
-      const html = state.results.map((r, i) => {
-        const req = r.item;
-        let statusClass = 'status-pending';
-        let bodyHtml = `<div style="color:var(--text-quiet)">Processing...</div>`;
-        
-        if (r.error) {
-          statusClass = 'status-error';
-          bodyHtml = `<div style="color:var(--red)">Failed: ${escapeHtml(r.error)}</div>`;
-        } else if (r.analysis) {
-          const controls = r.analysis.matched_controls || [];
-          if (controls.length === 0) {
-            statusClass = 'conf-low';
-            bodyHtml = `<div style="color:var(--amber)">No G++ controls matched.</div>`;
-          } else {
-            // grab highest confidence for card border
-            const confs = controls.map(c => c.match_confidence).join('');
-            if (confs.includes('high')) statusClass = 'conf-high';
-            else if (confs.includes('medium')) statusClass = 'conf-medium';
-            else statusClass = 'conf-low';
+        <div class="rail-section">
+          <div class="rail-label"><span><span class="glyph">◈</span> Pool</span></div>
+          <div class="field-row">
+            <div class="field">
+              <label>Parallel</label>
+              <input id="concurrency" type="number" min="1" max="12" value="4">
+            </div>
+            <div class="field">
+              <label>Retries</label>
+              <input id="retries" type="number" min="0" max="5" value="2">
+            </div>
+          </div>
+          <div class="field">
+            <label>Chunk-Größe (Stage 2)</label>
+            <input id="chunk-size" type="number" min="1" max="30" value="8">
+          </div>
+        </div>
 
-            bodyHtml = `
-              <div class="mapped-controls">
-                ${controls.map(c => `
-                  <div class="control-item">
-                    <span class="badge ${c.match_confidence === 'high' ? 'green' : c.match_confidence === 'medium' ? 'amber' : 'red'}">${c.match_confidence}</span>
-                    <span class="control-id">${escapeHtml(c.control_id)}</span>
-                    <span style="color:var(--text-primary)">${escapeHtml(c.control_title)}</span>
-                  </div>
-                  <div style="font-size:12px; color:var(--text-quiet); margin-left: 54px;">${escapeHtml(c.justification)}</div>
-                `).join('')}
-              </div>
-            `;
-          }
-        }
+        <div class="rail-section">
+          <div class="rail-label"><span><span class="glyph">⬡</span> Modus</span></div>
+          <label class="toggle">
+            <input type="checkbox" id="maker-checker">
+            <span>Maker-Checker
+              <span class="desc">Zweite Prüfung der Matches</span>
+            </span>
+          </label>
+          <label class="toggle">
+            <input type="checkbox" id="grounding">
+            <span>Google-Search-Grounding
+              <span class="desc">Recherche-Tools für Modell</span>
+            </span>
+          </label>
+        </div>
 
-        return `
-          <div class="card glass result-card ${statusClass}">
-            <div class="result-header">
+        <div class="rail-section">
+          <div class="rail-label"><span><span class="glyph">▣</span> Output</span></div>
+          <div class="field">
+            <label>Component-Typ</label>
+            <select id="comp-type">
+              <option value="service">service</option>
+              <option value="software">software</option>
+              <option value="hardware">hardware</option>
+              <option value="process">process</option>
+              <option value="policy">policy</option>
+              <option value="physical">physical</option>
+              <option value="network">network</option>
+              <option value="this-system">this-system</option>
+              <option value="validation">validation</option>
+            </select>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="splitter" id="splitter"></div>
+
+    <div class="work">
+      <div class="work-scroll">
+
+        <!-- INPUT CARD -->
+        <div class="card">
+          <div class="card-head">
+            <div class="card-title"><span class="num">01 · input</span> Baustein-PDF & G++ Katalog</div>
+          </div>
+          <div class="card-desc">PDF eines BSI-Bausteins (Ed. 2023) per Drop und G++ Anwenderkatalog (default: BSI raw URL). Optional Zielobjektkategorien als JSON-Index für Stage 1.</div>
+
+          <div class="dropzone" id="dropzone">
+            <span class="glyph">⤓</span>
+            <div><strong>BSI-Baustein als PDF</strong> hierher ziehen oder klicken</div>
+            <span class="dropzone-info" id="pdf-info">noch keine Datei geladen</span>
+            <input id="pdf-input" type="file" accept="application/pdf" style="display:none">
+          </div>
+
+          <div style="margin-top:14px">
+            <label style="display:block;font-size:11px;color:var(--text-tertiary);margin-bottom:4px;font-weight:500">G++ Anwenderkatalog (raw JSON-URL)</label>
+            <div class="url-row">
+              <input id="cat-url" type="text" value="https://raw.githubusercontent.com/BSI-Bund/Stand-der-Technik-Bibliothek/refs/heads/main/Quellkataloge/Kernel/BSI-Stand-der-Technik-Kernel-catalog.json">
+              <button class="btn sm" id="btn-load-cat">⤓ laden</button>
+              <button class="btn sm ghost" id="btn-upload-cat">⤴ upload</button>
+              <input id="cat-file" type="file" accept="application/json" style="display:none">
+            </div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-quiet);letter-spacing:0.05em">
+              <span id="cat-info">Katalog nicht geladen</span>
+            </div>
+          </div>
+
+          <div style="margin-top:14px">
+            <label style="display:block;font-size:11px;color:var(--text-tertiary);margin-bottom:4px;font-weight:500">Profile-Index (GitHub API URL einer Verzeichnis-Auflistung)</label>
+            <div class="url-row">
+              <input id="pi-url" type="text" value="https://api.github.com/repos/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/contents/zielobjektkategorien/profile?ref=main">
+              <button class="btn sm" id="btn-load-pi">⤓ laden</button>
+              <button class="btn sm ghost" id="btn-upload-pi">⤴ upload</button>
+              <input id="pi-file" type="file" accept="application/json" style="display:none">
+            </div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-quiet);letter-spacing:0.05em;margin-bottom:8px">
+              <span id="pi-info">Profile-Index nicht geladen</span>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr auto;gap:8px;align-items:end">
               <div>
-                <div class="result-meta">${escapeHtml(req.id)} · ${escapeHtml(req.type)}</div>
-                <div style="font-weight:600; color:var(--text-primary); margin-bottom: 6px;">${escapeHtml(req.title)}</div>
-                <div class="result-body">${escapeHtml(req.text)}</div>
+                <label style="display:block;font-size:11px;color:var(--text-tertiary);margin-bottom:4px;font-weight:500">Profil manuell wählen (überschreibt Stage 1)</label>
+                <select id="pi-pick" style="width:100%;background:var(--bg-elev-2);border:1px solid var(--border-1);color:var(--text-primary);font-family:'JetBrains Mono',monospace;font-size:11px;padding:7px 9px;border-radius:7px;outline:none">
+                  <option value="">— auto via Stage 1 —</option>
+                  <option value="__force_c2__">— force C.2 (deterministic, no LLM) —</option>
+                </select>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:4px">
+                <label style="font-size:11px;color:var(--text-tertiary);font-weight:500">Schwellwert</label>
+                <input id="match-threshold" type="number" min="0" max="1" step="0.05" value="0.5" style="width:80px;background:var(--bg-elev-2);border:1px solid var(--border-1);color:var(--text-primary);font-family:'JetBrains Mono',monospace;font-size:11px;padding:7px 9px;border-radius:7px;outline:none">
               </div>
             </div>
-            ${bodyHtml}
-          </div>
-        `;
-      }).join('');
-      $('results-list').innerHTML = html;
-      
-      renderStats();
-    }
-
-    function renderStats() {
-      const completed = state.results.filter(r => r.analysis);
-      if (completed.length === 0) return;
-
-      let typeCounts = { 'Basis': 0, 'Standard': 0, 'Erhöht': 0 };
-      let confCounts = { 'high': 0, 'medium': 0, 'low': 0 };
-      
-      state.results.forEach(r => {
-        if (r.item && r.item.type) typeCounts[r.item.type] = (typeCounts[r.item.type] || 0) + 1;
-        if (r.analysis && r.analysis.matched_controls) {
-          r.analysis.matched_controls.forEach(c => {
-            const conf = (c.match_confidence || 'low').toLowerCase();
-            confCounts[conf] = (confCounts[conf] || 0) + 1;
-          });
-        }
-      });
-
-      const donutChart = (slices, size = 160) => {
-        const total = slices.reduce((s, x) => s + x.value, 0);
-        if (total === 0) return `<svg width="${size}" height="${size}"></svg>`;
-        const cx = size/2, cy = size/2, r = size/2 - 8, ri = r * 0.6;
-        let a = -Math.PI/2;
-        const paths = slices.filter(s => s.value > 0).map(s => {
-          const sweep = (s.value / total) * Math.PI * 2;
-          const a1 = a, a2 = a + sweep; a = a2;
-          const x1 = cx + r*Math.cos(a1), y1 = cy + r*Math.sin(a1);
-          const x2 = cx + r*Math.cos(a2), y2 = cy + r*Math.sin(a2);
-          const xi1 = cx + ri*Math.cos(a1), yi1 = cy + ri*Math.sin(a1);
-          const xi2 = cx + ri*Math.cos(a2), yi2 = cy + ri*Math.sin(a2);
-          const large = sweep > Math.PI ? 1 : 0;
-          return `<path d="M ${x1} ${y1} A ${r} ${r} 0 ${large} 1 ${x2} ${y2} L ${xi2} ${yi2} A ${ri} ${ri} 0 ${large} 0 ${xi1} ${yi1} Z" fill="${s.color}" />`;
-        }).join("");
-        return `<svg viewBox="0 0 ${size} ${size}" width="${size}" height="${size}">${paths}
-          <text x="${cx}" y="${cy-2}" text-anchor="middle" dominant-baseline="central" fill="currentColor" font-family="JetBrains Mono" font-size="22" font-weight="600">${total}</text>
-          <text x="${cx}" y="${cy+18}" text-anchor="middle" fill="currentColor" opacity="0.55" font-family="JetBrains Mono" font-size="9" letter-spacing="1.5">MAPPINGS</text></svg>`;
-      };
-
-      const hBarRows = (items) => {
-        const max = Math.max(1, ...items.map(i => i.value));
-        return items.map(i => `
-          <div class="hbar-row">
-            <div class="hbar-label">${escapeHtml(i.label)}</div>
-            <div class="hbar-track"><div class="hbar-fill" style="width:${(i.value/max)*100}%; background:${i.color}"></div></div>
-            <div class="hbar-value">${i.value}</div>
-          </div>`).join("");
-      };
-
-      const slices = [
-        { label: 'High', value: confCounts['high'], color: 'var(--green)' },
-        { label: 'Medium', value: confCounts['medium'], color: 'var(--amber)' },
-        { label: 'Low', value: confCounts['low'], color: 'var(--red)' }
-      ];
-
-      const typeBars = [
-        { label: 'Basis', value: typeCounts['Basis'], color: 'var(--blue)' },
-        { label: 'Standard', value: typeCounts['Standard'], color: 'var(--accent)' },
-        { label: 'Erhöht', value: typeCounts['Erhöht'], color: 'var(--amber)' }
-      ];
-
-      $('stats-grid').innerHTML = `
-        <div class="stat-card glass">
-          <div style="font-size:12px; font-family:'JetBrains Mono',monospace; color:var(--text-secondary);">MATCH CONFIDENCE</div>
-          ${donutChart(slices)}
-          <div style="display:flex; gap:12px; font-size:11px; margin-top:8px;">
-            <span style="color:var(--green)">■ High</span>
-            <span style="color:var(--amber)">■ Medium</span>
-            <span style="color:var(--red)">■ Low</span>
           </div>
         </div>
-        <div class="stat-card glass" style="align-items: flex-start;">
-          <div style="font-size:12px; font-family:'JetBrains Mono',monospace; color:var(--text-secondary); margin-bottom:12px;">REQUIREMENT TYPES</div>
-          <div style="width:100%; display:flex; flex-direction:column; gap:12px;">
-            ${hBarRows(typeBars)}
+
+        <!-- PROMPTS CARD -->
+        <div class="card">
+          <div class="card-head">
+            <div class="card-title"><span class="num">02 · prompts</span> Editierbare Prompts pro Stage</div>
+            <div class="muted" style="font-size:10.5px">alle Änderungen werden in localStorage gespeichert</div>
+          </div>
+          <div class="card-desc">Defaults sind produktiv nutzbar. Felder unten lassen sich frei umformulieren — Platzhalter wie <code>{baustein_id}</code> müssen erhalten bleiben.</div>
+
+          <!-- STAGE 1 PROMPT -->
+          <div class="prompt-block">
+            <div class="prompt-head">
+              <div class="prompt-label"><span class="stage">▶ STAGE 1</span> profile-match — PDF → passendes Profil</div>
+              <div class="prompt-actions">
+                <button class="btn sm ghost" data-reset="s1">Reset</button>
+              </div>
+            </div>
+            <textarea class="prompt-ta" id="prompt-s1" data-placeholders="{baustein_id},{baustein_title},{baustein_summary},{profiles}"></textarea>
+            <div class="prompt-warn" id="warn-s1"></div>
+          </div>
+
+          <!-- STAGE 2 PROMPT (C.1 path) -->
+          <div class="prompt-block">
+            <div class="prompt-head">
+              <div class="prompt-label"><span class="stage">▶ STAGE 2 (C.1)</span> impl-req — Pro Kernel-Control: Description aus PDF</div>
+              <div class="prompt-actions">
+                <button class="btn sm ghost" data-reset="s2">Reset</button>
+              </div>
+            </div>
+            <textarea class="prompt-ta" id="prompt-s2" data-placeholders="{baustein_id},{baustein_title},{control_id},{control_title},{control_statement},{control_guidance},{pdf_anforderungen}"></textarea>
+            <div class="prompt-warn" id="warn-s2"></div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-quiet);margin-top:6px;letter-spacing:0.05em">
+              C.2-Pfad (kein Profil gematcht) erzeugt impl-reqs deterministisch aus den Anforderungen — kein Modell-Call.
+            </div>
+          </div>
+
+          <!-- CHECKER PROMPT -->
+          <div class="prompt-block" id="checker-block" style="display:none">
+            <div class="prompt-head">
+              <div class="prompt-label"><span class="stage" style="color:var(--amber)">▶ CHECKER</span> Validierung der Stage-2-Implementation-Descriptions</div>
+              <div class="prompt-actions">
+                <button class="btn sm ghost" data-reset="check">Reset</button>
+              </div>
+            </div>
+            <textarea class="prompt-ta" id="prompt-check" data-placeholders="{pairs}"></textarea>
+            <div class="prompt-warn" id="warn-check"></div>
           </div>
         </div>
-      `;
+
+        <!-- RUN CARD -->
+        <div class="card">
+          <div class="card-head">
+            <div class="card-title"><span class="num">03 · run</span> Pipeline starten</div>
+          </div>
+
+          <div class="stage-line">
+            <div class="stage-pip" id="pip-s0"><span class="pn">00</span><span class="pt">PDF parse</span><span class="pdot"></span></div>
+            <div class="stage-pip" id="pip-s1"><span class="pn">01</span><span class="pt">profile-match</span><span class="pdot"></span></div>
+            <div class="stage-pip" id="pip-s2"><span class="pn">02</span><span class="pt">impl-reqs</span><span class="pdot"></span></div>
+            <div class="stage-pip" id="pip-s3"><span class="pn">03</span><span class="pt">assemble</span><span class="pdot"></span></div>
+            <div class="stage-pip hidden" id="pip-s4"><span class="pn">04</span><span class="pt">checker</span><span class="pdot"></span></div>
+          </div>
+
+          <div class="run-bar">
+            <button class="btn primary" id="btn-run">▶ <span id="btn-run-label">Pipeline starten</span></button>
+            <button class="btn danger hidden" id="btn-cancel">■ cancel</button>
+            <label class="testdrive">
+              <input type="checkbox" id="testdrive">
+              <span>Test drive (5%)</span>
+            </label>
+            <span class="grow"></span>
+            <button class="btn sm ghost" id="btn-clear">⌕ clear results</button>
+          </div>
+
+          <div class="progress-track"><div class="progress-fill" id="pbar"></div></div>
+          <div class="progress-meta">
+            <span id="pbar-label">idle</span>
+            <span id="pbar-count">0/0</span>
+          </div>
+        </div>
+
+        <!-- TESTDRIVE BANNER -->
+        <div class="testdrive-banner" id="td-banner"></div>
+
+        <!-- STATS CARD -->
+        <div class="card hidden" id="stats-card">
+          <div class="card-head">
+            <div class="card-title"><span class="num">stats</span> Aggregat-Sicht</div>
+          </div>
+          <div class="stats-grid" id="stats-grid"></div>
+        </div>
+
+        <!-- STAGE 1 RESULT -->
+        <div class="card hidden" id="s1-result">
+          <div class="card-head">
+            <div class="card-title"><span class="num">▸ stage 1</span> Profil-Match</div>
+            <span class="chip" id="s1-chip">—</span>
+          </div>
+          <div id="s1-body" class="result-section"></div>
+        </div>
+
+        <!-- STAGE 2 RESULT -->
+        <div class="card hidden" id="s2-result">
+          <div class="card-head">
+            <div class="card-title"><span class="num">▸ stage 2</span> Implemented-Requirements <span id="s2-mode-tag" class="chip accent" style="margin-left:8px">—</span></div>
+            <div class="filter-bar">
+              <span class="chip ok"><span id="s2-ok">0</span> generated</span>
+              <span class="chip err"><span id="s2-miss">0</span> missing-coverage</span>
+              <span class="chip warn hidden" id="s2-val-chip"><span id="s2-val">0</span> validation issues</span>
+              <select id="s2-filter" class="btn sm">
+                <option value="all">alle anzeigen</option>
+                <option value="ok">nur coverage=full</option>
+                <option value="partial">nur partial</option>
+                <option value="missing">nur missing</option>
+                <option value="issues">nur validation issues</option>
+              </select>
+            </div>
+          </div>
+          <div id="s2-body" class="result-section"></div>
+        </div>
+
+        <!-- STAGE 3 RESULT -->
+        <div class="card hidden" id="s3-result">
+          <div class="card-head">
+            <div class="card-title"><span class="num">▸ stage 3</span> OSCAL Component Definition</div>
+            <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+              <span class="chip accent" id="s3-chip">—</span>
+              <button class="btn sm" id="btn-download">⤓ Component-Def</button>
+              <button class="btn sm hidden" id="btn-download-cat">⤓ Custom-Catalog (C.2)</button>
+              <button class="btn sm ghost" id="btn-copy">⌕ copy</button>
+            </div>
+          </div>
+          <textarea class="output-area" id="s3-output" spellcheck="false"></textarea>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- LOG CONSOLE -->
+  <div class="console">
+    <div class="console-head">
+      <span><span style="color:var(--accent)">⌕</span> log · <span id="log-count">0</span> lines</span>
+      <div class="console-actions">
+        <label style="display:flex;align-items:center;gap:5px;color:var(--text-tertiary);text-transform:none;letter-spacing:0">
+          <input type="checkbox" id="log-autoscroll" checked style="accent-color:var(--accent)">
+          autoscroll
+        </label>
+        <button class="btn sm ghost" id="btn-clear-log">clear</button>
+      </div>
+    </div>
+    <div class="console-body" id="log-body"></div>
+  </div>
+
+</div>
+
+<script>
+"use strict";
+
+/* ════════════════════════════════════════════════════════════════════════
+   Default prompts — production-quality. Editable in the UI; reset restores.
+   ════════════════════════════════════════════════════════════════════════ */
+
+const DEFAULT_S1_PROMPT = `Du bist Senior-Auditor für BSI IT-Grundschutz und Mitautor des Grundschutz-Kompendiums. Aufgabe: Den im PDF beschriebenen System-/Asset-Typ (BSI-Baustein der Edition 2023) auf das passendste OSCAL-Profil aus der Liste abbilden. Jedes Profil definiert eine Zielobjektkategorie für den BSI Stand-der-Technik-Kernel-Katalog.
+
+REGELN:
+- Wähle GENAU EIN Profil, das den System-/Asset-Typ aus dem Baustein am besten abdeckt.
+- Falls KEIN Profil sauber passt, setze profile_filename: null und nenne in rationale die fehlende Abdeckung. Lieber ehrlich "kein Match" als ein schiefer Match — der C.2-Pfad fängt es ab.
+- Confidence-Range strikt:
+  · 0.90+ = das Profil beschreibt exakt diesen Asset-Typ
+  · 0.70–0.89 = klare Asset-Verwandtschaft (z.B. "Container" Profil für "Kubernetes" Baustein)
+  · 0.50–0.69 = teilweise Abdeckung, dieselbe Domäne
+  · < 0.50 = nicht ausreichend, lieber null setzen
+- alternative_filenames: bis zu 3 weitere Profile, die plausibel wären (sortiert nach absteigender Eignung).
+- Rationale auf Deutsch, knapp (2–3 Sätze), benenne, woran die Asset-Entsprechung erkennbar ist.
+
+PDF-BAUSTEIN:
+ID: {baustein_id}
+Titel: {baustein_title}
+Beschreibung (Abschnitt 1 der Edition 2023):
+{baustein_summary}
+
+VERFÜGBARE PROFILE:
+{profiles}
+
+OUTPUT: JSON:
+{
+  "profile_filename": string|null,
+  "confidence": number,
+  "rationale": string,
+  "alternative_filenames": string[]
+}`;
+
+const DEFAULT_S2_PROMPT = `Du verfasst das "statement" eines OSCAL implemented-requirement für die BSI Grundschutz++ Migration. Aufgabe: Für GENAU EIN Control aus dem BSI Stand-der-Technik-Kernel-Katalog die Implementation-Prosa schreiben, gestützt auf den Inhalt des Edition-2023-Bausteins.
+
+WICHTIG zur OSCAL-Struktur:
+- Der Output dieses Calls (Feld "statement") landet im OSCAL als implemented-requirement.statements[0].description (also die ausführliche Prosa).
+- Das OSCAL implemented-requirement.description-Feld wird daneben automatisch befüllt mit den Namen der source_anforderungen (kein Modell-Job).
+- Daher: dein "statement"-Output ist Prosa, nicht ein Titel.
+
+REGELN:
+- Sprache: Deutsch, Sachstil, kein Marketing, keine Aufzählungen im Output-Text.
+- Länge: 2–5 Sätze. Nicht länger.
+- Stil: Indikativ ("Die Komponente protokolliert ..."), kein Konjunktiv.
+- Inhalt: konkrete Maßnahme(n) und Schutzwirkung, NICHT generisch sondern bezogen auf den Baustein-Kontext.
+- Bei Modalverb-Mismatch (Kernel sagt MUSS, Baustein hat SOLLTE oder umgekehrt) erwähne das in remarks, nicht in statement.
+- coverage:
+  · "full"    = mindestens eine Edition-2023-Anforderung deckt das Control vollständig ab
+  · "partial" = nur teilweise abgedeckt, beschreibe nur den abgedeckten Anteil
+  · "missing" = keine Anforderung passt zu diesem Control. statement: "Kein Mapping aus Baustein {baustein_id} verfügbar." und source_anforderungen: []
+- source_anforderungen: Liste der Anforderungs-IDs (genau wie in der PDF-Eingabe, z.B. "{baustein_id}.A3"), die im statement verwendet wurden. Falls coverage=missing → leer.
+
+KONTEXT:
+Baustein: {baustein_id} – {baustein_title}
+
+KERNEL-CONTROL:
+ID:           {control_id}
+Titel:        {control_title}
+Statement:    {control_statement}
+Guidance:     {control_guidance}
+
+ANFORDERUNGEN AUS DEM BAUSTEIN (Edition 2023, mit ID, Name, Modalverb, Volltext):
+{pdf_anforderungen}
+
+OUTPUT: JSON:
+{
+  "statement": string,
+  "source_anforderungen": string[],
+  "coverage": "full"|"partial"|"missing",
+  "remarks": string|null
+}`;
+
+const DEFAULT_CHECK_PROMPT = `Du bist QS für BSI-Compliance-Mappings. Vor dir liegen Implementation-Statements, die ein erster AI-Pass (Maker) für Kernel-Controls erzeugt hat, gestützt auf einen Edition-2023-Baustein. Audit-Aufgabe: Bestätige, korrigiere oder verwirf jedes Statement.
+
+VERDICTS (fünfstufig, kein boolean):
+- confirmed         = Statement ist korrekt, source_anforderungen plausibel, coverage richtig
+- minor_corrections = Statement kann bleiben, Feinjustierung an Wortwahl, Modalverb oder remarks
+- major_issues      = Statement ist schief — relevante Anforderung wurde übersehen, falsch verknüpft, oder coverage falsch klassifiziert
+- incorrect         = Statement ist falsch und ein klar besserer Text existiert
+- uncertain         = du kannst nicht entscheiden (Begründung pflicht)
+
+confidence_check (im Sinne von "wie sicher ist der Maker mit seiner coverage-Einstufung"):
+- appropriate / too_high / too_low
+
+PAARE ZUM PRÜFEN:
+{pairs}
+
+OUTPUT: JSON mit "validations": Liste in Eingabereihenfolge:
+{
+  "item_id": string (entspricht control_id aus dem Pair),
+  "verdict": one of [confirmed, minor_corrections, major_issues, incorrect, uncertain],
+  "issues": string[],
+  "corrections": string,
+  "confidence_check": one of [appropriate, too_high, too_low],
+  "reviewer_notes": string
+}`;
+
+const DEFAULTS = {
+  s1:    DEFAULT_S1_PROMPT,
+  s2:    DEFAULT_S2_PROMPT,
+  check: DEFAULT_CHECK_PROMPT,
+};
+
+/* ════════════════════════════════════════════════════════════════════════
+   State
+   ════════════════════════════════════════════════════════════════════════ */
+
+const state = {
+  // input
+  pdfFile: null,
+  pdfText: "",
+  baustein: null,           // { id, title, summary, requirements }
+
+  // catalog + profiles
+  catalog: null,
+  catalogSource: null,
+  catalogControls: [],      // flattened [{id, title, statement, guidance, modalverb, sec_level, group}]
+  profilesList: [],         // [{name, filename, download_url, sha?}]
+  profilesSource: null,
+
+  // pipeline outputs
+  matchedProfile: null,     // { profile_filename, confidence, rationale, alternative_filenames }
+  matchedProfileJson: null,
+  profileControlIds: [],    // ids included by the matched profile
+  pipelineMode: null,       // "C1" or "C2"
+  implReqs: [],             // [{control_id, control_title, description, source_anforderungen, coverage, remarks, modalverb?, validation?, pending?, error?}]
+  customCatalog: null,      // C2 only
+  componentDef: null,
+
+  // runtime
+  running: false,
+  cancel: false,
+  currentStage: null,
+};
+
+const $ = id => document.getElementById(id);
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+
+/* ════════════════════════════════════════════════════════════════════════
+   Logging
+   ════════════════════════════════════════════════════════════════════════ */
+
+const logBody = $("log-body");
+let logCount = 0;
+
+const l = {
+  _add(level, msg) {
+    const ts = new Date().toISOString().slice(11, 23);
+    const div = document.createElement("div");
+    div.className = `log-line log-${level}`;
+    div.innerHTML = `<span class="log-ts">${ts}</span><span class="log-lvl">${level}</span><span class="log-msg"></span>`;
+    div.querySelector(".log-msg").textContent = msg;
+    logBody.appendChild(div);
+    logCount++;
+    $("log-count").textContent = logCount;
+    if ($("log-autoscroll").checked) logBody.scrollTop = logBody.scrollHeight;
+  },
+  info(m)  { this._add("info", m) },
+  ok(m)    { this._add("ok", m) },
+  warn(m)  { this._add("warn", m) },
+  err(m)   { this._add("err", m) },
+  debug(m) { this._add("debug", m) },
+};
+
+l.info("init · build 0.6.0 · pdf → profile-match → impl-reqs → component");
+
+$("btn-clear-log").addEventListener("click", () => {
+  logBody.innerHTML = "";
+  logCount = 0;
+  $("log-count").textContent = "0";
+});
+
+/* ════════════════════════════════════════════════════════════════════════
+   Persistence + prompt textareas
+   ════════════════════════════════════════════════════════════════════════ */
+
+function loadPrefs() {
+  $("api-key").value         = localStorage.getItem("gpp.apikey")    || "";
+  $("model").value           = localStorage.getItem("gpp.model")     || "gemini-3.1-pro-preview";
+  $("thinking").value        = localStorage.getItem("gpp.thinking")  || "medium";
+  $("concurrency").value     = localStorage.getItem("gpp.conc")      || "4";
+  $("retries").value         = localStorage.getItem("gpp.retries")   || "2";
+  $("chunk-size").value      = localStorage.getItem("gpp.chunk")     || "8";
+  $("comp-type").value       = localStorage.getItem("gpp.comptype")  || "service";
+  $("maker-checker").checked = localStorage.getItem("gpp.mc")        === "1";
+  $("grounding").checked     = localStorage.getItem("gpp.ground")    === "1";
+  $("testdrive").checked     = localStorage.getItem("gpp.td")        === "1";
+  $("cat-url").value         = localStorage.getItem("gpp.caturl")    || $("cat-url").value;
+  $("pi-url").value          = localStorage.getItem("gpp.piurl")     || $("pi-url").value;
+  $("match-threshold").value = localStorage.getItem("gpp.threshold") || "0.5";
+  for (const k of ["s1","s2","check"]) {
+    $(`prompt-${k}`).value = localStorage.getItem(`gpp.prompt.${k}`) || DEFAULTS[k];
+  }
+  toggleCheckerUI();
+}
+
+function bindPersist(id, key) {
+  $(id).addEventListener("input",  () => localStorage.setItem(key, $(id).value));
+  $(id).addEventListener("change", () => localStorage.setItem(key, $(id).value));
+}
+
+bindPersist("api-key", "gpp.apikey");
+bindPersist("model", "gpp.model");
+bindPersist("thinking", "gpp.thinking");
+bindPersist("concurrency", "gpp.conc");
+bindPersist("retries", "gpp.retries");
+bindPersist("chunk-size", "gpp.chunk");
+bindPersist("comp-type", "gpp.comptype");
+bindPersist("cat-url", "gpp.caturl");
+bindPersist("pi-url", "gpp.piurl");
+bindPersist("match-threshold", "gpp.threshold");
+
+$("maker-checker").addEventListener("change", e => {
+  localStorage.setItem("gpp.mc", e.target.checked ? "1" : "0");
+  toggleCheckerUI();
+});
+$("grounding").addEventListener("change", e => {
+  localStorage.setItem("gpp.ground", e.target.checked ? "1" : "0");
+});
+$("testdrive").addEventListener("change", e => {
+  localStorage.setItem("gpp.td", e.target.checked ? "1" : "0");
+  updateRunLabel();
+});
+
+for (const k of ["s1","s2","check"]) {
+  const ta = $(`prompt-${k}`);
+  const warn = $(`warn-${k}`);
+  const expected = ta.dataset.placeholders.split(",");
+  const validate = () => {
+    const missing = expected.filter(p => !ta.value.includes(p));
+    if (missing.length) {
+      warn.classList.add("show");
+      warn.textContent = `⚠ fehlende Platzhalter: ${missing.join(", ")} — werden zur Laufzeit defensiv ergänzt`;
+    } else {
+      warn.classList.remove("show");
     }
+  };
+  ta.addEventListener("input", () => {
+    localStorage.setItem(`gpp.prompt.${k}`, ta.value);
+    validate();
+  });
+  validate();
+}
 
-    // --- PIPELINE EXECUTION ---
-    $('btn-cancel').addEventListener('click', () => { state.cancel = true; l.warn("Cancel requested..."); });
+document.querySelectorAll("[data-reset]").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const key = btn.dataset.reset;
+    $(`prompt-${key}`).value = DEFAULTS[key];
+    localStorage.removeItem(`gpp.prompt.${key}`);
+    $(`prompt-${key}`).dispatchEvent(new Event("input"));
+    l.info(`prompt-${key} → default`);
+  });
+});
 
-    $('btn-run').addEventListener('click', async () => {
-      const rawText = $('raw-text').value.trim();
-      if (!rawText) return alert("Please provide Baustein PDF or raw text first.");
-      if (!$('cfg-key').value) return alert("API Key required.");
+function toggleCheckerUI() {
+  const on = $("maker-checker").checked;
+  $("checker-block").style.display = on ? "block" : "none";
+  $("pip-s4").classList.toggle("hidden", !on);
+}
 
-      state = { cancel: false, running: true, baustein: null, zielobjekte: [], results: [] };
-      $('btn-run').classList.add('hidden');
-      $('btn-cancel').classList.remove('hidden');
-      $('card-results').classList.add('hidden');
-      $('card-stats').classList.add('hidden');
-      $('results-list').innerHTML = '';
-      
-      try {
-        // PHASE 1: Extract Baustein Structure
-        updateStatus("Phase 1/3: Extracting requirements from raw text...");
-        l.info("Starting extraction phase...");
-        showProgress("Extracting", 0, 1);
-        
-        let p1Prompt = getP1().replace('{raw_text}', rawText);
-        let extOut = await llm(p1Prompt, "Extraction");
-        state.baustein = extractJson(extOut);
-        
-        if (!state.baustein.requirements || !Array.isArray(state.baustein.requirements)) {
-          throw new Error("Extractor did not return a valid requirements array.");
-        }
-        l.ok(`Extracted Baustein: ${state.baustein.baustein_id} with ${state.baustein.requirements.length} requirements.`);
-        showProgress("Extracting", 1, 1);
+/* ════════════════════════════════════════════════════════════════════════
+   Splitter
+   ════════════════════════════════════════════════════════════════════════ */
 
-        // Populate initial result cards
-        state.results = state.baustein.requirements.map(req => ({
-          item: req, analysis: null, error: null
-        }));
-        renderResults();
+(() => {
+  const sp = $("splitter");
+  let drag = false;
+  const saved = parseInt(localStorage.getItem("gpp.rail") || "260");
+  document.documentElement.style.setProperty("--rail-w", saved + "px");
+  sp.addEventListener("mousedown", () => { drag = true; sp.classList.add("dragging"); document.body.style.cursor = "col-resize"; });
+  window.addEventListener("mouseup", () => { if (drag) { drag = false; sp.classList.remove("dragging"); document.body.style.cursor = ""; } });
+  window.addEventListener("mousemove", e => {
+    if (!drag) return;
+    const w = Math.max(200, Math.min(420, e.clientX));
+    document.documentElement.style.setProperty("--rail-w", w + "px");
+    localStorage.setItem("gpp.rail", String(w));
+  });
+})();
 
-        // PHASE 2: Determine Zielobjekte
-        updateStatus("Phase 2/3: Mapping to G++ Zielobjekte...");
-        l.info("Determining G++ Target Objects...");
-        showProgress("Target Mapping", 0, 1);
-        
-        let p2Prompt = getP2()
-          .replace('{baustein_id}', state.baustein.baustein_id || '')
-          .replace('{baustein_title}', state.baustein.baustein_title || '')
-          .replace('{baustein_description}', state.baustein.description || '');
-        
-        let targetOut = await llm(p2Prompt, "Zielobjekt Mapping");
-        const targetJson = extractJson(targetOut);
-        state.zielobjekte = targetJson.zielobjekte || [];
-        l.ok(`Mapped to Zielobjekte: ${state.zielobjekte.join(', ')}`);
-        showProgress("Target Mapping", 1, 1);
-        renderResults();
+/* ════════════════════════════════════════════════════════════════════════
+   PDF.js setup
+   ════════════════════════════════════════════════════════════════════════ */
 
-        // PHASE 3: Match Requirements (Parallel Pool)
-        updateStatus("Phase 3/3: Matching requirements to G++ controls...");
-        const concurrency = parseInt($('cfg-concurrency').value) || 4;
-        l.info(`Starting matching pool with concurrency ${concurrency}...`);
-        
-        const zielobjektStr = state.zielobjekte.join(', ');
-        const tasks = state.results.map((r, idx) => async () => {
-          try {
-            let prompt = getP3()
-              .replace('{req_id}', r.item.id || '')
-              .replace('{req_title}', r.item.title || '')
-              .replace('{req_text}', r.item.text || '')
-              .replace('{zielobjekt}', zielobjektStr);
-            
-            const out = await llm(prompt, `Match [${idx+1}/${state.results.length}]`);
-            r.analysis = extractJson(out);
-          } catch (e) {
-            r.error = e.message;
-          }
-        });
+if (window.pdfjsLib) {
+  pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+} else {
+  l.err("pdf.js wurde nicht geladen — CDN blockiert? prüfe Netzwerk/Adblocker oder lade die Datei via http://localhost:…");
+}
 
-        await runPool(tasks, concurrency, (d, t) => {
-          showProgress("Matching Controls", d, t);
-          renderResults(); // Live updates
-        });
+async function extractPdfText(file) {
+  if (!window.pdfjsLib) {
+    throw new Error("pdf.js nicht geladen (CDN blockiert?). Falls Adblocker aktiv: deaktivieren, oder via http://localhost:… öffnen statt file://.");
+  }
+  const buf = await file.arrayBuffer();
+  const pdf = await pdfjsLib.getDocument({ data: buf }).promise;
+  const pages = [];
+  for (let i = 1; i <= pdf.numPages; i++) {
+    const page = await pdf.getPage(i);
+    const tc = await page.getTextContent();
+    pages.push(tc.items.map(it => it.str).join(" "));
+  }
+  return pages.join("\n\n");
+}
 
-        state.results.forEach(r => { if (!r.analysis && !r.error) r.error = "Cancelled"; });
-        renderResults();
-        
-        if (state.cancel) {
-          l.warn("Pipeline cancelled by user.");
-          updateStatus("Cancelled.");
-        } else {
-          l.ok("Pipeline complete.");
-          updateStatus("Done. Ready for export.");
-        }
+/* ════════════════════════════════════════════════════════════════════════
+   Baustein parsing — heuristic
+   ════════════════════════════════════════════════════════════════════════ */
 
-      } catch (e) {
-        l.err(`Pipeline failed: ${e.message}`);
-        updateStatus(`Failed: ${e.message}`);
-      } finally {
-        state.running = false;
-        $('btn-run').classList.remove('hidden');
-        $('btn-cancel').classList.add('hidden');
+function parseBausteinHeuristic(text) {
+  const out = { id: null, title: null, summary: "", requirements: [] };
+
+  const titleRe = /\b([A-Z]{3,6}(?:\.\d+){1,4})\s+([A-ZÄÖÜ][^\n]{2,80})/;
+  const tm = text.match(titleRe);
+  if (tm) {
+    out.id = tm[1];
+    out.title = tm[2].trim().replace(/\s{2,}/g, " ").slice(0, 120);
+  }
+
+  const descMatch = text.match(/1\s*(?:Beschreibung|Einleitung)([\s\S]{200,8000}?)(?=2\s*Gef|2\.\d|Gefährdungslage)/);
+  out.summary = descMatch ? descMatch[1].trim().slice(0, 4000) : text.slice(0, 4000);
+
+  const reqIdRe = new RegExp(`(${(out.id || "[A-Z]{3,6}(?:\\.\\d+){1,4}").replace(/\./g,"\\.")}\\.A\\d+\\.?\\d*)`, "g");
+  const matches = [...text.matchAll(reqIdRe)];
+  for (let i = 0; i < matches.length; i++) {
+    const start = matches[i].index;
+    const end = (i + 1 < matches.length) ? matches[i + 1].index : Math.min(text.length, start + 4000);
+    let block = text.slice(start, end).trim();
+    if (block.length < 80) continue;
+
+    const id = matches[i][1];
+
+    // Extract the Anforderungs-name: after ID, before [Role] or modal verb or newline
+    // BSI pattern: "{ID} {Name} [{Rolle}]\n{Body}" or "{ID} {Name}\n{Body}"
+    const afterIdIdx = matches[i].index + id.length;
+    const titleSlice = text.slice(afterIdIdx, Math.min(afterIdIdx + 250, text.length));
+    let name = null;
+    // Stop at: [ or newline or modal verb or (CIA) flags
+    const nameMatch = titleSlice.match(/^\s+([^\[\n]+?)(?:\s*\[|\s*\n|\s+(?:MUSS|MÜSSEN|SOLLTE|SOLLTEN|DARF|KANN|KÖNNEN)\b|\s*\((?:CIA|[CIA, ]+)\))/);
+    if (nameMatch) {
+      name = nameMatch[1].trim().replace(/\s{2,}/g, " ");
+    } else {
+      // Fallback: first line / first sentence
+      name = titleSlice.replace(/^\s+/, "").split(/[\[\n]/)[0].trim().slice(0, 120);
+    }
+    // Cleanup: strip trailing punctuation
+    name = (name || "").replace(/[\.\s]+$/, "").slice(0, 140);
+    if (!name) name = id;
+
+    let modalverb = null;
+    if (/\bMUSS\b/.test(block) || /\bMÜSSEN\b/.test(block) || /\bDARF NICHT\b/.test(block)) modalverb = "MUSS";
+    else if (/\bSOLLTE\b/.test(block) || /\bSOLLTEN\b/.test(block)) modalverb = "SOLLTE";
+    else if (/\bDARF\b/.test(block)) modalverb = "DARF";
+    else if (/\bKANN\b/.test(block) || /\bKÖNNEN\b/.test(block)) modalverb = "KANN";
+
+    if (out.requirements.some(r => r.id === id)) continue;
+    out.requirements.push({ id, name, modalverb, text: block.replace(/\s{2,}/g, " ").slice(0, 3000) });
+  }
+
+  return out;
+}
+
+/* ════════════════════════════════════════════════════════════════════════
+   Catalog flattening — Kernel structure has statement + guidance parts,
+   modal_verb (with underscore), sec_level on control props.
+   ════════════════════════════════════════════════════════════════════════ */
+
+function namesOfAnforderungen(ids) {
+  if (!Array.isArray(ids) || !ids.length) return [];
+  const byId = new Map((state.baustein?.requirements || []).map(r => [r.id, r]));
+  return ids.map(id => {
+    const r = byId.get(id);
+    return r ? `${id} ${r.name || ""}`.trim() : id;
+  });
+}
+
+function flattenCatalog(cat) {
+  const root = cat?.catalog ?? cat;
+  const flat = [];
+
+  const walkGroup = (group, breadcrumb) => {
+    const here = breadcrumb.concat([group?.title || group?.id || ""]);
+    for (const c of (group?.controls || [])) walkControl(c, group?.id || "", here);
+    for (const sg of (group?.groups   || [])) walkGroup(sg, here);
+  };
+
+  const walkControl = (ctl, groupId, breadcrumb) => {
+    if (!ctl?.id) return;
+    let statement = "";
+    let guidance  = "";
+    let modalverb = null;
+
+    const collectPart = part => {
+      if (!part) return;
+      if (part.name === "statement" && typeof part.prose === "string") {
+        statement += (statement ? "\n" : "") + part.prose;
       }
+      if (part.name === "guidance" && typeof part.prose === "string") {
+        guidance += (guidance ? "\n" : "") + part.prose;
+      }
+      for (const pr of (part.props || [])) {
+        if ((pr?.name === "modal_verb" || pr?.name === "modalverb") && !modalverb) modalverb = pr.value;
+      }
+      for (const sub of (part.parts || [])) collectPart(sub);
+    };
+    for (const p of (ctl.parts || [])) collectPart(p);
+
+    let sec_level = null;
+    for (const pr of (ctl.props || [])) {
+      if (pr?.name === "sec_level" && !sec_level) sec_level = pr.value;
+      if ((pr?.name === "modal_verb" || pr?.name === "modalverb") && !modalverb) modalverb = pr.value;
+    }
+
+    flat.push({
+      id: ctl.id,
+      title: ctl.title || "",
+      statement: statement.slice(0, 4000),
+      guidance:  guidance.slice(0, 4000),
+      modalverb,
+      sec_level,
+      group: groupId,
+      breadcrumb: breadcrumb.join(" › "),
     });
 
-    // --- OSCAL GENERATION ---
-    $('btn-export-json').addEventListener('click', () => {
-      if (!state.baustein || state.results.length === 0) return alert("No results to export.");
-      
-      const uuid = () => crypto.randomUUID();
-      const isoTime = new Date().toISOString();
+    for (const sub of (ctl.controls || [])) walkControl(sub, groupId, breadcrumb);
+  };
 
-      // Assemble mapped requirements into OSCAL implemented-requirements
-      const implementedReqs = state.results
-        .filter(r => r.analysis && r.analysis.matched_controls && r.analysis.matched_controls.length > 0)
-        .flatMap(r => {
-          return r.analysis.matched_controls.map(ctrl => {
-             return {
-               "uuid": uuid(),
-               "control-id": ctrl.control_id,
-               "description": `Mapped from ${r.item.id}: ${r.item.title}\nJustification: ${ctrl.justification}`,
-               "props": [
-                 { "name": "bsi-source-req-id", "value": r.item.id },
-                 { "name": "bsi-req-type", "value": r.item.type || "Basis" },
-                 { "name": "mapping-confidence", "value": ctrl.match_confidence }
-               ]
-             };
-          });
-        });
+  for (const g of (root?.groups   || [])) walkGroup(g, []);
+  for (const c of (root?.controls || [])) walkControl(c, "", []);
+  return flat;
+}
 
-      // Wrap in basic Component Definition
-      const oscal = {
-        "component-definition": {
-          "uuid": uuid(),
-          "metadata": {
-            "title": `G++ Mapping for ${state.baustein.baustein_id}`,
-            "last-modified": isoTime,
-            "version": "1.0",
-            "oscal-version": "1.1.2"
-          },
-          "components": [
+/* ════════════════════════════════════════════════════════════════════════
+   Loaders — PDF, catalog, profile index, profile content
+   ════════════════════════════════════════════════════════════════════════ */
+
+$("dropzone").addEventListener("click", () => $("pdf-input").click());
+$("dropzone").addEventListener("dragover", e => { e.preventDefault(); e.currentTarget.classList.add("drag") });
+$("dropzone").addEventListener("dragleave", e => e.currentTarget.classList.remove("drag"));
+$("dropzone").addEventListener("drop", e => {
+  e.preventDefault();
+  e.currentTarget.classList.remove("drag");
+  const f = e.dataTransfer.files?.[0];
+  if (f) loadPdf(f);
+});
+$("pdf-input").addEventListener("change", e => {
+  const f = e.target.files?.[0];
+  if (f) loadPdf(f);
+});
+
+async function loadPdf(file) {
+  state.pdfFile = file;
+  $("pdf-info").textContent = `${file.name} · ${(file.size / 1024).toFixed(0)} KB · parse läuft…`;
+  l.info(`pdf · ${file.name} (${(file.size/1024).toFixed(0)} KB)`);
+  try {
+    const t0 = performance.now();
+    state.pdfText = await extractPdfText(file);
+    const ms = Math.round(performance.now() - t0);
+    state.baustein = parseBausteinHeuristic(state.pdfText);
+    const b = state.baustein;
+    $("pdf-info").textContent = `${file.name} · ${b.id || "??"} – ${b.title || "??"} · ${b.requirements.length} Anforderungen heuristisch`;
+    l.ok(`pdf parse done in ${ms}ms · id=${b.id} · "${b.title}" · ${b.requirements.length} Anforderungen`);
+    if (b.requirements.length === 0) {
+      l.warn("keine Anforderungen heuristisch erkannt — C.2-Pfad bleibt leer, C.1 läuft trotzdem aber ohne Source-Coverage");
+    }
+    updateRunLabel();
+  } catch (e) {
+    l.err(`pdf parse failed: ${e.message}`);
+    $("pdf-info").textContent = `Fehler: ${e.message}`;
+  }
+}
+
+// Catalog loaders
+$("btn-upload-cat").addEventListener("click", () => $("cat-file").click());
+$("cat-file").addEventListener("change", async e => {
+  const f = e.target.files?.[0];
+  if (!f) return;
+  try {
+    const text = await f.text();
+    setCatalog(JSON.parse(text), `file://${f.name}`);
+  } catch (err) { l.err(`catalog file: ${err.message}`); }
+});
+
+$("btn-load-cat").addEventListener("click", async () => {
+  const url = $("cat-url").value.trim();
+  if (!url) return l.warn("keine Katalog-URL angegeben");
+  l.info(`fetch catalog · ${url}`);
+  try {
+    const t0 = performance.now();
+    const r = await fetch(url);
+    if (!r.ok) throw new Error(`HTTP ${r.status}`);
+    const json = await r.json();
+    setCatalog(json, url);
+    l.ok(`catalog fetched in ${Math.round(performance.now()-t0)}ms`);
+  } catch (e) {
+    l.err(`catalog fetch failed: ${e.message}`);
+    $("cat-info").textContent = `Fehler: ${e.message}`;
+  }
+});
+
+function setCatalog(json, src) {
+  state.catalog = json;
+  state.catalogSource = src;
+  state.catalogControls = flattenCatalog(json);
+  const title = json?.catalog?.metadata?.title || "ohne Titel";
+  $("cat-info").textContent = `${state.catalogControls.length} Controls · ${title} · ${src.length > 80 ? src.slice(0,80) + "…" : src}`;
+  l.ok(`catalog flattened · ${state.catalogControls.length} controls`);
+}
+
+// Profile-index loaders
+$("btn-upload-pi").addEventListener("click", () => $("pi-file").click());
+$("pi-file").addEventListener("change", async e => {
+  const f = e.target.files?.[0];
+  if (!f) return;
+  try {
+    const text = await f.text();
+    setProfilesIndex(JSON.parse(text), `file://${f.name}`);
+  } catch (err) { l.err(`profile-index file: ${err.message}`); }
+});
+
+$("btn-load-pi").addEventListener("click", async () => {
+  const url = $("pi-url").value.trim();
+  if (!url) return l.warn("keine Profile-Index-URL angegeben");
+  l.info(`fetch profile-index · ${url}`);
+  try {
+    const t0 = performance.now();
+    const r = await fetch(url);
+    if (!r.ok) throw new Error(`HTTP ${r.status}` + (r.status === 403 ? " (GitHub API rate limit — gleich nochmal probieren)" : ""));
+    const json = await r.json();
+    setProfilesIndex(json, url);
+    l.ok(`profile-index fetched in ${Math.round(performance.now()-t0)}ms`);
+  } catch (e) {
+    l.err(`profile-index fetch failed: ${e.message}`);
+    $("pi-info").textContent = `Fehler: ${e.message}`;
+  }
+});
+
+function setProfilesIndex(json, src) {
+  // Accept several shapes:
+  //  - GitHub API contents response: [{name, download_url, type, path, sha}]
+  //  - Plain array of objects: [{name, url}]
+  //  - Plain array of strings (filenames)
+  //  - Object map: { filename: url }
+  let list = [];
+  if (Array.isArray(json)) {
+    list = json.map(entry => {
+      if (typeof entry === "string") return { name: entry, filename: entry, download_url: null };
+      // GitHub API entry
+      if (entry.download_url || entry.path) {
+        return {
+          name: entry.name || entry.path?.split("/").pop(),
+          filename: entry.name || entry.path?.split("/").pop(),
+          download_url: entry.download_url || null,
+          path: entry.path,
+          type: entry.type,
+          sha: entry.sha,
+        };
+      }
+      // Custom entry
+      return {
+        name: entry.name || entry.filename,
+        filename: entry.filename || entry.name,
+        download_url: entry.download_url || entry.url || null,
+      };
+    });
+  } else if (typeof json === "object" && json !== null) {
+    list = Object.entries(json).map(([name, url]) => ({
+      name, filename: name, download_url: typeof url === "string" ? url : url?.download_url || null,
+    }));
+  }
+
+  // Filter for .json files, exclude directories
+  list = list.filter(e => {
+    if (e.type === "dir") return false;
+    return /\.json$/i.test(e.filename || "");
+  });
+
+  state.profilesList = list;
+  state.profilesSource = src;
+  $("pi-info").textContent = list.length
+    ? `${list.length} Profile gefunden · ${src.length > 80 ? src.slice(0,80) + "…" : src}`
+    : `keine .json-Dateien im Index gefunden`;
+  l.ok(`profile-index loaded · ${list.length} entries`);
+
+  // Repopulate manual picker, preserving the static options
+  const sel = $("pi-pick");
+  const prev = sel.value;
+  sel.innerHTML = `<option value="">— auto via Stage 1 —</option>
+    <option value="__force_c2__">— force C.2 (deterministic, no LLM) —</option>` + list.map(p =>
+    `<option value="${escapeHtml(p.filename)}">${escapeHtml(prettyProfileName(p.filename))}</option>`
+  ).join("");
+  if (prev) sel.value = prev;
+}
+
+function prettyProfileName(filename) {
+  // Strip .json, replace separators, title-case
+  return filename
+    .replace(/\.json$/i, "")
+    .replace(/[_\-]/g, " ")
+    .replace(/\s{2,}/g, " ")
+    .trim();
+}
+
+/* ════════════════════════════════════════════════════════════════════════
+   Profile content loader — for the picked or matched profile
+   ════════════════════════════════════════════════════════════════════════ */
+
+async function loadProfileContent(entry) {
+  if (!entry) throw new Error("no profile entry");
+  const url = entry.download_url || entry.url;
+  if (!url) throw new Error(`profile entry ${entry.filename} has no download_url`);
+  l.debug(`fetch profile content · ${entry.filename}`);
+  const r = await fetch(url);
+  if (!r.ok) throw new Error(`HTTP ${r.status} fetching ${entry.filename}`);
+  return await r.json();
+}
+
+/** Extract control IDs from an OSCAL profile's imports section.
+    Falls back to including-by-pattern or merging all controls.   */
+function extractProfileControlIds(profileJson) {
+  const ids = new Set();
+  const prof = profileJson?.profile ?? profileJson;
+  for (const imp of (prof?.imports || [])) {
+    for (const incl of (imp?.["include-controls"] || imp?.includeControls || [])) {
+      for (const id of (incl?.["with-ids"] || incl?.withIds || [])) {
+        ids.add(id);
+      }
+    }
+    // include-all / include-by-pattern not handled fine-grained — caller can fallback
+  }
+  return [...ids];
+}
+
+/* ════════════════════════════════════════════════════════════════════════
+   Gemini wrapper · structured JSON · grounding · retries
+   ════════════════════════════════════════════════════════════════════════ */
+
+const stripFences = s => s.replace(/^\s*```(?:json)?/i, "").replace(/```\s*$/i, "").trim();
+
+function extractJson(text) {
+  const trim = text.trim();
+  try { return JSON.parse(trim); } catch {}
+  const stripped = stripFences(trim);
+  try { return JSON.parse(stripped); } catch {}
+  const s = stripped.indexOf("{");
+  const e = stripped.lastIndexOf("}");
+  if (s >= 0 && e > s) {
+    try { return JSON.parse(stripped.slice(s, e + 1)); } catch {}
+  }
+  const sa = stripped.indexOf("[");
+  const ea = stripped.lastIndexOf("]");
+  if (sa >= 0 && ea > sa) {
+    try { return JSON.parse(stripped.slice(sa, ea + 1)); } catch {}
+  }
+  throw new Error("JSON aus Modellantwort nicht extrahierbar");
+}
+
+async function llmOnce(prompt, schema) {
+  const apiKey = $("api-key").value.trim();
+  if (!apiKey) throw new Error("API-Key fehlt");
+  const model    = $("model").value;
+  const thinking = $("thinking").value;
+  const grounded = $("grounding").checked;
+
+  const body = {
+    contents: [{ role: "user", parts: [{ text: prompt }] }],
+    generationConfig: { thinkingConfig: { thinkingLevel: thinking } },
+  };
+  if (grounded) {
+    body.tools = [{ googleSearch: {} }];
+  } else if (schema) {
+    body.generationConfig.responseMimeType  = "application/json";
+    body.generationConfig.responseJsonSchema = schema;
+  }
+
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`;
+  const res = await fetch(url, {
+    method: "POST",
+    headers: { "Content-Type": "application/json", "x-goog-api-key": apiKey },
+    body: JSON.stringify(body),
+  });
+  if (!res.ok) {
+    let detail = `HTTP ${res.status}`;
+    try { detail += " · " + (await res.text()).slice(0, 400); } catch {}
+    throw new Error(detail);
+  }
+  const data = await res.json();
+  const text = (data?.candidates?.[0]?.content?.parts || []).map(p => p.text || "").join("\n");
+  if (!text) throw new Error("leere Modellantwort");
+  return text;
+}
+
+async function llm(prompt, label, schema) {
+  const retries = Math.max(0, parseInt($("retries").value) || 0);
+  let attempt = 0;
+  while (true) {
+    if (state.cancel) throw new Error("cancelled");
+    const t0 = performance.now();
+    try {
+      const text = await llmOnce(prompt, schema);
+      l.debug(`${label} ← ${(text.length/1024).toFixed(1)}kb in ${Math.round(performance.now()-t0)}ms`);
+      return text;
+    } catch (e) {
+      attempt++;
+      if (attempt > retries) throw e;
+      const wait = 500 * Math.pow(2, attempt - 1);
+      l.warn(`${label} failed (${e.message.slice(0,200)}) — retry ${attempt}/${retries} in ${wait}ms`);
+      await sleep(wait);
+    }
+  }
+}
+
+/* ════════════════════════════════════════════════════════════════════════
+   Worker pool
+   ════════════════════════════════════════════════════════════════════════ */
+
+async function runPool(tasks, limit, onProgress) {
+  const results = new Array(tasks.length);
+  let done = 0, next = 0;
+  const workers = Array.from({ length: Math.min(limit, tasks.length) }, async () => {
+    while (next < tasks.length) {
+      const i = next++;
+      if (state.cancel) { results[i] = { cancelled: true }; done++; onProgress?.(done, tasks.length); continue; }
+      try { results[i] = await tasks[i](); }
+      catch (e) { results[i] = { error: e }; }
+      done++;
+      onProgress?.(done, tasks.length);
+    }
+  });
+  await Promise.all(workers);
+  return results;
+}
+
+/* ════════════════════════════════════════════════════════════════════════
+   Progress / stage UI
+   ════════════════════════════════════════════════════════════════════════ */
+
+function showProgress(label, done, total) {
+  $("pbar-label").textContent = label;
+  $("pbar-count").textContent = `${done}/${total}`;
+  const pct = total > 0 ? (done / total) * 100 : 0;
+  $("pbar").style.width = pct + "%";
+  $("pbar").classList.toggle("done", done === total && total > 0);
+}
+
+function setStage(name) {
+  for (const id of ["pip-s0","pip-s1","pip-s2","pip-s3","pip-s4"]) {
+    const el = $(id);
+    el.classList.remove("active");
+    if (el.dataset.done === "1") el.classList.add("done");
+  }
+  if (name) $(`pip-${name}`).classList.add("active");
+  state.currentStage = name;
+}
+function doneStage(name) {
+  const el = $(`pip-${name}`);
+  el.dataset.done = "1";
+  el.classList.remove("active");
+  el.classList.add("done");
+}
+function resetStages() {
+  for (const id of ["pip-s0","pip-s1","pip-s2","pip-s3","pip-s4"]) {
+    const el = $(id);
+    el.dataset.done = "0";
+    el.classList.remove("active","done");
+  }
+}
+
+/* ════════════════════════════════════════════════════════════════════════
+   Prompt builders — defensively append missing placeholders
+   ════════════════════════════════════════════════════════════════════════ */
+
+function buildPrompt(key, vars) {
+  let tpl = $(`prompt-${key}`).value;
+  if (!tpl.trim()) tpl = DEFAULTS[key];
+  for (const [name, val] of Object.entries(vars)) {
+    const ph = `{${name}}`;
+    if (!tpl.includes(ph)) tpl += `\n\n${name.toUpperCase()}:\n${ph}`;
+    tpl = tpl.replaceAll(ph, val);
+  }
+  return tpl;
+}
+
+/* ════════════════════════════════════════════════════════════════════════
+   STAGE 1 — Profile match
+   ════════════════════════════════════════════════════════════════════════ */
+
+const SCHEMA_S1 = {
+  type: "object",
+  properties: {
+    profile_filename: { type: ["string","null"] },
+    confidence:       { type: "number" },
+    rationale:        { type: "string" },
+    alternative_filenames: { type: "array", items: { type: "string" } },
+  },
+  required: ["profile_filename","confidence","rationale"],
+};
+
+async function runStage1ProfileMatch() {
+  setStage("s1");
+  showProgress("stage 1 · profile-match", 0, 1);
+
+  if (state.profilesList.length === 0) {
+    l.warn("kein Profile-Index geladen — Stage 1 wird übersprungen, Pipeline geht direkt in C.2-Pfad");
+    state.matchedProfile = { profile_filename: null, confidence: 0, rationale: "Kein Profile-Index geladen — fallback zu C.2 (deterministisch)." };
+    renderStage1();
+    doneStage("s1");
+    return;
+  }
+
+  const b = state.baustein;
+  const profList = state.profilesList.map(p =>
+    `- ${p.filename}  (${prettyProfileName(p.filename)})`
+  ).join("\n");
+
+  const prompt = buildPrompt("s1", {
+    baustein_id: b.id || "(unbekannt)",
+    baustein_title: b.title || "(unbekannt)",
+    baustein_summary: (b.summary || "").slice(0, 3500),
+    profiles: profList,
+  });
+
+  const text = await llm(prompt, "s1 profile-match", $("grounding").checked ? null : SCHEMA_S1);
+  const parsed = extractJson(text);
+
+  // Validate the match: filename must exist in profilesList
+  if (parsed.profile_filename) {
+    const exists = state.profilesList.some(p => p.filename === parsed.profile_filename);
+    if (!exists) {
+      l.warn(`Modell nannte unbekanntes Profil "${parsed.profile_filename}" — versuche, ähnlichstes zu finden`);
+      const lc = parsed.profile_filename.toLowerCase();
+      const fuzzy = state.profilesList.find(p => p.filename.toLowerCase() === lc)
+                 || state.profilesList.find(p => p.filename.toLowerCase().includes(lc.replace(/\.json$/, "")));
+      if (fuzzy) {
+        l.info(`fuzzy match: "${parsed.profile_filename}" → "${fuzzy.filename}"`);
+        parsed.profile_filename = fuzzy.filename;
+      } else {
+        parsed.profile_filename = null;
+        parsed.rationale = `(Modell halluzinierte unbekannten Dateinamen — auf null gesetzt) ${parsed.rationale}`;
+      }
+    }
+  }
+
+  state.matchedProfile = parsed;
+  showProgress("stage 1 · done", 1, 1);
+  renderStage1();
+  doneStage("s1");
+}
+
+function renderStage1() {
+  const card = $("s1-result");
+  const body = $("s1-body");
+  card.classList.remove("hidden");
+
+  // If user has manually picked a profile, show that too
+  const manual = $("pi-pick").value;
+
+  const m = state.matchedProfile || {};
+  const confPct = m.confidence != null ? Math.round(m.confidence * 100) : null;
+  const threshold = parseFloat($("match-threshold").value) || 0.5;
+
+  body.innerHTML = "";
+
+  if (manual) {
+    const div = document.createElement("div");
+    div.className = "zo-card primary";
+    div.innerHTML = `
+      <div class="zo-top">
+        <div class="zo-name">${escapeHtml(prettyProfileName(manual))}</div>
+        <div class="zo-type">manual override</div>
+      </div>
+      <div class="zo-rationale">Manuelle Auswahl überschreibt das Stage-1-Ergebnis. Dateiname: <code style="font-family:'JetBrains Mono',monospace;color:var(--accent)">${escapeHtml(manual)}</code></div>
+    `;
+    body.appendChild(div);
+    $("s1-chip").textContent = `manual: ${manual}`;
+    return;
+  }
+
+  const willMatch = m.profile_filename && (m.confidence == null || m.confidence >= threshold);
+
+  if (m.profile_filename) {
+    const div = document.createElement("div");
+    div.className = "zo-card" + (willMatch ? " primary" : "");
+    div.innerHTML = `
+      <div class="zo-top">
+        <div class="zo-name">${escapeHtml(prettyProfileName(m.profile_filename))}</div>
+        <div class="zo-type">${willMatch ? `match (≥${threshold})` : `under threshold (${threshold})`}</div>
+      </div>
+      <div class="zo-rationale">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:${willMatch ? "var(--green)" : "var(--amber)"};letter-spacing:0.05em">confidence: ${confPct ?? "—"}%</span><br>
+        ${escapeHtml(m.rationale || "")}<br>
+        <code style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--accent)">${escapeHtml(m.profile_filename)}</code>
+      </div>
+    `;
+    body.appendChild(div);
+    $("s1-chip").textContent = willMatch ? `C.1 (conf ${confPct}%)` : `C.2 (under threshold)`;
+  } else {
+    const div = document.createElement("div");
+    div.className = "zo-card";
+    div.style.borderColor = "oklch(0.65 0.2 25 / 0.3)";
+    div.innerHTML = `
+      <div class="zo-top">
+        <div class="zo-name">Kein Profil-Match</div>
+        <div class="zo-type" style="color:var(--red)">→ C.2-Pfad</div>
+      </div>
+      <div class="zo-rationale">${escapeHtml(m.rationale || "Pipeline geht in den deterministischen C.2-Pfad.")}</div>
+    `;
+    body.appendChild(div);
+    $("s1-chip").textContent = "C.2 (no match)";
+  }
+
+  // Alternatives
+  if (Array.isArray(m.alternative_filenames) && m.alternative_filenames.length) {
+    const div = document.createElement("div");
+    div.style.marginTop = "8px";
+    div.innerHTML = `<div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-quiet);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:6px">Alternativen</div>`;
+    for (const alt of m.alternative_filenames.slice(0, 3)) {
+      const e = document.createElement("div");
+      e.className = "zo-card";
+      e.style.padding = "8px 12px";
+      e.style.marginBottom = "5px";
+      e.innerHTML = `<div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text-tertiary)">${escapeHtml(alt)}</div>`;
+      div.appendChild(e);
+    }
+    body.appendChild(div);
+  }
+}
+
+/* ════════════════════════════════════════════════════════════════════════
+   STAGE 2 — Branched: C.1 (LLM per control) or C.2 (deterministic)
+   ════════════════════════════════════════════════════════════════════════ */
+
+const SCHEMA_S2 = {
+  type: "object",
+  properties: {
+    statement: { type: "string" },
+    source_anforderungen: { type: "array", items: { type: "string" } },
+    coverage: { type: "string", enum: ["full","partial","missing"] },
+    remarks: { type: ["string","null"] },
+  },
+  required: ["statement","source_anforderungen","coverage"],
+};
+
+function sampleForTestDrive(items, pct = 0.05, minSample = 3) {
+  const n = Math.max(minSample, Math.ceil(items.length * pct));
+  if (items.length <= n) return items.map((it, i) => ({ ...it, _origIdx: i }));
+  const stride = Math.max(1, Math.floor(items.length / n));
+  const picked = [];
+  for (let i = 0; i < items.length && picked.length < n; i += stride) {
+    picked.push({ ...items[i], _origIdx: i });
+  }
+  return picked;
+}
+
+function decidePipelineMode() {
+  const manual = $("pi-pick").value;
+  if (manual === "__force_c2__") {
+    state.pipelineMode = "C2";
+    state.matchedProfileFilename = null;
+    return;
+  }
+  if (manual) {
+    state.pipelineMode = "C1";
+    state.matchedProfileFilename = manual;
+    return;
+  }
+  const m = state.matchedProfile;
+  const threshold = parseFloat($("match-threshold").value) || 0.5;
+  if (m?.profile_filename && (m.confidence == null || m.confidence >= threshold)) {
+    state.pipelineMode = "C1";
+    state.matchedProfileFilename = m.profile_filename;
+  } else {
+    state.pipelineMode = "C2";
+    state.matchedProfileFilename = null;
+  }
+}
+
+async function runStage2() {
+  setStage("s2");
+  decidePipelineMode();
+  $("s2-mode-tag").textContent = state.pipelineMode;
+
+  if (state.pipelineMode === "C2") {
+    await runStage2_C2_deterministic();
+  } else {
+    await runStage2_C1_perControl();
+  }
+
+  renderStage2();
+  renderStats();
+  doneStage("s2");
+}
+
+async function runStage2_C1_perControl() {
+  // 1. Load the matched profile
+  const profEntry = state.profilesList.find(p => p.filename === state.matchedProfileFilename);
+  if (!profEntry) {
+    throw new Error(`Profil "${state.matchedProfileFilename}" nicht im Index gefunden`);
+  }
+  l.info(`stage 2 (C.1) · loading profile ${profEntry.filename}`);
+  state.matchedProfileJson = await loadProfileContent(profEntry);
+
+  // 2. Extract control IDs from profile
+  let ids = extractProfileControlIds(state.matchedProfileJson);
+  if (ids.length === 0) {
+    l.warn(`profile ${profEntry.filename} listet keine expliziten control-ids — fallback: alle Kernel-Controls werden referenziert`);
+    ids = state.catalogControls.map(c => c.id);
+  }
+  state.profileControlIds = ids;
+  l.ok(`profile imports ${ids.length} control-ids from Kernel`);
+
+  // 3. Look up controls in the Kernel catalog
+  const controlsById = new Map(state.catalogControls.map(c => [c.id, c]));
+  let controls = ids.map(id => controlsById.get(id)).filter(Boolean);
+  const missing = ids.filter(id => !controlsById.has(id));
+  if (missing.length) {
+    l.warn(`${missing.length} control-ids aus dem Profil sind im Kernel-Katalog nicht gefunden: ${missing.slice(0,5).join(", ")}${missing.length>5?"…":""}`);
+  }
+  if (controls.length === 0) {
+    throw new Error("keine Controls aus dem Profil im Katalog auflösbar");
+  }
+
+  // 4. Test drive sampling — at control level (since each control is one task)
+  const td = $("testdrive").checked;
+  if (td) {
+    const sampled = sampleForTestDrive(controls, 0.05, 3);
+    l.warn(`TEST DRIVE: sampling ${sampled.length} of ${controls.length} controls (stride ${Math.floor(controls.length / sampled.length)})`);
+    const banner = $("td-banner");
+    banner.classList.add("show");
+    banner.textContent = `TEST DRIVE — ${sampled.length} von ${controls.length} Controls bearbeitet. "Test drive" deaktivieren und neu laufen lassen für vollständige Component-Definition.`;
+    controls = sampled;
+  } else {
+    $("td-banner").classList.remove("show");
+  }
+
+  // 5. Prepare PDF-Anforderungen block (sent with each control call) — now includes Name
+  const anfBlock = state.baustein.requirements.map(r =>
+    `[${r.id}] "${(r.name || "—").replace(/"/g, "'")}" (${r.modalverb || "?"})
+${(r.text || "").replace(/\s+/g, " ").slice(0, 800)}`
+  ).join("\n\n");
+  if (state.baustein.requirements.length === 0) {
+    l.warn("PDF enthält keine erkannten Anforderungen — Modell wird coverage=missing für alle Controls erzeugen");
+  }
+
+  // 6. Preload result slots (one per control)
+  state.implReqs = controls.map(c => ({
+    control_id: c.id,
+    control_title: c.title,
+    control_statement: c.statement,    // from Kernel catalog
+    control_guidance:  c.guidance,     // from Kernel catalog
+    control_modalverb: c.modalverb,    // from Kernel catalog
+    statement_prose: null,             // ← LLM-generated impl prose (goes into OSCAL statements[0].description)
+    description: null,                 // ← joined Anforderungs-Namen (goes into OSCAL implemented-requirement.description)
+    source_anforderungen: [],
+    coverage: null,
+    remarks: null,
+    pending: true,
+    error: null,
+    validation: null,
+  }));
+
+  // 7. Run pool — one call per control
+  const concurrency = Math.max(1, parseInt($("concurrency").value) || 4);
+  const tasks = controls.map((c, idx) => async () => {
+    const slot = state.implReqs[idx];
+    const prompt = buildPrompt("s2", {
+      baustein_id: state.baustein.id || "?",
+      baustein_title: state.baustein.title || "?",
+      control_id: c.id,
+      control_title: c.title || "",
+      control_statement: (c.statement || "").slice(0, 1500),
+      control_guidance:  (c.guidance  || "").slice(0, 1500),
+      pdf_anforderungen: anfBlock,
+    });
+    try {
+      const text = await llm(prompt, `s2 ${idx+1}/${controls.length} ${c.id}`, $("grounding").checked ? null : SCHEMA_S2);
+      const parsed = extractJson(text);
+
+      // Validate the return — check source_anforderungen IDs exist in PDF
+      const validIds = new Set(state.baustein.requirements.map(r => r.id));
+      const cited = parsed.source_anforderungen || [];
+      const halluc = cited.filter(id => !validIds.has(id));
+      if (halluc.length) {
+        l.warn(`${c.id}: Modell zitierte ${halluc.length} unbekannte Anforderungs-ID(s): ${halluc.join(", ")}`);
+        parsed.source_anforderungen = cited.filter(id => validIds.has(id));
+        parsed.remarks = (parsed.remarks ? parsed.remarks + " · " : "") + `halluzinierte Anforderungs-IDs entfernt: ${halluc.join(", ")}`;
+      }
+
+      slot.statement_prose = parsed.statement || parsed.description || "";  // tolerate older prompts that say "description"
+      slot.source_anforderungen = parsed.source_anforderungen || [];
+      slot.coverage = parsed.coverage || "missing";
+      slot.remarks  = parsed.remarks || null;
+
+      const names = namesOfAnforderungen(slot.source_anforderungen);
+      if (names.length) {
+        slot.description = names.join("; ");
+      } else if (slot.coverage === "missing") {
+        slot.description = `(Kein Mapping aus Baustein ${state.baustein.id || "?"} verfügbar)`;
+      } else {
+        slot.description = "(keine Quell-Anforderung zugeordnet)";
+      }
+      slot.pending = false;
+    } catch (e) {
+      slot.pending = false;
+      slot.error = e.message;
+    }
+  });
+
+  await runPool(tasks, concurrency, (d, t) => {
+    showProgress("stage 2 (C.1) · per control impl-req", d, t);
+    renderStage2();
+    renderStats();
+  });
+
+  // Sweep undispatched
+  state.implReqs.forEach(s => { if (s.pending) { s.pending = false; s.error = "not dispatched (cancelled)"; } });
+
+  l.ok(`stage 2 (C.1) done · ${state.implReqs.filter(r => !r.error).length}/${state.implReqs.length} impl-reqs generiert`);
+}
+
+async function runStage2_C2_deterministic() {
+  l.info(`stage 2 (C.2) · deterministic — Anforderungen werden direkt zu impl-reqs und custom controls`);
+  $("td-banner").classList.remove("show");  // test drive ignored in C.2
+
+  const reqs = state.baustein.requirements;
+  if (reqs.length === 0) {
+    l.warn("PDF enthält keine erkannten Anforderungen — C.2 erzeugt einen leeren Catalog + Component Definition");
+  }
+
+  // Build implReqs deterministically: one per Anforderung, control_id = anforderung_id
+  state.implReqs = reqs.map(r => {
+    const name = r.name || extractFirstSentenceAsTitle(r.text);
+    return {
+      control_id: r.id,
+      control_title: name,
+      control_statement: r.text,           // serves as both Kernel- and Anforderungs-statement here
+      control_guidance: "",
+      control_modalverb: r.modalverb,
+      statement_prose: r.text,             // C.2: full Anforderung text goes into OSCAL statements[0].description
+      description: `${r.id} ${name}`.trim(),  // C.2: ID + name as OSCAL description
+      source_anforderungen: [r.id],
+      coverage: "full",
+      remarks: `Deterministisch erzeugt aus ${state.baustein.id} – kein passendes Kernel-Profil. Modalverb: ${r.modalverb || "—"}.`,
+      pending: false,
+      error: null,
+      validation: null,
+    };
+  });
+
+  // Build a custom OSCAL Catalog
+  state.customCatalog = buildCustomCatalog(reqs);
+  showProgress("stage 2 (C.2) · deterministic", reqs.length, Math.max(1, reqs.length));
+  l.ok(`stage 2 (C.2) done · ${reqs.length} impl-reqs + custom catalog mit ${reqs.length} Controls`);
+}
+
+function extractFirstSentenceAsTitle(text) {
+  // Extract first sentence-fragment up to first period or 80 chars
+  const t = String(text || "").replace(/\s+/g, " ").trim();
+  // Try to take everything up to first ". " or before MUSS/SOLLTE
+  const m = t.match(/^[\s\S]*?(?:[\.\n]|\bMUSS\b|\bSOLLTE\b|\bDARF\b|\bKANN\b)/);
+  let head = m ? m[0] : t;
+  head = head.replace(/[\.\s]+$/, "").slice(0, 90).trim();
+  return head || t.slice(0, 80);
+}
+
+function buildCustomCatalog(reqs) {
+  const now = new Date().toISOString();
+  const bId  = state.baustein.id || "BSI-Baustein";
+  const bTit = state.baustein.title || "Baustein";
+  return {
+    catalog: {
+      uuid: crypto.randomUUID(),
+      metadata: {
+        title: `Custom Catalog · ${bId} – ${bTit} (deterministic C.2)`,
+        published: now,
+        "last-modified": now,
+        version: "0.1.0",
+        "oscal-version": "1.1.3",
+        remarks: `Erzeugt aus BSI IT-Grundschutz Edition 2023 Baustein ${bId}. C.2-Pfad: kein passendes Profil im Stand-der-Technik-Kernel gefunden.`,
+        roles: [{ id: "generator", title: "Generator" }],
+        parties: [{
+          uuid: crypto.randomUUID(),
+          type: "tool",
+          name: "G++ OSCAL Component Creator (one-page-app) · build 0.6.0",
+        }],
+      },
+      groups: [{
+        id: `LOCAL.${bId.replace(/[^A-Z0-9.]/g,"_")}`,
+        title: `Lokale Controls aus ${bId}`,
+        props: [
+          { name: "source-baustein", value: bId },
+        ],
+        controls: reqs.map(r => ({
+          id: r.id,
+          title: r.name || extractFirstSentenceAsTitle(r.text),
+          "class": "local-from-pdf",
+          props: [
+            { name: "source-baustein", value: bId },
+            ...(r.modalverb ? [{ name: "modal_verb", value: r.modalverb }] : []),
+          ],
+          parts: [
             {
-              "uuid": uuid(),
-              "type": "software",
-              "title": `Target Component: ${state.zielobjekte.join(', ') || 'System'}`,
-              "description": `Component implementing requirements from ${state.baustein.baustein_id}: ${state.baustein.baustein_title}`,
-              "control-implementations": [
-                {
-                  "uuid": uuid(),
-                  "source": "https://bsi.bund.de/gpp-anwenderkatalog",
-                  "description": "G++ Anwenderkatalog mappings",
-                  "implemented-requirements": implementedReqs
-                }
-              ]
-            }
-          ]
-        }
+              id: `${r.id}_stm`,
+              name: "statement",
+              prose: r.text,
+              ...(r.modalverb ? { props: [{ name: "modal_verb", value: r.modalverb }] } : {}),
+            },
+            {
+              id: `${r.id}_gdn`,
+              name: "guidance",
+              prose: `Diese Control wurde deterministisch aus dem Edition-2023-Baustein ${bId} erzeugt, weil kein Profil aus dem Stand-der-Technik-Kernel-Katalog inhaltlich passte. Der prose-Text entspricht dem Original-Anforderungstext.`,
+            },
+          ],
+        })),
+      }],
+    },
+  };
+}
+
+/* ════════════════════════════════════════════════════════════════════════
+   Stage-2 result rendering
+   ════════════════════════════════════════════════════════════════════════ */
+
+function renderStage2() {
+  const card = $("s2-result");
+  const body = $("s2-body");
+  card.classList.remove("hidden");
+
+  const filter = $("s2-filter").value;
+  const rows = state.implReqs.filter(r => {
+    if (filter === "ok")      return r.coverage === "full";
+    if (filter === "partial") return r.coverage === "partial";
+    if (filter === "missing") return r.coverage === "missing" || r.error;
+    if (filter === "issues")  return r.validation && ["minor_corrections","major_issues","incorrect"].includes(r.validation.verdict);
+    return true;
+  });
+
+  body.innerHTML = "";
+  for (const r of rows) {
+    const div = document.createElement("div");
+    const miss = r.coverage === "missing" || r.error;
+    div.className = "req-row" + (miss ? " miss" : "") + (r.pending ? " pending" : "");
+    const covColor = r.coverage === "full" ? "var(--green)"
+                  : r.coverage === "partial" ? "var(--amber)"
+                  : r.coverage === "missing" ? "var(--red)"
+                  : "var(--text-quiet)";
+
+    const srcList = (r.source_anforderungen || []).slice(0, 5).join(", ") + ((r.source_anforderungen || []).length > 5 ? "…" : "");
+
+    div.innerHTML = `
+      <div class="req-id">${escapeHtml(r.control_id)}<span class="mv">${escapeHtml(r.control_modalverb || "—")}</span></div>
+      <div class="req-title">
+        <div style="font-weight:500;margin-bottom:2px">${escapeHtml(r.control_title || "")}</div>
+        ${r.pending ? '<div class="rationale"><span class="muted">pending…</span></div>'
+          : r.error
+            ? `<div class="rationale" style="color:var(--red)">${escapeHtml(r.error)}</div>`
+            : `<div class="rationale">
+                  <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-quiet);letter-spacing:0.04em;margin-bottom:3px">DESCRIPTION (Anforderungs-Namen):</div>
+                  <div style="margin-bottom:6px">${escapeHtml(r.description || "—")}</div>
+                  ${r.statement_prose ? `
+                    <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-quiet);letter-spacing:0.04em;margin-bottom:3px">STATEMENT (Implementation-Prosa):</div>
+                    <div>${escapeHtml(r.statement_prose)}</div>
+                  ` : ""}
+                  ${r.remarks ? `<br><span style="color:var(--amber);font-size:10px;font-family:'JetBrains Mono',monospace">remarks: ${escapeHtml(r.remarks)}</span>` : ""}
+              </div>`}
+      </div>
+      <div class="req-ctrl" style="color:${covColor}">${r.pending ? "—" : escapeHtml(r.coverage || "—")}</div>
+      <div class="req-conf">
+        <span style="color:var(--text-quiet);font-size:9.5px">src:</span>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:9.5px">${escapeHtml(srcList || "—")}</span>
+      </div>
+    `;
+    if (r.validation) {
+      const vb = document.createElement("div");
+      vb.className = `validation-block ${r.validation.verdict || "uncertain"}`;
+      vb.style.gridColumn = "1 / -1";
+      vb.innerHTML = `
+        <div class="vh">
+          <span>checker · ${escapeHtml(r.validation.verdict || "uncertain")}</span>
+          <span>confidence: ${escapeHtml(r.validation.confidence_check || "—")}</span>
+        </div>
+        ${r.validation.issues?.length ? `<ul class="vissues">${r.validation.issues.map(i => `<li>${escapeHtml(i)}</li>`).join("")}</ul>` : ""}
+        ${r.validation.corrections ? `<div style="margin-top:6px"><strong style="color:var(--text-tertiary);font-size:10px;text-transform:uppercase;letter-spacing:0.1em">korrektur</strong><br>${escapeHtml(r.validation.corrections)}</div>` : ""}
+        ${r.validation.reviewer_notes ? `<div style="margin-top:6px;color:var(--text-tertiary)">${escapeHtml(r.validation.reviewer_notes)}</div>` : ""}
+      `;
+      div.appendChild(vb);
+    }
+    body.appendChild(div);
+  }
+
+  const ok    = state.implReqs.filter(r => r.coverage === "full").length;
+  const miss  = state.implReqs.filter(r => r.coverage === "missing" || r.error).length;
+  const vIs   = state.implReqs.filter(r => r.validation && ["minor_corrections","major_issues","incorrect"].includes(r.validation.verdict)).length;
+  $("s2-ok").textContent   = ok;
+  $("s2-miss").textContent = miss;
+  $("s2-val").textContent  = vIs;
+  $("s2-val-chip").classList.toggle("hidden", vIs === 0);
+}
+
+$("s2-filter").addEventListener("change", renderStage2);
+$("pi-pick").addEventListener("change", () => {
+  // Just persist; re-render stage 1 to show the override
+  if (state.matchedProfile) renderStage1();
+});
+$("match-threshold").addEventListener("input", () => {
+  if (state.matchedProfile) renderStage1();
+});
+
+/* ════════════════════════════════════════════════════════════════════════
+   STAGE 3 — Assemble OSCAL Component Definition
+   ════════════════════════════════════════════════════════════════════════ */
+
+async function runStage3() {
+  setStage("s3");
+  showProgress("stage 3 · assembling", 0, 1);
+  state.componentDef = assembleComponentDefinition();
+  renderStage3();
+  showProgress("stage 3 · done", 1, 1);
+  doneStage("s3");
+}
+
+function assembleComponentDefinition() {
+  const now = new Date().toISOString();
+  const bId  = state.baustein?.id || "BSI-Baustein";
+  const bTit = state.baustein?.title || "Baustein";
+
+  // component title: use baustein title (with id prefix)
+  const componentTitle = bTit ? `${bId} – ${bTit}` : bId;
+  const componentType  = $("comp-type").value;
+
+  // source URL of the controls being implemented
+  const sourceUrl = state.pipelineMode === "C1"
+    ? (state.catalogSource || $("cat-url").value)
+    : `urn:custom-catalog:${bId}`;  // pseudo-URI for the inline generated catalog
+
+  const implementedRequirements = state.implReqs
+    .filter(r => !r.pending && !r.error)
+    .map(r => {
+      const props = [];
+      for (const aId of (r.source_anforderungen || [])) {
+        props.push({
+          name: "source-anforderung",
+          value: aId,
+          ns: "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools",
+        });
+      }
+      const kernelMv = r.control_modalverb;
+      if (kernelMv) {
+        props.push({
+          name: "kernel-modal-verb",
+          value: kernelMv,
+          ns: "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces/modal_verbs.csv",
+        });
+      }
+      if (r.coverage) {
+        props.push({
+          name: "coverage",
+          value: r.coverage,
+          ns: "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools",
+        });
+      }
+
+      // OSCAL implemented-requirement.description = Anforderungs-Name(n) aus dem PDF
+      // OSCAL implemented-requirement.statements[0].description = Implementation-Prosa (LLM in C.1 / Anforderungstext in C.2)
+      const description = r.description || (r.coverage === "missing"
+        ? `(Kein Mapping aus Baustein ${bId} verfügbar)`
+        : `(keine Quell-Anforderung)`);
+
+      const statementProse = r.statement_prose || "";
+
+      const out = {
+        uuid: crypto.randomUUID(),
+        "control-id": r.control_id,
+        description,
+        props,
       };
 
-      const blob = new Blob([JSON.stringify(oscal, null, 2)], {type: 'application/json'});
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = `oscal_cdef_${state.baustein.baustein_id.replace(/\./g, '_')}.json`;
-      a.click();
-      URL.revokeObjectURL(url);
-      l.info(`Exported OSCAL JSON for ${state.baustein.baustein_id}`);
+      if (statementProse) {
+        out.statements = [{
+          "statement-id": `${r.control_id}_stm`,   // matches catalog's _stm part id convention
+          uuid: crypto.randomUUID(),
+          description: statementProse,
+        }];
+      }
+
+      if (r.remarks) out.remarks = r.remarks;
+      if (r.validation) {
+        out.remarks = (out.remarks ? out.remarks + "\n\n" : "")
+          + `[CHECKER ${r.validation.verdict?.toUpperCase()}] ${r.validation.reviewer_notes || ""}`
+          + (r.validation.corrections ? `\nKorrektur: ${r.validation.corrections}` : "");
+      }
+      return out;
     });
-  </script>
+
+  const matchedProfileName = state.matchedProfileFilename || (state.pipelineMode === "C2" ? null : state.matchedProfile?.profile_filename);
+
+  const componentProps = [
+    { name: "source-baustein", value: bId, ns: "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools" },
+    { name: "pipeline-mode", value: state.pipelineMode || "?", ns: "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools" },
+  ];
+  if (matchedProfileName) {
+    componentProps.push({ name: "matched-profile", value: matchedProfileName, ns: "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools" });
+  }
+
+  const compDef = {
+    "component-definition": {
+      uuid: crypto.randomUUID(),
+      metadata: {
+        title: `Component Definition · ${componentTitle}`,
+        "last-modified": now,
+        version: "0.1.0",
+        "oscal-version": "1.1.3",
+        roles: [{ id: "preparer", title: "Preparer" }],
+        parties: [{
+          uuid: crypto.randomUUID(),
+          type: "tool",
+          name: "G++ OSCAL Component Creator (one-page-app) · build 0.6.0",
+        }],
+      },
+      components: [{
+        uuid: crypto.randomUUID(),
+        type: componentType,
+        title: componentTitle,
+        description: state.pipelineMode === "C1"
+          ? `Komponente migriert aus BSI IT-Grundschutz Edition 2023 Baustein ${bId}. Profil-Match: ${matchedProfileName || "(none)"}.`
+          : `Komponente aus BSI IT-Grundschutz Edition 2023 Baustein ${bId} migriert ohne passendes Stand-der-Technik-Kernel-Profil — Controls wurden deterministisch aus den Anforderungen abgeleitet (siehe Custom-Catalog).`,
+        props: componentProps,
+        "control-implementations": [{
+          uuid: crypto.randomUUID(),
+          source: sourceUrl,
+          description: state.pipelineMode === "C1"
+            ? `Implementation der Profil-Controls (${state.profileControlIds.length} Kernel-Controls über Profil ${matchedProfileName}).`
+            : `Lokale Controls aus dem Baustein-PDF; referenziert den parallel erzeugten Custom-Catalog.`,
+          "implemented-requirements": implementedRequirements,
+        }],
+      }],
+      "back-matter": {
+        resources: [{
+          uuid: crypto.randomUUID(),
+          title: "Generator",
+          description: `G++ OSCAL Component Creator · build 0.6.0 · ${now}`,
+          props: [
+            { name: "model", value: $("model").value },
+            { name: "thinking", value: $("thinking").value },
+            { name: "maker-checker", value: $("maker-checker").checked ? "true" : "false" },
+            { name: "test-drive", value: $("testdrive").checked ? "true" : "false" },
+            { name: "pipeline-mode", value: state.pipelineMode || "?" },
+          ],
+        }],
+      },
+    },
+  };
+
+  return compDef;
+}
+
+function renderStage3() {
+  const card = $("s3-result");
+  card.classList.remove("hidden");
+  $("s3-output").value = JSON.stringify(state.componentDef, null, 2);
+  const n = state.componentDef?.["component-definition"]?.components?.[0]
+    ?.["control-implementations"]?.[0]?.["implemented-requirements"]?.length || 0;
+  $("s3-chip").textContent = `${state.pipelineMode} · ${n} impl-reqs`;
+  $("btn-download-cat").classList.toggle("hidden", state.pipelineMode !== "C2" || !state.customCatalog);
+}
+
+$("btn-download").addEventListener("click", () => {
+  if (!state.componentDef) return;
+  const text = $("s3-output").value;
+  const bId  = state.baustein?.id || "baustein";
+  const blob = new Blob([text], { type: "application/json" });
+  const url  = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = `${bId.replace(/[^A-Za-z0-9.]/g,"_")}_${state.pipelineMode || "x"}_component-definition.json`;
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+  l.ok(`download · ${a.download}`);
+});
+
+$("btn-download-cat").addEventListener("click", () => {
+  if (!state.customCatalog) return;
+  const text = JSON.stringify(state.customCatalog, null, 2);
+  const bId  = state.baustein?.id || "baustein";
+  const blob = new Blob([text], { type: "application/json" });
+  const url  = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = `${bId.replace(/[^A-Za-z0-9.]/g,"_")}_custom-catalog.json`;
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+  l.ok(`download · ${a.download}`);
+});
+
+$("btn-copy").addEventListener("click", async () => {
+  try {
+    await navigator.clipboard.writeText($("s3-output").value);
+    l.ok("OSCAL JSON in Zwischenablage");
+  } catch (e) { l.err(`copy failed: ${e.message}`) }
+});
+
+/* ════════════════════════════════════════════════════════════════════════
+   Maker-Checker — validates the C.1 impl-req descriptions
+   (skipped in C.2 since that path is deterministic)
+   ════════════════════════════════════════════════════════════════════════ */
+
+const SCHEMA_CHECK = {
+  type: "object",
+  properties: {
+    validations: {
+      type: "array",
+      items: {
+        type: "object",
+        properties: {
+          item_id: { type: "string" },
+          verdict: { type: "string", enum: ["confirmed","minor_corrections","major_issues","incorrect","uncertain"] },
+          issues: { type: "array", items: { type: "string" } },
+          corrections: { type: "string" },
+          confidence_check: { type: "string", enum: ["appropriate","too_high","too_low"] },
+          reviewer_notes: { type: "string" },
+        },
+        required: ["item_id","verdict","issues","corrections","confidence_check","reviewer_notes"],
+      },
+    },
+  },
+  required: ["validations"],
+};
+
+function chunk(arr, n) {
+  const out = [];
+  for (let i = 0; i < arr.length; i += n) out.push(arr.slice(i, i + n));
+  return out;
+}
+
+async function runChecker() {
+  setStage("s4");
+  if (state.pipelineMode === "C2") {
+    l.info("checker übersprungen — C.2-Pfad ist deterministisch und braucht keine Validierung");
+    doneStage("s4");
+    return;
+  }
+
+  const items = state.implReqs.filter(r => !r.pending && !r.error && r.coverage !== "missing");
+  if (items.length === 0) {
+    l.warn("checker übersprungen · keine validierbaren impl-reqs");
+    doneStage("s4");
+    return;
+  }
+
+  state.implReqs.forEach(r => { r.validation = null });
+
+  const chunkSize = Math.max(1, parseInt($("chunk-size").value) || 8);
+  const chunks = chunk(items, chunkSize);
+  const concurrency = Math.max(1, parseInt($("concurrency").value) || 4);
+
+  const tasks = chunks.map((ch, idx) => async () => {
+    const pairsBlock = ch.map((p, i) =>
+`=== PAIR ${i+1}: ${p.control_id} ===
+KERNEL-CONTROL:
+  Titel: ${p.control_title || ""}
+  Statement: ${(p.control_statement || "").replace(/\s+/g," ").slice(0,900)}
+  Guidance:  ${(p.control_guidance  || "").replace(/\s+/g," ").slice(0,900)}
+  Modalverb: ${p.control_modalverb || "?"}
+
+MAKER-OUTPUT:
+  description (= Anforderungs-Namen): ${p.description || ""}
+  statement   (= Implementation-Prosa): ${p.statement_prose || ""}
+  source_anforderungen: ${(p.source_anforderungen || []).join(", ") || "(leer)"}
+  coverage: ${p.coverage}
+  remarks: ${p.remarks || "(keine)"}`
+    ).join("\n\n");
+
+    const prompt = buildPrompt("check", { pairs: pairsBlock });
+    const text = await llm(prompt, `checker ${idx+1}/${chunks.length}`, $("grounding").checked ? null : SCHEMA_CHECK);
+    const parsed = extractJson(text);
+    for (const v of (parsed?.validations || [])) {
+      const slot = state.implReqs.find(s => s.control_id === v.item_id);
+      if (slot) slot.validation = v;
+    }
+  });
+
+  await runPool(tasks, concurrency, (d, t) => {
+    showProgress("checker · validating", d, t);
+    renderStage2();
+    renderStats();
+  });
+
+  doneStage("s4");
+}
+
+/* ════════════════════════════════════════════════════════════════════════
+   Stats card
+   ════════════════════════════════════════════════════════════════════════ */
+
+function renderStats() {
+  const completed = state.implReqs.filter(r => !r.pending);
+  if (completed.length < 3) {
+    $("stats-card").classList.add("hidden");
+    return;
+  }
+  $("stats-card").classList.remove("hidden");
+  const grid = $("stats-grid");
+
+  // 1. Coverage distribution donut
+  const covBuckets = { full: 0, partial: 0, missing: 0, error: 0 };
+  for (const r of completed) {
+    if (r.error) covBuckets.error++;
+    else covBuckets[r.coverage || "missing"]++;
+  }
+  const covSlices = [
+    { label: "full",    value: covBuckets.full,    color: "oklch(0.75 0.18 145)" },
+    { label: "partial", value: covBuckets.partial, color: "oklch(0.80 0.15 80)"  },
+    { label: "missing", value: covBuckets.missing, color: "oklch(0.65 0.20 25)"  },
+    { label: "error",   value: covBuckets.error,   color: "oklch(0.55 0.02 280)" },
+  ];
+
+  // 2. Modalverb distribution (of the Kernel controls)
+  const mvBuckets = {};
+  for (const r of completed) {
+    const k = r.control_modalverb || "—";
+    mvBuckets[k] = (mvBuckets[k] || 0) + 1;
+  }
+  const mvRows = Object.entries(mvBuckets)
+    .sort(([,a],[,b]) => b - a)
+    .map(([label, value]) => ({
+      label, value,
+      color: label === "MUSS" ? "oklch(0.7 0.18 300)" : label === "SOLLTE" ? "oklch(0.80 0.15 80)" : "var(--text-quiet)",
+    }));
+
+  // 3. Top source-anforderungen referenced
+  const srcBuckets = {};
+  for (const r of completed) {
+    for (const aId of (r.source_anforderungen || [])) srcBuckets[aId] = (srcBuckets[aId] || 0) + 1;
+  }
+  const srcRows = Object.entries(srcBuckets)
+    .sort(([,a],[,b]) => b - a)
+    .slice(0, 8)
+    .map(([label, value]) => ({ label, value, color: "oklch(0.7 0.15 240)" }));
+
+  // 4. Validation distribution
+  const validations = completed.filter(r => r.validation).map(r => r.validation);
+  let valSection = "";
+  if (validations.length) {
+    const VAL_COLORS = {
+      confirmed:         "oklch(0.75 0.18 145)",
+      minor_corrections: "oklch(0.80 0.15 80)",
+      major_issues:      "oklch(0.65 0.20 50)",
+      incorrect:         "oklch(0.65 0.20 25)",
+      uncertain:         "oklch(0.55 0.02 280)",
+    };
+    const valBuckets = {};
+    for (const v of validations) valBuckets[v.verdict] = (valBuckets[v.verdict] || 0) + 1;
+    const valRows = Object.entries(valBuckets).map(([label, value]) => ({
+      label, value, color: VAL_COLORS[label] || "var(--text-quiet)"
+    }));
+    valSection = `
+      <div class="stat-sub">
+        <div class="stat-head">Checker-Verdict</div>
+        ${hBarRows(valRows)}
+      </div>`;
+  }
+
+  grid.innerHTML = `
+    <div class="stat-sub">
+      <div class="stat-head">Coverage-Verteilung</div>
+      <div class="donut-wrap">
+        ${donutChart(covSlices, 140, 0.6)}
+        <div class="donut-legend">
+          ${covSlices.map(s => `
+            <div class="legend-row">
+              <span class="legend-dot" style="background:${s.color}"></span>
+              <span class="legend-label">${s.label}</span>
+              <span class="legend-val">${s.value}</span>
+            </div>`).join("")}
+        </div>
+      </div>
+    </div>
+    <div class="stat-sub">
+      <div class="stat-head">Modalverben (Kernel-Side)</div>
+      ${hBarRows(mvRows)}
+    </div>
+    ${srcRows.length ? `
+    <div class="stat-sub">
+      <div class="stat-head">Top-Anforderungen (referenziert)</div>
+      ${hBarRows(srcRows)}
+    </div>` : ""}
+    ${valSection}
+  `;
+}
+
+function donutChart(slices, size = 160, innerRatio = 0.6) {
+  const total = slices.reduce((s, x) => s + x.value, 0);
+  if (total === 0) return `<svg width="${size}" height="${size}"></svg>`;
+  const cx = size / 2, cy = size / 2, r = size / 2 - 8, ri = r * innerRatio;
+  let a = -Math.PI / 2;
+  const paths = slices.filter(s => s.value > 0).map(s => {
+    const sweep = (s.value / total) * Math.PI * 2;
+    const a1 = a, a2 = a + sweep; a = a2;
+    const x1 = cx + r * Math.cos(a1), y1 = cy + r * Math.sin(a1);
+    const x2 = cx + r * Math.cos(a2), y2 = cy + r * Math.sin(a2);
+    const xi1 = cx + ri * Math.cos(a1), yi1 = cy + ri * Math.sin(a1);
+    const xi2 = cx + ri * Math.cos(a2), yi2 = cy + ri * Math.sin(a2);
+    const large = sweep > Math.PI ? 1 : 0;
+    return `<path d="M ${x1} ${y1} A ${r} ${r} 0 ${large} 1 ${x2} ${y2} L ${xi2} ${yi2} A ${ri} ${ri} 0 ${large} 0 ${xi1} ${yi1} Z" fill="${s.color}" />`;
+  }).join("");
+  return `<svg viewBox="0 0 ${size} ${size}" width="${size}" height="${size}">${paths}
+    <text x="${cx}" y="${cy - 2}" text-anchor="middle" dominant-baseline="central"
+          fill="currentColor" font-family="JetBrains Mono" font-size="22" font-weight="600">${total}</text>
+    <text x="${cx}" y="${cy + 18}" text-anchor="middle" fill="currentColor" opacity="0.55"
+          font-family="JetBrains Mono" font-size="9" letter-spacing="1.5">TOTAL</text></svg>`;
+}
+
+function hBarRows(items) {
+  if (!items.length) return `<div class="muted" style="font-size:10.5px">keine Daten</div>`;
+  const max = Math.max(1, ...items.map(i => i.value));
+  return items.map(i => `
+    <div class="hbar-row">
+      <div class="hbar-label">${escapeHtml(i.label)}</div>
+      <div class="hbar-track"><div class="hbar-fill" style="width:${(i.value/max)*100}%; background:${i.color}"></div></div>
+      <div class="hbar-value">${i.value}</div>
+    </div>`).join("");
+}
+
+function escapeHtml(s) {
+  return String(s ?? "").replace(/[&<>"']/g, c => ({
+    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+  }[c]));
+}
+
+/* ════════════════════════════════════════════════════════════════════════
+   Run / cancel / clear
+   ════════════════════════════════════════════════════════════════════════ */
+
+function updateRunLabel() {
+  const td = $("testdrive").checked;
+  const n = state.baustein?.requirements?.length || 0;
+  if (td && n > 0) {
+    const k = Math.max(3, Math.ceil(n * 0.05));
+    $("btn-run-label").textContent = `Test drive (${Math.min(k, n)} sampled)`;
+  } else {
+    $("btn-run-label").textContent = "Pipeline starten";
+  }
+}
+
+async function run() {
+  if (state.running) return;
+  if (!$("api-key").value.trim() && !$("pi-pick").value) { l.err("API-Key fehlt (oder manuell ein Profil wählen + Stage 1 überspringen ist auch noch nicht implementiert)"); return; }
+  if (!state.baustein) { l.err("kein PDF geladen"); return; }
+  if (!state.catalogControls.length) { l.err("kein Katalog geladen"); return; }
+
+  state.running = true;
+  state.cancel = false;
+  $("btn-run").disabled = true;
+  $("btn-cancel").classList.remove("hidden");
+  resetStages();
+  doneStage("s0");
+  $("status-pill").textContent = "läuft";
+
+  try {
+    const tAll = performance.now();
+
+    // Stage 1 — only if no manual override
+    if ($("pi-pick").value) {
+      l.info(`manual override · Profil "${$("pi-pick").value}" — Stage 1 übersprungen`);
+      state.matchedProfile = {
+        profile_filename: $("pi-pick").value,
+        confidence: 1.0,
+        rationale: "Manuell ausgewählt durch Anwender.",
+      };
+      doneStage("s1");
+      renderStage1();
+    } else {
+      await runStage1ProfileMatch();
+    }
+    if (state.cancel) throw new Error("cancelled");
+
+    await runStage2();
+    if (state.cancel) throw new Error("cancelled");
+
+    if ($("maker-checker").checked && state.pipelineMode === "C1") {
+      await runChecker();
+      if (state.cancel) throw new Error("cancelled");
+    } else if ($("maker-checker").checked && state.pipelineMode === "C2") {
+      l.info("checker übersprungen — C.2 ist deterministisch");
+    }
+
+    await runStage3();
+    showProgress("done", 1, 1);
+    l.ok(`pipeline done in ${Math.round((performance.now()-tAll)/100)/10}s · mode=${state.pipelineMode}`);
+    $("status-pill").textContent = "fertig";
+  } catch (e) {
+    l.err(`pipeline aborted: ${e.message}`);
+    $("status-pill").textContent = state.cancel ? "abgebrochen" : "fehler";
+  } finally {
+    state.running = false;
+    state.cancel = false;
+    $("btn-run").disabled = false;
+    $("btn-cancel").classList.add("hidden");
+    setTimeout(() => {
+      if (!state.running) {
+        $("pbar").classList.add("done");
+        setTimeout(() => { $("pbar").style.width = "0%"; $("pbar").classList.remove("done") }, 1200);
+      }
+    }, 600);
+  }
+}
+
+$("btn-run").addEventListener("click", run);
+$("btn-cancel").addEventListener("click", () => {
+  state.cancel = true;
+  l.warn("cancel requested — finishing in-flight calls");
+});
+$("btn-clear").addEventListener("click", () => {
+  state.matchedProfile = null;
+  state.matchedProfileJson = null;
+  state.matchedProfileFilename = null;
+  state.profileControlIds = [];
+  state.pipelineMode = null;
+  state.implReqs = [];
+  state.customCatalog = null;
+  state.componentDef = null;
+  $("s1-result").classList.add("hidden");
+  $("s2-result").classList.add("hidden");
+  $("s3-result").classList.add("hidden");
+  $("stats-card").classList.add("hidden");
+  $("td-banner").classList.remove("show");
+  $("btn-download-cat").classList.add("hidden");
+  resetStages();
+  showProgress("idle", 0, 0);
+  l.info("results cleared");
+});
+
+/* ════════════════════════════════════════════════════════════════════════
+   Init
+   ════════════════════════════════════════════════════════════════════════ */
+
+loadPrefs();
+updateRunLabel();
+
+// Auto-load catalog + profile-index on startup
+window.addEventListener("load", () => {
+  if ($("cat-url").value.trim()) {
+    l.info("auto-loading Kernel catalog…");
+    $("btn-load-cat").click();
+  }
+  if ($("pi-url").value.trim()) {
+    l.info("auto-loading profile-index…");
+    setTimeout(() => $("btn-load-pi").click(), 200);  // stagger to not collide
+  }
+});
+
+</script>
 </body>
 </html>

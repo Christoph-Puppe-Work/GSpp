@@ -6,18 +6,6 @@ Und es gibt auch eine Anwendung den Anwenderkatalog zu betrachten: [GSpp-Viewer.
 
 [Dieses Video erklärt die Tools](https://www.youtube.com/watch?v=lY3wi6qHTRc)
 
-### OSCAL Catalog Pruner
-**Zweck:** Gezielte Reduzierung großer OSCAL-Kataloge auf das Wesentliche. 
-
-Oftmals werden für spezifische Aufgaben nicht alle, sondern nur ausgewählte Bausteine oder Praktiken aus einem umfassenden Katalog benötigt. Mit dem **OSCAL Catalog Pruner** lassen sich große JSON-Kataloge direkt im Browser filtern. Über eine intuitive Baumstruktur können exakt die benötigten Gruppen ausgewählt und als verkleinertes, bereinigtes JSON exportiert werden. Das minimiert den Daten-Overhead für Folgeprozesse massiv. 
-
-**Eigenschaften:**
-- **Datenschutz by Design:** 100% lokale Verarbeitung im Browser – keine API-Aufrufe, keine Uploads.
-- **Flexibilität:** Optionales "Flattening" von verschachtelten Gruppenstrukturen.
-- **Effizienz:** Schneller Export des passgenauen JSON-Auszugs für spezifische Teil-Audits oder Analysen.
-
----
-
 ## [BSI zu G++ OSCAL Generator](./Baustein_2_Component.html)
 
 Eine serverlose, vollständig im Browser laufende Single-Page Application (SPA), die BSI IT-Grundschutz-Bausteine (PDF) in das moderne G++ (Grundschutz Plus Plus) Format mappt und als OSCAL Component Definition exportiert. Sie portiert die Kernfunktionen des Python `Gpp-ai-tools` in eine interaktive, leicht bedienbare Benutzeroberfläche.

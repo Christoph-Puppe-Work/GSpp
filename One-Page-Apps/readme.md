@@ -15,10 +15,30 @@ Oftmals werden für spezifische Aufgaben nicht alle, sondern nur ausgewählte Ba
 - **Datenschutz by Design:** 100% lokale Verarbeitung im Browser – keine API-Aufrufe, keine Uploads.
 - **Flexibilität:** Optionales "Flattening" von verschachtelten Gruppenstrukturen.
 - **Effizienz:** Schneller Export des passgenauen JSON-Auszugs für spezifische Teil-Audits oder Analysen.
-  
+
 ---
 
-## Workflow-Übersicht
+## BSI zu G++ OSCAL Generator
+
+Eine serverlose, vollständig im Browser laufende Single-Page Application (SPA), die BSI IT-Grundschutz-Bausteine (PDF) in das moderne G++ (Grundschutz Plus Plus) Format mappt und als OSCAL Component Definition exportiert. Sie portiert die Kernfunktionen des Python `Gpp-ai-tools` in eine interaktive, leicht bedienbare Benutzeroberfläche.
+
+> ⚠️ **BETA STATUS**  
+> Diese App befindet sich aktuell in der **Beta-Phase**. Die von der KI (Gemini) erstellten Mappings und generierten OSCAL-JSON-Dateien dienen als Entwurf und Basis zur Beschleunigung der Arbeit. Sie sollten vor der produktiven Nutzung in einem Audit-Prozess zwingend fachlich geprüft werden.
+
+### ✨ Features
+* **Zero-Setup:** Keine Python-Umgebung oder Backend nötig. Besteht aus einer einzigen `.html`-Datei.
+* **Lokale PDF-Verarbeitung:** BSI-Bausteine werden direkt im Browser (via PDF.js) ausgelesen – der Text verlässt das System nur für die LLM-Verarbeitung.
+* **Transparente Pipeline:** Führt die Stages `stage_match_bausteine`, `stage_matching` und `stage_component` schrittweise und parallelisiert aus.
+* **Anpassbare Prompts:** Alle an die KI gesendeten Prompts können direkt in der Benutzeroberfläche editiert und getestet werden.
+* **Live-Feedback:** Integrierte Log-Konsole, Fortschrittsbalken und visuelle Auswertung der Mapping-Konfidenz.
+
+### 🚀 Benutzung
+1. Die Datei `bsi-gpp-oscal.html` herunterladen und mit einem modernen Webbrowser (Chrome, Edge, Firefox) öffnen.
+   *(Hinweis: Bei lokalen CORS-Problemen die Datei über einen lokalen Server starten, z. B. `python -m http.server`).*
+2. Einen gültigen **Google Gemini API Key** (z. B. via Google AI Studio) in den Einstellungen hinterlegen. Der Key bleibt lokal im Browser.
+3. Ein **BSI Baustein-PDF** (oder den reinen Text) per Drag & Drop in den Input-Bereich ziehen.
+4. Pipeline starten, Mappings überprüfen und als fertiges **OSCAL JSON** exportieren.
+---
 
 # Workflow-Übersicht: G++ Compliance Management
 

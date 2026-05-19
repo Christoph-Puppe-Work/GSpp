@@ -18,7 +18,7 @@ Oftmals werden für spezifische Aufgaben nicht alle, sondern nur ausgewählte Ba
 
 ---
 
-## BSI zu G++ OSCAL Generator
+## [BSI zu G++ OSCAL Generator](./Baustein_2_Component.html)
 
 Eine serverlose, vollständig im Browser laufende Single-Page Application (SPA), die BSI IT-Grundschutz-Bausteine (PDF) in das moderne G++ (Grundschutz Plus Plus) Format mappt und als OSCAL Component Definition exportiert. Sie portiert die Kernfunktionen des Python `Gpp-ai-tools` in eine interaktive, leicht bedienbare Benutzeroberfläche.
 
@@ -33,7 +33,7 @@ Eine serverlose, vollständig im Browser laufende Single-Page Application (SPA),
 * **Live-Feedback:** Integrierte Log-Konsole, Fortschrittsbalken und visuelle Auswertung der Mapping-Konfidenz.
 
 ### 🚀 Benutzung
-1. Die Datei `bsi-gpp-oscal.html` herunterladen und mit einem modernen Webbrowser (Chrome, Edge, Firefox) öffnen.
+1. Die Datei `Baustein_2_Component.html` herunterladen und mit einem modernen Webbrowser (Chrome, Edge, Firefox) öffnen.
    *(Hinweis: Bei lokalen CORS-Problemen die Datei über einen lokalen Server starten, z. B. `python -m http.server`).*
 2. Einen gültigen **Google Gemini API Key** (z. B. via Google AI Studio) in den Einstellungen hinterlegen. Der Key bleibt lokal im Browser.
 3. Ein **BSI Baustein-PDF** (oder den reinen Text) per Drag & Drop in den Input-Bereich ziehen.
@@ -44,10 +44,11 @@ Eine serverlose, vollständig im Browser laufende Single-Page Application (SPA),
 
 Der Prozess folgt einer klaren Kette von der Modellierung über die Umsetzung bis hin zur finalen Prüfung.
 
-### 1. Modellierung mit dem [Blaupausen-Generator](./blaupausen_generator.html)
+### 1. Modellierung mit dem [SSP-Generator](./ssp_generator.html)
 In dieser Phase legen Sie das Fundament für Ihren Informationsverbund.
 * **Profil-Erstellung**: Das Tool generiert ein OSCAL-Profil auf Basis des gewählten ISMS-Typs.
 * **Asset-Management**: Sie integrieren Muster-Assets oder laden eigene Zielobjekte direkt aus der GitHub-Bibliothek.
+* **Einfügen eigener Components**: Die mit [BSI 2 Component](./Baustein_2_Component.html) erstellten Komponenten hinzufügen.
 * **Risikoanalyse**: Die Anwendung enthält ein integriertes Risikomanagement inklusive der Erstellung von Custom Controls.
 * **Tailoring**: Sie passen Anforderungstexte und Parameter (z. B. Fristen oder Rollen) bereits hier an die lokale Situation an.
 * **Export**: Sie erhalten die Blaupause als Profil und einen darauf basierenden Muster-SSP.

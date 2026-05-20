@@ -1,0 +1,28 @@
+[project]
+name = "GSpp-MCP"
+version = "0.1.0"
+description = "MCP server for Grundschutz++ catalog"
+authors = [
+    { name = "Christoph Puppe" }
+]
+dependencies = [
+    "mcp[cli]>=0.1.0",
+    "pydantic>=2.0.0",
+    "uvicorn>=0.20.0",
+    "starlette>=0.20.0",
+    "jsonschema>=4.0.0",
+    "google-cloud-error-reporting>=1.11.0",
+]
+requires-python = ">=3.12"
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["GSpp_MCP"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

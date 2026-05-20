@@ -733,8 +733,18 @@
                         <div></div>
                     </div>
 
-                    <button onclick="addAssetComponent()" class="px-6 py-2 bg-indigo-600 text-white font-medium rounded-lg hover:bg-indigo-500 transition-colors text-sm shadow-md mb-4">Asset laden & Controls extrahieren</button>
-                    <ul id="assets-list" class="space-y-2"></ul>
+                    <div class="flex flex-wrap gap-4 mb-4">
+						<button onclick="addAssetComponent()" class="px-6 py-2 bg-indigo-600 text-white font-medium rounded-lg hover:bg-indigo-500 transition-colors text-sm shadow-md">
+							Asset laden & Controls extrahieren
+						</button>
+						
+						<input type="file" id="local-asset-input" accept=".json,application/json" class="hidden" onchange="handleLocalAssetFile(event)">
+						<button onclick="document.getElementById('local-asset-input').click()" class="px-6 py-2 bg-emerald-600 text-white font-medium rounded-lg hover:bg-emerald-500 transition-colors text-sm shadow-md flex items-center gap-2">
+							📂 Lokale Datei hinzufügen (Profile/Component)
+						</button>
+					</div>
+					
+					<ul id="assets-list" class="space-y-2"></ul>
                 </div>
             `;
         }
@@ -929,6 +939,88 @@
             }
         }
 
+		window.handleLocalAssetFile = async function(event) {
+			const file = event.target.files[0];
+			if (!file) return;
+			
+			event.target.value = ''; // Input zurücksetzen
+
+			// Referenzen zu den bestehenden Eingabefeldern in Kapitel 2 greifen
+			const customNameInput = document.getElementById('asset-custom-name');
+			const stateInput = document.getElementById('asset-state');
+			const schutzbedarfInput = document.getElementById('asset-schutzbedarf');
+
+			// Werte dynamisch ermitteln (genau wie bei addAssetComponent)
+			const finalName = (customNameInput && customNameInput.value.trim()) || file.name;
+			const finalState = (stateInput && stateInput.value) || 'operational';
+			const finalSchutzbedarf = (schutzbedarfInput && schutzbedarfInput.value) || 'normal-SdT';
+
+			toggleLoader(true, `Verarbeite lokales Asset: ${finalName}...`);
+			try {
+				const text = await file.text();
+				const clean = text.replace(/^\uFEFF/, '');
+				const data = JSON.parse(clean);
+
+				const extractedControls = new Set();
+				let isValid = false;
+
+				if (data['component-definition'] && data['component-definition'].components) {
+					isValid = true;
+					data['component-definition'].components.forEach(c => {
+						if (c['control-implementations']) {
+							c['control-implementations'].forEach(ci => {
+								if (ci['implemented-requirements']) {
+									ci['implemented-requirements'].forEach(req => {
+										extractedControls.add(req['control-id']);
+									});
+								}
+							});
+						}
+					});
+				} 
+				else if (data.profile && data.profile.imports) {
+					isValid = true;
+					data.profile.imports.forEach(imp => {
+						if (imp['include-controls']) {
+							imp['include-controls'].forEach(inc => {
+								if (inc['with-ids']) {
+									inc['with-ids'].forEach(cid => extractedControls.add(cid));
+								}
+							});
+						}
+					});
+				}
+
+				if (!isValid) {
+					throw new Error("Die Datei muss entweder ein OSCAL 'component-definition' oder 'profile' sein.");
+				}
+
+				// Speichern im State als identisches, vollwertiges Asset
+				bpState.components.push({
+					id: crypto.randomUUID(),
+					name: finalName,
+					source: `local://${file.name.replace(/\s+/g, '_')}`,
+					state: finalState,
+					schutzbedarf: finalSchutzbedarf,
+					controls: extractedControls
+				});
+
+				// Formularfelder in der UI wieder leeren/zurücksetzen
+				if (customNameInput) customNameInput.value = '';
+				if (stateInput) stateInput.selectedIndex = 0;
+				if (schutzbedarfInput) schutzbedarfInput.selectedIndex = 0;
+
+				renderAssetsList();
+				renderTailoredList();
+				refreshRiskUI();
+			} catch (e) {
+				console.error(e);
+				alert("Fehler beim Verarbeiten der lokalen Datei: " + e.message);
+			} finally {
+				toggleLoader(false);
+			}
+		}
+
         function renderAssetsList() {
             const list = document.getElementById('assets-list');
             list.innerHTML = '';
@@ -998,7 +1090,7 @@
                 const filteredControls = Array.from(controlsSet).sort().filter(cid => {
                     if (!term) return true;
                     const info = bpState.controlsIndex.get(cid);
-                    return cid.toLowerCase().includes(term) || (info?.title || '').toLowerCase().includes(term);
+                    return cid.toLowerCase().includes(term) || (info?.title || '').toLowerCase().includes(term) || (info?.text || '').toLowerCase().includes(term);
                 });
 
                 if (filteredControls.length === 0) return '';
@@ -1030,6 +1122,10 @@
                     let badges = mods.length > 0 ? `<span class="bg-blue-900/50 text-blue-300 border border-blue-700 text-[10px] px-2 py-0.5 rounded font-bold ml-2">${mods.length} Anpassungen</span>` : '';
                     if (isMuss) badges += `<span class="bg-red-900/50 text-red-300 border border-red-700 text-[10px] px-2 py-0.5 rounded font-bold ml-1">MUSS</span>`;
 
+                    // Hier wurde die Änderung vorgenommen: Hinzufügen des info.text (Statement) unter dem Titel
+                    // Mit line-clamp-2 und title-Attribut, um UI sauber zu halten, aber kompletten Text per Hover anzubieten.
+                    const safeTextForTitle = info?.text ? info.text.replace(/"/g, '&quot;') : '';
+
                     html += `
                         <li class="bg-slate-900 border border-slate-700 rounded-lg p-3 flex justify-between items-center group hover:border-slate-500 transition-colors">
                             <div class="flex-1 min-w-0 pr-4">
@@ -1037,7 +1133,8 @@
                                     <span class="font-bold text-white font-mono text-sm">${cid}</span>
                                     ${badges}
                                 </div>
-                                <div class="text-xs text-slate-400 truncate">${info?.title || 'Titel nicht im Basis-Katalog'}</div>
+                                <div class="text-xs font-semibold text-slate-300 truncate">${info?.title || 'Titel nicht im Basis-Katalog'}</div>
+                                ${info?.text ? `<div class="text-[11px] text-slate-400 mt-1 line-clamp-2 leading-relaxed" title="${safeTextForTitle}">${info.text}</div>` : ''}
                             </div>
                             <div class="flex items-center gap-2 flex-shrink-0 opacity-100 md:opacity-0 group-hover:opacity-100 transition-opacity">
                                 <button onclick="openModifyModal('${cid}', '${sourceId}', '${title.replace(/'/g, "\\'")}')" class="px-3 py-1.5 bg-slate-700 text-blue-300 hover:bg-slate-600 rounded text-xs font-bold transition-colors">⚙️ Modify</button>
@@ -1220,44 +1317,49 @@
         }
 
         function refreshRiskUI() {
-            const container = document.getElementById('risk-list-container');
-            if (!container) return;
+			const container = document.getElementById('risk-list-container');
+			if (!container) return;
 
-            const openSections = new Set();
-            document.querySelectorAll('#risk-list-container .collapsible-content.open').forEach(el => openSections.add(el.id));
+			const openSections = new Set();
+			document.querySelectorAll('#risk-list-container .collapsible-content.open').forEach(el => openSections.add(el.id));
 
-            const assetsErhoeht = bpState.components.filter(c => c.schutzbedarf === 'erhöht');
-            const unmitigated = assetsErhoeht.filter(c => {
-                const risksForAsset = bpState.riskData.filter(r => r.targetComponent === c.id && r.mitigatingControls.length > 0);
-                return risksForAsset.length === 0;
-            });
+			const assetsErhoeht = bpState.components.filter(c => c.schutzbedarf === 'erhöht');
+			const unmitigated = assetsErhoeht.filter(c => {
+				const risksForAsset = bpState.riskData.filter(r => r.targetComponent === c.id && r.mitigatingControls.length > 0);
+				return risksForAsset.length === 0;
+			});
 
-            let warningHtml = '';
-            if (unmitigated.length > 0) {
-                const names = unmitigated.map(c => `<strong>${c.name}</strong>`).join(', ');
-                warningHtml = `
-                    <div class="p-4 mb-4 bg-amber-900/40 border border-amber-600 rounded-xl flex items-start gap-3">
-                        <span class="text-amber-400 text-xl leading-none mt-0.5">⚠️</span>
-                        <div>
-                            <p class="text-sm font-bold text-amber-300">Erhöhter Schutzbedarf ohne Risikoanalyse</p>
-                            <p class="text-xs text-amber-200/80 mt-1">Folgende Assets haben Sicherheitsniveau <span class="font-mono font-bold">erhöht</span>, aber es existieren keine Risiken mit mitigierenden Controls dafür: ${names}</p>
-                            <p class="text-[11px] text-amber-200/60 mt-1.5">Gemäß GS++-Methodik ist für Assets mit erhöhtem Schutzbedarf eine Risikoanalyse mit zugewiesenen Controls erforderlich.</p>
-                        </div>
-                    </div>
-                `;
-            }
+			let warningHtml = '';
+			if (unmitigated.length > 0) {
+				// NEU: Wir bauen echte Listeneinträge (<li>) anstatt eines unübersichtlichen Strings
+				const listItems = unmitigated.map(c => `<li><strong>${c.name}</strong></li>`).join('');
+				
+				warningHtml = `
+					<div class="p-4 mb-4 bg-amber-900/40 border border-amber-600 rounded-xl flex items-start gap-3">
+						<span class="text-amber-400 text-xl leading-none mt-0.5">⚠️</span>
+						<div>
+							<p class="text-sm font-bold text-amber-300">Erhöhter Schutzbedarf ohne Risikoanalyse</p>
+							<p class="text-xs text-amber-200/80 mt-1">Folgende Assets haben das Sicherheitsniveau <span class="font-mono font-bold">erhöht</span>, aber es existieren keine Risiken mit mitigierenden Controls dafür:</p>
+							<ul class="list-disc list-inside text-xs text-amber-300 mt-2 mb-2 ml-1">
+								${listItems}
+							</ul>
+							<p class="text-[11px] text-amber-200/60 mt-1.5">Gemäß GS++-Methodik ist für Assets mit erhöhtem Schutzbedarf eine Risikoanalyse mit zugewiesenen Controls erforderlich.</p>
+						</div>
+					</div>
+				`;
+			}
 
-            if (bpState.riskData.length === 0) {
-                container.innerHTML = warningHtml + `<p class="text-slate-500 text-sm italic text-center py-6 bg-slate-900 rounded-lg border border-slate-700">Noch keine Risiken definiert.</p>`;
-                return;
-            }
+			if (bpState.riskData.length === 0) {
+				container.innerHTML = warningHtml + `<p class="text-slate-500 text-sm italic text-center py-6 bg-slate-900 rounded-lg border border-slate-700">Noch keine Risiken definiert.</p>`;
+				return;
+			}
 
-            container.innerHTML = warningHtml + bpState.riskData.map(r =>
-                createCollapsibleSection(`risk-${r.uuid}`, `${r.title} (${r.mitigatingControls.length} Controls)`, renderRiskEditor(r), openSections.has(`risk-${r.uuid}-content`))
-            ).join('');
+			container.innerHTML = warningHtml + bpState.riskData.map(r =>
+				createCollapsibleSection(`risk-${r.uuid}`, `${r.title} (${r.mitigatingControls.length} Controls)`, renderRiskEditor(r), openSections.has(`risk-${r.uuid}-content`))
+			).join('');
 
-            attachCollapsibleListeners();
-        }
+			attachCollapsibleListeners();
+		}
 
         function renderRiskEditor(risk) {
             const lOpts = ['low', 'medium', 'high', 'very-high'];

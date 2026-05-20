@@ -6,19 +6,27 @@ Und es gibt auch eine Anwendung den Anwenderkatalog zu betrachten: [GSpp-Viewer.
 
 [Dieses Video erklärt die Tools](https://www.youtube.com/watch?v=lY3wi6qHTRc)
 
-### OSCAL Catalog Pruner
-**Zweck:** Gezielte Reduzierung großer OSCAL-Kataloge auf das Wesentliche. 
+## [BSI zu G++ OSCAL Generator](./Baustein_2_Component.html)
 
-Oftmals werden für spezifische Aufgaben nicht alle, sondern nur ausgewählte Bausteine oder Praktiken aus einem umfassenden Katalog benötigt. Mit dem **OSCAL Catalog Pruner** lassen sich große JSON-Kataloge direkt im Browser filtern. Über eine intuitive Baumstruktur können exakt die benötigten Gruppen ausgewählt und als verkleinertes, bereinigtes JSON exportiert werden. Das minimiert den Daten-Overhead für Folgeprozesse massiv. 
+Eine serverlose, vollständig im Browser laufende Single-Page Application (SPA), die BSI IT-Grundschutz-Bausteine (PDF) in das moderne G++ (Grundschutz Plus Plus) Format mappt und als OSCAL Component Definition exportiert. Sie portiert die Kernfunktionen des Python `Gpp-ai-tools` in eine interaktive, leicht bedienbare Benutzeroberfläche.
 
-**Eigenschaften:**
-- **Datenschutz by Design:** 100% lokale Verarbeitung im Browser – keine API-Aufrufe, keine Uploads.
-- **Flexibilität:** Optionales "Flattening" von verschachtelten Gruppenstrukturen.
-- **Effizienz:** Schneller Export des passgenauen JSON-Auszugs für spezifische Teil-Audits oder Analysen.
-  
+> ⚠️ **BETA STATUS**  
+> Diese App befindet sich aktuell in der **Beta-Phase**. Die von der KI (Gemini) erstellten Mappings und generierten OSCAL-JSON-Dateien dienen als Entwurf und Basis zur Beschleunigung der Arbeit. Sie sollten vor der produktiven Nutzung in einem Audit-Prozess zwingend fachlich geprüft werden.
+
+### ✨ Features
+* **Zero-Setup:** Keine Python-Umgebung oder Backend nötig. Besteht aus einer einzigen `.html`-Datei.
+* **Lokale PDF-Verarbeitung:** BSI-Bausteine werden direkt im Browser (via PDF.js) ausgelesen – der Text verlässt das System nur für die LLM-Verarbeitung.
+* **Transparente Pipeline:** Führt die Stages `stage_match_bausteine`, `stage_matching` und `stage_component` schrittweise und parallelisiert aus.
+* **Anpassbare Prompts:** Alle an die KI gesendeten Prompts können direkt in der Benutzeroberfläche editiert und getestet werden.
+* **Live-Feedback:** Integrierte Log-Konsole, Fortschrittsbalken und visuelle Auswertung der Mapping-Konfidenz.
+
+### 🚀 Benutzung
+1. Die Datei `Baustein_2_Component.html` herunterladen und mit einem modernen Webbrowser (Chrome, Edge, Firefox) öffnen.
+   *(Hinweis: Bei lokalen CORS-Problemen die Datei über einen lokalen Server starten, z. B. `python -m http.server`).*
+2. Einen gültigen **Google Gemini API Key** (z. B. via Google AI Studio) in den Einstellungen hinterlegen. Der Key bleibt lokal im Browser.
+3. Ein **BSI Baustein-PDF** (oder den reinen Text) per Drag & Drop in den Input-Bereich ziehen.
+4. Pipeline starten, Mappings überprüfen und als fertiges **OSCAL JSON** exportieren.
 ---
-
-## Workflow-Übersicht
 
 # Workflow-Übersicht: G++ Compliance Management
 
@@ -28,6 +36,7 @@ Der Prozess folgt einer klaren Kette von der Modellierung über die Umsetzung bi
 In dieser Phase legen Sie das Fundament für Ihren Informationsverbund.
 * **Profil-Erstellung**: Das Tool generiert ein OSCAL-Profil auf Basis des gewählten ISMS-Typs.
 * **Asset-Management**: Sie integrieren Muster-Assets oder laden eigene Zielobjekte direkt aus der GitHub-Bibliothek.
+* **Einfügen eigener Components**: Die mit [BSI 2 Component](./Baustein_2_Component.html) erstellten Komponenten hinzufügen.
 * **Risikoanalyse**: Die Anwendung enthält ein integriertes Risikomanagement inklusive der Erstellung von Custom Controls.
 * **Tailoring**: Sie passen Anforderungstexte und Parameter (z. B. Fristen oder Rollen) bereits hier an die lokale Situation an.
 * **Export**: Sie erhalten Ihren Informationsverbund als Profil und einen darauf basierenden Muster-SSP.

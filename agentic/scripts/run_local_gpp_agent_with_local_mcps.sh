@@ -20,8 +20,9 @@ VENV_DIR="$AGENTIC_DIR/.venv"
 export PORT="${PORT:-8000}"
 
 # Ports überschreibbar, falls dein lokales MCP-Setup andere benutzt
-ANWENDER_PORT="${ANWENDER_PORT:-8080}"
+ANWENDER_PORT="${ANWENDER_PORT:-8085}"
 BACKEND_PORT="${BACKEND_PORT:-8081}"
+GPP_BACKEND_DEV_IV_ID="${GPP_BACKEND_DEV_IV_ID:-local-dev}"
 
 # ─── Central venv ───────────────────────────────────────────────────────────────
 echo "Syncing central venv in agentic/..."
@@ -106,6 +107,8 @@ python -m GSpp_MCP.server.main &
 MCP_PIDS+=($!)
 
 echo "Starting GS_backend_MCP on port $BACKEND_PORT..."
+GPP_BACKEND_ALLOW_DEV_IV_FALLBACK=1 \
+GPP_BACKEND_DEV_IV_ID="$GPP_BACKEND_DEV_IV_ID" \
 PORT="$BACKEND_PORT" \
 python -m GS_backend_MCP.myserver.main --transport sse --port "$BACKEND_PORT" &
 MCP_PIDS+=($!)
@@ -113,17 +116,26 @@ MCP_PIDS+=($!)
 # Warten bis beide MCP-Server erreichbar sind
 echo "Waiting for MCP servers to become ready..."
 MAX_WAIT=30
-for url in "$ANWENDER_MCP_URL" "$BACKEND_MCP_URL"; do
-    elapsed=0
-    while ! curl -s -o /dev/null --max-time 2 "$url/mcp" 2>/dev/null; do
+
+wait_for_port() {
+    local label="$1"
+    local host="$2"
+    local port="$3"
+    local elapsed=0
+
+    while ! (echo > "/dev/tcp/$host/$port") >/dev/null 2>&1; do
         sleep 1
         elapsed=$((elapsed + 1))
         if [ "$elapsed" -ge "$MAX_WAIT" ]; then
-            echo "ERROR: $url nicht erreichbar nach ${MAX_WAIT}s"
+            echo "ERROR: $label nicht erreichbar nach ${MAX_WAIT}s"
             exit 1
         fi
     done
-    echo "  $url ok"
+    echo "  $label ok"
+}
+
+for port in "$ANWENDER_PORT" "$BACKEND_PORT"; do
+    wait_for_port "http://localhost:$port" "127.0.0.1" "$port"
 done
 
 # Stale .adk-DBs aufräumen
@@ -136,6 +148,7 @@ cat <<EOF
 Starting gpp-agent on port $PORT (LOCAL MCPs)
   Anwender-MCP:  $ANWENDER_MCP_URL
   Backend-MCP:   $BACKEND_MCP_URL
+  Backend IV:    $GPP_BACKEND_DEV_IV_ID (local dev fallback)
   agents_dir   : $APP_DIR
 Dev-UI: http://localhost:$PORT/dev-ui/
 

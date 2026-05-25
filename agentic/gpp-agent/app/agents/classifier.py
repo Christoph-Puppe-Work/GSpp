@@ -1,8 +1,7 @@
 """Phase classifier — picks one of govern|model|track|audit|remediate.
 
-This is a tool-less LLM node sitting at the top of the workflow graph.
-It runs in `single_turn` mode (workflow graph requirement) and writes its
-decision to `state["classifier_route"]` via `output_key`.
+This LLM node sits at the top of the workflow graph and writes its routing
+decision into workflow state via the `route_to_phase` tool.
 """
 
 import os
@@ -26,14 +25,15 @@ def route_to_phase(route: str, rationale: str, tool_context: ToolContext) -> str
         route: The chosen phase (govern, model, track, audit, remediate).
         rationale: Why this phase was chosen.
     """
-    tool_context.session.state["classifier_route"] = {"route": route, "rationale": rationale}
+    tool_context.state["classifier_route"] = {"route": route, "rationale": rationale}
+    tool_context.actions.skip_summarization = True
     return f"Routing decision made: {route}. The system will now transition to this phase."
 
 
 def get_classifier_agent() -> LlmAgent:
     """Return the classifier LlmAgent.
 
-    Interactive chat agent that talks to the user and uses the `route_to_phase`
+    Single-turn workflow agent that talks to the user and uses the `route_to_phase`
     tool when ready. The router function in the Workflow graph reads
     `state["classifier_route"]` and emits an Event with the corresponding `route` value.
     """
@@ -45,7 +45,7 @@ def get_classifier_agent() -> LlmAgent:
     return LlmAgent(
         name="classifier",
         model=os.environ.get("CLASSIFIER_MODEL", _DEFAULT_MODEL),
-        mode="chat",
+        mode="single_turn",
         instruction=f"{identity}\n\n---\n\n{classifier_prompt}\n\n",
         tools=[tool],
         description=(

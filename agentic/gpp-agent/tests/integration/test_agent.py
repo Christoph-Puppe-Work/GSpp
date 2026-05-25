@@ -21,8 +21,7 @@ Gemini call or live MCP servers — they pin the planning.md guarantees:
   + 12 gate function nodes).
 - Phase 5 (Remediation) is reachable from Phase 4 (Gatekeeper) **only** via
   the `gate_phase4_decision` node on `route="cleared"`.
-- The classifier_router emits exactly five route values that each map to one
-  phase agent.
+- The classifier_router emits exactly the five phase route values.
 - `gate_phase4_decision` forces `route="blocked"` whenever the underlying
   `phase4_result.cleared_for_audit` is `False`, regardless of the user's
   reply. This is the runtime half of the "P4 is the only gate to P5" rule.
@@ -165,6 +164,61 @@ def _ctx_with_state(state: dict) -> SimpleNamespace:
     """Build a minimal mock `InvocationContext` whose `.session.state` reads
     from the provided dict — enough for the gate functions under test."""
     return SimpleNamespace(session=SimpleNamespace(state=state))
+
+
+def test_route_to_phase_writes_via_tool_context_state() -> None:
+    """Tool state writes must go through ToolContext.state so ADK records them
+    as state deltas and the next workflow node can read classifier_route.
+    The tool must also skip summarization so the classifier does not receive
+    its own FunctionResponse and call route_to_phase again."""
+    from app.agents.classifier import route_to_phase
+
+    state = {}
+    actions = SimpleNamespace(skip_summarization=False)
+    tool_context = SimpleNamespace(state=state, actions=actions)
+
+    result = route_to_phase(
+        "audit",
+        "The user asked for the audit pre-check.",
+        tool_context,
+    )
+
+    assert state["classifier_route"] == {
+        "route": "audit",
+        "rationale": "The user asked for the audit pre-check.",
+    }
+    assert actions.skip_summarization is True
+    assert "audit" in result
+
+
+def test_classify_router_routes_from_session_state() -> None:
+    """Once ADK applies the tool state delta, classify_router must dispatch to
+    the selected phase instead of falling back to chat."""
+    from app.agents.orchestrator import classify_router
+
+    ctx = _ctx_with_state(
+        {
+            "classifier_route": {
+                "route": "audit",
+                "rationale": "The user asked for the audit pre-check.",
+            }
+        }
+    )
+
+    event = classify_router(ctx, None)
+
+    assert event.actions.route == "audit"
+    assert event.actions.state_delta == {"current_phase": "audit"}
+
+
+def test_classify_router_ends_without_route() -> None:
+    """No routing state means the invocation ends after the classifier's
+    natural-language response."""
+    from app.agents.orchestrator import classify_router
+
+    event = classify_router(_ctx_with_state({}), None)
+
+    assert event.actions.route is None
 
 
 @pytest.mark.asyncio

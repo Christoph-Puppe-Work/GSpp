@@ -7,7 +7,7 @@ Dieses Repository bündelt eng verzahnte Werkzeuge, Artefakte und Dienste für d
 Jedes Projekt verfügt über eine eigene, detaillierte Dokumentation in seinem jeweiligen Verzeichnis.
 
 ### Kerndienste & Agenten
-- [**Gpp-Agent**](./Gpp-Agent) – Ein KI-gestütztes Multi-Agenten-System, das Nutzer durch den gesamten Compliance-Prozess führt.
+- [**Gpp-Agent**](./agentic/gpp-agent) – Ein KI-gestütztes Multi-Agenten-System, das Nutzer durch den gesamten Compliance-Prozess führt.
 - [**GSpp_MCP**](./GSpp_MCP) – Ein Model Context Protocol (MCP) Server, der den BSI Grundschutz++ Katalog für KI-Agenten bereitstellt.
 - [**GS_backend_MCP**](./GS_backend_MCP) – Ein MCP Server für das zentrale State-Management, die Persistenz und die Validierung von OSCAL-Modellen.
 

@@ -1,13 +1,13 @@
-# gpp_agentic Ecosystem Installation Guide
+# gpp-agentic Ecosystem Installation Guide
 
-This document details the setup of the entire `agentic` architecture on a local development machine. The system consists of three central Python components and (in the future) a React/Next.js frontend.
+This document details the setup of the entire `agentic` architecture on a local development machine. The system consists of three central Python components and a React/Next.js frontend.
 
 ## Architecture Overview
 
 1. **`GSpp_MCP`**: The User MCP Server. Provides read-only access to BSI Grundschutz catalogs, controls, and OSCAL schemas.
 2. **`GS_backend_MCP`**: The Backend MCP Server. Manages state, stores artifacts (via Google Cloud Storage - GCS), and performs strict OSCAL JSON validations.
-3. **`gpp_agent`**: The central ADK (Agent Development Kit) Multi-Agent System that orchestrates workflows (such as the SSP Generator).
-4. **`Frontend`** (CopilotKit / AG-UI): The interactive Human-in-the-Loop Web-Interface (yet to be implemented).
+3. **`gpp-agent`**: The central ADK (Agent Development Kit) Multi-Agent System that orchestrates workflows (such as the SSP Generator).
+4. **`Frontend`** (CopilotKit / AG-UI): The interactive Human-in-the-Loop Web-Interface.
 
 ---
 
@@ -104,14 +104,14 @@ gcloud config set project YOUR_PROJECT_ID
 
 ---
 
-## Step 4: Set up gpp_agent (ADK System)
+## Step 4: Set up gpp-agent (ADK System)
 
-The gpp_agent connects to the two running MCP servers and executes the workflows.
+The gpp-agent connects to the two running MCP servers and executes the workflows.
 
 1. **Change to the directory**:
    Open a third terminal.
    ```bash
-   cd agentic/gpp_agent
+   cd agentic/gpp-agent
    ```
 2. **Install dependencies**:
    ```bash
@@ -164,11 +164,11 @@ The gpp_agent connects to the two running MCP servers and executes the workflows
 
 ---
 
-## Infrastructure Deployment (Terraform & Cloud Run)
+## Infrastructure Deployment (Terraform & Vertex AI)
 
 If you want to deploy the system into production on the Google Cloud, use the provided Terraform scripts in the `agentic/terraform` directory.
 
-The Terraform script automatically builds the Docker images of all four components (`GSpp_MCP`, `GS_backend_MCP`, `gpp_agent`, and `frontend`), pushes them to a new Artifact Registry, and deploys them as secure, independently scaling **Cloud Run Services**.
+The Terraform script automatically provisions the infrastructure. It builds the Docker images of the three Web/MCP components (`GSpp_MCP`, `GS_backend_MCP`, and `frontend`), pushes them to a new Artifact Registry, and deploys them as secure, independently scaling **Cloud Run Services**. The AI agent (`gpp-agent`) is deployed directly to **Vertex AI Agent Engine (Reasoning Engine)** using the Google ADK framework.
 
 **IMPORTANT**: In a new subscription, the resource management API must first be enabled:
 
@@ -199,14 +199,19 @@ In addition, dedicated Service Accounts, a GCS Bucket for the OSCAL artifacts, a
    # Executes the deployment (Docker builds are triggered via Cloud Build)
    terraform apply
    ```
-5. **After Deployment (Configure Agent)**:
-   After a successful `terraform apply`, you will receive (via `outputs.tf`) the Cloud Run URLs for both MCP servers.
-   Update the `.env` file in your local `gpp_agent` directory to point to the Cloud Run Services instead of localhost:
+5. **After Deployment (Deploy Real Agent & Configure Environment)**:
+   After a successful `terraform apply`, the Reasoning Engine is initialized with a dummy source to break circular dependencies. To deploy your actual agent code and configure its connection to the newly created MCP services, run:
+   ```bash
+   ./scripts/deploy_gpp_agent.sh
+   ```
+   This script automatically reads the outputs from Terraform and deploys your local `app/` folder with the correct MCP URLs.
+
+   To develop or test the agent locally while accessing the real, cloud-hosted MCP services, update the `.env` file in your local `agentic/gpp-agent` directory to point to the Cloud Run URLs:
    ```env
    ANWENDER_MCP_URL=https://gs-plus-plus-mcp-...a.run.app
    BACKEND_MCP_URL=https://gpp-backend-mcp-...a.run.app
    ```
-   Since the Terraform code grants you (`allowed_user_emails`) the `roles/iam.serviceAccountTokenCreator` role on the `gpp_agent_sa`, you can continue to develop the agent locally via `adk web`, but it now securely accesses the real, cloud-hosted backend systems.
+   Since the Terraform code grants you (`allowed_user_emails`) the `roles/iam.serviceAccountTokenCreator` role on the agent service account, you can continue to run/develop the agent locally, but it now securely accesses the real, cloud-hosted backend systems.
 
 ---
 

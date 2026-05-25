@@ -50,6 +50,17 @@ For convenience, we use helper scripts located in the root `scripts/` directory:
 
 ---
 
+## ADK Workflow Lessons
+
+- **Workflow LlmAgents should use `mode="single_turn"`** unless there is a proven reason otherwise. `chat` mode inside a Workflow graph can keep control inside the agent and prevent the next graph node or router from running cleanly.
+- **State-changing tools must write through `ToolContext.state`**, not `tool_context.session.state`. ADK turns `ToolContext.state[...]` writes into tracked state deltas that downstream Workflow nodes can read reliably.
+- **Routing/control-flow tools should set `tool_context.actions.skip_summarization = True`** after recording their state. Otherwise ADK may feed the FunctionResponse back into the LLM for summarization, and the model can call the same routing tool again before the Workflow router gets control.
+- **Do not fix ADK/MCP tool loops by shrinking tool filters or capping `max_steps` first.** Capture the ADK event trace, tool call arguments, FunctionResponse content, state deltas, and MCP session/auth context before changing phase capabilities.
+- **MCP tenant/session context is part of the runtime contract.** Backend MCP expects a session user id in `{caller}::iv::{iv_id}` form. Local fallback IVs are diagnostic/dev-only convenience, not proof that tenant isolation is correctly propagated.
+- **`App.name` must match the agent directory name for local ADK runners.** For this project that means `App(name="app", ...)`; use storage/session cleanup or directory isolation instead of renaming `App.name`.
+
+---
+
 ## Operational Guidelines for Coding Agents
 
 - **Code preservation**: Only modify code directly targeted by the user's request. Preserve all surrounding code, config values (e.g., `model`), comments, and formatting.

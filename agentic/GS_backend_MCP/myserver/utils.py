@@ -18,6 +18,13 @@ def get_iv_id(ctx: Context) -> str:
             # ASGI/FastAPI typically lowercases headers
             user_id = headers.get("x-gpp-user-id")
 
+        # 1b. Check HTTP headers on the underlying Starlette/FastAPI request object
+        if not user_id and hasattr(ctx, "request_context") and hasattr(ctx.request_context, "request") and ctx.request_context.request:
+            req = ctx.request_context.request
+            if hasattr(req, "headers"):
+                logger.info(f"Checking request headers: {dict(req.headers)}")
+                user_id = req.headers.get("x-gpp-user-id")
+
         # 2. Check the FastMCP session object (legacy / standard way)
         if not user_id and hasattr(ctx, "request_context") and hasattr(ctx.request_context, "session"):
             user_id = getattr(ctx.request_context.session, "user_id", None)

@@ -20,7 +20,7 @@ VENV_DIR="$AGENTIC_DIR/.venv"
 export PORT="${PORT:-8000}"
 
 # Ports überschreibbar, falls dein lokales MCP-Setup andere benutzt
-ANWENDER_PORT="${ANWENDER_PORT:-8080}"
+ANWENDER_PORT="${ANWENDER_PORT:-8085}"
 BACKEND_PORT="${BACKEND_PORT:-8081}"
 GPP_BACKEND_DEV_IV_ID="${GPP_BACKEND_DEV_IV_ID:-local-dev}"
 

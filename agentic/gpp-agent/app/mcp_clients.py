@@ -21,8 +21,8 @@ def _id_token_for(audience_url: str) -> str | None:
 
 class McpClientService:
     def __init__(self, anwender_url: str | None = None, backend_url: str | None = None):
-        self.anwender_url = anwender_url or os.environ["ANWENDER_MCP_URL"]
-        self.backend_url  = backend_url  or os.environ["BACKEND_MCP_URL"]
+        self.anwender_url = anwender_url or os.environ.get("ANWENDER_MCP_URL", "http://localhost:8080")
+        self.backend_url  = backend_url  or os.environ.get("BACKEND_MCP_URL", "http://localhost:8081")
 
     def _toolset(self, base_url: str, allow: list[str] | None) -> McpToolset:
         url = f"{base_url}/mcp"

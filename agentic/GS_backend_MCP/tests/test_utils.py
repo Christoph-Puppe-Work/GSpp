@@ -32,3 +32,17 @@ def test_get_iv_id_uses_explicit_dev_fallback(monkeypatch):
     monkeypatch.setenv("GPP_BACKEND_DEV_IV_ID", "local-dev")
 
     assert get_iv_id(_ctx_with_user_id("user")) == "local-dev"
+
+
+def test_get_iv_id_from_request_headers():
+    ctx = SimpleNamespace(
+        request_context=SimpleNamespace(
+            request=SimpleNamespace(
+                headers={"x-gpp-user-id": "agent::iv::bank-ssp"}
+            ),
+            session=SimpleNamespace(user_id=None),
+        )
+    )
+
+    assert get_iv_id(ctx) == "bank-ssp"
+

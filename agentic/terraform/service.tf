@@ -79,6 +79,24 @@ resource "google_vertex_ai_reasoning_engine" "app" {
     }
   }
 
+  # --- WORKAROUND START ---
+  # Zwingt die API zum Löschen inkl. aller Child-Ressourcen (Sessions)
+  provisioner "local-exec" {
+    when = destroy
+
+    # self.id liefert den kompletten Pfad: projects/.../locations/.../reasoningEngines/...
+    command = <<EOT
+      curl -s -X DELETE \
+      -H "Authorization: Bearer $(gcloud auth print-access-token)" \
+      "https://${self.region}-aiplatform.googleapis.com/v1beta1/${self.id}?force=true"
+    EOT
+
+    # Wenn der Curl-Befehl fehlschlägt (z. B. schon gelöscht), bricht Terraform den Lauf nicht ab
+    on_failure = continue
+  }
+  # --- WORKAROUND END ---
+
+
   # This lifecycle block prevents Terraform from overwriting the source code when it's
   # updated by Agent Runtime deployments outside of Terraform (e.g., via CI/CD pipelines)
   lifecycle {

@@ -29,14 +29,16 @@ ALLOWED_MAIN_GROUPS = ["SYS", "INF", "IND", "APP", "NET"]
 ALLOWED_PROCESS_BAUSTEINE = ["OPS.2.2", "OPS.2.3", "OPS.3.2"]
 
 # --- Output to Stand der Technik Submodule File Paths ---
-SDT_OUTPUT_DIR = os.path.join(REPO_ROOT, "Stand-der-Technik-Bibliothek/Nutzergenerierte-Inhalte")
-SDT_HELPER_OUTPUT_DIR = os.path.join(SDT_OUTPUT_DIR, "hilfsdateien")
+SDT_HELPER_OUTPUT_DIR = os.path.join(REPO_ROOT, "hilfsdateien")
 BAUSTEIN_ZIELOBJEKT_JSON_PATH = os.path.join(SDT_HELPER_OUTPUT_DIR, "baustein_zielobjekt.json")
 CONTROLS_ANFORDERUNGEN_JSON_PATH = os.path.join(SDT_HELPER_OUTPUT_DIR, "controls_anforderungen.json")
 ZIELOBJEKT_CONTROLS_JSON_PATH = os.path.join(SDT_HELPER_OUTPUT_DIR, "zielobjekt_controls.json")
 PROZZESSBAUSTEINE_CONTROLS_JSON_PATH = os.path.join(SDT_HELPER_OUTPUT_DIR, "prozessbausteine_mapping.json")
-SDT_PROFILES_REGULAR_DIR = os.path.join(SDT_OUTPUT_DIR, "Zielobjektkategorien/profile/regular")
-SDT_PROFILES_PROCESS_DIR = os.path.join(SDT_OUTPUT_DIR, "Zielobjektkategorien/profile/process")
+SDT_PROFILES_REGULAR_DIR = os.path.join(REPO_ROOT, "Zielobjektkategorien/profile/regular")
+SDT_PROFILES_PROCESS_DIR = os.path.join(REPO_ROOT, "Zielobjektkategorien/profile/process")
+ED23_PROFILES_REGULAR_DIR = os.path.join(REPO_ROOT, "ED2023/profile/regular")
+ED23_PROFILES_PROCESS_DIR = os.path.join(REPO_ROOT, "ED2023/profile/process")
+
 
 # Paths for the 'stage_strip' output files
 

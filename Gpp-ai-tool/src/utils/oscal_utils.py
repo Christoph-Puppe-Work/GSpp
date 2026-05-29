@@ -50,3 +50,30 @@ def validate_oscal(json_path: str, schema_path: str) -> bool:
     except Exception as e:
         logger.error(f"An unexpected error occurred during validation of {json_path}: {e}")
         return False
+
+def extract_all_gpp_controls(catalog: dict) -> dict:
+    """Recursively extracts all controls from a G++ catalog for quick lookup."""
+    controls = {}
+
+    def traverse_groups(groups):
+        for group in groups:
+            for control in group.get("controls", []):
+                control_id = control.get("id")
+                if control_id:
+                    controls[control_id] = {
+                        "title": control.get("title", ""),
+                        "prose": control.get("parts", [{}])[0].get("prose", "") if control.get("parts") else ""
+                    }
+            if "groups" in group:
+                traverse_groups(group["groups"])
+
+    traverse_groups(catalog.get("catalog", {}).get("groups", []))
+    return controls
+
+def get_component_type(baustein_id: str) -> str:
+    """Returns the component type based on the Baustein ID format."""
+    return "process" if "prozesse" in baustein_id.lower() or "methodik" in baustein_id.lower() else "software"
+
+def normalize_id(id_str: str) -> str:
+    """Normalizes an ID string for comparison (lowercase, stripped)."""
+    return str(id_str).strip().lower()

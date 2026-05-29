@@ -6,7 +6,7 @@ from start to finish, executing each stage in the correct sequence.
 """
 
 import logging
-from pipeline import stage_strip, stage_gpp, stage_match_bausteine, stage_matching, stage_profiles, stage_component
+from pipeline import stage_strip, stage_gpp, stage_match_bausteine, stage_matching, stage_profiles, stage_profiles_enhanced
 
 logger = logging.getLogger(__name__)
 
@@ -47,11 +47,11 @@ async def run_full_pipeline() -> None:
         stage_profiles.run_stage_profiles()
         logger.info("--- STAGE: PROFILES - COMPLETE ---")
 
-        # Stage 5: Generate OSCAL components  for each Zielobjekt.
-        logger.info("--- STAGE: COMPONENTS ---")
-        logger.info("Starting: Generating OSCAL components.")
-        await stage_component.run_stage_component()
-        logger.info("--- STAGE: COMPONENTS - COMPLETE ---")
+        # Stage 5: Generate OSCAL enhanced profiles  for each Zielobjekt.
+        logger.info("--- STAGE: PROFILES_ENHANCED ---")
+        logger.info("Starting: Generating OSCAL enhanced profiles.")
+        await stage_profiles_enhanced.run_stage_profiles_enhanced()
+        logger.info("--- STAGE: PROFILES_ENHANCED - COMPLETE ---")
 
 
 

@@ -6,7 +6,7 @@ from start to finish, executing each stage in the correct sequence.
 """
 
 import logging
-from pipeline import stage_strip, stage_gpp, stage_match_bausteine, stage_profiles, stage_ED23_profiles_enhanced
+from pipeline import stage_strip, stage_gpp, stage_match_bausteine, stage_profiles, stage_ED23_profiles_enhanced, stage_base_process_enhanced
 
 logger = logging.getLogger(__name__)
 
@@ -47,6 +47,12 @@ async def run_full_pipeline() -> None:
         logger.info("Starting: Generating ED2023 enhanced profiles.")
         await stage_ED23_profiles_enhanced.run_stage_ED23_profiles_enhanced()
         logger.info("--- STAGE: ED23_PROFILES_ENHANCED - COMPLETE ---")
+
+        # Stage 6: Generate base process enhanced profiles.
+        logger.info("--- STAGE: BASE_PROCESS_ENHANCED ---")
+        logger.info("Starting: Generating base process enhanced profiles.")
+        await stage_base_process_enhanced.run_stage_base_process_enhanced()
+        logger.info("--- STAGE: BASE_PROCESS_ENHANCED - COMPLETE ---")
 
 
 

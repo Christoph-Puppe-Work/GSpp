@@ -10,7 +10,7 @@ import logging
 import asyncio
 import argparse
 
-from pipeline import stage_strip, stage_ED23_profiles_enhanced, stage_gpp, stage_match_bausteine, stage_profiles, processing
+from pipeline import stage_strip, stage_ED23_profiles_enhanced, stage_base_process_enhanced, stage_gpp, stage_match_bausteine, stage_profiles, processing
 from utils.logger import setup_logging
 
 
@@ -29,7 +29,7 @@ async def main() -> None:
         "--stage",
         type=str,
         required=False,
-        choices=["stage_gpp", "stage_match_bausteine", "stage_strip", "stage_profiles", "stage_ED23_profiles_enhanced"],
+        choices=["stage_gpp", "stage_match_bausteine", "stage_strip", "stage_profiles", "stage_ED23_profiles_enhanced", "stage_base_process_enhanced"],
         help="The pipeline stage to execute. If not provided, the full pipeline will run.",
     )
     args = parser.parse_args()
@@ -47,6 +47,8 @@ async def main() -> None:
             stage_profiles.run_stage_profiles()
         elif args.stage == "stage_ED23_profiles_enhanced":
             await stage_ED23_profiles_enhanced.run_stage_ED23_profiles_enhanced()
+        elif args.stage == "stage_base_process_enhanced":
+            await stage_base_process_enhanced.run_stage_base_process_enhanced()
     else:
         logger.info("No stage specified. Starting full pipeline execution...")
         await processing.run_full_pipeline()

@@ -2,7 +2,15 @@
 
 This document outlines issues identified during the end-to-end review of the OSCAL
 generation pipeline (`Gpp-ai-tool`) **and** its downstream consumers (`One-Page-Apps`),
-categorized by severity. Resolved issues are removed.
+categorized by severity.
+
+> **Status (branch `fix/oscal-issues`):** Most items are resolved and marked
+> **✅ RESOLVED** inline (some with a smaller follow-up noted). The two still **OPEN** items
+> — 2.1 (AI "slop") and 3.6 (single-step AI generation) — both concern AI-generation
+> behaviour that cannot be runtime-verified without live Gemini/Vertex AI access, so they are
+> left documented with concrete recommendations rather than changed blind. Issue 1.1
+> (temperature) was closed as not-an-issue (intentional for Gemini). Every resolved item was
+> verified (unit/structural checks, the live G++ catalog, or a headless browser preview).
 
 > **Note on history:** The 1:1 Anforderung→Control mapping stage (`stage_matching`) was
 > removed; an ED2023 profile now includes **all** controls of the matched
@@ -39,13 +47,19 @@ interoperability, and reliability concerns — not a regression of the refactor.
 
 ## 2. High Priority Issues
 
-### 2.1. High Risk of "AI Slop" in Enhanced Profiles
+### 2.1. High Risk of "AI Slop" in Enhanced Profiles — OPEN (inherent; partially mitigated)
 **Location:** `src/pipeline/stage_ED23_profiles_enhanced.py`, `src/assets/json/prompt_config.json`
-**Description:** The enhanced-profile stage relies heavily on AI to generate the prose
-(statement, guidance, assessment) for maturity levels 1, 2, 4, and 5, and now does so for
-*every* control of the Zielobjektkategorie.
-**Impact:** High risk of generic, technically vague, or hallucinated security guidance.
-Requires extensive human review and undermines the reliability of the output.
+**Description:** The enhanced-profile stage relies on AI to generate the prose (statement,
+guidance, assessment) for maturity levels 1, 2, 4, and 5 for *every* control. This carries an
+inherent risk of generic, vague, or hallucinated guidance that needs human review.
+**Already mitigated by this branch:** Level 3 (the baseline) is now injected verbatim, not
+AI-copied (2.2); the schema no longer forces invented levels (4.5); and a structural
+validator gates the output (3.3).
+**Remaining recommendation (needs live Gemini to validate, so not done here):** add a
+deterministic post-generation "slop" gate — flag near-duplicate adjacent levels, empty or
+placeholder prose, and commercial-product-name leaks (prompt Rule E) — and keep a
+human-in-the-loop review step. This is partly inherent to AI generation and cannot be fully
+eliminated in code.
 
 ### 2.2. AI Reliability for Baseline (Level 3) Content — ✅ RESOLVED
 **Location:** `src/pipeline/stage_ED23_profiles_enhanced.py`, `src/pipeline/stage_base_process_enhanced.py` (`build_oscal_maturity_statements`)
@@ -157,12 +171,16 @@ precedence. Defaults are unchanged, so existing runs behave identically. Documen
 README env-var table. Verified: defaults unchanged, `OUTPUT_ROOT` moves everything, and a
 per-dir override beats `OUTPUT_ROOT`.
 
-### 3.6. Ambitious Single-Step AI Generation
+### 3.6. Ambitious Single-Step AI Generation — OPEN (needs live-AI validation)
 **Location:** `src/pipeline/stage_ED23_profiles_enhanced.py`, `src/assets/json/prompt_config.json`
-**Description:** The AI generates up to 15 text fields (5 levels × statement/guidance/
-assessment) **and** classifies the control (class, ISMS phase, CIA) in a single request.
-**Impact:** Combining complex text generation with classification often lowers quality in
-both as the model balances competing objectives.
+**Description:** The AI generates the per-level prose (now 4 levels × statement/guidance/
+assessment after 2.2) **and** classifies the control (class, ISMS phase, CIA) in a single
+request. Combining complex generation with classification can lower quality in both.
+**Recommendation (deferred):** split into two passes — a cheap, low-temperature
+classification call and a separate prose call — or run classification deterministically where
+possible. **Not done here** because the quality impact can only be judged against live Gemini
+output, which isn't available in this environment; doing it blind would risk a regression
+with no way to verify. Tracked for a follow-up with Vertex AI access.
 
 ### 3.7. Dead Google Cloud Storage Configuration — ✅ RESOLVED (config + dependency); `gcs_uris` param still open
 **Location:** `src/config.py`, `src/requirements.txt`, `README.md`

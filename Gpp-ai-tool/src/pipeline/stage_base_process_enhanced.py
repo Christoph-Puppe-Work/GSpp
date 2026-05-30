@@ -139,8 +139,10 @@ async def generate_enhanced_profile_data(
         prompt = (
             f"{prompt_instruction}\n\n"
             f"{baustein_context}"
-            f"**G++ controls to enrich** (generate maturity levels 1-5 for each; "
-            f"Level 3 must be an exact copy of the control's prose):\n"
+            f"**G++ controls to enrich** (generate maturity levels 1, 2, 4 and 5 for each; "
+            f"Level 3 is the control's prose and is injected automatically, so you may omit "
+            f"level_3_* — only provide a level if a technically sound, distinct "
+            f"implementation can be described):\n"
             f"{_render_controls_table(chunk, gpp_controls_lookup)}\n\n"
             "Return a JSON array with one object per control, matching each by its original ID."
         )

@@ -209,21 +209,18 @@ are **already applied** to the live files, so the scripts are dead code (and re-
 would corrupt the files).
 **Recommendation:** Delete both patch scripts.
 
-### 4.5. Response Schema Forces All 5 Levels, Contradicting the Prompt
-**Location:** `src/assets/schemas/enhanced_control_response_schema.json` (`required`, lines 75-87), `src/assets/json/prompt_config.json` (Rule C)
-**Description:** The response schema marks **all 21 fields** as `required` — every
-`level_{1..5}_{statement,guidance,assessment}` plus `id`, `class`, `phase`, and the three
-`effective_on_*` fields. But the prompt (Rule C) tells the model to "Only create prose for a
-level if a technically sound and distinct implementation can be described." The two
-instructions conflict: a control that genuinely has no sensible Level 1 still forces the
-model to invent one (or the response fails schema validation and the whole chunk is
-discarded — see `process_chunk` in `stage_ED23_profiles_enhanced.py:136-154`). This
-amplifies the AI-slop risk (2.1) and the validation-failure risk from `API_TEMPERATURE = 1`
-(1.1).
-**Recommendation:** Make levels 1, 2, 4, 5 optional in `required` (the builder already
-guards each with `if statement_text` at `stage_ED23_profiles_enhanced.py:67`), keeping only
-the classification fields and `level_3_*` mandatory — or, per 2.2, inject Level 3
-deterministically and drop it from the request entirely.
+### 4.5. Response Schema Forced All 5 Levels, Contradicting the Prompt — ✅ RESOLVED
+**Location:** `src/assets/schemas/enhanced_control_response_schema.json`, `src/pipeline/stage_*_enhanced.py` (`process_chunk` prompt)
+**Was:** The response schema marked **all 21 fields** as `required` — every
+`level_{1..5}_{statement,guidance,assessment}` plus the classification fields. But the prompt
+told the model to "only create prose for a level if a technically sound and distinct
+implementation can be described." The conflict forced the model to invent levels (or the
+whole 10-control chunk was discarded on a `ValidationError` in `process_chunk`).
+**Fix:** `required` now lists only `id`, `class`, `phase`, `effective_on_c/i/a`; the
+`level_*` fields are optional (the builder already guards each with `if statement_text`).
+The inline chunk prompt now tells the model to produce levels 1, 2, 4, 5 and that Level 3 is
+injected automatically (it may omit `level_3_*`), removing the misleading "exact copy"
+instruction. This eliminates the chunk-discard data-loss path and dovetails with 2.2.
 
 ### 4.6. Leftover Component-Definition Wording in Apps
 **Location:** `One-Page-Apps/ssp_ausfuellen.html`, `ssp_generator.html`

@@ -122,16 +122,17 @@ levels). Compounds 3.1.
 validator that supports Unicode property escapes (e.g. the `regex` module) so validation
 stays complete.
 
-### 3.4. `by-id` Anchor Assumed but Not Validated
-**Location:** `src/pipeline/stage_ED23_profiles_enhanced.py:181`
-**Description:** `by-id: f"{gpp_control_id}_stm"` is emitted without checking that such a
-part exists in the imported catalog. The convention holds for Anforderungen (verified), but
-any included control lacking a `_stm` statement part (e.g. ISMS/container controls) would
-produce an `adds` block that cannot be resolved.
-**Impact:** Silent loss of enrichment for non-conforming controls; resolution errors in
-strict tools.
-**Recommendation:** Look up the real statement-part id from the catalog
-(`extract_all_gpp_controls` already walks the parts) and skip/log controls that have none.
+### 3.4. `by-id` Anchor Assumed but Not Validated — ✅ RESOLVED
+**Location:** `src/utils/oscal_utils.py` (`extract_all_gpp_controls`, `_find_statement_part_id`), both `stage_*_enhanced.py`
+**Was:** `by-id: f"{gpp_control_id}_stm"` was emitted without checking the imported catalog.
+The convention holds for Anforderungen, but any included control lacking a `_stm` statement
+part (e.g. ISMS/container controls) would produce an unresolvable `adds`.
+**Fix:** `extract_all_gpp_controls` now records each control's real `statement_part_id` (the
+id of the part whose `name == "statement"`) and sources the baseline prose from that part.
+Both stages use that id for `by-id` and **skip + log** any control with no statement part
+instead of emitting a broken anchor. Verified against the live G++ catalog: all 651 controls
+resolve to their `_stm` part (0 broken), so the change is behaviour-preserving today while
+robust against non-conforming controls.
 
 ### 3.5. Non-Portable Output Paths
 **Location:** `src/constants.py`

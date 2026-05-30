@@ -173,7 +173,20 @@ async def generate_enhanced_profile_data(
             logger.warning(f"No AI generated data for control {gpp_control_id} in Baustein {baustein_id}")
             continue
 
-        original_description = gpp_controls_lookup.get(gpp_control_id, {}).get("prose", "")
+        control_meta = gpp_controls_lookup.get(gpp_control_id, {})
+        original_description = control_meta.get("prose", "")
+
+        # Anchor the new sub-statements to the control's real statement part. If the
+        # catalog control has no statement part there is nothing to attach to, so skip
+        # it rather than emit an unresolvable `by-id` (issue 3.4).
+        statement_part_id = control_meta.get("statement_part_id")
+        if not statement_part_id:
+            logger.warning(
+                f"Control {gpp_control_id} (Baustein {baustein_id}) has no statement part "
+                f"to anchor maturity additions to; skipping its alter block."
+            )
+            continue
+
         parts = build_oscal_maturity_statements(gpp_control_id, generated_data, original_description, baustein_id)
 
         if parts:
@@ -182,7 +195,7 @@ async def generate_enhanced_profile_data(
                 "adds": [
                     {
                         "position": "ending",
-                        "by-id": f"{gpp_control_id}_stm",
+                        "by-id": statement_part_id,
                         "parts": parts
                     }
                 ]

@@ -51,6 +51,19 @@ def validate_oscal(json_path: str, schema_path: str) -> bool:
         logger.error(f"An unexpected error occurred during validation of {json_path}: {e}")
         return False
 
+def _find_statement_part_id(control: dict) -> str:
+    """Returns the id of the control's 'statement' part, or None if it has none.
+
+    OSCAL profile `adds` blocks anchor new sub-statements to an existing part via
+    `by-id`. The G++ catalog names statement parts `{control_id}_stm`, but rather than
+    assume that convention we read the actual id of the part whose name is "statement".
+    """
+    for part in control.get("parts", []) or []:
+        if part.get("name") == "statement" and part.get("id"):
+            return part["id"]
+    return None
+
+
 def extract_all_gpp_controls(catalog: dict) -> dict:
     """Recursively extracts all controls from a G++ catalog for quick lookup."""
     controls = {}
@@ -60,9 +73,20 @@ def extract_all_gpp_controls(catalog: dict) -> dict:
             for control in group.get("controls", []):
                 control_id = control.get("id")
                 if control_id:
+                    stmt_part_id = _find_statement_part_id(control)
+                    # Prefer the statement part's prose for the Level 3 baseline; fall
+                    # back to the first part's prose for controls without a statement part.
+                    prose = ""
+                    if control.get("parts"):
+                        prose = control["parts"][0].get("prose", "")
+                        for part in control["parts"]:
+                            if part.get("id") == stmt_part_id:
+                                prose = part.get("prose", prose)
+                                break
                     controls[control_id] = {
                         "title": control.get("title", ""),
-                        "prose": control.get("parts", [{}])[0].get("prose", "") if control.get("parts") else ""
+                        "prose": prose,
+                        "statement_part_id": stmt_part_id,
                     }
             if "groups" in group:
                 traverse_groups(group["groups"])

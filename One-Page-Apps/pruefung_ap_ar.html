@@ -235,6 +235,29 @@ async function loadCatalog(){
 
 function catInfo(cid){return S.catalog.get(cid)||{title:'',prose:''}}
 
+// Parst ein OSCAL-Profil (das alte Format war eine component-definition).
+// Control-IDs stammen aus imports[].include-controls[].with-ids.
+// Die Reifegrade/Statements liegen in modify.alters[].adds[].parts (name:"statement"):
+// OSCAL erlaubt keine neuen statements in einer CDef — daher werden sie im Profil
+// per `adds` als neue `part` an das jeweilige Control angehängt.
+function parseProfileEntry(d){
+    const prof=(d&&d.profile)||{};
+    const ids=new Set();
+    (prof.imports||[]).forEach(imp=>(imp['include-controls']||[]).forEach(inc=>(inc['with-ids']||[]).forEach(id=>id&&ids.add(id))));
+    const stmtByCtrl=new Map();
+    ((prof.modify||{}).alters||[]).forEach(alt=>{
+        const cid=alt['control-id'];if(!cid)return;
+        const list=stmtByCtrl.get(cid)||[];
+        (alt.adds||[]).forEach(add=>(add.parts||[]).filter(pt=>pt.name==='statement').forEach(pt=>{
+            const p=Object.fromEntries((pt.props||[]).map(pp=>[pp.name,pp.value]));
+            list.push({id:pt.id,desc:p.label||'',statement:p.statement||'',guidance:p.guidance||'',assessMethod:p['assessment-method']||'',prose:pt.prose||''});
+        }));
+        stmtByCtrl.set(cid,list);
+        ids.add(cid); // Control aufnehmen, auch wenn es nur via alter referenziert wird
+    });
+    return {ids,stmtByCtrl};
+}
+
 // ============================================================
 // FILE HANDLING
 // ============================================================
@@ -347,31 +370,22 @@ async function loadCompDefs(){
             const txt=await r.text();
             let d;try{d=JSON.parse(txt.replace(/^\uFEFF/,''))}catch(pe){throw new Error('Kein gültiges JSON: '+pe.message)}
             const grp=S.compGroups.get(it.uuid)||new Map();let a=0;
-            (d[.profile.]?.components||[]).forEach(comp=>{
-                const compProps=(comp.props||[]).filter(p=>p.name&&p.value);
-                const cm=S.compMeta.get(it.uuid);
-                if(cm&&compProps.length)cm.defProps=compProps;
-                (comp['control-implementations']||[]).forEach(ci=>
-                    (ci['implemented-requirements']||[]).forEach(req=>{
-                        const cid=req['control-id'];if(!cid)return;
-                        const stmts=(req.statements||[]).map(st=>{
-                            const p=Object.fromEntries((st.props||[]).map(pp=>[pp.name,pp.value]));
-                            return{id:st['statement-id'],desc:st.description||'',statement:p.statement||'',guidance:p.guidance||'',assessMethod:p['assessment-method']||''}
-                        });
-                        const cProps=(req.props||[]).filter(p=>p.ns).map(p=>({name:p.name,value:p.value}));
-                        if(!grp.has(cid)){
-                            grp.set(cid,{status:'nur-komponente',user:'',date:'',desc:'',stmtId:'',fromDef:true,
-                                defDesc:req.description||'',defProps:cProps,statements:stmts});
-                            a++;
-                        } else {
-                            const existing=grp.get(cid);
-                            if(!existing.statements||!existing.statements.length)existing.statements=stmts;
-                            if(!existing.defDesc)existing.defDesc=req.description||'';
-                            if(!existing.defProps||!existing.defProps.length)existing.defProps=cProps;
-                        }
-                        if(!S.allCids.has(cid)){S.allCids.add(cid);S.methods.set(cid,new Set(['EXAMINE']));S.findings.set(cid,{status:'',observation:'',risk:'',remarks:''})}
-                    })
-                );
+            const {ids,stmtByCtrl}=parseProfileEntry(d);
+            ids.forEach(cid=>{
+                if(!cid)return;
+                const ci=catInfo(cid);
+                const stmts=stmtByCtrl.get(cid)||[];
+                const defDesc=(stmts[0]&&stmts[0].prose)||ci.prose||'';
+                if(!grp.has(cid)){
+                    grp.set(cid,{status:'nur-komponente',user:'',date:'',desc:'',stmtId:'',fromDef:true,
+                        defDesc:defDesc,defProps:[],statements:stmts});
+                    a++;
+                } else {
+                    const existing=grp.get(cid);
+                    if((!existing.statements||!existing.statements.length)&&stmts.length)existing.statements=stmts;
+                    if(!existing.defDesc)existing.defDesc=defDesc;
+                }
+                if(!S.allCids.has(cid)){S.allCids.add(cid);S.methods.set(cid,new Set(['EXAMINE']));S.findings.set(cid,{status:'',observation:'',risk:'',remarks:''})}
             });
             S.compGroups.set(it.uuid,grp);const m=S.compMeta.get(it.uuid);m.defLoaded=true;m.defN=grp.size;newN+=a;
         }catch(e){
@@ -400,15 +414,14 @@ window.retryFailedDefs=async()=>{
             if(!r.ok)throw new Error(`HTTP ${r.status}`);
             const d=JSON.parse((await r.text()).replace(/^\uFEFF/,''));
             const grp=S.compGroups.get(it.uuid)||new Map();let a=0;
-            (d[.profile.]?.components||[]).forEach(comp=>{
-                (comp['control-implementations']||[]).forEach(ci=>
-                    (ci['implemented-requirements']||[]).forEach(req=>{
-                        const cid=req['control-id'];if(!cid)return;
-                        const stmts=(req.statements||[]).map(st=>{const p=Object.fromEntries((st.props||[]).map(pp=>[pp.name,pp.value]));return{id:st['statement-id'],desc:st.description||'',statement:p.statement||'',guidance:p.guidance||'',assessMethod:p['assessment-method']||''}});
-                        const cProps=(req.props||[]).filter(p=>p.ns).map(p=>({name:p.name,value:p.value}));
-                        if(!grp.has(cid)){grp.set(cid,{status:'nur-komponente',user:'',date:'',desc:'',stmtId:'',fromDef:true,defDesc:req.description||'',defProps:cProps,statements:stmts});a++}
-                        if(!S.allCids.has(cid)){S.allCids.add(cid);S.methods.set(cid,new Set(['EXAMINE']));S.findings.set(cid,{status:'',observation:'',risk:'',remarks:''})}
-                    }));
+            const {ids,stmtByCtrl}=parseProfileEntry(d);
+            ids.forEach(cid=>{
+                if(!cid)return;
+                const ci=catInfo(cid);
+                const stmts=stmtByCtrl.get(cid)||[];
+                const defDesc=(stmts[0]&&stmts[0].prose)||ci.prose||'';
+                if(!grp.has(cid)){grp.set(cid,{status:'nur-komponente',user:'',date:'',desc:'',stmtId:'',fromDef:true,defDesc:defDesc,defProps:[],statements:stmts});a++}
+                if(!S.allCids.has(cid)){S.allCids.add(cid);S.methods.set(cid,new Set(['EXAMINE']));S.findings.set(cid,{status:'',observation:'',risk:'',remarks:''})}
             });
             S.compGroups.set(it.uuid,grp);const m=S.compMeta.get(it.uuid);m.defLoaded=true;m.defN=grp.size;newN+=a;
         }catch(e){stillFailing.push(it)}retried++}

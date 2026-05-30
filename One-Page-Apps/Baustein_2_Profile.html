@@ -439,7 +439,7 @@ body{
           <div style="margin-top:14px">
             <label style="display:block;font-size:11px;color:var(--text-tertiary);margin-bottom:4px;font-weight:500">Profile-Index (GitHub API URL einer Verzeichnis-Auflistung)</label>
             <div class="url-row">
-              <input id="pi-url" type="text" value="https://api.github.com/repos/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/contents/zielobjektkategorien/profile?ref=main">
+              <input id="pi-url" type="text" value="https://api.github.com/repos/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/contents/Zielobjektkategorien/profile?ref=main">
               <button class="btn sm" id="btn-load-pi">⤓ laden</button>
               <button class="btn sm ghost" id="btn-upload-pi">⤴ upload</button>
               <input id="pi-file" type="file" accept="application/json" style="display:none">
@@ -1203,15 +1203,34 @@ $("pi-file").addEventListener("change", async e => {
   } catch (err) { l.err(`profile-index file: ${err.message}`); }
 });
 
+// Fetch a GitHub "contents" listing. If it contains subdirectories (e.g.
+// .../profile → regular + process), descend one level and merge their files.
+async function fetchGithubContentsRecursive(url, depth = 0) {
+  const r = await fetch(url);
+  if (!r.ok) throw new Error(`HTTP ${r.status}` + (r.status === 403 ? " (GitHub API rate limit — gleich nochmal probieren)" : ""));
+  const json = await r.json();
+  if (!Array.isArray(json) || depth >= 2) return json;
+
+  const dirs = json.filter(e => e && e.type === "dir" && e.url);
+  if (dirs.length === 0) return json;
+
+  const files = json.filter(e => !(e && e.type === "dir"));
+  const nested = await Promise.all(dirs.map(d => {
+    l.info(`descend into ${d.name}/`);
+    return fetchGithubContentsRecursive(d.url, depth + 1).catch(e => {
+      l.warn(`subdir ${d.name} failed: ${e.message}`); return [];
+    });
+  }));
+  return files.concat(...nested.map(n => Array.isArray(n) ? n : []));
+}
+
 $("btn-load-pi").addEventListener("click", async () => {
   const url = $("pi-url").value.trim();
   if (!url) return l.warn("keine Profile-Index-URL angegeben");
   l.info(`fetch profile-index · ${url}`);
   try {
     const t0 = performance.now();
-    const r = await fetch(url);
-    if (!r.ok) throw new Error(`HTTP ${r.status}` + (r.status === 403 ? " (GitHub API rate limit — gleich nochmal probieren)" : ""));
-    const json = await r.json();
+    const json = await fetchGithubContentsRecursive(url);
     setProfilesIndex(json, url);
     l.ok(`profile-index fetched in ${Math.round(performance.now()-t0)}ms`);
   } catch (e) {

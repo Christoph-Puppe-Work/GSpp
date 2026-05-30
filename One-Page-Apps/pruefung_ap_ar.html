@@ -250,7 +250,14 @@ function parseProfileEntry(d){
         const list=stmtByCtrl.get(cid)||[];
         (alt.adds||[]).forEach(add=>(add.parts||[]).filter(pt=>pt.name==='statement').forEach(pt=>{
             const p=Object.fromEntries((pt.props||[]).map(pp=>[pp.name,pp.value]));
-            list.push({id:pt.id,desc:p.label||'',statement:p.statement||'',guidance:p.guidance||'',assessMethod:p['assessment-method']||'',prose:pt.prose||''});
+            // New shape (issue 3.1): per-level statement is pt.prose; guidance/assessment
+            // are nested parts. Old shape: text lived in props statement/guidance/
+            // assessment-method. Read new first, fall back to old for legacy profiles.
+            const sub=Object.fromEntries((pt.parts||[]).map(np=>[np.name,np.prose]));
+            const statement=(pt.prose!=null&&p.statement==null)?pt.prose:(p.statement||pt.prose||'');
+            const guidance=sub.guidance||p.guidance||'';
+            const assessMethod=sub.assessment||p['assessment-method']||'';
+            list.push({id:pt.id,desc:p.label||'',statement,guidance,assessMethod,prose:pt.prose||''});
         }));
         stmtByCtrl.set(cid,list);
         ids.add(cid); // Control aufnehmen, auch wenn es nur via alter referenziert wird

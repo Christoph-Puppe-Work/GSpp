@@ -60,21 +60,21 @@
                     {
                       "name": "label",
                       "value": "m1"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Vereinzelt werden Rückmeldungen nach Sensibilisierungsmaßnahmen gesammelt."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Informelles Feedback nach Schulungen einholen. Keine standardisierten Metriken vorhanden."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Sichtprüfung von Freitext-Feedback oder informellen Notizen nach Schulungen."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Sensibilisierung SOLLTE den Erfolg der Sensibilisierung anhand {{ insert: param, sens.1.2-prm1 }} {{ insert: param, sens.1.2-prm2 }} überprüfen."
+                  "prose": "Vereinzelt werden Rückmeldungen nach Sensibilisierungsmaßnahmen gesammelt.",
+                  "parts": [
+                    {
+                      "id": "SENS.1.2-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Informelles Feedback nach Schulungen einholen. Keine standardisierten Metriken vorhanden."
+                    },
+                    {
+                      "id": "SENS.1.2-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Sichtprüfung von Freitext-Feedback oder informellen Notizen nach Schulungen."
+                    }
+                  ]
                 },
                 {
                   "id": "SENS.1.2-m2_custom",
@@ -108,21 +108,21 @@
                     {
                       "name": "label",
                       "value": "m2"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Die Erfolgsmessung erfolgt manuell durch einfache Teilnahmelisten oder Wissensabfragen."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Nutzen Sie Tabellenkalkulationen zur Erfassung der Beteiligung. Führen Sie einfache Wissenstests durch."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Abgleich von Teilnahmelisten mit Personalbestand in einer Tabellenkalkulation."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Sensibilisierung SOLLTE den Erfolg der Sensibilisierung anhand {{ insert: param, sens.1.2-prm1 }} {{ insert: param, sens.1.2-prm2 }} überprüfen."
+                  "prose": "Die Erfolgsmessung erfolgt manuell durch einfache Teilnahmelisten oder Wissensabfragen.",
+                  "parts": [
+                    {
+                      "id": "SENS.1.2-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Nutzen Sie Tabellenkalkulationen zur Erfassung der Beteiligung. Führen Sie einfache Wissenstests durch."
+                    },
+                    {
+                      "id": "SENS.1.2-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Abgleich von Teilnahmelisten mit Personalbestand in einer Tabellenkalkulation."
+                    }
+                  ]
                 },
                 {
                   "id": "SENS.1.2-m3_custom",
@@ -156,21 +156,21 @@
                     {
                       "name": "label",
                       "value": "m3"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Sensibilisierung SOLLTE den Erfolg der Sensibilisierung anhand {{ insert: param, sens.1.2-prm1 }} {{ insert: param, sens.1.2-prm2 }} überprüfen."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Legen Sie Metriken wie Teilnehmerquoten fest. Dokumentieren Sie die Ergebnisse regelmäßig."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Prüfung der definierten KPIs gegen die Zielvorgaben in {{ insert: param, sens.1.2-prm1 }}."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Sensibilisierung SOLLTE den Erfolg der Sensibilisierung anhand {{ insert: param, sens.1.2-prm1 }} {{ insert: param, sens.1.2-prm2 }} überprüfen."
+                  "prose": "Sensibilisierung SOLLTE den Erfolg der Sensibilisierung anhand {{ insert: param, sens.1.2-prm1 }} {{ insert: param, sens.1.2-prm2 }} überprüfen.",
+                  "parts": [
+                    {
+                      "id": "SENS.1.2-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Legen Sie Metriken wie Teilnehmerquoten fest. Dokumentieren Sie die Ergebnisse regelmäßig."
+                    },
+                    {
+                      "id": "SENS.1.2-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung der definierten KPIs gegen die Zielvorgaben in {{ insert: param, sens.1.2-prm1 }}."
+                    }
+                  ]
                 },
                 {
                   "id": "SENS.1.2-m4_custom",
@@ -204,21 +204,21 @@
                     {
                       "name": "label",
                       "value": "m4"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Erfolgskontrollen werden automatisiert durchgeführt und mit verhaltensbasierten Tests wie simulierten Phishing-Kampagnen ergänzt."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Implementieren Sie Plattformen für automatisierte Quizze. Analysieren Sie Trends über Zeiträume."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Abruf von Statistiken über REST-API des Awareness-Tools (z. B. Gophish API)."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Sensibilisierung SOLLTE den Erfolg der Sensibilisierung anhand {{ insert: param, sens.1.2-prm1 }} {{ insert: param, sens.1.2-prm2 }} überprüfen."
+                  "prose": "Erfolgskontrollen werden automatisiert durchgeführt und mit verhaltensbasierten Tests wie simulierten Phishing-Kampagnen ergänzt.",
+                  "parts": [
+                    {
+                      "id": "SENS.1.2-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Implementieren Sie Plattformen für automatisierte Quizze. Analysieren Sie Trends über Zeiträume."
+                    },
+                    {
+                      "id": "SENS.1.2-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Abruf von Statistiken über REST-API des Awareness-Tools (z. B. Gophish API)."
+                    }
+                  ]
                 },
                 {
                   "id": "SENS.1.2-m5_custom",
@@ -252,21 +252,21 @@
                     {
                       "name": "label",
                       "value": "m5"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Kontinuierliche Erfolgsmessung ist in das Risikomanagement integriert und nutzt adaptive Lernpfade basierend auf individuellen Testergebnissen."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Verknüpfen Sie Incident-Statistiken mit Awareness-Leveln. Nutzen Sie Open-Source-Tools zur kontinuierlichen Messung."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Validierung der Korrelation zwischen Awareness-Scores und Incident-Tickets im ITSM-Tool."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Sensibilisierung SOLLTE den Erfolg der Sensibilisierung anhand {{ insert: param, sens.1.2-prm1 }} {{ insert: param, sens.1.2-prm2 }} überprüfen."
+                  "prose": "Kontinuierliche Erfolgsmessung ist in das Risikomanagement integriert und nutzt adaptive Lernpfade basierend auf individuellen Testergebnissen.",
+                  "parts": [
+                    {
+                      "id": "SENS.1.2-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Verknüpfen Sie Incident-Statistiken mit Awareness-Leveln. Nutzen Sie Open-Source-Tools zur kontinuierlichen Messung."
+                    },
+                    {
+                      "id": "SENS.1.2-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Validierung der Korrelation zwischen Awareness-Scores und Incident-Tickets im ITSM-Tool."
+                    }
+                  ]
                 }
               ]
             }

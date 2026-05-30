@@ -2041,7 +2041,7 @@
                     uuid: p.id,
                     type: "process",
                     title: `Prozess: ${p.name}`,
-                    description: `Prozess-Instanz, basierend auf Komponentendefinition ${p.url.split('/').pop()}.`,
+                    description: `Prozess-Instanz, basierend auf Profil ${p.url.split('/').pop()}.`,
                     status: { state: "operational" },
                     links: [{ href: p.url, rel: "profile" }]
                 });
@@ -2052,7 +2052,7 @@
                     uuid: c.id,
                     type: "service",
                     title: c.name,
-                    description: `Instanz '${c.name}', basierend auf Komponentendefinition ${c.source.split('/').pop()}.`,
+                    description: `Instanz '${c.name}', basierend auf Profil ${c.source.split('/').pop()}.`,
                     status: { state: c.state || "operational" },
                     props: [
                         {

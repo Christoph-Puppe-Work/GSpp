@@ -77,21 +77,21 @@
                     {
                       "name": "label",
                       "value": "m1"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Übungen erfolgen nur vereinzelt nach schwerwiegenden Vorfällen ohne Plan."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Führen Sie formlose Gespräche über vergangene Vorfälle im Team durch."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Prüfen Sie, ob in Protokollen informelle Nachbesprechungen erwähnt werden."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Sicherheitsvorfallsbehandlung KANN die Abwehrfähigkeit durch Übungen {{ insert: param, rea.1.3-prm1 }} überprüfen."
+                  "prose": "Übungen erfolgen nur vereinzelt nach schwerwiegenden Vorfällen ohne Plan.",
+                  "parts": [
+                    {
+                      "id": "REA.1.3-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Führen Sie formlose Gespräche über vergangene Vorfälle im Team durch."
+                    },
+                    {
+                      "id": "REA.1.3-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfen Sie, ob in Protokollen informelle Nachbesprechungen erwähnt werden."
+                    }
+                  ]
                 },
                 {
                   "id": "REA.1.3-m2_custom",
@@ -125,21 +125,21 @@
                     {
                       "name": "label",
                       "value": "m2"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Es existieren grundlegende Szenarien für manuelle Übungen der Vorfallsbehandlung."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Nutzen Sie einfache Checklisten für jährliche Table-Top-Übungen."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Kontrollieren Sie das Vorhandensein von einfachen Übungsprotokollen."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Sicherheitsvorfallsbehandlung KANN die Abwehrfähigkeit durch Übungen {{ insert: param, rea.1.3-prm1 }} überprüfen."
+                  "prose": "Es existieren grundlegende Szenarien für manuelle Übungen der Vorfallsbehandlung.",
+                  "parts": [
+                    {
+                      "id": "REA.1.3-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Nutzen Sie einfache Checklisten für jährliche Table-Top-Übungen."
+                    },
+                    {
+                      "id": "REA.1.3-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Kontrollieren Sie das Vorhandensein von einfachen Übungsprotokollen."
+                    }
+                  ]
                 },
                 {
                   "id": "REA.1.3-m3_custom",
@@ -173,21 +173,21 @@
                     {
                       "name": "label",
                       "value": "m3"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Sicherheitsvorfallsbehandlung KANN die Abwehrfähigkeit durch Übungen {{ insert: param, rea.1.3-prm1 }} überprüfen."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Die Übungen müssen regelmäßig und anhand definierter Parameter durchgeführt werden."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Review der Übungsberichte; Prüfung der Parameter mit 'ls -l /etc/security/drills'."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Sicherheitsvorfallsbehandlung KANN die Abwehrfähigkeit durch Übungen {{ insert: param, rea.1.3-prm1 }} überprüfen."
+                  "prose": "Sicherheitsvorfallsbehandlung KANN die Abwehrfähigkeit durch Übungen {{ insert: param, rea.1.3-prm1 }} überprüfen.",
+                  "parts": [
+                    {
+                      "id": "REA.1.3-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Die Übungen müssen regelmäßig und anhand definierter Parameter durchgeführt werden."
+                    },
+                    {
+                      "id": "REA.1.3-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Review der Übungsberichte; Prüfung der Parameter mit 'ls -l /etc/security/drills'."
+                    }
+                  ]
                 },
                 {
                   "id": "REA.1.3-m4_custom",
@@ -221,21 +221,21 @@
                     {
                       "name": "label",
                       "value": "m4"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Übungen werden durch automatisierte Breach-and-Attack-Simulationen (BAS) unterstützt."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Integrieren Sie BAS-Tools zur kontinuierlichen Prüfung der Detektionsrate."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Prüfung der BAS-Dashboards; API-Abfrage der Simulationsergebnisse."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Sicherheitsvorfallsbehandlung KANN die Abwehrfähigkeit durch Übungen {{ insert: param, rea.1.3-prm1 }} überprüfen."
+                  "prose": "Übungen werden durch automatisierte Breach-and-Attack-Simulationen (BAS) unterstützt.",
+                  "parts": [
+                    {
+                      "id": "REA.1.3-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Integrieren Sie BAS-Tools zur kontinuierlichen Prüfung der Detektionsrate."
+                    },
+                    {
+                      "id": "REA.1.3-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung der BAS-Dashboards; API-Abfrage der Simulationsergebnisse."
+                    }
+                  ]
                 },
                 {
                   "id": "REA.1.3-m5_custom",
@@ -269,21 +269,21 @@
                     {
                       "name": "label",
                       "value": "m5"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Vollständig integrierte Red-Teaming-Übungen validieren die Resilienz kontinuierlich."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Nutzen Sie automatisierte Purple-Teaming-Workflows zur Echtzeit-Verbesserung."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Validierung der Feedback-Schleifen im SIEM; Abfrage der Mitre-Att&ck-Coverage."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Sicherheitsvorfallsbehandlung KANN die Abwehrfähigkeit durch Übungen {{ insert: param, rea.1.3-prm1 }} überprüfen."
+                  "prose": "Vollständig integrierte Red-Teaming-Übungen validieren die Resilienz kontinuierlich.",
+                  "parts": [
+                    {
+                      "id": "REA.1.3-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Nutzen Sie automatisierte Purple-Teaming-Workflows zur Echtzeit-Verbesserung."
+                    },
+                    {
+                      "id": "REA.1.3-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Validierung der Feedback-Schleifen im SIEM; Abfrage der Mitre-Att&ck-Coverage."
+                    }
+                  ]
                 }
               ]
             }
@@ -328,21 +328,21 @@
                     {
                       "name": "label",
                       "value": "m1"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Meldungen werden ohne feste Kriterien nach Gutdünken priorisiert."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Priorisieren Sie Vorfälle manuell nach subjektiver Einschätzung der Wichtigkeit."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Sichtung von E-Mail-Postfächern auf unsortierte Vorfallsmeldungen."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Sicherheitsvorfallsbehandlung SOLLTE Meldungen einer Priorität zuweisen."
+                  "prose": "Meldungen werden ohne feste Kriterien nach Gutdünken priorisiert.",
+                  "parts": [
+                    {
+                      "id": "REA.2.1-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Priorisieren Sie Vorfälle manuell nach subjektiver Einschätzung der Wichtigkeit."
+                    },
+                    {
+                      "id": "REA.2.1-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Sichtung von E-Mail-Postfächern auf unsortierte Vorfallsmeldungen."
+                    }
+                  ]
                 },
                 {
                   "id": "REA.2.1-m2_custom",
@@ -376,21 +376,21 @@
                     {
                       "name": "label",
                       "value": "m2"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Es gibt eine einfache Liste zur Einteilung von Vorfällen in grobe Kategorien."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Nutzen Sie eine statische Matrix (hoch, mittel, niedrig) für die Triage."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Prüfen Sie, ob Tickets ein Pflichtfeld für die Priorität besitzen."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Sicherheitsvorfallsbehandlung SOLLTE Meldungen einer Priorität zuweisen."
+                  "prose": "Es gibt eine einfache Liste zur Einteilung von Vorfällen in grobe Kategorien.",
+                  "parts": [
+                    {
+                      "id": "REA.2.1-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Nutzen Sie eine statische Matrix (hoch, mittel, niedrig) für die Triage."
+                    },
+                    {
+                      "id": "REA.2.1-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfen Sie, ob Tickets ein Pflichtfeld für die Priorität besitzen."
+                    }
+                  ]
                 },
                 {
                   "id": "REA.2.1-m3_custom",
@@ -424,21 +424,21 @@
                     {
                       "name": "label",
                       "value": "m3"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Sicherheitsvorfallsbehandlung SOLLTE Meldungen einer Priorität zuweisen."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Die Zuweisung muss auf Basis definierter Kritikalitätsstufen im Incident-Management erfolgen."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Audit der Ticket-Historie; Check der Priorisierungslogik im Ticketsystem."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Sicherheitsvorfallsbehandlung SOLLTE Meldungen einer Priorität zuweisen."
+                  "prose": "Sicherheitsvorfallsbehandlung SOLLTE Meldungen einer Priorität zuweisen.",
+                  "parts": [
+                    {
+                      "id": "REA.2.1-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Die Zuweisung muss auf Basis definierter Kritikalitätsstufen im Incident-Management erfolgen."
+                    },
+                    {
+                      "id": "REA.2.1-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Audit der Ticket-Historie; Check der Priorisierungslogik im Ticketsystem."
+                    }
+                  ]
                 },
                 {
                   "id": "REA.2.1-m4_custom",
@@ -472,21 +472,21 @@
                     {
                       "name": "label",
                       "value": "m4"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Die Priorisierung erfolgt teilautomatisiert durch Abgleich mit Asset-Datenbanken."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Verknüpfen Sie das Ticketsystem mit der CMDB für automatisches Scoring."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Testen der Scoring-Logik via API-Call an das Incident-Management-Tool."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Sicherheitsvorfallsbehandlung SOLLTE Meldungen einer Priorität zuweisen."
+                  "prose": "Die Priorisierung erfolgt teilautomatisiert durch Abgleich mit Asset-Datenbanken.",
+                  "parts": [
+                    {
+                      "id": "REA.2.1-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Verknüpfen Sie das Ticketsystem mit der CMDB für automatisches Scoring."
+                    },
+                    {
+                      "id": "REA.2.1-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Testen der Scoring-Logik via API-Call an das Incident-Management-Tool."
+                    }
+                  ]
                 },
                 {
                   "id": "REA.2.1-m5_custom",
@@ -520,21 +520,21 @@
                     {
                       "name": "label",
                       "value": "m5"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Dynamische Priorisierung unter Nutzung von Threat Intelligence und Business Impact."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Automatisieren Sie die Triage durch Echtzeit-Analysen der aktuellen Bedrohungslage."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Prüfung der SOAR-Playbooks auf automatisierte Priorisierungs-Updates."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Sicherheitsvorfallsbehandlung SOLLTE Meldungen einer Priorität zuweisen."
+                  "prose": "Dynamische Priorisierung unter Nutzung von Threat Intelligence und Business Impact.",
+                  "parts": [
+                    {
+                      "id": "REA.2.1-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Automatisieren Sie die Triage durch Echtzeit-Analysen der aktuellen Bedrohungslage."
+                    },
+                    {
+                      "id": "REA.2.1-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung der SOAR-Playbooks auf automatisierte Priorisierungs-Updates."
+                    }
+                  ]
                 }
               ]
             }
@@ -579,21 +579,21 @@
                     {
                       "name": "label",
                       "value": "m1"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Erstreaktionen erfolgen manuell und nur bei offensichtlichen Bedrohungen."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Führen Sie manuelle Sperrungen von Benutzerkonten bei Bedarf durch."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Prüfung von Administrator-Logs auf manuelle Ad-hoc-Sperrungen."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Sicherheitsvorfallsbehandlung KANN eine automatische Erstreaktion aktivieren."
+                  "prose": "Erstreaktionen erfolgen manuell und nur bei offensichtlichen Bedrohungen.",
+                  "parts": [
+                    {
+                      "id": "REA.2.2-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Führen Sie manuelle Sperrungen von Benutzerkonten bei Bedarf durch."
+                    },
+                    {
+                      "id": "REA.2.2-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung von Administrator-Logs auf manuelle Ad-hoc-Sperrungen."
+                    }
+                  ]
                 },
                 {
                   "id": "REA.2.2-m2_custom",
@@ -627,21 +627,21 @@
                     {
                       "name": "label",
                       "value": "m2"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Es existieren Skripte zur manuellen Auslösung vordefinierter Erstreaktionen."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Nutzen Sie Shell-Skripte zur Isolation infizierter Systeme nach Bestätigung."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Sichtung vorhandener Incident-Response-Skripte im Repository."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Sicherheitsvorfallsbehandlung KANN eine automatische Erstreaktion aktivieren."
+                  "prose": "Es existieren Skripte zur manuellen Auslösung vordefinierter Erstreaktionen.",
+                  "parts": [
+                    {
+                      "id": "REA.2.2-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Nutzen Sie Shell-Skripte zur Isolation infizierter Systeme nach Bestätigung."
+                    },
+                    {
+                      "id": "REA.2.2-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Sichtung vorhandener Incident-Response-Skripte im Repository."
+                    }
+                  ]
                 },
                 {
                   "id": "REA.2.2-m3_custom",
@@ -675,21 +675,21 @@
                     {
                       "name": "label",
                       "value": "m3"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Sicherheitsvorfallsbehandlung KANN eine automatische Erstreaktion aktivieren."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Implementieren Sie Mechanismen, die bei klaren Indikatoren automatisch reagieren."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Test der automatischen Quarantäne; Check der 'action'-Logs in der Firewall."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Sicherheitsvorfallsbehandlung KANN eine automatische Erstreaktion aktivieren."
+                  "prose": "Sicherheitsvorfallsbehandlung KANN eine automatische Erstreaktion aktivieren.",
+                  "parts": [
+                    {
+                      "id": "REA.2.2-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Implementieren Sie Mechanismen, die bei klaren Indikatoren automatisch reagieren."
+                    },
+                    {
+                      "id": "REA.2.2-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Test der automatischen Quarantäne; Check der 'action'-Logs in der Firewall."
+                    }
+                  ]
                 },
                 {
                   "id": "REA.2.2-m4_custom",
@@ -723,21 +723,21 @@
                     {
                       "name": "label",
                       "value": "m4"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Automatisierte Erstreaktionen sind über SOAR-Workflows prozessual eingebunden."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Nutzen Sie standardisierte Playbooks für die automatisierte Eindämmung."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Validierung der SOAR-Workflows; Abgleich der Reaktionszeiten in den Metriken."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Sicherheitsvorfallsbehandlung KANN eine automatische Erstreaktion aktivieren."
+                  "prose": "Automatisierte Erstreaktionen sind über SOAR-Workflows prozessual eingebunden.",
+                  "parts": [
+                    {
+                      "id": "REA.2.2-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Nutzen Sie standardisierte Playbooks für die automatisierte Eindämmung."
+                    },
+                    {
+                      "id": "REA.2.2-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Validierung der SOAR-Workflows; Abgleich der Reaktionszeiten in den Metriken."
+                    }
+                  ]
                 },
                 {
                   "id": "REA.2.2-m5_custom",
@@ -771,21 +771,21 @@
                     {
                       "name": "label",
                       "value": "m5"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "KI-gestützte Erstreaktion passt Schutzmaßnahmen autonom an das Angriffsverhalten an."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Implementieren Sie adaptive Kontrollen, die ohne manuellen Eingriff isolieren."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Audit der KI-Entscheidungslogik; Prüfung der automatisierten Rollback-Pläne."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Sicherheitsvorfallsbehandlung KANN eine automatische Erstreaktion aktivieren."
+                  "prose": "KI-gestützte Erstreaktion passt Schutzmaßnahmen autonom an das Angriffsverhalten an.",
+                  "parts": [
+                    {
+                      "id": "REA.2.2-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Implementieren Sie adaptive Kontrollen, die ohne manuellen Eingriff isolieren."
+                    },
+                    {
+                      "id": "REA.2.2-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Audit der KI-Entscheidungslogik; Prüfung der automatisierten Rollback-Pläne."
+                    }
+                  ]
                 }
               ]
             }
@@ -830,21 +830,21 @@
                     {
                       "name": "label",
                       "value": "m1"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Vorfälle werden unsystematisch in Notizen oder E-Mails dokumentiert."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Schreiben Sie kurze Zusammenfassungen nach Abschluss eines Vorfalls."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Stichprobenartige Suche nach Vorfallsnotizen in persönlichen Ordnern."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Sicherheitsvorfallsbehandlung SOLLTE den Vorfall dokumentieren."
+                  "prose": "Vorfälle werden unsystematisch in Notizen oder E-Mails dokumentiert.",
+                  "parts": [
+                    {
+                      "id": "REA.2.3-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Schreiben Sie kurze Zusammenfassungen nach Abschluss eines Vorfalls."
+                    },
+                    {
+                      "id": "REA.2.3-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Stichprobenartige Suche nach Vorfallsnotizen in persönlichen Ordnern."
+                    }
+                  ]
                 },
                 {
                   "id": "REA.2.3-m2_custom",
@@ -878,21 +878,21 @@
                     {
                       "name": "label",
                       "value": "m2"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Dokumentation erfolgt in einfachen Tabellen oder statischen Dokumenten."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Verwenden Sie eine zentrale Excel-Liste zur Erfassung aller Vorfälle."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Prüfung der Vollständigkeit der zentralen Vorfallsliste."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Sicherheitsvorfallsbehandlung SOLLTE den Vorfall dokumentieren."
+                  "prose": "Dokumentation erfolgt in einfachen Tabellen oder statischen Dokumenten.",
+                  "parts": [
+                    {
+                      "id": "REA.2.3-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Verwenden Sie eine zentrale Excel-Liste zur Erfassung aller Vorfälle."
+                    },
+                    {
+                      "id": "REA.2.3-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung der Vollständigkeit der zentralen Vorfallsliste."
+                    }
+                  ]
                 },
                 {
                   "id": "REA.2.3-m3_custom",
@@ -926,21 +926,21 @@
                     {
                       "name": "label",
                       "value": "m3"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Sicherheitsvorfallsbehandlung SOLLTE den Vorfall dokumentieren."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Nutzen Sie ein dediziertes System zur lückenlosen Protokollierung aller Schritte."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Review der Fallakten im Incident-Management-System auf Konsistenz."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Sicherheitsvorfallsbehandlung SOLLTE den Vorfall dokumentieren."
+                  "prose": "Sicherheitsvorfallsbehandlung SOLLTE den Vorfall dokumentieren.",
+                  "parts": [
+                    {
+                      "id": "REA.2.3-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Nutzen Sie ein dediziertes System zur lückenlosen Protokollierung aller Schritte."
+                    },
+                    {
+                      "id": "REA.2.3-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Review der Fallakten im Incident-Management-System auf Konsistenz."
+                    }
+                  ]
                 },
                 {
                   "id": "REA.2.3-m4_custom",
@@ -974,21 +974,21 @@
                     {
                       "name": "label",
                       "value": "m4"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Die Dokumentation wird automatisiert durch System-Logs und Zeitstempel ergänzt."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Integrieren Sie Log-Feeds direkt in die Falldokumentation für bessere Beweislast."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Prüfung der automatischen Log-Anreicherung in den Fallakten."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Sicherheitsvorfallsbehandlung SOLLTE den Vorfall dokumentieren."
+                  "prose": "Die Dokumentation wird automatisiert durch System-Logs und Zeitstempel ergänzt.",
+                  "parts": [
+                    {
+                      "id": "REA.2.3-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Integrieren Sie Log-Feeds direkt in die Falldokumentation für bessere Beweislast."
+                    },
+                    {
+                      "id": "REA.2.3-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung der automatischen Log-Anreicherung in den Fallakten."
+                    }
+                  ]
                 },
                 {
                   "id": "REA.2.3-m5_custom",
@@ -1022,21 +1022,21 @@
                     {
                       "name": "label",
                       "value": "m5"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Kryptografisch gesicherte und revisionssichere Dokumentation der Vorfälle."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Stellen Sie die Integrität der Dokumentation durch digitale Signaturen sicher."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Verifikation der Hash-Werte der Dokumentationsdatenbank."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Sicherheitsvorfallsbehandlung SOLLTE den Vorfall dokumentieren."
+                  "prose": "Kryptografisch gesicherte und revisionssichere Dokumentation der Vorfälle.",
+                  "parts": [
+                    {
+                      "id": "REA.2.3-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Stellen Sie die Integrität der Dokumentation durch digitale Signaturen sicher."
+                    },
+                    {
+                      "id": "REA.2.3-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Verifikation der Hash-Werte der Dokumentationsdatenbank."
+                    }
+                  ]
                 }
               ]
             }
@@ -1081,21 +1081,21 @@
                     {
                       "name": "label",
                       "value": "m1"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Diagnosedaten werden nur bei Bedarf händisch gesichert."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Kopieren Sie Logdateien manuell von betroffenen Systemen."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Befragung der Administratoren zum manuellen Vorgehen bei der Log-Sicherung."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Sicherheitsvorfallsbehandlung SOLLTE Diagnosemethoden für den Fall, dass der Vorfall sich mit den standardisiert erfassten Informationen nicht ausreichend analysieren lässt, verankern."
+                  "prose": "Diagnosedaten werden nur bei Bedarf händisch gesichert.",
+                  "parts": [
+                    {
+                      "id": "REA.2.4-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Kopieren Sie Logdateien manuell von betroffenen Systemen."
+                    },
+                    {
+                      "id": "REA.2.4-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Befragung der Administratoren zum manuellen Vorgehen bei der Log-Sicherung."
+                    }
+                  ]
                 },
                 {
                   "id": "REA.2.4-m2_custom",
@@ -1129,21 +1129,21 @@
                     {
                       "name": "label",
                       "value": "m2"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Standard-Logs werden regelmäßig auf einem zentralen Server gesammelt."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Nutzen Sie rsyslog zur zentralen Speicherung wichtiger Systemereignisse."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Check der Konfiguration: 'cat /etc/rsyslog.conf'."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Sicherheitsvorfallsbehandlung SOLLTE Diagnosemethoden für den Fall, dass der Vorfall sich mit den standardisiert erfassten Informationen nicht ausreichend analysieren lässt, verankern."
+                  "prose": "Standard-Logs werden regelmäßig auf einem zentralen Server gesammelt.",
+                  "parts": [
+                    {
+                      "id": "REA.2.4-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Nutzen Sie rsyslog zur zentralen Speicherung wichtiger Systemereignisse."
+                    },
+                    {
+                      "id": "REA.2.4-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Check der Konfiguration: 'cat /etc/rsyslog.conf'."
+                    }
+                  ]
                 },
                 {
                   "id": "REA.2.4-m3_custom",
@@ -1177,21 +1177,21 @@
                     {
                       "name": "label",
                       "value": "m3"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Sicherheitsvorfallsbehandlung SOLLTE Diagnosemethoden für den Fall, dass der Vorfall sich mit den standardisiert erfassten Informationen nicht ausreichend analysieren lässt, verankern."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Halten Sie Tools zur erweiterten Datenerfassung (z.B. Memory Dumps) bereit."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Prüfung der Werkzeugliste für Forensik; Test der Erfassungsmethoden."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Sicherheitsvorfallsbehandlung SOLLTE Diagnosemethoden für den Fall, dass der Vorfall sich mit den standardisiert erfassten Informationen nicht ausreichend analysieren lässt, verankern."
+                  "prose": "Sicherheitsvorfallsbehandlung SOLLTE Diagnosemethoden für den Fall, dass der Vorfall sich mit den standardisiert erfassten Informationen nicht ausreichend analysieren lässt, verankern.",
+                  "parts": [
+                    {
+                      "id": "REA.2.4-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Halten Sie Tools zur erweiterten Datenerfassung (z.B. Memory Dumps) bereit."
+                    },
+                    {
+                      "id": "REA.2.4-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung der Werkzeugliste für Forensik; Test der Erfassungsmethoden."
+                    }
+                  ]
                 },
                 {
                   "id": "REA.2.4-m4_custom",
@@ -1225,21 +1225,21 @@
                     {
                       "name": "label",
                       "value": "m4"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Erweiterte Telemetrie wird bei Verdacht automatisch aktiviert."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Nutzen Sie EDR-Lösungen für tiefgehende Analysen auf Endgeräten."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Prüfung der EDR-Konfiguration auf automatische Datensammlung."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Sicherheitsvorfallsbehandlung SOLLTE Diagnosemethoden für den Fall, dass der Vorfall sich mit den standardisiert erfassten Informationen nicht ausreichend analysieren lässt, verankern."
+                  "prose": "Erweiterte Telemetrie wird bei Verdacht automatisch aktiviert.",
+                  "parts": [
+                    {
+                      "id": "REA.2.4-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Nutzen Sie EDR-Lösungen für tiefgehende Analysen auf Endgeräten."
+                    },
+                    {
+                      "id": "REA.2.4-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung der EDR-Konfiguration auf automatische Datensammlung."
+                    }
+                  ]
                 },
                 {
                   "id": "REA.2.4-m5_custom",
@@ -1273,21 +1273,21 @@
                     {
                       "name": "label",
                       "value": "m5"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Vollautomatisierte Erfassung tiefer System-Metriken via eBPF bei Anomalien."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Integrieren Sie Kernel-Level-Tracing zur lückenlosen Verhaltensanalyse."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Prüfung der eBPF-Monitoring-Agenten auf den Zielsystemen."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Sicherheitsvorfallsbehandlung SOLLTE Diagnosemethoden für den Fall, dass der Vorfall sich mit den standardisiert erfassten Informationen nicht ausreichend analysieren lässt, verankern."
+                  "prose": "Vollautomatisierte Erfassung tiefer System-Metriken via eBPF bei Anomalien.",
+                  "parts": [
+                    {
+                      "id": "REA.2.4-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Integrieren Sie Kernel-Level-Tracing zur lückenlosen Verhaltensanalyse."
+                    },
+                    {
+                      "id": "REA.2.4-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung der eBPF-Monitoring-Agenten auf den Zielsystemen."
+                    }
+                  ]
                 }
               ]
             }
@@ -1332,21 +1332,21 @@
                     {
                       "name": "label",
                       "value": "m1"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Forensik erfolgt nur rudimentär durch einfaches Sichern von Festplatten."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Erstellen Sie 1:1 Kopien von Datenträgern ohne formale Kette."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Prüfung vorhandener Kopien auf Lesbarkeit und Hash-Werte."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Sicherheitsvorfallsbehandlung SOLLTE eine forensische Analyse bei Vorfällen, die {{ insert: param, rea.2.5-prm1 }} erfüllen, ausführen."
+                  "prose": "Forensik erfolgt nur rudimentär durch einfaches Sichern von Festplatten.",
+                  "parts": [
+                    {
+                      "id": "REA.2.5-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Erstellen Sie 1:1 Kopien von Datenträgern ohne formale Kette."
+                    },
+                    {
+                      "id": "REA.2.5-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung vorhandener Kopien auf Lesbarkeit und Hash-Werte."
+                    }
+                  ]
                 },
                 {
                   "id": "REA.2.5-m2_custom",
@@ -1380,21 +1380,21 @@
                     {
                       "name": "label",
                       "value": "m2"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Grundlegende forensische Verfahren für Dateisysteme sind definiert."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Verwenden Sie Open-Source-Tools wie 'dd' oder 'Autopsy' für Analysen."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Check der Handlungsanweisung für Datenträgerforensik."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Sicherheitsvorfallsbehandlung SOLLTE eine forensische Analyse bei Vorfällen, die {{ insert: param, rea.2.5-prm1 }} erfüllen, ausführen."
+                  "prose": "Grundlegende forensische Verfahren für Dateisysteme sind definiert.",
+                  "parts": [
+                    {
+                      "id": "REA.2.5-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Verwenden Sie Open-Source-Tools wie 'dd' oder 'Autopsy' für Analysen."
+                    },
+                    {
+                      "id": "REA.2.5-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Check der Handlungsanweisung für Datenträgerforensik."
+                    }
+                  ]
                 },
                 {
                   "id": "REA.2.5-m3_custom",
@@ -1428,21 +1428,21 @@
                     {
                       "name": "label",
                       "value": "m3"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Sicherheitsvorfallsbehandlung SOLLTE eine forensische Analyse bei Vorfällen, die {{ insert: param, rea.2.5-prm1 }} erfüllen, ausführen."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Die Analyse muss nach anerkannten Standards für die jeweilige Klasse erfolgen."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Audit der forensischen Berichte; Abgleich mit den Auslösekriterien."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Sicherheitsvorfallsbehandlung SOLLTE eine forensische Analyse bei Vorfällen, die {{ insert: param, rea.2.5-prm1 }} erfüllen, ausführen."
+                  "prose": "Sicherheitsvorfallsbehandlung SOLLTE eine forensische Analyse bei Vorfällen, die {{ insert: param, rea.2.5-prm1 }} erfüllen, ausführen.",
+                  "parts": [
+                    {
+                      "id": "REA.2.5-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Die Analyse muss nach anerkannten Standards für die jeweilige Klasse erfolgen."
+                    },
+                    {
+                      "id": "REA.2.5-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Audit der forensischen Berichte; Abgleich mit den Auslösekriterien."
+                    }
+                  ]
                 },
                 {
                   "id": "REA.2.5-m4_custom",
@@ -1476,21 +1476,21 @@
                     {
                       "name": "label",
                       "value": "m4"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Forensische Analysen umfassen routinemäßig auch flüchtigen Speicher (RAM)."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Setzen Sie Tools zur Speicherforensik wie 'Volatility' standardmäßig ein."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Prüfung der Speicherabbilder in der forensischen Fallakte."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Sicherheitsvorfallsbehandlung SOLLTE eine forensische Analyse bei Vorfällen, die {{ insert: param, rea.2.5-prm1 }} erfüllen, ausführen."
+                  "prose": "Forensische Analysen umfassen routinemäßig auch flüchtigen Speicher (RAM).",
+                  "parts": [
+                    {
+                      "id": "REA.2.5-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Setzen Sie Tools zur Speicherforensik wie 'Volatility' standardmäßig ein."
+                    },
+                    {
+                      "id": "REA.2.5-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung der Speicherabbilder in der forensischen Fallakte."
+                    }
+                  ]
                 },
                 {
                   "id": "REA.2.5-m5_custom",
@@ -1524,21 +1524,21 @@
                     {
                       "name": "label",
                       "value": "m5"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Automatisierte Cloud-Forensik und Echtzeit-Snapshot-Analysen sind aktiv."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Implementieren Sie automatisierte Triage-Workflows für Container und Cloud-Workloads."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Test der automatischen Snapshot-Funktion bei Intrusion-Detection."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Sicherheitsvorfallsbehandlung SOLLTE eine forensische Analyse bei Vorfällen, die {{ insert: param, rea.2.5-prm1 }} erfüllen, ausführen."
+                  "prose": "Automatisierte Cloud-Forensik und Echtzeit-Snapshot-Analysen sind aktiv.",
+                  "parts": [
+                    {
+                      "id": "REA.2.5-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Implementieren Sie automatisierte Triage-Workflows für Container und Cloud-Workloads."
+                    },
+                    {
+                      "id": "REA.2.5-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Test der automatischen Snapshot-Funktion bei Intrusion-Detection."
+                    }
+                  ]
                 }
               ]
             }
@@ -1583,21 +1583,21 @@
                     {
                       "name": "label",
                       "value": "m1"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Teilaspekt der Forensik wird unsystematisch behandelt."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Sichern Sie relevante Dateien manuell bei Bedarf."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Prüfung der Dateiintegrität manuell gesicherter Proben."
                     }
                   ],
-                  "prose": "(BSI Baustein )"
+                  "prose": "Teilaspekt der Forensik wird unsystematisch behandelt.",
+                  "parts": [
+                    {
+                      "id": "REA.2.5.1-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Sichern Sie relevante Dateien manuell bei Bedarf."
+                    },
+                    {
+                      "id": "REA.2.5.1-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung der Dateiintegrität manuell gesicherter Proben."
+                    }
+                  ]
                 },
                 {
                   "id": "REA.2.5.1-m2_custom",
@@ -1631,21 +1631,21 @@
                     {
                       "name": "label",
                       "value": "m2"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Es existieren Vorgaben zur Sicherung spezifischer Artefakte."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Dokumentieren Sie die Dateimetadaten bei der Sicherung."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Abgleich der Artefaktliste mit den gesicherten Daten."
                     }
                   ],
-                  "prose": "(BSI Baustein )"
+                  "prose": "Es existieren Vorgaben zur Sicherung spezifischer Artefakte.",
+                  "parts": [
+                    {
+                      "id": "REA.2.5.1-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Dokumentieren Sie die Dateimetadaten bei der Sicherung."
+                    },
+                    {
+                      "id": "REA.2.5.1-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Abgleich der Artefaktliste mit den gesicherten Daten."
+                    }
+                  ]
                 },
                 {
                   "id": "REA.2.5.1-m3_custom",
@@ -1679,21 +1679,21 @@
                     {
                       "name": "label",
                       "value": "m3"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Die Sicherheitsvorfallsbehandlung führt spezifische forensische Teilschritte aus."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Setzen Sie die definierten Teilschritte gemäß dem Forensik-Konzept um."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Prüfung der Einhaltung der Teilschritte im Forensik-Protokoll."
                     }
                   ],
-                  "prose": "(BSI Baustein )"
+                  "prose": "Die Sicherheitsvorfallsbehandlung führt spezifische forensische Teilschritte aus.",
+                  "parts": [
+                    {
+                      "id": "REA.2.5.1-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Setzen Sie die definierten Teilschritte gemäß dem Forensik-Konzept um."
+                    },
+                    {
+                      "id": "REA.2.5.1-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung der Einhaltung der Teilschritte im Forensik-Protokoll."
+                    }
+                  ]
                 },
                 {
                   "id": "REA.2.5.1-m4_custom",
@@ -1727,21 +1727,21 @@
                     {
                       "name": "label",
                       "value": "m4"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Teilschritte sind durch Skripte für eine schnellere Datenerfassung optimiert."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Nutzen Sie automatisierte Collection-Scripts für Artefakte."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Validierung der Skript-Outputs im Incident-Repository."
                     }
                   ],
-                  "prose": "(BSI Baustein )"
+                  "prose": "Teilschritte sind durch Skripte für eine schnellere Datenerfassung optimiert.",
+                  "parts": [
+                    {
+                      "id": "REA.2.5.1-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Nutzen Sie automatisierte Collection-Scripts für Artefakte."
+                    },
+                    {
+                      "id": "REA.2.5.1-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Validierung der Skript-Outputs im Incident-Repository."
+                    }
+                  ]
                 },
                 {
                   "id": "REA.2.5.1-m5_custom",
@@ -1775,21 +1775,21 @@
                     {
                       "name": "label",
                       "value": "m5"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Kontinuierliche Integritätsprüfung aller forensischen Teilschritte."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Automatisieren Sie die Beweismittelkette durch Blockchain-basierte Zeitstempel."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Verifikation der Chain-of-Custody-Metadaten."
                     }
                   ],
-                  "prose": "(BSI Baustein )"
+                  "prose": "Kontinuierliche Integritätsprüfung aller forensischen Teilschritte.",
+                  "parts": [
+                    {
+                      "id": "REA.2.5.1-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Automatisieren Sie die Beweismittelkette durch Blockchain-basierte Zeitstempel."
+                    },
+                    {
+                      "id": "REA.2.5.1-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Verifikation der Chain-of-Custody-Metadaten."
+                    }
+                  ]
                 }
               ]
             }
@@ -1834,21 +1834,21 @@
                     {
                       "name": "label",
                       "value": "m1"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Spezialisierte Forensik-Bereiche werden ad-hoc ohne Expertenwissen bedient."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Versuchen Sie, gelöschte Dateien mit Standard-Tools wiederherzustellen."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Prüfung der Erfolgsquote bei manuellen Wiederherstellungsversuchen."
                     }
                   ],
-                  "prose": "(BSI Baustein )"
+                  "prose": "Spezialisierte Forensik-Bereiche werden ad-hoc ohne Expertenwissen bedient.",
+                  "parts": [
+                    {
+                      "id": "REA.2.5.2-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Versuchen Sie, gelöschte Dateien mit Standard-Tools wiederherzustellen."
+                    },
+                    {
+                      "id": "REA.2.5.2-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung der Erfolgsquote bei manuellen Wiederherstellungsversuchen."
+                    }
+                  ]
                 },
                 {
                   "id": "REA.2.5.2-m2_custom",
@@ -1882,21 +1882,21 @@
                     {
                       "name": "label",
                       "value": "m2"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Es sind grundlegende Werkzeuge für spezialisierte Forensik vorhanden."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Halten Sie Live-Systeme für forensische Untersuchungen bereit."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Inventur der forensischen Werkzeugkästen."
                     }
                   ],
-                  "prose": "(BSI Baustein )"
+                  "prose": "Es sind grundlegende Werkzeuge für spezialisierte Forensik vorhanden.",
+                  "parts": [
+                    {
+                      "id": "REA.2.5.2-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Halten Sie Live-Systeme für forensische Untersuchungen bereit."
+                    },
+                    {
+                      "id": "REA.2.5.2-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Inventur der forensischen Werkzeugkästen."
+                    }
+                  ]
                 },
                 {
                   "id": "REA.2.5.2-m3_custom",
@@ -1930,21 +1930,21 @@
                     {
                       "name": "label",
                       "value": "m3"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Die forensische Analyse deckt erweiterte Systemschnittstellen ab."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Untersuchen Sie auch nicht-standardisierte Datenquellen nach Plan."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Review der Untersuchungsergebnisse auf Vollständigkeit der Quellen."
                     }
                   ],
-                  "prose": "(BSI Baustein )"
+                  "prose": "Die forensische Analyse deckt erweiterte Systemschnittstellen ab.",
+                  "parts": [
+                    {
+                      "id": "REA.2.5.2-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Untersuchen Sie auch nicht-standardisierte Datenquellen nach Plan."
+                    },
+                    {
+                      "id": "REA.2.5.2-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Review der Untersuchungsergebnisse auf Vollständigkeit der Quellen."
+                    }
+                  ]
                 },
                 {
                   "id": "REA.2.5.2-m4_custom",
@@ -1978,21 +1978,21 @@
                     {
                       "name": "label",
                       "value": "m4"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Spezialforensik nutzt automatisierte Korrelation verschiedener Datenquellen."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Integrieren Sie Netzwerktraces und Host-Logs in einer Timeline."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Prüfung der Timeline-Konsistenz im Analysetool."
                     }
                   ],
-                  "prose": "(BSI Baustein )"
+                  "prose": "Spezialforensik nutzt automatisierte Korrelation verschiedener Datenquellen.",
+                  "parts": [
+                    {
+                      "id": "REA.2.5.2-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Integrieren Sie Netzwerktraces und Host-Logs in einer Timeline."
+                    },
+                    {
+                      "id": "REA.2.5.2-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung der Timeline-Konsistenz im Analysetool."
+                    }
+                  ]
                 },
                 {
                   "id": "REA.2.5.2-m5_custom",
@@ -2026,21 +2026,21 @@
                     {
                       "name": "label",
                       "value": "m5"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Predictive Forensics zur Identifikation von Mustern in komplexen Vorfällen."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Nutzen Sie Machine Learning zur Erkennung von Anti-Forensik-Techniken."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Audit der ML-Modelle auf Erkennungsgenauigkeit."
                     }
                   ],
-                  "prose": "(BSI Baustein )"
+                  "prose": "Predictive Forensics zur Identifikation von Mustern in komplexen Vorfällen.",
+                  "parts": [
+                    {
+                      "id": "REA.2.5.2-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Nutzen Sie Machine Learning zur Erkennung von Anti-Forensik-Techniken."
+                    },
+                    {
+                      "id": "REA.2.5.2-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Audit der ML-Modelle auf Erkennungsgenauigkeit."
+                    }
+                  ]
                 }
               ]
             }
@@ -2085,21 +2085,21 @@
                     {
                       "name": "label",
                       "value": "m1"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Externe forensische Unterstützung wird nur im Notfall gesucht."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Suchen Sie bei Bedarf im Internet nach forensischer Hilfe."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Prüfung der Kontaktliste auf externe Forensik-Dienstleister."
                     }
                   ],
-                  "prose": "(BSI Baustein )"
+                  "prose": "Externe forensische Unterstützung wird nur im Notfall gesucht.",
+                  "parts": [
+                    {
+                      "id": "REA.2.5.3-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Suchen Sie bei Bedarf im Internet nach forensischer Hilfe."
+                    },
+                    {
+                      "id": "REA.2.5.3-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung der Kontaktliste auf externe Forensik-Dienstleister."
+                    }
+                  ]
                 },
                 {
                   "id": "REA.2.5.3-m2_custom",
@@ -2133,21 +2133,21 @@
                     {
                       "name": "label",
                       "value": "m2"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Es bestehen Kontakte zu externen Forensik-Experten."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Pflegen Sie eine Liste mit qualifizierten Partnern für Notfälle."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Verifikation der Aktualität der Experten-Kontaktdaten."
                     }
                   ],
-                  "prose": "(BSI Baustein )"
+                  "prose": "Es bestehen Kontakte zu externen Forensik-Experten.",
+                  "parts": [
+                    {
+                      "id": "REA.2.5.3-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Pflegen Sie eine Liste mit qualifizierten Partnern für Notfälle."
+                    },
+                    {
+                      "id": "REA.2.5.3-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Verifikation der Aktualität der Experten-Kontaktdaten."
+                    }
+                  ]
                 },
                 {
                   "id": "REA.2.5.3-m3_custom",
@@ -2181,21 +2181,21 @@
                     {
                       "name": "label",
                       "value": "m3"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Externe forensische Expertise wird nach festen Kriterien eingebunden."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Definieren Sie Schwellenwerte, ab denen externe Hilfe obligatorisch ist."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Prüfung der SLAs und Rahmenverträge mit Forensik-Partnern."
                     }
                   ],
-                  "prose": "(BSI Baustein )"
+                  "prose": "Externe forensische Expertise wird nach festen Kriterien eingebunden.",
+                  "parts": [
+                    {
+                      "id": "REA.2.5.3-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Definieren Sie Schwellenwerte, ab denen externe Hilfe obligatorisch ist."
+                    },
+                    {
+                      "id": "REA.2.5.3-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung der SLAs und Rahmenverträge mit Forensik-Partnern."
+                    }
+                  ]
                 },
                 {
                   "id": "REA.2.5.3-m4_custom",
@@ -2229,21 +2229,21 @@
                     {
                       "name": "label",
                       "value": "m4"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Vorbereitete Remote-Forensik-Zugänge für Dienstleister sind vorhanden."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Etablieren Sie sichere VPN-Tunnel für externe Analysten."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Test der Fernwartungszugänge und Berechtigungskonzepte."
                     }
                   ],
-                  "prose": "(BSI Baustein )"
+                  "prose": "Vorbereitete Remote-Forensik-Zugänge für Dienstleister sind vorhanden.",
+                  "parts": [
+                    {
+                      "id": "REA.2.5.3-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Etablieren Sie sichere VPN-Tunnel für externe Analysten."
+                    },
+                    {
+                      "id": "REA.2.5.3-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Test der Fernwartungszugänge und Berechtigungskonzepte."
+                    }
+                  ]
                 },
                 {
                   "id": "REA.2.5.3-m5_custom",
@@ -2277,21 +2277,21 @@
                     {
                       "name": "label",
                       "value": "m5"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Nahtlose Integration externer SOC/DFIR-Teams in die eigene Infrastruktur."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Automatisieren Sie den Datentransfer zu externen Laboren via API."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Prüfung der Ende-zu-Ende verschlüsselten Transferstrecken."
                     }
                   ],
-                  "prose": "(BSI Baustein )"
+                  "prose": "Nahtlose Integration externer SOC/DFIR-Teams in die eigene Infrastruktur.",
+                  "parts": [
+                    {
+                      "id": "REA.2.5.3-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Automatisieren Sie den Datentransfer zu externen Laboren via API."
+                    },
+                    {
+                      "id": "REA.2.5.3-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung der Ende-zu-Ende verschlüsselten Transferstrecken."
+                    }
+                  ]
                 }
               ]
             }
@@ -2336,21 +2336,21 @@
                     {
                       "name": "label",
                       "value": "m1"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Ursachenforschung findet nur oberflächlich oder gar nicht statt."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Fragen Sie Beteiligte informell nach der vermuteten Ursache."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Prüfung, ob in Abschlussberichten die Ursache genannt wird."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Sicherheitsvorfallsbehandlung SOLLTE eine Vorgehensweise zur Ursachenanalyse und Behandlung verankern."
+                  "prose": "Ursachenforschung findet nur oberflächlich oder gar nicht statt.",
+                  "parts": [
+                    {
+                      "id": "REA.2.6-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Fragen Sie Beteiligte informell nach der vermuteten Ursache."
+                    },
+                    {
+                      "id": "REA.2.6-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung, ob in Abschlussberichten die Ursache genannt wird."
+                    }
+                  ]
                 },
                 {
                   "id": "REA.2.6-m2_custom",
@@ -2384,21 +2384,21 @@
                     {
                       "name": "label",
                       "value": "m2"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Eine einfache '5-Why'-Analyse wird nach Vorfällen durchgeführt."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Nutzen Sie ein Standard-Formular zur Erfassung der Hauptursache."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Sichtung der ausgefüllten Ursachenanalyse-Formulare."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Sicherheitsvorfallsbehandlung SOLLTE eine Vorgehensweise zur Ursachenanalyse und Behandlung verankern."
+                  "prose": "Eine einfache '5-Why'-Analyse wird nach Vorfällen durchgeführt.",
+                  "parts": [
+                    {
+                      "id": "REA.2.6-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Nutzen Sie ein Standard-Formular zur Erfassung der Hauptursache."
+                    },
+                    {
+                      "id": "REA.2.6-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Sichtung der ausgefüllten Ursachenanalyse-Formulare."
+                    }
+                  ]
                 },
                 {
                   "id": "REA.2.6-m3_custom",
@@ -2432,21 +2432,21 @@
                     {
                       "name": "label",
                       "value": "m3"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Sicherheitsvorfallsbehandlung SOLLTE eine Vorgehensweise zur Ursachenanalyse und Behandlung verankern."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Etablieren Sie einen strukturierten Prozess zur Identifikation der Root Cause."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Audit der Root-Cause-Analysis (RCA) Berichte auf Tiefe und Qualität."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Sicherheitsvorfallsbehandlung SOLLTE eine Vorgehensweise zur Ursachenanalyse und Behandlung verankern."
+                  "prose": "Sicherheitsvorfallsbehandlung SOLLTE eine Vorgehensweise zur Ursachenanalyse und Behandlung verankern.",
+                  "parts": [
+                    {
+                      "id": "REA.2.6-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Etablieren Sie einen strukturierten Prozess zur Identifikation der Root Cause."
+                    },
+                    {
+                      "id": "REA.2.6-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Audit der Root-Cause-Analysis (RCA) Berichte auf Tiefe und Qualität."
+                    }
+                  ]
                 },
                 {
                   "id": "REA.2.6-m4_custom",
@@ -2480,21 +2480,21 @@
                     {
                       "name": "label",
                       "value": "m4"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Die Ursachenanalyse müsst direkt in Maßnahmen im Risikomanagement münden."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Verknüpfen Sie die RCA-Ergebnisse mit dem CAPA-Prozess (Corrective Actions)."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Nachverfolgung der Umsetzung aus RCA abgeleiteter Maßnahmen."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Sicherheitsvorfallsbehandlung SOLLTE eine Vorgehensweise zur Ursachenanalyse und Behandlung verankern."
+                  "prose": "Die Ursachenanalyse müsst direkt in Maßnahmen im Risikomanagement münden.",
+                  "parts": [
+                    {
+                      "id": "REA.2.6-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Verknüpfen Sie die RCA-Ergebnisse mit dem CAPA-Prozess (Corrective Actions)."
+                    },
+                    {
+                      "id": "REA.2.6-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Nachverfolgung der Umsetzung aus RCA abgeleiteter Maßnahmen."
+                    }
+                  ]
                 },
                 {
                   "id": "REA.2.6-m5_custom",
@@ -2528,21 +2528,21 @@
                     {
                       "name": "label",
                       "value": "m5"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "KI-gestützte Trendanalyse erkennt systemische Schwachstellen proaktiv."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Automatisieren Sie die Identifikation von Mustern über viele Vorfälle hinweg."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Prüfung der proaktiven Maßnahmenpläne basierend auf Trendanalysen."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Sicherheitsvorfallsbehandlung SOLLTE eine Vorgehensweise zur Ursachenanalyse und Behandlung verankern."
+                  "prose": "KI-gestützte Trendanalyse erkennt systemische Schwachstellen proaktiv.",
+                  "parts": [
+                    {
+                      "id": "REA.2.6-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Automatisieren Sie die Identifikation von Mustern über viele Vorfälle hinweg."
+                    },
+                    {
+                      "id": "REA.2.6-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung der proaktiven Maßnahmenpläne basierend auf Trendanalysen."
+                    }
+                  ]
                 }
               ]
             }
@@ -2587,21 +2587,21 @@
                     {
                       "name": "label",
                       "value": "m1"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Die Sicherheitsmaßnahmen werden nur vereinzelt und ohne festen Prozess nach besonders kritischen Sicherheitsvorfällen auf ihre Wirksamkeit hin geprüft."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Identifizieren Sie nach einem Vorfall informell im Team, welche Maßnahmen offensichtlich versagt haben könnten."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Befragen Sie die IT-Sicherheitsverantwortlichen, ob nach dem letzten Vorfall mündliche Anpassungen an der Konfiguration vorgenommen wurden."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Sicherheitsvorfallsbehandlung SOLLTE bisherige Maßnahmen anhand von Erkenntnissen aus Informationssicherheitsvorfällen {{ insert: param, rea.3.1-prm1 }} überprüfen."
+                  "prose": "Die Sicherheitsmaßnahmen werden nur vereinzelt und ohne festen Prozess nach besonders kritischen Sicherheitsvorfällen auf ihre Wirksamkeit hin geprüft.",
+                  "parts": [
+                    {
+                      "id": "REA.3.1-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Identifizieren Sie nach einem Vorfall informell im Team, welche Maßnahmen offensichtlich versagt haben könnten."
+                    },
+                    {
+                      "id": "REA.3.1-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Befragen Sie die IT-Sicherheitsverantwortlichen, ob nach dem letzten Vorfall mündliche Anpassungen an der Konfiguration vorgenommen wurden."
+                    }
+                  ]
                 },
                 {
                   "id": "REA.3.1-m2_custom",
@@ -2635,21 +2635,21 @@
                     {
                       "name": "label",
                       "value": "m2"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Es existiert eine grundlegende, manuelle Dokumentation von Erkenntnissen aus Vorfällen, die unregelmäßig für Anpassungen herangezogen wird."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Erstellen Sie für jeden abgeschlossenen Vorfall ein kurzes Protokoll mit Empfehlungen für zukünftige Verbesserungen."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Prüfen Sie die letzten drei Vorfallsprotokolle auf enthaltene Verbesserungsvorschläge und deren Status."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Sicherheitsvorfallsbehandlung SOLLTE bisherige Maßnahmen anhand von Erkenntnissen aus Informationssicherheitsvorfällen {{ insert: param, rea.3.1-prm1 }} überprüfen."
+                  "prose": "Es existiert eine grundlegende, manuelle Dokumentation von Erkenntnissen aus Vorfällen, die unregelmäßig für Anpassungen herangezogen wird.",
+                  "parts": [
+                    {
+                      "id": "REA.3.1-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Erstellen Sie für jeden abgeschlossenen Vorfall ein kurzes Protokoll mit Empfehlungen für zukünftige Verbesserungen."
+                    },
+                    {
+                      "id": "REA.3.1-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfen Sie die letzten drei Vorfallsprotokolle auf enthaltene Verbesserungsvorschläge und deren Status."
+                    }
+                  ]
                 },
                 {
                   "id": "REA.3.1-m3_custom",
@@ -2683,21 +2683,21 @@
                     {
                       "name": "label",
                       "value": "m3"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Sicherheitsvorfallsbehandlung SOLLTE bisherige Maßnahmen anhand von Erkenntnissen aus Informationssicherheitsvorfällen {{ insert: param, rea.3.1-prm1 }} überprüfen."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Führen Sie nach jedem Vorfall eine strukturierte Nachbesprechung durch und gleichen Sie die Ergebnisse mit dem ISMS-Maßnahmenplan ab."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Sichten Sie die Lessons-Learned-Berichte und prüfen Sie, ob identifizierte Mängel in den Maßnahmenkatalog übernommen wurden."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Sicherheitsvorfallsbehandlung SOLLTE bisherige Maßnahmen anhand von Erkenntnissen aus Informationssicherheitsvorfällen {{ insert: param, rea.3.1-prm1 }} überprüfen."
+                  "prose": "Sicherheitsvorfallsbehandlung SOLLTE bisherige Maßnahmen anhand von Erkenntnissen aus Informationssicherheitsvorfällen {{ insert: param, rea.3.1-prm1 }} überprüfen.",
+                  "parts": [
+                    {
+                      "id": "REA.3.1-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Führen Sie nach jedem Vorfall eine strukturierte Nachbesprechung durch und gleichen Sie die Ergebnisse mit dem ISMS-Maßnahmenplan ab."
+                    },
+                    {
+                      "id": "REA.3.1-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Sichten Sie die Lessons-Learned-Berichte und prüfen Sie, ob identifizierte Mängel in den Maßnahmenkatalog übernommen wurden."
+                    }
+                  ]
                 },
                 {
                   "id": "REA.3.1-m4_custom",
@@ -2731,21 +2731,21 @@
                     {
                       "name": "label",
                       "value": "m4"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Ein systematischer Review-Prozess nutzt Daten aus dem Incident-Management-Tool, um Maßnahmen proaktiv zu optimieren und die Resilienz zu erhöhen."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Implementieren Sie automatisierte Workflows in Ihrem Incident-Tool, die Review-Tickets für die betroffenen Sicherheitskontrollen erzeugen."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Verifizieren Sie im Ticketing-System (z.B. Bugzilla), dass Maßnahmenänderungen direkt auf Vorfallserkenntnisse referenzieren."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Sicherheitsvorfallsbehandlung SOLLTE bisherige Maßnahmen anhand von Erkenntnissen aus Informationssicherheitsvorfällen {{ insert: param, rea.3.1-prm1 }} überprüfen."
+                  "prose": "Ein systematischer Review-Prozess nutzt Daten aus dem Incident-Management-Tool, um Maßnahmen proaktiv zu optimieren und die Resilienz zu erhöhen.",
+                  "parts": [
+                    {
+                      "id": "REA.3.1-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Implementieren Sie automatisierte Workflows in Ihrem Incident-Tool, die Review-Tickets für die betroffenen Sicherheitskontrollen erzeugen."
+                    },
+                    {
+                      "id": "REA.3.1-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Verifizieren Sie im Ticketing-System (z.B. Bugzilla), dass Maßnahmenänderungen direkt auf Vorfallserkenntnisse referenzieren."
+                    }
+                  ]
                 },
                 {
                   "id": "REA.3.1-m5_custom",
@@ -2779,21 +2779,21 @@
                     {
                       "name": "label",
                       "value": "m5"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "KI-gestützte Analysen und automatisierte Feedback-Loops integrieren Vorfallserkenntnisse in Echtzeit in die präventive Sicherheitsarchitektur."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Integrieren Sie Incident-Daten in eine Threat-Intelligence-Plattform zur automatischen Härtung der Systeme via Infrastructure-as-Code."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Prüfen Sie die API-Logs auf automatisierte Updates der Sicherheits-Policies basierend auf neuen Incident-Pattern. Shell: journalctl -u sec-auto-loop."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Sicherheitsvorfallsbehandlung SOLLTE bisherige Maßnahmen anhand von Erkenntnissen aus Informationssicherheitsvorfällen {{ insert: param, rea.3.1-prm1 }} überprüfen."
+                  "prose": "KI-gestützte Analysen und automatisierte Feedback-Loops integrieren Vorfallserkenntnisse in Echtzeit in die präventive Sicherheitsarchitektur.",
+                  "parts": [
+                    {
+                      "id": "REA.3.1-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Integrieren Sie Incident-Daten in eine Threat-Intelligence-Plattform zur automatischen Härtung der Systeme via Infrastructure-as-Code."
+                    },
+                    {
+                      "id": "REA.3.1-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfen Sie die API-Logs auf automatisierte Updates der Sicherheits-Policies basierend auf neuen Incident-Pattern. Shell: journalctl -u sec-auto-loop."
+                    }
+                  ]
                 }
               ]
             }

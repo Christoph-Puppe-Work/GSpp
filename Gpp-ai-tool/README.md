@@ -43,16 +43,19 @@ The tool is configured via environment variables. Create a `.env` file or export
 
 | Variable | Description | Required |
 | :--- | :--- | :--- |
-| `GCP_PROJECT_ID` | Your Google Cloud Project ID | Yes |
-| `BUCKET_NAME` | GCS bucket for input/output artifacts | Yes |
-| `AI_ENDPOINT_ID` | Vertex AI Endpoint ID (or model name) | Yes |
+| `GCP_PROJECT_ID` | Your Google Cloud Project ID (for Vertex AI / Gemini) | Yes |
 | `REGION` | GCP Region (default: `global`) | No |
-| `SOURCE_PREFIX` | GCS path prefix for source files | Yes |
-| `OUTPUT_PREFIX` | GCS path prefix for output files | Yes |
+| `AI_ENDPOINT_ID` | Optional Vertex AI endpoint/model override (model id otherwise comes from `constants.GROUND_TRUTH_MODEL`) | No |
+| `GROUND_TRUTH_MODEL` / `GROUND_TRUTH_MODEL_PRO` | Override the default Gemini model ids (default: current preview ids) | No |
 | `TEST` | Set to `true` for test mode (default: `false`) | No |
 | `MAX_CONCURRENT_AI_REQUESTS` | Limit parallel AI calls (default: `5`) | No |
+| `OVERWRITE_TEMP_FILES` | Regenerate existing output files (default: `false`) | No |
+| `URL_FETCH_TIMEOUT_SECONDS` | Timeout for remote source downloads (default: `30`) | No |
+| `URL_FETCH_RETRIES` | Retry attempts for remote source downloads (default: `3`) | No |
+| `OUTPUT_ROOT` | Root directory for generated artifacts (default: repository root) | No |
+| `SDT_HELPER_OUTPUT_DIR` / `SDT_PROFILES_REGULAR_DIR` / `SDT_PROFILES_PROCESS_DIR` / `ED23_PROFILES_DIR` | Override individual output directories (default: under `OUTPUT_ROOT`) | No |
 
-> **Note:** `BUCKET_NAME`, `SOURCE_PREFIX`, and `OUTPUT_PREFIX` are still validated at startup (the app will refuse to start without them unless `TEST=true`), but the pipeline no longer reads input data from GCS — input catalogs are fetched from GitHub and generated artifacts are written to local directories (`hilfsdateien/`, `Zielobjektkategorien/profile/`, `ED23-Baustein-profile/`) relative to the repository root.
+> **Note:** The pipeline fetches input catalogs from GitHub and writes generated artifacts to local directories (`hilfsdateien/`, `Zielobjektkategorien/profile/`, `ED23-Baustein-profile/`) relative to the repository root. The former GCS variables (`BUCKET_NAME`, `SOURCE_PREFIX`, `OUTPUT_PREFIX`) and the `google-cloud-storage` dependency have been removed — only `GCP_PROJECT_ID` is required to start the tool.
 
 ## Usage
 

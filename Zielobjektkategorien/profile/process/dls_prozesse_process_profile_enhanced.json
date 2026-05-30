@@ -60,21 +60,21 @@
                     {
                       "name": "label",
                       "value": "m1"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Unzuverlässige Dienstleister werden nur sporadisch und nach schwerwiegenden Vorfällen manuell blockiert."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Reagieren Sie auf offensichtliche Mängel bei Dienstleistern durch informelle Sperren in einzelnen Abteilungen."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Prüfen Sie, ob es Aufzeichnungen über ad-hoc gesperrte Dienstleister nach Sicherheitsvorfällen gibt."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Dienstleistersteuerung SOLLTE unzuverlässige Dienstleister oder Subdienstleister blockieren."
+                  "prose": "Unzuverlässige Dienstleister werden nur sporadisch und nach schwerwiegenden Vorfällen manuell blockiert.",
+                  "parts": [
+                    {
+                      "id": "DLS.3.5-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Reagieren Sie auf offensichtliche Mängel bei Dienstleistern durch informelle Sperren in einzelnen Abteilungen."
+                    },
+                    {
+                      "id": "DLS.3.5-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfen Sie, ob es Aufzeichnungen über ad-hoc gesperrte Dienstleister nach Sicherheitsvorfällen gibt."
+                    }
+                  ]
                 },
                 {
                   "id": "DLS.3.5-m2_custom",
@@ -108,21 +108,21 @@
                     {
                       "name": "label",
                       "value": "m2"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Es existiert eine grundlegende Liste unzuverlässiger Dienstleister, die bei Bedarf manuell konsultiert wird."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Führen Sie eine zentrale Liste (z. B. in einem Wiki), in der negative Erfahrungen mit Dienstleistern vermerkt werden."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Abgleich der aktuellen Dienstleisterliste mit der internen Liste unzuverlässiger Partner via Stichprobe."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Dienstleistersteuerung SOLLTE unzuverlässige Dienstleister oder Subdienstleister blockieren."
+                  "prose": "Es existiert eine grundlegende Liste unzuverlässiger Dienstleister, die bei Bedarf manuell konsultiert wird.",
+                  "parts": [
+                    {
+                      "id": "DLS.3.5-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Führen Sie eine zentrale Liste (z. B. in einem Wiki), in der negative Erfahrungen mit Dienstleistern vermerkt werden."
+                    },
+                    {
+                      "id": "DLS.3.5-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Abgleich der aktuellen Dienstleisterliste mit der internen Liste unzuverlässiger Partner via Stichprobe."
+                    }
+                  ]
                 },
                 {
                   "id": "DLS.3.5-m3_custom",
@@ -156,21 +156,21 @@
                     {
                       "name": "label",
                       "value": "m3"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Dienstleistersteuerung SOLLTE unzuverlässige Dienstleister oder Subdienstleister blockieren."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Legen Sie klare Kriterien für Unzuverlässigkeit fest und definieren Sie einen Prozess für die Blockierung."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Prüfen Sie den Prozess zur Dienstleistersperrung. Audit: `grep 'blocked' /var/log/provider_management.log`."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Dienstleistersteuerung SOLLTE unzuverlässige Dienstleister oder Subdienstleister blockieren."
+                  "prose": "Dienstleistersteuerung SOLLTE unzuverlässige Dienstleister oder Subdienstleister blockieren.",
+                  "parts": [
+                    {
+                      "id": "DLS.3.5-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Legen Sie klare Kriterien für Unzuverlässigkeit fest und definieren Sie einen Prozess für die Blockierung."
+                    },
+                    {
+                      "id": "DLS.3.5-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfen Sie den Prozess zur Dienstleistersperrung. Audit: `grep 'blocked' /var/log/provider_management.log`."
+                    }
+                  ]
                 },
                 {
                   "id": "DLS.3.5-m4_custom",
@@ -204,21 +204,21 @@
                     {
                       "name": "label",
                       "value": "m4"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Ein proaktives Monitoring-System löst bei Leistungsabfall automatisierte Warnungen zur Sperrung aus."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Integrieren Sie Performance-Daten in das Risikomanagement, um frühzeitig Sperrempfehlungen zu erhalten."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Validieren Sie die automatisierte Alarmierung bei SLA-Verletzungen. Check: `python3 check_sla_thresholds.py`."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Dienstleistersteuerung SOLLTE unzuverlässige Dienstleister oder Subdienstleister blockieren."
+                  "prose": "Ein proaktives Monitoring-System löst bei Leistungsabfall automatisierte Warnungen zur Sperrung aus.",
+                  "parts": [
+                    {
+                      "id": "DLS.3.5-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Integrieren Sie Performance-Daten in das Risikomanagement, um frühzeitig Sperrempfehlungen zu erhalten."
+                    },
+                    {
+                      "id": "DLS.3.5-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Validieren Sie die automatisierte Alarmierung bei SLA-Verletzungen. Check: `python3 check_sla_thresholds.py`."
+                    }
+                  ]
                 },
                 {
                   "id": "DLS.3.5-m5_custom",
@@ -252,21 +252,21 @@
                     {
                       "name": "label",
                       "value": "m5"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Die Blockierung erfolgt automatisiert und systemübergreifend durch Integration in das ERP- und Einkaufssystem."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Nutzen Sie Echtzeit-Sicherheitsbewertungen, um Dienstleister bei Compliance-Verstößen sofort technisch zu sperren."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Testen der API-Sperre im Einkaufssystem: `curl -H 'Auth: Admin' https://api.intern/v1/provider/status/DLS_ID`."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Dienstleistersteuerung SOLLTE unzuverlässige Dienstleister oder Subdienstleister blockieren."
+                  "prose": "Die Blockierung erfolgt automatisiert und systemübergreifend durch Integration in das ERP- und Einkaufssystem.",
+                  "parts": [
+                    {
+                      "id": "DLS.3.5-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Nutzen Sie Echtzeit-Sicherheitsbewertungen, um Dienstleister bei Compliance-Verstößen sofort technisch zu sperren."
+                    },
+                    {
+                      "id": "DLS.3.5-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Testen der API-Sperre im Einkaufssystem: `curl -H 'Auth: Admin' https://api.intern/v1/provider/status/DLS_ID`."
+                    }
+                  ]
                 }
               ]
             }

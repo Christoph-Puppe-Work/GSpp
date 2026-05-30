@@ -5,8 +5,6 @@
 #
 
 # --- Google Cloud Platform ---
-# For interacting with Google Cloud Storage.
-google-cloud-storage
 # For interacting with Google's Gemini models via the Google AI SDK.
 google-genai
 
@@ -14,7 +12,3 @@ google-genai
 # For validating JSON data against the OSCAL schemas.
 jsonschema
 regex
-
-# --- API Resilience ---
-# For implementing retry logic with exponential backoff on external API calls.
-tenacity

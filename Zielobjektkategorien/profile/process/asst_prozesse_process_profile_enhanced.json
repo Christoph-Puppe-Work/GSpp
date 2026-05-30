@@ -71,21 +71,21 @@
                     {
                       "name": "label",
                       "value": "m1"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Es existiert eine ad-hoc Erfassung wichtiger Informationen."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Dokumentieren Sie Informationen unsystematisch bei Bedarf."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Prüfen Sie, ob vereinzelt Listen über Datenbestände existieren."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Informationen und Assets SOLLTE ein Inventar der Informationen und damit verbundener Assets dokumentieren."
+                  "prose": "Es existiert eine ad-hoc Erfassung wichtiger Informationen.",
+                  "parts": [
+                    {
+                      "id": "ASST.2.1-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Dokumentieren Sie Informationen unsystematisch bei Bedarf."
+                    },
+                    {
+                      "id": "ASST.2.1-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfen Sie, ob vereinzelt Listen über Datenbestände existieren."
+                    }
+                  ]
                 },
                 {
                   "id": "ASST.2.1-m2_custom",
@@ -119,21 +119,21 @@
                     {
                       "name": "label",
                       "value": "m2"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Ein grundlegendes manuelles Inventar der Informationen ist vorhanden."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Nutzen Sie Tabellenkalkulationen zur Erfassung der Assets."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Sichtung der manuellen Bestandslisten und Abgleich mit Stichproben."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Informationen und Assets SOLLTE ein Inventar der Informationen und damit verbundener Assets dokumentieren."
+                  "prose": "Ein grundlegendes manuelles Inventar der Informationen ist vorhanden.",
+                  "parts": [
+                    {
+                      "id": "ASST.2.1-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Nutzen Sie Tabellenkalkulationen zur Erfassung der Assets."
+                    },
+                    {
+                      "id": "ASST.2.1-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Sichtung der manuellen Bestandslisten und Abgleich mit Stichproben."
+                    }
+                  ]
                 },
                 {
                   "id": "ASST.2.1-m3_custom",
@@ -167,21 +167,21 @@
                     {
                       "name": "label",
                       "value": "m3"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Informationen und Assets SOLLTE ein Inventar der Informationen und damit verbundener Assets dokumentieren."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Die Dokumentation muss systematisch und prozessgesteuert erfolgen, um alle relevanten Informationen und Assets abzudecken."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Prüfen Sie die Vollständigkeit des Inventars gemäß Dokumentation. Führen Sie einen Abgleich mit den tatsächlichen Assets durch."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Informationen und Assets SOLLTE ein Inventar der Informationen und damit verbundener Assets dokumentieren."
+                  "prose": "Informationen und Assets SOLLTE ein Inventar der Informationen und damit verbundener Assets dokumentieren.",
+                  "parts": [
+                    {
+                      "id": "ASST.2.1-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Die Dokumentation muss systematisch und prozessgesteuert erfolgen, um alle relevanten Informationen und Assets abzudecken."
+                    },
+                    {
+                      "id": "ASST.2.1-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfen Sie die Vollständigkeit des Inventars gemäß Dokumentation. Führen Sie einen Abgleich mit den tatsächlichen Assets durch."
+                    }
+                  ]
                 },
                 {
                   "id": "ASST.2.1-m4_custom",
@@ -215,21 +215,21 @@
                     {
                       "name": "label",
                       "value": "m4"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Das Inventar wird automatisiert aktualisiert und überwacht."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Setzen Sie Discovery-Tools zur Identifikation von Assets ein."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Validieren Sie die Korrektheit mittels 'nmap -sV' oder API-Abfragen."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Informationen und Assets SOLLTE ein Inventar der Informationen und damit verbundener Assets dokumentieren."
+                  "prose": "Das Inventar wird automatisiert aktualisiert und überwacht.",
+                  "parts": [
+                    {
+                      "id": "ASST.2.1-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Setzen Sie Discovery-Tools zur Identifikation von Assets ein."
+                    },
+                    {
+                      "id": "ASST.2.1-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Validieren Sie die Korrektheit mittels 'nmap -sV' oder API-Abfragen."
+                    }
+                  ]
                 },
                 {
                   "id": "ASST.2.1-m5_custom",
@@ -263,21 +263,21 @@
                     {
                       "name": "label",
                       "value": "m5"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Vollintegriertes Asset-Management mit Echtzeit-Risikobewertung."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Nutzen Sie Policy-as-Code zur Durchsetzung der Inventarisierung."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Prüfen Sie die Integration in das SIEM mittels automatisierter Skripte."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Informationen und Assets SOLLTE ein Inventar der Informationen und damit verbundener Assets dokumentieren."
+                  "prose": "Vollintegriertes Asset-Management mit Echtzeit-Risikobewertung.",
+                  "parts": [
+                    {
+                      "id": "ASST.2.1-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Nutzen Sie Policy-as-Code zur Durchsetzung der Inventarisierung."
+                    },
+                    {
+                      "id": "ASST.2.1-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfen Sie die Integration in das SIEM mittels automatisierter Skripte."
+                    }
+                  ]
                 }
               ]
             }
@@ -322,21 +322,21 @@
                     {
                       "name": "label",
                       "value": "m1"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "IT-Systeme werden vereinzelt händisch notiert."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Halten Sie Namen wichtiger Server informell fest."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Prüfung vorhandener Notizen oder Handbücher auf Systemlisten."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Informationen und Assets SOLLTE ein Inventar der IT-Systeme einschließlich Identifikationsbezeichnung und letztem bekannten Verbleib dokumentieren."
+                  "prose": "IT-Systeme werden vereinzelt händisch notiert.",
+                  "parts": [
+                    {
+                      "id": "ASST.2.2-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Halten Sie Namen wichtiger Server informell fest."
+                    },
+                    {
+                      "id": "ASST.2.2-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung vorhandener Notizen oder Handbücher auf Systemlisten."
+                    }
+                  ]
                 },
                 {
                   "id": "ASST.2.2-m2_custom",
@@ -370,21 +370,21 @@
                     {
                       "name": "label",
                       "value": "m2"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Eine statische Liste aller IT-Systeme wird gepflegt."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Erfassen Sie Hostnamen und Standorte in einer zentralen Liste."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Abgleich der Liste mit aktiven Systemen im Netzwerk (Ping-Scan)."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Informationen und Assets SOLLTE ein Inventar der IT-Systeme einschließlich Identifikationsbezeichnung und letztem bekannten Verbleib dokumentieren."
+                  "prose": "Eine statische Liste aller IT-Systeme wird gepflegt.",
+                  "parts": [
+                    {
+                      "id": "ASST.2.2-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Erfassen Sie Hostnamen und Standorte in einer zentralen Liste."
+                    },
+                    {
+                      "id": "ASST.2.2-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Abgleich der Liste mit aktiven Systemen im Netzwerk (Ping-Scan)."
+                    }
+                  ]
                 },
                 {
                   "id": "ASST.2.2-m3_custom",
@@ -418,21 +418,21 @@
                     {
                       "name": "label",
                       "value": "m3"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Informationen und Assets SOLLTE ein Inventar der IT-Systeme einschließlich Identifikationsbezeichnung und letztem bekannten Verbleib dokumentieren."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Jedes IT-System muss eindeutig identifizierbar sein. Der Standort oder Zuständigkeitsbereich muss jederzeit nachvollziehbar dokumentiert sein."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Verifizieren Sie die Eindeutigkeit der IDs im Inventar. Führen Sie eine Stichprobenprüfung des Standorts vor Ort durch."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Informationen und Assets SOLLTE ein Inventar der IT-Systeme einschließlich Identifikationsbezeichnung und letztem bekannten Verbleib dokumentieren."
+                  "prose": "Informationen und Assets SOLLTE ein Inventar der IT-Systeme einschließlich Identifikationsbezeichnung und letztem bekannten Verbleib dokumentieren.",
+                  "parts": [
+                    {
+                      "id": "ASST.2.2-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Jedes IT-System muss eindeutig identifizierbar sein. Der Standort oder Zuständigkeitsbereich muss jederzeit nachvollziehbar dokumentiert sein."
+                    },
+                    {
+                      "id": "ASST.2.2-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Verifizieren Sie die Eindeutigkeit der IDs im Inventar. Führen Sie eine Stichprobenprüfung des Standorts vor Ort durch."
+                    }
+                  ]
                 },
                 {
                   "id": "ASST.2.2-m4_custom",
@@ -466,21 +466,21 @@
                     {
                       "name": "label",
                       "value": "m4"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Dynamische Erfassung der IT-Systeme inklusive Status-Monitoring."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Implementieren Sie automatisierte Agenten zur Bestandsaufnahme."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Prüfen Sie die Agenten-Logs und vergleichen Sie den Status per SNMP."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Informationen und Assets SOLLTE ein Inventar der IT-Systeme einschließlich Identifikationsbezeichnung und letztem bekannten Verbleib dokumentieren."
+                  "prose": "Dynamische Erfassung der IT-Systeme inklusive Status-Monitoring.",
+                  "parts": [
+                    {
+                      "id": "ASST.2.2-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Implementieren Sie automatisierte Agenten zur Bestandsaufnahme."
+                    },
+                    {
+                      "id": "ASST.2.2-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfen Sie die Agenten-Logs und vergleichen Sie den Status per SNMP."
+                    }
+                  ]
                 },
                 {
                   "id": "ASST.2.2-m5_custom",
@@ -514,21 +514,21 @@
                     {
                       "name": "label",
                       "value": "m5"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Echtzeit-Synchronisation zwischen Netzwerk-Monitoring und Inventar."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Integrieren Sie SDN-Controller-Daten direkt in das Inventar."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Prüfen Sie die Reaktionszeit bei Systemänderungen per API-Trigger."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Informationen und Assets SOLLTE ein Inventar der IT-Systeme einschließlich Identifikationsbezeichnung und letztem bekannten Verbleib dokumentieren."
+                  "prose": "Echtzeit-Synchronisation zwischen Netzwerk-Monitoring und Inventar.",
+                  "parts": [
+                    {
+                      "id": "ASST.2.2-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Integrieren Sie SDN-Controller-Daten direkt in das Inventar."
+                    },
+                    {
+                      "id": "ASST.2.2-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfen Sie die Reaktionszeit bei Systemänderungen per API-Trigger."
+                    }
+                  ]
                 }
               ]
             }
@@ -573,21 +573,21 @@
                     {
                       "name": "label",
                       "value": "m1"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Genutzte Anwendungen werden unsystematisch dokumentiert."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Führen Sie eine grobe Liste der installierten Software."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Prüfen Sie, ob eine Übersicht über genutzte Software vorliegt."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Informationen und Assets SOLLTE ein Inventar der Anwendungen einschließlich Produktname, Versionsstand, Herkunft und Lizenzierung dokumentieren."
+                  "prose": "Genutzte Anwendungen werden unsystematisch dokumentiert.",
+                  "parts": [
+                    {
+                      "id": "ASST.2.3-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Führen Sie eine grobe Liste der installierten Software."
+                    },
+                    {
+                      "id": "ASST.2.3-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfen Sie, ob eine Übersicht über genutzte Software vorliegt."
+                    }
+                  ]
                 },
                 {
                   "id": "ASST.2.3-m2_custom",
@@ -621,21 +621,21 @@
                     {
                       "name": "label",
                       "value": "m2"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Ein manuelles Software-Inventar mit Versionsständen existiert."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Dokumentieren Sie Produktnamen und Lizenzen in einer Liste."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Prüfen Sie die Softwareliste gegen 'dpkg -l' oder 'rpm -qa'."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Informationen und Assets SOLLTE ein Inventar der Anwendungen einschließlich Produktname, Versionsstand, Herkunft und Lizenzierung dokumentieren."
+                  "prose": "Ein manuelles Software-Inventar mit Versionsständen existiert.",
+                  "parts": [
+                    {
+                      "id": "ASST.2.3-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Dokumentieren Sie Produktnamen und Lizenzen in einer Liste."
+                    },
+                    {
+                      "id": "ASST.2.3-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfen Sie die Softwareliste gegen 'dpkg -l' oder 'rpm -qa'."
+                    }
+                  ]
                 },
                 {
                   "id": "ASST.2.3-m3_custom",
@@ -669,21 +669,21 @@
                     {
                       "name": "label",
                       "value": "m3"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Informationen und Assets SOLLTE ein Inventar der Anwendungen einschließlich Produktname, Versionsstand, Herkunft und Lizenzierung dokumentieren."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Die Dokumentation muss den gesamten Software-Lebenszyklus sowie Lizenzdetails und Bezugsquellen für alle Anwendungen enthalten."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Gleichen Sie Lizenzzertifikate mit dem Inventar ab. Prüfen Sie die Aktualität der Versionsstände in der Dokumentation."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Informationen und Assets SOLLTE ein Inventar der Anwendungen einschließlich Produktname, Versionsstand, Herkunft und Lizenzierung dokumentieren."
+                  "prose": "Informationen und Assets SOLLTE ein Inventar der Anwendungen einschließlich Produktname, Versionsstand, Herkunft und Lizenzierung dokumentieren.",
+                  "parts": [
+                    {
+                      "id": "ASST.2.3-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Die Dokumentation muss den gesamten Software-Lebenszyklus sowie Lizenzdetails und Bezugsquellen für alle Anwendungen enthalten."
+                    },
+                    {
+                      "id": "ASST.2.3-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Gleichen Sie Lizenzzertifikate mit dem Inventar ab. Prüfen Sie die Aktualität der Versionsstände in der Dokumentation."
+                    }
+                  ]
                 },
                 {
                   "id": "ASST.2.3-m4_custom",
@@ -717,21 +717,21 @@
                     {
                       "name": "label",
                       "value": "m4"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Automatisiertes Software-Inventory mit Schwachstellen-Mapping."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Nutzen Sie Open-Source Scanner zur Software-Identifikation."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Prüfen Sie den Output von CVE-Scannern gegen die Inventarliste."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Informationen und Assets SOLLTE ein Inventar der Anwendungen einschließlich Produktname, Versionsstand, Herkunft und Lizenzierung dokumentieren."
+                  "prose": "Automatisiertes Software-Inventory mit Schwachstellen-Mapping.",
+                  "parts": [
+                    {
+                      "id": "ASST.2.3-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Nutzen Sie Open-Source Scanner zur Software-Identifikation."
+                    },
+                    {
+                      "id": "ASST.2.3-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfen Sie den Output von CVE-Scannern gegen die Inventarliste."
+                    }
+                  ]
                 },
                 {
                   "id": "ASST.2.3-m5_custom",
@@ -765,21 +765,21 @@
                     {
                       "name": "label",
                       "value": "m5"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Continuous Application Inventory integriert in CI/CD-Pipelines."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Validieren Sie Software-SBoMs automatisch bei jedem Deployment."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Prüfen Sie die Jenkins- oder GitLab-Logs auf SBoM-Validierung."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Informationen und Assets SOLLTE ein Inventar der Anwendungen einschließlich Produktname, Versionsstand, Herkunft und Lizenzierung dokumentieren."
+                  "prose": "Continuous Application Inventory integriert in CI/CD-Pipelines.",
+                  "parts": [
+                    {
+                      "id": "ASST.2.3-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Validieren Sie Software-SBoMs automatisch bei jedem Deployment."
+                    },
+                    {
+                      "id": "ASST.2.3-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfen Sie die Jenkins- oder GitLab-Logs auf SBoM-Validierung."
+                    }
+                  ]
                 }
               ]
             }
@@ -824,21 +824,21 @@
                     {
                       "name": "label",
                       "value": "m1"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Keine spezifische Dokumentation für Unteranwendungen vorhanden."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Erfassen Sie Sub-Komponenten bei kritischen Fehlern."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Prüfen Sie, ob Komponenten dokumentiert sind."
                     }
                   ],
-                  "prose": "(BSI Baustein )"
+                  "prose": "Keine spezifische Dokumentation für Unteranwendungen vorhanden.",
+                  "parts": [
+                    {
+                      "id": "ASST.2.3.2.1-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Erfassen Sie Sub-Komponenten bei kritischen Fehlern."
+                    },
+                    {
+                      "id": "ASST.2.3.2.1-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfen Sie, ob Komponenten dokumentiert sind."
+                    }
+                  ]
                 },
                 {
                   "id": "ASST.2.3.2.1-m2_custom",
@@ -872,21 +872,21 @@
                     {
                       "name": "label",
                       "value": "m2"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Manuelle Erfassung von Abhängigkeiten zwischen Anwendungen."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Listen Sie Plugins und Bibliotheken manuell auf."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Stichprobenartige Prüfung der Abhängigkeitslisten."
                     }
                   ],
-                  "prose": "(BSI Baustein )"
+                  "prose": "Manuelle Erfassung von Abhängigkeiten zwischen Anwendungen.",
+                  "parts": [
+                    {
+                      "id": "ASST.2.3.2.1-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Listen Sie Plugins und Bibliotheken manuell auf."
+                    },
+                    {
+                      "id": "ASST.2.3.2.1-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Stichprobenartige Prüfung der Abhängigkeitslisten."
+                    }
+                  ]
                 },
                 {
                   "id": "ASST.2.3.2.1-m4_custom",
@@ -920,21 +920,21 @@
                     {
                       "name": "label",
                       "value": "m4"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Automatisierte Abhängigkeitsanalyse in der Laufzeitumgebung."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Nutzen Sie Dependency-Check Tools für alle Anwendungen."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Prüfen Sie die Berichte automatisierter Dependency-Scanner."
                     }
                   ],
-                  "prose": "(BSI Baustein )"
+                  "prose": "Automatisierte Abhängigkeitsanalyse in der Laufzeitumgebung.",
+                  "parts": [
+                    {
+                      "id": "ASST.2.3.2.1-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Nutzen Sie Dependency-Check Tools für alle Anwendungen."
+                    },
+                    {
+                      "id": "ASST.2.3.2.1-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfen Sie die Berichte automatisierter Dependency-Scanner."
+                    }
+                  ]
                 },
                 {
                   "id": "ASST.2.3.2.1-m5_custom",
@@ -968,21 +968,21 @@
                     {
                       "name": "label",
                       "value": "m5"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Vollständiger Graph der Software-Lieferkette (Supply Chain)."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Integrieren Sie Attestierungen für alle Sub-Komponenten."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Validieren Sie die Integrität der Kette mittels Signaturprüfung."
                     }
                   ],
-                  "prose": "(BSI Baustein )"
+                  "prose": "Vollständiger Graph der Software-Lieferkette (Supply Chain).",
+                  "parts": [
+                    {
+                      "id": "ASST.2.3.2.1-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Integrieren Sie Attestierungen für alle Sub-Komponenten."
+                    },
+                    {
+                      "id": "ASST.2.3.2.1-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Validieren Sie die Integrität der Kette mittels Signaturprüfung."
+                    }
+                  ]
                 }
               ]
             }
@@ -1027,21 +1027,21 @@
                     {
                       "name": "label",
                       "value": "m1"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Einzelsysteme werden bei Defekt ad-hoc ersetzt."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Kaufen Sie Hardware erst bei Ausfall nach."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Prüfen Sie die Beschaffungszeiten bei Hardwareausfällen."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Informationen und Assets SOLLTE eine Reserve physischer Assets verankern."
+                  "prose": "Einzelsysteme werden bei Defekt ad-hoc ersetzt.",
+                  "parts": [
+                    {
+                      "id": "ASST.3.14-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Kaufen Sie Hardware erst bei Ausfall nach."
+                    },
+                    {
+                      "id": "ASST.3.14-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfen Sie die Beschaffungszeiten bei Hardwareausfällen."
+                    }
+                  ]
                 },
                 {
                   "id": "ASST.3.14-m2_custom",
@@ -1075,21 +1075,21 @@
                     {
                       "name": "label",
                       "value": "m2"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Ein kleiner Bestand an kritischen Ersatzteilen wird vorgehalten."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Lagern Sie wichtige Komponenten wie Netzteile und Platten."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Sichtprüfung des Ersatzteillagers auf Vollständigkeit."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Informationen und Assets SOLLTE eine Reserve physischer Assets verankern."
+                  "prose": "Ein kleiner Bestand an kritischen Ersatzteilen wird vorgehalten.",
+                  "parts": [
+                    {
+                      "id": "ASST.3.14-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Lagern Sie wichtige Komponenten wie Netzteile und Platten."
+                    },
+                    {
+                      "id": "ASST.3.14-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Sichtprüfung des Ersatzteillagers auf Vollständigkeit."
+                    }
+                  ]
                 },
                 {
                   "id": "ASST.3.14-m3_custom",
@@ -1123,21 +1123,21 @@
                     {
                       "name": "label",
                       "value": "m3"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Informationen und Assets SOLLTE eine Reserve physischer Assets verankern."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Es muss ein definierter Vorrat an kritischen Ersatzgeräten und Komponenten vorhanden sein, um definierte Wiederherstellungszeiten einzuhalten."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Prüfen Sie das Reserveverzeichnis und gleichen Sie es mit dem Soll-Bestand ab. Testen Sie die Einsatzbereitschaft der Reserve."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Informationen und Assets SOLLTE eine Reserve physischer Assets verankern."
+                  "prose": "Informationen und Assets SOLLTE eine Reserve physischer Assets verankern.",
+                  "parts": [
+                    {
+                      "id": "ASST.3.14-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Es muss ein definierter Vorrat an kritischen Ersatzgeräten und Komponenten vorhanden sein, um definierte Wiederherstellungszeiten einzuhalten."
+                    },
+                    {
+                      "id": "ASST.3.14-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfen Sie das Reserveverzeichnis und gleichen Sie es mit dem Soll-Bestand ab. Testen Sie die Einsatzbereitschaft der Reserve."
+                    }
+                  ]
                 },
                 {
                   "id": "ASST.3.14-m4_custom",
@@ -1171,21 +1171,21 @@
                     {
                       "name": "label",
                       "value": "m4"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Vorkonfigurierte Reservegeräte stehen zum Soforteinsatz bereit."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Halten Sie fertig installierte 'Cold Standby' Geräte vor."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Führen Sie einen Test-Switchover auf ein Reservegerät durch."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Informationen und Assets SOLLTE eine Reserve physischer Assets verankern."
+                  "prose": "Vorkonfigurierte Reservegeräte stehen zum Soforteinsatz bereit.",
+                  "parts": [
+                    {
+                      "id": "ASST.3.14-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Halten Sie fertig installierte 'Cold Standby' Geräte vor."
+                    },
+                    {
+                      "id": "ASST.3.14-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Führen Sie einen Test-Switchover auf ein Reservegerät durch."
+                    }
+                  ]
                 },
                 {
                   "id": "ASST.3.14-m5_custom",
@@ -1219,21 +1219,21 @@
                     {
                       "name": "label",
                       "value": "m5"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Automatisierte Provisionierung von Ersatzhardware im Rechenzentrum."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Nutzen Sie Infrastructure-as-Code für schnelles Deployment."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Messen Sie die Zeit vom Hardware-Plug bis zum produktiven Status."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Informationen und Assets SOLLTE eine Reserve physischer Assets verankern."
+                  "prose": "Automatisierte Provisionierung von Ersatzhardware im Rechenzentrum.",
+                  "parts": [
+                    {
+                      "id": "ASST.3.14-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Nutzen Sie Infrastructure-as-Code für schnelles Deployment."
+                    },
+                    {
+                      "id": "ASST.3.14-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Messen Sie die Zeit vom Hardware-Plug bis zum produktiven Status."
+                    }
+                  ]
                 }
               ]
             }
@@ -1278,21 +1278,21 @@
                     {
                       "name": "label",
                       "value": "m1"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Geräte werden informell zwischen Kollegen verliehen."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Notieren Sie die Leihe auf einem informellen Zettel."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Prüfen Sie, ob Leihvorgänge überhaupt bekannt sind."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Informationen und Assets KANN einen ausreichenden Ausleihbestand verankern."
+                  "prose": "Geräte werden informell zwischen Kollegen verliehen.",
+                  "parts": [
+                    {
+                      "id": "ASST.3.15-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Notieren Sie die Leihe auf einem informellen Zettel."
+                    },
+                    {
+                      "id": "ASST.3.15-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfen Sie, ob Leihvorgänge überhaupt bekannt sind."
+                    }
+                  ]
                 },
                 {
                   "id": "ASST.3.15-m2_custom",
@@ -1326,21 +1326,21 @@
                     {
                       "name": "label",
                       "value": "m2"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Ein manuelles Leihbuch für physische Assets wird geführt."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Dokumentieren Sie Name, Datum und Gerät bei der Ausgabe."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Abgleich des Leihbuchs mit dem physischen Bestand."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Informationen und Assets KANN einen ausreichenden Ausleihbestand verankern."
+                  "prose": "Ein manuelles Leihbuch für physische Assets wird geführt.",
+                  "parts": [
+                    {
+                      "id": "ASST.3.15-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Dokumentieren Sie Name, Datum und Gerät bei der Ausgabe."
+                    },
+                    {
+                      "id": "ASST.3.15-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Abgleich des Leihbuchs mit dem physischen Bestand."
+                    }
+                  ]
                 },
                 {
                   "id": "ASST.3.15-m3_custom",
@@ -1374,21 +1374,21 @@
                     {
                       "name": "label",
                       "value": "m3"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Informationen und Assets KANN einen ausreichenden Ausleihbestand verankern."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Ein separater Pool an Geräten für die kurzzeitige Ausleihe sollte etabliert werden, um den regulären Betrieb nicht zu beeinträchtigen."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Sichten Sie die Ausleih-Historie und prüfen Sie die Verfügbarkeit freier Geräte im Pool."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Informationen und Assets KANN einen ausreichenden Ausleihbestand verankern."
+                  "prose": "Informationen und Assets KANN einen ausreichenden Ausleihbestand verankern.",
+                  "parts": [
+                    {
+                      "id": "ASST.3.15-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Ein separater Pool an Geräten für die kurzzeitige Ausleihe sollte etabliert werden, um den regulären Betrieb nicht zu beeinträchtigen."
+                    },
+                    {
+                      "id": "ASST.3.15-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Sichten Sie die Ausleih-Historie und prüfen Sie die Verfügbarkeit freier Geräte im Pool."
+                    }
+                  ]
                 },
                 {
                   "id": "ASST.3.15-m4_custom",
@@ -1422,21 +1422,21 @@
                     {
                       "name": "label",
                       "value": "m4"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Digitales Ausleihsystem mit automatischer Rückgabeerinnerung."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Verwenden Sie eine Web-App zur Verwaltung der Leihvorgänge."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Prüfen Sie die Versandsystematik der Mahnungen bei Überziehung."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Informationen und Assets KANN einen ausreichenden Ausleihbestand verankern."
+                  "prose": "Digitales Ausleihsystem mit automatischer Rückgabeerinnerung.",
+                  "parts": [
+                    {
+                      "id": "ASST.3.15-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Verwenden Sie eine Web-App zur Verwaltung der Leihvorgänge."
+                    },
+                    {
+                      "id": "ASST.3.15-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfen Sie die Versandsystematik der Mahnungen bei Überziehung."
+                    }
+                  ]
                 },
                 {
                   "id": "ASST.3.15-m5_custom",
@@ -1470,21 +1470,21 @@
                     {
                       "name": "label",
                       "value": "m5"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Self-Service Kiosk für Hardware-Ausleihe mit RFID-Tracking."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Vollautomatisierte Erfassung der Asset-Bewegung per Sensoren."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Prüfen Sie die Korrektheit der automatischen Inventarbuchungen."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Informationen und Assets KANN einen ausreichenden Ausleihbestand verankern."
+                  "prose": "Self-Service Kiosk für Hardware-Ausleihe mit RFID-Tracking.",
+                  "parts": [
+                    {
+                      "id": "ASST.3.15-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Vollautomatisierte Erfassung der Asset-Bewegung per Sensoren."
+                    },
+                    {
+                      "id": "ASST.3.15-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfen Sie die Korrektheit der automatischen Inventarbuchungen."
+                    }
+                  ]
                 }
               ]
             }
@@ -1529,21 +1529,21 @@
                     {
                       "name": "label",
                       "value": "m1"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Wichtige Dokumente werden vereinzelt als vertraulich markiert."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Nutzen Sie manuelle Stempel für vertrauliche Akten."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Sichtprüfung von Stichproben auf Kennzeichnungen."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Informationen und Assets SOLLTE die Kennzeichnung von Informationen verankern."
+                  "prose": "Wichtige Dokumente werden vereinzelt als vertraulich markiert.",
+                  "parts": [
+                    {
+                      "id": "ASST.3.3-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Nutzen Sie manuelle Stempel für vertrauliche Akten."
+                    },
+                    {
+                      "id": "ASST.3.3-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Sichtprüfung von Stichproben auf Kennzeichnungen."
+                    }
+                  ]
                 },
                 {
                   "id": "ASST.3.3-m2_custom",
@@ -1577,21 +1577,21 @@
                     {
                       "name": "label",
                       "value": "m2"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Eine Richtlinie zur Kennzeichnung von Dokumenten existiert."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Verwenden Sie Wasserzeichen in Office-Anwendungen."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Prüfen Sie Dokumentvorlagen auf integrierte Markierungen."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Informationen und Assets SOLLTE die Kennzeichnung von Informationen verankern."
+                  "prose": "Eine Richtlinie zur Kennzeichnung von Dokumenten existiert.",
+                  "parts": [
+                    {
+                      "id": "ASST.3.3-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Verwenden Sie Wasserzeichen in Office-Anwendungen."
+                    },
+                    {
+                      "id": "ASST.3.3-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfen Sie Dokumentvorlagen auf integrierte Markierungen."
+                    }
+                  ]
                 },
                 {
                   "id": "ASST.3.3-m3_custom",
@@ -1625,21 +1625,21 @@
                     {
                       "name": "label",
                       "value": "m3"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Informationen und Assets SOLLTE die Kennzeichnung von Informationen verankern."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Informationen müssen entsprechend ihrer Schutzbedarfs-Einstufung (z. B. Vertraulichkeit) physisch oder digital eindeutig gekennzeichnet werden."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Überprüfen Sie die Einhaltung der Kennzeichnungsrichtlinie anhand von Stichproben in verschiedenen Formaten (Papier, Digital)."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Informationen und Assets SOLLTE die Kennzeichnung von Informationen verankern."
+                  "prose": "Informationen und Assets SOLLTE die Kennzeichnung von Informationen verankern.",
+                  "parts": [
+                    {
+                      "id": "ASST.3.3-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Informationen müssen entsprechend ihrer Schutzbedarfs-Einstufung (z. B. Vertraulichkeit) physisch oder digital eindeutig gekennzeichnet werden."
+                    },
+                    {
+                      "id": "ASST.3.3-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Überprüfen Sie die Einhaltung der Kennzeichnungsrichtlinie anhand von Stichproben in verschiedenen Formaten (Papier, Digital)."
+                    }
+                  ]
                 },
                 {
                   "id": "ASST.3.3-m4_custom",
@@ -1673,21 +1673,21 @@
                     {
                       "name": "label",
                       "value": "m4"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Automatisierte Metadaten-Kennzeichnung bei der Erstellung."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Erzwingen Sie Klassifizierung beim Speichern von Dateien."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Prüfen Sie Dateimetadaten mittels Skript auf Klassifizierungs-Tags."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Informationen und Assets SOLLTE die Kennzeichnung von Informationen verankern."
+                  "prose": "Automatisierte Metadaten-Kennzeichnung bei der Erstellung.",
+                  "parts": [
+                    {
+                      "id": "ASST.3.3-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Erzwingen Sie Klassifizierung beim Speichern von Dateien."
+                    },
+                    {
+                      "id": "ASST.3.3-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfen Sie Dateimetadaten mittels Skript auf Klassifizierungs-Tags."
+                    }
+                  ]
                 },
                 {
                   "id": "ASST.3.3-m5_custom",
@@ -1721,21 +1721,21 @@
                     {
                       "name": "label",
                       "value": "m5"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Data Loss Prevention (DLP) basiert auf Kennzeichnung."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Integrieren Sie automatisierte Inhaltsanalyse zur Klassifizierung."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Testen Sie das Blockieren unmarkierter Daten beim Mail-Versand."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Informationen und Assets SOLLTE die Kennzeichnung von Informationen verankern."
+                  "prose": "Data Loss Prevention (DLP) basiert auf Kennzeichnung.",
+                  "parts": [
+                    {
+                      "id": "ASST.3.3-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Integrieren Sie automatisierte Inhaltsanalyse zur Klassifizierung."
+                    },
+                    {
+                      "id": "ASST.3.3-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Testen Sie das Blockieren unmarkierter Daten beim Mail-Versand."
+                    }
+                  ]
                 }
               ]
             }
@@ -1780,21 +1780,21 @@
                     {
                       "name": "label",
                       "value": "m1"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Veröffentlichungen erfolgen nach informeller Absprache."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Holen Sie die Erlaubnis mündlich beim Vorgesetzten ein."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Befragung der Mitarbeiter zum Genehmigungsablauf."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Informationen und Assets SOLLTE Veröffentlichungen durch {{ insert: param, asst.4.3-prm1 }} autorisieren."
+                  "prose": "Veröffentlichungen erfolgen nach informeller Absprache.",
+                  "parts": [
+                    {
+                      "id": "ASST.4.3-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Holen Sie die Erlaubnis mündlich beim Vorgesetzten ein."
+                    },
+                    {
+                      "id": "ASST.4.3-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Befragung der Mitarbeiter zum Genehmigungsablauf."
+                    }
+                  ]
                 },
                 {
                   "id": "ASST.4.3-m2_custom",
@@ -1828,21 +1828,21 @@
                     {
                       "name": "label",
                       "value": "m2"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Ein schriftliches Freigabeverfahren ist etabliert."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Verwenden Sie ein einfaches Formular zur Autorisierung."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Sichtung der unterschriebenen Freigabeformulare."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Informationen und Assets SOLLTE Veröffentlichungen durch {{ insert: param, asst.4.3-prm1 }} autorisieren."
+                  "prose": "Ein schriftliches Freigabeverfahren ist etabliert.",
+                  "parts": [
+                    {
+                      "id": "ASST.4.3-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Verwenden Sie ein einfaches Formular zur Autorisierung."
+                    },
+                    {
+                      "id": "ASST.4.3-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Sichtung der unterschriebenen Freigabeformulare."
+                    }
+                  ]
                 },
                 {
                   "id": "ASST.4.3-m3_custom",
@@ -1876,21 +1876,21 @@
                     {
                       "name": "label",
                       "value": "m3"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Informationen und Assets SOLLTE Veröffentlichungen durch {{ insert: param, asst.4.3-prm1 }} autorisieren."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Jede Form der Veröffentlichung muss durch die in {{ insert: param, asst.4.3-prm1 }} definierte Stelle geprüft und explizit freigegeben werden."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Prüfen Sie die Freigabeprotokolle gegen die Liste der Veröffentlichungen. Verifizieren Sie die Autorisierung durch {{ insert: param, asst.4.3-prm1 }}."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Informationen und Assets SOLLTE Veröffentlichungen durch {{ insert: param, asst.4.3-prm1 }} autorisieren."
+                  "prose": "Informationen und Assets SOLLTE Veröffentlichungen durch {{ insert: param, asst.4.3-prm1 }} autorisieren.",
+                  "parts": [
+                    {
+                      "id": "ASST.4.3-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Jede Form der Veröffentlichung muss durch die in {{ insert: param, asst.4.3-prm1 }} definierte Stelle geprüft und explizit freigegeben werden."
+                    },
+                    {
+                      "id": "ASST.4.3-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfen Sie die Freigabeprotokolle gegen die Liste der Veröffentlichungen. Verifizieren Sie die Autorisierung durch {{ insert: param, asst.4.3-prm1 }}."
+                    }
+                  ]
                 },
                 {
                   "id": "ASST.4.3-m4_custom",
@@ -1924,21 +1924,21 @@
                     {
                       "name": "label",
                       "value": "m4"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Workflow-basiertes Freigabesystem für alle Publikationen."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Nutzen Sie ein Ticketsystem zur Dokumentation der Freigabe."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Audit-Log Prüfung im Ticketsystem auf korrekte Rollenfreigabe."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Informationen und Assets SOLLTE Veröffentlichungen durch {{ insert: param, asst.4.3-prm1 }} autorisieren."
+                  "prose": "Workflow-basiertes Freigabesystem für alle Publikationen.",
+                  "parts": [
+                    {
+                      "id": "ASST.4.3-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Nutzen Sie ein Ticketsystem zur Dokumentation der Freigabe."
+                    },
+                    {
+                      "id": "ASST.4.3-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Audit-Log Prüfung im Ticketsystem auf korrekte Rollenfreigabe."
+                    }
+                  ]
                 },
                 {
                   "id": "ASST.4.3-m5_custom",
@@ -1972,21 +1972,21 @@
                     {
                       "name": "label",
                       "value": "m5"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Automatisierte Integritätsprüfung vor Veröffentlichung."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Integrieren Sie kryptografische Signaturen in den Workflow."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Prüfen Sie die Signaturgültigkeit veröffentlichter Dokumente."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Informationen und Assets SOLLTE Veröffentlichungen durch {{ insert: param, asst.4.3-prm1 }} autorisieren."
+                  "prose": "Automatisierte Integritätsprüfung vor Veröffentlichung.",
+                  "parts": [
+                    {
+                      "id": "ASST.4.3-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Integrieren Sie kryptografische Signaturen in den Workflow."
+                    },
+                    {
+                      "id": "ASST.4.3-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfen Sie die Signaturgültigkeit veröffentlichter Dokumente."
+                    }
+                  ]
                 }
               ]
             }
@@ -2031,21 +2031,21 @@
                     {
                       "name": "label",
                       "value": "m1"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Verlust von Assets wird informell gemeldet."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Informieren Sie Ihren Vorgesetzten bei Verlust eines Geräts."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Prüfen Sie, ob Verlustmeldungen dokumentiert wurden."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Informationen und Assets SOLLTE eine Vorgehensweise beim Abhandenkommen von Assets verankern."
+                  "prose": "Verlust von Assets wird informell gemeldet.",
+                  "parts": [
+                    {
+                      "id": "ASST.6.1-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Informieren Sie Ihren Vorgesetzten bei Verlust eines Geräts."
+                    },
+                    {
+                      "id": "ASST.6.1-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfen Sie, ob Verlustmeldungen dokumentiert wurden."
+                    }
+                  ]
                 },
                 {
                   "id": "ASST.6.1-m2_custom",
@@ -2079,21 +2079,21 @@
                     {
                       "name": "label",
                       "value": "m2"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Ein Prozess zur Verlustmeldung ist grob beschrieben."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Füllen Sie ein Meldeformular bei Asset-Verlust aus."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Prüfen Sie vorhandene Verlustprotokolle auf Vollständigkeit."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Informationen und Assets SOLLTE eine Vorgehensweise beim Abhandenkommen von Assets verankern."
+                  "prose": "Ein Prozess zur Verlustmeldung ist grob beschrieben.",
+                  "parts": [
+                    {
+                      "id": "ASST.6.1-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Füllen Sie ein Meldeformular bei Asset-Verlust aus."
+                    },
+                    {
+                      "id": "ASST.6.1-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfen Sie vorhandene Verlustprotokolle auf Vollständigkeit."
+                    }
+                  ]
                 },
                 {
                   "id": "ASST.6.1-m3_custom",
@@ -2127,21 +2127,21 @@
                     {
                       "name": "label",
                       "value": "m3"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Informationen und Assets SOLLTE eine Vorgehensweise beim Abhandenkommen von Assets verankern."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Es muss ein dokumentierter Prozess existieren, der Meldewege, Sperrmaßnahmen und Risikobewertungen beim Verlust von Assets festlegt."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Prüfen Sie die Prozessbeschreibung. Verifizieren Sie anhand eines Vorfalls, ob Sperrungen (z. B. Accounts, Zertifikate) erfolgt sind."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Informationen und Assets SOLLTE eine Vorgehensweise beim Abhandenkommen von Assets verankern."
+                  "prose": "Informationen und Assets SOLLTE eine Vorgehensweise beim Abhandenkommen von Assets verankern.",
+                  "parts": [
+                    {
+                      "id": "ASST.6.1-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Es muss ein dokumentierter Prozess existieren, der Meldewege, Sperrmaßnahmen und Risikobewertungen beim Verlust von Assets festlegt."
+                    },
+                    {
+                      "id": "ASST.6.1-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfen Sie die Prozessbeschreibung. Verifizieren Sie anhand eines Vorfalls, ob Sperrungen (z. B. Accounts, Zertifikate) erfolgt sind."
+                    }
+                  ]
                 },
                 {
                   "id": "ASST.6.1-m4_custom",
@@ -2175,21 +2175,21 @@
                     {
                       "name": "label",
                       "value": "m4"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Automatisierte Sperrung bei Verlustmeldung (Remote Wipe)."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Nutzen Sie MDM-Lösungen zur sofortigen Datenlöschung."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Simulieren Sie einen Verlust und prüfen Sie die MDM-Logs auf 'Wipe'."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Informationen und Assets SOLLTE eine Vorgehensweise beim Abhandenkommen von Assets verankern."
+                  "prose": "Automatisierte Sperrung bei Verlustmeldung (Remote Wipe).",
+                  "parts": [
+                    {
+                      "id": "ASST.6.1-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Nutzen Sie MDM-Lösungen zur sofortigen Datenlöschung."
+                    },
+                    {
+                      "id": "ASST.6.1-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Simulieren Sie einen Verlust und prüfen Sie die MDM-Logs auf 'Wipe'."
+                    }
+                  ]
                 },
                 {
                   "id": "ASST.6.1-m5_custom",
@@ -2223,21 +2223,21 @@
                     {
                       "name": "label",
                       "value": "m5"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Präventive Risikoanalyse und Echtzeit-Asset-Tracking."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Verwenden Sie Geofencing zur Alarmierung bei Asset-Bewegung."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Prüfen Sie die Alarmierungskette bei Verlassen definierter Zonen."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Informationen und Assets SOLLTE eine Vorgehensweise beim Abhandenkommen von Assets verankern."
+                  "prose": "Präventive Risikoanalyse und Echtzeit-Asset-Tracking.",
+                  "parts": [
+                    {
+                      "id": "ASST.6.1-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Verwenden Sie Geofencing zur Alarmierung bei Asset-Bewegung."
+                    },
+                    {
+                      "id": "ASST.6.1-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfen Sie die Alarmierungskette bei Verlassen definierter Zonen."
+                    }
+                  ]
                 }
               ]
             }
@@ -2282,21 +2282,21 @@
                     {
                       "name": "label",
                       "value": "m1"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Wiedergefundene Geräte werden einfach weiterbenutzt."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Prüfen Sie kurz, ob das Gerät noch funktioniert."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Befragung zum Umgang mit zurückgekehrten Geräten."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Informationen und Assets SOLLTE eine Vorgehensweise bei Rückkehr von abhandengekommenen Assets verankern."
+                  "prose": "Wiedergefundene Geräte werden einfach weiterbenutzt.",
+                  "parts": [
+                    {
+                      "id": "ASST.6.2-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Prüfen Sie kurz, ob das Gerät noch funktioniert."
+                    },
+                    {
+                      "id": "ASST.6.2-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Befragung zum Umgang mit zurückgekehrten Geräten."
+                    }
+                  ]
                 },
                 {
                   "id": "ASST.6.2-m2_custom",
@@ -2330,21 +2330,21 @@
                     {
                       "name": "label",
                       "value": "m2"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Rückkehrende Assets werden manuell auf Manipulation geprüft."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Führen Sie eine Sichtprüfung und Virenscan durch."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Prüfen Sie Prüfprotokolle für zurückgekehrte Hardware."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Informationen und Assets SOLLTE eine Vorgehensweise bei Rückkehr von abhandengekommenen Assets verankern."
+                  "prose": "Rückkehrende Assets werden manuell auf Manipulation geprüft.",
+                  "parts": [
+                    {
+                      "id": "ASST.6.2-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Führen Sie eine Sichtprüfung und Virenscan durch."
+                    },
+                    {
+                      "id": "ASST.6.2-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfen Sie Prüfprotokolle für zurückgekehrte Hardware."
+                    }
+                  ]
                 },
                 {
                   "id": "ASST.6.2-m3_custom",
@@ -2378,21 +2378,21 @@
                     {
                       "name": "label",
                       "value": "m3"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Informationen und Assets SOLLTE eine Vorgehensweise bei Rückkehr von abhandengekommener Assets verankern."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Bei Rückkehr eines Assets muss eine formale Prüfung auf Integrität und Manipulation erfolgen, bevor es wieder in Betrieb genommen wird."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Überprüfen Sie das Verfahren zur Wiederaufnahme. Kontrollieren Sie die Dokumentation der Integritätsprüfungen für zurückgekehrte Assets."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Informationen und Assets SOLLTE eine Vorgehensweise bei Rückkehr von abhandengekommenen Assets verankern."
+                  "prose": "Informationen und Assets SOLLTE eine Vorgehensweise bei Rückkehr von abhandengekommener Assets verankern.",
+                  "parts": [
+                    {
+                      "id": "ASST.6.2-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Bei Rückkehr eines Assets muss eine formale Prüfung auf Integrität und Manipulation erfolgen, bevor es wieder in Betrieb genommen wird."
+                    },
+                    {
+                      "id": "ASST.6.2-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Überprüfen Sie das Verfahren zur Wiederaufnahme. Kontrollieren Sie die Dokumentation der Integritätsprüfungen für zurückgekehrte Assets."
+                    }
+                  ]
                 },
                 {
                   "id": "ASST.6.2-m4_custom",
@@ -2426,21 +2426,21 @@
                     {
                       "name": "label",
                       "value": "m4"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Zentralisierte forensische Untersuchung zurückgekehrter Assets."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Führen Sie einen Hash-Abgleich der Systemdateien durch."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Prüfen Sie die Integrität mittels 'aide' oder 'tripwire' Berichten."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Informationen und Assets SOLLTE eine Vorgehensweise bei Rückkehr von abhandengekommenen Assets verankern."
+                  "prose": "Zentralisierte forensische Untersuchung zurückgekehrter Assets.",
+                  "parts": [
+                    {
+                      "id": "ASST.6.2-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Führen Sie einen Hash-Abgleich der Systemdateien durch."
+                    },
+                    {
+                      "id": "ASST.6.2-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfen Sie die Integrität mittels 'aide' oder 'tripwire' Berichten."
+                    }
+                  ]
                 },
                 {
                   "id": "ASST.6.2-m5_custom",
@@ -2474,21 +2474,21 @@
                     {
                       "name": "label",
                       "value": "m5"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Vollautomatisierte Neuinstallation (Re-Imaging) bei Rückkehr."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Löschen und flashen Sie das Gerät vor der Wiederverwendung."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Prüfen Sie PXE-Logs auf Neuinstallation zurückgekehrter IDs."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Informationen und Assets SOLLTE eine Vorgehensweise bei Rückkehr von abhandengekommenen Assets verankern."
+                  "prose": "Vollautomatisierte Neuinstallation (Re-Imaging) bei Rückkehr.",
+                  "parts": [
+                    {
+                      "id": "ASST.6.2-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Löschen und flashen Sie das Gerät vor der Wiederverwendung."
+                    },
+                    {
+                      "id": "ASST.6.2-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfen Sie PXE-Logs auf Neuinstallation zurückgekehrter IDs."
+                    }
+                  ]
                 }
               ]
             }
@@ -2533,21 +2533,21 @@
                     {
                       "name": "label",
                       "value": "m1"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Veräußerungen von Assets erfolgen ad-hoc ohne einen formalisierten oder dokumentierten Autorisierungsprozess."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "In dieser Phase werden Assets ohne zentrale Steuerung veräußert. Es gibt keine festen Verantwortlichkeiten für die Freigabe."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Prüfung von Verkaufsbelegen auf das Vorhandensein informeller Absprachen oder fehlender Genehmigungen."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Informationen und Assets SOLLTE Veräußerungen von Assets durch {{ insert: param, asst.7.6-prm1 }} autorisieren."
+                  "prose": "Veräußerungen von Assets erfolgen ad-hoc ohne einen formalisierten oder dokumentierten Autorisierungsprozess.",
+                  "parts": [
+                    {
+                      "id": "ASST.7.6-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "In dieser Phase werden Assets ohne zentrale Steuerung veräußert. Es gibt keine festen Verantwortlichkeiten für die Freigabe."
+                    },
+                    {
+                      "id": "ASST.7.6-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung von Verkaufsbelegen auf das Vorhandensein informeller Absprachen oder fehlender Genehmigungen."
+                    }
+                  ]
                 },
                 {
                   "id": "ASST.7.6-m2_custom",
@@ -2581,21 +2581,21 @@
                     {
                       "name": "label",
                       "value": "m2"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Veräußerungen werden grundsätzlich durch direkte Vorgesetzte manuell freigegeben, jedoch ohne einheitliche Richtlinie."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Die Autorisierung erfolgt meist per E-Mail oder handschriftlich. Es existiert eine einfache Liste der abgegangenen Assets."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Einsichtnahme in Stichproben von E-Mail-Verläufen oder manuellen Listen zur Bestätigung von Asset-Abgängen."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Informationen und Assets SOLLTE Veräußerungen von Assets durch {{ insert: param, asst.7.6-prm1 }} autorisieren."
+                  "prose": "Veräußerungen werden grundsätzlich durch direkte Vorgesetzte manuell freigegeben, jedoch ohne einheitliche Richtlinie.",
+                  "parts": [
+                    {
+                      "id": "ASST.7.6-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Die Autorisierung erfolgt meist per E-Mail oder handschriftlich. Es existiert eine einfache Liste der abgegangenen Assets."
+                    },
+                    {
+                      "id": "ASST.7.6-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Einsichtnahme in Stichproben von E-Mail-Verläufen oder manuellen Listen zur Bestätigung von Asset-Abgängen."
+                    }
+                  ]
                 },
                 {
                   "id": "ASST.7.6-m3_custom",
@@ -2629,21 +2629,21 @@
                     {
                       "name": "label",
                       "value": "m3"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Informationen und Assets SOLLTE Veräußerungen von Assets durch {{ insert: param, asst.7.6-prm1 }} autorisieren."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Stellen Sie sicher, dass jede Veräußerung explizit durch die definierte Rolle autorisiert und im Inventar dokumentiert wird."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Prüfung der Autorisierungsbelege durch {{ insert: param, asst.7.6-prm1 }}. Abgleich via CLI: `diff old_inventory.csv new_inventory.csv`."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Informationen und Assets SOLLTE Veräußerungen von Assets durch {{ insert: param, asst.7.6-prm1 }} autorisieren."
+                  "prose": "Informationen und Assets SOLLTE Veräußerungen von Assets durch {{ insert: param, asst.7.6-prm1 }} autorisieren.",
+                  "parts": [
+                    {
+                      "id": "ASST.7.6-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Stellen Sie sicher, dass jede Veräußerung explizit durch die definierte Rolle autorisiert und im Inventar dokumentiert wird."
+                    },
+                    {
+                      "id": "ASST.7.6-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung der Autorisierungsbelege durch {{ insert: param, asst.7.6-prm1 }}. Abgleich via CLI: `diff old_inventory.csv new_inventory.csv`."
+                    }
+                  ]
                 },
                 {
                   "id": "ASST.7.6-m4_custom",
@@ -2677,21 +2677,21 @@
                     {
                       "name": "label",
                       "value": "m4"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Die Autorisierung von Veräußerungen ist in einen digitalen Workflow integriert, der Revisionssicherheit garantiert."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Nutzen Sie ein Asset-Management-System, das Freigaben erzwingt, bevor ein Asset im System als veräußert markiert werden kann."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Audit der Workflow-Logs im Management-System. Überprüfung der digitalen Signaturen der Rolle {{ insert: param, asst.7.6-prm1 }}."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Informationen und Assets SOLLTE Veräußerungen von Assets durch {{ insert: param, asst.7.6-prm1 }} autorisieren."
+                  "prose": "Die Autorisierung von Veräußerungen ist in einen digitalen Workflow integriert, der Revisionssicherheit garantiert.",
+                  "parts": [
+                    {
+                      "id": "ASST.7.6-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Nutzen Sie ein Asset-Management-System, das Freigaben erzwingt, bevor ein Asset im System als veräußert markiert werden kann."
+                    },
+                    {
+                      "id": "ASST.7.6-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Audit der Workflow-Logs im Management-System. Überprüfung der digitalen Signaturen der Rolle {{ insert: param, asst.7.6-prm1 }}."
+                    }
+                  ]
                 },
                 {
                   "id": "ASST.7.6-m5_custom",
@@ -2725,21 +2725,21 @@
                     {
                       "name": "label",
                       "value": "m5"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Ein automatisiertes Governance-System steuert den gesamten Lifecycle und verknüpft Autorisierung mit Compliance-Prüfungen."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Integrieren Sie Policy-as-Code, um sicherzustellen, dass nur Assets zur Veräußerung freigegeben werden, die alle Löschvorgaben erfüllen."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Automatisierte Validierung der API-Logs zwischen Asset-Management und Finanzsystemen zur Verifizierung der Freigabepolicies."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Informationen und Assets SOLLTE Veräußerungen von Assets durch {{ insert: param, asst.7.6-prm1 }} autorisieren."
+                  "prose": "Ein automatisiertes Governance-System steuert den gesamten Lifecycle und verknüpft Autorisierung mit Compliance-Prüfungen.",
+                  "parts": [
+                    {
+                      "id": "ASST.7.6-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Integrieren Sie Policy-as-Code, um sicherzustellen, dass nur Assets zur Veräußerung freigegeben werden, die alle Löschvorgaben erfüllen."
+                    },
+                    {
+                      "id": "ASST.7.6-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Automatisierte Validierung der API-Logs zwischen Asset-Management und Finanzsystemen zur Verifizierung der Freigabepolicies."
+                    }
+                  ]
                 }
               ]
             }
@@ -2784,21 +2784,21 @@
                     {
                       "name": "label",
                       "value": "m1"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Beschriftungen und Eigentumshinweise werden nur vereinzelt oder bei offensichtlicher Notwendigkeit entfernt."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Es gibt keine festen Arbeitsanweisungen zur Neutralisierung von Hardware vor dem Verlassen der Institution."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Stichprobenartige Sichtprüfung von zur Entsorgung oder zum Verkauf bereitstehenden Altgeräten auf Firmenaufkleber."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Informationen und Assets SOLLTE alle der Institution zuzuordnenden Beschriftungen vor der Veräußerung von Assets löschen."
+                  "prose": "Beschriftungen und Eigentumshinweise werden nur vereinzelt oder bei offensichtlicher Notwendigkeit entfernt.",
+                  "parts": [
+                    {
+                      "id": "ASST.7.7-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Es gibt keine festen Arbeitsanweisungen zur Neutralisierung von Hardware vor dem Verlassen der Institution."
+                    },
+                    {
+                      "id": "ASST.7.7-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Stichprobenartige Sichtprüfung von zur Entsorgung oder zum Verkauf bereitstehenden Altgeräten auf Firmenaufkleber."
+                    }
+                  ]
                 },
                 {
                   "id": "ASST.7.7-m2_custom",
@@ -2832,21 +2832,21 @@
                     {
                       "name": "label",
                       "value": "m2"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Physische Kennzeichnungen werden vor der Veräußerung manuell durch das Personal entfernt, meist nach einer einfachen Checkliste."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Mitarbeiter sind angewiesen, offensichtliche Labels abzukratzen. Der Prozess ist jedoch nicht lückenlos dokumentiert."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Überprüfung des Entsorgungsbereichs auf Einhaltung der manuellen Entfernungsanweisungen durch Sichtkontrolle."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Informationen und Assets SOLLTE alle der Institution zuzuordnenden Beschriftungen vor der Veräußerung von Assets löschen."
+                  "prose": "Physische Kennzeichnungen werden vor der Veräußerung manuell durch das Personal entfernt, meist nach einer einfachen Checkliste.",
+                  "parts": [
+                    {
+                      "id": "ASST.7.7-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Mitarbeiter sind angewiesen, offensichtliche Labels abzukratzen. Der Prozess ist jedoch nicht lückenlos dokumentiert."
+                    },
+                    {
+                      "id": "ASST.7.7-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Überprüfung des Entsorgungsbereichs auf Einhaltung der manuellen Entfernungsanweisungen durch Sichtkontrolle."
+                    }
+                  ]
                 },
                 {
                   "id": "ASST.7.7-m3_custom",
@@ -2880,21 +2880,21 @@
                     {
                       "name": "label",
                       "value": "m3"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Informationen und Assets SOLLTE alle der Institution zuzuordnenden Beschriftungen vor der Veräußerung von Assets löschen."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Entfernen Sie alle Aufkleber, Inventarnummern und internen Markierungen, die Rückschlüsse auf die Organisation zulassen könnten."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Sichtprüfung veräußerungsbereiter Assets. Abgleich mit dem Decommissioning-Protokoll auf Vollständigkeit der Neutralisierung."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Informationen und Assets SOLLTE alle der Institution zuzuordnenden Beschriftungen vor der Veräußerung von Assets löschen."
+                  "prose": "Informationen und Assets SOLLTE alle der Institution zuzuordnenden Beschriftungen vor der Veräußerung von Assets löschen.",
+                  "parts": [
+                    {
+                      "id": "ASST.7.7-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Entfernen Sie alle Aufkleber, Inventarnummern und internen Markierungen, die Rückschlüsse auf die Organisation zulassen könnten."
+                    },
+                    {
+                      "id": "ASST.7.7-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Sichtprüfung veräußerungsbereiter Assets. Abgleich mit dem Decommissioning-Protokoll auf Vollständigkeit der Neutralisierung."
+                    }
+                  ]
                 },
                 {
                   "id": "ASST.7.7-m4_custom",
@@ -2928,21 +2928,21 @@
                     {
                       "name": "label",
                       "value": "m4"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Ein systematischer Prozess mit detaillierten Checklisten stellt die physische und digitale Neutralisierung sicher."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Einsatz spezialisierter Werkzeuge zur rückstandsfreien Entfernung und Prüfung auf versteckte Kennzeichnungen (z. B. in Gehäusen)."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Audit der Decommissioning-Checklisten und stichprobenartige Prüfung der neutralisierten Hardware auf Restspuren."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Informationen und Assets SOLLTE alle der Institution zuzuordnenden Beschriftungen vor der Veräußerung von Assets löschen."
+                  "prose": "Ein systematischer Prozess mit detaillierten Checklisten stellt die physische und digitale Neutralisierung sicher.",
+                  "parts": [
+                    {
+                      "id": "ASST.7.7-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Einsatz spezialisierter Werkzeuge zur rückstandsfreien Entfernung und Prüfung auf versteckte Kennzeichnungen (z. B. in Gehäusen)."
+                    },
+                    {
+                      "id": "ASST.7.7-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Audit der Decommissioning-Checklisten und stichprobenartige Prüfung der neutralisierten Hardware auf Restspuren."
+                    }
+                  ]
                 },
                 {
                   "id": "ASST.7.7-m5_custom",
@@ -2976,21 +2976,21 @@
                     {
                       "name": "label",
                       "value": "m5"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Die Neutralisierung ist integraler Bestandteil eines zertifizierten Asset-Recycling-Prozesses mit lückenloser Dokumentation."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Automatisierte Erfassung des Zustands per Fotodokumentation vor und nach der Neutralisierung als Teil des Asset-Entsorgungs-Workflows."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Prüfung der digital signierten Entsorgungszertifikate des Dienstleisters auf Einhaltung der Neutralisierungsstandards."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Informationen und Assets SOLLTE alle der Institution zuzuordnenden Beschriftungen vor der Veräußerung von Assets löschen."
+                  "prose": "Die Neutralisierung ist integraler Bestandteil eines zertifizierten Asset-Recycling-Prozesses mit lückenloser Dokumentation.",
+                  "parts": [
+                    {
+                      "id": "ASST.7.7-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Automatisierte Erfassung des Zustands per Fotodokumentation vor und nach der Neutralisierung als Teil des Asset-Entsorgungs-Workflows."
+                    },
+                    {
+                      "id": "ASST.7.7-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung der digital signierten Entsorgungszertifikate des Dienstleisters auf Einhaltung der Neutralisierungsstandards."
+                    }
+                  ]
                 }
               ]
             }

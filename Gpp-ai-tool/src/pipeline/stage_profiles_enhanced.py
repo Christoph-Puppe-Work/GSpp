@@ -348,12 +348,14 @@ async def run_stage_profiles_enhanced():
             if is_process:
                 input_filename = f"{sanitized_name}_process_profile.json"
                 input_path = os.path.join(SDT_PROFILES_PROCESS_DIR, input_filename)
-                output_filename = f"{sanitized_name}_process_profile_enhanced.json"
             else:
                 input_filename = f"{sanitized_name}_profile.json"
                 input_path = os.path.join(SDT_PROFILES_REGULAR_DIR, input_filename)
-                output_filename = f"{sanitized_name}_profile_enhanced.json"
 
+            # ED23 profiles are per-Baustein, so the filename combines the
+            # Zielobjektkategorie, the Baustein ID (kept readable, e.g. INF.8)
+            # and the Baustein name.
+            output_filename = f"{sanitized_name}_{baustein_id}_{sanitize_filename(baustein_title)}.json"
             output_path = os.path.join(ED23_PROFILES_DIR, output_filename)
 
             await generate_enhanced_profile(baustein_id, baustein_title, zielobjekt_name, input_path, output_path, bsi_catalog, gpp_controls_lookup, ai_client)

@@ -69,18 +69,41 @@ To run the full pipeline, omit the stage argument:
 ./scripts/run_local.sh
 ```
 
+### Data Sources (Inputs)
+
+All input data is fetched from GitHub at runtime (see `src/constants.py`):
+
+- **G++ catalog** — the Grundschutz++ Kompendium (the target catalog of the migration).
+- **BSI Ed2023 catalog** — the source BSI IT-Grundschutz Edition 2023 requirements.
+- **`target_object_categories.csv`** — the Zielobjektkategorien (UUID, name, and hierarchy via `ChildOfUUID`).
+
 ### Available Pipeline Stages
 
-You can run specific stages using the `--stage` argument. The full pipeline runs them in this order:
+You can run specific stages using the `--stage` argument. The full pipeline runs them in the order below. Stages 1–2 are deterministic prep/mapping, 3–4 are the AI-driven migration mapping, and 5–6 build and enrich the OSCAL output.
 
-- `stage_strip`: Pre-processes and cleans source data.
-- `stage_gpp`: Determines applicable G++ controls for target objects.
-- `stage_match_bausteine`: Maps BSI Bausteine to G++ Zielobjekte.
-- `stage_matching`: Performs semantic matching of requirements to controls.
-- `stage_profiles`: Generates the base OSCAL profiles from the G++ Zielobjektkategorien (target-object categories) and process Bausteine. Each profile imports the G++ catalog and includes the controls mapped to that target object. Output is split into:
-  - `Zielobjektkategorien/profile/regular/<name>_profile.json` — regular Zielobjektkategorien.
-  - `Zielobjektkategorien/profile/process/<name>_process_profile.json` — process profiles (Methodik and `*_prozesse`).
-- `stage_profiles_enhanced`: Enriches the base profiles with AI-generated maturity-level statements (OSCAL `alter` blocks) derived from the BSI Ed2023 catalog. Output is written to `ED23-Baustein-profile/`.
+| # | Stage | AI? | What it does |
+|---|---|---|---|
+| 1 | `stage_strip` | No | Reads the large G++ and BSI JSON catalogs and flattens them into compact markdown tables (`hilfsdateien/*_stripped*.md`), separating controls that target objects from ISMS-level ones. Pre-processing that makes later prompts and lookups manageable. |
+| 2 | `stage_gpp` | No | Deterministic mapping: walks the G++ catalog and the Zielobjektkategorien CSV (including the parent hierarchy) to compute, for each Zielobjekt, the set of applicable G++ controls. Writes `hilfsdateien/zielobjekt_controls.json`. |
+| 3 | `stage_match_bausteine` | **Yes** | For each BSI Baustein, asks the model which G++ Zielobjekt it corresponds to (title + description → best match). Writes the Baustein→Zielobjekt map (`hilfsdateien/baustein_zielobjekt.json`). |
+| 4 | `stage_matching` | **Yes** | The precise 1:1 migration step: for each Baustein/Zielobjekt pair, maps individual BSI *Anforderungen* to individual G++ *controls* semantically. Writes `hilfsdateien/controls_anforderungen.json`. |
+| 5 | `stage_profiles` | No | Generates the **base OSCAL profiles** — one per Zielobjekt — each importing the G++ catalog and including that Zielobjekt's controls. Output is split into `Zielobjektkategorien/profile/regular/` and `…/process/` (Methodik and `*_prozesse`). |
+| 6 | `stage_profiles_enhanced` | **Yes** | Takes the base profiles and, using the BSI Ed2023 requirement text from the matching, generates maturity-level statements (levels 1–5) plus classifications (NIST class, ISMS phase, CIA) as OSCAL `alter` blocks. Writes the per-Baustein enhanced profiles to `ED23-Baustein-profile/` as `[Zielobjektkategorie]_[Baustein-ID]_[Baustein-Name].json`. |
+
+#### Data flow
+
+```
+catalogs + CSV (GitHub)
+        │
+  1 strip ──► markdown tables (context)
+  2 gpp   ──► zielobjekt_controls.json        (Zielobjekt → G++ controls)        [deterministic]
+  3 match_bausteine ──► baustein_zielobjekt.json    (Baustein → Zielobjekt)      [AI]
+  4 matching ──► controls_anforderungen.json  (BSI Anforderung → G++ control)    [AI]
+        │
+  5 profiles ──► base profiles (import G++ catalog)   Zielobjektkategorien/profile/{regular,process}/
+        │
+  6 profiles_enhanced ──► enriched profiles (+ alter blocks)   ED23-Baustein-profile/   [AI]
+```
 
 ### Running a single stage locally
 

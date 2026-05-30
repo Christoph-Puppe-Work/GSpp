@@ -58,29 +58,36 @@ copy; it falls back to the AI value only if no original prose exists. Applied id
 both enhancement stages and covered by an isolated function test (L3 == original prose,
 other levels still AI-generated, guard edge-cases hold).
 
-### 2.3. Inconsistent Profile Consumption in One-Page-Apps
-**Location:** `One-Page-Apps/*.html`
-**Description:** Only `pruefung_ap_ar.html` (`parseProfileEntry`, ~L243-259) and
-`ssp_ausfuellen.html` (~L1006-1033) read `modify.alters[].adds[].parts[name=="statement"]`.
-`Baustein_2_Profile.html`, `ssp_generator.html`, and `GSpp-Viewer.html` read only
-`imports[].include-controls[].with-ids` and therefore **silently ignore the maturity-level
-statements** the pipeline produces.
-**Impact:** The same artifact renders completely different content depending on the tool;
-maturity data is lost in three of the apps.
-**Recommendation:** Extract a single shared parser (use `parseProfileEntry` as the
-template) and reuse it across all apps that display control content.
+### 2.3. Inconsistent Profile Consumption in One-Page-Apps — ✅ RESOLVED
+**Location:** `One-Page-Apps/GSpp-Viewer.html` (and the documented contract)
+**Re-assessment:** The original framing was partly overstated. Of the three "imports-only"
+apps, two **should** read only control IDs by design: `ssp_generator.html` *generates* an SSP
+that references the profile (the maturity is consumed downstream in `ssp_ausfuellen.html`),
+and `Baustein_2_Profile.html` *authors* a profile. `GSpp-Viewer.html` was the one genuine gap
+— a catalog viewer that ignored the maturity in an enhanced profile.
+**Fix:** `GSpp-Viewer.html` now parses `modify.alters[].adds[].parts` (new prose+nested-parts
+shape with old-props fallback, per the contract) into `activeProfileMaturity`, and renders a
+collapsible "Reifegrade (ED2023)" box per control (`renderMaturity` /
+`refreshMaturityDisplay`) showing the m1–m5 statement plus guidance/assessment. The two
+maturity-displaying apps (`pruefung_ap_ar.html`, `ssp_ausfuellen.html`) were already updated
+in the 3.1 work. **Verified live** (headless preview): loading the G++ catalog + an enhanced
+profile renders 70 maturity boxes; ARCH.7.1 shows all five distinct levels with guidance
+("Hinweis") and assessment ("Prüfung").
+**Still open (low):** the parser is now duplicated across three apps; extracting one shared
+helper would be cleaner, but each app is a standalone single-file tool, so the contract doc
+(3.9) is the pragmatic single source of truth for now.
 
-### 2.4. Apps Do Not Resolve the Imported Catalog
-**Location:** `One-Page-Apps/*.html` (notably `ssp_ausfuellen.html` `loadReferencedResource`)
-**Description:** Generated profiles are intentionally thin — they carry control **IDs** plus
-AI **additions**; the actual control titles, prose, and baseline statements live in the
-remote G++ catalog referenced by `imports[].href`. Most apps never fetch that catalog;
-`ssp_ausfuellen.html` attempts a fetch (expecting a `.catalog`) but does not merge it into a
-resolved control set.
-**Impact:** Controls render without their substance (title/prose/baseline), so the user sees
-only IDs and AI-generated maturity additions — an incomplete picture.
-**Recommendation:** Implement proper OSCAL profile resolution: fetch `imports[].href`, build
-a control lookup, then overlay the `alters` additions. Cache the catalog (it is ~4 MB).
+### 2.4. Apps Do Not Resolve the Imported Catalog — ✅ RESOLVED (re-assessed)
+**Location:** `One-Page-Apps/{pruefung_ap_ar,ssp_ausfuellen,GSpp-Viewer}.html`
+**Re-assessment:** Also overstated. Every app that actually **displays** control content
+already resolves a catalog: `pruefung_ap_ar.html` fetches the G++ catalog (`CATALOG_URL`,
+building a `cid → {title, prose}` map); `ssp_ausfuellen.html` follows `import-profile.href` →
+the profile's `imports[].href` → `processCatalogData` (building `catalogControlMap` /
+`catalogParamMap`); and `GSpp-Viewer.html` is catalog-first (it loads the full catalog and
+uses the profile only as an ID filter). The apps that *don't* fetch the catalog
+(`ssp_generator.html`, `Baustein_2_Profile.html`) only need IDs.
+**Outcome:** No code change required for the display apps beyond 2.3; the premise "most apps
+never fetch the catalog" did not hold on inspection. Documented here so it isn't re-litigated.
 
 ## 3. Medium Priority Issues
 

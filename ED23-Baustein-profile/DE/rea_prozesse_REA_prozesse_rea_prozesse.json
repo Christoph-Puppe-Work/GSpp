@@ -1,0 +1,3473 @@
+{
+  "profile": {
+    "uuid": "da5ac709-8103-42c0-857b-ae58487ae165",
+    "metadata": {
+      "title": "REA_prozesse REA_prozesse - Enhanced (ED2023)",
+      "last-modified": "2026-05-30T09:12:24.635913+00:00",
+      "version": "0.0.1",
+      "oscal-version": "1.1.3"
+    },
+    "imports": [
+      {
+        "href": "https://raw.githubusercontent.com/BSI-Bund/Stand-der-Technik-Bibliothek/refs/heads/main/Anwenderkataloge/Grundschutz%2B%2B/Grundschutz%2B%2B-catalog.json",
+        "include-controls": [
+          {
+            "with-ids": [
+              "REA.1.3",
+              "REA.2.1",
+              "REA.2.2",
+              "REA.2.3",
+              "REA.2.4",
+              "REA.2.5",
+              "REA.2.5.1",
+              "REA.2.5.2",
+              "REA.2.5.3",
+              "REA.2.6",
+              "REA.2.6.1",
+              "REA.2.6.2",
+              "REA.2.6.2.1",
+              "REA.2.6.3",
+              "REA.2.6.4",
+              "REA.2.6.5",
+              "REA.3.1",
+              "REA.3.1.1"
+            ]
+          }
+        ]
+      }
+    ],
+    "modify": {
+      "alters": [
+        {
+          "control-id": "REA.1.3",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "REA.1.3_stm",
+              "parts": [
+                {
+                  "id": "REA.1.3-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Übungen zur Vorfallsbehandlung finden vereinzelt und ohne festen Plan statt."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Führen Sie bei Bedarf informelle Übungen durch, um grundlegende Abläufe zu testen."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Prüfen Sie, ob in den letzten 12 Monaten mindestens eine Übung dokumentiert wurde."
+                    }
+                  ],
+                  "prose": "(BSI Baustein REA_prozesse) Sicherheitsvorfallsbehandlung KANN die Abwehrfähigkeit durch Übungen {{ insert: param, rea.1.3-prm1 }} überprüfen."
+                },
+                {
+                  "id": "REA.1.3-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Es existiert ein grober Zeitplan für Übungen zur Vorfallsbehandlung."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Planen Sie jährliche Übungen ein, die die wichtigsten Reaktionsschritte abdecken."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Kontrollieren Sie den Übungsplan und die Teilnehmerlisten der letzten Session."
+                    }
+                  ],
+                  "prose": "(BSI Baustein REA_prozesse) Sicherheitsvorfallsbehandlung KANN die Abwehrfähigkeit durch Übungen {{ insert: param, rea.1.3-prm1 }} überprüfen."
+                },
+                {
+                  "id": "REA.1.3-m3_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m3"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Sicherheitsvorfallsbehandlung KANN die Abwehrfähigkeit durch Übungen {{ insert: param, rea.1.3-prm1 }} überprüfen."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Führen Sie die Übungen gemäß der im Parameter definierten Häufigkeit und Tiefe durch."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Verifizieren Sie die Durchführungsprotokolle gegen die Vorgaben in {{ insert: param, rea.1.3-prm1 }}."
+                    }
+                  ],
+                  "prose": "(BSI Baustein REA_prozesse) Sicherheitsvorfallsbehandlung KANN die Abwehrfähigkeit durch Übungen {{ insert: param, rea.1.3-prm1 }} überprüfen."
+                },
+                {
+                  "id": "REA.1.3-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Übungen zur Vorfallsbehandlung werden proaktiv und mit komplexen Szenarien durchgeführt."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Integrieren Sie unangekündigte Übungen und externe Experten zur Bewertung der Reaktion."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Prüfen Sie die detaillierten Nachbereitungsberichte auf Identifikation von Schwachstellen."
+                    }
+                  ],
+                  "prose": "(BSI Baustein REA_prozesse) Sicherheitsvorfallsbehandlung KANN die Abwehrfähigkeit durch Übungen {{ insert: param, rea.1.3-prm1 }} überprüfen."
+                },
+                {
+                  "id": "REA.1.3-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Kontinuierliche Simulationen und Red-Teaming validieren die Abwehrfähigkeit."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Nutzen Sie automatisierte Breach and Attack Simulation Tools zur ständigen Überprüfung."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Werten Sie die Ergebnisse der automatisierten Simulationsplattformen und deren Korrekturmaßnahmen aus."
+                    }
+                  ],
+                  "prose": "(BSI Baustein REA_prozesse) Sicherheitsvorfallsbehandlung KANN die Abwehrfähigkeit durch Übungen {{ insert: param, rea.1.3-prm1 }} überprüfen."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "control-id": "REA.2.1",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "REA.2.1_stm",
+              "parts": [
+                {
+                  "id": "REA.2.1-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Meldungen werden sporadisch priorisiert, oft basierend auf subjektiver Einschätzung."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Versuchen Sie, kritische Meldungen zuerst zu bearbeiten."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Befragen Sie Mitarbeiter zur Vorgehensweise bei der Meldungssortierung."
+                    }
+                  ],
+                  "prose": "(BSI Baustein REA_prozesse) Sicherheitsvorfallsbehandlung SOLLTE Meldungen einer Priorität zuweisen."
+                },
+                {
+                  "id": "REA.2.1-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Es gibt einfache Kriterien zur Priorisierung von Sicherheitsmeldungen."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Nutzen Sie eine Liste von Kategorien, um Vorfällen eine Wichtigkeit zuzuweisen."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Prüfen Sie Stichprobenhaft im Ticket-System, ob Prioritäten vergeben wurden."
+                    }
+                  ],
+                  "prose": "(BSI Baustein REA_prozesse) Sicherheitsvorfallsbehandlung SOLLTE Meldungen einer Priorität zuweisen."
+                },
+                {
+                  "id": "REA.2.1-m3_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m3"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Sicherheitsvorfallsbehandlung SOLLTE Meldungen einer Priorität zuweisen."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Implementieren Sie ein fest definiertes Schema zur Triage aller eingehenden Meldungen."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Auditieren Sie die Triage-Liste auf Konsistenz mit dem definierten Priorisierungsschema."
+                    }
+                  ],
+                  "prose": "(BSI Baustein REA_prozesse) Sicherheitsvorfallsbehandlung SOLLTE Meldungen einer Priorität zuweisen."
+                },
+                {
+                  "id": "REA.2.1-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Die Priorisierung erfolgt teilautomatisiert unter Einbeziehung der Asset-Kritikalität."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Verknüpfen Sie Meldedaten mit einer Asset-Datenbank zur automatischen Einstufung."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Prüfen Sie die automatische Regelbasis im SIEM oder Incident Management Tool."
+                    }
+                  ],
+                  "prose": "(BSI Baustein REA_prozesse) Sicherheitsvorfallsbehandlung SOLLTE Meldungen einer Priorität zuweisen."
+                },
+                {
+                  "id": "REA.2.1-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Dynamisches Risk-Scoring priorisiert Meldungen in Echtzeit basierend auf der Bedrohungslage."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Nutzen Sie Threat Intelligence zur automatischen Anpassung der Prioritäten."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Validieren Sie den Algorithmus zur Echtzeit-Priorisierung durch Test-Events."
+                    }
+                  ],
+                  "prose": "(BSI Baustein REA_prozesse) Sicherheitsvorfallsbehandlung SOLLTE Meldungen einer Priorität zuweisen."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "control-id": "REA.2.2",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "REA.2.2_stm",
+              "parts": [
+                {
+                  "id": "REA.2.2-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Technical",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Manuelle Skripte stehen für vereinzelte Notfallmaßnahmen zur Verfügung."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Halten Sie Skripte bereit, um z.B. Ports manuell zu sperren."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Prüfen Sie das Vorhandensein funktionaler Administrations-Skripte."
+                    }
+                  ],
+                  "prose": "(BSI Baustein REA_prozesse) Sicherheitsvorfallsbehandlung KANN eine automatische Erstreaktion aktivieren."
+                },
+                {
+                  "id": "REA.2.2-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Technical",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Standardisierte Reaktionsschritte sind für häufige Vorfälle vorbereitet."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Erstellen Sie Anleitungen für manuelle Isolationsmaßnahmen bei Malware-Befall."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Sichten Sie die Dokumentation der Standard-Reaktionsschritte."
+                    }
+                  ],
+                  "prose": "(BSI Baustein REA_prozesse) Sicherheitsvorfallsbehandlung KANN eine automatische Erstreaktion aktivieren."
+                },
+                {
+                  "id": "REA.2.2-m3_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Technical",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m3"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Sicherheitsvorfallsbehandlung KANN eine automatische Erstreaktion aktivieren."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Aktivieren Sie Mechanismen, die bei Erkennung vordefinierter Muster sofort reagieren."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Überprüfen Sie die Konfiguration der automatischen Sperr- oder Isolationsregeln."
+                    }
+                  ],
+                  "prose": "(BSI Baustein REA_prozesse) Sicherheitsvorfallsbehandlung KANN eine automatische Erstreaktion aktivieren."
+                },
+                {
+                  "id": "REA.2.2-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Technical",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Automatisierte Playbooks führen komplexe Erstreaktionen (SOAR) aus."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Nutzen Sie Orchestrierungs-Tools zur Koordination der Reaktion über verschiedene Systeme."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Führen Sie einen Testlauf eines automatisierten Playbooks durch."
+                    }
+                  ],
+                  "prose": "(BSI Baustein REA_prozesse) Sicherheitsvorfallsbehandlung KANN eine automatische Erstreaktion aktivieren."
+                },
+                {
+                  "id": "REA.2.2-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Technical",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Intelligente, kontextsensitive Systeme reagieren autonom auf unbekannte Bedrohungen."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Implementieren Sie Lösungen, die auf Basis von Verhaltensanalyse autonom eingreifen."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Prüfen Sie die Logfiles auf erfolgreiche autonome Abwehraktionen ohne Fehlalarme."
+                    }
+                  ],
+                  "prose": "(BSI Baustein REA_prozesse) Sicherheitsvorfallsbehandlung KANN eine automatische Erstreaktion aktivieren."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "control-id": "REA.2.3",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "REA.2.3_stm",
+              "parts": [
+                {
+                  "id": "REA.2.3-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Vorfälle werden formlos, z.B. in E-Mails oder Notizen, dokumentiert."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Halten Sie die wichtigsten Eckpunkte eines Vorfalls schriftlich fest."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Prüfen Sie auf vorhandene Korrespondenz zu vergangenen Vorfällen."
+                    }
+                  ],
+                  "prose": "(BSI Baustein REA_prozesse) Sicherheitsvorfallsbehandlung SOLLTE den Vorfall dokumentieren."
+                },
+                {
+                  "id": "REA.2.3-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Vorfälle werden in einem zentralen, aber nicht spezialisierten System erfasst."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Nutzen Sie ein allgemeines Ticket-System zur Dokumentation der Vorfälle."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Sichten Sie die Ticket-Historie auf Vollständigkeit der Einträge."
+                    }
+                  ],
+                  "prose": "(BSI Baustein REA_prozesse) Sicherheitsvorfallsbehandlung SOLLTE den Vorfall dokumentieren."
+                },
+                {
+                  "id": "REA.2.3-m3_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m3"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Sicherheitsvorfallsbehandlung SOLLTE den Vorfall dokumentieren."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Verwenden Sie ein standardisiertes Format zur lückenlosen Dokumentation aller Vorfälle."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Prüfen Sie Incident-Reports auf Einhaltung der Dokumentationsstandards."
+                    }
+                  ],
+                  "prose": "(BSI Baustein REA_prozesse) Sicherheitsvorfallsbehandlung SOLLTE den Vorfall dokumentieren."
+                },
+                {
+                  "id": "REA.2.3-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Die Dokumentation erfolgt revisionssicher und zeitnah in einem Case-Management-Tool."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Stellen Sie sicher, dass alle Änderungen an der Dokumentation protokolliert werden."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Verifizieren Sie die Revisionshistorie beispielhafter Incident-Files."
+                    }
+                  ],
+                  "prose": "(BSI Baustein REA_prozesse) Sicherheitsvorfallsbehandlung SOLLTE den Vorfall dokumentieren."
+                },
+                {
+                  "id": "REA.2.3-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Integrierte Wissensdatenbanken verknüpfen Vorfälle automatisch mit Lösungen."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Automatisieren Sie die Erstellung von Abschlussberichten aus den Prozessdaten."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Prüfen Sie die automatische Korrelation zwischen Vorfällen und Wissensdatenbank."
+                    }
+                  ],
+                  "prose": "(BSI Baustein REA_prozesse) Sicherheitsvorfallsbehandlung SOLLTE den Vorfall dokumentieren."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "control-id": "REA.2.4",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "REA.2.4_stm",
+              "parts": [
+                {
+                  "id": "REA.2.4-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Technical",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Diagnosedaten werden bei Bedarf manuell von einzelnen Systemen gesammelt."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Identifizieren Sie im Ernstfall relevante Logdateien auf den betroffenen Servern."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Prüfen Sie, ob Administratoren Zugriff auf lokale Logfiles haben."
+                    }
+                  ],
+                  "prose": "(BSI Baustein REA_prozesse) Sicherheitsvorfallsbehandlung SOLLTE Diagnosemethoden für den Fall, dass der Vorfall sich mit den standardisiert erfassten Informationen nicht ausreichend analysieren lässt, verankern."
+                },
+                {
+                  "id": "REA.2.4-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Technical",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Standard-Logging ist auf den meisten kritischen Systemen aktiviert."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Stellen Sie sicher, dass Betriebssystem-Logs zentral gesammelt werden."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Kontrollieren Sie die Log-Konfiguration auf einer Stichprobe von Systemen."
+                    }
+                  ],
+                  "prose": "(BSI Baustein REA_prozesse) Sicherheitsvorfallsbehandlung SOLLTE Diagnosemethoden für den Fall, dass der Vorfall sich mit den standardisiert erfassten Informationen nicht ausreichend analysieren lässt, verankern."
+                },
+                {
+                  "id": "REA.2.4-m3_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Technical",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m3"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Sicherheitsvorfallsbehandlung SOLLTE Diagnosemethoden für den Fall, dass der Vorfall sich mit den standardisiert erfassten Informationen nicht ausreichend analysieren lässt, verankern."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Definieren Sie Verfahren zur Erhebung tiefergehender Telemetriedaten."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Prüfen Sie das Konzept zur erweiterten Datenerhebung (z.B. Debug-Logs)."
+                    }
+                  ],
+                  "prose": "(BSI Baustein REA_prozesse) Sicherheitsvorfallsbehandlung SOLLTE Diagnosemethoden für den Fall, dass der Vorfall sich mit den standardisiert erfassten Informationen nicht ausreichend analysieren lässt, verankern."
+                },
+                {
+                  "id": "REA.2.4-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Technical",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Erweiterte Diagnose-Tools ermöglichen eine tiefe Systemanalyse on-demand."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Setzen Sie Tools zur Aufzeichnung von Kernel-Events oder Netzwerk-Flows ein."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Testen Sie die Aktivierung erweiterter Telemetrie über das zentrale Management."
+                    }
+                  ],
+                  "prose": "(BSI Baustein REA_prozesse) Sicherheitsvorfallsbehandlung SOLLTE Diagnosemethoden für den Fall, dass der Vorfall sich mit den standardisiert erfassten Informationen nicht ausreichend analysieren lässt, verankern."
+                },
+                {
+                  "id": "REA.2.4-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Technical",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Kontinuierliche Full-Stack-Telemetrie erlaubt lückenlose forensische Rekonstruktion."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Implementieren Sie flächendeckendes EDR/XDR mit Langzeitspeicherung von Metadaten."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Validieren Sie die Suchgeschwindigkeit und Datentiefe in der Telemetrie-Plattform."
+                    }
+                  ],
+                  "prose": "(BSI Baustein REA_prozesse) Sicherheitsvorfallsbehandlung SOLLTE Diagnosemethoden für den Fall, dass der Vorfall sich mit den standardisiert erfassten Informationen nicht ausreichend analysieren lässt, verankern."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "control-id": "REA.2.5",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "REA.2.5_stm",
+              "parts": [
+                {
+                  "id": "REA.2.5-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Technical",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Einfache Dateikopien werden für grobe Analysen erstellt."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Sichern Sie verdächtige Dateien, bevor Sie das System bereinigen."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Prüfen Sie, ob Sicherungen von Malware-Proben existieren."
+                    }
+                  ],
+                  "prose": "(BSI Baustein REA_prozesse) Sicherheitsvorfallsbehandlung SOLLTE eine forensische Analyse bei Vorfällen, die {{ insert: param, rea.2.5-prm1 }} erfüllen, ausführen."
+                },
+                {
+                  "id": "REA.2.5-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Technical",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Festplatten-Images werden bei schwerwiegenden Vorfällen erstellt."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Nutzen Sie Tools zur Erstellung von 1:1 Kopien betroffener Datenträger."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Sichten Sie Protokolle über die Erstellung von Datenträger-Abbildern."
+                    }
+                  ],
+                  "prose": "(BSI Baustein REA_prozesse) Sicherheitsvorfallsbehandlung SOLLTE eine forensische Analyse bei Vorfällen, die {{ insert: param, rea.2.5-prm1 }} erfüllen, ausführen."
+                },
+                {
+                  "id": "REA.2.5-m3_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Technical",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m3"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Sicherheitsvorfallsbehandlung SOLLTE eine forensische Analyse bei Vorfällen, die {{ insert: param, rea.2.5-prm1 }} erfüllen, ausführen."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Führen Sie strukturierte forensische Untersuchungen gemäß den Kriterien durch."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Prüfen Sie Forensik-Berichte auf Einhaltung der Kriterien in {{ insert: param, rea.2.5-prm1 }}."
+                    }
+                  ],
+                  "prose": "(BSI Baustein REA_prozesse) Sicherheitsvorfallsbehandlung SOLLTE eine forensische Analyse bei Vorfällen, die {{ insert: param, rea.2.5-prm1 }} erfüllen, ausführen."
+                },
+                {
+                  "id": "REA.2.5-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Technical",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Forensische Analysen beinhalten auch Hauptspeicher-Dumps und Netzwerkforensik."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Sichern Sie flüchtigen Speicher (RAM) vor dem Herunterfahren von Systemen."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Prüfen Sie Forensik-Leitfäden auf Anweisungen zur RAM-Sicherung."
+                    }
+                  ],
+                  "prose": "(BSI Baustein REA_prozesse) Sicherheitsvorfallsbehandlung SOLLTE eine forensische Analyse bei Vorfällen, die {{ insert: param, rea.2.5-prm1 }} erfüllen, ausführen."
+                },
+                {
+                  "id": "REA.2.5-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Technical",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Automatisierte Remote-Forensik ermöglicht schnelle Analysen in verteilten Umgebungen."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Integrieren Sie Forensik-Funktionen direkt in die Incident-Response-Plattform."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Demonstrieren Sie die automatisierte Erstellung einer forensischen Timeline."
+                    }
+                  ],
+                  "prose": "(BSI Baustein REA_prozesse) Sicherheitsvorfallsbehandlung SOLLTE eine forensische Analyse bei Vorfällen, die {{ insert: param, rea.2.5-prm1 }} erfüllen, ausführen."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "control-id": "REA.2.6",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "REA.2.6_stm",
+              "parts": [
+                {
+                  "id": "REA.2.6-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Improvement",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Nach Vorfällen findet eine kurze mündliche Besprechung statt."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Sprechen Sie im Team über die offensichtlichen Fehlerquellen."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Befragen Sie das Team zu Erkenntnissen aus dem letzten Vorfall."
+                    }
+                  ],
+                  "prose": "(BSI Baustein REA_prozesse) Sicherheitsvorfallsbehandlung SOLLTE eine Vorgehensweise zur Ursachenanalyse und Behandlung verankern."
+                },
+                {
+                  "id": "REA.2.6-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Improvement",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Ursachen werden oberflächlich dokumentiert und einfache Abhilfen geschaffen."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Erfassen Sie die Hauptursache eines Vorfalls in einem kurzen Bericht."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Prüfen Sie die 'Lessons Learned' Sektion in abgeschlossenen Tickets."
+                    }
+                  ],
+                  "prose": "(BSI Baustein REA_prozesse) Sicherheitsvorfallsbehandlung SOLLTE eine Vorgehensweise zur Ursachenanalyse und Behandlung verankern."
+                },
+                {
+                  "id": "REA.2.6-m3_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Improvement",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m3"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Sicherheitsvorfallsbehandlung SOLLTE eine Vorgehensweise zur Ursachenanalyse und Behandlung verankern."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Etablieren Sie einen formalen Prozess zur Root-Cause-Analysis (RCA)."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Auditieren Sie RCA-Berichte auf Tiefe der Analyse und abgeleitete Maßnahmen."
+                    }
+                  ],
+                  "prose": "(BSI Baustein REA_prozesse) Sicherheitsvorfallsbehandlung SOLLTE eine Vorgehensweise zur Ursachenanalyse und Behandlung verankern."
+                },
+                {
+                  "id": "REA.2.6-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Improvement",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Die Ursachenanalyse führt zu messbaren Verbesserungen im Sicherheitskonzept."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Überwachen Sie die Umsetzung der aus der RCA abgeleiteten Maßnahmen nachweislich."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Prüfen Sie das Tracking-System für Maßnahmen aus der Vorfallsnachbereitung."
+                    }
+                  ],
+                  "prose": "(BSI Baustein REA_prozesse) Sicherheitsvorfallsbehandlung SOLLTE eine Vorgehensweise zur Ursachenanalyse und Behandlung verankern."
+                },
+                {
+                  "id": "REA.2.6-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Improvement",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Ein kontinuierlicher Verbesserungsprozess integriert RCA-Ergebnisse automatisiert."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Nutzen Sie Post-Mortem-Daten zur automatischen Anpassung von Erkennungsregeln (CI/CD)."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Validieren Sie die Feedback-Schleife zwischen Vorfallsanalyse und Regelsatz-Update."
+                    }
+                  ],
+                  "prose": "(BSI Baustein REA_prozesse) Sicherheitsvorfallsbehandlung SOLLTE eine Vorgehensweise zur Ursachenanalyse und Behandlung verankern."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "control-id": "REA.2.6.1",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "REA.2.6.1_stm",
+              "parts": [
+                {
+                  "id": "REA.2.6.1-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Meldungen von Vorfällen erfolgen nur vereinzelt und ohne festen Prozess."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Inidividuelle Meldungen per Zuruf oder E-Mail ohne Standardisierung."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Sichtung informeller E-Mails an die IT. Check: `mailq`."
+                    }
+                  ],
+                  "prose": "(BSI Baustein REA_prozesse)"
+                },
+                {
+                  "id": "REA.2.6.1-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Es existieren grundlegende, manuell gepflegte Kanäle für Vorfallsmeldungen."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Meldungen werden in einer zentralen Liste manuell konsolidiert."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Prüfung der Meldeliste (Excel/Markdown)."
+                    }
+                  ],
+                  "prose": "(BSI Baustein REA_prozesse)"
+                },
+                {
+                  "id": "REA.2.6.1-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Ein zentrales Ticketing-System mit Kategorisierung automatisiert die Meldewege."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Meldungen werden automatisch priorisiert und an Fachgruppen verteilt."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "API-Abfrage des Ticketing-Systems: `curl -X GET https://tickets.local/api/incidents`."
+                    }
+                  ],
+                  "prose": "(BSI Baustein REA_prozesse)"
+                },
+                {
+                  "id": "REA.2.6.1-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Vollintegrierte, automatisierte Meldewege inkl. SIEM-Kopplung und ChatOps."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Echtzeit-Meldung über automatisierte Sensorik und Sofort-Benachrichtigung."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Prüfung der SIEM-Alert-Regeln und Webhook-Logs."
+                    }
+                  ],
+                  "prose": "(BSI Baustein REA_prozesse)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "control-id": "REA.2.6.2",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "REA.2.6.2_stm",
+              "parts": [
+                {
+                  "id": "REA.2.6.2-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Bearbeitung von Vorfällen erfolgt ad-hoc ohne Dokumentationspflicht."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Fehlersuche findet ohne strukturierte Anleitung statt."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Befragung der Techniker zur letzten Störungsbehebung."
+                    }
+                  ],
+                  "prose": "(BSI Baustein REA_prozesse)"
+                },
+                {
+                  "id": "REA.2.6.2-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Es gibt einfache Checklisten für die Bearbeitung gängiger Vorfälle."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Anwendung statischer PDF-Anleitungen im Fehlerfall."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Einsicht in vorhandene Checklisten im Wiki."
+                    }
+                  ],
+                  "prose": "(BSI Baustein REA_prozesse)"
+                },
+                {
+                  "id": "REA.2.6.2-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Automatisierte Workflows steuern die Bearbeitungsschritte (Playbooks)."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Einsatz von SOAR-Plattformen zur Unterstützung der Analysten."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Prüfung der Playbook-Ausführung: `ansible-tower-cli job list`."
+                    }
+                  ],
+                  "prose": "(BSI Baustein REA_prozesse)"
+                },
+                {
+                  "id": "REA.2.6.2-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Autonome Incident-Response durch intelligente Orchestrierungssysteme."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Selbstheilende Infrastrukturen beheben Standardfehler automatisch."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Review der Auto-Remediation-Logs im Kubernetes-Cluster."
+                    }
+                  ],
+                  "prose": "(BSI Baustein REA_prozesse)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "control-id": "REA.2.6.2.1",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "REA.2.6.2.1_stm",
+              "parts": [
+                {
+                  "id": "REA.2.6.2.1-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Technical",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Sofortmaßnahmen an kritischen Systemen werden manuell und unsystematisch eingeleitet."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Reaktion erfolgt nur durch Anwesenheit von Administratoren."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Prüfung, ob kritische Systeme manuelle Eingriffe erfordern."
+                    }
+                  ],
+                  "prose": "(BSI Baustein REA_prozesse)"
+                },
+                {
+                  "id": "REA.2.6.2.1-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Technical",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Vorbereitete Skripte für Notfall-Shutdowns oder Isolation sind vorhanden."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Manuelles Auslösen von vorbereiteten Bash-Skripten."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Test der Skript-Funktionalität in der Testumgebung."
+                    }
+                  ],
+                  "prose": "(BSI Baustein REA_prozesse)"
+                },
+                {
+                  "id": "REA.2.6.2.1-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Technical",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Automatisierte Isolation kompromittierter Hosts durch Netzwerk-Orchestrierung."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Triggergesteuerte Quarantäne von VM/Containern bei Anomalie."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Check der Firewall-Regeln: `iptables -L QUARANTINE`."
+                    }
+                  ],
+                  "prose": "(BSI Baustein REA_prozesse)"
+                },
+                {
+                  "id": "REA.2.6.2.1-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Technical",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Präventive, KI-gesteuerte Lastumverteilung und Isolation in Echtzeit."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Vollautomatisches Management der Angriffsfläche ohne menschliches Zutun."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Analyse der Log-Metriken des Intrusion-Prevention-Systems."
+                    }
+                  ],
+                  "prose": "(BSI Baustein REA_prozesse)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "control-id": "REA.2.6.3",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "REA.2.6.3_stm",
+              "parts": [
+                {
+                  "id": "REA.2.6.3-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Dokumentation von Vorfällen erfolgt nur in Ausnahmefällen fragmentarisch."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Kurze Notizen in persönlichen Kalendern oder E-Mails."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Suche nach Incident-Notizen in Postfächern."
+                    }
+                  ],
+                  "prose": "(BSI Baustein REA_prozesse)"
+                },
+                {
+                  "id": "REA.2.6.3-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Zentrale Ablage von Vorfallsprotokollen in Textform."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Nutzung eines Verzeichnisses für .txt oder .docx Berichte."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Prüfung des Verzeichnisses: `ls -R /shares/incident_docs/`."
+                    }
+                  ],
+                  "prose": "(BSI Baustein REA_prozesse)"
+                },
+                {
+                  "id": "REA.2.6.3-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Revisionssichere Dokumentation in einer Incident-Management-Datenbank."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Audit-Logs erfassen jede Änderung am Vorfallsbericht automatisch."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Abfrage der DB-Audit-Logs: `SELECT * FROM incident_audit_trail`."
+                    }
+                  ],
+                  "prose": "(BSI Baustein REA_prozesse)"
+                },
+                {
+                  "id": "REA.2.6.3-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Vollautomatisierte Erstellung forensischer Timeline-Berichte aus Systemlogs."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Integration von Log-Daten direkt in die Fallakte per Schnittstelle."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Prüfung der Integritätshashes der automatisierten Berichte."
+                    }
+                  ],
+                  "prose": "(BSI Baustein REA_prozesse)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "control-id": "REA.2.6.4",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "REA.2.6.4_stm",
+              "parts": [
+                {
+                  "id": "REA.2.6.4-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Informationen über Vorfälle werden nur informell weitergegeben."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Mündliche Kommunikation ohne definierten Verteiler."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Befragung zu Kommunikationswegen im Vorfallfall."
+                    }
+                  ],
+                  "prose": "(BSI Baustein REA_prozesse)"
+                },
+                {
+                  "id": "REA.2.6.4-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Informationsverteiler für interne Stakeholder sind manuell gepflegt."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "E-Mail-Verteilerlisten für unterschiedliche Kritikalitätsstufen."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Prüfung der Aktualität der E-Mail-Verteiler."
+                    }
+                  ],
+                  "prose": "(BSI Baustein REA_prozesse)"
+                },
+                {
+                  "id": "REA.2.6.4-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Automatisierte Benachrichtigung über dedizierte Dashboards und Kanäle."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Anbindung von Status-Seiten für interne und externe Transparenz."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Check der Status-Page API: `curl https://status.local/api/v1/summary`."
+                    }
+                  ],
+                  "prose": "(BSI Baustein REA_prozesse)"
+                },
+                {
+                  "id": "REA.2.6.4-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Dynamische, stakeholder-spezifische Echtzeit-Kommunikation per App/Web."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Vollautomatisierte Einhaltung gesetzlicher Meldefristen durch Workflow-Engines."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Simulation einer Meldung an die Aufsichtsbehörde via Test-Schnittstelle."
+                    }
+                  ],
+                  "prose": "(BSI Baustein REA_prozesse)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "control-id": "REA.2.6.5",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "REA.2.6.5_stm",
+              "parts": [
+                {
+                  "id": "REA.2.6.5-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Eskalation erfolgt ungeplant und basiert auf persönlichem Ermessen."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Anruf beim Vorgesetzten nur bei völliger Überlastung."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Review vergangener Eskalationszeitpunkte."
+                    }
+                  ],
+                  "prose": "(BSI Baustein REA_prozesse)"
+                },
+                {
+                  "id": "REA.2.6.5-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Einfache Eskalationshierarchien sind schriftlich fixiert."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Telefonliste mit Zuständigkeiten liegt in der IT bereit."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Sichtung des Eskalationsplans (Papier/Wiki)."
+                    }
+                  ],
+                  "prose": "(BSI Baustein REA_prozesse)"
+                },
+                {
+                  "id": "REA.2.6.5-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Zeitgesteuerte, automatisierte Eskalation bei Zeitüberschreitungen (SLAs)."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Systembenachrichtigung bei Nichterreichen definierter Meilensteine."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Test der Eskalationslogik im Ticketsystem (SLA-Trigger)."
+                    }
+                  ],
+                  "prose": "(BSI Baustein REA_prozesse)"
+                },
+                {
+                  "id": "REA.2.6.5-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Intelligentes Resource-Routing zur automatischen Hinzuziehung von Experten."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "On-Call Management Integration mit automatischer Eskalation via Pager."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Prüfung der PagerDuty/Opsgenie API-Konfiguration."
+                    }
+                  ],
+                  "prose": "(BSI Baustein REA_prozesse)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "control-id": "REA.3.1",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "REA.3.1_stm",
+              "parts": [
+                {
+                  "id": "REA.3.1-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Improvement",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Verbesserungsmaßnahmen nach Vorfällen werden nur sporadisch angedacht."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Keine systematische Rückführung von Fehlern in den Regelbetrieb."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Sichtung der letzten Incident-Berichte auf fehlende Korrekturmaßnahmen."
+                    }
+                  ],
+                  "prose": "(BSI Baustein REA_prozesse) Sicherheitsvorfallsbehandlung SOLLTE bisherige Maßnahmen anhand von Erkenntnissen aus Informationssicherheitsvorfällen {{ insert: param, rea.3.1-prm1 }} überprüfen."
+                },
+                {
+                  "id": "REA.3.1-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Improvement",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Nach kritischen Vorfällen erfolgt eine punktuelle, manuelle Analyse."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Besprechung von Einzelfällen ohne strukturierten Folgevorgang."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Einsicht in Protokolle von Fehleranalysen."
+                    }
+                  ],
+                  "prose": "(BSI Baustein REA_prozesse) Sicherheitsvorfallsbehandlung SOLLTE bisherige Maßnahmen anhand von Erkenntnissen aus Informationssicherheitsvorfällen {{ insert: param, rea.3.1-prm1 }} überprüfen."
+                },
+                {
+                  "id": "REA.3.1-m3_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Improvement",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m3"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Sicherheitsvorfallsbehandlung SOLLTE bisherige Maßnahmen anhand von Erkenntnissen aus Informationssicherheitsvorfällen {{ insert: param, rea.3.1-prm1 }} überprüfen."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Die Überprüfung orientiert sich an den Erkenntnissen der Bearbeitungsphase."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Prüfen der Dokumentation auf Revisionsschritte nach Vorfällen."
+                    }
+                  ],
+                  "prose": "(BSI Baustein REA_prozesse) Sicherheitsvorfallsbehandlung SOLLTE bisherige Maßnahmen anhand von Erkenntnissen aus Informationssicherheitsvorfällen {{ insert: param, rea.3.1-prm1 }} überprüfen."
+                },
+                {
+                  "id": "REA.3.1-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Improvement",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Systematisches Tracking aller Erkenntnisse in einem KVP-Tool (z.B. Jira)."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Automatisierte Erstellung von Verbesserungstickets aus Incident-Reports."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Abfrage offener Verbesserungstickets: `jira query --project KVP`."
+                    }
+                  ],
+                  "prose": "(BSI Baustein REA_prozesse) Sicherheitsvorfallsbehandlung SOLLTE bisherige Maßnahmen anhand von Erkenntnissen aus Informationssicherheitsvorfällen {{ insert: param, rea.3.1-prm1 }} überprüfen."
+                },
+                {
+                  "id": "REA.3.1-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Improvement",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "KI-gestützte Analyse von Incident-Trends zur präventiven Control-Anpassung."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Vollautomatisierte Feedbackschleife in die Infrastructure-as-Code Repositories."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Review automatischer PRs im Git-Repository nach Vorfallsmustern."
+                    }
+                  ],
+                  "prose": "(BSI Baustein REA_prozesse) Sicherheitsvorfallsbehandlung SOLLTE bisherige Maßnahmen anhand von Erkenntnissen aus Informationssicherheitsvorfällen {{ insert: param, rea.3.1-prm1 }} überprüfen."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "control-id": "REA.3.1.1",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "REA.3.1.1_stm",
+              "parts": [
+                {
+                  "id": "REA.3.1.1-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Improvement",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Erfolgskontrollen durchgeführter Änderungen finden nicht statt."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Maßnahmen gelten nach Implementierung als erledigt."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Prüfung auf fehlende Review-Termine."
+                    }
+                  ],
+                  "prose": "(BSI Baustein REA_prozesse)"
+                },
+                {
+                  "id": "REA.3.1.1-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Improvement",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Manuelle Überprüfung der Wirksamkeit nach Implementierung neuer Kontrollen."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Stichprobenartige Tests durch Administratoren nach Vorfällen."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Sichtung von Testprotokollen nach Maßnahmenumsetzung."
+                    }
+                  ],
+                  "prose": "(BSI Baustein REA_prozesse)"
+                },
+                {
+                  "id": "REA.3.1.1-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Improvement",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Automatisierte Überwachung der neuen Kontrollen durch Metriken (KPIs)."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Dashboarding der Control-Effektivität in Echtzeit."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Prüfung des Grafana-Dashboards für Security-Metriken."
+                    }
+                  ],
+                  "prose": "(BSI Baustein REA_prozesse)"
+                },
+                {
+                  "id": "REA.3.1.1-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Improvement",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Kontinuierliche Validierung mittels Breach-and-Attack Simulation (BAS)."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Automatisierte Angriffsversuche prüfen die Robustheit neuer Maßnahmen."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Check der BAS-Reports: `cat /var/log/bas_results.json`."
+                    }
+                  ],
+                  "prose": "(BSI Baustein REA_prozesse)"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

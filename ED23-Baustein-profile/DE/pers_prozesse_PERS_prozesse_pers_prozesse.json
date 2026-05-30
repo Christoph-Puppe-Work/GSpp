@@ -1,0 +1,3566 @@
+{
+  "profile": {
+    "uuid": "46f2fc4d-9a34-42e6-a097-289683c36730",
+    "metadata": {
+      "title": "PERS_prozesse PERS_prozesse - Enhanced (ED2023)",
+      "last-modified": "2026-05-30T09:11:57.930581+00:00",
+      "version": "0.0.1",
+      "oscal-version": "1.1.3"
+    },
+    "imports": [
+      {
+        "href": "https://raw.githubusercontent.com/BSI-Bund/Stand-der-Technik-Bibliothek/refs/heads/main/Anwenderkataloge/Grundschutz%2B%2B/Grundschutz%2B%2B-catalog.json",
+        "include-controls": [
+          {
+            "with-ids": [
+              "PERS.2.1",
+              "PERS.2.2",
+              "PERS.2.3",
+              "PERS.2.3.1",
+              "PERS.2.3.2",
+              "PERS.2.3.3",
+              "PERS.2.3.4",
+              "PERS.2.4",
+              "PERS.3.4",
+              "PERS.3.5",
+              "PERS.3.6",
+              "PERS.3.6.1",
+              "PERS.5.1",
+              "PERS.5.2",
+              "PERS.5.3"
+            ]
+          }
+        ]
+      }
+    ],
+    "modify": {
+      "alters": [
+        {
+          "control-id": "PERS.2.1",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "PERS.2.1_stm",
+              "parts": [
+                {
+                  "id": "PERS.2.1-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Aufgaben werden nur m&uuml;ndlich oder fallweise ohne Dokumentation zugewiesen."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Informelle Absprachen pr&uuml;fen."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Sichtung von E-Mails auf Aufgabenanweisungen."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERS_prozesse) Personal SOLLTE für alle Tätigkeiten im Geltungsbereich Aufgaben mit Abgrenzungen und Schnittstellen verankern."
+                },
+                {
+                  "id": "PERS.2.1-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Aufgaben sind grundlegend in einfachen Listen erfasst, Schnittstellen sind vage definiert."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Dokumentierte Listen auf Vollst&auml;ndigkeit pr&uuml;fen."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Pr&uuml;fung der Aufgabenliste auf dem Fileserver: ls -l /dokumente/aufgaben.txt"
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERS_prozesse) Personal SOLLTE für alle Tätigkeiten im Geltungsbereich Aufgaben mit Abgrenzungen und Schnittstellen verankern."
+                },
+                {
+                  "id": "PERS.2.1-m3_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m3"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Personal SOLLTE f&uuml;r alle T&auml;tigkeiten im Geltungsbereich Aufgaben mit Abgrenzungen und Schnittstellen verankern."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Stellen Sie sicher, dass Aufgaben und deren Grenzen f&uuml;r alle T&auml;tigkeiten klar definiert und dokumentiert sind."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Abgleich der Stellenbeschreibungen mit den gelebten Prozessen im Betrieb."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERS_prozesse) Personal SOLLTE für alle Tätigkeiten im Geltungsbereich Aufgaben mit Abgrenzungen und Schnittstellen verankern."
+                },
+                {
+                  "id": "PERS.2.1-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Aufgaben und Schnittstellen sind zentral in einem Workflow-Management-System dokumentiert."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Systemgest&uuml;tzte Definition von Prozessschnittstellen."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Abfrage der Workflow-Datenbank: SQL select * from process_interfaces;"
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERS_prozesse) Personal SOLLTE für alle Tätigkeiten im Geltungsbereich Aufgaben mit Abgrenzungen und Schnittstellen verankern."
+                },
+                {
+                  "id": "PERS.2.1-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Automatisierte Synchronisation von Aufgabenbeschreibungen zwischen HR und IAM-Systemen."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Echtzeit-Mapping von Aufgaben auf Systemberechtigungen."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Pr&uuml;fung der API-Logs zwischen HR-Software und Active Directory."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERS_prozesse) Personal SOLLTE für alle Tätigkeiten im Geltungsbereich Aufgaben mit Abgrenzungen und Schnittstellen verankern."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "control-id": "PERS.2.2",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "PERS.2.2_stm",
+              "parts": [
+                {
+                  "id": "PERS.2.2-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Rollen sind nur informell bekannt, ohne klare Zielsetzung oder Kompetenzmatrix."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Vorhandensein von Rollenverständnis prüfen."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Interviews mit Mitarbeitern zu ihrem Rollenverständnis."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERS_prozesse) Personal SOLLTE für alle Tätigkeiten im Geltungsbereich Rollen mit Zielen, Aufgaben, erforderlichen Kompetenzen und Qualifikationen verankern."
+                },
+                {
+                  "id": "PERS.2.2-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Rollendefinitionen existieren als statische Dokumente f&uuml;r Kernteams."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Statische Rollenbeschreibungen sichten."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Pr&uuml;fung des Ordners /ISMS/Rollen/ auf aktuelle PDF-Dokumente."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERS_prozesse) Personal SOLLTE für alle Tätigkeiten im Geltungsbereich Rollen mit Zielen, Aufgaben, erforderlichen Kompetenzen und Qualifikationen verankern."
+                },
+                {
+                  "id": "PERS.2.2-m3_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m3"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Personal SOLLTE f&uuml;r alle T&auml;tigkeiten im Geltungsbereich Rollen mit Zielen, Aufgaben, erforderlichen Kompetenzen und Qualifikationen verankern."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Definieren Sie Rollen mit klaren Zielen, Aufgaben und Qualifikationsprofilen f&uuml;r den gesamten Geltungsbereich."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Pr&uuml;fung der Rollenmatrix auf Vollst&auml;ndigkeit und Aktualit&auml;t."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERS_prozesse) Personal SOLLTE für alle Tätigkeiten im Geltungsbereich Rollen mit Zielen, Aufgaben, erforderlichen Kompetenzen und Qualifikationen verankern."
+                },
+                {
+                  "id": "PERS.2.2-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Kompetenzbasierte Rollenprofile sind in einem Skill-Management-Tool hinterlegt."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Nutzung spezialisierter Software zur Rollenverwaltung."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Check der Skill-Datenbank via API-Abruf: curl https://api.skills.local/v1/roles"
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERS_prozesse) Personal SOLLTE für alle Tätigkeiten im Geltungsbereich Rollen mit Zielen, Aufgaben, erforderlichen Kompetenzen und Qualifikationen verankern."
+                },
+                {
+                  "id": "PERS.2.2-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Dynamische Rollenanpassung basierend auf kontinuierlicher Qualifikationsmessung."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Automatisierte Validierung von Zertifikaten und Skills."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Pr&uuml;fung des automatisierten Abgleichs von Zertifizierungsdaten."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERS_prozesse) Personal SOLLTE für alle Tätigkeiten im Geltungsbereich Rollen mit Zielen, Aufgaben, erforderlichen Kompetenzen und Qualifikationen verankern."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "control-id": "PERS.2.3",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "PERS.2.3_stm",
+              "parts": [
+                {
+                  "id": "PERS.2.3-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Risk Treatment",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Rollentrennung erfolgt nur punktuell bei kritischen Finanztransaktionen."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Identifikation kritischer Pfade."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Pr&uuml;fung von Buchungsbelegen auf Zweitsignaturen."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERS_prozesse) Personal SOLLTE für unvereinbare Aufgaben eine Rollentrennung verankern."
+                },
+                {
+                  "id": "PERS.2.3-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Risk Treatment",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Eine einfache SOD-Matrix existiert f&uuml;r Administrator-Accounts."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Matrix auf logische Konflikte pr&uuml;fen."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Abgleich der Admin-Liste mit der SOD-Matrix in Excel."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERS_prozesse) Personal SOLLTE für unvereinbare Aufgaben eine Rollentrennung verankern."
+                },
+                {
+                  "id": "PERS.2.3-m3_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Risk Treatment",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m3"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Personal SOLLTE f&uuml;r unvereinbare Aufgaben eine Rollentrennung verankern."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Stellen Sie sicher, dass Aufgaben, die sich gegenseitig kontrollieren m&uuml;ssen, von verschiedenen Personen ausgef&uuml;hrt werden."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Durchsicht der Berechtigungskonzepte auf Einhaltung der Funktionstrennung."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERS_prozesse) Personal SOLLTE für unvereinbare Aufgaben eine Rollentrennung verankern."
+                },
+                {
+                  "id": "PERS.2.3-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Risk Treatment",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Automatisierte Pr&uuml;fung von SOD-Konflikten bei der Rechtevergabe im IAM."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Implementierung von SOD-Rules im Identit&auml;tsmanagement."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Test der IAM-Policy: sudo iam-tool check-sod --user demo"
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERS_prozesse) Personal SOLLTE für unvereinbare Aufgaben eine Rollentrennung verankern."
+                },
+                {
+                  "id": "PERS.2.3-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Risk Treatment",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Kontinuierliche &Uuml;berwachung von Prozessketten auf SOD-Verletzungen mittels SIEM-Analytik."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Real-Time Alerting bei SOD-Verst&ouml;&szlig;en."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Pr&uuml;fung der SIEM-Dashboard-Metriken zu SOD-Incidents."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERS_prozesse) Personal SOLLTE für unvereinbare Aufgaben eine Rollentrennung verankern."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "control-id": "PERS.2.3.1",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "PERS.2.3.1_stm",
+              "parts": [
+                {
+                  "id": "PERS.2.3.1-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Risk Treatment",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Erste Ans&auml;tze zur Trennung von Entwicklung und Betrieb."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Fokussierung auf IT-Kernbereiche."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Sichtung der Teamstruktur."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERS_prozesse)"
+                },
+                {
+                  "id": "PERS.2.3.1-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Risk Treatment",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Manuelle Trennung administrativer Konten von Benutzerkonten."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Pr&uuml;fung der Account-Benennungskonventionen."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Check: getent passwd | grep adm"
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERS_prozesse)"
+                },
+                {
+                  "id": "PERS.2.3.1-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Risk Treatment",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Automatisierte Durchsetzung technischer Rollentrennung in Cloud-Umgebungen."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Nutzung von IAM Policies zur Erzwingung."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Pr&uuml;fung der Policy-Definitionen in der Cloud-Konsole."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERS_prozesse)"
+                },
+                {
+                  "id": "PERS.2.3.1-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Risk Treatment",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Vollst&auml;ndige Virtualisierung und Isolation kritischer administrativer Rollen."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Zero-Trust Architektur f&uuml;r administrative Aufgaben."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Verifikation der Netzwerktrennung mittels automatisierter Scans."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERS_prozesse)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "control-id": "PERS.2.3.2",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "PERS.2.3.2_stm",
+              "parts": [
+                {
+                  "id": "PERS.2.3.2-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Risk Treatment",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Punktuelle Anwendung des Vier-Augen-Prinzips."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Identifikation von Schl&uuml;sselprozessen."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Stichprobenartige Freigabepr&uuml;fung."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERS_prozesse)"
+                },
+                {
+                  "id": "PERS.2.3.2-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Risk Treatment",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Vier-Augen-Prinzip f&uuml;r alle kritischen System&auml;nderungen etabliert."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Dokumentation von Change-Freigaben."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Pr&uuml;fung der Change-Request-Logs."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERS_prozesse)"
+                },
+                {
+                  "id": "PERS.2.3.2-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Risk Treatment",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Workflow-gest&uuml;tzte Erzwingung des Vier-Augen-Prinzips in ITIL-Tools."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Systemseitige Sperre bei fehlender Zweitfreigabe."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Testlauf einer Freigabe im ITSM-Tool."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERS_prozesse)"
+                },
+                {
+                  "id": "PERS.2.3.2-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Risk Treatment",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Multi-Signatur-Verfahren f&uuml;r kryptographische Operationen und Root-Zugriffe."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Hardwarebasierte Durchsetzung von Mehrfachfreigaben."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Pr&uuml;fung der HSM-Konfiguration auf m-of-n Anforderungen."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERS_prozesse)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "control-id": "PERS.2.3.3",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "PERS.2.3.3_stm",
+              "parts": [
+                {
+                  "id": "PERS.2.3.3-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Risk Treatment",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Ad-hoc Trennung von Sicherheitsmanagement und IT-Betrieb."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Kl&auml;rung der Berichtswege."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Organigramm-Check."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERS_prozesse)"
+                },
+                {
+                  "id": "PERS.2.3.3-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Risk Treatment",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Organisatorische Trennung des ISB von der IT-Leitung."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Unabh&auml;ngigkeit des ISB sicherstellen."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Einsicht in die Ernennungsurkunde und Berichtslinie."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERS_prozesse)"
+                },
+                {
+                  "id": "PERS.2.3.3-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Risk Treatment",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Getrennte Budgets und Weisungsbefugnisse f&uuml;r IT und Security."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Ressourcenunabh&auml;ngigkeit pr&uuml;fen."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Budgetplan-Analyse auf separate Kostenstellen."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERS_prozesse)"
+                },
+                {
+                  "id": "PERS.2.3.3-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Risk Treatment",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Vollst&auml;ndig unabh&auml;ngige Security-Governance mit externem Audit-Board."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "H&ouml;chstm&ouml;gliche Objektivit&auml;t durch externe Instanzen."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Review der Protokolle des externen Audit-Boards."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERS_prozesse)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "control-id": "PERS.2.3.4",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "PERS.2.3.4_stm",
+              "parts": [
+                {
+                  "id": "PERS.2.3.4-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Risk Treatment",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Informelle Vermeidung von Interessenkonflikten."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Sensibilisierung der Leitung."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Gespr&auml;che &uuml;ber Doppelrollen."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERS_prozesse)"
+                },
+                {
+                  "id": "PERS.2.3.4-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Risk Treatment",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Dokumentierte Ausschlusskriterien f&uuml;r bestimmte Rollenkombinationen."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Konfliktliste erstellen."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Pr&uuml;fung der Richtlinie zu Interessenkonflikten."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERS_prozesse)"
+                },
+                {
+                  "id": "PERS.2.3.4-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Risk Treatment",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Regelm&auml;&szlig;ige automatisierte Audits der Rollenverteilung auf Konflikte."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Toolbasierte Compliance-Checks."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Auswertung des Compliance-Reports: check-conflicts --run"
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERS_prozesse)"
+                },
+                {
+                  "id": "PERS.2.3.4-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Risk Treatment",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "KI-basierte Erkennung von Verhaltensanomalien bei kritischen Rollenkombinationen."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Pr&auml;ventive Warnung vor potenziellen Missbrauchsszenarien."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Pr&uuml;fung der UEBA-Modelle auf Treffsicherheit."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERS_prozesse)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "control-id": "PERS.2.4",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "PERS.2.4_stm",
+              "parts": [
+                {
+                  "id": "PERS.2.4-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Zuweisung erfolgt informell durch Zurufe oder E-Mails ohne zentrale &Uuml;bersicht."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Informelle Kommunikation pr&uuml;fen."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Stichprobenartige Suche in E-Mail-Postf&auml;chern nach Zuweisungen."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERS_prozesse) Personal SOLLTE Zuständigkeiten für die Rollen zuweisen."
+                },
+                {
+                  "id": "PERS.2.4-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Zuweisung ist in einer einfachen RACI-Matrix manuell dokumentiert."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Matrix auf Konsistenz mit Personalakten pr&uuml;fen."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Review der Excel-Datei RACI_Matrix.xlsx."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERS_prozesse) Personal SOLLTE Zuständigkeiten für die Rollen zuweisen."
+                },
+                {
+                  "id": "PERS.2.4-m3_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m3"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Personal SOLLTE Zust&auml;ndigkeiten f&uuml;r die Rollen zuweisen."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Jeder definierten Rolle muss mindestens eine verantwortliche Person eindeutig zugeordnet sein."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Abgleich der Rollenbeschreibungen mit der aktuellen Personalliste."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERS_prozesse) Personal SOLLTE Zuständigkeiten für die Rollen zuweisen."
+                },
+                {
+                  "id": "PERS.2.4-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Rollenzuweisung erfolgt &uuml;ber ein genehmigungsbasiertes Ticketsystem."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Digitalisierung des Zuweisungsprozesses."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Abfrage der Ticket-Historie f&uuml;r Rollenzuweisungen."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERS_prozesse) Personal SOLLTE Zuständigkeiten für die Rollen zuweisen."
+                },
+                {
+                  "id": "PERS.2.4-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Vollautomatisierte Zuweisung und Rezertifizierung von Rollen durch HR-Triggersignale."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Koppelung von HR-Status &Auml;nderungen an IT-Berechtigungen."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Validierung des Workflows: HR-Event -> IAM Update."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERS_prozesse) Personal SOLLTE Zuständigkeiten für die Rollen zuweisen."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "control-id": "PERS.3.4",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "PERS.3.4_stm",
+              "parts": [
+                {
+                  "id": "PERS.3.4-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Initiation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Stellen werden ohne formale Beschreibung basierend auf Bedarfsmeldungen ausgeschrieben."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "M&uuml;ndliche Anforderungen pr&uuml;fen."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Sichtung von Ausschreibungstexten auf Vollst&auml;ndigkeit."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERS_prozesse) Personal SOLLTE Stellenbeschreibungen vor Ausschreibung zu besetzender Stellen dokumentieren."
+                },
+                {
+                  "id": "PERS.3.4-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Initiation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Vorhandene Vorlagen werden manuell f&uuml;r neue Ausschreibungen angepasst."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Qualit&auml;t der Vorlagen bewerten."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Review der benutzten Word-Vorlagen f&uuml;r Stellenanzeigen."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERS_prozesse) Personal SOLLTE Stellenbeschreibungen vor Ausschreibung zu besetzender Stellen dokumentieren."
+                },
+                {
+                  "id": "PERS.3.4-m3_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Initiation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m3"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Personal SOLLTE Stellenbeschreibungen vor Ausschreibung zu besetzender Stellen dokumentieren."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Erstellen Sie detaillierte Stellenbeschreibungen, bevor Sie eine Position extern oder intern ausschreiben."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Pr&uuml;fung der Dokumentationshistorie von Stellenausschreibungen."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERS_prozesse) Personal SOLLTE Stellenbeschreibungen vor Ausschreibung zu besetzender Stellen dokumentieren."
+                },
+                {
+                  "id": "PERS.3.4-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Initiation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Strukturierte digitale Erfassung aller Anforderungen in einem Bewerbermanagementsystem."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Nutzung von Datenbankfeldern statt Freitext."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Datenexport aus dem HR-Tool zur Analyse der Pflichtfelder."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERS_prozesse) Personal SOLLTE Stellenbeschreibungen vor Ausschreibung zu besetzender Stellen dokumentieren."
+                },
+                {
+                  "id": "PERS.3.4-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Initiation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Automatisierte Ableitung von Stellenbeschreibungen aus aktuellen ISMS-Rollenanforderungen."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Konsistenz zwischen ISMS und HR sicherstellen."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Vergleich der ISMS-Rollen-DB mit den HR-Ausschreibungen."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERS_prozesse) Personal SOLLTE Stellenbeschreibungen vor Ausschreibung zu besetzender Stellen dokumentieren."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "control-id": "PERS.3.5",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "PERS.3.5_stm",
+              "parts": [
+                {
+                  "id": "PERS.3.5-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Qualifikationspr&uuml;fung erfolgt nur grob durch Sichtung des Lebenslaufs."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Basale Prüfung der Unterlagen."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Sichtung von Bewerbungsakten auf Notizen des Recruiters."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERS_prozesse) Personal SOLLTE die Qualifikation von Bewerbenden anhand der Bewerbungsunterlagen vor der Besetzung von Stellen testen."
+                },
+                {
+                  "id": "PERS.3.5-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Standardisierte Checkliste zur Pr&uuml;fung von Zeugnissen und Referenzen vorhanden."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Einhaltung der Checkliste pr&uuml;fen."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Pr&uuml;fung ausgef&uuml;llter Checklisten in den Einstellungsunterlagen."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERS_prozesse) Personal SOLLTE die Qualifikation von Bewerbenden anhand der Bewerbungsunterlagen vor der Besetzung von Stellen testen."
+                },
+                {
+                  "id": "PERS.3.5-m3_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m3"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Personal SOLLTE die Qualifikation von Bewerbenden anhand der Bewerbungsunterlagen vor der Besetzung von Stellen testen."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Pr&uuml;fen Sie systematisch, ob die Bewerbenden die f&uuml;r die Stelle erforderlichen Qualifikationen mitbringen."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Durchsicht der Auswahlmatrizen f&uuml;r k&uuml;rzlich besetzte Stellen."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERS_prozesse) Personal SOLLTE die Qualifikation von Bewerbenden anhand der Bewerbungsunterlagen vor der Besetzung von Stellen testen."
+                },
+                {
+                  "id": "PERS.3.5-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Integration von Fach-Assessments und zertifizierten Eignungstests in den Prozess."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Objektivierung der Qualifikationsmessung."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Pr&uuml;fung der Testergebnisse in den Bewerbungsplattformen."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERS_prozesse) Personal SOLLTE die Qualifikation von Bewerbenden anhand der Bewerbungsunterlagen vor der Besetzung von Stellen testen."
+                },
+                {
+                  "id": "PERS.3.5-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "KI-gest&uuml;tzte Voranalyse der Qualifikationen gegen das ISMS-Kompetenzprofil."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Automatischer Match-Score f&uuml;r Sicherheitsrollen."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Audit des KI-Matching-Algorithmus auf Bias und Genauigkeit."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERS_prozesse) Personal SOLLTE die Qualifikation von Bewerbenden anhand der Bewerbungsunterlagen vor der Besetzung von Stellen testen."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "control-id": "PERS.3.6",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "PERS.3.6_stm",
+              "parts": [
+                {
+                  "id": "PERS.3.6-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Vereinzelte Prüfung der Vertrauenswürdigkeit von Bewerbern bei begründetem Verdacht."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Prüfungen erfolgen ad-hoc ohne festen Prozess."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Einsicht in Personalakten auf sporadische Vermerke. Manueller Abgleich von Lebensläufen."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERS_prozesse) Personal SOLLTE die Vertrauenswürdigkeit von Bewerbenden vor der Besetzung von Stellen testen."
+                },
+                {
+                  "id": "PERS.3.6-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Manuelle Prüfung von Referenzen und Zeugnissen für ausgewählte Schlüsselpositionen."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Ein grundlegender Prozess für kritische Stellen existiert, ist aber nicht formalisiert."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Prüfung der Einstellungschecklisten für Führungskräfte auf Vollständigkeit der Referenzen."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERS_prozesse) Personal SOLLTE die Vertrauenswürdigkeit von Bewerbenden vor der Besetzung von Stellen testen."
+                },
+                {
+                  "id": "PERS.3.6-m3_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m3"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Personal SOLLTE die Vertrauenswürdigkeit von Bewerbenden vor der Besetzung von Stellen testen."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Die Prüfung der Vertrauenswürdigkeit ist ein fester Bestandteil des Einstellungsprozesses für alle Positionen."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Audit des HR-Workflows. Prüfung, ob für Stichproben von Neueinstellungen Vertrauenswürdigkeitschecks vorliegen."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERS_prozesse) Personal SOLLTE die Vertrauenswürdigkeit von Bewerbenden vor der Besetzung von Stellen testen."
+                },
+                {
+                  "id": "PERS.3.6-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Standardisierte Hintergrundüberprüfungen und Einholung von erweiterten Führungszeugnissen für alle IT-Rollen."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Automatisierte Trigger im Onboarding-Prozess stellen sicher, dass alle Prüfungen abgeschlossen sind."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Abfrage der HR-Datenbank via SQL: SELECT * FROM candidates WHERE security_check_status IS NOT 'completed'."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERS_prozesse) Personal SOLLTE die Vertrauenswürdigkeit von Bewerbenden vor der Besetzung von Stellen testen."
+                },
+                {
+                  "id": "PERS.3.6-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Kontinuierliche und integrierte Validierung der Qualifikationen und Vertrauenswürdigkeit mittels digitaler Identitäten."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Einsatz von kryptografisch signierten Nachweisen zur fälschungssicheren Verifikation von Bewerberdaten."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Prüfung der API-Logs zur Anbindung an dezentrale Verifikationsdienste (z. B. Blockchain-basierte Zeugnisse)."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERS_prozesse) Personal SOLLTE die Vertrauenswürdigkeit von Bewerbenden vor der Besetzung von Stellen testen."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "control-id": "PERS.3.6.1",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "PERS.3.6.1_stm",
+              "parts": [
+                {
+                  "id": "PERS.3.6.1-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Sporadische Einholung von Referenzen bei Unklarheiten im Lebenslauf."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Referenzen werden nur in Ausnahmefällen kontaktiert."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Befragung der Personalabteilung zu Einzelfällen."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERS_prozesse)"
+                },
+                {
+                  "id": "PERS.3.6.1-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Systematische Einholung von mindestens einer Referenz für jede Fachkraft."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Es existiert eine Vorlage für Referenzgespräche, die meist genutzt wird."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Stichprobenartige Prüfung der Dokumentation von Referenzgesprächen."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERS_prozesse)"
+                },
+                {
+                  "id": "PERS.3.6.1-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Automatisierte Anforderung und Auswertung von Referenzen über ein Bewerbermanagementsystem."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Der Prozess ist in das digitale Bewerberportal integriert und erzwingt Rückmeldungen."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Prüfung der Systemkonfiguration des Bewerbermanagementsystems auf automatisierte Workflows."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERS_prozesse)"
+                },
+                {
+                  "id": "PERS.3.6.1-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Echtzeit-Verifikation von beruflichen Stationen über verifizierte digitale Netzwerke."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Referenzen werden digital signiert und automatisch gegen Identitätsprovider validiert."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Verifikation der automatisierten Validierungsskripte gegen die API des Identitätsproviders."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERS_prozesse)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "control-id": "PERS.5.1",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "PERS.5.1_stm",
+              "parts": [
+                {
+                  "id": "PERS.5.1-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Ad-hoc Maßregelung bei schwerwiegenden Sicherheitsverstößen ohne festen Katalog."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Disziplinarische Schritte werden fallweise durch die Geschäftsführung entschieden."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Prüfung von Protokollen zu vergangenen Vorfällen auf konsistente Reaktionen."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERS_prozesse) Personal SOLLTE ein Verfahren zur Maßregelung verankern."
+                },
+                {
+                  "id": "PERS.5.1-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Festlegung von internen Leitlinien für den Umgang mit Fehlverhalten."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Führungskräfte sind über grundlegende Sanktionsmöglichkeiten informiert."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Einsicht in Schulungsunterlagen für Führungskräfte bezüglich Compliance."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERS_prozesse) Personal SOLLTE ein Verfahren zur Maßregelung verankern."
+                },
+                {
+                  "id": "PERS.5.1-m3_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m3"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Personal SOLLTE ein Verfahren zur Maßregelung verankern."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Das Verfahren muss rechtssicher dokumentiert und allen Mitarbeitenden bekannt sein."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Prüfung der Betriebsvereinbarung oder Arbeitsordnung auf Passagen zur Maßregelung bei Sicherheitsverstößen."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERS_prozesse) Personal SOLLTE ein Verfahren zur Maßregelung verankern."
+                },
+                {
+                  "id": "PERS.5.1-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Einführung eines detaillierten Sanktionskatalogs und regelmäßiges Monitoring der Umsetzung."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Sicherheitsverstöße werden zentral erfasst und gemäß Katalog automatisch einer Eskalationsstufe zugeordnet."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Audit des Incident-Management-Tools auf Verknüpfung zwischen Sicherheitsvorfällen und personellen Folgemaßnahmen."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERS_prozesse) Personal SOLLTE ein Verfahren zur Maßregelung verankern."
+                },
+                {
+                  "id": "PERS.5.1-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Integriertes Compliance-Dashboard mit automatischer Wirksamkeitsprüfung der Maßregelungen."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "KI-gestützte Analyse zur Identifikation von Mustern im Fehlverhalten zur präventiven Anpassung von Richtlinien."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Prüfung der Dashboards auf Metriken zur Rückfallquote nach durchgeführten Maßregelungen."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERS_prozesse) Personal SOLLTE ein Verfahren zur Maßregelung verankern."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "control-id": "PERS.5.2",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "PERS.5.2_stm",
+              "parts": [
+                {
+                  "id": "PERS.5.2-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Risk Treatment",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Sensibilisierung einzelner Abteilungsleiter für Anzeichen von Innentäter-Verhalten."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Keine strukturierten Meldewege für Verdachtsmomente vorhanden."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Befragung von Vorgesetzten zu ihrem Vorgehen bei Verdacht."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERS_prozesse) Personal SOLLTE ein interdisziplinäres Verfahren zum Umgang mit potenziellen Innentätern verankern."
+                },
+                {
+                  "id": "PERS.5.2-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Risk Treatment",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Einbindung der Personalabteilung und des Sicherheitsbeauftragten bei konkreten Verdachtsfällen."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Es gibt informelle Absprachen zur Zusammenarbeit zwischen IT-Sicherheit und HR."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Prüfung von Kommunikationslogs bei zurückliegenden Verdachtsfällen."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERS_prozesse) Personal SOLLTE ein interdisziplinäres Verfahren zum Umgang mit potenziellen Innentätern verankern."
+                },
+                {
+                  "id": "PERS.5.2-m3_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Risk Treatment",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m3"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Personal SOLLTE ein interdisziplinäres Verfahren zum Umgang mit potenziellen Innentätern verankern."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Ein Team aus HR, IT-Sicherheit und Recht muss für die Bearbeitung von Insider-Bedrohungen definiert sein."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Einsicht in das Prozessdiagramm für den Umgang mit Insider-Threats und Prüfung der Rollendefinitionen."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERS_prozesse) Personal SOLLTE ein interdisziplinäres Verfahren zum Umgang mit potenziellen Innentätern verankern."
+                },
+                {
+                  "id": "PERS.5.2-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Risk Treatment",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Regelmäßige interdisziplinäre Risikoanalysen und Fallsimulationen zum Thema Innentäter."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Proaktive Suche nach Indikatoren für Unzufriedenheit oder auffälliges Datenzugriffsverhalten."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Prüfung der Protokolle von Threat-Hunting-Workshops mit Fokus auf Insider-Szenarien."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERS_prozesse) Personal SOLLTE ein interdisziplinäres Verfahren zum Umgang mit potenziellen Innentätern verankern."
+                },
+                {
+                  "id": "PERS.5.2-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Risk Treatment",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Vollintegriertes Insider-Risk-Programm mit automatisierter Anomalieerkennung und Eskalationslogik."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Nutzung von verhaltensbasierter Analyse (User Behavior Analytics), um Risiken in Echtzeit zu minimieren."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Technische Prüfung der Schwellenwerte und Alarme im Monitoring-System (z.B. SIEM/UBA)."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERS_prozesse) Personal SOLLTE ein interdisziplinäres Verfahren zum Umgang mit potenziellen Innentätern verankern."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "control-id": "PERS.5.3",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "PERS.5.3_stm",
+              "parts": [
+                {
+                  "id": "PERS.5.3-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Einmalige Prüfung der Vertrauenswürdigkeit ausschließlich bei der Einstellung."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Nach der Einstellung finden keine weiteren planmäßigen Überprüfungen statt."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Prüfung der Personalakten auf initiale Sicherheitsüberprüfungen."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERS_prozesse) Personal SOLLTE die Vertrauenswürdigkeit für {{ insert: param, pers.5.3-prm1 }} {{ insert: param, pers.5.3-prm2 }} und anlassbezogen überprüfen."
+                },
+                {
+                  "id": "PERS.5.3-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Manuelle Nachprüfung der Vertrauenswürdigkeit in unregelmäßigen Abständen."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Wiederholungsprüfungen erfolgen meist nur bei Beförderungen."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Abgleich von Beförderungsdaten mit dem Datum der letzten Sicherheitsprüfung."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERS_prozesse) Personal SOLLTE die Vertrauenswürdigkeit für {{ insert: param, pers.5.3-prm1 }} {{ insert: param, pers.5.3-prm2 }} und anlassbezogen überprüfen."
+                },
+                {
+                  "id": "PERS.5.3-m3_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m3"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Personal SOLLTE die Vertrauenswürdigkeit für {{ insert: param, pers.5.3-prm1 }} {{ insert: param, pers.5.3-prm2 }} und anlassbezogen überprüfen."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Die Intervalle und Anlässe für die Überprüfungen müssen schriftlich fixiert und eingehalten werden."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Prüfung der Liste der sicherheitskritischen Rollen und Kontrolle der Re-Zertifizierungsdaten."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERS_prozesse) Personal SOLLTE die Vertrauenswürdigkeit für {{ insert: param, pers.5.3-prm1 }} {{ insert: param, pers.5.3-prm2 }} und anlassbezogen überprüfen."
+                },
+                {
+                  "id": "PERS.5.3-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Automatisierte Überwachung von Ablaufdaten der Sicherheitsüberprüfungen mit Benachrichtigungssystem."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Das System triggert automatisch Workflows zur Neuanforderung von Nachweisen (z.B. Führungszeugnis)."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Prüfung der E-Mail-Logs oder Ticket-Logs auf automatisierte Erinnerungen an HR/Mitarbeiter."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERS_prozesse) Personal SOLLTE die Vertrauenswürdigkeit für {{ insert: param, pers.5.3-prm1 }} {{ insert: param, pers.5.3-prm2 }} und anlassbezogen überprüfen."
+                },
+                {
+                  "id": "PERS.5.3-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Kontinuierliche Validierung der Vertrauenswürdigkeit durch Integration externer Sicherheitsfeeds und Ereignis-Trigger."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Jede Änderung im Berechtigungsprofil oder externe Vorfälle lösen sofortige automatisierte Risk-Assessments aus."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Prüfung der Automatisierungsskripte, die bei 'Role-Change' Events eine Neu-Validierung fordern."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERS_prozesse) Personal SOLLTE die Vertrauenswürdigkeit für {{ insert: param, pers.5.3-prm1 }} {{ insert: param, pers.5.3-prm2 }} und anlassbezogen überprüfen."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

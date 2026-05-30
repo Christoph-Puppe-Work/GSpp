@@ -281,7 +281,7 @@ async function initSSP(){
     S.compMeta.clear();S.compGroups.clear();S.allCids.clear();S.excluded.clear();S.methods.clear();S.findings.clear();
 
     (ssp['system-implementation']?.components||[]).forEach(c=>{
-        const dl=(c.links||[]).find(l=>l.rel==='component-definition');
+        const dl=(c.links||[]).find(l=>l.rel==='profile');
         S.compMeta.set(c.uuid,{title:c.title,type:c.type,status:c.status?.state,defUrl:dl?.href||null,defLoaded:false,defN:0});
         S.compGroups.set(c.uuid,new Map());
     });
@@ -347,7 +347,7 @@ async function loadCompDefs(){
             const txt=await r.text();
             let d;try{d=JSON.parse(txt.replace(/^\uFEFF/,''))}catch(pe){throw new Error('Kein gültiges JSON: '+pe.message)}
             const grp=S.compGroups.get(it.uuid)||new Map();let a=0;
-            (d['component-definition']?.components||[]).forEach(comp=>{
+            (d[.profile.]?.components||[]).forEach(comp=>{
                 const compProps=(comp.props||[]).filter(p=>p.name&&p.value);
                 const cm=S.compMeta.get(it.uuid);
                 if(cm&&compProps.length)cm.defProps=compProps;
@@ -400,7 +400,7 @@ window.retryFailedDefs=async()=>{
             if(!r.ok)throw new Error(`HTTP ${r.status}`);
             const d=JSON.parse((await r.text()).replace(/^\uFEFF/,''));
             const grp=S.compGroups.get(it.uuid)||new Map();let a=0;
-            (d['component-definition']?.components||[]).forEach(comp=>{
+            (d[.profile.]?.components||[]).forEach(comp=>{
                 (comp['control-implementations']||[]).forEach(ci=>
                     (ci['implemented-requirements']||[]).forEach(req=>{
                         const cid=req['control-id'];if(!cid)return;

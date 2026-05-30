@@ -793,7 +793,7 @@
     async function processComponentDefinitions(ssp) {
         const defLinks = new Set();
         (ssp['system-implementation']?.components || []).forEach(c => {
-            const dl = c.links?.find(l => l.rel === 'component-definition' || l.rel === 'source-profile');
+            const dl = c.links?.find(l => l.rel === 'profile' || l.rel === 'source-profile');
             if (dl?.href) defLinks.add(dl.href);
         });
 
@@ -802,10 +802,13 @@
             const d = await loadReferencedResource(href);
             if (d) {
                 componentDefinitions.set(href, d);
-                if (d['component-definition']) {
-                    (d['component-definition'].metadata?.links || []).forEach(l => {
-                        if ((l.rel === 'source-catalog' || l.rel === 'source') && l.href) catLinks.add(l.href);
+                if (d['profile']) {
+                    (d['profile'].metadata?.links || []).forEach(l => {
+                        if (l.rel === 'source-profile') {
+                            componentDefinitions.set(l.href, d);
+                        }
                     });
+                });
                 }
             }
         }));
@@ -1003,7 +1006,7 @@
             const sNivTag = sNiv ? ` <span class="text-[8px] opacity-60">[${sNiv}]</span>` : '';
             navHtml += `<button onclick="scrollToSec('comp-${c.uuid}')" class="w-full text-left p-1.5 text-[10px] font-bold text-slate-300 bg-slate-900/40 hover:bg-slate-800 rounded truncate border border-transparent hover:border-slate-700">🖥️ ${c.title}${sNivTag}</button>`;
 
-            let dl = c.links?.find(l => l.rel === 'component-definition' || l.rel === 'source-profile');
+            let dl = c.links?.find(l => l.rel === 'profile' || l.rel === 'source-profile');
             const cd = dl ? componentDefinitions.get(dl.href) : null;
 
             const sMap = new Map();
@@ -1012,11 +1015,9 @@
             const dMap = new Map();
             let tc = null;
             try {
-                tc = cd?.['component-definition']?.components?.find(co => co && co.title === c.title) || cd?.['component-definition']?.components?.[0] || null;
-                if (tc) {
-                    (tc['control-implementations']||[]).forEach(ci => { if(ci) (ci['implemented-requirements']||[]).forEach(r => { if(r && r['control-id']) dMap.set(r['control-id'], r); }); });
-                } else if (cd?.profile?.imports) {
-                    cd.profile.imports.forEach(i => { if(i) (i["include-controls"]||[]).forEach(ic => { if(ic) (ic["with-ids"]||[]).forEach(id => { if(id) dMap.set(id, { "control-id": id }); }); }); });
+                tc = cd?.['profile'] || null;
+                if (tc?.imports) {
+                    tc.imports.forEach(i => { if(i) (i["include-controls"]||[]).forEach(ic => { if(ic) (ic["with-ids"]||[]).forEach(id => { if(id) dMap.set(id, { "control-id": id }); }); }); });
                 }
             } catch(cdErr) { console.warn('Fehler beim Lesen der Komponentendefinition für', c.title, cdErr); }
 

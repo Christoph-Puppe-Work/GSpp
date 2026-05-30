@@ -290,14 +290,14 @@
     <script>
         // --- CONFIG & STATE ---
         const CATALOG_URL_BASE = 'https://raw.githubusercontent.com/BSI-Bund/Stand-der-Technik-Bibliothek/refs/heads/main/Anwenderkataloge/Grundschutz%2B%2B/Grundschutz%2B%2B-catalog.json';
-        const API_URL_NUTZERGEN = 'https://api.github.com/repos/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/contents/ED23-Baustein-komponenten/DE';
-        const API_URL_GPLUS = 'https://api.github.com/repos/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/contents/zielobjektkategorien/komponenten';
-        const API_URL_PRAKTIKEN = 'https://api.github.com/repos/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/contents/zielobjektkategorien/komponenten';
-        const PRAKTIKEN_FILE_SUFFIX = 'prozesse-component.json';
+        const API_URL_NUTZERGEN = 'https://api.github.com/repos/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/contents/ED23-Baustein-profile/DE';
+        const API_URL_GPLUS = 'https://api.github.com/repos/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/contents/Zielobjektkategorien/profile/regular';
+        const API_URL_PRAKTIKEN = 'https://api.github.com/repos/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/contents/Zielobjektkategorien/profile/regular';
+        const PRAKTIKEN_FILE_SUFFIX = '_process_profile.json';
 
         const METHODIK_URLS = {
-            standard: 'https://raw.githubusercontent.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/refs/heads/main/zielobjektkategorien/komponenten/methodik-component.json',
-            enhanced: 'https://raw.githubusercontent.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/refs/heads/main/ED23-Baustein-komponenten/DE/methodik_isms-component.json'
+            standard: 'https://raw.githubusercontent.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/refs/heads/main/Zielobjektkategorien/profile/process/Methodik_process_profile.json',
+            enhanced: 'https://raw.githubusercontent.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/refs/heads/main/ED23-Baustein-profile/DE/Methodik_ISMS_enhanced.json'
         };
 
         const PRESET_ADDITIONAL_CATALOGS = [
@@ -758,20 +758,11 @@
                 bpState.methodik.type = type;
                 bpState.methodik.url = METHODIK_URLS[type];
                 bpState.methodik.controls = new Set();
-                bpState.methodik.uuid = data['component-definition']?.uuid || crypto.randomUUID();
+                bpState.methodik.uuid = data['profile']?.uuid || crypto.randomUUID();
 
-                if (data['component-definition'] && data['component-definition'].components) {
-                    data['component-definition'].components.forEach(c => {
-                        if (c['control-implementations']) {
-                            c['control-implementations'].forEach(ci => {
-                                if (ci['implemented-requirements']) {
-                                    ci['implemented-requirements'].forEach(req => {
-                                        bpState.methodik.controls.add(req['control-id']);
-                                    });
-                                }
-                            });
-                        }
-                    });
+                if (data['profile']) {
+                    const includeControls = data['profile']?.['imports']?.[0]?.['include-controls']?.[0]?.['with-ids'] || [];
+                    includeControls.forEach(id => bpState.methodik.controls.add(id));
                 }
 
                 document.getElementById('methodik-status').innerHTML = `✓ Methodik (${type}) geladen und ${bpState.methodik.controls.size} Controls zugewiesen.`;
@@ -799,7 +790,7 @@
 
                 container.innerHTML = processFiles.map(file => {
                     // Filenames follow "<prefix>prozesse-component.json" — e.g. archprozesse → ARCH
-                    const stem = file.name.replace(/-component\.json$/, '');
+                    const stem = file.name.replace(/_process_profile\.json$/, '').replace(/_profile\.json$/, '');
                     const prefixMatch = stem.match(/^(.*?)prozesse$/i);
                     const prefix = prefixMatch ? prefixMatch[1].toUpperCase() : '';
                     const groupTitle = prefix ? bpState.groupTitles.get(prefix) : null;
@@ -828,16 +819,11 @@
                     const data = await res.json();
                     const extractedControls = new Set();
 
-                    // New schema: OSCAL component-definition
-                    if (data['component-definition'] && data['component-definition'].components) {
-                        data['component-definition'].components.forEach(c => {
-                            (c['control-implementations'] || []).forEach(ci => {
-                                (ci['implemented-requirements'] || []).forEach(req => {
-                                    if (req['control-id']) extractedControls.add(req['control-id']);
-                                });
-                            });
-                        });
-                    }
+                    // New schema: OSCAL profile
+                    if (data['profile']) {
+                    const includeControls = data['profile']?.['imports']?.[0]?.['include-controls']?.[0]?.['with-ids'] || [];
+                    includeControls.forEach(id => extractedControls.add(id));
+                }
                     // Legacy schema fallback: profile with imports
                     else if (data.profile && data.profile.imports) {
                         data.profile.imports.forEach(imp => {
@@ -901,8 +887,8 @@
                 const data = await res.json();
 
                 const extractedControls = new Set();
-                if (data['component-definition'] && data['component-definition'].components) {
-                    data['component-definition'].components.forEach(c => {
+                if (data[.profile.] && data[.profile.].components) {
+                    data[.profile.].components.forEach(c => {
                         if (c['control-implementations']) {
                             c['control-implementations'].forEach(ci => {
                                 if (ci['implemented-requirements']) {
@@ -964,9 +950,9 @@
 				const extractedControls = new Set();
 				let isValid = false;
 
-				if (data['component-definition'] && data['component-definition'].components) {
+				if (data[.profile.] && data[.profile.].components) {
 					isValid = true;
-					data['component-definition'].components.forEach(c => {
+					data[.profile.].components.forEach(c => {
 						if (c['control-implementations']) {
 							c['control-implementations'].forEach(ci => {
 								if (ci['implemented-requirements']) {
@@ -992,7 +978,7 @@
 				}
 
 				if (!isValid) {
-					throw new Error("Die Datei muss entweder ein OSCAL 'component-definition' oder 'profile' sein.");
+					throw new Error("Die Datei muss ein OSCAL 'profile' sein.");
 				}
 
 				// Speichern im State als identisches, vollwertiges Asset
@@ -1733,7 +1719,7 @@
                             const res = await fetch(url);
                             const data = await res.json();
                             const controls = new Set();
-                            (data['component-definition']?.components || []).forEach(comp => {
+                            (data[.profile.]?.components || []).forEach(comp => {
                                 (comp['control-implementations'] || []).forEach(ci => {
                                     (ci['implemented-requirements'] || []).forEach(req => controls.add(req['control-id']));
                                 });
@@ -1757,8 +1743,8 @@
                             const res = await fetch(href);
                             const data = await res.json();
                             const controls = new Set();
-                            if (data['component-definition']?.components) {
-                                data['component-definition'].components.forEach(comp => {
+                            if (data[.profile.]?.components) {
+                                data[.profile.].components.forEach(comp => {
                                     (comp['control-implementations'] || []).forEach(ci => {
                                         (ci['implemented-requirements'] || []).forEach(req => {
                                             if (req['control-id']) controls.add(req['control-id']);
@@ -1777,13 +1763,13 @@
                         continue;
                     }
 
-                    // Asset component (service + component-definition link)
+                    // Asset component (service + profile link)
                     if (c.type === 'service' && href) {
                         try {
                             const res = await fetch(href);
                             const data = await res.json();
                             const controls = new Set();
-                            (data['component-definition']?.components || []).forEach(comp => {
+                            (data[.profile.]?.components || []).forEach(comp => {
                                 (comp['control-implementations'] || []).forEach(ci => {
                                     (ci['implemented-requirements'] || []).forEach(req => controls.add(req['control-id']));
                                 });
@@ -2057,9 +2043,9 @@
                     uuid: bpState.methodik.uuid,
                     type: "service",
                     title: `Basis Methodik (${bpState.methodik.type})`,
-                    description: `Instanz 'Basis Methodik', basierend auf Komponentendefinition ${bpState.methodik.url.split('/').pop()}.`,
+                    description: `Instanz 'Basis Methodik', basierend auf Profil ${bpState.methodik.url.split('/').pop()}.`,
                     status: { state: "operational" },
-                    links: [{ href: bpState.methodik.url, rel: "component-definition" }]
+                    links: [{ href: bpState.methodik.url, rel: "profile" }]
                 }
             ];
 
@@ -2070,7 +2056,7 @@
                     title: `Prozess: ${p.name}`,
                     description: `Prozess-Instanz, basierend auf Komponentendefinition ${p.url.split('/').pop()}.`,
                     status: { state: "operational" },
-                    links: [{ href: p.url, rel: "component-definition" }]
+                    links: [{ href: p.url, rel: "profile" }]
                 });
             });
 
@@ -2089,7 +2075,7 @@
                             remarks: `Schutzbedarf des Assets '${c.name}': ${c.schutzbedarf || 'normal-SdT'}. Festgelegt im Rahmen der Blaupausen-Erstellung.`
                         }
                     ],
-                    links: [{ href: c.source, rel: "component-definition" }]
+                    links: [{ href: c.source, rel: "profile" }]
                 });
             });
 

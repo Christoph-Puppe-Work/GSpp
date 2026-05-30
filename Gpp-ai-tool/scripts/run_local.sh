@@ -69,7 +69,10 @@ export AI_ENDPOINT_ID="local-dev-endpoint"
 export SOURCE_PREFIX="input"
 export OUTPUT_PREFIX="output"
 export TEST="false"
-export OVERWRITE_TEMP_FILES="true"
+# Default to false so stages keep existing outputs (they skip files that
+# already exist). Override with OVERWRITE_TEMP_FILES=true ./scripts/run_local.sh
+# to force regeneration, or pass --clear-all to wipe outputs first.
+export OVERWRITE_TEMP_FILES="${OVERWRITE_TEMP_FILES:-false}"
 
 # Ensure that Python output is unbuffered, so logs appear immediately.
 export PYTHONUNBUFFERED=1
@@ -78,6 +81,7 @@ echo "Environment Variables:"
 echo "GCP_PROJECT_ID: $GCP_PROJECT_ID"
 echo "BUCKET_NAME: $BUCKET_NAME"
 echo "TEST: $TEST"
+echo "OVERWRITE_TEMP_FILES: $OVERWRITE_TEMP_FILES"
 echo "---------------------------------------"
 
 # --- Execution ---

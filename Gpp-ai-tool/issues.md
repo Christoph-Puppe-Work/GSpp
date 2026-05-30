@@ -183,15 +183,18 @@ attempt, local-file path unaffected).
 **Still open (lower priority):** no cached **local fallback** if an upstream file is
 renamed/moved — a 404 is still a hard failure. Consider bundling a last-known-good copy.
 
-### 3.9. Undocumented Pipeline ↔ App Contract
-**Location:** `src/pipeline/stage_ED23_profiles_enhanced.py:50-73` and `One-Page-Apps/*.html`
-**Description:** The props encoding the apps depend on — prop names `control_class`,
-`phase`, `effective_on_{c,i,a}`, `label`, `statement`, `guidance`, `assessment-method`, plus
-the BSI namespace — is an implicit contract with no shared schema or documentation. A rename
-on either side breaks consumption silently (cf. 2.3).
-**Recommendation:** Document the props contract (and ideally validate it), and add a
-roundtrip test: a profile produced by `Baustein_2_Profile.html` consumed by
-`ssp_ausfuellen.html`, asserting the maturity levels survive.
+### 3.9. Undocumented Pipeline ↔ App Contract — ✅ RESOLVED (documented); automated roundtrip test still open
+**Location:** `docs/profile-maturity-contract.md`, both `stage_*_enhanced.py`, `One-Page-Apps/*.html`
+**Was:** The structure the apps depend on (prop names, part names, `by-id` convention,
+namespace, which text lives in prose vs props) was an implicit contract with no shared
+documentation — a rename on either side broke consumption silently.
+**Fix:** Added `docs/profile-maturity-contract.md` as the single source of truth: it
+specifies the current prose+nested-parts shape, the metadata props, the `by-id`/statement
+convention, a consumer reading recipe, the legacy-fallback shape, and a change-discipline
+checklist that names every file to update together.
+**Still open (low):** an *automated* roundtrip test (profile produced by
+`Baustein_2_Profile.html` → consumed by `ssp_ausfuellen.html`) — manual Python replicas of
+both parsers were verified during the 3.1 work, but a committed test harness would be nicer.
 
 ## 4. Low Priority Issues
 

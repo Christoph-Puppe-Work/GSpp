@@ -44,29 +44,6 @@ def find_bausteine_with_prose(bsi_data: Dict[str, Any]) -> List[Dict[str, Any]]:
     return bausteine_with_prose
 
 
-def get_anforderungen_for_bausteine(bsi_data: Dict[str, Any]) -> Dict[str, List[str]]:
-    """
-    Parses the BSI 2023 JSON data to create a map from Baustein ID to a list of its Anforderung IDs.
-    """
-    baustein_anforderungen_map = {}
-    catalog = bsi_data.get("catalog", {})
-    for group in catalog.get("groups", []):
-        for sub_group in group.get("groups", []):
-            baustein_id = sub_group.get("id")
-            if baustein_id:
-                group_id = group.get("id", "").upper()
-                baustein_id_upper = baustein_id.upper()
-                if (
-                    group_id in ALLOWED_MAIN_GROUPS
-                    or baustein_id_upper in ALLOWED_PROCESS_BAUSTEINE
-                ):
-                    anforderung_ids = []
-                    if "controls" in sub_group:
-                        for control in sub_group["controls"]:
-                            anforderung_ids.append(control["id"])
-                    baustein_anforderungen_map[baustein_id] = anforderung_ids
-    return baustein_anforderungen_map
-
 logger = logging.getLogger(__name__)
 
 def _ensure_string_title(title_value: Any) -> str:
@@ -96,12 +73,13 @@ def parse_zielobjekte_hierarchy(zielobjekte_data: List[Dict[str, str]]) -> Dict[
     for row in zielobjekte_data:
         uuid = row.get("UUID")
         if uuid:
-            # The CSV headers are positional: UUID, Definition, Zielobjekt, ChildOfUUID
-            # The data loader correctly uses these as keys.
+            # CSV headers: Zielobjektkategorie, Definition, Typ, Kategorie,
+            # Synonyme, ChildOfUUID, UUID. The category name column
+            # ("Zielobjektkategorie") is mapped to the internal "Zielobjekt" key.
             zielobjekte_map[uuid] = {
                 "UUID": uuid,
                 "Definition": row.get("Definition", ""),
-                "Zielobjekt": row.get("Zielobjekt", ""),
+                "Zielobjekt": row.get("Zielobjektkategorie", ""),
                 "ChildOfUUID": row.get("ChildOfUUID", ""),
             }
 

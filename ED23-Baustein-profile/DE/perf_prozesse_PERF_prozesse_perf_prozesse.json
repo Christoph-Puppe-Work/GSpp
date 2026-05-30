@@ -1,0 +1,3374 @@
+{
+  "profile": {
+    "uuid": "2205772f-e643-422c-b07f-05ebfb54be0e",
+    "metadata": {
+      "title": "PERF_prozesse PERF_prozesse - Enhanced (ED2023)",
+      "last-modified": "2026-05-30T09:10:58.846613+00:00",
+      "version": "0.0.1",
+      "oscal-version": "1.1.3"
+    },
+    "imports": [
+      {
+        "href": "https://raw.githubusercontent.com/BSI-Bund/Stand-der-Technik-Bibliothek/refs/heads/main/Anwenderkataloge/Grundschutz%2B%2B/Grundschutz%2B%2B-catalog.json",
+        "include-controls": [
+          {
+            "with-ids": [
+              "PERF.1.1.1",
+              "PERF.1.1.2",
+              "PERF.1.1.3",
+              "PERF.1.1.4",
+              "PERF.2.1",
+              "PERF.3.1.1",
+              "PERF.4.1.1",
+              "PERF.5.1.1",
+              "PERF.5.1.2",
+              "PERF.5.1.3",
+              "PERF.5.1.4",
+              "PERF.5.1.5",
+              "PERF.5.1.6",
+              "PERF.5.1.7",
+              "PERF.5.1.8"
+            ]
+          }
+        ]
+      }
+    ],
+    "modify": {
+      "alters": [
+        {
+          "control-id": "PERF.1.1.1",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "PERF.1.1.1_stm",
+              "parts": [
+                {
+                  "id": "PERF.1.1.1-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Initiation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Leistungskennzahlen werden nur in Einzelfällen und ohne Systematik erhoben."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Identifizieren Sie erste relevante Metriken für kritische Prozesse."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Befragen Sie die Prozessverantwortlichen nach genutzten Kennzahlen."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERF_prozesse)"
+                },
+                {
+                  "id": "PERF.1.1.1-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Initiation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Es existiert eine grundlegende Liste von Kennzahlen, die unregelmäßig erhoben werden."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Dokumentieren Sie die Kennzahlen in einer einfachen Tabelle."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Prüfen Sie die vorhandene Liste der Kennzahlen auf Aktualität."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERF_prozesse)"
+                },
+                {
+                  "id": "PERF.1.1.1-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Initiation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Kennzahlen werden automatisiert erhoben und in einem Dashboard visualisiert."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Nutzen Sie Open-Source-Tools zur Aggregation von Performance-Daten."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Prüfen Sie die Datenquelle des Dashboards: `select * from performance_metrics;`"
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERF_prozesse)"
+                },
+                {
+                  "id": "PERF.1.1.1-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Initiation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Ein KI-gestütztes System analysiert Trends und schlägt proaktiv Optimierungen vor."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Integrieren Sie Machine-Learning-Modelle zur Anomalieerkennung in Kennzahlen."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Validieren Sie die Korrektheit der automatisierten Optimierungsvorschläge."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERF_prozesse)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "control-id": "PERF.1.1.2",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "PERF.1.1.2_stm",
+              "parts": [
+                {
+                  "id": "PERF.1.1.2-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Messverfahren zur Leistungserfassung sind nur sporadisch vorhanden."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Beginnen Sie mit der manuellen Erfassung von Prozesslaufzeiten."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Sichten Sie manuelle Aufzeichnungen zur Prozessperformance."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERF_prozesse)"
+                },
+                {
+                  "id": "PERF.1.1.2-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Messverfahren sind definiert, werden aber noch manuell und unregelmäßig angewendet."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Etablieren Sie feste Intervalle für die manuelle Datenerhebung."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Prüfen Sie die Protokolle der letzten Messzyklen auf Konsistenz."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERF_prozesse)"
+                },
+                {
+                  "id": "PERF.1.1.2-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Die Datenerhebung erfolgt weitgehend automatisiert über System-Schnittstellen."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Implementieren Sie Exporter für die automatisierte Datenextraktion."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Testen Sie die API-Endpunkte der Datenerhebung: `curl -I https://metrics.local/api`."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERF_prozesse)"
+                },
+                {
+                  "id": "PERF.1.1.2-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Echtzeit-Messverfahren sind vollständig in die CI/CD-Pipeline integriert."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Nutzen Sie automatisierte Tests zur Validierung der Messgenauigkeit in Echtzeit."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Auditieren Sie die Code-Basis der automatisierten Mess-Skripte."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERF_prozesse)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "control-id": "PERF.1.1.3",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "PERF.1.1.3_stm",
+              "parts": [
+                {
+                  "id": "PERF.1.1.3-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Die Analyse von Leistungsdaten erfolgt nur bei akuten Problemen."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Führen Sie bei Störungen eine einfache Ursachenanalyse durch."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Prüfen Sie Incident-Berichte auf enthaltene Leistungsanalysen."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERF_prozesse)"
+                },
+                {
+                  "id": "PERF.1.1.3-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Es finden regelmäßige, aber oberflächliche Analysen der Leistungsdaten statt."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Vergleichen Sie monatlich die aktuellen Werte mit den Vorwerten."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Sichten Sie die Protokolle der monatlichen Performance-Meetings."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERF_prozesse)"
+                },
+                {
+                  "id": "PERF.1.1.3-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Datenanalysen nutzen statistische Verfahren zur Identifikation von Trends."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Verwenden Sie statistische Open-Source-Libraries zur Trenderkennung."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Prüfen Sie die verwendeten Analyse-Skripte auf logische Korrektheit."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERF_prozesse)"
+                },
+                {
+                  "id": "PERF.1.1.3-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Prädiktive Analysen ermöglichen die Vorhersage künftiger Leistungsengpässe."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Setzen Sie Predictive-Analytics-Tools zur Kapazitätsplanung ein."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Vergleichen Sie die Vorhersagen mit den tatsächlich eingetretenen Werten."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERF_prozesse)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "control-id": "PERF.1.1.4",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "PERF.1.1.4_stm",
+              "parts": [
+                {
+                  "id": "PERF.1.1.4-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Die Berichterstattung über Leistungen erfolgt informell und unregelmäßig."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Informieren Sie die Leitungsebene mündlich über wichtige Kennzahlen."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Fragen Sie die Leitung nach dem Erhalt von Leistungsinformationen."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERF_prozesse)"
+                },
+                {
+                  "id": "PERF.1.1.4-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Es werden einfache Berichte manuell erstellt und verteilt."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Erstellen Sie quartalsweise einen standardisierten PDF-Bericht."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Sichten Sie die Berichte der letzten zwei Quartale."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERF_prozesse)"
+                },
+                {
+                  "id": "PERF.1.1.4-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Berichte werden automatisch generiert und über ein Portal bereitgestellt."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Nutzen Sie automatisierte Reporting-Engines für die Berichtserstellung."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Prüfen Sie den automatisierten Versandmechanismus der Reports."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERF_prozesse)"
+                },
+                {
+                  "id": "PERF.1.1.4-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Interaktive Echtzeit-Reports erlauben Ad-hoc-Analysen für Stakeholder."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Stellen Sie Stakeholdern Self-Service-BI-Tools zur Verfügung."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Testen Sie die Drill-Down-Funktionen in den Live-Berichten."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERF_prozesse)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "control-id": "PERF.2.1",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "PERF.2.1_stm",
+              "parts": [
+                {
+                  "id": "PERF.2.1-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Audit",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Die Einhaltung von Verpflichtungen wird nur sporadisch und unsystematisch geprüft."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Prüfen Sie bei Vertragsverlängerungen die Einhaltung der wichtigsten Klauseln."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Suchen Sie nach Aufzeichnungen über durchgeführte Stichprobenprüfungen."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERF_prozesse) Monitoring-Evaluation SOLLTE die Einhaltung von Verpflichtungen {{ insert: param, perf.2.1-prm1 }} sowie anlassbezogen überprüfen."
+                },
+                {
+                  "id": "PERF.2.1-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Audit",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Es findet eine grundlegende manuelle Überprüfung der Verpflichtungen nach Liste statt."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Führen Sie eine Compliance-Liste und prüfen Sie diese jährlich."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Sichten Sie die Compliance-Checkliste und die dokumentierten Prüfergebnisse."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERF_prozesse) Monitoring-Evaluation SOLLTE die Einhaltung von Verpflichtungen {{ insert: param, perf.2.1-prm1 }} sowie anlassbezogen überprüfen."
+                },
+                {
+                  "id": "PERF.2.1-m3_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Audit",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m3"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Monitoring-Evaluation SOLLTE die Einhaltung von Verpflichtungen {{ insert: param, perf.2.1-prm1 }} sowie anlassbezogen überprüfen."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Nutzen Sie den festgelegten Prozess zur Überprüfung der Parameter {{ insert: param, perf.2.1-prm1 }}."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Prüfen Sie die Monitoring-Protokolle auf Einhaltung der Intervalle {{ insert: param, perf.2.1-prm1 }}."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERF_prozesse) Monitoring-Evaluation SOLLTE die Einhaltung von Verpflichtungen {{ insert: param, perf.2.1-prm1 }} sowie anlassbezogen überprüfen."
+                },
+                {
+                  "id": "PERF.2.1-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Audit",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Die Überwachung der Verpflichtungen erfolgt automatisiert mit Alarmierung bei Abweichungen."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Implementieren Sie ein Tool, das Compliance-Fristen automatisiert überwacht."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Prüfen Sie die Konfiguration der automatisierten Warnmeldungen bei Fristüberschreitung."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERF_prozesse) Monitoring-Evaluation SOLLTE die Einhaltung von Verpflichtungen {{ insert: param, perf.2.1-prm1 }} sowie anlassbezogen überprüfen."
+                },
+                {
+                  "id": "PERF.2.1-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Audit",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Ein integriertes GRC-System bietet Echtzeit-Überwachung aller Verpflichtungen."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Verknüpfen Sie alle Compliance-Datenquellen in einem zentralen Dashboard."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Auditieren Sie die Schnittstellen zu den Datenquellen: `python check_compliance_api.py`."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERF_prozesse) Monitoring-Evaluation SOLLTE die Einhaltung von Verpflichtungen {{ insert: param, perf.2.1-prm1 }} sowie anlassbezogen überprüfen."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "control-id": "PERF.3.1.1",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "PERF.3.1.1_stm",
+              "parts": [
+                {
+                  "id": "PERF.3.1.1-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Audit",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Interne Audits finden nur anlassbezogen nach schweren Vorfällen statt."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Führen Sie nach Sicherheitsvorfällen eine Ursachenprüfung durch."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Prüfen Sie die Nachweise zu Audits nach vergangenen Vorfällen."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERF_prozesse)"
+                },
+                {
+                  "id": "PERF.3.1.1-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Audit",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Interne Audits werden unregelmäßig und ohne festen Auditplan durchgeführt."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Erstellen Sie eine grobe Liste der zu prüfenden Bereiche für das Jahr."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Sichten Sie die Berichte der letzten durchgeführten Audits."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERF_prozesse)"
+                },
+                {
+                  "id": "PERF.3.1.1-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Audit",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Audits werden durch automatisierte Compliance-Scans unterstützt."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Nutzen Sie Open-Source-Schwachstellenscanner zur Audit-Vorbereitung."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Prüfen Sie die Einbindung von Scan-Ergebnissen in die Audit-Berichte."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERF_prozesse)"
+                },
+                {
+                  "id": "PERF.3.1.1-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Audit",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Ein Continuous-Auditing-Ansatz ermöglicht die ständige Überwachung der Kontrollen."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Implementieren Sie automatisierte Kontrollprüfungen in der Infrastruktur."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Auditieren Sie das System zur automatisierten Kontrollüberwachung."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERF_prozesse)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "control-id": "PERF.4.1.1",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "PERF.4.1.1_stm",
+              "parts": [
+                {
+                  "id": "PERF.4.1.1-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Improvement",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Korrekturmaßnahmen werden ad-hoc ohne Nachverfolgung eingeleitet."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Beheben Sie festgestellte Mängel sofort durch direkte Anweisungen."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Prüfen Sie, ob bekannte Mängel aus der Vergangenheit behoben wurden."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERF_prozesse)"
+                },
+                {
+                  "id": "PERF.4.1.1-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Improvement",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Es gibt eine Liste von Maßnahmen, deren Umsetzung manuell verfolgt wird."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Nutzen Sie eine einfache Aufgabenliste zur Verfolgung von Korrekturen."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Sichten Sie die Liste der offenen Punkte (Open Issue List)."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERF_prozesse)"
+                },
+                {
+                  "id": "PERF.4.1.1-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Improvement",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Ein Workflow-Tool steuert und überwacht die Umsetzung von Korrekturen."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Setzen Sie ein Ticket-System zur Steuerung von Korrekturmaßnahmen ein."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Prüfen Sie im Ticket-System die Durchlaufzeiten der Maßnahmen."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERF_prozesse)"
+                },
+                {
+                  "id": "PERF.4.1.1-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Improvement",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Abweichungen lösen automatisch vordefinierte Korrektur-Workflows aus."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Integrieren Sie Self-Healing-Mechanismen in die IT-Infrastruktur."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Testen Sie die automatische Auslösung eines Korrektur-Workflows."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERF_prozesse)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "control-id": "PERF.5.1.1",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "PERF.5.1.1_stm",
+              "parts": [
+                {
+                  "id": "PERF.5.1.1-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Improvement",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Verbesserungen erfolgen zufällig und ohne strukturierten Prozess."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Nutzen Sie Mitarbeiter-Feedback für punktuelle Verbesserungen."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Fragen Sie nach Beispielen für Prozessänderungen im letzten Jahr."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERF_prozesse)"
+                },
+                {
+                  "id": "PERF.5.1.1-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Improvement",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Es findet ein jährliches Treffen zur Besprechung von Verbesserungspotenzialen statt."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Sammeln Sie Verbesserungsvorschläge in einem zentralen Dokument."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Sichten Sie das Protokoll des letzten KVP-Treffens."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERF_prozesse)"
+                },
+                {
+                  "id": "PERF.5.1.1-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Improvement",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Der KVP ist fest in alle operativen Prozesse integriert und wird IT-gestützt."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Nutzen Sie Kollaborationsplattformen zur ständigen Ideensammlung."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Bewerten Sie die Anzahl und Qualität der eingegangenen Vorschläge im System."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERF_prozesse)"
+                },
+                {
+                  "id": "PERF.5.1.1-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Improvement",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Die Organisation nutzt Benchmarking und Innovation zur Marktführerschaft im ISMS."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Führen Sie regelmäßige Reifegradanalysen gegen Best-Practices durch."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Prüfen Sie die Ergebnisse der letzten externen Reifegradbewertung."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERF_prozesse)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "control-id": "PERF.5.1.2",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "PERF.5.1.2_stm",
+              "parts": [
+                {
+                  "id": "PERF.5.1.2-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Improvement",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Vergleiche mit anderen Organisationen finden nicht statt."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Tauschen Sie sich informell mit Kollegen aus anderen Firmen aus."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Fragen Sie nach der Teilnahme an externen Fachveranstaltungen."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERF_prozesse)"
+                },
+                {
+                  "id": "PERF.5.1.2-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Improvement",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Es findet ein gelegentlicher Vergleich von Kennzahlen mit Branchenwerten statt."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Sichten Sie öffentlich verfügbare Branchenberichte zum Vergleich."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Prüfen Sie Unterlagen auf Hinweise zu Branchenvergleichen."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERF_prozesse)"
+                },
+                {
+                  "id": "PERF.5.1.2-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Improvement",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Die Organisation nimmt regelmäßig an strukturierten Benchmarking-Zirkeln teil."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Beteiligen Sie sich an anonymisierten Datenaustausch-Programmen."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Sichten Sie die Berichte aus den Benchmarking-Zirkeln."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERF_prozesse)"
+                },
+                {
+                  "id": "PERF.5.1.2-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Improvement",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Echtzeit-Benchmarking über automatisierte Plattformen wird zur Steuerung genutzt."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Integrieren Sie externe Benchmark-APIs in das eigene Reporting."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Prüfen Sie die Einbindung externer Daten in das Management-Dashboard."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERF_prozesse)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "control-id": "PERF.5.1.3",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "PERF.5.1.3_stm",
+              "parts": [
+                {
+                  "id": "PERF.5.1.3-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Improvement",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Innovationen werden im Sicherheitsbereich kaum beachtet."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Beobachten Sie grundlegende technologische Trends."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Fragen Sie nach neu eingeführten Sicherheitstechnologien."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERF_prozesse)"
+                },
+                {
+                  "id": "PERF.5.1.3-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Improvement",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Es gibt eine Person, die sich unregelmäßig über neue Sicherheitstrends informiert."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Abonnieren Sie Fachzeitschriften und Newsletter zu IT-Sicherheit."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Prüfen Sie die Liste der abonnierten Informationsquellen."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERF_prozesse)"
+                },
+                {
+                  "id": "PERF.5.1.3-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Improvement",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Es existiert ein Budget und Prozess für Proof-of-Concepts neuer Lösungen."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Führen Sie jährlich mindestens zwei Pilotprojekte für Innovationen durch."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Prüfen Sie die Ergebnisse der letzten Pilotprojekte (PoC)."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERF_prozesse)"
+                },
+                {
+                  "id": "PERF.5.1.3-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Improvement",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Innovation ist Kernbestandteil der Strategie; eigene Patente oder Open-Source-Beiträge."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Fördern Sie die Entwicklung eigener Tools und deren Veröffentlichung."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Sichten Sie Beiträge der Organisation in Open-Source-Repositories."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERF_prozesse)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "control-id": "PERF.5.1.4",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "PERF.5.1.4_stm",
+              "parts": [
+                {
+                  "id": "PERF.5.1.4-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Die Einweisung neuer Mitarbeiter erfolgt vereinzelt und informell ohne festen Ablauf."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Sicherheitsrelevante Themen werden nur nach Bedarf oder bei Nachfrage durch den Mitarbeiter angesprochen."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Stichprobenartige Befragung neuer Mitarbeiter zum Onboarding-Prozess."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERF_prozesse)"
+                },
+                {
+                  "id": "PERF.5.1.4-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Einweisungen erfolgen auf Basis einfacher Checklisten ohne zentrale Nachverfolgung."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Nutzen Sie vordefinierte Dokumente, um eine gewisse Konsistenz bei der Wissensvermittlung zu gewährleisten."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Sichtprüfung von manuell geführten Einweisungslisten in den Fachbereichen."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERF_prozesse)"
+                },
+                {
+                  "id": "PERF.5.1.4-m3_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m3"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Bevor neue Mitarbeiter ihre Arbeit aufnehmen, müssen sie über die für ihren Aufgabenbereich relevanten Sicherheitsaspekte eingewiesen werden."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Stellen Sie sicher, dass alle Richtlinien und Aufgaben klar kommuniziert werden. Die Teilnahme muss dokumentiert werden."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Abgleich der Schulungsprotokolle mit der Liste der Neueinstellungen im Personalverzeichnis."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERF_prozesse)"
+                },
+                {
+                  "id": "PERF.5.1.4-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Der Einweisungsprozess ist vollständig in das HR-Workflow-System integriert und wird digital überwacht."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Implementieren Sie einen digitalen Workflow, der die Einweisung als zwingende Aufgabe vor Arbeitsantritt markiert."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Audit der Systemlogs im Personalmanagement-System zur Prüfung der rechtzeitigen Bearbeitung."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERF_prozesse)"
+                },
+                {
+                  "id": "PERF.5.1.4-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Einweisungen erfolgen über adaptive E-Learning-Plattformen mit automatisierter Freigabe von IT-Ressourcen."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Nutzen Sie Open-Source-LMS, um Lernfortschritte zu tracken und Zugriffe erst nach erfolgreichem Test zu gewähren."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Prüfung via Skript: osquery 'select * from training_status where status=\"incomplete\" and tenure_days > 7'."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERF_prozesse)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "control-id": "PERF.5.1.5",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "PERF.5.1.5_stm",
+              "parts": [
+                {
+                  "id": "PERF.5.1.5-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Der Entzug von Berechtigungen beim Ausscheiden erfolgt ad-hoc und unvollständig."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Informelle Absprachen dienen als Grundlage für das Löschen von Zugängen."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Manuelle Prüfung von Accounts ehemaliger Mitarbeiter im Verzeichnisdienst."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERF_prozesse)"
+                },
+                {
+                  "id": "PERF.5.1.5-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Ein definierter Rückgabeprozess für Schlüssel und Hardware ist vorhanden, wird aber manuell verwaltet."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Verwenden Sie Inventarlisten, um die Rückgabe von Geräten beim Austritt manuell abzugleichen."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Stichprobenprüfung von Rückgabeprotokollen gegenüber der Mitarbeiterliste."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERF_prozesse)"
+                },
+                {
+                  "id": "PERF.5.1.5-m3_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m3"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Wenn Mitarbeiter aus der Institution ausscheiden, müssen alle vergebenen Zutritts- und Zugriffsrechte entzogen werden."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Stellen Sie sicher, dass alle Berechtigungen unmittelbar deaktiviert werden und Sachmittel zurückgegeben sind."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Abgleich der Austrittsdaten aus der Personalabteilung mit der Deaktivierungshistorie im IAM-System."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERF_prozesse)"
+                },
+                {
+                  "id": "PERF.5.1.5-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Automatisierte Workflows entziehen beim Austritt proaktiv alle privilegierten Rechte und Accounts."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Nutzen Sie automatisierte IT-Service-Management-Tools, um den Offboarding-Prozess systemübergreifend zu steuern."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Automatisierter Report über verwaiste Accounts mit Abgleich gegen HR-Daten via LDAP-Query."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERF_prozesse)"
+                },
+                {
+                  "id": "PERF.5.1.5-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Zero-Trust-Integration entzieht sämtliche Zugriffsrechte in Echtzeit zum Zeitpunkt des formalen Austritts."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Integrieren Sie das IAM direkt mit der HR-Datenbank für eine unmittelbare Synchronisation ohne Verzug."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Prüfscript: python3 audit_offboarding.py --target-date $(date -d '1 day ago' +%Y-%m-%d)."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERF_prozesse)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "control-id": "PERF.5.1.6",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "PERF.5.1.6_stm",
+              "parts": [
+                {
+                  "id": "PERF.5.1.6-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Vertretungen werden kurzfristig und ohne formelle Regelungen unter Kollegen abgesprochen."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Die Sicherheit wird durch informelle Übergaben und temporäres Passwortsharing (kritisch!) gefährdet."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Befragung zur Handhabung ungeplanter Abwesenheiten."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERF_prozesse)"
+                },
+                {
+                  "id": "PERF.5.1.6-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Es existieren einfache Vertretungslisten für geschäftskritische Funktionen."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Erstellen Sie eine Übersicht, wer wen in welchem Fall mit welchen Befugnissen vertreten darf."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Sichtprüfung der aktuellen Vertretungspläne in den Abteilungen."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERF_prozesse)"
+                },
+                {
+                  "id": "PERF.5.1.6-m3_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m3"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Es muss sichergestellt sein, dass auch bei Abwesenheit von Mitarbeitern der Dienstbetrieb und die Sicherheit gewährleistet sind."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Legen Sie schriftliche Vertretungsregeln fest und regeln Sie die notwendige Berechtigungsvergabe im Vorfeld."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Prüfung der dokumentierten Vertretungsregelungen auf Aktualität und Sicherheitskonformität."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERF_prozesse)"
+                },
+                {
+                  "id": "PERF.5.1.6-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Vertretungsregeln sind über rollenbasierte Zugriffskontrolle (RBAC) technisch abgebildet."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Nutzen Sie Delegationsfunktionen in Ihren Systemen, um zeitlich begrenzte Zugriffsrechte zu ermöglichen."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Auswertung der IAM-Logs zur Aktivierung und Deaktivierung von Delegationsrechten."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERF_prozesse)"
+                },
+                {
+                  "id": "PERF.5.1.6-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Ein dynamisches Privileged Identity Management steuert Vertretungsrechte automatisiert und zeitbegrenzt."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Implementieren Sie JIT-Berechtigungen (Just-In-Time), die auf genehmigten Abwesenheitsanträgen basieren."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Analysiere RBAC-Logs: grep 'delegation_active' audit.log | awk '{print $1, $4}' zur Verifizierung."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERF_prozesse)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "control-id": "PERF.5.1.7",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "PERF.5.1.7_stm",
+              "parts": [
+                {
+                  "id": "PERF.5.1.7-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Improvement",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Fortbildungen zur Informationssicherheit finden nur unregelmäßig oder bei Vorfällen statt."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Es gibt kein strukturiertes Programm für die Weiterbildung des Personals."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Prüfung der Fortbildungsnachweise der letzten zwei Jahre."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERF_prozesse)"
+                },
+                {
+                  "id": "PERF.5.1.7-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Improvement",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Es gibt jährliche Standard-Sicherheitsschulungen für das gesamte Personal."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Nutzen Sie Standard-Schulungsmaterialien, um grundlegendes Sicherheitswissen zu vermitteln."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Abgleich der Teilnehmerlisten der jährlichen Schulung mit der Belegschaft."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERF_prozesse)"
+                },
+                {
+                  "id": "PERF.5.1.7-m3_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Improvement",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m3"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Die Mitarbeiter müssen regelmäßig zu Themen der Informationssicherheit fortgebildet werden."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Erstellen Sie einen Fortbildungsplan, der rollenspezifische Anforderungen berücksichtigt."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Prüfung der Fortbildungsmatrix auf Abdeckung aller relevanten Rollen und Themen."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERF_prozesse)"
+                },
+                {
+                  "id": "PERF.5.1.7-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Improvement",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Bedarfsorientierte Fortbildungspfade werden basierend auf der aktuellen Bedrohungslage angepasst."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Integrieren Sie aktuelle Bedrohungsszenarien (Threat Intelligence) in das Schulungsprogramm."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Review der Schulungsinhalte auf Aktualität und Relevanz bezüglich aktueller Angriffsvektoren."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERF_prozesse)"
+                },
+                {
+                  "id": "PERF.5.1.7-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Improvement",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Ein kontinuierliches Adaptive-Learning-System steuert individuelle Schulungsbedarfe proaktiv."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Nutzen Sie Learning-Analytics, um Wissenslücken zu identifizieren und personalisierte Inhalte anzubieten."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "API-Abfrage des LMS-Status: curl -G https://lms.local/api/compliance_score."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERF_prozesse)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "control-id": "PERF.5.1.8",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "PERF.5.1.8_stm",
+              "parts": [
+                {
+                  "id": "PERF.5.1.8-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Sensibilisierungsmaßnahmen beschränken sich auf sporadische E-Mails oder Aushänge."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Es erfolgt keine Prüfung, ob die Informationen bei den Mitarbeitern ankommen."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Stichprobenartige Befragung zum Inhalt der letzten Sicherheits-Info."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERF_prozesse)"
+                },
+                {
+                  "id": "PERF.5.1.8-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Regelmäßige Sensibilisierungskampagnen werden mit Standardinhalten durchgeführt."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Verwenden Sie Poster, Flyer oder Intranet-Artikel in festen Zeitintervallen."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Sichtung der Veröffentlichungen im Intranet oder der physischen Aushänge."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERF_prozesse)"
+                },
+                {
+                  "id": "PERF.5.1.8-m3_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m3"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Die Mitarbeiter müssen für die Gefahren bei der Nutzung von Informationstechnik und für die geltenden Sicherheitsmaßnahmen sensibilisiert werden."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Führen Sie zielgerichtete Maßnahmen durch, um das Sicherheitsbewusstsein nachhaltig zu stärken."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Prüfung der Planung und Durchführung der Sensibilisierungsmaßnahmen des letzten Jahres."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERF_prozesse)"
+                },
+                {
+                  "id": "PERF.5.1.8-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Interaktive Formate wie Phishing-Simulationen werden zur Sensibilisierung eingesetzt."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Nutzen Sie Open-Source-Tools für simulierte Angriffe, um praktisches Verhalten zu trainieren."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Auswertung der Klickraten und Meldequoten aus den Phishing-Simulationen."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERF_prozesse)"
+                },
+                {
+                  "id": "PERF.5.1.8-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Data-driven Awareness-Programm nutzt Incident-Daten zur automatischen Steuerung von Kampagnen."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Integrieren Sie SIEM-Alerts, um betroffene Nutzergruppen sofort mit passenden Lerninhalten zu versorgen."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Audit des Feedback-Loops zwischen Incident Management und Awareness-Plattform-Dashboard."
+                    }
+                  ],
+                  "prose": "(BSI Baustein PERF_prozesse)"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

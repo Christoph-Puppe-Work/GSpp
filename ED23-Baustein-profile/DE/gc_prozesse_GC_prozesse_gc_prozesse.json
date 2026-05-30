@@ -1,0 +1,1538 @@
+{
+  "profile": {
+    "uuid": "ad5250d8-d0b4-4943-9b66-cf901991a335",
+    "metadata": {
+      "title": "GC_prozesse GC_prozesse - Enhanced (ED2023)",
+      "last-modified": "2026-05-30T09:10:23.904885+00:00",
+      "version": "0.0.1",
+      "oscal-version": "1.1.3"
+    },
+    "imports": [
+      {
+        "href": "https://raw.githubusercontent.com/BSI-Bund/Stand-der-Technik-Bibliothek/refs/heads/main/Anwenderkataloge/Grundschutz%2B%2B/Grundschutz%2B%2B-catalog.json",
+        "include-controls": [
+          {
+            "with-ids": [
+              "GC.6.1.1",
+              "GC.7.1.1",
+              "GC.7.1.2",
+              "GC.7.1.3",
+              "GC.7.1.4",
+              "GC.9.1.1"
+            ]
+          }
+        ]
+      }
+    ],
+    "modify": {
+      "alters": [
+        {
+          "control-id": "GC.6.1.1",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "GC.6.1.1_stm",
+              "parts": [
+                {
+                  "id": "GC.6.1.1-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Risk Assessment",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Kritische Geschäftsprozesse sind nur vereinzelt bekannt und nicht formalisiert."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Identifizieren Sie ad-hoc die wichtigsten Abläufe."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Befragung der Abteilungsleiter zu bekannten Abläufen."
+                    }
+                  ],
+                  "prose": "(BSI Baustein GC_prozesse)"
+                },
+                {
+                  "id": "GC.6.1.1-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Risk Assessment",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Grundlegende Geschäftsprozesse sind identifiziert, aber unvollständig dokumentiert."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Erstellen Sie eine einfache Liste der Kernprozesse."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Sichtung der vorhandenen Prozesslisten auf Vollständigkeit."
+                    }
+                  ],
+                  "prose": "(BSI Baustein GC_prozesse)"
+                },
+                {
+                  "id": "GC.6.1.1-m3_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Risk Assessment",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m3"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Alle kritischen Geschäftsprozesse müssen identifiziert und deren Sicherheitsanforderungen dokumentiert sein."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Dokumentieren Sie Abhängigkeiten und Schutzbedarfe für jeden Prozess."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Abgleich des Prozessverzeichnisses mit der Realität. Automatisierung: `find /docs/processes -name '*.pdf'` zur Prüfung der Existenz."
+                    }
+                  ],
+                  "prose": "(BSI Baustein GC_prozesse)"
+                },
+                {
+                  "id": "GC.6.1.1-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Risk Assessment",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Prozesse werden proaktiv überwacht und KPIs zur Sicherheit erhoben."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Implementieren Sie ein Reporting für Prozessabweichungen."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Prüfung der KPI-Berichte. Automatisierung: API-Abfrage an das Prozess-Monitoring-Tool."
+                    }
+                  ],
+                  "prose": "(BSI Baustein GC_prozesse)"
+                },
+                {
+                  "id": "GC.6.1.1-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Risk Assessment",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Geschäftsprozesse sind in ein automatisiertes GRC-System integriert und werden kontinuierlich optimiert."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Nutzen Sie Process Mining zur Echtzeit-Überprüfung der Compliance."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Review der Process-Mining-Logs. Automatisierung: Validierung der Compliance-Dashboards via Skript."
+                    }
+                  ],
+                  "prose": "(BSI Baustein GC_prozesse)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "control-id": "GC.7.1.1",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "GC.7.1.1_stm",
+              "parts": [
+                {
+                  "id": "GC.7.1.1-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Änderungen an IT-Systemen erfolgen sporadisch ohne festen Ablauf."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Erfassen Sie Änderungen zumindest informell in einem Logbuch."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Stichprobenartige Prüfung von System-Logs auf unangekündigte Änderungen."
+                    }
+                  ],
+                  "prose": "(BSI Baustein GC_prozesse)"
+                },
+                {
+                  "id": "GC.7.1.1-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Ein grundlegender Change-Management-Prozess existiert, wird aber manuell und inkonsistent genutzt."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Nutzen Sie ein einfaches Ticket-System für alle Änderungen."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Abgleich von Tickets mit Systemänderungen. Automatisierung: `git log` in Konfigurations-Repositories prüfen."
+                    }
+                  ],
+                  "prose": "(BSI Baustein GC_prozesse)"
+                },
+                {
+                  "id": "GC.7.1.1-m3_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m3"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Änderungen an IT-Systemen müssen über einen definierten Change-Management-Prozess gesteuert werden."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Etablieren Sie einen Workflow mit Genehmigungsstufen (CAB)."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Prüfung der Genehmigungshistorie im Ticketing-System. Automatisierung: API-Check auf geschlossene Tickets für Deployments."
+                    }
+                  ],
+                  "prose": "(BSI Baustein GC_prozesse)"
+                },
+                {
+                  "id": "GC.7.1.1-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Der Change-Prozess ist weitgehend automatisiert und beinhaltet Security-Tests in der Pipeline."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Integrieren Sie automatisierte Compliance-Checks in die CI/CD-Pipeline."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Review der Pipeline-Logs auf Security-Gates. Automatisierung: `grep 'security-check: passed' pipeline.log`."
+                    }
+                  ],
+                  "prose": "(BSI Baustein GC_prozesse)"
+                },
+                {
+                  "id": "GC.7.1.1-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Changes werden ausschließlich via Infrastructure as Code (IaC) mit Policy-as-Code-Validierung durchgeführt."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Verhindern Sie manuelle Eingriffe (No-Ops) durch strikte IAM-Policies."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Verifizierung der Drift-Erkennung. Automatisierung: `terraform plan` auf Abweichungen zum Ist-Zustand prüfen."
+                    }
+                  ],
+                  "prose": "(BSI Baustein GC_prozesse)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "control-id": "GC.7.1.2",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "GC.7.1.2_stm",
+              "parts": [
+                {
+                  "id": "GC.7.1.2-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Sicherheitsvorfälle werden nur bei akutem Bedarf ohne Struktur bearbeitet."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Benennen Sie eine Kontaktperson für Notfälle."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Prüfung, ob Mitarbeiter wissen, wen sie im Ernstfall kontaktieren."
+                    }
+                  ],
+                  "prose": "(BSI Baustein GC_prozesse)"
+                },
+                {
+                  "id": "GC.7.1.2-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Es gibt erste Handlungsanweisungen für häufige Vorfälle."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Dokumentieren Sie einfache Reaktionsschritte für Malware-Befall."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Sichtung der Notfall-Handzettel. Automatisierung: Prüfung auf Vorhandensein des 'Incident-Ordners' im Netzlaufwerk."
+                    }
+                  ],
+                  "prose": "(BSI Baustein GC_prozesse)"
+                },
+                {
+                  "id": "GC.7.1.2-m3_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m3"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Ein Prozess zur Behandlung von Informationssicherheitsvorfällen muss etabliert sein."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Definieren Sie Meldekette, Rollen und Verantwortlichkeiten (CERT/SIRT)."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Prüfung des Incident-Management-Plans. Automatisierung: Simulation einer Meldung über das Meldetool."
+                    }
+                  ],
+                  "prose": "(BSI Baustein GC_prozesse)"
+                },
+                {
+                  "id": "GC.7.1.2-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Vorfälle werden durch SIEM/SOAR-Systeme teilautomatisiert erkannt und priorisiert."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Nutzen Sie Playbooks zur schnellen Reaktion auf Standard-Bedrohungen."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Review der Playbook-Ausführungsraten. Automatisierung: Abfrage der SIEM-API auf Alarm-Reaktionszeiten."
+                    }
+                  ],
+                  "prose": "(BSI Baustein GC_prozesse)"
+                },
+                {
+                  "id": "GC.7.1.2-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Vollintegriertes Incident-Response-Framework mit automatisierter Isolation betroffener Systeme."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Implementieren Sie Zero-Trust-Konzepte zur automatischen Eindämmung."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Test der automatischen Isolation in einer Sandbox. Automatisierung: `curl` Test gegen isolierte Test-Instanz."
+                    }
+                  ],
+                  "prose": "(BSI Baustein GC_prozesse)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "control-id": "GC.7.1.3",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "GC.7.1.3_stm",
+              "parts": [
+                {
+                  "id": "GC.7.1.3-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Improvement",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Fehlerursachen werden nur selten und unsystematisch analysiert."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Sprechen Sie nach großen Ausfällen über die Fehlerursache."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Befragung zu den Ursachen der letzten drei Ausfälle."
+                    }
+                  ],
+                  "prose": "(BSI Baustein GC_prozesse)"
+                },
+                {
+                  "id": "GC.7.1.3-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Improvement",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Wiederkehrende Probleme werden grob dokumentiert."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Führen Sie eine Liste bekannter Probleme (Known Error Database)."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Einsicht in die Liste bekannter Fehler. Automatisierung: `ls /shared/it/problems.xlsx`."
+                    }
+                  ],
+                  "prose": "(BSI Baustein GC_prozesse)"
+                },
+                {
+                  "id": "GC.7.1.3-m3_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Improvement",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m3"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Ursachen von Sicherheitsvorfällen müssen systematisch analysiert werden (Problem Management)."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Etablieren Sie Root-Cause-Analysen (RCA) nach jedem kritischen Incident."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Prüfung von RCA-Berichten auf Vollständigkeit. Automatisierung: Check im Ticket-System auf verknüpfte 'Problem'-Tickets."
+                    }
+                  ],
+                  "prose": "(BSI Baustein GC_prozesse)"
+                },
+                {
+                  "id": "GC.7.1.3-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Improvement",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Problem Management nutzt Trendanalysen zur proaktiven Fehlervermeidung."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Werten Sie Monitoring-Daten aus, um Muster künftiger Störungen zu erkennen."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Review der monatlichen Trendberichte. Automatisierung: Ausführung eines Python-Skripts zur Mustererkennung in Logs."
+                    }
+                  ],
+                  "prose": "(BSI Baustein GC_prozesse)"
+                },
+                {
+                  "id": "GC.7.1.3-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Improvement",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Prädiktive Analyse identifiziert potenzielle Probleme, bevor sie zu Incidents werden."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Nutzen Sie Machine Learning für Predictive Maintenance der IT-Infrastruktur."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Validierung der Vorhersagegenauigkeit des Tools. Automatisierung: Check der ML-Modell-Metriken via API."
+                    }
+                  ],
+                  "prose": "(BSI Baustein GC_prozesse)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "control-id": "GC.7.1.4",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "GC.7.1.4_stm",
+              "parts": [
+                {
+                  "id": "GC.7.1.4-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Technical",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Konfigurationen werden manuell und ohne Dokumentation vorgenommen."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Notieren Sie wichtige Einstellungen in einem Textdokument."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Sichtung von manuellen Notizen oder Readme-Dateien auf Servern."
+                    }
+                  ],
+                  "prose": "(BSI Baustein GC_prozesse)"
+                },
+                {
+                  "id": "GC.7.1.4-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Technical",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Es existieren rudimentäre Konfigurationsvorlagen für Standard-Systeme."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Speichern Sie Standard-Konfigurationen an einem zentralen Ort."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Prüfung des zentralen Ablageorts. Automatisierung: `ls /srv/configs/templates`."
+                    }
+                  ],
+                  "prose": "(BSI Baustein GC_prozesse)"
+                },
+                {
+                  "id": "GC.7.1.4-m3_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Technical",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m3"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Konfigurationen von IT-Komponenten müssen konsistent verwaltet und dokumentiert sein."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Nutzen Sie ein Asset-Register oder eine CMDB zur Dokumentation der Soll-Zustände."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Abgleich CMDB mit Live-System. Automatisierung: `ansible-inventory --list` zur Validierung der erfassten Hosts."
+                    }
+                  ],
+                  "prose": "(BSI Baustein GC_prozesse)"
+                },
+                {
+                  "id": "GC.7.1.4-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Technical",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Konfigurationsmanagement erfolgt automatisiert über ein zentrales Tooling."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Setzen Sie Tools wie Ansible oder Puppet ein, um Konfigurationen zu erzwingen."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Prüfung der Automatisierungs-Reports. Automatisierung: `ansible-playbook --check` auf Abweichungen prüfen."
+                    }
+                  ],
+                  "prose": "(BSI Baustein GC_prozesse)"
+                },
+                {
+                  "id": "GC.7.1.4-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Technical",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Vollständiges 'GitOps'-Modell mit automatisierter Korrektur von Konfigurations-Drift."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Implementieren Sie Mechanismen, die Abweichungen sofort automatisch überschreiben."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Test der Selbstheilung durch manuelle Änderung. Automatisierung: Skript prüft Rücksetzung nach 5 Minuten."
+                    }
+                  ],
+                  "prose": "(BSI Baustein GC_prozesse)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "control-id": "GC.9.1.1",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "GC.9.1.1_stm",
+              "parts": [
+                {
+                  "id": "GC.9.1.1-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Audit",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Prozesse werden nur bei schwerwiegenden Problemen oberflächlich geprüft."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Führen Sie bei Bedarf Gespräche über die Prozessqualität."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Befragung zu den letzten Prozesskorrekturen."
+                    }
+                  ],
+                  "prose": "(BSI Baustein GC_prozesse)"
+                },
+                {
+                  "id": "GC.9.1.1-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Audit",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Es finden unregelmäßige, informelle Audits der IT-Abläufe statt."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Erstellen Sie eine Checkliste für die jährliche Selbstprüfung."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Prüfung der ausgefüllten Checklisten. Automatisierung: Check auf Datum der letzten Dateiänderung."
+                    }
+                  ],
+                  "prose": "(BSI Baustein GC_prozesse)"
+                },
+                {
+                  "id": "GC.9.1.1-m3_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Audit",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m3"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Die Einhaltung der definierten Prozesse muss regelmäßig überprüft werden."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Planen und führen Sie jährliche interne Audits durch."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Einsicht in Audit-Pläne und Berichte. Automatisierung: `find /audits -mtime -365` zur Prüfung der Aktualität."
+                    }
+                  ],
+                  "prose": "(BSI Baustein GC_prozesse)"
+                },
+                {
+                  "id": "GC.9.1.1-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Audit",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Interne Audits werden durch kontinuierliche Compliance-Checks unterstützt."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Integrieren Sie automatisierte Compliance-Scans in den Audit-Prozess."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Review der Scan-Berichte. Automatisierung: Abfrage des Compliance-Status über ein Open-Source Vulnerability Management Tool."
+                    }
+                  ],
+                  "prose": "(BSI Baustein GC_prozesse)"
+                },
+                {
+                  "id": "GC.9.1.1-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Audit",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    },
+                    {
+                      "name": "statement",
+                      "value": "Kontinuierliches Audit-Monitoring (Continuous Auditing) mit Echtzeit-Reporting an das Management."
+                    },
+                    {
+                      "name": "guidance",
+                      "value": "Nutzen Sie Dashboards zur Live-Visualisierung der Prozesskonformität."
+                    },
+                    {
+                      "name": "assessment-method",
+                      "value": "Validierung der Echtzeit-Daten. Automatisierung: API-Request an das GRC-Dashboard zur Statusabfrage."
+                    }
+                  ],
+                  "prose": "(BSI Baustein GC_prozesse)"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

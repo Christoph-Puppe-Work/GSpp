@@ -7,10 +7,13 @@ and JSON files.
 """
 
 import csv
+import io
 import json
 import logging
 from functools import lru_cache
 from typing import Any, Dict, List
+
+from utils.file_utils import read_source_text
 
 logger = logging.getLogger(__name__)
 
@@ -28,11 +31,10 @@ def load_zielobjekte_csv(file_path: str) -> List[Dict[str, str]]:
     """
     logger.debug(f"Loading Zielobjekte from {file_path}...")
     try:
-        with open(file_path, mode="r", encoding="utf-8") as csvfile:
-            reader = csv.DictReader(csvfile)
-            data = [row for row in reader]
-            logger.debug(f"Successfully loaded {len(data)} Zielobjekte.")
-            return data
+        reader = csv.DictReader(io.StringIO(read_source_text(file_path)))
+        data = [row for row in reader]
+        logger.debug(f"Successfully loaded {len(data)} Zielobjekte.")
+        return data
     except FileNotFoundError:
         logger.error(f"Error: The file at {file_path} was not found.")
         raise
@@ -54,10 +56,9 @@ def load_json_file(file_path: str) -> Dict[str, Any]:
     """
     logger.debug(f"Loading JSON data from {file_path}...")
     try:
-        with open(file_path, mode="r", encoding="utf-8") as jsonfile:
-            data = json.load(jsonfile)
-            logger.debug("Successfully loaded JSON data.")
-            return data
+        data = json.loads(read_source_text(file_path))
+        logger.debug("Successfully loaded JSON data.")
+        return data
     except FileNotFoundError:
         logger.error(f"Error: The file at {file_path} was not found.")
         raise
@@ -82,10 +83,9 @@ def load_text_file(file_path: str) -> str:
     """
     logger.debug(f"Loading text data from {file_path}...")
     try:
-        with open(file_path, mode="r", encoding="utf-8") as f:
-            content = f.read()
-            logger.debug("Successfully loaded text data.")
-            return content
+        content = read_source_text(file_path)
+        logger.debug("Successfully loaded text data.")
+        return content
     except FileNotFoundError:
         logger.error(f"Error: The file at {file_path} was not found.")
         raise

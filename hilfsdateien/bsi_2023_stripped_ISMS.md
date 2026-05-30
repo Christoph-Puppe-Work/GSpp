@@ -482,3 +482,24 @@
 | DER.7.A12 | Proaktives Forscher-Management und Beziehungsaufbau (H) | N/A |
 | DER.7.A13 | Analyse und Optimierung der Programm-Metriken (H) | N/A |
 | DER.7.A14 | Verknüpfung von Erkenntnissen mit dem Secure SDLC (H) | N/A |
+| inf-5-a1 | INF.5.A1 Planung der Raumabsicherung (B) [Planende] | Für einen Raum für technische Infrastruktur MÜSSEN angemessene technische und organisatorische Vorgaben definiert und umgesetzt werden. Dabei MUSS das |
+| inf-5-a2 | INF.5.A2 Lage und Größe des Raumes für technische Infrastruktur (B) [Planende] | Der Raum für technische Infrastruktur DARF KEIN Durchgangsraum sein. Es MUSS sichergestellt sein, dass ausreichend Fläche für Fluchtwege und Arbeitsfl |
+| inf-5-a3 | INF.5.A3 Zutrittsregelung und -kontrolle (B) [Haustechnik, IT-Betrieb] | Der Raum für technische Infrastruktur MUSS gegen unberechtigten Zutritt geschützt werden. Es MUSS geregelt werden, welche Personen für welchen Zeitrau |
+| inf-5-a4 | INF.5.A4 Schutz vor Einbruch (B) [Planende, Haustechnik] | Der Raum MUSS vor Einbruch geschützt werden. Je nach erforderlichem Sicherheitsniveau des Raumes SOLLTEN geeignete raumbildende Teile wie Wände, Decke |
+| inf-5-a5 | INF.5.A5 Vermeidung sowie Schutz vor elektromagnetischen Störfeldern (B) [Planende] | Elektromagnetische Felder MÜSSEN in unmittelbarer Nähe zum Raum für technische Infrastruktur vermieden werden. Ein ausreichender Abstand zu großen Mas |
+| inf-5-a6 | INF.5.A6 Minimierung von Brandlasten (B) [Mitarbeitende, Planende] | Brandlasten innerhalb und in der direkten Umgebung des Raumes für technische Infrastruktur MÜSSEN auf ein Minimum reduziert werden. Auf brennbare Mate |
+| inf-5-a7 | INF.5.A7 Verhinderung von Zweckentfremdung (B) [Mitarbeitende, Planende] | Der Raum für technische Infrastruktur DARF NICHT zweckentfremdet werden, z. B. als Abstellraum oder Putzmittellager. |
+| inf-5-a8 | INF.5.A8 Vermeidung von unkontrollierter elektrostatischer Entladung (S) [Planende] | Im Raum für technische Infrastruktur SOLLTE ein ableitfähiger Fußbodenbelag nach DIN EN 14041 verlegt werden. |
+| inf-5-a9 | INF.5.A9 Stromversorgung (B) [Haustechnik] | Das Stromversorgungsnetz, über das der Raum für technische Infrastruktur und die daran angeschlossenen Endgeräte versorgt werden, MUSS als TN-S-System |
+| inf-9-a1 | INF.9.A1 Geeignete Auswahl und Nutzung eines mobilen Arbeitsplatzes (B) | Die Institution MUSS ihren Mitarbeitenden vorschreiben, wie mobile Arbeitsplätze in geeigneter Weise ausgewählt und benutzt werden sollen. Es MÜSSEN E |
+| inf-9-a2 | INF.9.A2 Regelungen für mobile Arbeitsplätze (B) | Für alle Arbeiten unterwegs MUSS geregelt werden, welche Informationen außerhalb der Institution transportiert und bearbeitet werden dürfen und welche |
+| inf-9-a3 | INF.9.A3 Zutritts- und Zugriffsschutz (B) | Den Mitarbeitenden MUSS bekannt gegeben werden, welche Regelungen zum Einbruch- und Zutrittsschutz am mobilen Arbeitsplatz zu beachten sind. Wenn der  |
+| inf-9-a4 | INF.9.A4 Arbeiten mit fremden IT-Systemen (B) | Die Institution MUSS regeln, wie Mitarbeitende mit institutionsfremden IT-Systemen arbeiten dürfen. Alle mobilen Mitarbeitenden MÜSSEN über die Gefahr |
+| inf-9-a5 | INF.9.A5 Zeitnahe Verlustmeldung (S) | Mitarbeitende MÜSSEN ihrer Institution umgehend melden, wenn Informationen, IT-Systeme oder Datenträger verlorengegangen sind oder gestohlen wurden. D |
+| inf-9-a6 | INF.9.A6 Entsorgung von vertraulichen Informationen (S) | Es MUSS geregelt sein, dass vertrauliche Informationen unterwegs nicht unsicher entsorgt werden. Bevor ausgediente oder defekte Datenträger und Dokume |
+| inf-9-a7 | INF.9.A7 Rechtliche Rahmenbedingungen für das mobile Arbeiten (S) | Für das mobile Arbeiten MÜSSEN arbeitsrechtliche und arbeitsschutzrechtliche Rahmenbedingungen beachtet und geregelt werden. Alle relevanten Punkte MÜ |
+| inf-9-a8 | INF.9.A8 Sicherheitsrichtlinie für mobile Arbeitsplätze (S) | Alle relevanten Sicherheitsanforderungen für mobile Arbeitsplätze MÜSSEN in einer für die mobilen Mitarbeitenden verpflichtenden Sicherheitsrichtlinie |
+| inf-9-a9 | INF.9.A9 Verschlüsselung tragbarer IT-Systeme und Datenträger (S) | Es MUSS sichergestellt sein, dass tragbare IT-Systeme und Datenträger entsprechend den internen Richtlinien abgesichert sind. Mobile IT-Systeme und Da |
+| inf-9-a10 | INF.9.A10 Einsatz von Diebstahlsicherungen (H) | Wenn mobile IT-Systeme in öffentlich zugänglichen oder schlecht gesicherten Bereichen (z. B. auf Messeständen, in Gemeinschaftsbüros, Hotelzimmern) au |
+| inf-9-a11 | INF.9.A11 Verbot der Nutzung unsicherer Umgebungen (H) | Es MÜSSEN Kriterien für die Arbeitsumgebung festgelegt werden, die mindestens erfüllt sein müssen, damit Informationen mit erhöhtem Schutzbedarf mobil |
+| inf-9-a12 | INF.9.A12 Nutzung eines Bildschirmschutzes (S) | Mitarbeitende MÜSSEN in öffentlichen oder unkontrollierten Umgebungen wie Zügen, Flugzeugen oder Co-Working-Spaces einen Blickschutzfilter für die Bil |

@@ -319,7 +319,6 @@ Diese Dateien sind reduzierte bzw. arbeitsfreundlich aufbereitete Textfassungen,
 - `baustein_zielobjekt.json`
 - `prozessbausteine_mapping.json`
 - `zielobjekt_controls.json`
-- `controls_anforderungen.json`
 
 Diese Dateien unterstützen die Zuordnung zwischen Bausteinen, Zielobjekten, Controls und Anforderungen. Sie sind besonders wichtig für Automatisierung, Ableitungen und konsistente Referenzierung.
 

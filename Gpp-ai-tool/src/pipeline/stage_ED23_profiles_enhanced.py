@@ -43,13 +43,19 @@ CHUNK_SIZE = 10
 
 
 def build_oscal_maturity_statements(control_id: str, generated_data: dict, original_description: str, baustein_id: str) -> list:
-    """Constructs the OSCAL maturity sub-statements (parts) for the 'adds' block."""
+    """Constructs the OSCAL maturity sub-statements (parts) for the 'adds' block.
+
+    Each maturity level becomes one `statement` part whose own per-level text lives in
+    `prose` (the OSCAL-idiomatic place for it), with the guidance and assessment carried as
+    nested `guidance` / `assessment` parts. Classification (class, phase, CIA) and the
+    level `label` stay as props — they are genuinely metadata, not prose (issue 3.1).
+    """
     parts = []
     levels = ["1", "2", "3", "4", "5"]
 
     props_ns = "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
 
-    # Properties shared across all levels for this control
+    # Classification properties shared across all levels for this control.
     base_props = [
         {"name": "control_class", "value": generated_data.get("class") or "Technical", "ns": props_ns},
         {"name": "phase", "value": generated_data.get('phase') or 'N/A', "ns": props_ns},
@@ -57,9 +63,6 @@ def build_oscal_maturity_statements(control_id: str, generated_data: dict, origi
         {"name": "effective_on_i", "value": str(generated_data.get("effective_on_i") or "").lower(), "ns": props_ns},
         {"name": "effective_on_a", "value": str(generated_data.get("effective_on_a") or "").lower(), "ns": props_ns},
     ]
-
-    prefix = f"(BSI Baustein {baustein_id})"
-    enriched_prose = f"{prefix} {original_description}".strip()
 
     for level_num in levels:
         # Level 3 ("Defined") is the documented baseline and MUST equal the original G++
@@ -70,20 +73,43 @@ def build_oscal_maturity_statements(control_id: str, generated_data: dict, origi
         else:
             statement_text = generated_data.get(f"level_{level_num}_statement")
 
-        if statement_text:
-            statement_props = list(base_props) + [
-                {"name": "label", "value": f"m{level_num}"},
-                {"name": "statement", "value": statement_text},
-                {"name": "guidance", "value": generated_data.get(f"level_{level_num}_guidance", "")},
-                {"name": "assessment-method", "value": generated_data.get(f"level_{level_num}_assessment", "")}
-            ]
+        if not statement_text:
+            continue
 
-            parts.append({
-                "id": f"{control_id}-m{level_num}_custom",
-                "name": "statement",
-                "props": statement_props,
-                "prose": enriched_prose
+        part_id = f"{control_id}-m{level_num}_custom"
+        statement_props = list(base_props) + [
+            {"name": "label", "value": f"m{level_num}"},
+        ]
+
+        part = {
+            "id": part_id,
+            "name": "statement",
+            "props": statement_props,
+            # The maturity-level statement itself is the prose, so a generic OSCAL
+            # renderer shows the real per-level content (not a duplicated description).
+            "prose": statement_text,
+        }
+
+        # Guidance and assessment become nested parts rather than custom props.
+        nested = []
+        guidance_text = generated_data.get(f"level_{level_num}_guidance", "")
+        assessment_text = generated_data.get(f"level_{level_num}_assessment", "")
+        if guidance_text:
+            nested.append({
+                "id": f"{part_id}_gdn",
+                "name": "guidance",
+                "prose": guidance_text,
             })
+        if assessment_text:
+            nested.append({
+                "id": f"{part_id}_asm",
+                "name": "assessment",
+                "prose": assessment_text,
+            })
+        if nested:
+            part["parts"] = nested
+
+        parts.append(part)
 
     return parts
 

@@ -74,21 +74,21 @@
                     {
                       "name": "label",
                       "value": "m1"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Aufgaben werden nur m&uuml;ndlich oder fallweise ohne Dokumentation zugewiesen."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Informelle Absprachen pr&uuml;fen."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Sichtung von E-Mails auf Aufgabenanweisungen."
                     }
                   ],
-                  "prose": "(BSI Baustein PERS_prozesse) Personal SOLLTE für alle Tätigkeiten im Geltungsbereich Aufgaben mit Abgrenzungen und Schnittstellen verankern."
+                  "prose": "Aufgaben werden nur m&uuml;ndlich oder fallweise ohne Dokumentation zugewiesen.",
+                  "parts": [
+                    {
+                      "id": "PERS.2.1-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Informelle Absprachen pr&uuml;fen."
+                    },
+                    {
+                      "id": "PERS.2.1-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Sichtung von E-Mails auf Aufgabenanweisungen."
+                    }
+                  ]
                 },
                 {
                   "id": "PERS.2.1-m2_custom",
@@ -122,21 +122,21 @@
                     {
                       "name": "label",
                       "value": "m2"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Aufgaben sind grundlegend in einfachen Listen erfasst, Schnittstellen sind vage definiert."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Dokumentierte Listen auf Vollst&auml;ndigkeit pr&uuml;fen."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Pr&uuml;fung der Aufgabenliste auf dem Fileserver: ls -l /dokumente/aufgaben.txt"
                     }
                   ],
-                  "prose": "(BSI Baustein PERS_prozesse) Personal SOLLTE für alle Tätigkeiten im Geltungsbereich Aufgaben mit Abgrenzungen und Schnittstellen verankern."
+                  "prose": "Aufgaben sind grundlegend in einfachen Listen erfasst, Schnittstellen sind vage definiert.",
+                  "parts": [
+                    {
+                      "id": "PERS.2.1-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Dokumentierte Listen auf Vollst&auml;ndigkeit pr&uuml;fen."
+                    },
+                    {
+                      "id": "PERS.2.1-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Pr&uuml;fung der Aufgabenliste auf dem Fileserver: ls -l /dokumente/aufgaben.txt"
+                    }
+                  ]
                 },
                 {
                   "id": "PERS.2.1-m3_custom",
@@ -170,21 +170,21 @@
                     {
                       "name": "label",
                       "value": "m3"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Personal SOLLTE f&uuml;r alle T&auml;tigkeiten im Geltungsbereich Aufgaben mit Abgrenzungen und Schnittstellen verankern."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Stellen Sie sicher, dass Aufgaben und deren Grenzen f&uuml;r alle T&auml;tigkeiten klar definiert und dokumentiert sind."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Abgleich der Stellenbeschreibungen mit den gelebten Prozessen im Betrieb."
                     }
                   ],
-                  "prose": "(BSI Baustein PERS_prozesse) Personal SOLLTE für alle Tätigkeiten im Geltungsbereich Aufgaben mit Abgrenzungen und Schnittstellen verankern."
+                  "prose": "Personal SOLLTE f&uuml;r alle T&auml;tigkeiten im Geltungsbereich Aufgaben mit Abgrenzungen und Schnittstellen verankern.",
+                  "parts": [
+                    {
+                      "id": "PERS.2.1-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Stellen Sie sicher, dass Aufgaben und deren Grenzen f&uuml;r alle T&auml;tigkeiten klar definiert und dokumentiert sind."
+                    },
+                    {
+                      "id": "PERS.2.1-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Abgleich der Stellenbeschreibungen mit den gelebten Prozessen im Betrieb."
+                    }
+                  ]
                 },
                 {
                   "id": "PERS.2.1-m4_custom",
@@ -218,21 +218,21 @@
                     {
                       "name": "label",
                       "value": "m4"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Aufgaben und Schnittstellen sind zentral in einem Workflow-Management-System dokumentiert."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Systemgest&uuml;tzte Definition von Prozessschnittstellen."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Abfrage der Workflow-Datenbank: SQL select * from process_interfaces;"
                     }
                   ],
-                  "prose": "(BSI Baustein PERS_prozesse) Personal SOLLTE für alle Tätigkeiten im Geltungsbereich Aufgaben mit Abgrenzungen und Schnittstellen verankern."
+                  "prose": "Aufgaben und Schnittstellen sind zentral in einem Workflow-Management-System dokumentiert.",
+                  "parts": [
+                    {
+                      "id": "PERS.2.1-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Systemgest&uuml;tzte Definition von Prozessschnittstellen."
+                    },
+                    {
+                      "id": "PERS.2.1-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Abfrage der Workflow-Datenbank: SQL select * from process_interfaces;"
+                    }
+                  ]
                 },
                 {
                   "id": "PERS.2.1-m5_custom",
@@ -266,21 +266,21 @@
                     {
                       "name": "label",
                       "value": "m5"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Automatisierte Synchronisation von Aufgabenbeschreibungen zwischen HR und IAM-Systemen."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Echtzeit-Mapping von Aufgaben auf Systemberechtigungen."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Pr&uuml;fung der API-Logs zwischen HR-Software und Active Directory."
                     }
                   ],
-                  "prose": "(BSI Baustein PERS_prozesse) Personal SOLLTE für alle Tätigkeiten im Geltungsbereich Aufgaben mit Abgrenzungen und Schnittstellen verankern."
+                  "prose": "Automatisierte Synchronisation von Aufgabenbeschreibungen zwischen HR und IAM-Systemen.",
+                  "parts": [
+                    {
+                      "id": "PERS.2.1-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Echtzeit-Mapping von Aufgaben auf Systemberechtigungen."
+                    },
+                    {
+                      "id": "PERS.2.1-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Pr&uuml;fung der API-Logs zwischen HR-Software und Active Directory."
+                    }
+                  ]
                 }
               ]
             }
@@ -325,21 +325,21 @@
                     {
                       "name": "label",
                       "value": "m1"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Rollen sind nur informell bekannt, ohne klare Zielsetzung oder Kompetenzmatrix."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Vorhandensein von Rollenverständnis prüfen."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Interviews mit Mitarbeitern zu ihrem Rollenverständnis."
                     }
                   ],
-                  "prose": "(BSI Baustein PERS_prozesse) Personal SOLLTE für alle Tätigkeiten im Geltungsbereich Rollen mit Zielen, Aufgaben, erforderlichen Kompetenzen und Qualifikationen verankern."
+                  "prose": "Rollen sind nur informell bekannt, ohne klare Zielsetzung oder Kompetenzmatrix.",
+                  "parts": [
+                    {
+                      "id": "PERS.2.2-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Vorhandensein von Rollenverständnis prüfen."
+                    },
+                    {
+                      "id": "PERS.2.2-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Interviews mit Mitarbeitern zu ihrem Rollenverständnis."
+                    }
+                  ]
                 },
                 {
                   "id": "PERS.2.2-m2_custom",
@@ -373,21 +373,21 @@
                     {
                       "name": "label",
                       "value": "m2"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Rollendefinitionen existieren als statische Dokumente f&uuml;r Kernteams."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Statische Rollenbeschreibungen sichten."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Pr&uuml;fung des Ordners /ISMS/Rollen/ auf aktuelle PDF-Dokumente."
                     }
                   ],
-                  "prose": "(BSI Baustein PERS_prozesse) Personal SOLLTE für alle Tätigkeiten im Geltungsbereich Rollen mit Zielen, Aufgaben, erforderlichen Kompetenzen und Qualifikationen verankern."
+                  "prose": "Rollendefinitionen existieren als statische Dokumente f&uuml;r Kernteams.",
+                  "parts": [
+                    {
+                      "id": "PERS.2.2-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Statische Rollenbeschreibungen sichten."
+                    },
+                    {
+                      "id": "PERS.2.2-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Pr&uuml;fung des Ordners /ISMS/Rollen/ auf aktuelle PDF-Dokumente."
+                    }
+                  ]
                 },
                 {
                   "id": "PERS.2.2-m3_custom",
@@ -421,21 +421,21 @@
                     {
                       "name": "label",
                       "value": "m3"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Personal SOLLTE f&uuml;r alle T&auml;tigkeiten im Geltungsbereich Rollen mit Zielen, Aufgaben, erforderlichen Kompetenzen und Qualifikationen verankern."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Definieren Sie Rollen mit klaren Zielen, Aufgaben und Qualifikationsprofilen f&uuml;r den gesamten Geltungsbereich."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Pr&uuml;fung der Rollenmatrix auf Vollst&auml;ndigkeit und Aktualit&auml;t."
                     }
                   ],
-                  "prose": "(BSI Baustein PERS_prozesse) Personal SOLLTE für alle Tätigkeiten im Geltungsbereich Rollen mit Zielen, Aufgaben, erforderlichen Kompetenzen und Qualifikationen verankern."
+                  "prose": "Personal SOLLTE f&uuml;r alle T&auml;tigkeiten im Geltungsbereich Rollen mit Zielen, Aufgaben, erforderlichen Kompetenzen und Qualifikationen verankern.",
+                  "parts": [
+                    {
+                      "id": "PERS.2.2-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Definieren Sie Rollen mit klaren Zielen, Aufgaben und Qualifikationsprofilen f&uuml;r den gesamten Geltungsbereich."
+                    },
+                    {
+                      "id": "PERS.2.2-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Pr&uuml;fung der Rollenmatrix auf Vollst&auml;ndigkeit und Aktualit&auml;t."
+                    }
+                  ]
                 },
                 {
                   "id": "PERS.2.2-m4_custom",
@@ -469,21 +469,21 @@
                     {
                       "name": "label",
                       "value": "m4"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Kompetenzbasierte Rollenprofile sind in einem Skill-Management-Tool hinterlegt."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Nutzung spezialisierter Software zur Rollenverwaltung."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Check der Skill-Datenbank via API-Abruf: curl https://api.skills.local/v1/roles"
                     }
                   ],
-                  "prose": "(BSI Baustein PERS_prozesse) Personal SOLLTE für alle Tätigkeiten im Geltungsbereich Rollen mit Zielen, Aufgaben, erforderlichen Kompetenzen und Qualifikationen verankern."
+                  "prose": "Kompetenzbasierte Rollenprofile sind in einem Skill-Management-Tool hinterlegt.",
+                  "parts": [
+                    {
+                      "id": "PERS.2.2-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Nutzung spezialisierter Software zur Rollenverwaltung."
+                    },
+                    {
+                      "id": "PERS.2.2-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Check der Skill-Datenbank via API-Abruf: curl https://api.skills.local/v1/roles"
+                    }
+                  ]
                 },
                 {
                   "id": "PERS.2.2-m5_custom",
@@ -517,21 +517,21 @@
                     {
                       "name": "label",
                       "value": "m5"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Dynamische Rollenanpassung basierend auf kontinuierlicher Qualifikationsmessung."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Automatisierte Validierung von Zertifikaten und Skills."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Pr&uuml;fung des automatisierten Abgleichs von Zertifizierungsdaten."
                     }
                   ],
-                  "prose": "(BSI Baustein PERS_prozesse) Personal SOLLTE für alle Tätigkeiten im Geltungsbereich Rollen mit Zielen, Aufgaben, erforderlichen Kompetenzen und Qualifikationen verankern."
+                  "prose": "Dynamische Rollenanpassung basierend auf kontinuierlicher Qualifikationsmessung.",
+                  "parts": [
+                    {
+                      "id": "PERS.2.2-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Automatisierte Validierung von Zertifikaten und Skills."
+                    },
+                    {
+                      "id": "PERS.2.2-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Pr&uuml;fung des automatisierten Abgleichs von Zertifizierungsdaten."
+                    }
+                  ]
                 }
               ]
             }
@@ -576,21 +576,21 @@
                     {
                       "name": "label",
                       "value": "m1"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Rollentrennung erfolgt nur punktuell bei kritischen Finanztransaktionen."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Identifikation kritischer Pfade."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Pr&uuml;fung von Buchungsbelegen auf Zweitsignaturen."
                     }
                   ],
-                  "prose": "(BSI Baustein PERS_prozesse) Personal SOLLTE für unvereinbare Aufgaben eine Rollentrennung verankern."
+                  "prose": "Rollentrennung erfolgt nur punktuell bei kritischen Finanztransaktionen.",
+                  "parts": [
+                    {
+                      "id": "PERS.2.3-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Identifikation kritischer Pfade."
+                    },
+                    {
+                      "id": "PERS.2.3-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Pr&uuml;fung von Buchungsbelegen auf Zweitsignaturen."
+                    }
+                  ]
                 },
                 {
                   "id": "PERS.2.3-m2_custom",
@@ -624,21 +624,21 @@
                     {
                       "name": "label",
                       "value": "m2"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Eine einfache SOD-Matrix existiert f&uuml;r Administrator-Accounts."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Matrix auf logische Konflikte pr&uuml;fen."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Abgleich der Admin-Liste mit der SOD-Matrix in Excel."
                     }
                   ],
-                  "prose": "(BSI Baustein PERS_prozesse) Personal SOLLTE für unvereinbare Aufgaben eine Rollentrennung verankern."
+                  "prose": "Eine einfache SOD-Matrix existiert f&uuml;r Administrator-Accounts.",
+                  "parts": [
+                    {
+                      "id": "PERS.2.3-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Matrix auf logische Konflikte pr&uuml;fen."
+                    },
+                    {
+                      "id": "PERS.2.3-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Abgleich der Admin-Liste mit der SOD-Matrix in Excel."
+                    }
+                  ]
                 },
                 {
                   "id": "PERS.2.3-m3_custom",
@@ -672,21 +672,21 @@
                     {
                       "name": "label",
                       "value": "m3"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Personal SOLLTE f&uuml;r unvereinbare Aufgaben eine Rollentrennung verankern."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Stellen Sie sicher, dass Aufgaben, die sich gegenseitig kontrollieren m&uuml;ssen, von verschiedenen Personen ausgef&uuml;hrt werden."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Durchsicht der Berechtigungskonzepte auf Einhaltung der Funktionstrennung."
                     }
                   ],
-                  "prose": "(BSI Baustein PERS_prozesse) Personal SOLLTE für unvereinbare Aufgaben eine Rollentrennung verankern."
+                  "prose": "Personal SOLLTE f&uuml;r unvereinbare Aufgaben eine Rollentrennung verankern.",
+                  "parts": [
+                    {
+                      "id": "PERS.2.3-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Stellen Sie sicher, dass Aufgaben, die sich gegenseitig kontrollieren m&uuml;ssen, von verschiedenen Personen ausgef&uuml;hrt werden."
+                    },
+                    {
+                      "id": "PERS.2.3-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Durchsicht der Berechtigungskonzepte auf Einhaltung der Funktionstrennung."
+                    }
+                  ]
                 },
                 {
                   "id": "PERS.2.3-m4_custom",
@@ -720,21 +720,21 @@
                     {
                       "name": "label",
                       "value": "m4"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Automatisierte Pr&uuml;fung von SOD-Konflikten bei der Rechtevergabe im IAM."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Implementierung von SOD-Rules im Identit&auml;tsmanagement."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Test der IAM-Policy: sudo iam-tool check-sod --user demo"
                     }
                   ],
-                  "prose": "(BSI Baustein PERS_prozesse) Personal SOLLTE für unvereinbare Aufgaben eine Rollentrennung verankern."
+                  "prose": "Automatisierte Pr&uuml;fung von SOD-Konflikten bei der Rechtevergabe im IAM.",
+                  "parts": [
+                    {
+                      "id": "PERS.2.3-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Implementierung von SOD-Rules im Identit&auml;tsmanagement."
+                    },
+                    {
+                      "id": "PERS.2.3-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Test der IAM-Policy: sudo iam-tool check-sod --user demo"
+                    }
+                  ]
                 },
                 {
                   "id": "PERS.2.3-m5_custom",
@@ -768,21 +768,21 @@
                     {
                       "name": "label",
                       "value": "m5"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Kontinuierliche &Uuml;berwachung von Prozessketten auf SOD-Verletzungen mittels SIEM-Analytik."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Real-Time Alerting bei SOD-Verst&ouml;&szlig;en."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Pr&uuml;fung der SIEM-Dashboard-Metriken zu SOD-Incidents."
                     }
                   ],
-                  "prose": "(BSI Baustein PERS_prozesse) Personal SOLLTE für unvereinbare Aufgaben eine Rollentrennung verankern."
+                  "prose": "Kontinuierliche &Uuml;berwachung von Prozessketten auf SOD-Verletzungen mittels SIEM-Analytik.",
+                  "parts": [
+                    {
+                      "id": "PERS.2.3-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Real-Time Alerting bei SOD-Verst&ouml;&szlig;en."
+                    },
+                    {
+                      "id": "PERS.2.3-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Pr&uuml;fung der SIEM-Dashboard-Metriken zu SOD-Incidents."
+                    }
+                  ]
                 }
               ]
             }
@@ -827,21 +827,21 @@
                     {
                       "name": "label",
                       "value": "m1"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Erste Ans&auml;tze zur Trennung von Entwicklung und Betrieb."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Fokussierung auf IT-Kernbereiche."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Sichtung der Teamstruktur."
                     }
                   ],
-                  "prose": "(BSI Baustein PERS_prozesse)"
+                  "prose": "Erste Ans&auml;tze zur Trennung von Entwicklung und Betrieb.",
+                  "parts": [
+                    {
+                      "id": "PERS.2.3.1-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Fokussierung auf IT-Kernbereiche."
+                    },
+                    {
+                      "id": "PERS.2.3.1-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Sichtung der Teamstruktur."
+                    }
+                  ]
                 },
                 {
                   "id": "PERS.2.3.1-m2_custom",
@@ -875,21 +875,21 @@
                     {
                       "name": "label",
                       "value": "m2"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Manuelle Trennung administrativer Konten von Benutzerkonten."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Pr&uuml;fung der Account-Benennungskonventionen."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Check: getent passwd | grep adm"
                     }
                   ],
-                  "prose": "(BSI Baustein PERS_prozesse)"
+                  "prose": "Manuelle Trennung administrativer Konten von Benutzerkonten.",
+                  "parts": [
+                    {
+                      "id": "PERS.2.3.1-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Pr&uuml;fung der Account-Benennungskonventionen."
+                    },
+                    {
+                      "id": "PERS.2.3.1-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Check: getent passwd | grep adm"
+                    }
+                  ]
                 },
                 {
                   "id": "PERS.2.3.1-m4_custom",
@@ -923,21 +923,21 @@
                     {
                       "name": "label",
                       "value": "m4"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Automatisierte Durchsetzung technischer Rollentrennung in Cloud-Umgebungen."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Nutzung von IAM Policies zur Erzwingung."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Pr&uuml;fung der Policy-Definitionen in der Cloud-Konsole."
                     }
                   ],
-                  "prose": "(BSI Baustein PERS_prozesse)"
+                  "prose": "Automatisierte Durchsetzung technischer Rollentrennung in Cloud-Umgebungen.",
+                  "parts": [
+                    {
+                      "id": "PERS.2.3.1-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Nutzung von IAM Policies zur Erzwingung."
+                    },
+                    {
+                      "id": "PERS.2.3.1-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Pr&uuml;fung der Policy-Definitionen in der Cloud-Konsole."
+                    }
+                  ]
                 },
                 {
                   "id": "PERS.2.3.1-m5_custom",
@@ -971,21 +971,21 @@
                     {
                       "name": "label",
                       "value": "m5"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Vollst&auml;ndige Virtualisierung und Isolation kritischer administrativer Rollen."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Zero-Trust Architektur f&uuml;r administrative Aufgaben."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Verifikation der Netzwerktrennung mittels automatisierter Scans."
                     }
                   ],
-                  "prose": "(BSI Baustein PERS_prozesse)"
+                  "prose": "Vollst&auml;ndige Virtualisierung und Isolation kritischer administrativer Rollen.",
+                  "parts": [
+                    {
+                      "id": "PERS.2.3.1-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Zero-Trust Architektur f&uuml;r administrative Aufgaben."
+                    },
+                    {
+                      "id": "PERS.2.3.1-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Verifikation der Netzwerktrennung mittels automatisierter Scans."
+                    }
+                  ]
                 }
               ]
             }
@@ -1030,21 +1030,21 @@
                     {
                       "name": "label",
                       "value": "m1"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Punktuelle Anwendung des Vier-Augen-Prinzips."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Identifikation von Schl&uuml;sselprozessen."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Stichprobenartige Freigabepr&uuml;fung."
                     }
                   ],
-                  "prose": "(BSI Baustein PERS_prozesse)"
+                  "prose": "Punktuelle Anwendung des Vier-Augen-Prinzips.",
+                  "parts": [
+                    {
+                      "id": "PERS.2.3.2-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Identifikation von Schl&uuml;sselprozessen."
+                    },
+                    {
+                      "id": "PERS.2.3.2-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Stichprobenartige Freigabepr&uuml;fung."
+                    }
+                  ]
                 },
                 {
                   "id": "PERS.2.3.2-m2_custom",
@@ -1078,21 +1078,21 @@
                     {
                       "name": "label",
                       "value": "m2"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Vier-Augen-Prinzip f&uuml;r alle kritischen System&auml;nderungen etabliert."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Dokumentation von Change-Freigaben."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Pr&uuml;fung der Change-Request-Logs."
                     }
                   ],
-                  "prose": "(BSI Baustein PERS_prozesse)"
+                  "prose": "Vier-Augen-Prinzip f&uuml;r alle kritischen System&auml;nderungen etabliert.",
+                  "parts": [
+                    {
+                      "id": "PERS.2.3.2-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Dokumentation von Change-Freigaben."
+                    },
+                    {
+                      "id": "PERS.2.3.2-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Pr&uuml;fung der Change-Request-Logs."
+                    }
+                  ]
                 },
                 {
                   "id": "PERS.2.3.2-m4_custom",
@@ -1126,21 +1126,21 @@
                     {
                       "name": "label",
                       "value": "m4"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Workflow-gest&uuml;tzte Erzwingung des Vier-Augen-Prinzips in ITIL-Tools."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Systemseitige Sperre bei fehlender Zweitfreigabe."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Testlauf einer Freigabe im ITSM-Tool."
                     }
                   ],
-                  "prose": "(BSI Baustein PERS_prozesse)"
+                  "prose": "Workflow-gest&uuml;tzte Erzwingung des Vier-Augen-Prinzips in ITIL-Tools.",
+                  "parts": [
+                    {
+                      "id": "PERS.2.3.2-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Systemseitige Sperre bei fehlender Zweitfreigabe."
+                    },
+                    {
+                      "id": "PERS.2.3.2-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Testlauf einer Freigabe im ITSM-Tool."
+                    }
+                  ]
                 },
                 {
                   "id": "PERS.2.3.2-m5_custom",
@@ -1174,21 +1174,21 @@
                     {
                       "name": "label",
                       "value": "m5"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Multi-Signatur-Verfahren f&uuml;r kryptographische Operationen und Root-Zugriffe."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Hardwarebasierte Durchsetzung von Mehrfachfreigaben."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Pr&uuml;fung der HSM-Konfiguration auf m-of-n Anforderungen."
                     }
                   ],
-                  "prose": "(BSI Baustein PERS_prozesse)"
+                  "prose": "Multi-Signatur-Verfahren f&uuml;r kryptographische Operationen und Root-Zugriffe.",
+                  "parts": [
+                    {
+                      "id": "PERS.2.3.2-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Hardwarebasierte Durchsetzung von Mehrfachfreigaben."
+                    },
+                    {
+                      "id": "PERS.2.3.2-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Pr&uuml;fung der HSM-Konfiguration auf m-of-n Anforderungen."
+                    }
+                  ]
                 }
               ]
             }
@@ -1233,21 +1233,21 @@
                     {
                       "name": "label",
                       "value": "m1"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Ad-hoc Trennung von Sicherheitsmanagement und IT-Betrieb."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Kl&auml;rung der Berichtswege."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Organigramm-Check."
                     }
                   ],
-                  "prose": "(BSI Baustein PERS_prozesse)"
+                  "prose": "Ad-hoc Trennung von Sicherheitsmanagement und IT-Betrieb.",
+                  "parts": [
+                    {
+                      "id": "PERS.2.3.3-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Kl&auml;rung der Berichtswege."
+                    },
+                    {
+                      "id": "PERS.2.3.3-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Organigramm-Check."
+                    }
+                  ]
                 },
                 {
                   "id": "PERS.2.3.3-m2_custom",
@@ -1281,21 +1281,21 @@
                     {
                       "name": "label",
                       "value": "m2"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Organisatorische Trennung des ISB von der IT-Leitung."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Unabh&auml;ngigkeit des ISB sicherstellen."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Einsicht in die Ernennungsurkunde und Berichtslinie."
                     }
                   ],
-                  "prose": "(BSI Baustein PERS_prozesse)"
+                  "prose": "Organisatorische Trennung des ISB von der IT-Leitung.",
+                  "parts": [
+                    {
+                      "id": "PERS.2.3.3-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Unabh&auml;ngigkeit des ISB sicherstellen."
+                    },
+                    {
+                      "id": "PERS.2.3.3-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Einsicht in die Ernennungsurkunde und Berichtslinie."
+                    }
+                  ]
                 },
                 {
                   "id": "PERS.2.3.3-m4_custom",
@@ -1329,21 +1329,21 @@
                     {
                       "name": "label",
                       "value": "m4"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Getrennte Budgets und Weisungsbefugnisse f&uuml;r IT und Security."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Ressourcenunabh&auml;ngigkeit pr&uuml;fen."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Budgetplan-Analyse auf separate Kostenstellen."
                     }
                   ],
-                  "prose": "(BSI Baustein PERS_prozesse)"
+                  "prose": "Getrennte Budgets und Weisungsbefugnisse f&uuml;r IT und Security.",
+                  "parts": [
+                    {
+                      "id": "PERS.2.3.3-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Ressourcenunabh&auml;ngigkeit pr&uuml;fen."
+                    },
+                    {
+                      "id": "PERS.2.3.3-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Budgetplan-Analyse auf separate Kostenstellen."
+                    }
+                  ]
                 },
                 {
                   "id": "PERS.2.3.3-m5_custom",
@@ -1377,21 +1377,21 @@
                     {
                       "name": "label",
                       "value": "m5"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Vollst&auml;ndig unabh&auml;ngige Security-Governance mit externem Audit-Board."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "H&ouml;chstm&ouml;gliche Objektivit&auml;t durch externe Instanzen."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Review der Protokolle des externen Audit-Boards."
                     }
                   ],
-                  "prose": "(BSI Baustein PERS_prozesse)"
+                  "prose": "Vollst&auml;ndig unabh&auml;ngige Security-Governance mit externem Audit-Board.",
+                  "parts": [
+                    {
+                      "id": "PERS.2.3.3-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "H&ouml;chstm&ouml;gliche Objektivit&auml;t durch externe Instanzen."
+                    },
+                    {
+                      "id": "PERS.2.3.3-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Review der Protokolle des externen Audit-Boards."
+                    }
+                  ]
                 }
               ]
             }
@@ -1436,21 +1436,21 @@
                     {
                       "name": "label",
                       "value": "m1"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Informelle Vermeidung von Interessenkonflikten."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Sensibilisierung der Leitung."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Gespr&auml;che &uuml;ber Doppelrollen."
                     }
                   ],
-                  "prose": "(BSI Baustein PERS_prozesse)"
+                  "prose": "Informelle Vermeidung von Interessenkonflikten.",
+                  "parts": [
+                    {
+                      "id": "PERS.2.3.4-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Sensibilisierung der Leitung."
+                    },
+                    {
+                      "id": "PERS.2.3.4-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Gespr&auml;che &uuml;ber Doppelrollen."
+                    }
+                  ]
                 },
                 {
                   "id": "PERS.2.3.4-m2_custom",
@@ -1484,21 +1484,21 @@
                     {
                       "name": "label",
                       "value": "m2"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Dokumentierte Ausschlusskriterien f&uuml;r bestimmte Rollenkombinationen."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Konfliktliste erstellen."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Pr&uuml;fung der Richtlinie zu Interessenkonflikten."
                     }
                   ],
-                  "prose": "(BSI Baustein PERS_prozesse)"
+                  "prose": "Dokumentierte Ausschlusskriterien f&uuml;r bestimmte Rollenkombinationen.",
+                  "parts": [
+                    {
+                      "id": "PERS.2.3.4-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Konfliktliste erstellen."
+                    },
+                    {
+                      "id": "PERS.2.3.4-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Pr&uuml;fung der Richtlinie zu Interessenkonflikten."
+                    }
+                  ]
                 },
                 {
                   "id": "PERS.2.3.4-m4_custom",
@@ -1532,21 +1532,21 @@
                     {
                       "name": "label",
                       "value": "m4"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Regelm&auml;&szlig;ige automatisierte Audits der Rollenverteilung auf Konflikte."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Toolbasierte Compliance-Checks."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Auswertung des Compliance-Reports: check-conflicts --run"
                     }
                   ],
-                  "prose": "(BSI Baustein PERS_prozesse)"
+                  "prose": "Regelm&auml;&szlig;ige automatisierte Audits der Rollenverteilung auf Konflikte.",
+                  "parts": [
+                    {
+                      "id": "PERS.2.3.4-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Toolbasierte Compliance-Checks."
+                    },
+                    {
+                      "id": "PERS.2.3.4-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Auswertung des Compliance-Reports: check-conflicts --run"
+                    }
+                  ]
                 },
                 {
                   "id": "PERS.2.3.4-m5_custom",
@@ -1580,21 +1580,21 @@
                     {
                       "name": "label",
                       "value": "m5"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "KI-basierte Erkennung von Verhaltensanomalien bei kritischen Rollenkombinationen."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Pr&auml;ventive Warnung vor potenziellen Missbrauchsszenarien."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Pr&uuml;fung der UEBA-Modelle auf Treffsicherheit."
                     }
                   ],
-                  "prose": "(BSI Baustein PERS_prozesse)"
+                  "prose": "KI-basierte Erkennung von Verhaltensanomalien bei kritischen Rollenkombinationen.",
+                  "parts": [
+                    {
+                      "id": "PERS.2.3.4-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Pr&auml;ventive Warnung vor potenziellen Missbrauchsszenarien."
+                    },
+                    {
+                      "id": "PERS.2.3.4-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Pr&uuml;fung der UEBA-Modelle auf Treffsicherheit."
+                    }
+                  ]
                 }
               ]
             }
@@ -1639,21 +1639,21 @@
                     {
                       "name": "label",
                       "value": "m1"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Zuweisung erfolgt informell durch Zurufe oder E-Mails ohne zentrale &Uuml;bersicht."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Informelle Kommunikation pr&uuml;fen."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Stichprobenartige Suche in E-Mail-Postf&auml;chern nach Zuweisungen."
                     }
                   ],
-                  "prose": "(BSI Baustein PERS_prozesse) Personal SOLLTE Zuständigkeiten für die Rollen zuweisen."
+                  "prose": "Zuweisung erfolgt informell durch Zurufe oder E-Mails ohne zentrale &Uuml;bersicht.",
+                  "parts": [
+                    {
+                      "id": "PERS.2.4-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Informelle Kommunikation pr&uuml;fen."
+                    },
+                    {
+                      "id": "PERS.2.4-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Stichprobenartige Suche in E-Mail-Postf&auml;chern nach Zuweisungen."
+                    }
+                  ]
                 },
                 {
                   "id": "PERS.2.4-m2_custom",
@@ -1687,21 +1687,21 @@
                     {
                       "name": "label",
                       "value": "m2"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Zuweisung ist in einer einfachen RACI-Matrix manuell dokumentiert."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Matrix auf Konsistenz mit Personalakten pr&uuml;fen."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Review der Excel-Datei RACI_Matrix.xlsx."
                     }
                   ],
-                  "prose": "(BSI Baustein PERS_prozesse) Personal SOLLTE Zuständigkeiten für die Rollen zuweisen."
+                  "prose": "Zuweisung ist in einer einfachen RACI-Matrix manuell dokumentiert.",
+                  "parts": [
+                    {
+                      "id": "PERS.2.4-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Matrix auf Konsistenz mit Personalakten pr&uuml;fen."
+                    },
+                    {
+                      "id": "PERS.2.4-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Review der Excel-Datei RACI_Matrix.xlsx."
+                    }
+                  ]
                 },
                 {
                   "id": "PERS.2.4-m3_custom",
@@ -1735,21 +1735,21 @@
                     {
                       "name": "label",
                       "value": "m3"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Personal SOLLTE Zust&auml;ndigkeiten f&uuml;r die Rollen zuweisen."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Jeder definierten Rolle muss mindestens eine verantwortliche Person eindeutig zugeordnet sein."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Abgleich der Rollenbeschreibungen mit der aktuellen Personalliste."
                     }
                   ],
-                  "prose": "(BSI Baustein PERS_prozesse) Personal SOLLTE Zuständigkeiten für die Rollen zuweisen."
+                  "prose": "Personal SOLLTE Zust&auml;ndigkeiten f&uuml;r die Rollen zuweisen.",
+                  "parts": [
+                    {
+                      "id": "PERS.2.4-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Jeder definierten Rolle muss mindestens eine verantwortliche Person eindeutig zugeordnet sein."
+                    },
+                    {
+                      "id": "PERS.2.4-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Abgleich der Rollenbeschreibungen mit der aktuellen Personalliste."
+                    }
+                  ]
                 },
                 {
                   "id": "PERS.2.4-m4_custom",
@@ -1783,21 +1783,21 @@
                     {
                       "name": "label",
                       "value": "m4"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Rollenzuweisung erfolgt &uuml;ber ein genehmigungsbasiertes Ticketsystem."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Digitalisierung des Zuweisungsprozesses."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Abfrage der Ticket-Historie f&uuml;r Rollenzuweisungen."
                     }
                   ],
-                  "prose": "(BSI Baustein PERS_prozesse) Personal SOLLTE Zuständigkeiten für die Rollen zuweisen."
+                  "prose": "Rollenzuweisung erfolgt &uuml;ber ein genehmigungsbasiertes Ticketsystem.",
+                  "parts": [
+                    {
+                      "id": "PERS.2.4-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Digitalisierung des Zuweisungsprozesses."
+                    },
+                    {
+                      "id": "PERS.2.4-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Abfrage der Ticket-Historie f&uuml;r Rollenzuweisungen."
+                    }
+                  ]
                 },
                 {
                   "id": "PERS.2.4-m5_custom",
@@ -1831,21 +1831,21 @@
                     {
                       "name": "label",
                       "value": "m5"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Vollautomatisierte Zuweisung und Rezertifizierung von Rollen durch HR-Triggersignale."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Koppelung von HR-Status &Auml;nderungen an IT-Berechtigungen."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Validierung des Workflows: HR-Event -> IAM Update."
                     }
                   ],
-                  "prose": "(BSI Baustein PERS_prozesse) Personal SOLLTE Zuständigkeiten für die Rollen zuweisen."
+                  "prose": "Vollautomatisierte Zuweisung und Rezertifizierung von Rollen durch HR-Triggersignale.",
+                  "parts": [
+                    {
+                      "id": "PERS.2.4-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Koppelung von HR-Status &Auml;nderungen an IT-Berechtigungen."
+                    },
+                    {
+                      "id": "PERS.2.4-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Validierung des Workflows: HR-Event -> IAM Update."
+                    }
+                  ]
                 }
               ]
             }
@@ -1890,21 +1890,21 @@
                     {
                       "name": "label",
                       "value": "m1"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Stellen werden ohne formale Beschreibung basierend auf Bedarfsmeldungen ausgeschrieben."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "M&uuml;ndliche Anforderungen pr&uuml;fen."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Sichtung von Ausschreibungstexten auf Vollst&auml;ndigkeit."
                     }
                   ],
-                  "prose": "(BSI Baustein PERS_prozesse) Personal SOLLTE Stellenbeschreibungen vor Ausschreibung zu besetzender Stellen dokumentieren."
+                  "prose": "Stellen werden ohne formale Beschreibung basierend auf Bedarfsmeldungen ausgeschrieben.",
+                  "parts": [
+                    {
+                      "id": "PERS.3.4-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "M&uuml;ndliche Anforderungen pr&uuml;fen."
+                    },
+                    {
+                      "id": "PERS.3.4-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Sichtung von Ausschreibungstexten auf Vollst&auml;ndigkeit."
+                    }
+                  ]
                 },
                 {
                   "id": "PERS.3.4-m2_custom",
@@ -1938,21 +1938,21 @@
                     {
                       "name": "label",
                       "value": "m2"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Vorhandene Vorlagen werden manuell f&uuml;r neue Ausschreibungen angepasst."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Qualit&auml;t der Vorlagen bewerten."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Review der benutzten Word-Vorlagen f&uuml;r Stellenanzeigen."
                     }
                   ],
-                  "prose": "(BSI Baustein PERS_prozesse) Personal SOLLTE Stellenbeschreibungen vor Ausschreibung zu besetzender Stellen dokumentieren."
+                  "prose": "Vorhandene Vorlagen werden manuell f&uuml;r neue Ausschreibungen angepasst.",
+                  "parts": [
+                    {
+                      "id": "PERS.3.4-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Qualit&auml;t der Vorlagen bewerten."
+                    },
+                    {
+                      "id": "PERS.3.4-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Review der benutzten Word-Vorlagen f&uuml;r Stellenanzeigen."
+                    }
+                  ]
                 },
                 {
                   "id": "PERS.3.4-m3_custom",
@@ -1986,21 +1986,21 @@
                     {
                       "name": "label",
                       "value": "m3"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Personal SOLLTE Stellenbeschreibungen vor Ausschreibung zu besetzender Stellen dokumentieren."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Erstellen Sie detaillierte Stellenbeschreibungen, bevor Sie eine Position extern oder intern ausschreiben."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Pr&uuml;fung der Dokumentationshistorie von Stellenausschreibungen."
                     }
                   ],
-                  "prose": "(BSI Baustein PERS_prozesse) Personal SOLLTE Stellenbeschreibungen vor Ausschreibung zu besetzender Stellen dokumentieren."
+                  "prose": "Personal SOLLTE Stellenbeschreibungen vor Ausschreibung zu besetzender Stellen dokumentieren.",
+                  "parts": [
+                    {
+                      "id": "PERS.3.4-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Erstellen Sie detaillierte Stellenbeschreibungen, bevor Sie eine Position extern oder intern ausschreiben."
+                    },
+                    {
+                      "id": "PERS.3.4-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Pr&uuml;fung der Dokumentationshistorie von Stellenausschreibungen."
+                    }
+                  ]
                 },
                 {
                   "id": "PERS.3.4-m4_custom",
@@ -2034,21 +2034,21 @@
                     {
                       "name": "label",
                       "value": "m4"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Strukturierte digitale Erfassung aller Anforderungen in einem Bewerbermanagementsystem."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Nutzung von Datenbankfeldern statt Freitext."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Datenexport aus dem HR-Tool zur Analyse der Pflichtfelder."
                     }
                   ],
-                  "prose": "(BSI Baustein PERS_prozesse) Personal SOLLTE Stellenbeschreibungen vor Ausschreibung zu besetzender Stellen dokumentieren."
+                  "prose": "Strukturierte digitale Erfassung aller Anforderungen in einem Bewerbermanagementsystem.",
+                  "parts": [
+                    {
+                      "id": "PERS.3.4-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Nutzung von Datenbankfeldern statt Freitext."
+                    },
+                    {
+                      "id": "PERS.3.4-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Datenexport aus dem HR-Tool zur Analyse der Pflichtfelder."
+                    }
+                  ]
                 },
                 {
                   "id": "PERS.3.4-m5_custom",
@@ -2082,21 +2082,21 @@
                     {
                       "name": "label",
                       "value": "m5"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Automatisierte Ableitung von Stellenbeschreibungen aus aktuellen ISMS-Rollenanforderungen."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Konsistenz zwischen ISMS und HR sicherstellen."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Vergleich der ISMS-Rollen-DB mit den HR-Ausschreibungen."
                     }
                   ],
-                  "prose": "(BSI Baustein PERS_prozesse) Personal SOLLTE Stellenbeschreibungen vor Ausschreibung zu besetzender Stellen dokumentieren."
+                  "prose": "Automatisierte Ableitung von Stellenbeschreibungen aus aktuellen ISMS-Rollenanforderungen.",
+                  "parts": [
+                    {
+                      "id": "PERS.3.4-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Konsistenz zwischen ISMS und HR sicherstellen."
+                    },
+                    {
+                      "id": "PERS.3.4-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Vergleich der ISMS-Rollen-DB mit den HR-Ausschreibungen."
+                    }
+                  ]
                 }
               ]
             }
@@ -2141,21 +2141,21 @@
                     {
                       "name": "label",
                       "value": "m1"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Qualifikationspr&uuml;fung erfolgt nur grob durch Sichtung des Lebenslaufs."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Basale Prüfung der Unterlagen."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Sichtung von Bewerbungsakten auf Notizen des Recruiters."
                     }
                   ],
-                  "prose": "(BSI Baustein PERS_prozesse) Personal SOLLTE die Qualifikation von Bewerbenden anhand der Bewerbungsunterlagen vor der Besetzung von Stellen testen."
+                  "prose": "Qualifikationspr&uuml;fung erfolgt nur grob durch Sichtung des Lebenslaufs.",
+                  "parts": [
+                    {
+                      "id": "PERS.3.5-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Basale Prüfung der Unterlagen."
+                    },
+                    {
+                      "id": "PERS.3.5-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Sichtung von Bewerbungsakten auf Notizen des Recruiters."
+                    }
+                  ]
                 },
                 {
                   "id": "PERS.3.5-m2_custom",
@@ -2189,21 +2189,21 @@
                     {
                       "name": "label",
                       "value": "m2"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Standardisierte Checkliste zur Pr&uuml;fung von Zeugnissen und Referenzen vorhanden."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Einhaltung der Checkliste pr&uuml;fen."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Pr&uuml;fung ausgef&uuml;llter Checklisten in den Einstellungsunterlagen."
                     }
                   ],
-                  "prose": "(BSI Baustein PERS_prozesse) Personal SOLLTE die Qualifikation von Bewerbenden anhand der Bewerbungsunterlagen vor der Besetzung von Stellen testen."
+                  "prose": "Standardisierte Checkliste zur Pr&uuml;fung von Zeugnissen und Referenzen vorhanden.",
+                  "parts": [
+                    {
+                      "id": "PERS.3.5-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Einhaltung der Checkliste pr&uuml;fen."
+                    },
+                    {
+                      "id": "PERS.3.5-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Pr&uuml;fung ausgef&uuml;llter Checklisten in den Einstellungsunterlagen."
+                    }
+                  ]
                 },
                 {
                   "id": "PERS.3.5-m3_custom",
@@ -2237,21 +2237,21 @@
                     {
                       "name": "label",
                       "value": "m3"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Personal SOLLTE die Qualifikation von Bewerbenden anhand der Bewerbungsunterlagen vor der Besetzung von Stellen testen."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Pr&uuml;fen Sie systematisch, ob die Bewerbenden die f&uuml;r die Stelle erforderlichen Qualifikationen mitbringen."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Durchsicht der Auswahlmatrizen f&uuml;r k&uuml;rzlich besetzte Stellen."
                     }
                   ],
-                  "prose": "(BSI Baustein PERS_prozesse) Personal SOLLTE die Qualifikation von Bewerbenden anhand der Bewerbungsunterlagen vor der Besetzung von Stellen testen."
+                  "prose": "Personal SOLLTE die Qualifikation von Bewerbenden anhand der Bewerbungsunterlagen vor der Besetzung von Stellen testen.",
+                  "parts": [
+                    {
+                      "id": "PERS.3.5-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Pr&uuml;fen Sie systematisch, ob die Bewerbenden die f&uuml;r die Stelle erforderlichen Qualifikationen mitbringen."
+                    },
+                    {
+                      "id": "PERS.3.5-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Durchsicht der Auswahlmatrizen f&uuml;r k&uuml;rzlich besetzte Stellen."
+                    }
+                  ]
                 },
                 {
                   "id": "PERS.3.5-m4_custom",
@@ -2285,21 +2285,21 @@
                     {
                       "name": "label",
                       "value": "m4"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Integration von Fach-Assessments und zertifizierten Eignungstests in den Prozess."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Objektivierung der Qualifikationsmessung."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Pr&uuml;fung der Testergebnisse in den Bewerbungsplattformen."
                     }
                   ],
-                  "prose": "(BSI Baustein PERS_prozesse) Personal SOLLTE die Qualifikation von Bewerbenden anhand der Bewerbungsunterlagen vor der Besetzung von Stellen testen."
+                  "prose": "Integration von Fach-Assessments und zertifizierten Eignungstests in den Prozess.",
+                  "parts": [
+                    {
+                      "id": "PERS.3.5-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Objektivierung der Qualifikationsmessung."
+                    },
+                    {
+                      "id": "PERS.3.5-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Pr&uuml;fung der Testergebnisse in den Bewerbungsplattformen."
+                    }
+                  ]
                 },
                 {
                   "id": "PERS.3.5-m5_custom",
@@ -2333,21 +2333,21 @@
                     {
                       "name": "label",
                       "value": "m5"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "KI-gest&uuml;tzte Voranalyse der Qualifikationen gegen das ISMS-Kompetenzprofil."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Automatischer Match-Score f&uuml;r Sicherheitsrollen."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Audit des KI-Matching-Algorithmus auf Bias und Genauigkeit."
                     }
                   ],
-                  "prose": "(BSI Baustein PERS_prozesse) Personal SOLLTE die Qualifikation von Bewerbenden anhand der Bewerbungsunterlagen vor der Besetzung von Stellen testen."
+                  "prose": "KI-gest&uuml;tzte Voranalyse der Qualifikationen gegen das ISMS-Kompetenzprofil.",
+                  "parts": [
+                    {
+                      "id": "PERS.3.5-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Automatischer Match-Score f&uuml;r Sicherheitsrollen."
+                    },
+                    {
+                      "id": "PERS.3.5-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Audit des KI-Matching-Algorithmus auf Bias und Genauigkeit."
+                    }
+                  ]
                 }
               ]
             }
@@ -2392,21 +2392,21 @@
                     {
                       "name": "label",
                       "value": "m1"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Vereinzelte Prüfung der Vertrauenswürdigkeit von Bewerbern bei begründetem Verdacht."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Prüfungen erfolgen ad-hoc ohne festen Prozess."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Einsicht in Personalakten auf sporadische Vermerke. Manueller Abgleich von Lebensläufen."
                     }
                   ],
-                  "prose": "(BSI Baustein PERS_prozesse) Personal SOLLTE die Vertrauenswürdigkeit von Bewerbenden vor der Besetzung von Stellen testen."
+                  "prose": "Vereinzelte Prüfung der Vertrauenswürdigkeit von Bewerbern bei begründetem Verdacht.",
+                  "parts": [
+                    {
+                      "id": "PERS.3.6-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Prüfungen erfolgen ad-hoc ohne festen Prozess."
+                    },
+                    {
+                      "id": "PERS.3.6-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Einsicht in Personalakten auf sporadische Vermerke. Manueller Abgleich von Lebensläufen."
+                    }
+                  ]
                 },
                 {
                   "id": "PERS.3.6-m2_custom",
@@ -2440,21 +2440,21 @@
                     {
                       "name": "label",
                       "value": "m2"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Manuelle Prüfung von Referenzen und Zeugnissen für ausgewählte Schlüsselpositionen."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Ein grundlegender Prozess für kritische Stellen existiert, ist aber nicht formalisiert."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Prüfung der Einstellungschecklisten für Führungskräfte auf Vollständigkeit der Referenzen."
                     }
                   ],
-                  "prose": "(BSI Baustein PERS_prozesse) Personal SOLLTE die Vertrauenswürdigkeit von Bewerbenden vor der Besetzung von Stellen testen."
+                  "prose": "Manuelle Prüfung von Referenzen und Zeugnissen für ausgewählte Schlüsselpositionen.",
+                  "parts": [
+                    {
+                      "id": "PERS.3.6-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Ein grundlegender Prozess für kritische Stellen existiert, ist aber nicht formalisiert."
+                    },
+                    {
+                      "id": "PERS.3.6-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung der Einstellungschecklisten für Führungskräfte auf Vollständigkeit der Referenzen."
+                    }
+                  ]
                 },
                 {
                   "id": "PERS.3.6-m3_custom",
@@ -2488,21 +2488,21 @@
                     {
                       "name": "label",
                       "value": "m3"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Personal SOLLTE die Vertrauenswürdigkeit von Bewerbenden vor der Besetzung von Stellen testen."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Die Prüfung der Vertrauenswürdigkeit ist ein fester Bestandteil des Einstellungsprozesses für alle Positionen."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Audit des HR-Workflows. Prüfung, ob für Stichproben von Neueinstellungen Vertrauenswürdigkeitschecks vorliegen."
                     }
                   ],
-                  "prose": "(BSI Baustein PERS_prozesse) Personal SOLLTE die Vertrauenswürdigkeit von Bewerbenden vor der Besetzung von Stellen testen."
+                  "prose": "Personal SOLLTE die Vertrauenswürdigkeit von Bewerbenden vor der Besetzung von Stellen testen.",
+                  "parts": [
+                    {
+                      "id": "PERS.3.6-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Die Prüfung der Vertrauenswürdigkeit ist ein fester Bestandteil des Einstellungsprozesses für alle Positionen."
+                    },
+                    {
+                      "id": "PERS.3.6-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Audit des HR-Workflows. Prüfung, ob für Stichproben von Neueinstellungen Vertrauenswürdigkeitschecks vorliegen."
+                    }
+                  ]
                 },
                 {
                   "id": "PERS.3.6-m4_custom",
@@ -2536,21 +2536,21 @@
                     {
                       "name": "label",
                       "value": "m4"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Standardisierte Hintergrundüberprüfungen und Einholung von erweiterten Führungszeugnissen für alle IT-Rollen."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Automatisierte Trigger im Onboarding-Prozess stellen sicher, dass alle Prüfungen abgeschlossen sind."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Abfrage der HR-Datenbank via SQL: SELECT * FROM candidates WHERE security_check_status IS NOT 'completed'."
                     }
                   ],
-                  "prose": "(BSI Baustein PERS_prozesse) Personal SOLLTE die Vertrauenswürdigkeit von Bewerbenden vor der Besetzung von Stellen testen."
+                  "prose": "Standardisierte Hintergrundüberprüfungen und Einholung von erweiterten Führungszeugnissen für alle IT-Rollen.",
+                  "parts": [
+                    {
+                      "id": "PERS.3.6-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Automatisierte Trigger im Onboarding-Prozess stellen sicher, dass alle Prüfungen abgeschlossen sind."
+                    },
+                    {
+                      "id": "PERS.3.6-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Abfrage der HR-Datenbank via SQL: SELECT * FROM candidates WHERE security_check_status IS NOT 'completed'."
+                    }
+                  ]
                 },
                 {
                   "id": "PERS.3.6-m5_custom",
@@ -2584,21 +2584,21 @@
                     {
                       "name": "label",
                       "value": "m5"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Kontinuierliche und integrierte Validierung der Qualifikationen und Vertrauenswürdigkeit mittels digitaler Identitäten."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Einsatz von kryptografisch signierten Nachweisen zur fälschungssicheren Verifikation von Bewerberdaten."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Prüfung der API-Logs zur Anbindung an dezentrale Verifikationsdienste (z. B. Blockchain-basierte Zeugnisse)."
                     }
                   ],
-                  "prose": "(BSI Baustein PERS_prozesse) Personal SOLLTE die Vertrauenswürdigkeit von Bewerbenden vor der Besetzung von Stellen testen."
+                  "prose": "Kontinuierliche und integrierte Validierung der Qualifikationen und Vertrauenswürdigkeit mittels digitaler Identitäten.",
+                  "parts": [
+                    {
+                      "id": "PERS.3.6-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Einsatz von kryptografisch signierten Nachweisen zur fälschungssicheren Verifikation von Bewerberdaten."
+                    },
+                    {
+                      "id": "PERS.3.6-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung der API-Logs zur Anbindung an dezentrale Verifikationsdienste (z. B. Blockchain-basierte Zeugnisse)."
+                    }
+                  ]
                 }
               ]
             }
@@ -2643,21 +2643,21 @@
                     {
                       "name": "label",
                       "value": "m1"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Sporadische Einholung von Referenzen bei Unklarheiten im Lebenslauf."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Referenzen werden nur in Ausnahmefällen kontaktiert."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Befragung der Personalabteilung zu Einzelfällen."
                     }
                   ],
-                  "prose": "(BSI Baustein PERS_prozesse)"
+                  "prose": "Sporadische Einholung von Referenzen bei Unklarheiten im Lebenslauf.",
+                  "parts": [
+                    {
+                      "id": "PERS.3.6.1-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Referenzen werden nur in Ausnahmefällen kontaktiert."
+                    },
+                    {
+                      "id": "PERS.3.6.1-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Befragung der Personalabteilung zu Einzelfällen."
+                    }
+                  ]
                 },
                 {
                   "id": "PERS.3.6.1-m2_custom",
@@ -2691,21 +2691,21 @@
                     {
                       "name": "label",
                       "value": "m2"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Systematische Einholung von mindestens einer Referenz für jede Fachkraft."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Es existiert eine Vorlage für Referenzgespräche, die meist genutzt wird."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Stichprobenartige Prüfung der Dokumentation von Referenzgesprächen."
                     }
                   ],
-                  "prose": "(BSI Baustein PERS_prozesse)"
+                  "prose": "Systematische Einholung von mindestens einer Referenz für jede Fachkraft.",
+                  "parts": [
+                    {
+                      "id": "PERS.3.6.1-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Es existiert eine Vorlage für Referenzgespräche, die meist genutzt wird."
+                    },
+                    {
+                      "id": "PERS.3.6.1-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Stichprobenartige Prüfung der Dokumentation von Referenzgesprächen."
+                    }
+                  ]
                 },
                 {
                   "id": "PERS.3.6.1-m4_custom",
@@ -2739,21 +2739,21 @@
                     {
                       "name": "label",
                       "value": "m4"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Automatisierte Anforderung und Auswertung von Referenzen über ein Bewerbermanagementsystem."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Der Prozess ist in das digitale Bewerberportal integriert und erzwingt Rückmeldungen."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Prüfung der Systemkonfiguration des Bewerbermanagementsystems auf automatisierte Workflows."
                     }
                   ],
-                  "prose": "(BSI Baustein PERS_prozesse)"
+                  "prose": "Automatisierte Anforderung und Auswertung von Referenzen über ein Bewerbermanagementsystem.",
+                  "parts": [
+                    {
+                      "id": "PERS.3.6.1-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Der Prozess ist in das digitale Bewerberportal integriert und erzwingt Rückmeldungen."
+                    },
+                    {
+                      "id": "PERS.3.6.1-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung der Systemkonfiguration des Bewerbermanagementsystems auf automatisierte Workflows."
+                    }
+                  ]
                 },
                 {
                   "id": "PERS.3.6.1-m5_custom",
@@ -2787,21 +2787,21 @@
                     {
                       "name": "label",
                       "value": "m5"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Echtzeit-Verifikation von beruflichen Stationen über verifizierte digitale Netzwerke."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Referenzen werden digital signiert und automatisch gegen Identitätsprovider validiert."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Verifikation der automatisierten Validierungsskripte gegen die API des Identitätsproviders."
                     }
                   ],
-                  "prose": "(BSI Baustein PERS_prozesse)"
+                  "prose": "Echtzeit-Verifikation von beruflichen Stationen über verifizierte digitale Netzwerke.",
+                  "parts": [
+                    {
+                      "id": "PERS.3.6.1-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Referenzen werden digital signiert und automatisch gegen Identitätsprovider validiert."
+                    },
+                    {
+                      "id": "PERS.3.6.1-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Verifikation der automatisierten Validierungsskripte gegen die API des Identitätsproviders."
+                    }
+                  ]
                 }
               ]
             }
@@ -2846,21 +2846,21 @@
                     {
                       "name": "label",
                       "value": "m1"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Ad-hoc Maßregelung bei schwerwiegenden Sicherheitsverstößen ohne festen Katalog."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Disziplinarische Schritte werden fallweise durch die Geschäftsführung entschieden."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Prüfung von Protokollen zu vergangenen Vorfällen auf konsistente Reaktionen."
                     }
                   ],
-                  "prose": "(BSI Baustein PERS_prozesse) Personal SOLLTE ein Verfahren zur Maßregelung verankern."
+                  "prose": "Ad-hoc Maßregelung bei schwerwiegenden Sicherheitsverstößen ohne festen Katalog.",
+                  "parts": [
+                    {
+                      "id": "PERS.5.1-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Disziplinarische Schritte werden fallweise durch die Geschäftsführung entschieden."
+                    },
+                    {
+                      "id": "PERS.5.1-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung von Protokollen zu vergangenen Vorfällen auf konsistente Reaktionen."
+                    }
+                  ]
                 },
                 {
                   "id": "PERS.5.1-m2_custom",
@@ -2894,21 +2894,21 @@
                     {
                       "name": "label",
                       "value": "m2"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Festlegung von internen Leitlinien für den Umgang mit Fehlverhalten."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Führungskräfte sind über grundlegende Sanktionsmöglichkeiten informiert."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Einsicht in Schulungsunterlagen für Führungskräfte bezüglich Compliance."
                     }
                   ],
-                  "prose": "(BSI Baustein PERS_prozesse) Personal SOLLTE ein Verfahren zur Maßregelung verankern."
+                  "prose": "Festlegung von internen Leitlinien für den Umgang mit Fehlverhalten.",
+                  "parts": [
+                    {
+                      "id": "PERS.5.1-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Führungskräfte sind über grundlegende Sanktionsmöglichkeiten informiert."
+                    },
+                    {
+                      "id": "PERS.5.1-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Einsicht in Schulungsunterlagen für Führungskräfte bezüglich Compliance."
+                    }
+                  ]
                 },
                 {
                   "id": "PERS.5.1-m3_custom",
@@ -2942,21 +2942,21 @@
                     {
                       "name": "label",
                       "value": "m3"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Personal SOLLTE ein Verfahren zur Maßregelung verankern."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Das Verfahren muss rechtssicher dokumentiert und allen Mitarbeitenden bekannt sein."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Prüfung der Betriebsvereinbarung oder Arbeitsordnung auf Passagen zur Maßregelung bei Sicherheitsverstößen."
                     }
                   ],
-                  "prose": "(BSI Baustein PERS_prozesse) Personal SOLLTE ein Verfahren zur Maßregelung verankern."
+                  "prose": "Personal SOLLTE ein Verfahren zur Maßregelung verankern.",
+                  "parts": [
+                    {
+                      "id": "PERS.5.1-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Das Verfahren muss rechtssicher dokumentiert und allen Mitarbeitenden bekannt sein."
+                    },
+                    {
+                      "id": "PERS.5.1-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung der Betriebsvereinbarung oder Arbeitsordnung auf Passagen zur Maßregelung bei Sicherheitsverstößen."
+                    }
+                  ]
                 },
                 {
                   "id": "PERS.5.1-m4_custom",
@@ -2990,21 +2990,21 @@
                     {
                       "name": "label",
                       "value": "m4"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Einführung eines detaillierten Sanktionskatalogs und regelmäßiges Monitoring der Umsetzung."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Sicherheitsverstöße werden zentral erfasst und gemäß Katalog automatisch einer Eskalationsstufe zugeordnet."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Audit des Incident-Management-Tools auf Verknüpfung zwischen Sicherheitsvorfällen und personellen Folgemaßnahmen."
                     }
                   ],
-                  "prose": "(BSI Baustein PERS_prozesse) Personal SOLLTE ein Verfahren zur Maßregelung verankern."
+                  "prose": "Einführung eines detaillierten Sanktionskatalogs und regelmäßiges Monitoring der Umsetzung.",
+                  "parts": [
+                    {
+                      "id": "PERS.5.1-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Sicherheitsverstöße werden zentral erfasst und gemäß Katalog automatisch einer Eskalationsstufe zugeordnet."
+                    },
+                    {
+                      "id": "PERS.5.1-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Audit des Incident-Management-Tools auf Verknüpfung zwischen Sicherheitsvorfällen und personellen Folgemaßnahmen."
+                    }
+                  ]
                 },
                 {
                   "id": "PERS.5.1-m5_custom",
@@ -3038,21 +3038,21 @@
                     {
                       "name": "label",
                       "value": "m5"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Integriertes Compliance-Dashboard mit automatischer Wirksamkeitsprüfung der Maßregelungen."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "KI-gestützte Analyse zur Identifikation von Mustern im Fehlverhalten zur präventiven Anpassung von Richtlinien."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Prüfung der Dashboards auf Metriken zur Rückfallquote nach durchgeführten Maßregelungen."
                     }
                   ],
-                  "prose": "(BSI Baustein PERS_prozesse) Personal SOLLTE ein Verfahren zur Maßregelung verankern."
+                  "prose": "Integriertes Compliance-Dashboard mit automatischer Wirksamkeitsprüfung der Maßregelungen.",
+                  "parts": [
+                    {
+                      "id": "PERS.5.1-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "KI-gestützte Analyse zur Identifikation von Mustern im Fehlverhalten zur präventiven Anpassung von Richtlinien."
+                    },
+                    {
+                      "id": "PERS.5.1-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung der Dashboards auf Metriken zur Rückfallquote nach durchgeführten Maßregelungen."
+                    }
+                  ]
                 }
               ]
             }
@@ -3097,21 +3097,21 @@
                     {
                       "name": "label",
                       "value": "m1"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Sensibilisierung einzelner Abteilungsleiter für Anzeichen von Innentäter-Verhalten."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Keine strukturierten Meldewege für Verdachtsmomente vorhanden."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Befragung von Vorgesetzten zu ihrem Vorgehen bei Verdacht."
                     }
                   ],
-                  "prose": "(BSI Baustein PERS_prozesse) Personal SOLLTE ein interdisziplinäres Verfahren zum Umgang mit potenziellen Innentätern verankern."
+                  "prose": "Sensibilisierung einzelner Abteilungsleiter für Anzeichen von Innentäter-Verhalten.",
+                  "parts": [
+                    {
+                      "id": "PERS.5.2-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Keine strukturierten Meldewege für Verdachtsmomente vorhanden."
+                    },
+                    {
+                      "id": "PERS.5.2-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Befragung von Vorgesetzten zu ihrem Vorgehen bei Verdacht."
+                    }
+                  ]
                 },
                 {
                   "id": "PERS.5.2-m2_custom",
@@ -3145,21 +3145,21 @@
                     {
                       "name": "label",
                       "value": "m2"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Einbindung der Personalabteilung und des Sicherheitsbeauftragten bei konkreten Verdachtsfällen."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Es gibt informelle Absprachen zur Zusammenarbeit zwischen IT-Sicherheit und HR."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Prüfung von Kommunikationslogs bei zurückliegenden Verdachtsfällen."
                     }
                   ],
-                  "prose": "(BSI Baustein PERS_prozesse) Personal SOLLTE ein interdisziplinäres Verfahren zum Umgang mit potenziellen Innentätern verankern."
+                  "prose": "Einbindung der Personalabteilung und des Sicherheitsbeauftragten bei konkreten Verdachtsfällen.",
+                  "parts": [
+                    {
+                      "id": "PERS.5.2-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Es gibt informelle Absprachen zur Zusammenarbeit zwischen IT-Sicherheit und HR."
+                    },
+                    {
+                      "id": "PERS.5.2-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung von Kommunikationslogs bei zurückliegenden Verdachtsfällen."
+                    }
+                  ]
                 },
                 {
                   "id": "PERS.5.2-m3_custom",
@@ -3193,21 +3193,21 @@
                     {
                       "name": "label",
                       "value": "m3"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Personal SOLLTE ein interdisziplinäres Verfahren zum Umgang mit potenziellen Innentätern verankern."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Ein Team aus HR, IT-Sicherheit und Recht muss für die Bearbeitung von Insider-Bedrohungen definiert sein."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Einsicht in das Prozessdiagramm für den Umgang mit Insider-Threats und Prüfung der Rollendefinitionen."
                     }
                   ],
-                  "prose": "(BSI Baustein PERS_prozesse) Personal SOLLTE ein interdisziplinäres Verfahren zum Umgang mit potenziellen Innentätern verankern."
+                  "prose": "Personal SOLLTE ein interdisziplinäres Verfahren zum Umgang mit potenziellen Innentätern verankern.",
+                  "parts": [
+                    {
+                      "id": "PERS.5.2-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Ein Team aus HR, IT-Sicherheit und Recht muss für die Bearbeitung von Insider-Bedrohungen definiert sein."
+                    },
+                    {
+                      "id": "PERS.5.2-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Einsicht in das Prozessdiagramm für den Umgang mit Insider-Threats und Prüfung der Rollendefinitionen."
+                    }
+                  ]
                 },
                 {
                   "id": "PERS.5.2-m4_custom",
@@ -3241,21 +3241,21 @@
                     {
                       "name": "label",
                       "value": "m4"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Regelmäßige interdisziplinäre Risikoanalysen und Fallsimulationen zum Thema Innentäter."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Proaktive Suche nach Indikatoren für Unzufriedenheit oder auffälliges Datenzugriffsverhalten."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Prüfung der Protokolle von Threat-Hunting-Workshops mit Fokus auf Insider-Szenarien."
                     }
                   ],
-                  "prose": "(BSI Baustein PERS_prozesse) Personal SOLLTE ein interdisziplinäres Verfahren zum Umgang mit potenziellen Innentätern verankern."
+                  "prose": "Regelmäßige interdisziplinäre Risikoanalysen und Fallsimulationen zum Thema Innentäter.",
+                  "parts": [
+                    {
+                      "id": "PERS.5.2-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Proaktive Suche nach Indikatoren für Unzufriedenheit oder auffälliges Datenzugriffsverhalten."
+                    },
+                    {
+                      "id": "PERS.5.2-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung der Protokolle von Threat-Hunting-Workshops mit Fokus auf Insider-Szenarien."
+                    }
+                  ]
                 },
                 {
                   "id": "PERS.5.2-m5_custom",
@@ -3289,21 +3289,21 @@
                     {
                       "name": "label",
                       "value": "m5"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Vollintegriertes Insider-Risk-Programm mit automatisierter Anomalieerkennung und Eskalationslogik."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Nutzung von verhaltensbasierter Analyse (User Behavior Analytics), um Risiken in Echtzeit zu minimieren."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Technische Prüfung der Schwellenwerte und Alarme im Monitoring-System (z.B. SIEM/UBA)."
                     }
                   ],
-                  "prose": "(BSI Baustein PERS_prozesse) Personal SOLLTE ein interdisziplinäres Verfahren zum Umgang mit potenziellen Innentätern verankern."
+                  "prose": "Vollintegriertes Insider-Risk-Programm mit automatisierter Anomalieerkennung und Eskalationslogik.",
+                  "parts": [
+                    {
+                      "id": "PERS.5.2-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Nutzung von verhaltensbasierter Analyse (User Behavior Analytics), um Risiken in Echtzeit zu minimieren."
+                    },
+                    {
+                      "id": "PERS.5.2-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Technische Prüfung der Schwellenwerte und Alarme im Monitoring-System (z.B. SIEM/UBA)."
+                    }
+                  ]
                 }
               ]
             }
@@ -3348,21 +3348,21 @@
                     {
                       "name": "label",
                       "value": "m1"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Einmalige Prüfung der Vertrauenswürdigkeit ausschließlich bei der Einstellung."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Nach der Einstellung finden keine weiteren planmäßigen Überprüfungen statt."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Prüfung der Personalakten auf initiale Sicherheitsüberprüfungen."
                     }
                   ],
-                  "prose": "(BSI Baustein PERS_prozesse) Personal SOLLTE die Vertrauenswürdigkeit für {{ insert: param, pers.5.3-prm1 }} {{ insert: param, pers.5.3-prm2 }} und anlassbezogen überprüfen."
+                  "prose": "Einmalige Prüfung der Vertrauenswürdigkeit ausschließlich bei der Einstellung.",
+                  "parts": [
+                    {
+                      "id": "PERS.5.3-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Nach der Einstellung finden keine weiteren planmäßigen Überprüfungen statt."
+                    },
+                    {
+                      "id": "PERS.5.3-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung der Personalakten auf initiale Sicherheitsüberprüfungen."
+                    }
+                  ]
                 },
                 {
                   "id": "PERS.5.3-m2_custom",
@@ -3396,21 +3396,21 @@
                     {
                       "name": "label",
                       "value": "m2"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Manuelle Nachprüfung der Vertrauenswürdigkeit in unregelmäßigen Abständen."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Wiederholungsprüfungen erfolgen meist nur bei Beförderungen."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Abgleich von Beförderungsdaten mit dem Datum der letzten Sicherheitsprüfung."
                     }
                   ],
-                  "prose": "(BSI Baustein PERS_prozesse) Personal SOLLTE die Vertrauenswürdigkeit für {{ insert: param, pers.5.3-prm1 }} {{ insert: param, pers.5.3-prm2 }} und anlassbezogen überprüfen."
+                  "prose": "Manuelle Nachprüfung der Vertrauenswürdigkeit in unregelmäßigen Abständen.",
+                  "parts": [
+                    {
+                      "id": "PERS.5.3-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Wiederholungsprüfungen erfolgen meist nur bei Beförderungen."
+                    },
+                    {
+                      "id": "PERS.5.3-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Abgleich von Beförderungsdaten mit dem Datum der letzten Sicherheitsprüfung."
+                    }
+                  ]
                 },
                 {
                   "id": "PERS.5.3-m3_custom",
@@ -3444,21 +3444,21 @@
                     {
                       "name": "label",
                       "value": "m3"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Personal SOLLTE die Vertrauenswürdigkeit für {{ insert: param, pers.5.3-prm1 }} {{ insert: param, pers.5.3-prm2 }} und anlassbezogen überprüfen."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Die Intervalle und Anlässe für die Überprüfungen müssen schriftlich fixiert und eingehalten werden."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Prüfung der Liste der sicherheitskritischen Rollen und Kontrolle der Re-Zertifizierungsdaten."
                     }
                   ],
-                  "prose": "(BSI Baustein PERS_prozesse) Personal SOLLTE die Vertrauenswürdigkeit für {{ insert: param, pers.5.3-prm1 }} {{ insert: param, pers.5.3-prm2 }} und anlassbezogen überprüfen."
+                  "prose": "Personal SOLLTE die Vertrauenswürdigkeit für {{ insert: param, pers.5.3-prm1 }} {{ insert: param, pers.5.3-prm2 }} und anlassbezogen überprüfen.",
+                  "parts": [
+                    {
+                      "id": "PERS.5.3-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Die Intervalle und Anlässe für die Überprüfungen müssen schriftlich fixiert und eingehalten werden."
+                    },
+                    {
+                      "id": "PERS.5.3-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung der Liste der sicherheitskritischen Rollen und Kontrolle der Re-Zertifizierungsdaten."
+                    }
+                  ]
                 },
                 {
                   "id": "PERS.5.3-m4_custom",
@@ -3492,21 +3492,21 @@
                     {
                       "name": "label",
                       "value": "m4"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Automatisierte Überwachung von Ablaufdaten der Sicherheitsüberprüfungen mit Benachrichtigungssystem."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Das System triggert automatisch Workflows zur Neuanforderung von Nachweisen (z.B. Führungszeugnis)."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Prüfung der E-Mail-Logs oder Ticket-Logs auf automatisierte Erinnerungen an HR/Mitarbeiter."
                     }
                   ],
-                  "prose": "(BSI Baustein PERS_prozesse) Personal SOLLTE die Vertrauenswürdigkeit für {{ insert: param, pers.5.3-prm1 }} {{ insert: param, pers.5.3-prm2 }} und anlassbezogen überprüfen."
+                  "prose": "Automatisierte Überwachung von Ablaufdaten der Sicherheitsüberprüfungen mit Benachrichtigungssystem.",
+                  "parts": [
+                    {
+                      "id": "PERS.5.3-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Das System triggert automatisch Workflows zur Neuanforderung von Nachweisen (z.B. Führungszeugnis)."
+                    },
+                    {
+                      "id": "PERS.5.3-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung der E-Mail-Logs oder Ticket-Logs auf automatisierte Erinnerungen an HR/Mitarbeiter."
+                    }
+                  ]
                 },
                 {
                   "id": "PERS.5.3-m5_custom",
@@ -3540,21 +3540,21 @@
                     {
                       "name": "label",
                       "value": "m5"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Kontinuierliche Validierung der Vertrauenswürdigkeit durch Integration externer Sicherheitsfeeds und Ereignis-Trigger."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Jede Änderung im Berechtigungsprofil oder externe Vorfälle lösen sofortige automatisierte Risk-Assessments aus."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Prüfung der Automatisierungsskripte, die bei 'Role-Change' Events eine Neu-Validierung fordern."
                     }
                   ],
-                  "prose": "(BSI Baustein PERS_prozesse) Personal SOLLTE die Vertrauenswürdigkeit für {{ insert: param, pers.5.3-prm1 }} {{ insert: param, pers.5.3-prm2 }} und anlassbezogen überprüfen."
+                  "prose": "Kontinuierliche Validierung der Vertrauenswürdigkeit durch Integration externer Sicherheitsfeeds und Ereignis-Trigger.",
+                  "parts": [
+                    {
+                      "id": "PERS.5.3-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Jede Änderung im Berechtigungsprofil oder externe Vorfälle lösen sofortige automatisierte Risk-Assessments aus."
+                    },
+                    {
+                      "id": "PERS.5.3-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung der Automatisierungsskripte, die bei 'Role-Change' Events eine Neu-Validierung fordern."
+                    }
+                  ]
                 }
               ]
             }

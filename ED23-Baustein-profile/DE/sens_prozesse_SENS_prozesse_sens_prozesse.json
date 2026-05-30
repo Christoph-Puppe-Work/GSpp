@@ -60,21 +60,21 @@
                     {
                       "name": "label",
                       "value": "m1"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Der Erfolg von Sensibilisierungsmaßnahmen wird nur sporadisch oder anlassbezogen nach Sicherheitsvorfällen informell bewertet."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Führen Sie nach Sicherheitsvorfällen kurze Befragungen durch, um festzustellen, ob mangelndes Wissen die Ursache war."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Prüfung von Protokollen zu Sicherheitsvorfällen auf Hinweise zu Awareness-Defiziten durch Befragung der IT-Sicherheit."
                     }
                   ],
-                  "prose": "(BSI Baustein SENS_prozesse) Sensibilisierung SOLLTE den Erfolg der Sensibilisierung anhand {{ insert: param, sens.1.2-prm1 }} {{ insert: param, sens.1.2-prm2 }} überprüfen."
+                  "prose": "Der Erfolg von Sensibilisierungsmaßnahmen wird nur sporadisch oder anlassbezogen nach Sicherheitsvorfällen informell bewertet.",
+                  "parts": [
+                    {
+                      "id": "SENS.1.2-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Führen Sie nach Sicherheitsvorfällen kurze Befragungen durch, um festzustellen, ob mangelndes Wissen die Ursache war."
+                    },
+                    {
+                      "id": "SENS.1.2-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung von Protokollen zu Sicherheitsvorfällen auf Hinweise zu Awareness-Defiziten durch Befragung der IT-Sicherheit."
+                    }
+                  ]
                 },
                 {
                   "id": "SENS.1.2-m2_custom",
@@ -108,21 +108,21 @@
                     {
                       "name": "label",
                       "value": "m2"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Es erfolgt eine grundlegende Erfolgsmessung mittels einfacher Feedbackbögen direkt im Anschluss an durchgeführte Schulungen."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Verwenden Sie standardisierte Fragebögen (z. B. LimeSurvey), um die Zufriedenheit und den subjektiven Lernzuwachs zu erfassen."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Einsicht in die aggregierten Ergebnisse der Feedbackbögen. Manuelle Prüfung der Rücklaufquoten in einer Tabelle."
                     }
                   ],
-                  "prose": "(BSI Baustein SENS_prozesse) Sensibilisierung SOLLTE den Erfolg der Sensibilisierung anhand {{ insert: param, sens.1.2-prm1 }} {{ insert: param, sens.1.2-prm2 }} überprüfen."
+                  "prose": "Es erfolgt eine grundlegende Erfolgsmessung mittels einfacher Feedbackbögen direkt im Anschluss an durchgeführte Schulungen.",
+                  "parts": [
+                    {
+                      "id": "SENS.1.2-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Verwenden Sie standardisierte Fragebögen (z. B. LimeSurvey), um die Zufriedenheit und den subjektiven Lernzuwachs zu erfassen."
+                    },
+                    {
+                      "id": "SENS.1.2-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Einsicht in die aggregierten Ergebnisse der Feedbackbögen. Manuelle Prüfung der Rücklaufquoten in einer Tabelle."
+                    }
+                  ]
                 },
                 {
                   "id": "SENS.1.2-m3_custom",
@@ -156,21 +156,21 @@
                     {
                       "name": "label",
                       "value": "m3"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Sensibilisierung SOLLTE den Erfolg der Sensibilisierung anhand {{ insert: param, sens.1.2-prm1 }} {{ insert: param, sens.1.2-prm2 }} überprüfen."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Nutzen Sie die in den Parametern definierten Kennzahlen, um den Lernerfolg objektiv und regelmäßig zu dokumentieren."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Review der Berichte zu {{ insert: param, sens.1.2-prm1 }}. Abfrage der Abschlussquoten im Learning Management System (LMS)."
                     }
                   ],
-                  "prose": "(BSI Baustein SENS_prozesse) Sensibilisierung SOLLTE den Erfolg der Sensibilisierung anhand {{ insert: param, sens.1.2-prm1 }} {{ insert: param, sens.1.2-prm2 }} überprüfen."
+                  "prose": "Sensibilisierung SOLLTE den Erfolg der Sensibilisierung anhand {{ insert: param, sens.1.2-prm1 }} {{ insert: param, sens.1.2-prm2 }} überprüfen.",
+                  "parts": [
+                    {
+                      "id": "SENS.1.2-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Nutzen Sie die in den Parametern definierten Kennzahlen, um den Lernerfolg objektiv und regelmäßig zu dokumentieren."
+                    },
+                    {
+                      "id": "SENS.1.2-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Review der Berichte zu {{ insert: param, sens.1.2-prm1 }}. Abfrage der Abschlussquoten im Learning Management System (LMS)."
+                    }
+                  ]
                 },
                 {
                   "id": "SENS.1.2-m4_custom",
@@ -204,21 +204,21 @@
                     {
                       "name": "label",
                       "value": "m4"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Die Erfolgsmessung wird durch automatisierte Tests wie simulierte Phishing-Kampagnen und regelmäßige Wissens-Quizzes erweitert."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Setzen Sie Open-Source-Tools wie Gophish ein, um das praktische Verhalten der Mitarbeiter unter realitätsnahen Bedingungen zu prüfen."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Automatisierter Export der Klickraten via Gophish-API und Abgleich mit den Zielvorgaben im ISMS-Dashboard."
                     }
                   ],
-                  "prose": "(BSI Baustein SENS_prozesse) Sensibilisierung SOLLTE den Erfolg der Sensibilisierung anhand {{ insert: param, sens.1.2-prm1 }} {{ insert: param, sens.1.2-prm2 }} überprüfen."
+                  "prose": "Die Erfolgsmessung wird durch automatisierte Tests wie simulierte Phishing-Kampagnen und regelmäßige Wissens-Quizzes erweitert.",
+                  "parts": [
+                    {
+                      "id": "SENS.1.2-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Setzen Sie Open-Source-Tools wie Gophish ein, um das praktische Verhalten der Mitarbeiter unter realitätsnahen Bedingungen zu prüfen."
+                    },
+                    {
+                      "id": "SENS.1.2-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Automatisierter Export der Klickraten via Gophish-API und Abgleich mit den Zielvorgaben im ISMS-Dashboard."
+                    }
+                  ]
                 },
                 {
                   "id": "SENS.1.2-m5_custom",
@@ -252,21 +252,21 @@
                     {
                       "name": "label",
                       "value": "m5"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Eine kontinuierliche, datengetriebene Analyse korreliert Schulungsdaten mit realen Sicherheitsereignissen zur Verhaltensprognose."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Integrieren Sie Metriken aus dem LMS und dem SIEM, um die Wirksamkeit der Awareness auf die Reduktion von Infektionen zu messen."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Validierung der automatisierten Dashboards im ELK-Stack, die Trends im Sicherheitsverhalten in Echtzeit visualisieren."
                     }
                   ],
-                  "prose": "(BSI Baustein SENS_prozesse) Sensibilisierung SOLLTE den Erfolg der Sensibilisierung anhand {{ insert: param, sens.1.2-prm1 }} {{ insert: param, sens.1.2-prm2 }} überprüfen."
+                  "prose": "Eine kontinuierliche, datengetriebene Analyse korreliert Schulungsdaten mit realen Sicherheitsereignissen zur Verhaltensprognose.",
+                  "parts": [
+                    {
+                      "id": "SENS.1.2-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Integrieren Sie Metriken aus dem LMS und dem SIEM, um die Wirksamkeit der Awareness auf die Reduktion von Infektionen zu messen."
+                    },
+                    {
+                      "id": "SENS.1.2-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Validierung der automatisierten Dashboards im ELK-Stack, die Trends im Sicherheitsverhalten in Echtzeit visualisieren."
+                    }
+                  ]
                 }
               ]
             }

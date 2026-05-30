@@ -84,24 +84,28 @@ a control lookup, then overlay the `alters` additions. Cache the catalog (it is 
 
 ## 3. Medium Priority Issues
 
-### 3.1. Primary Maturity Content Hidden in Custom `props` Instead of `prose`
-**Location:** `src/pipeline/stage_ED23_profiles_enhanced.py:45-82` (`build_oscal_maturity_statements`)
-**Description:** Each maturity part's `prose` is set to the *original* control description
-(identical for all five levels, prefixed `(BSI Baustein X)`), while the real per-level text
-is placed in custom props (`statement`, `guidance`, `assessment-method`). A generic OSCAL
-renderer displays `part.prose` and would therefore show the same duplicated text for m1–m5
-and **miss** the actual maturity content.
-**Impact:** Poor interoperability — only the bespoke One-Page-Apps (which read the custom
-props) display the real data. Schema-valid but a content-modeling smell.
-**Recommendation:** Put the per-level statement in `prose`, and model `guidance`/`assessment`
-as nested parts (`name: "guidance"` / `"assessment"`) rather than overloading props.
+### 3.1. Primary Maturity Content Hidden in Custom `props` Instead of `prose` — ✅ RESOLVED
+**Location:** both `stage_*_enhanced.py` (`build_oscal_maturity_statements`), `scripts/migrate_maturity_parts_to_prose.py`, `One-Page-Apps/{pruefung_ap_ar,ssp_ausfuellen}.html`
+**Was:** Each maturity part's `prose` was the *original* control description (identical for
+all five levels, prefixed `(BSI Baustein X)`), while the real per-level text sat in custom
+props (`statement`, `guidance`, `assessment-method`). A generic OSCAL renderer shows
+`part.prose` and would display the same duplicated text for m1–m5, missing the real content.
+**Fix (pipeline):** `build_oscal_maturity_statements` now puts the per-level statement in
+`part.prose` and models guidance/assessment as nested parts (`name: "guidance"` /
+`"assessment"`, ids `…_gdn` / `…_asm`). Only classification + `label` remain as props.
+**Fix (existing artifacts):** added a deterministic, idempotent migration
+(`scripts/migrate_maturity_parts_to_prose.py`) and ran it over the 116 generated profiles —
+34,444 parts converted, 0 parse failures, 0 residual prose-props.
+**Fix (consumers):** the two prop-reading apps now read `prose` + nested parts first and fall
+back to the old props for legacy profiles. Verified end-to-end: both parsers extract the real
+per-level statement/guidance/assessment from a migrated profile and agree with each other,
+and the old-shape fallback still works.
 
-### 3.2. Duplicated Prose Across All Five Maturity Parts
-**Location:** `src/pipeline/stage_ED23_profiles_enhanced.py:62,79`
-**Description:** The same `enriched_prose` string is written into all five maturity parts of
-a control.
-**Impact:** Bloated artifacts and confusing structure (the prose does not distinguish the
-levels). Compounds 3.1.
+### 3.2. Duplicated Prose Across All Five Maturity Parts — ✅ RESOLVED (by 3.1)
+**Was:** The same `enriched_prose` string was written into all five maturity parts of a
+control.
+**Fix:** Each part's `prose` is now its own distinct per-level statement, so the duplication
+is gone (resolved together with 3.1).
 
 ### 3.3. OSCAL Validation Is Weakened *and* Never Runs
 **Location:** `src/utils/oscal_utils.py:15` (`validate_oscal`), `:~48` (`_fetch_schema`)

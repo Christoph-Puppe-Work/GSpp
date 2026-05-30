@@ -63,21 +63,21 @@
                     {
                       "name": "label",
                       "value": "m1"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Ad-hoc Anpassung des ISMS bei schwerwiegenden Fehlern."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "In dieser Phase erfolgt eine Anpassung nur, wenn akute Probleme den Betrieb st&ouml;ren."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Befragung der Leitung zu letzten Anpassungen. Pr&uuml;fung ungeplanter &Auml;nderungsprotokolle."
                     }
                   ],
-                  "prose": "(BSI Baustein VRB_prozesse) Verbesserung SOLLTE Notwendigkeit zur Anpassung des ISMS hinsichtlich der Nicht-Konformitäten überprüfen."
+                  "prose": "Ad-hoc Anpassung des ISMS bei schwerwiegenden Fehlern.",
+                  "parts": [
+                    {
+                      "id": "VRB.2.2-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "In dieser Phase erfolgt eine Anpassung nur, wenn akute Probleme den Betrieb st&ouml;ren."
+                    },
+                    {
+                      "id": "VRB.2.2-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Befragung der Leitung zu letzten Anpassungen. Pr&uuml;fung ungeplanter &Auml;nderungsprotokolle."
+                    }
+                  ]
                 },
                 {
                   "id": "VRB.2.2-m2_custom",
@@ -111,21 +111,21 @@
                     {
                       "name": "label",
                       "value": "m2"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Manuelle Pr&uuml;fung von Nicht-Konformit&auml;ten nach Audits zur ISMS-Korrektur."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Ergebnisse aus internen Audits werden gesammelt und manuell in &Auml;nderungsbedarf &uuml;bersetzt."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Einsicht in Auditberichte und manuelle Liste der Korrekturma&szlig;nahmen."
                     }
                   ],
-                  "prose": "(BSI Baustein VRB_prozesse) Verbesserung SOLLTE Notwendigkeit zur Anpassung des ISMS hinsichtlich der Nicht-Konformitäten überprüfen."
+                  "prose": "Manuelle Pr&uuml;fung von Nicht-Konformit&auml;ten nach Audits zur ISMS-Korrektur.",
+                  "parts": [
+                    {
+                      "id": "VRB.2.2-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Ergebnisse aus internen Audits werden gesammelt und manuell in &Auml;nderungsbedarf &uuml;bersetzt."
+                    },
+                    {
+                      "id": "VRB.2.2-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Einsicht in Auditberichte und manuelle Liste der Korrekturma&szlig;nahmen."
+                    }
+                  ]
                 },
                 {
                   "id": "VRB.2.2-m3_custom",
@@ -159,21 +159,21 @@
                     {
                       "name": "label",
                       "value": "m3"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Verbesserung SOLLTE Notwendigkeit zur Anpassung des ISMS hinsichtlich der Nicht-Konformit&auml;ten &uuml;berpr&uuml;fen."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Der Prozess der ISMS-Anpassung ist dokumentiert und reagiert systematisch auf identifizierte Abweichungen."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Pr&uuml;fung des Protokolls der Managementbewertung. Manuelle Suche: find ./isms_docs -name '*conformity*'"
                     }
                   ],
-                  "prose": "(BSI Baustein VRB_prozesse) Verbesserung SOLLTE Notwendigkeit zur Anpassung des ISMS hinsichtlich der Nicht-Konformitäten überprüfen."
+                  "prose": "Verbesserung SOLLTE Notwendigkeit zur Anpassung des ISMS hinsichtlich der Nicht-Konformit&auml;ten &uuml;berpr&uuml;fen.",
+                  "parts": [
+                    {
+                      "id": "VRB.2.2-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Der Prozess der ISMS-Anpassung ist dokumentiert und reagiert systematisch auf identifizierte Abweichungen."
+                    },
+                    {
+                      "id": "VRB.2.2-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Pr&uuml;fung des Protokolls der Managementbewertung. Manuelle Suche: find ./isms_docs -name '*conformity*'"
+                    }
+                  ]
                 },
                 {
                   "id": "VRB.2.2-m4_custom",
@@ -207,21 +207,21 @@
                     {
                       "name": "label",
                       "value": "m4"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Systematische Trendanalyse von Nicht-Konformit&auml;ten zur proaktiven ISMS-Optimierung."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Nicht-Konformit&auml;ten werden statistisch ausgewertet, um systemische Schwachstellen im ISMS vorab zu beheben."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Analyse der Trendberichte. Pr&uuml;fung der Monitoring-Tools f&uuml;r Compliance-Abweichungen."
                     }
                   ],
-                  "prose": "(BSI Baustein VRB_prozesse) Verbesserung SOLLTE Notwendigkeit zur Anpassung des ISMS hinsichtlich der Nicht-Konformitäten überprüfen."
+                  "prose": "Systematische Trendanalyse von Nicht-Konformit&auml;ten zur proaktiven ISMS-Optimierung.",
+                  "parts": [
+                    {
+                      "id": "VRB.2.2-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Nicht-Konformit&auml;ten werden statistisch ausgewertet, um systemische Schwachstellen im ISMS vorab zu beheben."
+                    },
+                    {
+                      "id": "VRB.2.2-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Analyse der Trendberichte. Pr&uuml;fung der Monitoring-Tools f&uuml;r Compliance-Abweichungen."
+                    }
+                  ]
                 },
                 {
                   "id": "VRB.2.2-m5_custom",
@@ -255,21 +255,21 @@
                     {
                       "name": "label",
                       "value": "m5"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "KI-gest&uuml;tzte Echtzeit-Anpassung des ISMS basierend auf automatisierten Compliance-Scans."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Ein integriertes System erkennt Abweichungen sofort und schl&auml;gt automatisierte Prozessanpassungen vor."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Validierung der GRC-Plattform. API-Check: curl -X GET https://grc-api/v1/compliance/gaps"
                     }
                   ],
-                  "prose": "(BSI Baustein VRB_prozesse) Verbesserung SOLLTE Notwendigkeit zur Anpassung des ISMS hinsichtlich der Nicht-Konformitäten überprüfen."
+                  "prose": "KI-gest&uuml;tzte Echtzeit-Anpassung des ISMS basierend auf automatisierten Compliance-Scans.",
+                  "parts": [
+                    {
+                      "id": "VRB.2.2-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Ein integriertes System erkennt Abweichungen sofort und schl&auml;gt automatisierte Prozessanpassungen vor."
+                    },
+                    {
+                      "id": "VRB.2.2-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Validierung der GRC-Plattform. API-Check: curl -X GET https://grc-api/v1/compliance/gaps"
+                    }
+                  ]
                 }
               ]
             }
@@ -314,21 +314,21 @@
                     {
                       "name": "label",
                       "value": "m1"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Vereinzeltes Sammeln von Feedback ohne strukturierte Methode."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Verbesserungsideen werden nur sporadisch und informell von Mitarbeitern ge&auml;u&szlig;ert."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Stichprobenartige Befragung von Mitarbeitern zu Vorschlagswegen."
                     }
                   ],
-                  "prose": "(BSI Baustein VRB_prozesse) Verbesserung SOLLTE eine Methode zur Überprüfung und Bewertung von Verbesserungspotentialen unter Berücksichtigung der damit verbundenen Risiken verankern."
+                  "prose": "Vereinzeltes Sammeln von Feedback ohne strukturierte Methode.",
+                  "parts": [
+                    {
+                      "id": "VRB.3.1-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Verbesserungsideen werden nur sporadisch und informell von Mitarbeitern ge&auml;u&szlig;ert."
+                    },
+                    {
+                      "id": "VRB.3.1-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Stichprobenartige Befragung von Mitarbeitern zu Vorschlagswegen."
+                    }
+                  ]
                 },
                 {
                   "id": "VRB.3.1-m2_custom",
@@ -362,21 +362,21 @@
                     {
                       "name": "label",
                       "value": "m2"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Regelm&auml;&szlig;ige Teammeetings zur Besprechung von Prozessfehlern."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Es gibt feste Termine, in denen Probleme angesprochen werden, jedoch fehlt eine Risikobewertung."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Durchsicht der Besprechungsprotokolle auf Verbesserungsvorschl&auml;ge."
                     }
                   ],
-                  "prose": "(BSI Baustein VRB_prozesse) Verbesserung SOLLTE eine Methode zur Überprüfung und Bewertung von Verbesserungspotentialen unter Berücksichtigung der damit verbundenen Risiken verankern."
+                  "prose": "Regelm&auml;&szlig;ige Teammeetings zur Besprechung von Prozessfehlern.",
+                  "parts": [
+                    {
+                      "id": "VRB.3.1-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Es gibt feste Termine, in denen Probleme angesprochen werden, jedoch fehlt eine Risikobewertung."
+                    },
+                    {
+                      "id": "VRB.3.1-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Durchsicht der Besprechungsprotokolle auf Verbesserungsvorschl&auml;ge."
+                    }
+                  ]
                 },
                 {
                   "id": "VRB.3.1-m3_custom",
@@ -410,21 +410,21 @@
                     {
                       "name": "label",
                       "value": "m3"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Verbesserung SOLLTE eine Methode zur &Uuml;berpr&uuml;fung und Bewertung von Verbesserungspotentialen unter Ber&uuml;cksichtigung der damit verbundenen Risiken verankern."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Ein formalisierter Prozess bewertet Potenziale systematisch gegen die aktuelle Risikolage."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Interview mit ISB f&uuml;hren. Liste der Potenziale einsehen. Check: cat improvements_tracker.csv"
                     }
                   ],
-                  "prose": "(BSI Baustein VRB_prozesse) Verbesserung SOLLTE eine Methode zur Überprüfung und Bewertung von Verbesserungspotentialen unter Berücksichtigung der damit verbundenen Risiken verankern."
+                  "prose": "Verbesserung SOLLTE eine Methode zur &Uuml;berpr&uuml;fung und Bewertung von Verbesserungspotentialen unter Ber&uuml;cksichtigung der damit verbundenen Risiken verankern.",
+                  "parts": [
+                    {
+                      "id": "VRB.3.1-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Ein formalisierter Prozess bewertet Potenziale systematisch gegen die aktuelle Risikolage."
+                    },
+                    {
+                      "id": "VRB.3.1-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Interview mit ISB f&uuml;hren. Liste der Potenziale einsehen. Check: cat improvements_tracker.csv"
+                    }
+                  ]
                 },
                 {
                   "id": "VRB.3.1-m4_custom",
@@ -458,21 +458,21 @@
                     {
                       "name": "label",
                       "value": "m4"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Datengetriebene Identifikation von Optimierungen mittels Sicherheitsmetriken."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Nutzung von Dashboards zur Identifikation von ineffizienten Sicherheitskontrollen."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Pr&uuml;fung der Metrik-Dashboards und der daraus abgeleiteten Ma&szlig;nahmen."
                     }
                   ],
-                  "prose": "(BSI Baustein VRB_prozesse) Verbesserung SOLLTE eine Methode zur Überprüfung und Bewertung von Verbesserungspotentialen unter Berücksichtigung der damit verbundenen Risiken verankern."
+                  "prose": "Datengetriebene Identifikation von Optimierungen mittels Sicherheitsmetriken.",
+                  "parts": [
+                    {
+                      "id": "VRB.3.1-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Nutzung von Dashboards zur Identifikation von ineffizienten Sicherheitskontrollen."
+                    },
+                    {
+                      "id": "VRB.3.1-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Pr&uuml;fung der Metrik-Dashboards und der daraus abgeleiteten Ma&szlig;nahmen."
+                    }
+                  ]
                 },
                 {
                   "id": "VRB.3.1-m5_custom",
@@ -506,21 +506,21 @@
                     {
                       "name": "label",
                       "value": "m5"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Machine Learning analysiert Log-Daten auf verborgene Prozessschwachstellen."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Automatisierte Analysewerkzeuge identifizieren proaktiv Verbesserungspotenziale in komplexen Abl&auml;ufen."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Review des Analyse-Algorithmus. Check: python check_improvement_engine.py"
                     }
                   ],
-                  "prose": "(BSI Baustein VRB_prozesse) Verbesserung SOLLTE eine Methode zur Überprüfung und Bewertung von Verbesserungspotentialen unter Berücksichtigung der damit verbundenen Risiken verankern."
+                  "prose": "Machine Learning analysiert Log-Daten auf verborgene Prozessschwachstellen.",
+                  "parts": [
+                    {
+                      "id": "VRB.3.1-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Automatisierte Analysewerkzeuge identifizieren proaktiv Verbesserungspotenziale in komplexen Abl&auml;ufen."
+                    },
+                    {
+                      "id": "VRB.3.1-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Review des Analyse-Algorithmus. Check: python check_improvement_engine.py"
+                    }
+                  ]
                 }
               ]
             }
@@ -565,21 +565,21 @@
                     {
                       "name": "label",
                       "value": "m1"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Subjektive Einsch&auml;tzung der Verbesserung nach Projektabschluss."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Der Erfolg einer Ma&szlig;nahme wird nur bauchgef&uuml;hlsm&auml;&szlig;ig durch den Verantwortlichen beurteilt."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Einsicht in Projektberichte auf qualitative Erfolgsaussagen."
                     }
                   ],
-                  "prose": "(BSI Baustein VRB_prozesse) Verbesserung SOLLTE ein Verfahren zur Bewertung der erreichten Verbesserung unter Berücksichtigung der damit verbundenen Risiken verankern."
+                  "prose": "Subjektive Einsch&auml;tzung der Verbesserung nach Projektabschluss.",
+                  "parts": [
+                    {
+                      "id": "VRB.7.1-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Der Erfolg einer Ma&szlig;nahme wird nur bauchgef&uuml;hlsm&auml;&szlig;ig durch den Verantwortlichen beurteilt."
+                    },
+                    {
+                      "id": "VRB.7.1-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Einsicht in Projektberichte auf qualitative Erfolgsaussagen."
+                    }
+                  ]
                 },
                 {
                   "id": "VRB.7.1-m2_custom",
@@ -613,21 +613,21 @@
                     {
                       "name": "label",
                       "value": "m2"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Einfache Vorher-Nachher-Vergleiche ohne tiefe Risikopr&uuml;fung."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Es werden Basiszahlen verglichen, um eine Verbesserung grob zu dokumentieren."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Vergleich von Messdaten vor und nach der Implementierung."
                     }
                   ],
-                  "prose": "(BSI Baustein VRB_prozesse) Verbesserung SOLLTE ein Verfahren zur Bewertung der erreichten Verbesserung unter Berücksichtigung der damit verbundenen Risiken verankern."
+                  "prose": "Einfache Vorher-Nachher-Vergleiche ohne tiefe Risikopr&uuml;fung.",
+                  "parts": [
+                    {
+                      "id": "VRB.7.1-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Es werden Basiszahlen verglichen, um eine Verbesserung grob zu dokumentieren."
+                    },
+                    {
+                      "id": "VRB.7.1-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Vergleich von Messdaten vor und nach der Implementierung."
+                    }
+                  ]
                 },
                 {
                   "id": "VRB.7.1-m3_custom",
@@ -661,21 +661,21 @@
                     {
                       "name": "label",
                       "value": "m3"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Verbesserung SOLLTE ein Verfahren zur Bewertung der erreichten Verbesserung unter Ber&uuml;cksichtigung der damit verbundenen Risiken verankern."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Die Wirksamkeit wird nach einem festen Schema gegen das Risikoprofil gepr&uuml;ft."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Pr&uuml;fung der Wirksamkeitspr&uuml;fberichte. Check: ls -l reports/effectiveness_review/"
                     }
                   ],
-                  "prose": "(BSI Baustein VRB_prozesse) Verbesserung SOLLTE ein Verfahren zur Bewertung der erreichten Verbesserung unter Berücksichtigung der damit verbundenen Risiken verankern."
+                  "prose": "Verbesserung SOLLTE ein Verfahren zur Bewertung der erreichten Verbesserung unter Ber&uuml;cksichtigung der damit verbundenen Risiken verankern.",
+                  "parts": [
+                    {
+                      "id": "VRB.7.1-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Die Wirksamkeit wird nach einem festen Schema gegen das Risikoprofil gepr&uuml;ft."
+                    },
+                    {
+                      "id": "VRB.7.1-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Pr&uuml;fung der Wirksamkeitspr&uuml;fberichte. Check: ls -l reports/effectiveness_review/"
+                    }
+                  ]
                 },
                 {
                   "id": "VRB.7.1-m4_custom",
@@ -709,21 +709,21 @@
                     {
                       "name": "label",
                       "value": "m4"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "KPI-basierte Wirksamkeitskontrolle mit Benchmarking."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Verbesserungen werden gegen interne und externe Benchmarks mittels Key Performance Indicators gemessen."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Analyse der KPI-Reports in Splunk: index=security_kpi status=improved"
                     }
                   ],
-                  "prose": "(BSI Baustein VRB_prozesse) Verbesserung SOLLTE ein Verfahren zur Bewertung der erreichten Verbesserung unter Berücksichtigung der damit verbundenen Risiken verankern."
+                  "prose": "KPI-basierte Wirksamkeitskontrolle mit Benchmarking.",
+                  "parts": [
+                    {
+                      "id": "VRB.7.1-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Verbesserungen werden gegen interne und externe Benchmarks mittels Key Performance Indicators gemessen."
+                    },
+                    {
+                      "id": "VRB.7.1-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Analyse der KPI-Reports in Splunk: index=security_kpi status=improved"
+                    }
+                  ]
                 },
                 {
                   "id": "VRB.7.1-m5_custom",
@@ -757,21 +757,21 @@
                     {
                       "name": "label",
                       "value": "m5"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Kontinuierliche Validierung der Ma&szlig;nahmenwirksamkeit via BAS-Tools."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Breach and Attack Simulation (BAS) validiert laufend, ob Verbesserungen das Risiko real senken."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Pr&uuml;fung der BAS-Testergebnisse auf Korrelation mit ISMS-Updates."
                     }
                   ],
-                  "prose": "(BSI Baustein VRB_prozesse) Verbesserung SOLLTE ein Verfahren zur Bewertung der erreichten Verbesserung unter Berücksichtigung der damit verbundenen Risiken verankern."
+                  "prose": "Kontinuierliche Validierung der Ma&szlig;nahmenwirksamkeit via BAS-Tools.",
+                  "parts": [
+                    {
+                      "id": "VRB.7.1-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Breach and Attack Simulation (BAS) validiert laufend, ob Verbesserungen das Risiko real senken."
+                    },
+                    {
+                      "id": "VRB.7.1-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Pr&uuml;fung der BAS-Testergebnisse auf Korrelation mit ISMS-Updates."
+                    }
+                  ]
                 }
               ]
             }
@@ -816,21 +816,21 @@
                     {
                       "name": "label",
                       "value": "m1"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Einzelfallentscheidung bei Compliance-Verst&ouml;&szlig;en."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Verst&ouml;&szlig;e werden ad-hoc und ohne festes Regelwerk durch Vorgesetzte behandelt."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Befragung der Personalabteilung zu vergangenen Vorf&auml;llen."
                     }
                   ],
-                  "prose": "(BSI Baustein VRB_prozesse) Verbesserung SOLLTE ein Verfahren zur Behandlung von Verstößen unter Berücksichtigung der Betroffenenrechte verankern."
+                  "prose": "Einzelfallentscheidung bei Compliance-Verst&ouml;&szlig;en.",
+                  "parts": [
+                    {
+                      "id": "VRB.8.1-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Verst&ouml;&szlig;e werden ad-hoc und ohne festes Regelwerk durch Vorgesetzte behandelt."
+                    },
+                    {
+                      "id": "VRB.8.1-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Befragung der Personalabteilung zu vergangenen Vorf&auml;llen."
+                    }
+                  ]
                 },
                 {
                   "id": "VRB.8.1-m2_custom",
@@ -864,21 +864,21 @@
                     {
                       "name": "label",
                       "value": "m2"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Dokumentiertes Grundvorgehen bei Verst&ouml;&szlig;en ohne Fokus auf Betroffene."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Es existiert ein einfacher Leitfaden, der jedoch Rechte der Betroffenen vernachl&auml;ssigt."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Einsicht in den Leitfaden zur Disziplinarordnung."
                     }
                   ],
-                  "prose": "(BSI Baustein VRB_prozesse) Verbesserung SOLLTE ein Verfahren zur Behandlung von Verstößen unter Berücksichtigung der Betroffenenrechte verankern."
+                  "prose": "Dokumentiertes Grundvorgehen bei Verst&ouml;&szlig;en ohne Fokus auf Betroffene.",
+                  "parts": [
+                    {
+                      "id": "VRB.8.1-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Es existiert ein einfacher Leitfaden, der jedoch Rechte der Betroffenen vernachl&auml;ssigt."
+                    },
+                    {
+                      "id": "VRB.8.1-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Einsicht in den Leitfaden zur Disziplinarordnung."
+                    }
+                  ]
                 },
                 {
                   "id": "VRB.8.1-m3_custom",
@@ -912,21 +912,21 @@
                     {
                       "name": "label",
                       "value": "m3"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Verbesserung SOLLTE ein Verfahren zur Behandlung von Verst&ouml;&szlig;en unter Ber&uuml;cksichtigung der Betroffenenrechte verankern."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Das Verfahren ist rechtssicher und bindet relevante Stakeholder (z.B. DSB, Betriebsrat) ein."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Einsicht in die Incident-Liste. Check: sqlite3 compliance.db 'SELECT * FROM violations;'"
                     }
                   ],
-                  "prose": "(BSI Baustein VRB_prozesse) Verbesserung SOLLTE ein Verfahren zur Behandlung von Verstößen unter Berücksichtigung der Betroffenenrechte verankern."
+                  "prose": "Verbesserung SOLLTE ein Verfahren zur Behandlung von Verst&ouml;&szlig;en unter Ber&uuml;cksichtigung der Betroffenenrechte verankern.",
+                  "parts": [
+                    {
+                      "id": "VRB.8.1-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Das Verfahren ist rechtssicher und bindet relevante Stakeholder (z.B. DSB, Betriebsrat) ein."
+                    },
+                    {
+                      "id": "VRB.8.1-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Einsicht in die Incident-Liste. Check: sqlite3 compliance.db 'SELECT * FROM violations;'"
+                    }
+                  ]
                 },
                 {
                   "id": "VRB.8.1-m4_custom",
@@ -960,21 +960,21 @@
                     {
                       "name": "label",
                       "value": "m4"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Workflow-gest&uuml;tzte Bearbeitung mit automatischer Einbindung des DSB."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Ein Incident-Management-Tool steuert die Bearbeitung von Verst&ouml;&szlig;en nach vordefinierten Pfaden."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Live-Demo des Workflows im Ticket-System f&uuml;r Compliance-F&auml;lle."
                     }
                   ],
-                  "prose": "(BSI Baustein VRB_prozesse) Verbesserung SOLLTE ein Verfahren zur Behandlung von Verstößen unter Berücksichtigung der Betroffenenrechte verankern."
+                  "prose": "Workflow-gest&uuml;tzte Bearbeitung mit automatischer Einbindung des DSB.",
+                  "parts": [
+                    {
+                      "id": "VRB.8.1-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Ein Incident-Management-Tool steuert die Bearbeitung von Verst&ouml;&szlig;en nach vordefinierten Pfaden."
+                    },
+                    {
+                      "id": "VRB.8.1-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Live-Demo des Workflows im Ticket-System f&uuml;r Compliance-F&auml;lle."
+                    }
+                  ]
                 },
                 {
                   "id": "VRB.8.1-m5_custom",
@@ -1008,21 +1008,21 @@
                     {
                       "name": "label",
                       "value": "m5"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Vollintegriertes Compliance-System mit automatisierter Risikofolgenabsch&auml;tzung."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Systeme erkennen Verst&ouml;&szlig;e selbstst&auml;ndig und leiten sofortige, rechtlich gepr&uuml;fte Schutzschritte ein."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "System-Audit: grep 'violation' /var/log/compliance.log"
                     }
                   ],
-                  "prose": "(BSI Baustein VRB_prozesse) Verbesserung SOLLTE ein Verfahren zur Behandlung von Verstößen unter Berücksichtigung der Betroffenenrechte verankern."
+                  "prose": "Vollintegriertes Compliance-System mit automatisierter Risikofolgenabsch&auml;tzung.",
+                  "parts": [
+                    {
+                      "id": "VRB.8.1-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Systeme erkennen Verst&ouml;&szlig;e selbstst&auml;ndig und leiten sofortige, rechtlich gepr&uuml;fte Schutzschritte ein."
+                    },
+                    {
+                      "id": "VRB.8.1-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "System-Audit: grep 'violation' /var/log/compliance.log"
+                    }
+                  ]
                 }
               ]
             }

@@ -19,7 +19,7 @@
       "effective_on_c": {
         "type": "string",
         "description": "Impact on Confidentiality.",
-        "enum": [ 
+        "enum": [
           "high",
           "medium",
           "low"
@@ -28,7 +28,7 @@
       "effective_on_i": {
         "type": "string",
         "description": "Impact on Integrity.",
-        "enum": [ 
+        "enum": [
           "high",
           "medium",
           "low"
@@ -37,7 +37,7 @@
       "effective_on_a": {
         "type": "string",
         "description": "Impact on Availability.",
-        "enum": [ 
+        "enum": [
           "high",
           "medium",
           "low"
@@ -56,21 +56,42 @@
         ],
         "description": "ISMS lifecycle phase."
       },
-      "level_1_statement": { "type": "string" },
-      "level_1_guidance": { "type": "string" },
-      "level_1_assessment": { "type": "string" },
-      "level_2_statement": { "type": "string" },
-      "level_2_guidance": { "type": "string" },
-      "level_2_assessment": { "type": "string" },
-      "level_3_statement": { "type": "string" },
-      "level_3_guidance": { "type": "string" },
-      "level_3_assessment": { "type": "string" },
-      "level_4_statement": { "type": "string" },
-      "level_4_guidance": { "type": "string" },
-      "level_4_assessment": { "type": "string" },
-      "level_5_statement": { "type": "string" },
-      "level_5_guidance": { "type": "string" },
-      "level_5_assessment": { "type": "string" }
+      "level_1_statement": {
+        "type": "string"
+      },
+      "level_1_guidance": {
+        "type": "string"
+      },
+      "level_1_assessment": {
+        "type": "string"
+      },
+      "level_2_statement": {
+        "type": "string"
+      },
+      "level_2_guidance": {
+        "type": "string"
+      },
+      "level_2_assessment": {
+        "type": "string"
+      },
+      "level_4_statement": {
+        "type": "string"
+      },
+      "level_4_guidance": {
+        "type": "string"
+      },
+      "level_4_assessment": {
+        "type": "string"
+      },
+      "level_5_statement": {
+        "type": "string"
+      },
+      "level_5_guidance": {
+        "type": "string"
+      },
+      "level_5_assessment": {
+        "type": "string"
+      }
     },
     "required": [
       "id",
@@ -78,12 +99,7 @@
       "phase",
       "effective_on_c",
       "effective_on_i",
-      "effective_on_a",
-      "level_1_statement", "level_1_guidance", "level_1_assessment",
-      "level_2_statement", "level_2_guidance", "level_2_assessment",
-      "level_3_statement", "level_3_guidance", "level_3_assessment",
-      "level_4_statement", "level_4_guidance", "level_4_assessment",
-      "level_5_statement", "level_5_guidance", "level_5_assessment"
+      "effective_on_a"
     ]
   }
 }

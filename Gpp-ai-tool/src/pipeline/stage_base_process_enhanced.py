@@ -38,42 +38,67 @@ logger = logging.getLogger(__name__)
 CHUNK_SIZE = 10
 
 
-def build_oscal_maturity_statements(control_id: str, generated_data: dict, original_description: str, baustein_id: str) -> list:
-    """Constructs the OSCAL maturity sub-statements (parts) for the 'adds' block."""
+def build_oscal_maturity_statements(control_id: str, generated_data: dict, original_data: dict, baustein_id: str) -> list:
+    """
+    Builds OSCAL parts representing the 5 maturity levels for a control.
+    """
     parts = []
-    levels = ["1", "2", "3", "4", "5"]
 
-    props_ns = "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+    # We now deterministically set Level 3 from the original data
+    # and use AI generated data for 1, 2, 4, 5
+    levels = [1, 2, 3, 4, 5]
 
-    # Properties shared across all levels for this control
+    props_ns = "https://bsi.bund.de/oscal/g++"
     base_props = [
-        {"name": "control_class", "value": generated_data.get("class") or "Technical", "ns": props_ns},
+        {"name": "control_class", "value": str(generated_data.get("class") or "").capitalize(), "ns": props_ns},
         {"name": "phase", "value": generated_data.get('phase') or 'N/A', "ns": props_ns},
         {"name": "effective_on_c", "value": str(generated_data.get("effective_on_c") or "").lower(), "ns": props_ns},
         {"name": "effective_on_i", "value": str(generated_data.get("effective_on_i") or "").lower(), "ns": props_ns},
         {"name": "effective_on_a", "value": str(generated_data.get("effective_on_a") or "").lower(), "ns": props_ns},
     ]
 
-    prefix = f"(BSI Baustein {baustein_id})"
-    enriched_prose = f"{prefix} {original_description}".strip()
-
     for level_num in levels:
-        statement_text = generated_data.get(f"level_{level_num}_statement")
+        if level_num == 3:
+            # Deterministic Level 3
+            statement_text = original_data.get("prose", "")
+            guidance_text = original_data.get("guidance", "")
+            assessment_text = "" # Original doesn't typically have assessment
+        else:
+            # AI generated levels
+            statement_text = generated_data.get(f"level_{level_num}_statement")
+            guidance_text = generated_data.get(f"level_{level_num}_guidance", "")
+            assessment_text = generated_data.get(f"level_{level_num}_assessment", "")
 
         if statement_text:
             statement_props = list(base_props) + [
-                {"name": "label", "value": f"m{level_num}"},
-                {"name": "statement", "value": statement_text},
-                {"name": "guidance", "value": generated_data.get(f"level_{level_num}_guidance", "")},
-                {"name": "assessment-method", "value": generated_data.get(f"level_{level_num}_assessment", "")}
+                {"name": "label", "value": f"m{level_num}"}
             ]
 
-            parts.append({
+            part = {
                 "id": f"{control_id}-m{level_num}_custom",
                 "name": "statement",
                 "props": statement_props,
-                "prose": enriched_prose
-            })
+                "prose": statement_text
+            }
+
+            nested_parts = []
+            if guidance_text:
+                nested_parts.append({
+                    "id": f"{control_id}-m{level_num}_custom_guidance",
+                    "name": "guidance",
+                    "prose": guidance_text
+                })
+            if assessment_text:
+                nested_parts.append({
+                    "id": f"{control_id}-m{level_num}_custom_assessment",
+                    "name": "assessment",
+                    "prose": assessment_text
+                })
+
+            if nested_parts:
+                part["parts"] = nested_parts
+
+            parts.append(part)
 
     return parts
 
@@ -133,8 +158,7 @@ async def generate_enhanced_profile_data(
         prompt = (
             f"{prompt_instruction}\n\n"
             f"{baustein_context}"
-            f"**G++ controls to enrich** (generate maturity levels 1-5 for each; "
-            f"Level 3 must be an exact copy of the control's prose):\n"
+            f"**G++ controls to enrich** (generate maturity levels 1, 2, 4, and 5 for each):\n"
             f"{_render_controls_table(chunk, gpp_controls_lookup)}\n\n"
             "Return a JSON array with one object per control, matching each by its original ID."
         )
@@ -165,8 +189,8 @@ async def generate_enhanced_profile_data(
             logger.warning(f"No AI generated data for control {gpp_control_id} in Baustein {baustein_id}")
             continue
 
-        original_description = gpp_controls_lookup.get(gpp_control_id, {}).get("prose", "")
-        parts = build_oscal_maturity_statements(gpp_control_id, generated_data, original_description, baustein_id)
+        original_data = gpp_controls_lookup.get(gpp_control_id, {})
+        parts = build_oscal_maturity_statements(gpp_control_id, generated_data, original_data, baustein_id)
 
         if parts:
             alters.append({

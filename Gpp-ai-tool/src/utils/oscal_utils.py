@@ -60,9 +60,22 @@ def extract_all_gpp_controls(catalog: dict) -> dict:
             for control in group.get("controls", []):
                 control_id = control.get("id")
                 if control_id:
+                    prose = ""
+                    guidance = ""
+                    for part in control.get("parts", []):
+                        if part.get("name") == "statement":
+                            prose = part.get("prose", "")
+                        elif part.get("name") == "guidance":
+                            guidance = part.get("prose", "")
+
+                    # Fallback for old structure if statement name isn't explicit
+                    if not prose and control.get("parts"):
+                        prose = control.get("parts")[0].get("prose", "")
+
                     controls[control_id] = {
                         "title": control.get("title", ""),
-                        "prose": control.get("parts", [{}])[0].get("prose", "") if control.get("parts") else ""
+                        "prose": prose,
+                        "guidance": guidance
                     }
             if "groups" in group:
                 traverse_groups(group["groups"])

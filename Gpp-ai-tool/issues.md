@@ -45,7 +45,7 @@ This document outlines issues identified during the review of the OSCAL generati
 
 ### 3.1. Non-Portable Output Paths
 **Location:** `src/constants.py`
-**Description:** Output paths are built from `REPO_ROOT` (the parent of the project folder) using hardcoded relative segments: `SDT_HELPER_OUTPUT_DIR` (`hilfsdateien/`), `SDT_PROFILES_REGULAR_DIR` / `SDT_PROFILES_PROCESS_DIR` (`Zielobjektkategorien/profile/...`), and `ED23_PROFILES_DIR` (`ED2023_profile/`).
+**Description:** Output paths are built from `REPO_ROOT` (the parent of the project folder) using hardcoded relative segments: `SDT_HELPER_OUTPUT_DIR` (`hilfsdateien/`), `SDT_PROFILES_REGULAR_DIR` / `SDT_PROFILES_PROCESS_DIR` (`Zielobjektkategorien/profile/...`), and `ED23_PROFILES_DIR` (`ED23-Baustein-profile/`).
 **Impact:** Output placement is not portable and will break if the surrounding directory structure changes or the tool is deployed in a different context. (Input data sources are no longer affected — they are now fetched from upstream GitHub URLs.)
 **Recommendation:** Make output roots configurable via environment variables rather than relying on the repository's sibling-directory layout.
 

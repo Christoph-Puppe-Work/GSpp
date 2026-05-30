@@ -83,7 +83,7 @@ def run_stage_profiles():
         logger.error(f"Could not load Zielobjekte from {ZIELOBJEKTE_CSV_PATH}")
         return
 
-    zielobjekt_name_map = {row['UUID']: row['Zielobjekt'] for row in zielobjekte_data if 'UUID' in row and 'Zielobjekt' in row}
+    zielobjekt_name_map = {row['UUID']: row['Zielobjektkategorie'] for row in zielobjekte_data if 'UUID' in row and 'Zielobjektkategorie' in row}
 
     for zielobjekt_id, controls in zielobjekt_controls.get("zielobjekt_controls_map", {}).items():
         zielobjekt_name = ""

@@ -36,7 +36,7 @@ if [[ " $@ " =~ " --clear-all " ]]; then
         "../hilfsdateien"
         "../Zielobjektkategorien/profile/regular"
         "../Zielobjektkategorien/profile/process"
-        "../ED2023_profile"
+        "../ED23-Baustein-profile"
     )
 
     for dir in "${DIRS_TO_CLEAR[@]}"; do

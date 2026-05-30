@@ -52,7 +52,7 @@ The tool is configured via environment variables. Create a `.env` file or export
 | `TEST` | Set to `true` for test mode (default: `false`) | No |
 | `MAX_CONCURRENT_AI_REQUESTS` | Limit parallel AI calls (default: `5`) | No |
 
-> **Note:** `BUCKET_NAME`, `SOURCE_PREFIX`, and `OUTPUT_PREFIX` are still validated at startup (the app will refuse to start without them unless `TEST=true`), but the pipeline no longer reads input data from GCS — input catalogs are fetched from GitHub and generated artifacts are written to local directories (`hilfsdateien/`, `Zielobjektkategorien/profile/`, `ED2023_profile/`) relative to the repository root.
+> **Note:** `BUCKET_NAME`, `SOURCE_PREFIX`, and `OUTPUT_PREFIX` are still validated at startup (the app will refuse to start without them unless `TEST=true`), but the pipeline no longer reads input data from GCS — input catalogs are fetched from GitHub and generated artifacts are written to local directories (`hilfsdateien/`, `Zielobjektkategorien/profile/`, `ED23-Baustein-profile/`) relative to the repository root.
 
 ## Usage
 
@@ -80,7 +80,7 @@ You can run specific stages using the `--stage` argument. The full pipeline runs
 - `stage_profiles`: Generates the base OSCAL profiles from the G++ Zielobjektkategorien (target-object categories) and process Bausteine. Each profile imports the G++ catalog and includes the controls mapped to that target object. Output is split into:
   - `Zielobjektkategorien/profile/regular/<name>_profile.json` — regular Zielobjektkategorien.
   - `Zielobjektkategorien/profile/process/<name>_process_profile.json` — process profiles (Methodik and `*_prozesse`).
-- `stage_profiles_enhanced`: Enriches the base profiles with AI-generated maturity-level statements (OSCAL `alter` blocks) derived from the BSI Ed2023 catalog. Output is written to `ED2023_profile/`.
+- `stage_profiles_enhanced`: Enriches the base profiles with AI-generated maturity-level statements (OSCAL `alter` blocks) derived from the BSI Ed2023 catalog. Output is written to `ED23-Baustein-profile/`.
 
 ### Running a single stage locally
 

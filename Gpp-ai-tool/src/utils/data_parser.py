@@ -96,12 +96,13 @@ def parse_zielobjekte_hierarchy(zielobjekte_data: List[Dict[str, str]]) -> Dict[
     for row in zielobjekte_data:
         uuid = row.get("UUID")
         if uuid:
-            # The CSV headers are positional: UUID, Definition, Zielobjekt, ChildOfUUID
-            # The data loader correctly uses these as keys.
+            # CSV headers: Zielobjektkategorie, Definition, Typ, Kategorie,
+            # Synonyme, ChildOfUUID, UUID. The category name column
+            # ("Zielobjektkategorie") is mapped to the internal "Zielobjekt" key.
             zielobjekte_map[uuid] = {
                 "UUID": uuid,
                 "Definition": row.get("Definition", ""),
-                "Zielobjekt": row.get("Zielobjekt", ""),
+                "Zielobjekt": row.get("Zielobjektkategorie", ""),
                 "ChildOfUUID": row.get("ChildOfUUID", ""),
             }
 

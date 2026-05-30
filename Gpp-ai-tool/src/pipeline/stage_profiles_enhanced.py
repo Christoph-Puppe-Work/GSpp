@@ -277,7 +277,7 @@ async def run_stage_profiles_enhanced():
         zielobjekte_data = read_csv_file(ZIELOBJEKTE_CSV_PATH)
         if not zielobjekte_data:
             raise FileNotFoundError(f"Zielobjekte data is empty or could not be loaded from {ZIELOBJEKTE_CSV_PATH}")
-        zielobjekt_name_map = {row['UUID'].strip(): row['Zielobjekt'].strip() for row in zielobjekte_data if 'UUID' in row and 'Zielobjekt' in row}
+        zielobjekt_name_map = {row['UUID'].strip(): row['Zielobjektkategorie'].strip() for row in zielobjekte_data if 'UUID' in row and 'Zielobjektkategorie' in row}
     except (IOError, FileNotFoundError, TypeError, KeyError) as e:
         logger.critical(f"Failed to load or parse Zielobjekte CSV data: {e}", exc_info=True)
         raise

@@ -163,7 +163,7 @@ def _create_zielobjekt_map() -> Dict[str, Any]:
     # C.3: Create a raw map for easy lookup by UUID
     zielobjekte_raw_map = {
         z["UUID"].strip(): {
-            "Zielobjekt": z["Zielobjekt"],
+            "Zielobjekt": z["Zielobjektkategorie"],
             "ChildOfUUID": z.get("ChildOfUUID")
         }
         for z in zielobjekte_data if "UUID" in z

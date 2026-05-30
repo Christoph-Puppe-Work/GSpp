@@ -107,24 +107,24 @@ control.
 **Fix:** Each part's `prose` is now its own distinct per-level statement, so the duplication
 is gone (resolved together with 3.1).
 
-### 3.3. OSCAL Validation Is Weakened *and* Never Runs
-**Location:** `src/utils/oscal_utils.py:15` (`validate_oscal`), `:~48` (`_fetch_schema`)
-**Description:** Three problems compound here:
-1. `validate_oscal()` is **defined but never called** anywhere in the pipeline — generated
-   profiles are not validated against the OSCAL schema at all.
-2. The only OSCAL schema path in the code, `OSCAL_COMPONENT_SCHEMA_PATH`
-   (`constants.py:57`), points at `oscal_json_schemas/oscal_component_schema.json` — a
-   **component-definition** schema — even though the artifacts are now **profiles**, and
-   the directory is not present in the repo. So even if validation were wired in, it would
-   validate against the wrong (and missing) schema.
-3. `validate_oscal` strips the official `TokenDatatype` pattern at runtime
-   (`oscal_utils.py:31-36`) — a workaround for the `jsonschema` library's lack of Unicode
-   regex support — so validation would also be incomplete.
-**Impact:** No assurance that generated artifacts conform to OSCAL 1.1.3.
-**Recommendation:** Add an OSCAL **profile** schema path, wire `validate_oscal()` into
-`generate_enhanced_profile` (and `stage_profiles`), and replace the pattern-stripping with a
-validator that supports Unicode property escapes (e.g. the `regex` module) so validation
-stays complete.
+### 3.3. OSCAL Validation Never Ran — ✅ RESOLVED (structural validation wired in); full-schema validation still open
+**Location:** `src/utils/oscal_utils.py` (`validate_enhanced_profile_structure`), both `stage_*_enhanced.py`, `src/constants.py`
+**Was:** Generated profiles were never validated. `validate_oscal()` existed but was never
+called; the only OSCAL schema path (`OSCAL_COMPONENT_SCHEMA_PATH`) pointed at a *component*
+schema that isn't even in the repo; and `validate_oscal` strips the `TokenDatatype` pattern,
+weakening validation.
+**Fix:** Added `validate_enhanced_profile_structure(profile)` — a focused structural
+validator checking the invariants the `alters`/`adds` mechanism and the apps rely on
+(required top-level fields, each alter has a control-id + adds, each add has a valid
+`position` and a `by-id`, each added part is a `statement` with an id and non-empty prose,
+all part ids unique). Both enhancement stages now run it before writing (warn-only, so one
+glitch doesn't abort a batch). Removed the dead, misleading `OSCAL_COMPONENT_SCHEMA_PATH`
+constant. Verified: the validator catches injected uuid/position/by-id/prose/duplicate-id
+defects, and **all 116 generated profiles pass clean (0 problems)**.
+**Still open (medium):** validation against the *full* OSCAL 1.1.3 profile JSON schema
+(would need the schema bundled and the `TokenDatatype`/Unicode-regex limitation addressed,
+e.g. via the `regex` module). The structural validator covers the pipeline-specific
+invariants in the meantime.
 
 ### 3.4. `by-id` Anchor Assumed but Not Validated — ✅ RESOLVED
 **Location:** `src/utils/oscal_utils.py` (`extract_all_gpp_controls`, `_find_statement_part_id`), both `stage_*_enhanced.py`

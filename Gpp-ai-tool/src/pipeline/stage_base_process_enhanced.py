@@ -29,7 +29,7 @@ from constants import (
 from utils.file_utils import create_dir_if_not_exists, read_json_file, write_json_file, read_csv_file
 from utils.text_utils import sanitize_filename
 from utils.data_parser import find_bausteine_with_prose
-from utils.oscal_utils import extract_all_gpp_controls, normalize_id
+from utils.oscal_utils import extract_all_gpp_controls, normalize_id, validate_enhanced_profile_structure
 from clients.ai_client import AiClient
 
 logger = logging.getLogger(__name__)
@@ -256,6 +256,15 @@ async def generate_enhanced_profile(
         profile["profile"]["modify"] = {"alters": alters}
         profile["profile"]["metadata"]["title"] += " - Enhanced (ED2023)"
         profile["profile"]["metadata"]["last-modified"] = datetime.now(timezone.utc).isoformat()
+
+        # Structurally validate the generated profile before writing (issue 3.3). Warn-only:
+        # problems are logged but the artifact is still written.
+        problems = validate_enhanced_profile_structure(profile)
+        if problems:
+            logger.warning(
+                f"Enhanced process profile '{baustein_title}' has {len(problems)} structural "
+                f"issue(s): " + "; ".join(problems[:10]) + (" ..." if len(problems) > 10 else "")
+            )
 
         write_json_file(output_path, profile)
         logger.info(f"Successfully generated enhanced profile at {output_path}")

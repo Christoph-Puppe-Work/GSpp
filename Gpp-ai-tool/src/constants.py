@@ -68,7 +68,6 @@ BSI_STRIPPED_ISMS_MD_PATH = os.path.join(SDT_HELPER_OUTPUT_DIR, "bsi_2023_stripp
 PROMPT_CONFIG_PATH = os.path.join(SRC_ROOT, "assets/json/prompt_config.json")
 BAUSTEIN_TO_ZIELOBJEKT_SCHEMA_PATH = os.path.join(SRC_ROOT, "assets/schemas/baustein_to_zielobjekt_schema.json")
 ENHANCED_CONTROL_RESPONSE_SCHEMA_PATH = os.path.join(SRC_ROOT, "assets/schemas/enhanced_control_response_schema.json")
-OSCAL_COMPONENT_SCHEMA_PATH = os.path.join(REPO_ROOT, "oscal_json_schemas/oscal_component_schema.json")
 
 # --- AI Model Configuration ---
 # These default to current Gemini preview identifiers. They are env-overridable so a stable,

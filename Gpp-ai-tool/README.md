@@ -87,7 +87,7 @@ You can run specific stages using the `--stage` argument. The full pipeline runs
 | 2 | `stage_gpp` | No | Deterministic mapping: walks the G++ catalog and the Zielobjektkategorien CSV (including the parent hierarchy) to compute, for each Zielobjekt, the set of applicable G++ controls. Writes `hilfsdateien/zielobjekt_controls.json`. |
 | 3 | `stage_match_bausteine` | **Yes** | For each BSI Baustein, asks the model which G++ Zielobjekt it corresponds to (title + description → best match). Writes the Baustein→Zielobjekt map (`hilfsdateien/baustein_zielobjekt.json`). |
 | 4 | `stage_profiles` | No | Generates the **base OSCAL profiles** — one per Zielobjekt — each importing the G++ catalog and including **all** of that Zielobjektkategorie's controls. Output is split into `Zielobjektkategorien/profile/regular/` and `…/process/` (Methodik and `*_prozesse`). |
-| 5 | `stage_ED23_profiles_enhanced` | **Yes** | For each matched Baustein, takes the base profile (all controls of the Zielobjektkategorie) and enriches every control with maturity-level statements (levels 1–5) plus classifications (NIST class, ISMS phase, CIA) as OSCAL `alter` blocks. The enrichment is driven by best practices and the **description of the BSI Baustein** the profile is based on. Writes per-Baustein profiles to `ED23-Baustein-profile/` as `[Zielobjektkategorie]_[Baustein-ID]_[Baustein-Name].json`. |
+| 5 | `stage_ED23_profiles_enhanced` | **Yes** | For each matched Baustein, takes the base profile (all controls of the Zielobjektkategorie) and enriches every control with maturity-level statements (levels 1–5) plus classifications (NIST class, ISMS phase, CIA) as OSCAL `alter` blocks. The enrichment is driven by best practices and the **description of the BSI Baustein** the profile is based on. Writes per-Baustein profiles to `ED23-Baustein-profile/DE/` as `[Zielobjektkategorie]_[Baustein-ID]_[Baustein-Name].json`. |
 
 #### Data flow
 
@@ -100,7 +100,7 @@ catalogs + CSV (GitHub)
         │
   4 profiles ──► base profiles (import G++ catalog, all controls)   Zielobjektkategorien/profile/{regular,process}/
         │
-  5 ED23_profiles_enhanced ──► enriched profiles (+ alter blocks)   ED23-Baustein-profile/   [AI, per Baustein]
+  5 ED23_profiles_enhanced ──► enriched profiles (+ alter blocks)   ED23-Baustein-profile/DE/   [AI, per Baustein]
 ```
 
 ### Running a single stage locally

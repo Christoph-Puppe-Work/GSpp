@@ -38,7 +38,7 @@ ZIELOBJEKT_CONTROLS_JSON_PATH = os.path.join(SDT_HELPER_OUTPUT_DIR, "zielobjekt_
 PROZZESSBAUSTEINE_CONTROLS_JSON_PATH = os.path.join(SDT_HELPER_OUTPUT_DIR, "prozessbausteine_mapping.json")
 SDT_PROFILES_REGULAR_DIR = os.path.join(REPO_ROOT, "Zielobjektkategorien/profile/regular")
 SDT_PROFILES_PROCESS_DIR = os.path.join(REPO_ROOT, "Zielobjektkategorien/profile/process")
-ED23_PROFILES_DIR = os.path.join(REPO_ROOT, "ED23-Baustein-profile/")
+ED23_PROFILES_DIR = os.path.join(REPO_ROOT, "ED23-Baustein-profile/DE")
 
 
 

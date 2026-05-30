@@ -10,6 +10,7 @@ import json
 import os
 from config import app_config
 from constants import *
+from utils.file_utils import read_source_text
 
 def _process_controls_recursively(controls, target_objects_list, isms_list):
     """
@@ -68,10 +69,9 @@ def _strip_gpp_file():
                 logger.debug(f"Removed existing file: {path}")
 
     try:
-        with open(GPP_KOMPENDIUM_JSON_PATH, "r", encoding="utf-8") as f:
-            data = json.load(f)
-    except FileNotFoundError:
-        logger.error(f"G++ input file not found at: {GPP_KOMPENDIUM_JSON_PATH}")
+        data = json.loads(read_source_text(GPP_KOMPENDIUM_JSON_PATH))
+    except (FileNotFoundError, OSError) as e:
+        logger.error(f"G++ input source could not be read from {GPP_KOMPENDIUM_JSON_PATH}: {e}")
         return
     except json.JSONDecodeError:
         logger.error(f"Failed to decode JSON from: {GPP_KOMPENDIUM_JSON_PATH}")
@@ -112,10 +112,9 @@ def _strip_bsi_file():
     logger.debug(f"Reading BSI 2023 file from: {BSI_2023_JSON_PATH}")
 
     try:
-        with open(BSI_2023_JSON_PATH, "r", encoding="utf-8") as f:
-            data = json.load(f)
-    except FileNotFoundError:
-        logger.error(f"BSI input file not found at: {BSI_2023_JSON_PATH}")
+        data = json.loads(read_source_text(BSI_2023_JSON_PATH))
+    except (FileNotFoundError, OSError) as e:
+        logger.error(f"BSI input source could not be read from {BSI_2023_JSON_PATH}: {e}")
         return
     except json.JSONDecodeError:
         logger.error(f"Failed to decode JSON from: {BSI_2023_JSON_PATH}")

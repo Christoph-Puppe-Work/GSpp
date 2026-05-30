@@ -43,8 +43,9 @@ This document outlines issues identified during the review of the OSCAL generati
 
 ### 3.1. Fragile Reliance on Repository Structure
 **Location:** `src/constants.py`
-**Description:** The application relies on hardcoded relative paths (e.g., `../../`) to locate resources in a sibling repository (`Stand-der-Technik-Bibliothek`).
-**Impact:** The code is not portable and will break if the directory structure changes or the tool is deployed in a different context.
+**Status:** Partially resolved. The input data sources (`ZIELOBJEKTE_CSV_PATH`, `BSI_2023_JSON_PATH`, `GPP_KOMPENDIUM_JSON_PATH`) are now fetched directly from upstream GitHub raw URLs instead of a sibling `Stand-der-Technik-Bibliothek` checkout, so the tool no longer depends on those repositories being present locally.
+**Description:** The remaining **output** paths still rely on hardcoded relative paths (`REPO_ROOT`, the parent of the project folder) to write generated artifacts (`SDT_HELPER_OUTPUT_DIR`, `SDT_PROFILES_*_DIR`, `ED23_PROFILES_*_DIR`).
+**Impact:** Output placement is still not portable and will break if the surrounding directory structure changes or the tool is deployed in a different context.
 
 ### 3.2. Ambitious Single-Step AI Generation
 **Location:** `src/pipeline/stage_component.py`

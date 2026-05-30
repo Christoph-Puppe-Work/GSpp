@@ -25,6 +25,7 @@ from constants import (
     PROZZESSBAUSTEINE_CONTROLS_JSON_PATH,
     SDT_PROFILES_REGULAR_DIR,
     SDT_PROFILES_PROCESS_DIR,
+    ED23_PROFILES_DIR,
     OSCAL_VERSION,
     ZIELOBJEKT_CONTROLS_JSON_PATH
 )
@@ -262,8 +263,12 @@ async def run_stage_profiles_enhanced():
         sys.exit(1)
 
     try:
+        # Base (input) profiles are read from the SDT_PROFILES_* dirs produced by
+        # the earlier profile stage; the enhanced (output) profiles generated from
+        # the BSI 2023 edition are written to ED23_PROFILES_DIR.
         create_dir_if_not_exists(SDT_PROFILES_REGULAR_DIR)
         create_dir_if_not_exists(SDT_PROFILES_PROCESS_DIR)
+        create_dir_if_not_exists(ED23_PROFILES_DIR)
     except OSError as e:
         logger.critical(f"Failed to create output directories: {e}", exc_info=True)
         raise
@@ -344,12 +349,12 @@ async def run_stage_profiles_enhanced():
                 input_filename = f"{sanitized_name}_process_profile.json"
                 input_path = os.path.join(SDT_PROFILES_PROCESS_DIR, input_filename)
                 output_filename = f"{sanitized_name}_process_profile_enhanced.json"
-                output_path = os.path.join(SDT_PROFILES_PROCESS_DIR, output_filename)
             else:
                 input_filename = f"{sanitized_name}_profile.json"
                 input_path = os.path.join(SDT_PROFILES_REGULAR_DIR, input_filename)
                 output_filename = f"{sanitized_name}_profile_enhanced.json"
-                output_path = os.path.join(SDT_PROFILES_REGULAR_DIR, output_filename)
+
+            output_path = os.path.join(ED23_PROFILES_DIR, output_filename)
 
             await generate_enhanced_profile(baustein_id, baustein_title, zielobjekt_name, input_path, output_path, bsi_catalog, gpp_controls_lookup, ai_client)
 

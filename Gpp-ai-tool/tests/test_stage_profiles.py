@@ -29,8 +29,8 @@ class TestStageProfiles(unittest.TestCase):
             }
         }
         self.mock_zielobjekte_csv = [
-            {"UUID": "efd76832-f5a1-432a-836d-c8d5c6d212cc", "Zielobjekt": "Administrierende"},
-            {"UUID": "d2a23b62-9c66-4f72-98e2-17518d5dbe0f", "Zielobjekt": "Cloud-Dienste"}
+            {"UUID": "efd76832-f5a1-432a-836d-c8d5c6d212cc", "Zielobjektkategorie": "Administrierende"},
+            {"UUID": "d2a23b62-9c66-4f72-98e2-17518d5dbe0f", "Zielobjektkategorie": "Cloud-Dienste"}
         ]
 
     @patch('pipeline.stage_profiles.create_dir_if_not_exists')

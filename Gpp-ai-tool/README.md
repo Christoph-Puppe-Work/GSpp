@@ -79,16 +79,15 @@ All input data is fetched from GitHub at runtime (see `src/constants.py`):
 
 ### Available Pipeline Stages
 
-You can run specific stages using the `--stage` argument. The full pipeline runs them in the order below. Stages 1–2 are deterministic prep/mapping, 3–4 are the AI-driven migration mapping, and 5–6 build and enrich the OSCAL output.
+You can run specific stages using the `--stage` argument. The full pipeline runs them in the order below. Stages 1–2 are deterministic prep/mapping, stage 3 is the AI-driven Baustein→Zielobjekt match, and stages 4–5 build and enrich the OSCAL output.
 
 | # | Stage | AI? | What it does |
 |---|---|---|---|
 | 1 | `stage_strip` | No | Reads the large G++ and BSI JSON catalogs and flattens them into compact markdown tables (`hilfsdateien/*_stripped*.md`), separating controls that target objects from ISMS-level ones. Pre-processing that makes later prompts and lookups manageable. |
 | 2 | `stage_gpp` | No | Deterministic mapping: walks the G++ catalog and the Zielobjektkategorien CSV (including the parent hierarchy) to compute, for each Zielobjekt, the set of applicable G++ controls. Writes `hilfsdateien/zielobjekt_controls.json`. |
 | 3 | `stage_match_bausteine` | **Yes** | For each BSI Baustein, asks the model which G++ Zielobjekt it corresponds to (title + description → best match). Writes the Baustein→Zielobjekt map (`hilfsdateien/baustein_zielobjekt.json`). |
-| 4 | `stage_matching` | **Yes** | The precise 1:1 migration step: for each Baustein/Zielobjekt pair, maps individual BSI *Anforderungen* to individual G++ *controls* semantically. Writes `hilfsdateien/controls_anforderungen.json`. |
-| 5 | `stage_profiles` | No | Generates the **base OSCAL profiles** — one per Zielobjekt — each importing the G++ catalog and including that Zielobjekt's controls. Output is split into `Zielobjektkategorien/profile/regular/` and `…/process/` (Methodik and `*_prozesse`). |
-| 6 | `stage_profiles_enhanced` | **Yes** | Takes the base profiles and, using the BSI Ed2023 requirement text from the matching, generates maturity-level statements (levels 1–5) plus classifications (NIST class, ISMS phase, CIA) as OSCAL `alter` blocks. Writes the per-Baustein enhanced profiles to `ED23-Baustein-profile/` as `[Zielobjektkategorie]_[Baustein-ID]_[Baustein-Name].json`. |
+| 4 | `stage_profiles` | No | Generates the **base OSCAL profiles** — one per Zielobjekt — each importing the G++ catalog and including **all** of that Zielobjektkategorie's controls. Output is split into `Zielobjektkategorien/profile/regular/` and `…/process/` (Methodik and `*_prozesse`). |
+| 5 | `stage_ED23_profiles_enhanced` | **Yes** | For each matched Baustein, takes the base profile (all controls of the Zielobjektkategorie) and enriches every control with maturity-level statements (levels 1–5) plus classifications (NIST class, ISMS phase, CIA) as OSCAL `alter` blocks. The enrichment is driven by best practices and the **description of the BSI Baustein** the profile is based on. Writes per-Baustein profiles to `ED23-Baustein-profile/` as `[Zielobjektkategorie]_[Baustein-ID]_[Baustein-Name].json`. |
 
 #### Data flow
 
@@ -96,13 +95,12 @@ You can run specific stages using the `--stage` argument. The full pipeline runs
 catalogs + CSV (GitHub)
         │
   1 strip ──► markdown tables (context)
-  2 gpp   ──► zielobjekt_controls.json        (Zielobjekt → G++ controls)        [deterministic]
+  2 gpp   ──► zielobjekt_controls.json        (Zielobjekt → all G++ controls)    [deterministic]
   3 match_bausteine ──► baustein_zielobjekt.json    (Baustein → Zielobjekt)      [AI]
-  4 matching ──► controls_anforderungen.json  (BSI Anforderung → G++ control)    [AI]
         │
-  5 profiles ──► base profiles (import G++ catalog)   Zielobjektkategorien/profile/{regular,process}/
+  4 profiles ──► base profiles (import G++ catalog, all controls)   Zielobjektkategorien/profile/{regular,process}/
         │
-  6 profiles_enhanced ──► enriched profiles (+ alter blocks)   ED23-Baustein-profile/   [AI]
+  5 ED23_profiles_enhanced ──► enriched profiles (+ alter blocks)   ED23-Baustein-profile/   [AI, per Baustein]
 ```
 
 ### Running a single stage locally
@@ -113,13 +111,13 @@ To (re)generate the G++ Zielobjektkategorien and process profiles locally:
 ./scripts/run_local.sh --stage stage_profiles
 ```
 
-To then enrich them with the BSI Ed2023 maturity statements:
+To then enrich them with the ED2023 maturity statements:
 
 ```bash
-./scripts/run_local.sh --stage stage_profiles_enhanced
+./scripts/run_local.sh --stage stage_ED23_profiles_enhanced
 ```
 
-The same pattern works for any stage name listed above (e.g. `--stage stage_matching`). `run_local.sh` sets `OVERWRITE_TEMP_FILES=true` so existing profiles are regenerated; pass `--clear-all` to first wipe the generated output directories.
+The same pattern works for any stage name listed above (e.g. `--stage stage_match_bausteine`). `run_local.sh` sets `OVERWRITE_TEMP_FILES=true` so existing profiles are regenerated; pass `--clear-all` to first wipe the generated output directories.
 
 ## Deployment
 
@@ -132,9 +130,9 @@ The tool is designed to run as a Google Cloud Run Job. Use the deployment script
 ## How-To / Workflow
 
 1.  **Preparation:** No manual upload is required — the source BSI Ed2023 catalog, the G++ catalog, and the target-object categories are fetched directly from their upstream GitHub repositories at runtime (see `src/constants.py`).
-2.  **Mapping:** The tool first establishes a 1:1 mapping between old blocks and new target objects.
-3.  **Matching:** AI analyzes the semantic meaning of requirements to find the best-fitting G++ control.
-4.  **Enrichment:** For each matched control, Gemini generates implementation guidance and maturity level descriptions based on the original BSI context.
+2.  **Mapping:** The tool establishes, per Zielobjektkategorie, the set of applicable G++ controls (deterministic) and matches each BSI Baustein to a Zielobjekt (AI).
+3.  **Profiles:** It generates a base OSCAL profile per Zielobjekt that imports the G++ catalog and includes all of that Zielobjektkategorie's controls.
+4.  **Enrichment:** For each matched Baustein, Gemini generates implementation guidance and maturity-level descriptions for every control, based on best practices and the Baustein's description.
 5.  **Finalization:** The tool outputs valid OSCAL 1.1.3 profiles (enriched with `alter` blocks) ready for use in G++ compatible tools.
 
 ---

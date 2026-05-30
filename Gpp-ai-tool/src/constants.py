@@ -34,7 +34,6 @@ ALLOWED_PROCESS_BAUSTEINE = ["OPS.2.2", "OPS.2.3", "OPS.3.2"]
 # --- Output to Stand der Technik Submodule File Paths ---
 SDT_HELPER_OUTPUT_DIR = os.path.join(REPO_ROOT, "hilfsdateien")
 BAUSTEIN_ZIELOBJEKT_JSON_PATH = os.path.join(SDT_HELPER_OUTPUT_DIR, "baustein_zielobjekt.json")
-CONTROLS_ANFORDERUNGEN_JSON_PATH = os.path.join(SDT_HELPER_OUTPUT_DIR, "controls_anforderungen.json")
 ZIELOBJEKT_CONTROLS_JSON_PATH = os.path.join(SDT_HELPER_OUTPUT_DIR, "zielobjekt_controls.json")
 PROZZESSBAUSTEINE_CONTROLS_JSON_PATH = os.path.join(SDT_HELPER_OUTPUT_DIR, "prozessbausteine_mapping.json")
 SDT_PROFILES_REGULAR_DIR = os.path.join(REPO_ROOT, "Zielobjektkategorien/profile/regular")
@@ -54,8 +53,7 @@ BSI_STRIPPED_ISMS_MD_PATH = os.path.join(SDT_HELPER_OUTPUT_DIR, "bsi_2023_stripp
 # --- Asset Paths ---
 PROMPT_CONFIG_PATH = os.path.join(SRC_ROOT, "assets/json/prompt_config.json")
 BAUSTEIN_TO_ZIELOBJEKT_SCHEMA_PATH = os.path.join(SRC_ROOT, "assets/schemas/baustein_to_zielobjekt_schema.json")
-ANFORDERUNG_TO_KONTROLLE_SCHEMA_PATH = os.path.join(SRC_ROOT, "assets/schemas/anforderung_to_kontrolle_schema.json")
-MATCHING_SCHEMA_PATH = os.path.join(SRC_ROOT, "assets/schemas/matching_schema.json")
+ENHANCED_CONTROL_RESPONSE_SCHEMA_PATH = os.path.join(SRC_ROOT, "assets/schemas/enhanced_control_response_schema.json")
 OSCAL_COMPONENT_SCHEMA_PATH = os.path.join(REPO_ROOT, "oscal_json_schemas/oscal_component_schema.json")
 
 # --- AI Model Configuration ---

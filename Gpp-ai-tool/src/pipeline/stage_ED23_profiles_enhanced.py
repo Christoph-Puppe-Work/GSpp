@@ -62,7 +62,13 @@ def build_oscal_maturity_statements(control_id: str, generated_data: dict, origi
     enriched_prose = f"{prefix} {original_description}".strip()
 
     for level_num in levels:
-        statement_text = generated_data.get(f"level_{level_num}_statement")
+        # Level 3 ("Defined") is the documented baseline and MUST equal the original G++
+        # control prose verbatim. We inject it deterministically rather than trusting the
+        # model to copy it without altering text or variable definitions (issue 2.2).
+        if level_num == "3":
+            statement_text = original_description or generated_data.get("level_3_statement")
+        else:
+            statement_text = generated_data.get(f"level_{level_num}_statement")
 
         if statement_text:
             statement_props = list(base_props) + [

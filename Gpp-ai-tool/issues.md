@@ -30,13 +30,12 @@ interoperability, and reliability concerns — not a regression of the refactor.
 
 ## 1. Critical Issues
 
-### 1.1. High Temperature for Deterministic Tasks
-**Location:** `src/constants.py` (`API_TEMPERATURE = 1`)
-**Description:** The configuration maximizes randomness/creativity.
-**Impact:** For classification and structured JSON output, this increases the risk of
-hallucinations, inconsistent results across runs, and schema-validation failures.
-**Recommendation:** Reduce `API_TEMPERATURE` significantly (e.g. 0.1–0.3) for the
-classification fields, or split classification from prose generation.
+*None currently open.*
+
+> **Resolved / not-an-issue — `API_TEMPERATURE = 1`:** Deliberately kept at 1. Gemini is
+> tuned to perform well at this temperature, and the structured-output schema constrains the
+> JSON shape, so the earlier "deterministic tasks need low temperature" concern does not
+> apply here.
 
 ## 2. High Priority Issues
 
@@ -48,15 +47,16 @@ classification fields, or split classification from prose generation.
 **Impact:** High risk of generic, technically vague, or hallucinated security guidance.
 Requires extensive human review and undermines the reliability of the output.
 
-### 2.2. AI Reliability for Baseline (Level 3) Content
-**Location:** `src/assets/json/prompt_config.json` (Rules A & B), `src/pipeline/stage_ED23_profiles_enhanced.py:65`
-**Description:** The prompt instructs the AI to use an *exact copy* of the input prose for
-Level 3 ("You do not change a single character"). Relying on the model to copy perfectly is
-risky; it may alter formatting or subtly change text, including variable definitions.
-**Recommendation:** Inject Level 3 deterministically. The fix is now trivial: the original
-G++ prose is *already loaded* into `gpp_controls_lookup[id]["prose"]` (it is used to build
-`enriched_prose` at `stage_ED23_profiles_enhanced.py:62`). Set `level_3_statement` from that
-value instead of asking the model, and drop `level_3_*` from the AI request/schema.
+### 2.2. AI Reliability for Baseline (Level 3) Content — ✅ RESOLVED
+**Location:** `src/pipeline/stage_ED23_profiles_enhanced.py`, `src/pipeline/stage_base_process_enhanced.py` (`build_oscal_maturity_statements`)
+**Was:** The prompt told the AI to use an *exact copy* of the input prose for Level 3 ("You
+do not change a single character"); relying on the model to copy perfectly risked altered
+formatting or variable definitions.
+**Fix:** `build_oscal_maturity_statements` now sets the Level 3 statement deterministically
+from `original_description` (the verbatim G++ prose already in scope), ignoring the AI's
+copy; it falls back to the AI value only if no original prose exists. Applied identically in
+both enhancement stages and covered by an isolated function test (L3 == original prose,
+other levels still AI-generated, guard edge-cases hold).
 
 ### 2.3. Inconsistent Profile Consumption in One-Page-Apps
 **Location:** `One-Page-Apps/*.html`

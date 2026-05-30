@@ -243,7 +243,7 @@
     let catalogParamMap = new Map();
     let profileModifications = { setParams: new Map(), alters: new Map() };
     let loadedRiskData = [];
-    let componentDefinitions = new Map();
+    let loadedProfiles = new Map();
     let resourceLoadStatus = [];
     let aiCache = {};
 
@@ -705,13 +705,13 @@
 
         catalogControlMap.clear(); catalogParamMap.clear();
         profileModifications = { setParams: new Map(), alters: new Map() };
-        loadedRiskData = []; componentDefinitions.clear(); resourceLoadStatus = [];
+        loadedRiskData = []; loadedProfiles.clear(); resourceLoadStatus = [];
 
         const ssp = sspData['system-security-plan'];
 
         try {
             await processLinkedProfiles(ssp);
-            await processComponentDefinitions(ssp);
+            await processProfiles(ssp);
             await processMainCatalog(ssp);
             extractRiskDataFromSSP(ssp);
 
@@ -790,7 +790,7 @@
         }));
     }
 
-    async function processComponentDefinitions(ssp) {
+    async function processProfiles(ssp) {
         const defLinks = new Set();
         (ssp['system-implementation']?.components || []).forEach(c => {
             const dl = c.links?.find(l => l.rel === 'profile' || l.rel === 'source-profile');
@@ -801,11 +801,11 @@
         await Promise.all(Array.from(defLinks).map(async (href) => {
             const d = await loadReferencedResource(href);
             if (d) {
-                componentDefinitions.set(href, d);
+                loadedProfiles.set(href, d);
                 if (d['profile']) {
                     (d['profile'].metadata?.links || []).forEach(l => {
                         if (l.rel === 'source-profile') {
-                            componentDefinitions.set(l.href, d);
+                            loadedProfiles.set(l.href, d);
                         }
                     });
                 });
@@ -1007,7 +1007,7 @@
             navHtml += `<button onclick="scrollToSec('comp-${c.uuid}')" class="w-full text-left p-1.5 text-[10px] font-bold text-slate-300 bg-slate-900/40 hover:bg-slate-800 rounded truncate border border-transparent hover:border-slate-700">🖥️ ${c.title}${sNivTag}</button>`;
 
             let dl = c.links?.find(l => l.rel === 'profile' || l.rel === 'source-profile');
-            const cd = dl ? componentDefinitions.get(dl.href) : null;
+            const cd = dl ? loadedProfiles.get(dl.href) : null;
 
             const sMap = new Map();
             reqs.forEach(r => { const e = r['by-components']?.find(bc => bc['component-uuid'] === c.uuid); if(e) sMap.set(r['control-id'], e); });
@@ -1042,7 +1042,7 @@
                     }));
                     dMap.set(cid, entry);
                 });
-            } catch(cdErr) { console.warn('Fehler beim Lesen der Komponentendefinition für', c.title, cdErr); }
+            } catch(cdErr) { console.warn('Fehler beim Lesen des Profils für', c.title, cdErr); }
 
             const allKeys = new Set([...sMap.keys(), ...dMap.keys(), ...profileModifications.alters.keys()]);
             const sorted = Array.from(allKeys).sort();
@@ -1091,7 +1091,7 @@
                 });
             }
 
-            // 2. Props aus der Komponenten-Definition (Blaupause)
+            // 2. Props aus dem Profil (Blaupause)
             if (tc && tc.props && tc.props.length > 0) {
                 tc.props.forEach(p => {
                     if (!p || !p.name) return;

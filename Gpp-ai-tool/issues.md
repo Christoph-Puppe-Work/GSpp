@@ -233,9 +233,12 @@ The inline chunk prompt now tells the model to produce levels 1, 2, 4, 5 and tha
 injected automatically (it may omit `level_3_*`), removing the misleading "exact copy"
 instruction. This eliminates the chunk-discard data-loss path and dovetails with 2.2.
 
-### 4.6. Leftover Component-Definition Wording in Apps
+### 4.6. Leftover Component-Definition Wording in Apps — ✅ RESOLVED
 **Location:** `One-Page-Apps/ssp_ausfuellen.html`, `ssp_generator.html`
-**Description:** After the migration, the function `processComponentDefinitions()` and
-several "Komponentendefinition" comments/labels remain even though the apps now consume
-profiles. Cosmetic, but misleading for maintenance.
-**Recommendation:** Rename to reflect profile handling and update the comments/labels.
+**Was:** After the migration the function `processComponentDefinitions()`, the
+`componentDefinitions` map, and several "Komponentendefinition" comments/labels remained
+even though the apps now consume profiles.
+**Fix:** Renamed `processComponentDefinitions` → `processProfiles` and `componentDefinitions`
+→ `loadedProfiles` in `ssp_ausfuellen.html`, and updated the stale "Komponentendefinition"
+strings/comments in both apps to "Profil". The two remaining "Komponenten" references denote
+genuine OSCAL SSP components and are correct.

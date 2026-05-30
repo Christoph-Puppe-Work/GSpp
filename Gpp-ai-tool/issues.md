@@ -201,11 +201,15 @@ roundtrip test: a profile produced by `Baustein_2_Profile.html` consumed by
 preview identifiers and may not align with stable, versioned Vertex AI identifiers.
 **Recommendation:** Use stable, versioned identifiers for reproducibility once available.
 
-### 4.2. Manual Retry Implementation vs. Tenacity
-**Location:** `src/clients/ai_client.py` (~L188-229), `src/requirements.txt`
-**Description:** `tenacity` is listed in requirements, but a manual async retry loop
-(`for attempt in range(retries)`) is implemented instead.
-**Recommendation:** Refactor to use `tenacity`, or remove the unused dependency.
+### 4.2. Manual Retry Implementation vs. Tenacity — ✅ RESOLVED (dependency removed)
+**Location:** `src/clients/ai_client.py`, `src/requirements.txt`
+**Was:** `tenacity` was listed in requirements but never imported; a manual async retry loop
+is used instead.
+**Fix:** Dropped the unused `tenacity` dependency. The existing retry loop in
+`generate_validated_json_response` is intentionally kept — it is well-instrumented
+(per-exception-type logging, exponential backoff, a clear non-retryable fallthrough) and a
+`tenacity` rewrite could not be exercised here without the live `google-genai` SDK, so
+removing the dead dependency is the lower-risk resolution the issue allowed for.
 
 ### 4.3. Dead Code from Removed `stage_matching` — ✅ RESOLVED
 **Location:** `src/utils/data_parser.py`

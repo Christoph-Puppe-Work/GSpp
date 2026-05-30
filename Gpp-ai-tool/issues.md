@@ -162,14 +162,18 @@ users must invent dummy values to start the tool.
 **Recommendation:** Either restore a real GCS I/O path or drop the required-variable
 validation, the unused parameter, and the dependency.
 
-### 3.8. No Timeout or Offline Fallback on Remote Data Fetch
-**Location:** `src/utils/file_utils.py:39` (`read_source_text`)
-**Description:** Input catalogs are downloaded with `urllib.request.urlopen(path)` with no
-`timeout=`, and there is no local fallback if the upstream GitHub repos are unreachable or a
-file is renamed/moved.
-**Impact:** A network hang blocks the entire pipeline indefinitely; an upstream rename is a
-hard failure with no cached alternative.
-**Recommendation:** Pass an explicit `timeout=` and add a cached local copy as a fallback.
+### 3.8. No Timeout on Remote Data Fetch — ✅ RESOLVED (timeout + retry); offline fallback still open
+**Location:** `src/utils/file_utils.py` (`read_source_text`)
+**Was:** Input catalogs were downloaded with `urllib.request.urlopen(path)` with no
+`timeout=`, so a network hang could block the entire pipeline indefinitely.
+**Fix:** `read_source_text` now passes an explicit `timeout=URL_FETCH_TIMEOUT_SECONDS`
+(default 30s) and retries with linear backoff (`URL_FETCH_RETRIES`, default 3), re-raising
+the last error after exhausting attempts. All three are env-configurable
+(`URL_FETCH_TIMEOUT_SECONDS`, `URL_FETCH_RETRIES`, `URL_FETCH_BACKOFF_SECONDS`). Verified
+with a mocked `urlopen` (timeout forwarded, retries exhaust then raise, recovery on a later
+attempt, local-file path unaffected).
+**Still open (lower priority):** no cached **local fallback** if an upstream file is
+renamed/moved — a 404 is still a hard failure. Consider bundling a last-known-good copy.
 
 ### 3.9. Undocumented Pipeline ↔ App Contract
 **Location:** `src/pipeline/stage_ED23_profiles_enhanced.py:50-73` and `One-Page-Apps/*.html`

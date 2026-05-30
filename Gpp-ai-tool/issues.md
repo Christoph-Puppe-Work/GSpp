@@ -195,19 +195,20 @@ preview identifiers and may not align with stable, versioned Vertex AI identifie
 (`for attempt in range(retries)`) is implemented instead.
 **Recommendation:** Refactor to use `tenacity`, or remove the unused dependency.
 
-### 4.3. Dead Code from Removed `stage_matching`
+### 4.3. Dead Code from Removed `stage_matching` — ✅ RESOLVED
 **Location:** `src/utils/data_parser.py`
-**Description:** `parse_zielobjekte_hierarchy` and `parse_bsi_2023_controls` are no longer
-called by any stage.
-**Recommendation:** Confirm and remove the now-dead parsing helpers.
+**Was:** `parse_zielobjekte_hierarchy` and `parse_bsi_2023_controls` were no longer called by
+any stage (no callers, no tests).
+**Fix:** Both functions removed. (Note: `parse_gpp_kompendium_controls` and `filter_markdown`
+also appear to have no callers but are intentionally left for now — `parse_gpp_kompendium_controls`
+still has a unit test; revisit as a separate dead-code sweep.)
 
-### 4.4. Dead Patch Scripts
+### 4.4. Dead Patch Scripts — ✅ RESOLVED
 **Location:** `src/patch_main.py`, `src/patch_processing.py`
-**Description:** These one-shot scripts string-replace `main.py` / `pipeline/processing.py`
-to add `stage_base_process_enhanced` to the imports, CLI choices, and run order. Those edits
-are **already applied** to the live files, so the scripts are dead code (and re-running them
-would corrupt the files).
-**Recommendation:** Delete both patch scripts.
+**Was:** One-shot scripts that string-replaced `main.py` / `pipeline/processing.py` to add
+`stage_base_process_enhanced`; the edits were already applied to the live files, so the
+scripts were dead code (and re-running them would corrupt the files).
+**Fix:** Both patch scripts deleted.
 
 ### 4.5. Response Schema Forced All 5 Levels, Contradicting the Prompt — ✅ RESOLVED
 **Location:** `src/assets/schemas/enhanced_control_response_schema.json`, `src/pipeline/stage_*_enhanced.py` (`process_chunk` prompt)

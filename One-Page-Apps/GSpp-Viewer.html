@@ -459,13 +459,28 @@ Gib das Ergebnis ausschließlich als Markdown-Tabelle mit folgendem Format aus:
 
         // --- NEU: Profil-Handling ---
 
+        // Listet eine GitHub-"contents"-Antwort. Enthält sie Unterverzeichnisse
+        // (z.B. .../profile → regular + process), wird eine Ebene tiefer gegangen
+        // und die Dateien zusammengeführt.
+        async function fetchGithubContentsRecursive(url, depth = 0) {
+            const res = await fetch(url);
+            if (!res.ok) throw new Error("API Limit erreicht oder Repo nicht gefunden.");
+            const json = await res.json();
+            if (!Array.isArray(json) || depth >= 2) return json;
+            const dirs = json.filter(e => e && e.type === 'dir' && e.url);
+            if (dirs.length === 0) return json;
+            const files = json.filter(e => !(e && e.type === 'dir'));
+            const nested = await Promise.all(dirs.map(d =>
+                fetchGithubContentsRecursive(d.url, depth + 1).catch(() => [])
+            ));
+            return files.concat(...nested.map(n => Array.isArray(n) ? n : []));
+        }
+
         async function fetchProfilesList() {
             const select = document.getElementById('profileSelect');
             try {
-                const apiURL = 'https://api.github.com/repos/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/contents/zielobjektkategorien/profile';
-                const res = await fetch(apiURL);
-                if (!res.ok) throw new Error("API Limit erreicht oder Repo nicht gefunden.");
-                const files = await res.json();
+                const apiURL = 'https://api.github.com/repos/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/contents/Zielobjektkategorien/profile';
+                const files = await fetchGithubContentsRecursive(apiURL);
 
                 select.innerHTML = '<option value="">-- Kein Profil-Filter --</option>';
                 files.filter(f => f.name.endsWith('.json')).forEach(f => {

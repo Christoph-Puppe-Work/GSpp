@@ -1019,6 +1019,19 @@
                 if (tc?.imports) {
                     tc.imports.forEach(i => { if(i) (i["include-controls"]||[]).forEach(ic => { if(ic) (ic["with-ids"]||[]).forEach(id => { if(id) dMap.set(id, { "control-id": id }); }); }); });
                 }
+                // Reifegrade/Statements liegen im Profil unter modify.alters[].adds[].parts (name:"statement").
+                // OSCAL erlaubt keine neuen statements in einer CDef → sie werden im Profil per `adds`
+                // als neue `part` an das Control angehängt. Hier in die statements des Controls überführen.
+                (tc?.modify?.['alters'] || []).forEach(alt => {
+                    const cid = alt && alt['control-id']; if(!cid) return;
+                    const entry = dMap.get(cid) || { "control-id": cid };
+                    entry.statements = entry.statements || [];
+                    (alt.adds || []).forEach(add => (add.parts || []).filter(pt => pt && pt.name === 'statement').forEach(pt => {
+                        const label = (pt.props || []).find(p => p && p.name === 'label')?.value || '';
+                        entry.statements.push({ "statement-id": pt.id, description: label, props: pt.props || [] });
+                    }));
+                    dMap.set(cid, entry);
+                });
             } catch(cdErr) { console.warn('Fehler beim Lesen der Komponentendefinition für', c.title, cdErr); }
 
             const allKeys = new Set([...sMap.keys(), ...dMap.keys(), ...profileModifications.alters.keys()]);

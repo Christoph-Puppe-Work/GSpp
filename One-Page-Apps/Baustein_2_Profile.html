@@ -2,7 +2,7 @@
 <html lang="de">
 <head>
 <meta charset="utf-8">
-<title>Baustein_2_Component</title>
+<title>Baustein_2_Profile</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap">
@@ -315,7 +315,7 @@ body{
     <div class="brand">
       <div class="brand-icon">◬</div>
       <div>
-        <div class="brand-name">Baustein_2_Component</div>
+        <div class="brand-name">Baustein_2_Profile</div>
       </div>
       <span class="brand-sub">build 0.7.1 · aggressive Mapping-Heuristik · Satz- + Control-Stats · v3-aggressive prompt</span>
     </div>
@@ -397,18 +397,6 @@ body{
 
         <div class="rail-section">
           <div class="rail-label"><span><span class="glyph">▣</span> Output</span></div>
-          <div class="field">
-            <label>Component-Typ</label>
-            <select id="comp-type">
-              <option value="service">service</option>
-              <option value="software">software</option>
-              <option value="hardware">hardware</option>
-              <option value="process">process</option>
-              <option value="policy">policy</option>
-              <option value="physical">physical</option>
-              <option value="network">network</option>
-              <option value="this-system">this-system</option>
-              <option value="validation">validation</option>
             </select>
           </div>
         </div>
@@ -598,10 +586,10 @@ body{
         <!-- STAGE 3 RESULT -->
         <div class="card hidden" id="s3-result">
           <div class="card-head">
-            <div class="card-title"><span class="num">▸ stage 3</span> OSCAL Component Definition</div>
+            <div class="card-title"><span class="num">▸ stage 3</span> OSCAL Profile</div>
             <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
               <span class="chip accent" id="s3-chip">—</span>
-              <button class="btn sm" id="btn-download">⤓ Component-Def</button>
+              <button class="btn sm" id="btn-download">⤓ Profile</button>
               <button class="btn sm hidden" id="btn-download-cat">⤓ Custom-Catalog (C.2)</button>
               <button class="btn sm ghost" id="btn-copy">⌕ copy</button>
             </div>
@@ -781,7 +769,7 @@ const state = {
   sentenceMappings: [],     // C1: raw mappings from LLM, per sentence
   unmappedSentences: [],    // C1: sentences classified as context (no control mapping)
   customCatalog: null,      // C2 only
-  componentDef: null,
+  profileDef: null,
 
   // runtime
   running: false,
@@ -850,7 +838,6 @@ function loadPrefs() {
   $("retries").value         = localStorage.getItem("gpp.retries")   || "2";
   $("chunk-size").value      = localStorage.getItem("gpp.chunk")     || "8";
   $("anf-batch").value       = localStorage.getItem("gpp.anfbatch")  || "5";
-  $("comp-type").value       = localStorage.getItem("gpp.comptype")  || "service";
   $("maker-checker").checked = localStorage.getItem("gpp.mc")        === "1";
   $("grounding").checked     = localStorage.getItem("gpp.ground")    === "1";
   $("testdrive").checked     = localStorage.getItem("gpp.td")        === "1";
@@ -875,7 +862,6 @@ bindPersist("concurrency", "gpp.conc");
 bindPersist("retries", "gpp.retries");
 bindPersist("chunk-size", "gpp.chunk");
 bindPersist("anf-batch", "gpp.anfbatch");
-bindPersist("comp-type", "gpp.comptype");
 bindPersist("cat-url", "gpp.caturl");
 bindPersist("pi-url", "gpp.piurl");
 bindPersist("match-threshold", "gpp.threshold");
@@ -1951,7 +1937,7 @@ function buildCustomCatalog(reqs) {
         parties: [{
           uuid: crypto.randomUUID(),
           type: "tool",
-          name: "Baustein_2_Component (one-page-app) · build 0.7.1",
+          name: "Baustein_2_Profile (one-page-app) · build 0.7.1",
         }],
       },
       groups: [{
@@ -2106,188 +2092,77 @@ $("match-threshold").addEventListener("input", () => {
 });
 
 /* ════════════════════════════════════════════════════════════════════════
-   STAGE 3 — Assemble OSCAL Component Definition
+   STAGE 3 — Assemble OSCAL Profile
    ════════════════════════════════════════════════════════════════════════ */
 
 async function runStage3() {
   setStage("s3");
   showProgress("stage 3 · assembling", 0, 1);
-  state.componentDef = assembleComponentDefinition();
+  state.profileDef = assembleProfile();
   renderStage3();
   showProgress("stage 3 · done", 1, 1);
   doneStage("s3");
 }
 
-function assembleComponentDefinition() {
+function assembleProfile() {
   const now = new Date().toISOString();
   const bId  = state.baustein?.id || "BSI-Baustein";
   const bTit = state.baustein?.title || "Baustein";
 
   // component title: use baustein title (with id prefix)
-  const componentTitle = bTit ? `${bId} – ${bTit}` : bId;
-  const componentType  = $("comp-type").value;
+  const componentTitle = bTit ? `${bId} ${bTit}` : bId;
 
-  // source URL of the controls being implemented
-  const sourceUrl = state.pipelineMode === "C1"
-    ? (state.catalogSource || $("cat-url").value)
-    : `urn:custom-catalog:${bId}`;  // pseudo-URI for the inline generated catalog
-
-  const implementedRequirements = state.implReqs
+  // Extract all control IDs from implementedRequirements
+  const controlIds = state.implReqs
     .filter(r => !r.pending && !r.error)
-    .map(r => {
-      const props = [];
-      for (const aId of (r.source_anforderungen || [])) {
-        props.push({
-          name: "source-anforderung",
-          value: aId,
-          ns: "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools",
-        });
-      }
-      // Granular sentence-level traceability: one prop per mapped sentence
-      for (const m of (r.mapped_sentences || [])) {
-        props.push({
-          name: "source-sentence",
-          value: `${m.anforderung_id}#${m.sentence_idx}`,
-          ns: "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools",
-          remarks: m.rationale || undefined,
-        });
-      }
-      const kernelMv = r.control_modalverb;
-      if (kernelMv) {
-        props.push({
-          name: "kernel-modal-verb",
-          value: kernelMv,
-          ns: "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces/modal_verbs.csv",
-        });
-      }
-      if (r.coverage) {
-        props.push({
-          name: "coverage",
-          value: r.coverage,
-          ns: "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools",
-        });
-      }
-      if ((r.mapped_sentences || []).length) {
-        props.push({
-          name: "mapped-sentence-count",
-          value: String(r.mapped_sentences.length),
-          ns: "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools",
-        });
-      }
+    .map(r => r.control_id);
 
-      // OSCAL implemented-requirement.description = Anforderungs-Name(n) aus dem PDF
-      // OSCAL implemented-requirement.statements[0].description = Verbatim-Sätze mit Quellenmarker
-      const description = r.description || (r.coverage === "missing"
-        ? `(Kein Mapping aus Baustein ${bId} verfügbar)`
-        : `(keine Quell-Anforderung)`);
+  // remove duplicates
+  const uniqueControls = [...new Set(controlIds)];
 
-      const statementProse = r.statement_prose || "";
-
-      const out = {
-        uuid: crypto.randomUUID(),
-        "control-id": r.control_id,
-        description,
-        props,
-      };
-
-      if (statementProse) {
-        out.statements = [{
-          "statement-id": `${r.control_id}_stm`,   // matches catalog's _stm part id convention
-          uuid: crypto.randomUUID(),
-          description: statementProse,
-        }];
-      }
-
-      if (r.remarks) out.remarks = r.remarks;
-      if (r.validation) {
-        out.remarks = (out.remarks ? out.remarks + "\n\n" : "")
-          + `[CHECKER ${r.validation.verdict?.toUpperCase()}] ${r.validation.reviewer_notes || ""}`
-          + (r.validation.corrections ? `\nKorrektur: ${r.validation.corrections}` : "");
-      }
-      return out;
-    });
-
-  const matchedProfileName = state.matchedProfileFilename || (state.pipelineMode === "C2" ? null : state.matchedProfile?.profile_filename);
-
-  const componentProps = [
-    { name: "source-baustein", value: bId, ns: "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools" },
-    { name: "pipeline-mode", value: state.pipelineMode || "?", ns: "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools" },
-  ];
-  if (matchedProfileName) {
-    componentProps.push({ name: "matched-profile", value: matchedProfileName, ns: "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools" });
-  }
-
-  const compDef = {
-    "component-definition": {
-      uuid: crypto.randomUUID(),
-      metadata: {
-        title: `Component Definition · ${componentTitle}`,
+  const profile = {
+    "profile": {
+      "uuid": crypto.randomUUID(),
+      "metadata": {
+        "title": componentTitle,
         "last-modified": now,
-        version: "0.1.0",
-        "oscal-version": "1.1.3",
-        roles: [{ id: "preparer", title: "Preparer" }],
-        parties: [{
-          uuid: crypto.randomUUID(),
-          type: "tool",
-          name: "Baustein_2_Component (one-page-app) · build 0.7.1",
-        }],
+        "version": "0.1.0",
+        "oscal-version": "1.1.3"
       },
-      components: [{
-        uuid: crypto.randomUUID(),
-        type: componentType,
-        title: componentTitle,
-        description: state.pipelineMode === "C1"
-          ? `Komponente migriert aus BSI IT-Grundschutz Edition 2023 Baustein ${bId}. Profil-Match: ${matchedProfileName || "(none)"}.`
-          : `Komponente aus BSI IT-Grundschutz Edition 2023 Baustein ${bId} migriert ohne passendes Stand-der-Technik-Kernel-Profil — Controls wurden deterministisch aus den Anforderungen abgeleitet (siehe Custom-Catalog).`,
-        props: componentProps,
-        "control-implementations": [{
-          uuid: crypto.randomUUID(),
-          source: sourceUrl,
-          description: state.pipelineMode === "C1"
-            ? `Implementation der Profil-Controls (${state.profileControlIds.length} Kernel-Controls über Profil ${matchedProfileName}).`
-            : `Lokale Controls aus dem Baustein-PDF; referenziert den parallel erzeugten Custom-Catalog.`,
-          "implemented-requirements": implementedRequirements,
-        }],
-      }],
-      "back-matter": {
-        resources: [{
-          uuid: crypto.randomUUID(),
-          title: "Generator",
-          description: `Baustein_2_Component · build 0.7.1 · ${now}`,
-          props: [
-            { name: "model", value: $("model").value },
-            { name: "thinking", value: $("thinking").value },
-            { name: "maker-checker", value: $("maker-checker").checked ? "true" : "false" },
-            { name: "test-drive", value: $("testdrive").checked ? "true" : "false" },
-            { name: "pipeline-mode", value: state.pipelineMode || "?" },
-          ],
-        }],
-      },
-    },
+      "imports": [
+        {
+          "href": "https://raw.githubusercontent.com/BSI-Bund/Stand-der-Technik-Bibliothek/refs/heads/main/Anwenderkataloge/Grundschutz%2B%2B/Grundschutz%2B%2B-catalog.json",
+          "include-controls": [
+            {
+              "with-ids": uniqueControls
+            }
+          ]
+        }
+      ]
+    }
   };
 
-  return compDef;
+  return profile;
 }
 
 function renderStage3() {
   const card = $("s3-result");
   card.classList.remove("hidden");
-  $("s3-output").value = JSON.stringify(state.componentDef, null, 2);
-  const n = state.componentDef?.["component-definition"]?.components?.[0]
-    ?.["control-implementations"]?.[0]?.["implemented-requirements"]?.length || 0;
+  $("s3-output").value = JSON.stringify(state.profileDef, null, 2);
+  const n = state.profileDef?.["profile"]?.["imports"]?.[0]?.["include-controls"]?.[0]?.["with-ids"]?.length || 0;
   $("s3-chip").textContent = `${state.pipelineMode} · ${n} impl-reqs`;
   $("btn-download-cat").classList.toggle("hidden", state.pipelineMode !== "C2" || !state.customCatalog);
 }
 
 $("btn-download").addEventListener("click", () => {
-  if (!state.componentDef) return;
+  if (!state.profileDef) return;
   const text = $("s3-output").value;
   const bId  = state.baustein?.id || "baustein";
   const blob = new Blob([text], { type: "application/json" });
   const url  = URL.createObjectURL(blob);
   const a = document.createElement("a");
   a.href = url;
-  a.download = `${bId.replace(/[^A-Za-z0-9.]/g,"_")}_${state.pipelineMode || "x"}_component-definition.json`;
+  a.download = `${bId.replace(/[^A-Za-z0-9.]/g,"_")}_${state.pipelineMode || "x"}_profile.json`;
   document.body.appendChild(a); a.click(); document.body.removeChild(a);
   URL.revokeObjectURL(url);
   l.ok(`download · ${a.download}`);
@@ -2706,7 +2581,7 @@ $("btn-clear").addEventListener("click", () => {
   state.sentenceMappings = [];
   state.unmappedSentences = [];
   state.customCatalog = null;
-  state.componentDef = null;
+  state.profileDef = null;
   $("s1-result").classList.add("hidden");
   $("s2-result").classList.add("hidden");
   $("s3-result").classList.add("hidden");

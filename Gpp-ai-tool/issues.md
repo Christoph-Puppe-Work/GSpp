@@ -198,11 +198,13 @@ both parsers were verified during the 3.1 work, but a committed test harness wou
 
 ## 4. Low Priority Issues
 
-### 4.1. Model Naming Conventions
-**Location:** `src/constants.py`
-**Description:** Model names (`gemini-3-flash-preview`, `gemini-3.1-pro-preview`) are
-preview identifiers and may not align with stable, versioned Vertex AI identifiers.
-**Recommendation:** Use stable, versioned identifiers for reproducibility once available.
+### 4.1. Model Naming Conventions — ✅ RESOLVED (made configurable)
+**Location:** `src/constants.py`, `README.md`
+**Was:** Model names (`gemini-3-flash-preview`, `gemini-3.1-pro-preview`) were hardcoded
+preview identifiers, so pinning a stable/versioned id required a code edit.
+**Fix:** `GROUND_TRUTH_MODEL` and `GROUND_TRUTH_MODEL_PRO` are now env-overridable (defaults
+unchanged), so a stable Vertex AI model id can be pinned via environment without touching
+code. The current preview defaults are intentional until stable ids are published.
 
 ### 4.2. Manual Retry Implementation vs. Tenacity — ✅ RESOLVED (dependency removed)
 **Location:** `src/clients/ai_client.py`, `src/requirements.txt`

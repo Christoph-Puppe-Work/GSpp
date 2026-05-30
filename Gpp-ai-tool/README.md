@@ -46,6 +46,7 @@ The tool is configured via environment variables. Create a `.env` file or export
 | `GCP_PROJECT_ID` | Your Google Cloud Project ID (for Vertex AI / Gemini) | Yes |
 | `REGION` | GCP Region (default: `global`) | No |
 | `AI_ENDPOINT_ID` | Optional Vertex AI endpoint/model override (model id otherwise comes from `constants.GROUND_TRUTH_MODEL`) | No |
+| `GROUND_TRUTH_MODEL` / `GROUND_TRUTH_MODEL_PRO` | Override the default Gemini model ids (default: current preview ids) | No |
 | `TEST` | Set to `true` for test mode (default: `false`) | No |
 | `MAX_CONCURRENT_AI_REQUESTS` | Limit parallel AI calls (default: `5`) | No |
 | `OVERWRITE_TEMP_FILES` | Regenerate existing output files (default: `false`) | No |

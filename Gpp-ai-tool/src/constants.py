@@ -13,8 +13,11 @@ import re
 # All paths are resolved as absolute paths to ensure the application runs
 # correctly regardless of the current working directory.
 SRC_ROOT = os.path.dirname(os.path.abspath(__file__))
-# REPO_ROOT is the parent directory of the 'Gpp-ai-tool' project folder.
+# REPO_ROOT is the parent directory of the 'Gpp-ai-tool' project folder. It can be
+# overridden with OUTPUT_ROOT so the generated artifacts can be written somewhere other
+# than the repository's sibling-directory layout (issue 3.5).
 REPO_ROOT = os.path.abspath(os.path.join(SRC_ROOT, "..", ".."))
+OUTPUT_ROOT = os.path.abspath(os.environ.get("OUTPUT_ROOT", REPO_ROOT))
 
 # ANFORDERUNG_ID_PATTERN = re.compile(r"^[A-Z]{2,}(\.\d+)+(?:.A\d+)?$")
 ANFORDERUNG_ID_PATTERN = re.compile(r"^.*$")
@@ -31,14 +34,25 @@ GPP_KOMPENDIUM_JSON_PATH = "https://raw.githubusercontent.com/BSI-Bund/Stand-der
 ALLOWED_MAIN_GROUPS = ["SYS", "INF", "IND", "APP", "NET"]
 ALLOWED_PROCESS_BAUSTEINE = ["OPS.2.2", "OPS.2.3", "OPS.3.2"]
 
-# --- Output to Stand der Technik Submodule File Paths ---
-SDT_HELPER_OUTPUT_DIR = os.path.join(REPO_ROOT, "hilfsdateien")
+# --- Output File Paths ---
+# Output roots default to the repository's sibling-directory layout under OUTPUT_ROOT
+# (== REPO_ROOT unless overridden), but each can be pointed elsewhere via an env var so
+# the tool is portable to other deployment contexts (issue 3.5).
+SDT_HELPER_OUTPUT_DIR = os.path.abspath(
+    os.environ.get("SDT_HELPER_OUTPUT_DIR", os.path.join(OUTPUT_ROOT, "hilfsdateien"))
+)
 BAUSTEIN_ZIELOBJEKT_JSON_PATH = os.path.join(SDT_HELPER_OUTPUT_DIR, "baustein_zielobjekt.json")
 ZIELOBJEKT_CONTROLS_JSON_PATH = os.path.join(SDT_HELPER_OUTPUT_DIR, "zielobjekt_controls.json")
 PROZZESSBAUSTEINE_CONTROLS_JSON_PATH = os.path.join(SDT_HELPER_OUTPUT_DIR, "prozessbausteine_mapping.json")
-SDT_PROFILES_REGULAR_DIR = os.path.join(REPO_ROOT, "Zielobjektkategorien/profile/regular")
-SDT_PROFILES_PROCESS_DIR = os.path.join(REPO_ROOT, "Zielobjektkategorien/profile/process")
-ED23_PROFILES_DIR = os.path.join(REPO_ROOT, "ED23-Baustein-profile/DE")
+SDT_PROFILES_REGULAR_DIR = os.path.abspath(
+    os.environ.get("SDT_PROFILES_REGULAR_DIR", os.path.join(OUTPUT_ROOT, "Zielobjektkategorien/profile/regular"))
+)
+SDT_PROFILES_PROCESS_DIR = os.path.abspath(
+    os.environ.get("SDT_PROFILES_PROCESS_DIR", os.path.join(OUTPUT_ROOT, "Zielobjektkategorien/profile/process"))
+)
+ED23_PROFILES_DIR = os.path.abspath(
+    os.environ.get("ED23_PROFILES_DIR", os.path.join(OUTPUT_ROOT, "ED23-Baustein-profile/DE"))
+)
 
 
 

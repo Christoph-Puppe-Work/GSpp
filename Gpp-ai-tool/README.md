@@ -51,6 +51,8 @@ The tool is configured via environment variables. Create a `.env` file or export
 | `OVERWRITE_TEMP_FILES` | Regenerate existing output files (default: `false`) | No |
 | `URL_FETCH_TIMEOUT_SECONDS` | Timeout for remote source downloads (default: `30`) | No |
 | `URL_FETCH_RETRIES` | Retry attempts for remote source downloads (default: `3`) | No |
+| `OUTPUT_ROOT` | Root directory for generated artifacts (default: repository root) | No |
+| `SDT_HELPER_OUTPUT_DIR` / `SDT_PROFILES_REGULAR_DIR` / `SDT_PROFILES_PROCESS_DIR` / `ED23_PROFILES_DIR` | Override individual output directories (default: under `OUTPUT_ROOT`) | No |
 
 > **Note:** The pipeline fetches input catalogs from GitHub and writes generated artifacts to local directories (`hilfsdateien/`, `Zielobjektkategorien/profile/`, `ED23-Baustein-profile/`) relative to the repository root. The former GCS variables (`BUCKET_NAME`, `SOURCE_PREFIX`, `OUTPUT_PREFIX`) and the `google-cloud-storage` dependency have been removed — only `GCP_PROJECT_ID` is required to start the tool.
 

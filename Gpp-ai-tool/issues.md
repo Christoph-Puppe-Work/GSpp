@@ -138,15 +138,17 @@ instead of emitting a broken anchor. Verified against the live G++ catalog: all 
 resolve to their `_stm` part (0 broken), so the change is behaviour-preserving today while
 robust against non-conforming controls.
 
-### 3.5. Non-Portable Output Paths
-**Location:** `src/constants.py`
-**Description:** Output paths are built from `REPO_ROOT` (the parent of the project folder)
-with hardcoded relative segments: `SDT_HELPER_OUTPUT_DIR` (`hilfsdateien/`),
-`SDT_PROFILES_REGULAR_DIR` / `SDT_PROFILES_PROCESS_DIR`
-(`Zielobjektkategorien/profile/...`), and `ED23_PROFILES_DIR` (`ED23-Baustein-profile/`).
-**Impact:** Output placement breaks if the surrounding directory structure changes or the
-tool is deployed elsewhere. (Inputs are unaffected — fetched from upstream GitHub URLs.)
-**Recommendation:** Make output roots configurable via environment variables.
+### 3.5. Non-Portable Output Paths — ✅ RESOLVED
+**Location:** `src/constants.py`, `README.md`
+**Was:** Output paths were built only from `REPO_ROOT` with hardcoded relative segments, so
+placement broke if the surrounding directory layout changed or the tool was deployed
+elsewhere.
+**Fix:** Added an `OUTPUT_ROOT` env var (defaults to `REPO_ROOT`) that relocates all
+generated artifacts at once, plus per-directory overrides (`SDT_HELPER_OUTPUT_DIR`,
+`SDT_PROFILES_REGULAR_DIR`, `SDT_PROFILES_PROCESS_DIR`, `ED23_PROFILES_DIR`) that take
+precedence. Defaults are unchanged, so existing runs behave identically. Documented in the
+README env-var table. Verified: defaults unchanged, `OUTPUT_ROOT` moves everything, and a
+per-dir override beats `OUTPUT_ROOT`.
 
 ### 3.6. Ambitious Single-Step AI Generation
 **Location:** `src/pipeline/stage_ED23_profiles_enhanced.py`, `src/assets/json/prompt_config.json`

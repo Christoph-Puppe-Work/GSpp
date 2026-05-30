@@ -150,17 +150,18 @@ assessment) **and** classifies the control (class, ISMS phase, CIA) in a single 
 **Impact:** Combining complex text generation with classification often lowers quality in
 both as the model balances competing objectives.
 
-### 3.7. Dead Google Cloud Storage Configuration
-**Location:** `src/config.py`, `src/requirements.txt`
-**Description:** `BUCKET_NAME`, `SOURCE_PREFIX`, and `OUTPUT_PREFIX` are validated as
-**required** at startup (the app refuses to start without them unless `TEST=true`), but no
-code reads them — the pipeline fetches inputs from GitHub and writes outputs locally. The
-`google-cloud-storage` dependency is likewise never imported. The `gcs_uris` parameter on
-`AiClient.generate_validated_json_response` is also never passed.
-**Impact:** Misleading config surface and an unnecessary hard requirement/dependency; new
-users must invent dummy values to start the tool.
-**Recommendation:** Either restore a real GCS I/O path or drop the required-variable
-validation, the unused parameter, and the dependency.
+### 3.7. Dead Google Cloud Storage Configuration — ✅ RESOLVED (config + dependency); `gcs_uris` param still open
+**Location:** `src/config.py`, `src/requirements.txt`, `README.md`
+**Was:** `BUCKET_NAME`, `SOURCE_PREFIX`, and `OUTPUT_PREFIX` were validated as **required** at
+startup (the app refused to start without them unless `TEST=true`) but no code read them; the
+`google-cloud-storage` dependency was never imported. New users had to invent dummy values.
+**Fix:** Removed the three dead config fields and their startup validation — only
+`GCP_PROJECT_ID` is now required (region defaults to `global`; `AI_ENDPOINT_ID` is optional).
+Dropped `google-cloud-storage` from `requirements.txt` and updated the README env-var table.
+Verified config now starts with just `GCP_PROJECT_ID` and the missing-var error names only it.
+**Still open (low):** the unused `gcs_uris` parameter on
+`AiClient.generate_validated_json_response` (never passed) — left for the same future sweep
+as the other dead-code items.
 
 ### 3.8. No Timeout on Remote Data Fetch — ✅ RESOLVED (timeout + retry); offline fallback still open
 **Location:** `src/utils/file_utils.py` (`read_source_text`)

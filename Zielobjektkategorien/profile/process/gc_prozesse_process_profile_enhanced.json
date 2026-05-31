@@ -65,21 +65,21 @@
                     {
                       "name": "label",
                       "value": "m1"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Änderungen an IT-Systemen werden vereinzelt und ohne festen Prozess vorgenommen."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Dokumentieren Sie wichtige Änderungen zumindest informell in einer Textdatei oder einem Wiki."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Prüfen Sie manuell, ob für die letzte Systemänderung eine E-Mail-Bestätigung oder Notiz vorliegt."
                     }
                   ],
-                  "prose": "(BSI Baustein )"
+                  "prose": "Änderungen an IT-Systemen werden vereinzelt und ohne festen Prozess vorgenommen.",
+                  "parts": [
+                    {
+                      "id": "GC.6.1.1-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Dokumentieren Sie wichtige Änderungen zumindest informell in einer Textdatei oder einem Wiki."
+                    },
+                    {
+                      "id": "GC.6.1.1-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfen Sie manuell, ob für die letzte Systemänderung eine E-Mail-Bestätigung oder Notiz vorliegt."
+                    }
+                  ]
                 },
                 {
                   "id": "GC.6.1.1-m2_custom",
@@ -113,21 +113,21 @@
                     {
                       "name": "label",
                       "value": "m2"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Änderungen werden grundlegend erfasst und manuell durch Administratoren abgestimmt."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Nutzen Sie einfache Listen zur Nachverfolgung von Systemanpassungen und Hardware-Tausch."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Stichprobenartige Kontrolle von Systemprotokollen auf nicht dokumentierte Konfigurationsänderungen."
                     }
                   ],
-                  "prose": "(BSI Baustein )"
+                  "prose": "Änderungen werden grundlegend erfasst und manuell durch Administratoren abgestimmt.",
+                  "parts": [
+                    {
+                      "id": "GC.6.1.1-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Nutzen Sie einfache Listen zur Nachverfolgung von Systemanpassungen und Hardware-Tausch."
+                    },
+                    {
+                      "id": "GC.6.1.1-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Stichprobenartige Kontrolle von Systemprotokollen auf nicht dokumentierte Konfigurationsänderungen."
+                    }
+                  ]
                 },
                 {
                   "id": "GC.6.1.1-m3_custom",
@@ -161,21 +161,21 @@
                     {
                       "name": "label",
                       "value": "m3"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Änderungen an IT-Systemen werden geplant, geprüft und vor der Umsetzung offiziell genehmigt."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Etablieren Sie ein Change Advisory Board (CAB) und nutzen Sie ein zentrales Ticket-System."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Review der Change-Historie im Ticketsystem: 'SELECT * FROM changes WHERE status=\"approved\"'."
                     }
                   ],
-                  "prose": "(BSI Baustein )"
+                  "prose": "Änderungen an IT-Systemen werden geplant, geprüft und vor der Umsetzung offiziell genehmigt.",
+                  "parts": [
+                    {
+                      "id": "GC.6.1.1-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Etablieren Sie ein Change Advisory Board (CAB) und nutzen Sie ein zentrales Ticket-System."
+                    },
+                    {
+                      "id": "GC.6.1.1-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Review der Change-Historie im Ticketsystem: 'SELECT * FROM changes WHERE status=\"approved\"'."
+                    }
+                  ]
                 },
                 {
                   "id": "GC.6.1.1-m4_custom",
@@ -209,21 +209,21 @@
                     {
                       "name": "label",
                       "value": "m4"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Ein proaktives Change-Management nutzt erste Automatisierung zur Validierung von Änderungen."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Implementieren Sie automatisierte Tests in einer Staging-Umgebung vor dem produktiven Rollout."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Prüfen Sie die CI/CD-Logs auf erfolgreiche Testläufe vor der Bereitstellung von Software-Updates."
                     }
                   ],
-                  "prose": "(BSI Baustein )"
+                  "prose": "Ein proaktives Change-Management nutzt erste Automatisierung zur Validierung von Änderungen.",
+                  "parts": [
+                    {
+                      "id": "GC.6.1.1-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Implementieren Sie automatisierte Tests in einer Staging-Umgebung vor dem produktiven Rollout."
+                    },
+                    {
+                      "id": "GC.6.1.1-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfen Sie die CI/CD-Logs auf erfolgreiche Testläufe vor der Bereitstellung von Software-Updates."
+                    }
+                  ]
                 },
                 {
                   "id": "GC.6.1.1-m5_custom",
@@ -257,21 +257,21 @@
                     {
                       "name": "label",
                       "value": "m5"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Vollautomatisiertes Change-Management mittels Policy-as-Code und kontinuierlicher Integritätsprüfung."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Integrieren Sie automatisierte Rollback-Mechanismen und Echtzeit-Auditierung aller Infrastrukturänderungen."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Verifizieren Sie die Konfiguration gegen das Git-Repository: 'git diff main..production' muss leer sein."
                     }
                   ],
-                  "prose": "(BSI Baustein )"
+                  "prose": "Vollautomatisiertes Change-Management mittels Policy-as-Code und kontinuierlicher Integritätsprüfung.",
+                  "parts": [
+                    {
+                      "id": "GC.6.1.1-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Integrieren Sie automatisierte Rollback-Mechanismen und Echtzeit-Auditierung aller Infrastrukturänderungen."
+                    },
+                    {
+                      "id": "GC.6.1.1-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Verifizieren Sie die Konfiguration gegen das Git-Repository: 'git diff main..production' muss leer sein."
+                    }
+                  ]
                 }
               ]
             }
@@ -316,21 +316,21 @@
                     {
                       "name": "label",
                       "value": "m1"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Sicherheitsereignisse werden nur sporadisch bei offensichtlichen Störungen erkannt."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Achten Sie auf ungewöhnliche Fehlermeldungen oder Systemabstürze während des täglichen Betriebs."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Befragung der Mitarbeiter, wie sie auf einen Virusfund auf ihrem Arbeitsplatzrechner reagieren würden."
                     }
                   ],
-                  "prose": "(BSI Baustein )"
+                  "prose": "Sicherheitsereignisse werden nur sporadisch bei offensichtlichen Störungen erkannt.",
+                  "parts": [
+                    {
+                      "id": "GC.7.1.1-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Achten Sie auf ungewöhnliche Fehlermeldungen oder Systemabstürze während des täglichen Betriebs."
+                    },
+                    {
+                      "id": "GC.7.1.1-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Befragung der Mitarbeiter, wie sie auf einen Virusfund auf ihrem Arbeitsplatzrechner reagieren würden."
+                    }
+                  ]
                 },
                 {
                   "id": "GC.7.1.1-m2_custom",
@@ -364,21 +364,21 @@
                     {
                       "name": "label",
                       "value": "m2"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Zentrale Log-Dateien werden manuell nach auffälligen Einträgen durchsucht."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Sammeln Sie Logs von kritischen Systemen an einem zentralen Ort zur manuellen Durchsicht."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Prüfen Sie, ob Log-Dateien existieren: 'ls -R /var/log/remote/' auf dem Log-Server ausführen."
                     }
                   ],
-                  "prose": "(BSI Baustein )"
+                  "prose": "Zentrale Log-Dateien werden manuell nach auffälligen Einträgen durchsucht.",
+                  "parts": [
+                    {
+                      "id": "GC.7.1.1-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Sammeln Sie Logs von kritischen Systemen an einem zentralen Ort zur manuellen Durchsicht."
+                    },
+                    {
+                      "id": "GC.7.1.1-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfen Sie, ob Log-Dateien existieren: 'ls -R /var/log/remote/' auf dem Log-Server ausführen."
+                    }
+                  ]
                 },
                 {
                   "id": "GC.7.1.1-m3_custom",
@@ -412,21 +412,21 @@
                     {
                       "name": "label",
                       "value": "m3"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Sicherheitsrelevante Ereignisse werden durch definierte Quellen identifiziert und bewertet."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Konfigurieren Sie Alerts für fehlgeschlagene Logins und unbefugte Dateizugriffe in Echtzeit."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Testen Sie die Alarmierung durch einen gezielten Fehlversuch: 'ssh invalid-user@server'."
                     }
                   ],
-                  "prose": "(BSI Baustein )"
+                  "prose": "Sicherheitsrelevante Ereignisse werden durch definierte Quellen identifiziert und bewertet.",
+                  "parts": [
+                    {
+                      "id": "GC.7.1.1-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Konfigurieren Sie Alerts für fehlgeschlagene Logins und unbefugte Dateizugriffe in Echtzeit."
+                    },
+                    {
+                      "id": "GC.7.1.1-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Testen Sie die Alarmierung durch einen gezielten Fehlversuch: 'ssh invalid-user@server'."
+                    }
+                  ]
                 },
                 {
                   "id": "GC.7.1.1-m4_custom",
@@ -460,21 +460,21 @@
                     {
                       "name": "label",
                       "value": "m4"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Ein SIEM-System aggregiert und korreliert Ereignisse aus verschiedenen Quellen proaktiv."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Nutzen Sie Korrelationsregeln, um komplexe Angriffsmuster über mehrere Systeme hinweg zu erkennen."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Validieren Sie die Korrelationsregeln im SIEM durch Simulation eines Brute-Force-Angriffs."
                     }
                   ],
-                  "prose": "(BSI Baustein )"
+                  "prose": "Ein SIEM-System aggregiert und korreliert Ereignisse aus verschiedenen Quellen proaktiv.",
+                  "parts": [
+                    {
+                      "id": "GC.7.1.1-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Nutzen Sie Korrelationsregeln, um komplexe Angriffsmuster über mehrere Systeme hinweg zu erkennen."
+                    },
+                    {
+                      "id": "GC.7.1.1-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Validieren Sie die Korrelationsregeln im SIEM durch Simulation eines Brute-Force-Angriffs."
+                    }
+                  ]
                 },
                 {
                   "id": "GC.7.1.1-m5_custom",
@@ -508,21 +508,21 @@
                     {
                       "name": "label",
                       "value": "m5"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "KI-gestützte Anomalieerkennung identifiziert bisher unbekannte Bedrohungen in Echtzeit."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Integrieren Sie Threat Intelligence Feeds zur automatischen Abgleichung von Indikatoren (IoC)."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Prüfen Sie die API-Anbindung an Threat Feeds: 'curl -I https://threat-intel-api.example.com'."
                     }
                   ],
-                  "prose": "(BSI Baustein )"
+                  "prose": "KI-gestützte Anomalieerkennung identifiziert bisher unbekannte Bedrohungen in Echtzeit.",
+                  "parts": [
+                    {
+                      "id": "GC.7.1.1-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Integrieren Sie Threat Intelligence Feeds zur automatischen Abgleichung von Indikatoren (IoC)."
+                    },
+                    {
+                      "id": "GC.7.1.1-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfen Sie die API-Anbindung an Threat Feeds: 'curl -I https://threat-intel-api.example.com'."
+                    }
+                  ]
                 }
               ]
             }
@@ -567,21 +567,21 @@
                     {
                       "name": "label",
                       "value": "m1"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Reaktionen auf Vorfälle erfolgen ad-hoc ohne vordefinierte Vorgehensweisen."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Identifizieren Sie im Ernstfall schnellstmöglich verfügbare Experten im Team."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Prüfen Sie, ob Telefonlisten der IT-Mitarbeiter für Notfälle aktuell und verfügbar sind."
                     }
                   ],
-                  "prose": "(BSI Baustein )"
+                  "prose": "Reaktionen auf Vorfälle erfolgen ad-hoc ohne vordefinierte Vorgehensweisen.",
+                  "parts": [
+                    {
+                      "id": "GC.7.1.2-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Identifizieren Sie im Ernstfall schnellstmöglich verfügbare Experten im Team."
+                    },
+                    {
+                      "id": "GC.7.1.2-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfen Sie, ob Telefonlisten der IT-Mitarbeiter für Notfälle aktuell und verfügbar sind."
+                    }
+                  ]
                 },
                 {
                   "id": "GC.7.1.2-m2_custom",
@@ -615,21 +615,21 @@
                     {
                       "name": "label",
                       "value": "m2"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Grundlegende Reaktionsschritte sind für bekannte Szenarien wie Malware-Befall skizziert."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Erstellen Sie einfache Checklisten für die Erstmaßnahme bei Sicherheitsvorfällen."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Sichtung der vorhandenen Checklisten für die Behandlung von Virenfunden."
                     }
                   ],
-                  "prose": "(BSI Baustein )"
+                  "prose": "Grundlegende Reaktionsschritte sind für bekannte Szenarien wie Malware-Befall skizziert.",
+                  "parts": [
+                    {
+                      "id": "GC.7.1.2-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Erstellen Sie einfache Checklisten für die Erstmaßnahme bei Sicherheitsvorfällen."
+                    },
+                    {
+                      "id": "GC.7.1.2-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Sichtung der vorhandenen Checklisten für die Behandlung von Virenfunden."
+                    }
+                  ]
                 },
                 {
                   "id": "GC.7.1.2-m3_custom",
@@ -663,21 +663,21 @@
                     {
                       "name": "label",
                       "value": "m3"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Die Reaktion auf Sicherheitsvorfälle folgt einem fest definierten und dokumentierten Prozess."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Setzen Sie ein Incident Response Team (IRT) ein und definieren Sie Eskalationspfade."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Simulation eines Vorfalls (Table-Top Exercise) zur Überprüfung der Prozessschritte."
                     }
                   ],
-                  "prose": "(BSI Baustein )"
+                  "prose": "Die Reaktion auf Sicherheitsvorfälle folgt einem fest definierten und dokumentierten Prozess.",
+                  "parts": [
+                    {
+                      "id": "GC.7.1.2-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Setzen Sie ein Incident Response Team (IRT) ein und definieren Sie Eskalationspfade."
+                    },
+                    {
+                      "id": "GC.7.1.2-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Simulation eines Vorfalls (Table-Top Exercise) zur Überprüfung der Prozessschritte."
+                    }
+                  ]
                 },
                 {
                   "id": "GC.7.1.2-m4_custom",
@@ -711,21 +711,21 @@
                     {
                       "name": "label",
                       "value": "m4"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Automatisierte Workflows unterstützen die schnelle Eindämmung von Vorfällen."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Nutzen Sie Skripte zur automatischen Isolierung betroffener Systeme im Netzwerksegment."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Prüfung der SOAR-Playbooks auf korrekte Triggerung bei Erkennung eines Ransomware-Musters."
                     }
                   ],
-                  "prose": "(BSI Baustein )"
+                  "prose": "Automatisierte Workflows unterstützen die schnelle Eindämmung von Vorfällen.",
+                  "parts": [
+                    {
+                      "id": "GC.7.1.2-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Nutzen Sie Skripte zur automatischen Isolierung betroffener Systeme im Netzwerksegment."
+                    },
+                    {
+                      "id": "GC.7.1.2-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung der SOAR-Playbooks auf korrekte Triggerung bei Erkennung eines Ransomware-Musters."
+                    }
+                  ]
                 },
                 {
                   "id": "GC.7.1.2-m5_custom",
@@ -759,21 +759,21 @@
                     {
                       "name": "label",
                       "value": "m5"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Voll integrierte Incident Response mit automatisierter Forensik und Self-Healing-Fähigkeiten."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Integrieren Sie Mechanismen zur automatischen Wiederherstellung kompromittierter Cloud-Instanzen."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Verifizieren Sie die automatische Quarantäne per API-Call: 'aws ec2 describe-instances --filters...'. "
                     }
                   ],
-                  "prose": "(BSI Baustein )"
+                  "prose": "Voll integrierte Incident Response mit automatisierter Forensik und Self-Healing-Fähigkeiten.",
+                  "parts": [
+                    {
+                      "id": "GC.7.1.2-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Integrieren Sie Mechanismen zur automatischen Wiederherstellung kompromittierter Cloud-Instanzen."
+                    },
+                    {
+                      "id": "GC.7.1.2-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Verifizieren Sie die automatische Quarantäne per API-Call: 'aws ec2 describe-instances --filters...'. "
+                    }
+                  ]
                 }
               ]
             }
@@ -818,21 +818,21 @@
                     {
                       "name": "label",
                       "value": "m1"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Ursachen von Vorfällen werden nur bei schwerwiegenden Schäden grob untersucht."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Notieren Sie nach einem Vorfall kurz, was die vermutete Ursache war."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Prüfen Sie die letzten Service-Tickets auf Kommentare zur Fehlerursache."
                     }
                   ],
-                  "prose": "(BSI Baustein )"
+                  "prose": "Ursachen von Vorfällen werden nur bei schwerwiegenden Schäden grob untersucht.",
+                  "parts": [
+                    {
+                      "id": "GC.7.1.3-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Notieren Sie nach einem Vorfall kurz, was die vermutete Ursache war."
+                    },
+                    {
+                      "id": "GC.7.1.3-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfen Sie die letzten Service-Tickets auf Kommentare zur Fehlerursache."
+                    }
+                  ]
                 },
                 {
                   "id": "GC.7.1.3-m2_custom",
@@ -866,21 +866,21 @@
                     {
                       "name": "label",
                       "value": "m2"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Vorfälle werden dokumentiert, um wiederkehrende Probleme manuell zu identifizieren."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Führen Sie eine einfache Statistik über die Art der aufgetretenen Sicherheitsereignisse."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Review der Incident-Liste der letzten 6 Monate auf Häufungen bestimmter Kategorien."
                     }
                   ],
-                  "prose": "(BSI Baustein )"
+                  "prose": "Vorfälle werden dokumentiert, um wiederkehrende Probleme manuell zu identifizieren.",
+                  "parts": [
+                    {
+                      "id": "GC.7.1.3-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Führen Sie eine einfache Statistik über die Art der aufgetretenen Sicherheitsereignisse."
+                    },
+                    {
+                      "id": "GC.7.1.3-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Review der Incident-Liste der letzten 6 Monate auf Häufungen bestimmter Kategorien."
+                    }
+                  ]
                 },
                 {
                   "id": "GC.7.1.3-m3_custom",
@@ -914,21 +914,21 @@
                     {
                       "name": "label",
                       "value": "m3"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Sicherheitsvorfälle werden systematisch analysiert, um die zugrunde liegenden Ursachen zu ermitteln."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Führen Sie nach jedem kritischen Vorfall ein Post-Mortem-Meeting durch und erstellen Sie Berichte."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Prüfung der Root-Cause-Analyse-Berichte auf Vollständigkeit und abgeleitete Maßnahmen."
                     }
                   ],
-                  "prose": "(BSI Baustein )"
+                  "prose": "Sicherheitsvorfälle werden systematisch analysiert, um die zugrunde liegenden Ursachen zu ermitteln.",
+                  "parts": [
+                    {
+                      "id": "GC.7.1.3-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Führen Sie nach jedem kritischen Vorfall ein Post-Mortem-Meeting durch und erstellen Sie Berichte."
+                    },
+                    {
+                      "id": "GC.7.1.3-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung der Root-Cause-Analyse-Berichte auf Vollständigkeit und abgeleitete Maßnahmen."
+                    }
+                  ]
                 },
                 {
                   "id": "GC.7.1.3-m4_custom",
@@ -962,21 +962,21 @@
                     {
                       "name": "label",
                       "value": "m4"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Analysen nutzen forensische Werkzeuge zur tiefgehenden Untersuchung von Datenspuren."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Sichern Sie Speicherabbilder und Festplatten-Images für eine gerichtsverwertbare Analyse."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Prüfen Sie die Verfügbarkeit von Write-Blockern und Forensik-Software im IR-Kit."
                     }
                   ],
-                  "prose": "(BSI Baustein )"
+                  "prose": "Analysen nutzen forensische Werkzeuge zur tiefgehenden Untersuchung von Datenspuren.",
+                  "parts": [
+                    {
+                      "id": "GC.7.1.3-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Sichern Sie Speicherabbilder und Festplatten-Images für eine gerichtsverwertbare Analyse."
+                    },
+                    {
+                      "id": "GC.7.1.3-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfen Sie die Verfügbarkeit von Write-Blockern und Forensik-Software im IR-Kit."
+                    }
+                  ]
                 },
                 {
                   "id": "GC.7.1.3-m5_custom",
@@ -1010,21 +1010,21 @@
                     {
                       "name": "label",
                       "value": "m5"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Kontinuierliche Analyse-Pipeline integriert Erkenntnisse direkt in die Abwehrstrategie."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Nutzen Sie automatisierte Sandboxing-Analysen für jeden identifizierten Schadcode."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Validieren Sie den Output der Sandbox-API: 'json_pp < analysis_report.json'."
                     }
                   ],
-                  "prose": "(BSI Baustein )"
+                  "prose": "Kontinuierliche Analyse-Pipeline integriert Erkenntnisse direkt in die Abwehrstrategie.",
+                  "parts": [
+                    {
+                      "id": "GC.7.1.3-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Nutzen Sie automatisierte Sandboxing-Analysen für jeden identifizierten Schadcode."
+                    },
+                    {
+                      "id": "GC.7.1.3-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Validieren Sie den Output der Sandbox-API: 'json_pp < analysis_report.json'."
+                    }
+                  ]
                 }
               ]
             }
@@ -1069,21 +1069,21 @@
                     {
                       "name": "label",
                       "value": "m1"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Meldungen über Vorfälle erfolgen informell und unsystematisch."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Informieren Sie Ihren Vorgesetzten per E-Mail oder Telefon über Sicherheitsprobleme."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Befragung eines Administrators, wem er einen Hackversuch melden würde."
                     }
                   ],
-                  "prose": "(BSI Baustein )"
+                  "prose": "Meldungen über Vorfälle erfolgen informell und unsystematisch.",
+                  "parts": [
+                    {
+                      "id": "GC.7.1.4-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Informieren Sie Ihren Vorgesetzten per E-Mail oder Telefon über Sicherheitsprobleme."
+                    },
+                    {
+                      "id": "GC.7.1.4-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Befragung eines Administrators, wem er einen Hackversuch melden würde."
+                    }
+                  ]
                 },
                 {
                   "id": "GC.7.1.4-m2_custom",
@@ -1117,21 +1117,21 @@
                     {
                       "name": "label",
                       "value": "m2"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Es existieren zentrale Ansprechpartner für die Meldung von Sicherheitsvorfällen."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Richten Sie ein Funktionspostfach (z.B. security@firma.de) für Meldungen ein."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Prüfung, ob die E-Mail-Adresse 'security@...' existiert und abgerufen wird."
                     }
                   ],
-                  "prose": "(BSI Baustein )"
+                  "prose": "Es existieren zentrale Ansprechpartner für die Meldung von Sicherheitsvorfällen.",
+                  "parts": [
+                    {
+                      "id": "GC.7.1.4-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Richten Sie ein Funktionspostfach (z.B. security@firma.de) für Meldungen ein."
+                    },
+                    {
+                      "id": "GC.7.1.4-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung, ob die E-Mail-Adresse 'security@...' existiert und abgerufen wird."
+                    }
+                  ]
                 },
                 {
                   "id": "GC.7.1.4-m3_custom",
@@ -1165,21 +1165,21 @@
                     {
                       "name": "label",
                       "value": "m3"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Meldewege und Berichtspflichten für Sicherheitsvorfälle sind klar definiert und bekannt."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Erstellen Sie ein Meldeformular, das alle notwendigen Informationen für die Analyse abfragt."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Abgleich der internen Melderichtlinie mit den gesetzlichen Anforderungen (z.B. DSGVO)."
                     }
                   ],
-                  "prose": "(BSI Baustein )"
+                  "prose": "Meldewege und Berichtspflichten für Sicherheitsvorfälle sind klar definiert und bekannt.",
+                  "parts": [
+                    {
+                      "id": "GC.7.1.4-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Erstellen Sie ein Meldeformular, das alle notwendigen Informationen für die Analyse abfragt."
+                    },
+                    {
+                      "id": "GC.7.1.4-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Abgleich der internen Melderichtlinie mit den gesetzlichen Anforderungen (z.B. DSGVO)."
+                    }
+                  ]
                 },
                 {
                   "id": "GC.7.1.4-m4_custom",
@@ -1213,21 +1213,21 @@
                     {
                       "name": "label",
                       "value": "m4"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Das Reporting erfolgt über ein integriertes Dashboard für das Management in Echtzeit."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Automatisieren Sie die Erstellung von wöchentlichen Statusberichten zum Sicherheitszustand."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Prüfen Sie das Dashboard auf aktuelle Daten: 'curl http://dashboard/api/status'."
                     }
                   ],
-                  "prose": "(BSI Baustein )"
+                  "prose": "Das Reporting erfolgt über ein integriertes Dashboard für das Management in Echtzeit.",
+                  "parts": [
+                    {
+                      "id": "GC.7.1.4-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Automatisieren Sie die Erstellung von wöchentlichen Statusberichten zum Sicherheitszustand."
+                    },
+                    {
+                      "id": "GC.7.1.4-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfen Sie das Dashboard auf aktuelle Daten: 'curl http://dashboard/api/status'."
+                    }
+                  ]
                 },
                 {
                   "id": "GC.7.1.4-m5_custom",
@@ -1261,21 +1261,21 @@
                     {
                       "name": "label",
                       "value": "m5"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Automatisierte Meldung an externe Behörden und Partner über standardisierte Schnittstellen."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Implementieren Sie den Datenaustausch über Formate wie STIX/TAXII für den Informationsaustausch."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Verifizieren Sie den erfolgreichen Export eines Vorfalls im STIX-Format."
                     }
                   ],
-                  "prose": "(BSI Baustein )"
+                  "prose": "Automatisierte Meldung an externe Behörden und Partner über standardisierte Schnittstellen.",
+                  "parts": [
+                    {
+                      "id": "GC.7.1.4-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Implementieren Sie den Datenaustausch über Formate wie STIX/TAXII für den Informationsaustausch."
+                    },
+                    {
+                      "id": "GC.7.1.4-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Verifizieren Sie den erfolgreichen Export eines Vorfalls im STIX-Format."
+                    }
+                  ]
                 }
               ]
             }
@@ -1320,21 +1320,21 @@
                     {
                       "name": "label",
                       "value": "m1"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Es existieren vereinzelte Backups ohne übergreifendes Notfallkonzept."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Stellen Sie sicher, dass wichtige Daten regelmäßig auf externe Medien kopiert werden."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Prüfen Sie das Datum der letzten Sicherung auf einem USB-Laufwerk oder Tape."
                     }
                   ],
-                  "prose": "(BSI Baustein )"
+                  "prose": "Es existieren vereinzelte Backups ohne übergreifendes Notfallkonzept.",
+                  "parts": [
+                    {
+                      "id": "GC.9.1.1-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Stellen Sie sicher, dass wichtige Daten regelmäßig auf externe Medien kopiert werden."
+                    },
+                    {
+                      "id": "GC.9.1.1-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfen Sie das Datum der letzten Sicherung auf einem USB-Laufwerk oder Tape."
+                    }
+                  ]
                 },
                 {
                   "id": "GC.9.1.1-m2_custom",
@@ -1368,21 +1368,21 @@
                     {
                       "name": "label",
                       "value": "m2"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Wichtige Wiederherstellungsschritte sind für Kernsysteme grob dokumentiert."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Erstellen Sie eine Prioritätenliste, welche Systeme zuerst wiederhergestellt werden müssen."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Sichtung der Prioritätenliste und Abgleich mit der aktuellen Serverliste."
                     }
                   ],
-                  "prose": "(BSI Baustein )"
+                  "prose": "Wichtige Wiederherstellungsschritte sind für Kernsysteme grob dokumentiert.",
+                  "parts": [
+                    {
+                      "id": "GC.9.1.1-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Erstellen Sie eine Prioritätenliste, welche Systeme zuerst wiederhergestellt werden müssen."
+                    },
+                    {
+                      "id": "GC.9.1.1-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Sichtung der Prioritätenliste und Abgleich mit der aktuellen Serverliste."
+                    }
+                  ]
                 },
                 {
                   "id": "GC.9.1.1-m3_custom",
@@ -1416,21 +1416,21 @@
                     {
                       "name": "label",
                       "value": "m3"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Ein umfassendes Notfallkonzept für kritische Geschäftsprozesse ist erstellt und abgestimmt."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Führen Sie eine Business Impact Analyse (BIA) durch, um RTO und RPO Ziele zu definieren."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Review des Notfallhandbuchs auf Aktualität der Ansprechpartner und Wiederanlaufpläne."
                     }
                   ],
-                  "prose": "(BSI Baustein )"
+                  "prose": "Ein umfassendes Notfallkonzept für kritische Geschäftsprozesse ist erstellt und abgestimmt.",
+                  "parts": [
+                    {
+                      "id": "GC.9.1.1-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Führen Sie eine Business Impact Analyse (BIA) durch, um RTO und RPO Ziele zu definieren."
+                    },
+                    {
+                      "id": "GC.9.1.1-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Review des Notfallhandbuchs auf Aktualität der Ansprechpartner und Wiederanlaufpläne."
+                    }
+                  ]
                 },
                 {
                   "id": "GC.9.1.1-m4_custom",
@@ -1464,21 +1464,21 @@
                     {
                       "name": "label",
                       "value": "m4"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Regelmäßige Notfallübungen validieren die Wirksamkeit der Wiederanlaufpläne."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Führen Sie jährlich Real-Tests zur Wiederherstellung kompletter Infrastrukturen durch."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Prüfung des letzten Übungsprotokolls auf erreichte Wiederherstellungszeiten."
                     }
                   ],
-                  "prose": "(BSI Baustein )"
+                  "prose": "Regelmäßige Notfallübungen validieren die Wirksamkeit der Wiederanlaufpläne.",
+                  "parts": [
+                    {
+                      "id": "GC.9.1.1-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Führen Sie jährlich Real-Tests zur Wiederherstellung kompletter Infrastrukturen durch."
+                    },
+                    {
+                      "id": "GC.9.1.1-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung des letzten Übungsprotokolls auf erreichte Wiederherstellungszeiten."
+                    }
+                  ]
                 },
                 {
                   "id": "GC.9.1.1-m5_custom",
@@ -1512,21 +1512,21 @@
                     {
                       "name": "label",
                       "value": "m5"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Resiliente Architektur ermöglicht automatisiertes Failover und kontinuierlichen Betrieb."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Setzen Sie auf Multi-Region-Deployments und automatisierte Disaster-Recovery-Tests (Chaos Engineering)."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Prüfen Sie die DR-Automatisierung: 'terraform plan' für die Recovery-Region ausführen."
                     }
                   ],
-                  "prose": "(BSI Baustein )"
+                  "prose": "Resiliente Architektur ermöglicht automatisiertes Failover und kontinuierlichen Betrieb.",
+                  "parts": [
+                    {
+                      "id": "GC.9.1.1-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Setzen Sie auf Multi-Region-Deployments und automatisierte Disaster-Recovery-Tests (Chaos Engineering)."
+                    },
+                    {
+                      "id": "GC.9.1.1-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfen Sie die DR-Automatisierung: 'terraform plan' für die Recovery-Region ausführen."
+                    }
+                  ]
                 }
               ]
             }

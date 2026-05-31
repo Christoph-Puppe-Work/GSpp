@@ -33,7 +33,7 @@ from constants import (
 from utils.file_utils import create_dir_if_not_exists, read_json_file, write_json_file, read_csv_file
 from utils.text_utils import sanitize_filename
 from utils.data_parser import find_bausteine_with_prose
-from utils.oscal_utils import extract_all_gpp_controls, normalize_id
+from utils.oscal_utils import extract_all_gpp_controls, normalize_id, validate_enhanced_profile_structure
 from clients.ai_client import AiClient
 
 logger = logging.getLogger(__name__)
@@ -43,13 +43,19 @@ CHUNK_SIZE = 10
 
 
 def build_oscal_maturity_statements(control_id: str, generated_data: dict, original_description: str, baustein_id: str) -> list:
-    """Constructs the OSCAL maturity sub-statements (parts) for the 'adds' block."""
+    """Constructs the OSCAL maturity sub-statements (parts) for the 'adds' block.
+
+    Each maturity level becomes one `statement` part whose own per-level text lives in
+    `prose` (the OSCAL-idiomatic place for it), with the guidance and assessment carried as
+    nested `guidance` / `assessment` parts. Classification (class, phase, CIA) and the
+    level `label` stay as props — they are genuinely metadata, not prose (issue 3.1).
+    """
     parts = []
     levels = ["1", "2", "3", "4", "5"]
 
     props_ns = "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
 
-    # Properties shared across all levels for this control
+    # Classification properties shared across all levels for this control.
     base_props = [
         {"name": "control_class", "value": generated_data.get("class") or "Technical", "ns": props_ns},
         {"name": "phase", "value": generated_data.get('phase') or 'N/A', "ns": props_ns},
@@ -58,26 +64,52 @@ def build_oscal_maturity_statements(control_id: str, generated_data: dict, origi
         {"name": "effective_on_a", "value": str(generated_data.get("effective_on_a") or "").lower(), "ns": props_ns},
     ]
 
-    prefix = f"(BSI Baustein {baustein_id})"
-    enriched_prose = f"{prefix} {original_description}".strip()
-
     for level_num in levels:
-        statement_text = generated_data.get(f"level_{level_num}_statement")
+        # Level 3 ("Defined") is the documented baseline and MUST equal the original G++
+        # control prose verbatim. We inject it deterministically rather than trusting the
+        # model to copy it without altering text or variable definitions (issue 2.2).
+        if level_num == "3":
+            statement_text = original_description or generated_data.get("level_3_statement")
+        else:
+            statement_text = generated_data.get(f"level_{level_num}_statement")
 
-        if statement_text:
-            statement_props = list(base_props) + [
-                {"name": "label", "value": f"m{level_num}"},
-                {"name": "statement", "value": statement_text},
-                {"name": "guidance", "value": generated_data.get(f"level_{level_num}_guidance", "")},
-                {"name": "assessment-method", "value": generated_data.get(f"level_{level_num}_assessment", "")}
-            ]
+        if not statement_text:
+            continue
 
-            parts.append({
-                "id": f"{control_id}-m{level_num}_custom",
-                "name": "statement",
-                "props": statement_props,
-                "prose": enriched_prose
+        part_id = f"{control_id}-m{level_num}_custom"
+        statement_props = list(base_props) + [
+            {"name": "label", "value": f"m{level_num}"},
+        ]
+
+        part = {
+            "id": part_id,
+            "name": "statement",
+            "props": statement_props,
+            # The maturity-level statement itself is the prose, so a generic OSCAL
+            # renderer shows the real per-level content (not a duplicated description).
+            "prose": statement_text,
+        }
+
+        # Guidance and assessment become nested parts rather than custom props.
+        nested = []
+        guidance_text = generated_data.get(f"level_{level_num}_guidance", "")
+        assessment_text = generated_data.get(f"level_{level_num}_assessment", "")
+        if guidance_text:
+            nested.append({
+                "id": f"{part_id}_gdn",
+                "name": "guidance",
+                "prose": guidance_text,
             })
+        if assessment_text:
+            nested.append({
+                "id": f"{part_id}_asm",
+                "name": "assessment",
+                "prose": assessment_text,
+            })
+        if nested:
+            part["parts"] = nested
+
+        parts.append(part)
 
     return parts
 
@@ -137,8 +169,10 @@ async def generate_enhanced_profile_data(
         prompt = (
             f"{prompt_instruction}\n\n"
             f"{baustein_context}"
-            f"**G++ controls to enrich** (generate maturity levels 1-5 for each; "
-            f"Level 3 must be an exact copy of the control's prose):\n"
+            f"**G++ controls to enrich** (generate maturity levels 1, 2, 4 and 5 for each; "
+            f"Level 3 is the control's prose and is injected automatically, so you may omit "
+            f"level_3_* — only provide a level if a technically sound, distinct "
+            f"implementation can be described):\n"
             f"{_render_controls_table(chunk, gpp_controls_lookup)}\n\n"
             "Return a JSON array with one object per control, matching each by its original ID."
         )
@@ -169,7 +203,20 @@ async def generate_enhanced_profile_data(
             logger.warning(f"No AI generated data for control {gpp_control_id} in Baustein {baustein_id}")
             continue
 
-        original_description = gpp_controls_lookup.get(gpp_control_id, {}).get("prose", "")
+        control_meta = gpp_controls_lookup.get(gpp_control_id, {})
+        original_description = control_meta.get("prose", "")
+
+        # Anchor the new sub-statements to the control's real statement part. If the
+        # catalog control has no statement part there is nothing to attach to, so skip
+        # it rather than emit an unresolvable `by-id` (issue 3.4).
+        statement_part_id = control_meta.get("statement_part_id")
+        if not statement_part_id:
+            logger.warning(
+                f"Control {gpp_control_id} (Baustein {baustein_id}) has no statement part "
+                f"to anchor maturity additions to; skipping its alter block."
+            )
+            continue
+
         parts = build_oscal_maturity_statements(gpp_control_id, generated_data, original_description, baustein_id)
 
         if parts:
@@ -178,7 +225,7 @@ async def generate_enhanced_profile_data(
                 "adds": [
                     {
                         "position": "ending",
-                        "by-id": f"{gpp_control_id}_stm",
+                        "by-id": statement_part_id,
                         "parts": parts
                     }
                 ]
@@ -213,6 +260,16 @@ async def generate_enhanced_profile(
         profile["profile"]["modify"] = {"alters": alters}
         profile["profile"]["metadata"]["title"] += " - Enhanced (ED2023)"
         profile["profile"]["metadata"]["last-modified"] = datetime.now(timezone.utc).isoformat()
+
+        # Structurally validate the generated profile before writing (issue 3.3). This is a
+        # warn-only gate: problems are logged but the artifact is still written so a single
+        # glitch does not abort the whole batch.
+        problems = validate_enhanced_profile_structure(profile)
+        if problems:
+            logger.warning(
+                f"Enhanced profile for {baustein_id} has {len(problems)} structural issue(s): "
+                + "; ".join(problems[:10]) + (" ..." if len(problems) > 10 else "")
+            )
 
         write_json_file(output_path, profile)
         logger.info(f"Successfully generated enhanced profile at {output_path}")

@@ -1854,11 +1854,17 @@
                     const key = `${sourceId}||${cid}`;
                     (a.adds || []).forEach(add => {
                         const prosePart = (add.parts || []).find(p => p.name === 'statement');
+                        // Reifegrad-Text: neue Form = pt.prose, alte Form = props "statement".
+                        // Beide Formen unterstützen (siehe Gpp-ai-tool/docs/profile-maturity-contract.md).
+                        const oldStmt = (prosePart?.props || []).find(p => p && p.name === 'statement')?.value;
+                        const text = (prosePart?.prose != null && oldStmt == null)
+                            ? prosePart.prose
+                            : (oldStmt || prosePart?.prose || '');
                         if (!bpState.modifications.has(key)) bpState.modifications.set(key, []);
                         bpState.modifications.get(key).push({
                             type: 'add',
                             position: add.position || 'ending',
-                            text: prosePart?.prose || ''
+                            text
                         });
                     });
                 });
@@ -2041,7 +2047,7 @@
                     uuid: p.id,
                     type: "process",
                     title: `Prozess: ${p.name}`,
-                    description: `Prozess-Instanz, basierend auf Komponentendefinition ${p.url.split('/').pop()}.`,
+                    description: `Prozess-Instanz, basierend auf Profil ${p.url.split('/').pop()}.`,
                     status: { state: "operational" },
                     links: [{ href: p.url, rel: "profile" }]
                 });
@@ -2052,7 +2058,7 @@
                     uuid: c.id,
                     type: "service",
                     title: c.name,
-                    description: `Instanz '${c.name}', basierend auf Komponentendefinition ${c.source.split('/').pop()}.`,
+                    description: `Instanz '${c.name}', basierend auf Profil ${c.source.split('/').pop()}.`,
                     status: { state: c.state || "operational" },
                     props: [
                         {

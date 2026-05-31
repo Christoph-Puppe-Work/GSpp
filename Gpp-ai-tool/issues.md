@@ -2,7 +2,15 @@
 
 This document outlines issues identified during the end-to-end review of the OSCAL
 generation pipeline (`Gpp-ai-tool`) **and** its downstream consumers (`One-Page-Apps`),
-categorized by severity. Resolved issues are removed.
+categorized by severity.
+
+> **Status (branch `fix/oscal-issues`):** Most items are resolved and marked
+> **✅ RESOLVED** inline (some with a smaller follow-up noted). The two still **OPEN** items
+> — 2.1 (AI "slop") and 3.6 (single-step AI generation) — both concern AI-generation
+> behaviour that cannot be runtime-verified without live Gemini/Vertex AI access, so they are
+> left documented with concrete recommendations rather than changed blind. Issue 1.1
+> (temperature) was closed as not-an-issue (intentional for Gemini). Every resolved item was
+> verified (unit/structural checks, the live G++ catalog, or a headless browser preview).
 
 > **Note on history:** The 1:1 Anforderung→Control mapping stage (`stage_matching`) was
 > removed; an ED2023 profile now includes **all** controls of the matched
@@ -30,204 +38,243 @@ interoperability, and reliability concerns — not a regression of the refactor.
 
 ## 1. Critical Issues
 
-### 1.1. High Temperature for Deterministic Tasks
-**Location:** `src/constants.py` (`API_TEMPERATURE = 1`)
-**Description:** The configuration maximizes randomness/creativity.
-**Impact:** For classification and structured JSON output, this increases the risk of
-hallucinations, inconsistent results across runs, and schema-validation failures.
-**Recommendation:** Reduce `API_TEMPERATURE` significantly (e.g. 0.1–0.3) for the
-classification fields, or split classification from prose generation.
+*None currently open.*
+
+> **Resolved / not-an-issue — `API_TEMPERATURE = 1`:** Deliberately kept at 1. Gemini is
+> tuned to perform well at this temperature, and the structured-output schema constrains the
+> JSON shape, so the earlier "deterministic tasks need low temperature" concern does not
+> apply here.
 
 ## 2. High Priority Issues
 
-### 2.1. High Risk of "AI Slop" in Enhanced Profiles
+### 2.1. High Risk of "AI Slop" in Enhanced Profiles — OPEN (inherent; partially mitigated)
 **Location:** `src/pipeline/stage_ED23_profiles_enhanced.py`, `src/assets/json/prompt_config.json`
-**Description:** The enhanced-profile stage relies heavily on AI to generate the prose
-(statement, guidance, assessment) for maturity levels 1, 2, 4, and 5, and now does so for
-*every* control of the Zielobjektkategorie.
-**Impact:** High risk of generic, technically vague, or hallucinated security guidance.
-Requires extensive human review and undermines the reliability of the output.
+**Description:** The enhanced-profile stage relies on AI to generate the prose (statement,
+guidance, assessment) for maturity levels 1, 2, 4, and 5 for *every* control. This carries an
+inherent risk of generic, vague, or hallucinated guidance that needs human review.
+**Already mitigated by this branch:** Level 3 (the baseline) is now injected verbatim, not
+AI-copied (2.2); the schema no longer forces invented levels (4.5); and a structural
+validator gates the output (3.3).
+**Remaining recommendation (needs live Gemini to validate, so not done here):** add a
+deterministic post-generation "slop" gate — flag near-duplicate adjacent levels, empty or
+placeholder prose, and commercial-product-name leaks (prompt Rule E) — and keep a
+human-in-the-loop review step. This is partly inherent to AI generation and cannot be fully
+eliminated in code.
 
-### 2.2. AI Reliability for Baseline (Level 3) Content
-**Location:** `src/assets/json/prompt_config.json` (Rules A & B), `src/pipeline/stage_ED23_profiles_enhanced.py:65`
-**Description:** The prompt instructs the AI to use an *exact copy* of the input prose for
-Level 3 ("You do not change a single character"). Relying on the model to copy perfectly is
-risky; it may alter formatting or subtly change text, including variable definitions.
-**Recommendation:** Inject Level 3 deterministically. The fix is now trivial: the original
-G++ prose is *already loaded* into `gpp_controls_lookup[id]["prose"]` (it is used to build
-`enriched_prose` at `stage_ED23_profiles_enhanced.py:62`). Set `level_3_statement` from that
-value instead of asking the model, and drop `level_3_*` from the AI request/schema.
+### 2.2. AI Reliability for Baseline (Level 3) Content — ✅ RESOLVED
+**Location:** `src/pipeline/stage_ED23_profiles_enhanced.py`, `src/pipeline/stage_base_process_enhanced.py` (`build_oscal_maturity_statements`)
+**Was:** The prompt told the AI to use an *exact copy* of the input prose for Level 3 ("You
+do not change a single character"); relying on the model to copy perfectly risked altered
+formatting or variable definitions.
+**Fix:** `build_oscal_maturity_statements` now sets the Level 3 statement deterministically
+from `original_description` (the verbatim G++ prose already in scope), ignoring the AI's
+copy; it falls back to the AI value only if no original prose exists. Applied identically in
+both enhancement stages and covered by an isolated function test (L3 == original prose,
+other levels still AI-generated, guard edge-cases hold).
 
-### 2.3. Inconsistent Profile Consumption in One-Page-Apps
-**Location:** `One-Page-Apps/*.html`
-**Description:** Only `pruefung_ap_ar.html` (`parseProfileEntry`, ~L243-259) and
-`ssp_ausfuellen.html` (~L1006-1033) read `modify.alters[].adds[].parts[name=="statement"]`.
-`Baustein_2_Profile.html`, `ssp_generator.html`, and `GSpp-Viewer.html` read only
-`imports[].include-controls[].with-ids` and therefore **silently ignore the maturity-level
-statements** the pipeline produces.
-**Impact:** The same artifact renders completely different content depending on the tool;
-maturity data is lost in three of the apps.
-**Recommendation:** Extract a single shared parser (use `parseProfileEntry` as the
-template) and reuse it across all apps that display control content.
+### 2.3. Inconsistent Profile Consumption in One-Page-Apps — ✅ RESOLVED
+**Location:** `One-Page-Apps/GSpp-Viewer.html` (and the documented contract)
+**Re-assessment:** The original framing was partly overstated. Of the three "imports-only"
+apps, two **should** read only control IDs by design: `ssp_generator.html` *generates* an SSP
+that references the profile (the maturity is consumed downstream in `ssp_ausfuellen.html`),
+and `Baustein_2_Profile.html` *authors* a profile. `GSpp-Viewer.html` was the one genuine gap
+— a catalog viewer that ignored the maturity in an enhanced profile.
+**Fix:** `GSpp-Viewer.html` now parses `modify.alters[].adds[].parts` (new prose+nested-parts
+shape with old-props fallback, per the contract) into `activeProfileMaturity`, and renders a
+collapsible "Reifegrade (ED2023)" box per control (`renderMaturity` /
+`refreshMaturityDisplay`) showing the m1–m5 statement plus guidance/assessment. The two
+maturity-displaying apps (`pruefung_ap_ar.html`, `ssp_ausfuellen.html`) were already updated
+in the 3.1 work. **Verified live** (headless preview): loading the G++ catalog + an enhanced
+profile renders 70 maturity boxes; ARCH.7.1 shows all five distinct levels with guidance
+("Hinweis") and assessment ("Prüfung").
+**Still open (low):** the parser is now duplicated across three apps; extracting one shared
+helper would be cleaner, but each app is a standalone single-file tool, so the contract doc
+(3.9) is the pragmatic single source of truth for now.
 
-### 2.4. Apps Do Not Resolve the Imported Catalog
-**Location:** `One-Page-Apps/*.html` (notably `ssp_ausfuellen.html` `loadReferencedResource`)
-**Description:** Generated profiles are intentionally thin — they carry control **IDs** plus
-AI **additions**; the actual control titles, prose, and baseline statements live in the
-remote G++ catalog referenced by `imports[].href`. Most apps never fetch that catalog;
-`ssp_ausfuellen.html` attempts a fetch (expecting a `.catalog`) but does not merge it into a
-resolved control set.
-**Impact:** Controls render without their substance (title/prose/baseline), so the user sees
-only IDs and AI-generated maturity additions — an incomplete picture.
-**Recommendation:** Implement proper OSCAL profile resolution: fetch `imports[].href`, build
-a control lookup, then overlay the `alters` additions. Cache the catalog (it is ~4 MB).
+### 2.4. Apps Do Not Resolve the Imported Catalog — ✅ RESOLVED (re-assessed)
+**Location:** `One-Page-Apps/{pruefung_ap_ar,ssp_ausfuellen,GSpp-Viewer}.html`
+**Re-assessment:** Also overstated. Every app that actually **displays** control content
+already resolves a catalog: `pruefung_ap_ar.html` fetches the G++ catalog (`CATALOG_URL`,
+building a `cid → {title, prose}` map); `ssp_ausfuellen.html` follows `import-profile.href` →
+the profile's `imports[].href` → `processCatalogData` (building `catalogControlMap` /
+`catalogParamMap`); and `GSpp-Viewer.html` is catalog-first (it loads the full catalog and
+uses the profile only as an ID filter). The apps that *don't* fetch the catalog
+(`ssp_generator.html`, `Baustein_2_Profile.html`) only need IDs.
+**Outcome:** No code change required for the display apps beyond 2.3; the premise "most apps
+never fetch the catalog" did not hold on inspection. Documented here so it isn't re-litigated.
 
 ## 3. Medium Priority Issues
 
-### 3.1. Primary Maturity Content Hidden in Custom `props` Instead of `prose`
-**Location:** `src/pipeline/stage_ED23_profiles_enhanced.py:45-82` (`build_oscal_maturity_statements`)
-**Description:** Each maturity part's `prose` is set to the *original* control description
-(identical for all five levels, prefixed `(BSI Baustein X)`), while the real per-level text
-is placed in custom props (`statement`, `guidance`, `assessment-method`). A generic OSCAL
-renderer displays `part.prose` and would therefore show the same duplicated text for m1–m5
-and **miss** the actual maturity content.
-**Impact:** Poor interoperability — only the bespoke One-Page-Apps (which read the custom
-props) display the real data. Schema-valid but a content-modeling smell.
-**Recommendation:** Put the per-level statement in `prose`, and model `guidance`/`assessment`
-as nested parts (`name: "guidance"` / `"assessment"`) rather than overloading props.
+### 3.1. Primary Maturity Content Hidden in Custom `props` Instead of `prose` — ✅ RESOLVED
+**Location:** both `stage_*_enhanced.py` (`build_oscal_maturity_statements`), `scripts/migrate_maturity_parts_to_prose.py`, `One-Page-Apps/{pruefung_ap_ar,ssp_ausfuellen}.html`
+**Was:** Each maturity part's `prose` was the *original* control description (identical for
+all five levels, prefixed `(BSI Baustein X)`), while the real per-level text sat in custom
+props (`statement`, `guidance`, `assessment-method`). A generic OSCAL renderer shows
+`part.prose` and would display the same duplicated text for m1–m5, missing the real content.
+**Fix (pipeline):** `build_oscal_maturity_statements` now puts the per-level statement in
+`part.prose` and models guidance/assessment as nested parts (`name: "guidance"` /
+`"assessment"`, ids `…_gdn` / `…_asm`). Only classification + `label` remain as props.
+**Fix (existing artifacts):** added a deterministic, idempotent migration
+(`scripts/migrate_maturity_parts_to_prose.py`) and ran it over the 116 generated profiles —
+34,444 parts converted, 0 parse failures, 0 residual prose-props.
+**Fix (consumers):** the two prop-reading apps now read `prose` + nested parts first and fall
+back to the old props for legacy profiles. Verified end-to-end: both parsers extract the real
+per-level statement/guidance/assessment from a migrated profile and agree with each other,
+and the old-shape fallback still works.
 
-### 3.2. Duplicated Prose Across All Five Maturity Parts
-**Location:** `src/pipeline/stage_ED23_profiles_enhanced.py:62,79`
-**Description:** The same `enriched_prose` string is written into all five maturity parts of
-a control.
-**Impact:** Bloated artifacts and confusing structure (the prose does not distinguish the
-levels). Compounds 3.1.
+### 3.2. Duplicated Prose Across All Five Maturity Parts — ✅ RESOLVED (by 3.1)
+**Was:** The same `enriched_prose` string was written into all five maturity parts of a
+control.
+**Fix:** Each part's `prose` is now its own distinct per-level statement, so the duplication
+is gone (resolved together with 3.1).
 
-### 3.3. OSCAL Validation Is Weakened *and* Never Runs
-**Location:** `src/utils/oscal_utils.py:15` (`validate_oscal`), `:~48` (`_fetch_schema`)
-**Description:** Three problems compound here:
-1. `validate_oscal()` is **defined but never called** anywhere in the pipeline — generated
-   profiles are not validated against the OSCAL schema at all.
-2. The only OSCAL schema path in the code, `OSCAL_COMPONENT_SCHEMA_PATH`
-   (`constants.py:57`), points at `oscal_json_schemas/oscal_component_schema.json` — a
-   **component-definition** schema — even though the artifacts are now **profiles**, and
-   the directory is not present in the repo. So even if validation were wired in, it would
-   validate against the wrong (and missing) schema.
-3. `validate_oscal` strips the official `TokenDatatype` pattern at runtime
-   (`oscal_utils.py:31-36`) — a workaround for the `jsonschema` library's lack of Unicode
-   regex support — so validation would also be incomplete.
-**Impact:** No assurance that generated artifacts conform to OSCAL 1.1.3.
-**Recommendation:** Add an OSCAL **profile** schema path, wire `validate_oscal()` into
-`generate_enhanced_profile` (and `stage_profiles`), and replace the pattern-stripping with a
-validator that supports Unicode property escapes (e.g. the `regex` module) so validation
-stays complete.
+### 3.3. OSCAL Validation Never Ran — ✅ RESOLVED (structural validation wired in); full-schema validation still open
+**Location:** `src/utils/oscal_utils.py` (`validate_enhanced_profile_structure`), both `stage_*_enhanced.py`, `src/constants.py`
+**Was:** Generated profiles were never validated. `validate_oscal()` existed but was never
+called; the only OSCAL schema path (`OSCAL_COMPONENT_SCHEMA_PATH`) pointed at a *component*
+schema that isn't even in the repo; and `validate_oscal` strips the `TokenDatatype` pattern,
+weakening validation.
+**Fix:** Added `validate_enhanced_profile_structure(profile)` — a focused structural
+validator checking the invariants the `alters`/`adds` mechanism and the apps rely on
+(required top-level fields, each alter has a control-id + adds, each add has a valid
+`position` and a `by-id`, each added part is a `statement` with an id and non-empty prose,
+all part ids unique). Both enhancement stages now run it before writing (warn-only, so one
+glitch doesn't abort a batch). Removed the dead, misleading `OSCAL_COMPONENT_SCHEMA_PATH`
+constant. Verified: the validator catches injected uuid/position/by-id/prose/duplicate-id
+defects, and **all 116 generated profiles pass clean (0 problems)**.
+**Still open (medium):** validation against the *full* OSCAL 1.1.3 profile JSON schema
+(would need the schema bundled and the `TokenDatatype`/Unicode-regex limitation addressed,
+e.g. via the `regex` module). The structural validator covers the pipeline-specific
+invariants in the meantime.
 
-### 3.4. `by-id` Anchor Assumed but Not Validated
-**Location:** `src/pipeline/stage_ED23_profiles_enhanced.py:181`
-**Description:** `by-id: f"{gpp_control_id}_stm"` is emitted without checking that such a
-part exists in the imported catalog. The convention holds for Anforderungen (verified), but
-any included control lacking a `_stm` statement part (e.g. ISMS/container controls) would
-produce an `adds` block that cannot be resolved.
-**Impact:** Silent loss of enrichment for non-conforming controls; resolution errors in
-strict tools.
-**Recommendation:** Look up the real statement-part id from the catalog
-(`extract_all_gpp_controls` already walks the parts) and skip/log controls that have none.
+### 3.4. `by-id` Anchor Assumed but Not Validated — ✅ RESOLVED
+**Location:** `src/utils/oscal_utils.py` (`extract_all_gpp_controls`, `_find_statement_part_id`), both `stage_*_enhanced.py`
+**Was:** `by-id: f"{gpp_control_id}_stm"` was emitted without checking the imported catalog.
+The convention holds for Anforderungen, but any included control lacking a `_stm` statement
+part (e.g. ISMS/container controls) would produce an unresolvable `adds`.
+**Fix:** `extract_all_gpp_controls` now records each control's real `statement_part_id` (the
+id of the part whose `name == "statement"`) and sources the baseline prose from that part.
+Both stages use that id for `by-id` and **skip + log** any control with no statement part
+instead of emitting a broken anchor. Verified against the live G++ catalog: all 651 controls
+resolve to their `_stm` part (0 broken), so the change is behaviour-preserving today while
+robust against non-conforming controls.
 
-### 3.5. Non-Portable Output Paths
-**Location:** `src/constants.py`
-**Description:** Output paths are built from `REPO_ROOT` (the parent of the project folder)
-with hardcoded relative segments: `SDT_HELPER_OUTPUT_DIR` (`hilfsdateien/`),
-`SDT_PROFILES_REGULAR_DIR` / `SDT_PROFILES_PROCESS_DIR`
-(`Zielobjektkategorien/profile/...`), and `ED23_PROFILES_DIR` (`ED23-Baustein-profile/`).
-**Impact:** Output placement breaks if the surrounding directory structure changes or the
-tool is deployed elsewhere. (Inputs are unaffected — fetched from upstream GitHub URLs.)
-**Recommendation:** Make output roots configurable via environment variables.
+### 3.5. Non-Portable Output Paths — ✅ RESOLVED
+**Location:** `src/constants.py`, `README.md`
+**Was:** Output paths were built only from `REPO_ROOT` with hardcoded relative segments, so
+placement broke if the surrounding directory layout changed or the tool was deployed
+elsewhere.
+**Fix:** Added an `OUTPUT_ROOT` env var (defaults to `REPO_ROOT`) that relocates all
+generated artifacts at once, plus per-directory overrides (`SDT_HELPER_OUTPUT_DIR`,
+`SDT_PROFILES_REGULAR_DIR`, `SDT_PROFILES_PROCESS_DIR`, `ED23_PROFILES_DIR`) that take
+precedence. Defaults are unchanged, so existing runs behave identically. Documented in the
+README env-var table. Verified: defaults unchanged, `OUTPUT_ROOT` moves everything, and a
+per-dir override beats `OUTPUT_ROOT`.
 
-### 3.6. Ambitious Single-Step AI Generation
+### 3.6. Ambitious Single-Step AI Generation — OPEN (needs live-AI validation)
 **Location:** `src/pipeline/stage_ED23_profiles_enhanced.py`, `src/assets/json/prompt_config.json`
-**Description:** The AI generates up to 15 text fields (5 levels × statement/guidance/
-assessment) **and** classifies the control (class, ISMS phase, CIA) in a single request.
-**Impact:** Combining complex text generation with classification often lowers quality in
-both as the model balances competing objectives.
+**Description:** The AI generates the per-level prose (now 4 levels × statement/guidance/
+assessment after 2.2) **and** classifies the control (class, ISMS phase, CIA) in a single
+request. Combining complex generation with classification can lower quality in both.
+**Recommendation (deferred):** split into two passes — a cheap, low-temperature
+classification call and a separate prose call — or run classification deterministically where
+possible. **Not done here** because the quality impact can only be judged against live Gemini
+output, which isn't available in this environment; doing it blind would risk a regression
+with no way to verify. Tracked for a follow-up with Vertex AI access.
 
-### 3.7. Dead Google Cloud Storage Configuration
-**Location:** `src/config.py`, `src/requirements.txt`
-**Description:** `BUCKET_NAME`, `SOURCE_PREFIX`, and `OUTPUT_PREFIX` are validated as
-**required** at startup (the app refuses to start without them unless `TEST=true`), but no
-code reads them — the pipeline fetches inputs from GitHub and writes outputs locally. The
-`google-cloud-storage` dependency is likewise never imported. The `gcs_uris` parameter on
-`AiClient.generate_validated_json_response` is also never passed.
-**Impact:** Misleading config surface and an unnecessary hard requirement/dependency; new
-users must invent dummy values to start the tool.
-**Recommendation:** Either restore a real GCS I/O path or drop the required-variable
-validation, the unused parameter, and the dependency.
+### 3.7. Dead Google Cloud Storage Configuration — ✅ RESOLVED (config + dependency); `gcs_uris` param still open
+**Location:** `src/config.py`, `src/requirements.txt`, `README.md`
+**Was:** `BUCKET_NAME`, `SOURCE_PREFIX`, and `OUTPUT_PREFIX` were validated as **required** at
+startup (the app refused to start without them unless `TEST=true`) but no code read them; the
+`google-cloud-storage` dependency was never imported. New users had to invent dummy values.
+**Fix:** Removed the three dead config fields and their startup validation — only
+`GCP_PROJECT_ID` is now required (region defaults to `global`; `AI_ENDPOINT_ID` is optional).
+Dropped `google-cloud-storage` from `requirements.txt` and updated the README env-var table.
+Verified config now starts with just `GCP_PROJECT_ID` and the missing-var error names only it.
+**Still open (low):** the unused `gcs_uris` parameter on
+`AiClient.generate_validated_json_response` (never passed) — left for the same future sweep
+as the other dead-code items.
 
-### 3.8. No Timeout or Offline Fallback on Remote Data Fetch
-**Location:** `src/utils/file_utils.py:39` (`read_source_text`)
-**Description:** Input catalogs are downloaded with `urllib.request.urlopen(path)` with no
-`timeout=`, and there is no local fallback if the upstream GitHub repos are unreachable or a
-file is renamed/moved.
-**Impact:** A network hang blocks the entire pipeline indefinitely; an upstream rename is a
-hard failure with no cached alternative.
-**Recommendation:** Pass an explicit `timeout=` and add a cached local copy as a fallback.
+### 3.8. No Timeout on Remote Data Fetch — ✅ RESOLVED (timeout + retry); offline fallback still open
+**Location:** `src/utils/file_utils.py` (`read_source_text`)
+**Was:** Input catalogs were downloaded with `urllib.request.urlopen(path)` with no
+`timeout=`, so a network hang could block the entire pipeline indefinitely.
+**Fix:** `read_source_text` now passes an explicit `timeout=URL_FETCH_TIMEOUT_SECONDS`
+(default 30s) and retries with linear backoff (`URL_FETCH_RETRIES`, default 3), re-raising
+the last error after exhausting attempts. All three are env-configurable
+(`URL_FETCH_TIMEOUT_SECONDS`, `URL_FETCH_RETRIES`, `URL_FETCH_BACKOFF_SECONDS`). Verified
+with a mocked `urlopen` (timeout forwarded, retries exhaust then raise, recovery on a later
+attempt, local-file path unaffected).
+**Still open (lower priority):** no cached **local fallback** if an upstream file is
+renamed/moved — a 404 is still a hard failure. Consider bundling a last-known-good copy.
 
-### 3.9. Undocumented Pipeline ↔ App Contract
-**Location:** `src/pipeline/stage_ED23_profiles_enhanced.py:50-73` and `One-Page-Apps/*.html`
-**Description:** The props encoding the apps depend on — prop names `control_class`,
-`phase`, `effective_on_{c,i,a}`, `label`, `statement`, `guidance`, `assessment-method`, plus
-the BSI namespace — is an implicit contract with no shared schema or documentation. A rename
-on either side breaks consumption silently (cf. 2.3).
-**Recommendation:** Document the props contract (and ideally validate it), and add a
-roundtrip test: a profile produced by `Baustein_2_Profile.html` consumed by
-`ssp_ausfuellen.html`, asserting the maturity levels survive.
+### 3.9. Undocumented Pipeline ↔ App Contract — ✅ RESOLVED (documented); automated roundtrip test still open
+**Location:** `docs/profile-maturity-contract.md`, both `stage_*_enhanced.py`, `One-Page-Apps/*.html`
+**Was:** The structure the apps depend on (prop names, part names, `by-id` convention,
+namespace, which text lives in prose vs props) was an implicit contract with no shared
+documentation — a rename on either side broke consumption silently.
+**Fix:** Added `docs/profile-maturity-contract.md` as the single source of truth: it
+specifies the current prose+nested-parts shape, the metadata props, the `by-id`/statement
+convention, a consumer reading recipe, the legacy-fallback shape, and a change-discipline
+checklist that names every file to update together.
+**Still open (low):** an *automated* roundtrip test (profile produced by
+`Baustein_2_Profile.html` → consumed by `ssp_ausfuellen.html`) — manual Python replicas of
+both parsers were verified during the 3.1 work, but a committed test harness would be nicer.
 
 ## 4. Low Priority Issues
 
-### 4.1. Model Naming Conventions
-**Location:** `src/constants.py`
-**Description:** Model names (`gemini-3-flash-preview`, `gemini-3.1-pro-preview`) are
-preview identifiers and may not align with stable, versioned Vertex AI identifiers.
-**Recommendation:** Use stable, versioned identifiers for reproducibility once available.
+### 4.1. Model Naming Conventions — ✅ RESOLVED (made configurable)
+**Location:** `src/constants.py`, `README.md`
+**Was:** Model names (`gemini-3-flash-preview`, `gemini-3.1-pro-preview`) were hardcoded
+preview identifiers, so pinning a stable/versioned id required a code edit.
+**Fix:** `GROUND_TRUTH_MODEL` and `GROUND_TRUTH_MODEL_PRO` are now env-overridable (defaults
+unchanged), so a stable Vertex AI model id can be pinned via environment without touching
+code. The current preview defaults are intentional until stable ids are published.
 
-### 4.2. Manual Retry Implementation vs. Tenacity
-**Location:** `src/clients/ai_client.py` (~L188-229), `src/requirements.txt`
-**Description:** `tenacity` is listed in requirements, but a manual async retry loop
-(`for attempt in range(retries)`) is implemented instead.
-**Recommendation:** Refactor to use `tenacity`, or remove the unused dependency.
+### 4.2. Manual Retry Implementation vs. Tenacity — ✅ RESOLVED (dependency removed)
+**Location:** `src/clients/ai_client.py`, `src/requirements.txt`
+**Was:** `tenacity` was listed in requirements but never imported; a manual async retry loop
+is used instead.
+**Fix:** Dropped the unused `tenacity` dependency. The existing retry loop in
+`generate_validated_json_response` is intentionally kept — it is well-instrumented
+(per-exception-type logging, exponential backoff, a clear non-retryable fallthrough) and a
+`tenacity` rewrite could not be exercised here without the live `google-genai` SDK, so
+removing the dead dependency is the lower-risk resolution the issue allowed for.
 
-### 4.3. Dead Code from Removed `stage_matching`
+### 4.3. Dead Code from Removed `stage_matching` — ✅ RESOLVED
 **Location:** `src/utils/data_parser.py`
-**Description:** `parse_zielobjekte_hierarchy` and `parse_bsi_2023_controls` are no longer
-called by any stage.
-**Recommendation:** Confirm and remove the now-dead parsing helpers.
+**Was:** `parse_zielobjekte_hierarchy` and `parse_bsi_2023_controls` were no longer called by
+any stage (no callers, no tests).
+**Fix:** Both functions removed. (Note: `parse_gpp_kompendium_controls` and `filter_markdown`
+also appear to have no callers but are intentionally left for now — `parse_gpp_kompendium_controls`
+still has a unit test; revisit as a separate dead-code sweep.)
 
-### 4.4. Dead Patch Scripts
+### 4.4. Dead Patch Scripts — ✅ RESOLVED
 **Location:** `src/patch_main.py`, `src/patch_processing.py`
-**Description:** These one-shot scripts string-replace `main.py` / `pipeline/processing.py`
-to add `stage_base_process_enhanced` to the imports, CLI choices, and run order. Those edits
-are **already applied** to the live files, so the scripts are dead code (and re-running them
-would corrupt the files).
-**Recommendation:** Delete both patch scripts.
+**Was:** One-shot scripts that string-replaced `main.py` / `pipeline/processing.py` to add
+`stage_base_process_enhanced`; the edits were already applied to the live files, so the
+scripts were dead code (and re-running them would corrupt the files).
+**Fix:** Both patch scripts deleted.
 
-### 4.5. Response Schema Forces All 5 Levels, Contradicting the Prompt
-**Location:** `src/assets/schemas/enhanced_control_response_schema.json` (`required`, lines 75-87), `src/assets/json/prompt_config.json` (Rule C)
-**Description:** The response schema marks **all 21 fields** as `required` — every
-`level_{1..5}_{statement,guidance,assessment}` plus `id`, `class`, `phase`, and the three
-`effective_on_*` fields. But the prompt (Rule C) tells the model to "Only create prose for a
-level if a technically sound and distinct implementation can be described." The two
-instructions conflict: a control that genuinely has no sensible Level 1 still forces the
-model to invent one (or the response fails schema validation and the whole chunk is
-discarded — see `process_chunk` in `stage_ED23_profiles_enhanced.py:136-154`). This
-amplifies the AI-slop risk (2.1) and the validation-failure risk from `API_TEMPERATURE = 1`
-(1.1).
-**Recommendation:** Make levels 1, 2, 4, 5 optional in `required` (the builder already
-guards each with `if statement_text` at `stage_ED23_profiles_enhanced.py:67`), keeping only
-the classification fields and `level_3_*` mandatory — or, per 2.2, inject Level 3
-deterministically and drop it from the request entirely.
+### 4.5. Response Schema Forced All 5 Levels, Contradicting the Prompt — ✅ RESOLVED
+**Location:** `src/assets/schemas/enhanced_control_response_schema.json`, `src/pipeline/stage_*_enhanced.py` (`process_chunk` prompt)
+**Was:** The response schema marked **all 21 fields** as `required` — every
+`level_{1..5}_{statement,guidance,assessment}` plus the classification fields. But the prompt
+told the model to "only create prose for a level if a technically sound and distinct
+implementation can be described." The conflict forced the model to invent levels (or the
+whole 10-control chunk was discarded on a `ValidationError` in `process_chunk`).
+**Fix:** `required` now lists only `id`, `class`, `phase`, `effective_on_c/i/a`; the
+`level_*` fields are optional (the builder already guards each with `if statement_text`).
+The inline chunk prompt now tells the model to produce levels 1, 2, 4, 5 and that Level 3 is
+injected automatically (it may omit `level_3_*`), removing the misleading "exact copy"
+instruction. This eliminates the chunk-discard data-loss path and dovetails with 2.2.
 
-### 4.6. Leftover Component-Definition Wording in Apps
+### 4.6. Leftover Component-Definition Wording in Apps — ✅ RESOLVED
 **Location:** `One-Page-Apps/ssp_ausfuellen.html`, `ssp_generator.html`
-**Description:** After the migration, the function `processComponentDefinitions()` and
-several "Komponentendefinition" comments/labels remain even though the apps now consume
-profiles. Cosmetic, but misleading for maintenance.
-**Recommendation:** Rename to reflect profile handling and update the comments/labels.
+**Was:** After the migration the function `processComponentDefinitions()`, the
+`componentDefinitions` map, and several "Komponentendefinition" comments/labels remained
+even though the apps now consume profiles.
+**Fix:** Renamed `processComponentDefinitions` → `processProfiles` and `componentDefinitions`
+→ `loadedProfiles` in `ssp_ausfuellen.html`, and updated the stale "Komponentendefinition"
+strings/comments in both apps to "Profil". The two remaining "Komponenten" references denote
+genuine OSCAL SSP components and are correct.

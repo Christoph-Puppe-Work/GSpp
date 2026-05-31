@@ -61,21 +61,21 @@
                     {
                       "name": "label",
                       "value": "m1"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Netzsegmente werden nur sporadisch und ohne festen Prozess erfasst."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Es existieren keine Vorgaben zur Form oder zum Detaillierungsgrad der Erfassung."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Prüfung, ob zumindest für kritische Systeme Netzwerkinformationen vorliegen. Manueller Check: `arp-scan -l`."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Architektur SOLLTE ein Inventar der Netze einschließlich interner Segmente, externer Netzanschlüsse und deren Verwendungszweck dokumentieren."
+                  "prose": "Netzsegmente werden nur sporadisch und ohne festen Prozess erfasst.",
+                  "parts": [
+                    {
+                      "id": "ARCH.2.4-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Es existieren keine Vorgaben zur Form oder zum Detaillierungsgrad der Erfassung."
+                    },
+                    {
+                      "id": "ARCH.2.4-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung, ob zumindest für kritische Systeme Netzwerkinformationen vorliegen. Manueller Check: `arp-scan -l`."
+                    }
+                  ]
                 },
                 {
                   "id": "ARCH.2.4-m2_custom",
@@ -109,21 +109,21 @@
                     {
                       "name": "label",
                       "value": "m2"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Die wichtigsten Netzbereiche sind in einfachen Listen manuell dokumentiert."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Die Dokumentation umfasst IP-Bereiche und VLAN-IDs der Hauptsegmente."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Abgleich der Listen mit den aktiven Schnittstellen am Router. Check: `netstat -rn`."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Architektur SOLLTE ein Inventar der Netze einschließlich interner Segmente, externer Netzanschlüsse und deren Verwendungszweck dokumentieren."
+                  "prose": "Die wichtigsten Netzbereiche sind in einfachen Listen manuell dokumentiert.",
+                  "parts": [
+                    {
+                      "id": "ARCH.2.4-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Die Dokumentation umfasst IP-Bereiche und VLAN-IDs der Hauptsegmente."
+                    },
+                    {
+                      "id": "ARCH.2.4-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Abgleich der Listen mit den aktiven Schnittstellen am Router. Check: `netstat -rn`."
+                    }
+                  ]
                 },
                 {
                   "id": "ARCH.2.4-m3_custom",
@@ -157,21 +157,21 @@
                     {
                       "name": "label",
                       "value": "m3"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Architektur SOLLTE ein Inventar der Netze einschließlich interner Segmente, externer Netzanschlüsse und deren Verwendungszweck dokumentieren."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Die Dokumentation muss alle logischen Segmente und Übergänge zu Drittnetzen präzise beschreiben."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Vollständigkeitsprüfung des Inventars gegen die Netzwerkkonfiguration. Check: `cat /etc/networks`."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Architektur SOLLTE ein Inventar der Netze einschließlich interner Segmente, externer Netzanschlüsse und deren Verwendungszweck dokumentieren."
+                  "prose": "Architektur SOLLTE ein Inventar der Netze einschließlich interner Segmente, externer Netzanschlüsse und deren Verwendungszweck dokumentieren.",
+                  "parts": [
+                    {
+                      "id": "ARCH.2.4-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Die Dokumentation muss alle logischen Segmente und Übergänge zu Drittnetzen präzise beschreiben."
+                    },
+                    {
+                      "id": "ARCH.2.4-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Vollständigkeitsprüfung des Inventars gegen die Netzwerkkonfiguration. Check: `cat /etc/networks`."
+                    }
+                  ]
                 },
                 {
                   "id": "ARCH.2.4-m4_custom",
@@ -205,21 +205,21 @@
                     {
                       "name": "label",
                       "value": "m4"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Das Netz-Inventar wird automatisiert durch Scans gepflegt und regelmäßig auditiert."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Die SOLLTE-Anforderung wird durch proaktive Überwachung externer Anschlüsse auf Änderungen erweitert."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Test der Scan-Automatisierung und Abgleich der Differenzberichte. Check: `nmap -sn 192.168.1.0/24`."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Architektur SOLLTE ein Inventar der Netze einschließlich interner Segmente, externer Netzanschlüsse und deren Verwendungszweck dokumentieren."
+                  "prose": "Das Netz-Inventar wird automatisiert durch Scans gepflegt und regelmäßig auditiert.",
+                  "parts": [
+                    {
+                      "id": "ARCH.2.4-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Die SOLLTE-Anforderung wird durch proaktive Überwachung externer Anschlüsse auf Änderungen erweitert."
+                    },
+                    {
+                      "id": "ARCH.2.4-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Test der Scan-Automatisierung und Abgleich der Differenzberichte. Check: `nmap -sn 192.168.1.0/24`."
+                    }
+                  ]
                 },
                 {
                   "id": "ARCH.2.4-m5_custom",
@@ -253,21 +253,21 @@
                     {
                       "name": "label",
                       "value": "m5"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Ein integriertes IPAM-System bildet den Single Point of Truth für alle Netzsegmente."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Neue Segmente werden per Policy-as-Code definiert und automatisch im Inventar registriert."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Verifizierung der automatisierten Registrierung im IPAM. Check: `curl -X GET https://ipam.local/api/segments`."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Architektur SOLLTE ein Inventar der Netze einschließlich interner Segmente, externer Netzanschlüsse und deren Verwendungszweck dokumentieren."
+                  "prose": "Ein integriertes IPAM-System bildet den Single Point of Truth für alle Netzsegmente.",
+                  "parts": [
+                    {
+                      "id": "ARCH.2.4-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Neue Segmente werden per Policy-as-Code definiert und automatisch im Inventar registriert."
+                    },
+                    {
+                      "id": "ARCH.2.4-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Verifizierung der automatisierten Registrierung im IPAM. Check: `curl -X GET https://ipam.local/api/segments`."
+                    }
+                  ]
                 }
               ]
             }

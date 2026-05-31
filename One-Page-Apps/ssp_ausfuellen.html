@@ -243,7 +243,7 @@
     let catalogParamMap = new Map();
     let profileModifications = { setParams: new Map(), alters: new Map() };
     let loadedRiskData = [];
-    let componentDefinitions = new Map();
+    let loadedProfiles = new Map();
     let resourceLoadStatus = [];
     let aiCache = {};
 
@@ -705,13 +705,13 @@
 
         catalogControlMap.clear(); catalogParamMap.clear();
         profileModifications = { setParams: new Map(), alters: new Map() };
-        loadedRiskData = []; componentDefinitions.clear(); resourceLoadStatus = [];
+        loadedRiskData = []; loadedProfiles.clear(); resourceLoadStatus = [];
 
         const ssp = sspData['system-security-plan'];
 
         try {
             await processLinkedProfiles(ssp);
-            await processComponentDefinitions(ssp);
+            await processProfiles(ssp);
             await processMainCatalog(ssp);
             extractRiskDataFromSSP(ssp);
 
@@ -790,7 +790,7 @@
         }));
     }
 
-    async function processComponentDefinitions(ssp) {
+    async function processProfiles(ssp) {
         const defLinks = new Set();
         (ssp['system-implementation']?.components || []).forEach(c => {
             const dl = c.links?.find(l => l.rel === 'profile' || l.rel === 'source-profile');
@@ -801,11 +801,11 @@
         await Promise.all(Array.from(defLinks).map(async (href) => {
             const d = await loadReferencedResource(href);
             if (d) {
-                componentDefinitions.set(href, d);
+                loadedProfiles.set(href, d);
                 if (d['profile']) {
                     (d['profile'].metadata?.links || []).forEach(l => {
                         if (l.rel === 'source-profile') {
-                            componentDefinitions.set(l.href, d);
+                            loadedProfiles.set(l.href, d);
                         }
                     });
                 });
@@ -1007,7 +1007,7 @@
             navHtml += `<button onclick="scrollToSec('comp-${c.uuid}')" class="w-full text-left p-1.5 text-[10px] font-bold text-slate-300 bg-slate-900/40 hover:bg-slate-800 rounded truncate border border-transparent hover:border-slate-700">🖥️ ${c.title}${sNivTag}</button>`;
 
             let dl = c.links?.find(l => l.rel === 'profile' || l.rel === 'source-profile');
-            const cd = dl ? componentDefinitions.get(dl.href) : null;
+            const cd = dl ? loadedProfiles.get(dl.href) : null;
 
             const sMap = new Map();
             reqs.forEach(r => { const e = r['by-components']?.find(bc => bc['component-uuid'] === c.uuid); if(e) sMap.set(r['control-id'], e); });
@@ -1022,17 +1022,27 @@
                 // Reifegrade/Statements liegen im Profil unter modify.alters[].adds[].parts (name:"statement").
                 // OSCAL erlaubt keine neuen statements in einer CDef → sie werden im Profil per `adds`
                 // als neue `part` an das Control angehängt. Hier in die statements des Controls überführen.
+                // Neue Form (issue 3.1): der Reifegrad-Text steht in pt.prose, Guidance/Assessment
+                // als verschachtelte parts. Alte Form: Text lag in props statement/guidance/
+                // assessment-method. Neue zuerst lesen, sonst auf alte zurückfallen.
                 (tc?.modify?.['alters'] || []).forEach(alt => {
                     const cid = alt && alt['control-id']; if(!cid) return;
                     const entry = dMap.get(cid) || { "control-id": cid };
                     entry.statements = entry.statements || [];
                     (alt.adds || []).forEach(add => (add.parts || []).filter(pt => pt && pt.name === 'statement').forEach(pt => {
-                        const label = (pt.props || []).find(p => p && p.name === 'label')?.value || '';
-                        entry.statements.push({ "statement-id": pt.id, description: label, props: pt.props || [] });
+                        const props = pt.props || [];
+                        const propVal = (n) => props.find(p => p && p.name === n)?.value || '';
+                        const label = propVal('label');
+                        const sub = {};
+                        (pt.parts || []).forEach(np => { if(np && np.name) sub[np.name] = np.prose; });
+                        const statementText = (pt.prose != null && !propVal('statement')) ? pt.prose : (propVal('statement') || pt.prose || '');
+                        const guidanceText = sub.guidance || propVal('guidance') || '';
+                        const assessmentText = sub.assessment || propVal('assessment-method') || '';
+                        entry.statements.push({ "statement-id": pt.id, description: label, statementText, guidanceText, assessmentText, props });
                     }));
                     dMap.set(cid, entry);
                 });
-            } catch(cdErr) { console.warn('Fehler beim Lesen der Komponentendefinition für', c.title, cdErr); }
+            } catch(cdErr) { console.warn('Fehler beim Lesen des Profils für', c.title, cdErr); }
 
             const allKeys = new Set([...sMap.keys(), ...dMap.keys(), ...profileModifications.alters.keys()]);
             const sorted = Array.from(allKeys).sort();
@@ -1081,7 +1091,7 @@
                 });
             }
 
-            // 2. Props aus der Komponenten-Definition (Blaupause)
+            // 2. Props aus dem Profil (Blaupause)
             if (tc && tc.props && tc.props.length > 0) {
                 tc.props.forEach(p => {
                     if (!p || !p.name) return;
@@ -1295,7 +1305,7 @@
             ${stmts.length ? `<div class="mb-3 space-y-1.5">
                 <label class="block text-[10px] text-slate-400 uppercase font-bold">Reifegrad (aus Profil)</label>
                 <label class="flex items-center gap-2 p-1.5 bg-slate-900/50 rounded border border-slate-700 cursor-pointer hover:bg-slate-800"><input type="radio" name="mat-${rk}" value="manual" ${!selId?'checked':''} class="form-radio text-emerald-500 h-3 w-3"><span class="text-xs text-slate-300">Manuell (kein Level gewählt)</span></label>
-                ${stmts.map(s => `<label class="flex items-center gap-2 p-1.5 bg-slate-900/50 rounded border border-slate-700 cursor-pointer hover:bg-slate-800"><input type="radio" name="mat-${rk}" value="${s['statement-id']||''}" ${selId===s['statement-id']?'checked':''} class="form-radio text-emerald-500 h-3 w-3"><div class="text-xs"><span class="font-bold text-emerald-400">${s.description||s['statement-id']||''}</span> <span class="text-slate-400">${s.props?.find(p => p && p.name==='statement')?.value||''}</span></div></label>`).join('')}
+                ${stmts.map(s => `<label class="flex items-center gap-2 p-1.5 bg-slate-900/50 rounded border border-slate-700 cursor-pointer hover:bg-slate-800"><input type="radio" name="mat-${rk}" value="${s['statement-id']||''}" ${selId===s['statement-id']?'checked':''} class="form-radio text-emerald-500 h-3 w-3"><div class="text-xs"><span class="font-bold text-emerald-400">${s.description||s['statement-id']||''}</span> <span class="text-slate-400">${s.statementText||s.props?.find(p => p && p.name==='statement')?.value||''}</span></div></label>`).join('')}
             </div>` : ''}
 
             <div class="border-t border-slate-700 pt-3 flex gap-2 flex-wrap items-center">

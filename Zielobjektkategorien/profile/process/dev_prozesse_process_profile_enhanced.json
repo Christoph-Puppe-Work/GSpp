@@ -63,21 +63,21 @@
                     {
                       "name": "label",
                       "value": "m1"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Sicherheit wird nur sporadisch bei neuen Architekturkomponenten bedacht."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Sicherheitsrelevante Entscheidungen erfolgen ad-hoc ohne festen Prozess."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Prüfen Sie Entwurfsunterlagen auf informelle Security-Notizen."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Entwicklung SOLLTE die Architektur nach dem Prinzip \"Security by Design\" verankern."
+                  "prose": "Sicherheit wird nur sporadisch bei neuen Architekturkomponenten bedacht.",
+                  "parts": [
+                    {
+                      "id": "DEV.2.1-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Sicherheitsrelevante Entscheidungen erfolgen ad-hoc ohne festen Prozess."
+                    },
+                    {
+                      "id": "DEV.2.1-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfen Sie Entwurfsunterlagen auf informelle Security-Notizen."
+                    }
+                  ]
                 },
                 {
                   "id": "DEV.2.1-m2_custom",
@@ -111,21 +111,21 @@
                     {
                       "name": "label",
                       "value": "m2"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Grundlegende Sicherheitsvorgaben sind in der Architekturplanung vorhanden."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Wichtige Sicherheitsaspekte werden manuell in Architekturdokumenten skizziert."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Sichtung von Architekturdiagrammen auf Basisschutzmaßnahmen."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Entwicklung SOLLTE die Architektur nach dem Prinzip \"Security by Design\" verankern."
+                  "prose": "Grundlegende Sicherheitsvorgaben sind in der Architekturplanung vorhanden.",
+                  "parts": [
+                    {
+                      "id": "DEV.2.1-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Wichtige Sicherheitsaspekte werden manuell in Architekturdokumenten skizziert."
+                    },
+                    {
+                      "id": "DEV.2.1-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Sichtung von Architekturdiagrammen auf Basisschutzmaßnahmen."
+                    }
+                  ]
                 },
                 {
                   "id": "DEV.2.1-m3_custom",
@@ -159,21 +159,21 @@
                     {
                       "name": "label",
                       "value": "m3"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Entwicklung SOLLTE die Architektur nach dem Prinzip \"Security by Design\" verankern."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Die Architektur muss von Beginn an Sicherheitsanforderungen (z.B. Least Privilege) integrieren."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Review der Architekturdokumente gegen den Anforderungskatalog. Test: 'grep -i security arch_doc.md'"
                     }
                   ],
-                  "prose": "(BSI Baustein ) Entwicklung SOLLTE die Architektur nach dem Prinzip \"Security by Design\" verankern."
+                  "prose": "Entwicklung SOLLTE die Architektur nach dem Prinzip \"Security by Design\" verankern.",
+                  "parts": [
+                    {
+                      "id": "DEV.2.1-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Die Architektur muss von Beginn an Sicherheitsanforderungen (z.B. Least Privilege) integrieren."
+                    },
+                    {
+                      "id": "DEV.2.1-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Review der Architekturdokumente gegen den Anforderungskatalog. Test: 'grep -i security arch_doc.md'"
+                    }
+                  ]
                 },
                 {
                   "id": "DEV.2.1-m4_custom",
@@ -207,21 +207,21 @@
                     {
                       "name": "label",
                       "value": "m4"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Einführung systematischer Bedrohungsanalysen für alle Architekturänderungen."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Nutzen Sie Threat Modeling (z.B. STRIDE), um Risiken proaktiv in der Designphase zu minimieren."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Nachweis von Threat Model Berichten für aktuelle Releases prüfen."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Entwicklung SOLLTE die Architektur nach dem Prinzip \"Security by Design\" verankern."
+                  "prose": "Einführung systematischer Bedrohungsanalysen für alle Architekturänderungen.",
+                  "parts": [
+                    {
+                      "id": "DEV.2.1-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Nutzen Sie Threat Modeling (z.B. STRIDE), um Risiken proaktiv in der Designphase zu minimieren."
+                    },
+                    {
+                      "id": "DEV.2.1-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Nachweis von Threat Model Berichten für aktuelle Releases prüfen."
+                    }
+                  ]
                 },
                 {
                   "id": "DEV.2.1-m5_custom",
@@ -255,21 +255,21 @@
                     {
                       "name": "label",
                       "value": "m5"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Kontinuierliche Architekturvalidierung mittels Policy-as-Code und KI-Unterstützung."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Automatisierte Prüfung der Design-Integrität gegen Sicherheitsvorgaben im gesamten Lebenszyklus."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Validierung der Policy-as-Code-Pipeline (z.B. OPA-Regeln für Cloud-Templates)."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Entwicklung SOLLTE die Architektur nach dem Prinzip \"Security by Design\" verankern."
+                  "prose": "Kontinuierliche Architekturvalidierung mittels Policy-as-Code und KI-Unterstützung.",
+                  "parts": [
+                    {
+                      "id": "DEV.2.1-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Automatisierte Prüfung der Design-Integrität gegen Sicherheitsvorgaben im gesamten Lebenszyklus."
+                    },
+                    {
+                      "id": "DEV.2.1-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Validierung der Policy-as-Code-Pipeline (z.B. OPA-Regeln für Cloud-Templates)."
+                    }
+                  ]
                 }
               ]
             }
@@ -314,21 +314,21 @@
                     {
                       "name": "label",
                       "value": "m1"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Schreibzugriff auf Quellcode wird vereinzelt und ohne zentrale Steuerung vergeben."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Der Schutz beschränkt sich auf offensichtlich kritische Repositories."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Stichprobenartige Prüfung der Schreibberechtigungen in Git-Projekten."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Entwicklung SOLLTE den schreibenden Zugriff auf Quellcode einschränken."
+                  "prose": "Schreibzugriff auf Quellcode wird vereinzelt und ohne zentrale Steuerung vergeben.",
+                  "parts": [
+                    {
+                      "id": "DEV.2.4-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Der Schutz beschränkt sich auf offensichtlich kritische Repositories."
+                    },
+                    {
+                      "id": "DEV.2.4-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Stichprobenartige Prüfung der Schreibberechtigungen in Git-Projekten."
+                    }
+                  ]
                 },
                 {
                   "id": "DEV.2.4-m2_custom",
@@ -362,21 +362,21 @@
                     {
                       "name": "label",
                       "value": "m2"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Schreibzugriffe basieren auf einer statischen Gruppenzugehörigkeit im Repository."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Vergabe von Rechten erfolgt manuell nach funktionalen Teams."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Prüfung der Mitgliederlisten in den Repository-Einstellungen."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Entwicklung SOLLTE den schreibenden Zugriff auf Quellcode einschränken."
+                  "prose": "Schreibzugriffe basieren auf einer statischen Gruppenzugehörigkeit im Repository.",
+                  "parts": [
+                    {
+                      "id": "DEV.2.4-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Vergabe von Rechten erfolgt manuell nach funktionalen Teams."
+                    },
+                    {
+                      "id": "DEV.2.4-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung der Mitgliederlisten in den Repository-Einstellungen."
+                    }
+                  ]
                 },
                 {
                   "id": "DEV.2.4-m3_custom",
@@ -410,21 +410,21 @@
                     {
                       "name": "label",
                       "value": "m3"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Entwicklung SOLLTE den schreibenden Zugriff auf Quellcode einschränken."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Zugriff darf nur an berechtigte Personen für definierte Aufgaben vergeben werden."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Audit der ACLs im Versionsverwaltungssystem. Befehl: 'gh api repos/{owner}/{repo}/collaborators'"
                     }
                   ],
-                  "prose": "(BSI Baustein ) Entwicklung SOLLTE den schreibenden Zugriff auf Quellcode einschränken."
+                  "prose": "Entwicklung SOLLTE den schreibenden Zugriff auf Quellcode einschränken.",
+                  "parts": [
+                    {
+                      "id": "DEV.2.4-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Zugriff darf nur an berechtigte Personen für definierte Aufgaben vergeben werden."
+                    },
+                    {
+                      "id": "DEV.2.4-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Audit der ACLs im Versionsverwaltungssystem. Befehl: 'gh api repos/{owner}/{repo}/collaborators'"
+                    }
+                  ]
                 },
                 {
                   "id": "DEV.2.4-m4_custom",
@@ -458,21 +458,21 @@
                     {
                       "name": "label",
                       "value": "m4"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Schreibzugriff nur über Review-Prozesse und Branch-Protections zulässig."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Direkte Commits auf Hauptzweige verhindern; Schreibrechte erfordern Pull-Request-Freigaben."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Prüfen der Branch Protection Rules: 'gh api repos/{owner}/{repo}/branches/main/protection'"
                     }
                   ],
-                  "prose": "(BSI Baustein ) Entwicklung SOLLTE den schreibenden Zugriff auf Quellcode einschränken."
+                  "prose": "Schreibzugriff nur über Review-Prozesse und Branch-Protections zulässig.",
+                  "parts": [
+                    {
+                      "id": "DEV.2.4-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Direkte Commits auf Hauptzweige verhindern; Schreibrechte erfordern Pull-Request-Freigaben."
+                    },
+                    {
+                      "id": "DEV.2.4-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfen der Branch Protection Rules: 'gh api repos/{owner}/{repo}/branches/main/protection'"
+                    }
+                  ]
                 },
                 {
                   "id": "DEV.2.4-m5_custom",
@@ -506,21 +506,21 @@
                     {
                       "name": "label",
                       "value": "m5"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Just-in-Time-Schreibrechte und hardwarebasierte MFA für Code-Änderungen."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Rechte werden temporär vergeben und erfordern kryptografische Signaturen (Commit Signing)."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Prüfen der Commit-Signaturen: 'git log --show-signature'. Automatischer Check auf MFA."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Entwicklung SOLLTE den schreibenden Zugriff auf Quellcode einschränken."
+                  "prose": "Just-in-Time-Schreibrechte und hardwarebasierte MFA für Code-Änderungen.",
+                  "parts": [
+                    {
+                      "id": "DEV.2.4-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Rechte werden temporär vergeben und erfordern kryptografische Signaturen (Commit Signing)."
+                    },
+                    {
+                      "id": "DEV.2.4-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfen der Commit-Signaturen: 'git log --show-signature'. Automatischer Check auf MFA."
+                    }
+                  ]
                 }
               ]
             }
@@ -565,21 +565,21 @@
                     {
                       "name": "label",
                       "value": "m1"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Freigaben erfolgen informell und ohne dokumentierte Prüfschritte."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Änderungen werden nach Ermessen der Entwickler direkt freigegeben."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Befragung der Entwickler zu Freigabepraktiken."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Entwicklung SOLLTE die Freigabe zur Nutzung im Einklang mit den entsprechenden Verfahren und Regelungen für Änderungen und Tests autorisieren."
+                  "prose": "Freigaben erfolgen informell und ohne dokumentierte Prüfschritte.",
+                  "parts": [
+                    {
+                      "id": "DEV.6.1-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Änderungen werden nach Ermessen der Entwickler direkt freigegeben."
+                    },
+                    {
+                      "id": "DEV.6.1-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Befragung der Entwickler zu Freigabepraktiken."
+                    }
+                  ]
                 },
                 {
                   "id": "DEV.6.1-m2_custom",
@@ -613,21 +613,21 @@
                     {
                       "name": "label",
                       "value": "m2"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Freigabeprozess nutzt standardisierte Checklisten für manuelle Tests."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Nach Abschluss der Tests erfolgt eine formale, manuelle Bestätigung."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Einsicht in unterzeichnete Abnahme-Checklisten."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Entwicklung SOLLTE die Freigabe zur Nutzung im Einklang mit den entsprechenden Verfahren und Regelungen für Änderungen und Tests autorisieren."
+                  "prose": "Freigabeprozess nutzt standardisierte Checklisten für manuelle Tests.",
+                  "parts": [
+                    {
+                      "id": "DEV.6.1-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Nach Abschluss der Tests erfolgt eine formale, manuelle Bestätigung."
+                    },
+                    {
+                      "id": "DEV.6.1-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Einsicht in unterzeichnete Abnahme-Checklisten."
+                    }
+                  ]
                 },
                 {
                   "id": "DEV.6.1-m3_custom",
@@ -661,21 +661,21 @@
                     {
                       "name": "label",
                       "value": "m3"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Entwicklung SOLLTE die Freigabe zur Nutzung im Einklang mit den entsprechenden Verfahren und Regelungen für Änderungen und Tests autorisieren."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Freigaben müssen geregelten Test- und Änderungsverfahren folgen und autorisiert werden."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Prüfung der Freigabedokumentation im Change-Management-Tool auf Konformität."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Entwicklung SOLLTE die Freigabe zur Nutzung im Einklang mit den entsprechenden Verfahren und Regelungen für Änderungen und Tests autorisieren."
+                  "prose": "Entwicklung SOLLTE die Freigabe zur Nutzung im Einklang mit den entsprechenden Verfahren und Regelungen für Änderungen und Tests autorisieren.",
+                  "parts": [
+                    {
+                      "id": "DEV.6.1-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Freigaben müssen geregelten Test- und Änderungsverfahren folgen und autorisiert werden."
+                    },
+                    {
+                      "id": "DEV.6.1-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung der Freigabedokumentation im Change-Management-Tool auf Konformität."
+                    }
+                  ]
                 },
                 {
                   "id": "DEV.6.1-m4_custom",
@@ -709,21 +709,21 @@
                     {
                       "name": "label",
                       "value": "m4"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Automatisierte Freigabe-Gates in der CI/CD-Pipeline integriert."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Die Freigabe setzt das erfolgreiche Durchlaufen aller automatisierten Security-Tests voraus."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Analyse der CI-Pipeline-Konfiguration auf blockierende Security-Scans."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Entwicklung SOLLTE die Freigabe zur Nutzung im Einklang mit den entsprechenden Verfahren und Regelungen für Änderungen und Tests autorisieren."
+                  "prose": "Automatisierte Freigabe-Gates in der CI/CD-Pipeline integriert.",
+                  "parts": [
+                    {
+                      "id": "DEV.6.1-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Die Freigabe setzt das erfolgreiche Durchlaufen aller automatisierten Security-Tests voraus."
+                    },
+                    {
+                      "id": "DEV.6.1-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Analyse der CI-Pipeline-Konfiguration auf blockierende Security-Scans."
+                    }
+                  ]
                 },
                 {
                   "id": "DEV.6.1-m5_custom",
@@ -757,21 +757,21 @@
                     {
                       "name": "label",
                       "value": "m5"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Vollautomatisierte Freigabe basierend auf Echtzeit-Telemetrie und Sicherheitsmetriken."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Kontinuierliche Autorisierung durch Überwachung von Performance und Sicherheit in Staging-Umgebungen."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Überprüfung der Pipeline-Metriken und automatisierten Rollback-Kriterien."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Entwicklung SOLLTE die Freigabe zur Nutzung im Einklang mit den entsprechenden Verfahren und Regelungen für Änderungen und Tests autorisieren."
+                  "prose": "Vollautomatisierte Freigabe basierend auf Echtzeit-Telemetrie und Sicherheitsmetriken.",
+                  "parts": [
+                    {
+                      "id": "DEV.6.1-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Kontinuierliche Autorisierung durch Überwachung von Performance und Sicherheit in Staging-Umgebungen."
+                    },
+                    {
+                      "id": "DEV.6.1-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Überprüfung der Pipeline-Metriken und automatisierten Rollback-Kriterien."
+                    }
+                  ]
                 }
               ]
             }
@@ -816,21 +816,21 @@
                     {
                       "name": "label",
                       "value": "m1"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Bereitstellung von Software erfolgt ad-hoc durch manuelles Kopieren."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Es gibt keine standardisierten Abläufe für das Deployment."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Prüfung auf manuelle Dateiübertragungen (z.B. via FTP/SCP)."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Entwicklung SOLLTE die Bereitstellung im Einklang mit den entsprechenden Verfahren und Regelungen für Änderungen und Tests verankern."
+                  "prose": "Bereitstellung von Software erfolgt ad-hoc durch manuelles Kopieren.",
+                  "parts": [
+                    {
+                      "id": "DEV.7.1-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Es gibt keine standardisierten Abläufe für das Deployment."
+                    },
+                    {
+                      "id": "DEV.7.1-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung auf manuelle Dateiübertragungen (z.B. via FTP/SCP)."
+                    }
+                  ]
                 },
                 {
                   "id": "DEV.7.1-m2_custom",
@@ -864,21 +864,21 @@
                     {
                       "name": "label",
                       "value": "m2"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Einsatz einfacher Deployment-Skripte für die Softwareverteilung."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Skripte unterstützen die Installation, prüfen aber keine Integrität."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Sichtung und Test der Deployment-Skripte."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Entwicklung SOLLTE die Bereitstellung im Einklang mit den entsprechenden Verfahren und Regelungen für Änderungen und Tests verankern."
+                  "prose": "Einsatz einfacher Deployment-Skripte für die Softwareverteilung.",
+                  "parts": [
+                    {
+                      "id": "DEV.7.1-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Skripte unterstützen die Installation, prüfen aber keine Integrität."
+                    },
+                    {
+                      "id": "DEV.7.1-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Sichtung und Test der Deployment-Skripte."
+                    }
+                  ]
                 },
                 {
                   "id": "DEV.7.1-m3_custom",
@@ -912,21 +912,21 @@
                     {
                       "name": "label",
                       "value": "m3"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Entwicklung SOLLTE die Bereitstellung im Einklang mit den entsprechenden Verfahren und Regelungen für Änderungen und Tests verankern."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Die Bereitstellung muss geordnet und nach festgelegten Testverfahren erfolgen."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Prüfung der Deployment-Protokolle gegen die Testvorgaben. Befehl: 'ls -l /var/log/deployments/'"
                     }
                   ],
-                  "prose": "(BSI Baustein ) Entwicklung SOLLTE die Bereitstellung im Einklang mit den entsprechenden Verfahren und Regelungen für Änderungen und Tests verankern."
+                  "prose": "Entwicklung SOLLTE die Bereitstellung im Einklang mit den entsprechenden Verfahren und Regelungen für Änderungen und Tests verankern.",
+                  "parts": [
+                    {
+                      "id": "DEV.7.1-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Die Bereitstellung muss geordnet und nach festgelegten Testverfahren erfolgen."
+                    },
+                    {
+                      "id": "DEV.7.1-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung der Deployment-Protokolle gegen die Testvorgaben. Befehl: 'ls -l /var/log/deployments/'"
+                    }
+                  ]
                 },
                 {
                   "id": "DEV.7.1-m4_custom",
@@ -960,21 +960,21 @@
                     {
                       "name": "label",
                       "value": "m4"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Automatisierte Bereitstellung über gesicherte CI/CD-Pipelines mit Signaturprüfung."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Artifacts werden kryptografisch signiert und nur bei gültiger Signatur deployed."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Validierung der Signaturprüfung im Deployment-Skript oder Orchestrator."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Entwicklung SOLLTE die Bereitstellung im Einklang mit den entsprechenden Verfahren und Regelungen für Änderungen und Tests verankern."
+                  "prose": "Automatisierte Bereitstellung über gesicherte CI/CD-Pipelines mit Signaturprüfung.",
+                  "parts": [
+                    {
+                      "id": "DEV.7.1-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Artifacts werden kryptografisch signiert und nur bei gültiger Signatur deployed."
+                    },
+                    {
+                      "id": "DEV.7.1-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Validierung der Signaturprüfung im Deployment-Skript oder Orchestrator."
+                    }
+                  ]
                 },
                 {
                   "id": "DEV.7.1-m5_custom",
@@ -1008,21 +1008,21 @@
                     {
                       "name": "label",
                       "value": "m5"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Deklaratives GitOps-Modell mit automatischer Drift-Erkennung und Korrektur."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Soll-Zustand wird im Git definiert; Abweichungen im System werden automatisch geheilt."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Prüfung der Sync-Status im GitOps-Tool (z.B. 'flux get kustomizations' oder 'argocd app list')."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Entwicklung SOLLTE die Bereitstellung im Einklang mit den entsprechenden Verfahren und Regelungen für Änderungen und Tests verankern."
+                  "prose": "Deklaratives GitOps-Modell mit automatischer Drift-Erkennung und Korrektur.",
+                  "parts": [
+                    {
+                      "id": "DEV.7.1-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Soll-Zustand wird im Git definiert; Abweichungen im System werden automatisch geheilt."
+                    },
+                    {
+                      "id": "DEV.7.1-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung der Sync-Status im GitOps-Tool (z.B. 'flux get kustomizations' oder 'argocd app list')."
+                    }
+                  ]
                 }
               ]
             }

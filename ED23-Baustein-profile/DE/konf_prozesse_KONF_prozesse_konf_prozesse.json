@@ -62,21 +62,21 @@
                     {
                       "name": "label",
                       "value": "m1"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Werkzeuge werden sporadisch erfasst."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Werkzeuge zur Konfiguration werden ohne festes Format dokumentiert."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Sichtung vorhandener Notizen. Check: 'find / -name \"*tools*\"'."
                     }
                   ],
-                  "prose": "(BSI Baustein KONF_prozesse) Konfiguration SOLLTE verwendete Konfigurationswerkzeuge einschließlich Verwendungszweck und Herkunft dokumentieren."
+                  "prose": "Werkzeuge werden sporadisch erfasst.",
+                  "parts": [
+                    {
+                      "id": "KONF.1.3-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Werkzeuge zur Konfiguration werden ohne festes Format dokumentiert."
+                    },
+                    {
+                      "id": "KONF.1.3-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Sichtung vorhandener Notizen. Check: 'find / -name \"*tools*\"'."
+                    }
+                  ]
                 },
                 {
                   "id": "KONF.1.3-m2_custom",
@@ -110,21 +110,21 @@
                     {
                       "name": "label",
                       "value": "m2"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Grundlegende Werkzeugliste existiert."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Eine Liste der genutzten Programme liegt vor, ist aber oft unvollständig."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Abgleich der Liste mit installierter Software per 'dpkg -l' oder 'rpm -qa'."
                     }
                   ],
-                  "prose": "(BSI Baustein KONF_prozesse) Konfiguration SOLLTE verwendete Konfigurationswerkzeuge einschließlich Verwendungszweck und Herkunft dokumentieren."
+                  "prose": "Grundlegende Werkzeugliste existiert.",
+                  "parts": [
+                    {
+                      "id": "KONF.1.3-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Eine Liste der genutzten Programme liegt vor, ist aber oft unvollständig."
+                    },
+                    {
+                      "id": "KONF.1.3-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Abgleich der Liste mit installierter Software per 'dpkg -l' oder 'rpm -qa'."
+                    }
+                  ]
                 },
                 {
                   "id": "KONF.1.3-m3_custom",
@@ -158,21 +158,21 @@
                     {
                       "name": "label",
                       "value": "m3"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Konfiguration SOLLTE verwendete Konfigurationswerkzeuge einschließlich Verwendungszweck und Herkunft dokumentieren."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Die Dokumentation dient als Basis für die Integritätsprüfung der Administrationsumgebung."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Vollständigkeitsprüfung der Dokumentation gegen reale Tool-Nutzung. Audit: 'which ansible-playbook'."
                     }
                   ],
-                  "prose": "(BSI Baustein KONF_prozesse) Konfiguration SOLLTE verwendete Konfigurationswerkzeuge einschließlich Verwendungszweck und Herkunft dokumentieren."
+                  "prose": "Konfiguration SOLLTE verwendete Konfigurationswerkzeuge einschließlich Verwendungszweck und Herkunft dokumentieren.",
+                  "parts": [
+                    {
+                      "id": "KONF.1.3-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Die Dokumentation dient als Basis für die Integritätsprüfung der Administrationsumgebung."
+                    },
+                    {
+                      "id": "KONF.1.3-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Vollständigkeitsprüfung der Dokumentation gegen reale Tool-Nutzung. Audit: 'which ansible-playbook'."
+                    }
+                  ]
                 },
                 {
                   "id": "KONF.1.3-m4_custom",
@@ -206,21 +206,21 @@
                     {
                       "name": "label",
                       "value": "m4"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Zentralisiertes Tool-Management mit Versionierung."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Werkzeuge werden in einem Repository mit Version und Hash-Werten gepflegt."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Prüfung des Repository-Logs. Automatisierung: 'sha256sum -c tools.sha256'."
                     }
                   ],
-                  "prose": "(BSI Baustein KONF_prozesse) Konfiguration SOLLTE verwendete Konfigurationswerkzeuge einschließlich Verwendungszweck und Herkunft dokumentieren."
+                  "prose": "Zentralisiertes Tool-Management mit Versionierung.",
+                  "parts": [
+                    {
+                      "id": "KONF.1.3-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Werkzeuge werden in einem Repository mit Version und Hash-Werten gepflegt."
+                    },
+                    {
+                      "id": "KONF.1.3-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung des Repository-Logs. Automatisierung: 'sha256sum -c tools.sha256'."
+                    }
+                  ]
                 },
                 {
                   "id": "KONF.1.3-m5_custom",
@@ -254,21 +254,21 @@
                     {
                       "name": "label",
                       "value": "m5"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Vollautomatisiertes Lifecycle-Management für Werkzeuge."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Einsatz von Infrastructure as Code zur Bereitstellung verifizierter Toolsets."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Validierung der CI/CD-Pipeline für Admin-Tools. API-Abfrage der Tool-Registry."
                     }
                   ],
-                  "prose": "(BSI Baustein KONF_prozesse) Konfiguration SOLLTE verwendete Konfigurationswerkzeuge einschließlich Verwendungszweck und Herkunft dokumentieren."
+                  "prose": "Vollautomatisiertes Lifecycle-Management für Werkzeuge.",
+                  "parts": [
+                    {
+                      "id": "KONF.1.3-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Einsatz von Infrastructure as Code zur Bereitstellung verifizierter Toolsets."
+                    },
+                    {
+                      "id": "KONF.1.3-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Validierung der CI/CD-Pipeline für Admin-Tools. API-Abfrage der Tool-Registry."
+                    }
+                  ]
                 }
               ]
             }
@@ -313,21 +313,21 @@
                     {
                       "name": "label",
                       "value": "m1"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Einfacher Passwortschutz für Dokumente."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Dokumentationen sind vereinzelt durch Kennwörter auf Dateiebene geschützt."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Stichprobenartige Prüfung von Dateien auf Verschlüsselung. 'file secret_config.pdf'."
                     }
                   ],
-                  "prose": "(BSI Baustein KONF_prozesse) Konfiguration SOLLTE den Zugriff auf dokumentierte Konfigurationen einschränken."
+                  "prose": "Einfacher Passwortschutz für Dokumente.",
+                  "parts": [
+                    {
+                      "id": "KONF.1.4-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Dokumentationen sind vereinzelt durch Kennwörter auf Dateiebene geschützt."
+                    },
+                    {
+                      "id": "KONF.1.4-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Stichprobenartige Prüfung von Dateien auf Verschlüsselung. 'file secret_config.pdf'."
+                    }
+                  ]
                 },
                 {
                   "id": "KONF.1.4-m2_custom",
@@ -361,21 +361,21 @@
                     {
                       "name": "label",
                       "value": "m2"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Zugriffsbeschränkung über Filesystem-Berechtigungen."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Standardmäßige Verzeichnisrechte schränken den Zugriff auf Admin-Gruppen ein."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Prüfung der Verzeichnisrechte mittels 'ls -ld /path/to/docs'."
                     }
                   ],
-                  "prose": "(BSI Baustein KONF_prozesse) Konfiguration SOLLTE den Zugriff auf dokumentierte Konfigurationen einschränken."
+                  "prose": "Zugriffsbeschränkung über Filesystem-Berechtigungen.",
+                  "parts": [
+                    {
+                      "id": "KONF.1.4-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Standardmäßige Verzeichnisrechte schränken den Zugriff auf Admin-Gruppen ein."
+                    },
+                    {
+                      "id": "KONF.1.4-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung der Verzeichnisrechte mittels 'ls -ld /path/to/docs'."
+                    }
+                  ]
                 },
                 {
                   "id": "KONF.1.4-m3_custom",
@@ -409,21 +409,21 @@
                     {
                       "name": "label",
                       "value": "m3"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Konfiguration SOLLTE den Zugriff auf dokumentierte Konfigurationen einschränken."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Der Zugriff muss auf das für die Aufgabenerfüllung notwendige Maß (Need-to-know) begrenzt sein."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Review des Berechtigungskonzepts. Audit-Befehl: 'getfacl -R /documentation/configs'."
                     }
                   ],
-                  "prose": "(BSI Baustein KONF_prozesse) Konfiguration SOLLTE den Zugriff auf dokumentierte Konfigurationen einschränken."
+                  "prose": "Konfiguration SOLLTE den Zugriff auf dokumentierte Konfigurationen einschränken.",
+                  "parts": [
+                    {
+                      "id": "KONF.1.4-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Der Zugriff muss auf das für die Aufgabenerfüllung notwendige Maß (Need-to-know) begrenzt sein."
+                    },
+                    {
+                      "id": "KONF.1.4-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Review des Berechtigungskonzepts. Audit-Befehl: 'getfacl -R /documentation/configs'."
+                    }
+                  ]
                 },
                 {
                   "id": "KONF.1.4-m4_custom",
@@ -457,21 +457,21 @@
                     {
                       "name": "label",
                       "value": "m4"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Rollenbasiertes Zugriffssystem (RBAC) für Dokumentation."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Anbindung an ein zentrales Identitätsmanagement (z. B. OpenLDAP) mit Logging."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Auswertung der Zugriffsprotokolle. Test: Versuch unberechtigter API-Requests auf das DMS."
                     }
                   ],
-                  "prose": "(BSI Baustein KONF_prozesse) Konfiguration SOLLTE den Zugriff auf dokumentierte Konfigurationen einschränken."
+                  "prose": "Rollenbasiertes Zugriffssystem (RBAC) für Dokumentation.",
+                  "parts": [
+                    {
+                      "id": "KONF.1.4-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Anbindung an ein zentrales Identitätsmanagement (z. B. OpenLDAP) mit Logging."
+                    },
+                    {
+                      "id": "KONF.1.4-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Auswertung der Zugriffsprotokolle. Test: Versuch unberechtigter API-Requests auf das DMS."
+                    }
+                  ]
                 },
                 {
                   "id": "KONF.1.4-m5_custom",
@@ -505,21 +505,21 @@
                     {
                       "name": "label",
                       "value": "m5"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Dynamic Access Control mit Just-in-Time Berechtigungen."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Automatisierte Freigaben basierend auf Ticketsystem-Status und Hardware-Token-Pflicht."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Simulation von Zugriffsszenarien. Audit der Audit-Logs auf Anomalien via ELK-Stack."
                     }
                   ],
-                  "prose": "(BSI Baustein KONF_prozesse) Konfiguration SOLLTE den Zugriff auf dokumentierte Konfigurationen einschränken."
+                  "prose": "Dynamic Access Control mit Just-in-Time Berechtigungen.",
+                  "parts": [
+                    {
+                      "id": "KONF.1.4-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Automatisierte Freigaben basierend auf Ticketsystem-Status und Hardware-Token-Pflicht."
+                    },
+                    {
+                      "id": "KONF.1.4-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Simulation von Zugriffsszenarien. Audit der Audit-Logs auf Anomalien via ELK-Stack."
+                    }
+                  ]
                 }
               ]
             }
@@ -564,21 +564,21 @@
                     {
                       "name": "label",
                       "value": "m1"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Vereinzelte Verschlüsselung kritischer Passwörter."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Besonders sensible Geheimnisse werden manuell (z. B. via GPG) verschlüsselt."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Suche nach unverschlüsselten Passwörtern: 'grep -rE \"password|secret\" /etc/'."
                     }
                   ],
-                  "prose": "(BSI Baustein KONF_prozesse) Konfiguration SOLLTE Konfigurationsgeheimnisse verschlüsseln."
+                  "prose": "Vereinzelte Verschlüsselung kritischer Passwörter.",
+                  "parts": [
+                    {
+                      "id": "KONF.1.5-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Besonders sensible Geheimnisse werden manuell (z. B. via GPG) verschlüsselt."
+                    },
+                    {
+                      "id": "KONF.1.5-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Suche nach unverschlüsselten Passwörtern: 'grep -rE \"password|secret\" /etc/'."
+                    }
+                  ]
                 },
                 {
                   "id": "KONF.1.5-m2_custom",
@@ -612,21 +612,21 @@
                     {
                       "name": "label",
                       "value": "m2"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Systemeigene Verschlüsselungsmechanismen werden genutzt."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Nutzung von Standardfeatures (z. B. verschlüsselte Config-Dateien in Linux-Services)."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Prüfung der Service-Konfigurationen auf aktivierte Verschlüsselungsparameter."
                     }
                   ],
-                  "prose": "(BSI Baustein KONF_prozesse) Konfiguration SOLLTE Konfigurationsgeheimnisse verschlüsseln."
+                  "prose": "Systemeigene Verschlüsselungsmechanismen werden genutzt.",
+                  "parts": [
+                    {
+                      "id": "KONF.1.5-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Nutzung von Standardfeatures (z. B. verschlüsselte Config-Dateien in Linux-Services)."
+                    },
+                    {
+                      "id": "KONF.1.5-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung der Service-Konfigurationen auf aktivierte Verschlüsselungsparameter."
+                    }
+                  ]
                 },
                 {
                   "id": "KONF.1.5-m3_custom",
@@ -660,21 +660,21 @@
                     {
                       "name": "label",
                       "value": "m3"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Konfiguration SOLLTE Konfigurationsgeheimnisse verschlüsseln."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Alle als geheim eingestuften Parameter müssen im Ruhezustand (At Rest) verschlüsselt sein."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Validierung der Speichermethode für Secrets. Befehl: 'grep \"$ANSIBLE_VAULT\" playbook.yml'."
                     }
                   ],
-                  "prose": "(BSI Baustein KONF_prozesse) Konfiguration SOLLTE Konfigurationsgeheimnisse verschlüsseln."
+                  "prose": "Konfiguration SOLLTE Konfigurationsgeheimnisse verschlüsseln.",
+                  "parts": [
+                    {
+                      "id": "KONF.1.5-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Alle als geheim eingestuften Parameter müssen im Ruhezustand (At Rest) verschlüsselt sein."
+                    },
+                    {
+                      "id": "KONF.1.5-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Validierung der Speichermethode für Secrets. Befehl: 'grep \"$ANSIBLE_VAULT\" playbook.yml'."
+                    }
+                  ]
                 },
                 {
                   "id": "KONF.1.5-m4_custom",
@@ -708,21 +708,21 @@
                     {
                       "name": "label",
                       "value": "m4"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Zentralisiertes Secrets Management."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Geheimnisse werden in spezialisierten Tools (z. B. Vault) verwaltet und verschlüsselt."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Prüfung der Vault-Integration. Test: 'vault kv get secret/app-config'."
                     }
                   ],
-                  "prose": "(BSI Baustein KONF_prozesse) Konfiguration SOLLTE Konfigurationsgeheimnisse verschlüsseln."
+                  "prose": "Zentralisiertes Secrets Management.",
+                  "parts": [
+                    {
+                      "id": "KONF.1.5-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Geheimnisse werden in spezialisierten Tools (z. B. Vault) verwaltet und verschlüsselt."
+                    },
+                    {
+                      "id": "KONF.1.5-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung der Vault-Integration. Test: 'vault kv get secret/app-config'."
+                    }
+                  ]
                 },
                 {
                   "id": "KONF.1.5-m5_custom",
@@ -756,21 +756,21 @@
                     {
                       "name": "label",
                       "value": "m5"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "End-to-End Encryption mit automatischer Rotation."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Secrets werden hardwaregestützt (HSM) verschlüsselt und regelmäßig ohne Downtime gewechselt."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Überprüfung der Rotations-Logs. Audit der Key-Management-Prozesse via API-Monitoring."
                     }
                   ],
-                  "prose": "(BSI Baustein KONF_prozesse) Konfiguration SOLLTE Konfigurationsgeheimnisse verschlüsseln."
+                  "prose": "End-to-End Encryption mit automatischer Rotation.",
+                  "parts": [
+                    {
+                      "id": "KONF.1.5-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Secrets werden hardwaregestützt (HSM) verschlüsselt und regelmäßig ohne Downtime gewechselt."
+                    },
+                    {
+                      "id": "KONF.1.5-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Überprüfung der Rotations-Logs. Audit der Key-Management-Prozesse via API-Monitoring."
+                    }
+                  ]
                 }
               ]
             }

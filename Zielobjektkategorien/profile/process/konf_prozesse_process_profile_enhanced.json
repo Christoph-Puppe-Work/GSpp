@@ -62,21 +62,21 @@
                     {
                       "name": "label",
                       "value": "m1"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Verwendete Konfigurationswerkzeuge werden vereinzelt und ohne festes Format dokumentiert."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Erfassen Sie Werkzeuge ad-hoc bei deren Einsatz in einer einfachen Textdatei."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Prüfen Sie, ob für mindestens ein kritisches Werkzeug eine Notiz zur Herkunft existiert."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Konfiguration SOLLTE verwendete Konfigurationswerkzeuge einschließlich Verwendungszweck und Herkunft dokumentieren."
+                  "prose": "Verwendete Konfigurationswerkzeuge werden vereinzelt und ohne festes Format dokumentiert.",
+                  "parts": [
+                    {
+                      "id": "KONF.1.3-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Erfassen Sie Werkzeuge ad-hoc bei deren Einsatz in einer einfachen Textdatei."
+                    },
+                    {
+                      "id": "KONF.1.3-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfen Sie, ob für mindestens ein kritisches Werkzeug eine Notiz zur Herkunft existiert."
+                    }
+                  ]
                 },
                 {
                   "id": "KONF.1.3-m2_custom",
@@ -110,21 +110,21 @@
                     {
                       "name": "label",
                       "value": "m2"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Es existiert eine grundlegende Liste der Konfigurationswerkzeuge für Hauptsysteme."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Führen Sie eine Tabelle mit Toolname, Zweck und Download-Quelle für die wichtigsten Server."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Sichtung der Tool-Liste. Abgleich mit installierten Paketen via 'dpkg -l' oder 'rpm -qa'."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Konfiguration SOLLTE verwendete Konfigurationswerkzeuge einschließlich Verwendungszweck und Herkunft dokumentieren."
+                  "prose": "Es existiert eine grundlegende Liste der Konfigurationswerkzeuge für Hauptsysteme.",
+                  "parts": [
+                    {
+                      "id": "KONF.1.3-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Führen Sie eine Tabelle mit Toolname, Zweck und Download-Quelle für die wichtigsten Server."
+                    },
+                    {
+                      "id": "KONF.1.3-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Sichtung der Tool-Liste. Abgleich mit installierten Paketen via 'dpkg -l' oder 'rpm -qa'."
+                    }
+                  ]
                 },
                 {
                   "id": "KONF.1.3-m3_custom",
@@ -158,21 +158,21 @@
                     {
                       "name": "label",
                       "value": "m3"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Konfiguration SOLLTE verwendete Konfigurationswerkzeuge einschließlich Verwendungszweck und Herkunft dokumentieren."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Die Dokumentation muss für alle eingesetzten Werkzeuge Zweck und Herkunft klar benennen."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Stichprobenartige Prüfung der Dokumentation gegen die tatsächlich genutzten Tools in der Infrastruktur."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Konfiguration SOLLTE verwendete Konfigurationswerkzeuge einschließlich Verwendungszweck und Herkunft dokumentieren."
+                  "prose": "Konfiguration SOLLTE verwendete Konfigurationswerkzeuge einschließlich Verwendungszweck und Herkunft dokumentieren.",
+                  "parts": [
+                    {
+                      "id": "KONF.1.3-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Die Dokumentation muss für alle eingesetzten Werkzeuge Zweck und Herkunft klar benennen."
+                    },
+                    {
+                      "id": "KONF.1.3-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Stichprobenartige Prüfung der Dokumentation gegen die tatsächlich genutzten Tools in der Infrastruktur."
+                    }
+                  ]
                 },
                 {
                   "id": "KONF.1.3-m4_custom",
@@ -206,21 +206,21 @@
                     {
                       "name": "label",
                       "value": "m4"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Die Werkzeugdokumentation ist in das Asset-Management integriert und wird regelmäßig validiert."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Nutzen Sie ein Asset-Management-System, um Tools, Versionen und kryptografische Hashes zu pflegen."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Prüfen Sie die Integration im Asset-Tool. Abfrage der Hash-Werte zur Integritätsprüfung der Tools."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Konfiguration SOLLTE verwendete Konfigurationswerkzeuge einschließlich Verwendungszweck und Herkunft dokumentieren."
+                  "prose": "Die Werkzeugdokumentation ist in das Asset-Management integriert und wird regelmäßig validiert.",
+                  "parts": [
+                    {
+                      "id": "KONF.1.3-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Nutzen Sie ein Asset-Management-System, um Tools, Versionen und kryptografische Hashes zu pflegen."
+                    },
+                    {
+                      "id": "KONF.1.3-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfen Sie die Integration im Asset-Tool. Abfrage der Hash-Werte zur Integritätsprüfung der Tools."
+                    }
+                  ]
                 },
                 {
                   "id": "KONF.1.3-m5_custom",
@@ -254,21 +254,21 @@
                     {
                       "name": "label",
                       "value": "m5"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Vollautomatisierte Tool-Inventarisierung mit obligatorischer Herkunftsprüfung in der CI/CD-Pipeline."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Integrieren Sie 'Software Bill of Materials' (SBOM) für alle Konfigurations-Skripte und Tools."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Validierung der Pipeline-Logs auf automatische SBOM-Checks und Herkunfts-Attestierung."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Konfiguration SOLLTE verwendete Konfigurationswerkzeuge einschließlich Verwendungszweck und Herkunft dokumentieren."
+                  "prose": "Vollautomatisierte Tool-Inventarisierung mit obligatorischer Herkunftsprüfung in der CI/CD-Pipeline.",
+                  "parts": [
+                    {
+                      "id": "KONF.1.3-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Integrieren Sie 'Software Bill of Materials' (SBOM) für alle Konfigurations-Skripte und Tools."
+                    },
+                    {
+                      "id": "KONF.1.3-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Validierung der Pipeline-Logs auf automatische SBOM-Checks und Herkunfts-Attestierung."
+                    }
+                  ]
                 }
               ]
             }
@@ -313,21 +313,21 @@
                     {
                       "name": "label",
                       "value": "m1"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Der Zugriff auf Konfigurationsdokumente ist nur physisch oder durch einfache Passwörter geschützt."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Stellen Sie sicher, dass Dokumente nicht für jedermann lesbar auf Netzwerkfreigaben liegen."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Prüfen Sie die Berechtigungen auf dem zentralen Fileserver für den Ordner 'Dokumentation'."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Konfiguration SOLLTE den Zugriff auf dokumentierte Konfigurationen einschränken."
+                  "prose": "Der Zugriff auf Konfigurationsdokumente ist nur physisch oder durch einfache Passwörter geschützt.",
+                  "parts": [
+                    {
+                      "id": "KONF.1.4-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Stellen Sie sicher, dass Dokumente nicht für jedermann lesbar auf Netzwerkfreigaben liegen."
+                    },
+                    {
+                      "id": "KONF.1.4-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfen Sie die Berechtigungen auf dem zentralen Fileserver für den Ordner 'Dokumentation'."
+                    }
+                  ]
                 },
                 {
                   "id": "KONF.1.4-m2_custom",
@@ -361,21 +361,21 @@
                     {
                       "name": "label",
                       "value": "m2"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Zugriffsbeschränkungen basieren auf Standard-Benutzergruppen des Betriebssystems."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Nutzen Sie Betriebssystemgruppen (z.B. 'Admins'), um den Lesezugriff auf Konfigurationen zu steuern."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Führen Sie 'ls -l' oder 'getfacl' auf Konfigurationsverzeichnisse aus, um Gruppenrechte zu prüfen."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Konfiguration SOLLTE den Zugriff auf dokumentierte Konfigurationen einschränken."
+                  "prose": "Zugriffsbeschränkungen basieren auf Standard-Benutzergruppen des Betriebssystems.",
+                  "parts": [
+                    {
+                      "id": "KONF.1.4-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Nutzen Sie Betriebssystemgruppen (z.B. 'Admins'), um den Lesezugriff auf Konfigurationen zu steuern."
+                    },
+                    {
+                      "id": "KONF.1.4-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Führen Sie 'ls -l' oder 'getfacl' auf Konfigurationsverzeichnisse aus, um Gruppenrechte zu prüfen."
+                    }
+                  ]
                 },
                 {
                   "id": "KONF.1.4-m3_custom",
@@ -409,21 +409,21 @@
                     {
                       "name": "label",
                       "value": "m3"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Konfiguration SOLLTE den Zugriff auf dokumentierte Konfigurationen einschränken."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Setzen Sie gezielte Zugriffskontrollen um, die nur autorisierten Personen Einsicht gewähren."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Audit der Zugriffsberechtigten. Abgleich der Liste mit den aktuellen Aufgabenprofilen der Mitarbeiter."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Konfiguration SOLLTE den Zugriff auf dokumentierte Konfigurationen einschränken."
+                  "prose": "Konfiguration SOLLTE den Zugriff auf dokumentierte Konfigurationen einschränken.",
+                  "parts": [
+                    {
+                      "id": "KONF.1.4-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Setzen Sie gezielte Zugriffskontrollen um, die nur autorisierten Personen Einsicht gewähren."
+                    },
+                    {
+                      "id": "KONF.1.4-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Audit der Zugriffsberechtigten. Abgleich der Liste mit den aktuellen Aufgabenprofilen der Mitarbeiter."
+                    }
+                  ]
                 },
                 {
                   "id": "KONF.1.4-m4_custom",
@@ -457,21 +457,21 @@
                     {
                       "name": "label",
                       "value": "m4"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Rollenbasierte Zugriffskontrolle (RBAC) und Protokollierung aller Zugriffe auf die Dokumentation."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Implementieren Sie ein IAM-System zur Steuerung der Zugriffe mit detailliertem Audit-Log."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Auswertung der Audit-Logs auf unbefugte Zugriffsversuche. Prüfung der RBAC-Matrix."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Konfiguration SOLLTE den Zugriff auf dokumentierte Konfigurationen einschränken."
+                  "prose": "Rollenbasierte Zugriffskontrolle (RBAC) und Protokollierung aller Zugriffe auf die Dokumentation.",
+                  "parts": [
+                    {
+                      "id": "KONF.1.4-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Implementieren Sie ein IAM-System zur Steuerung der Zugriffe mit detailliertem Audit-Log."
+                    },
+                    {
+                      "id": "KONF.1.4-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Auswertung der Audit-Logs auf unbefugte Zugriffsversuche. Prüfung der RBAC-Matrix."
+                    }
+                  ]
                 },
                 {
                   "id": "KONF.1.4-m5_custom",
@@ -505,21 +505,21 @@
                     {
                       "name": "label",
                       "value": "m5"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Zero-Trust-Zugriff mit Just-In-Time Berechtigungen für sensible Konfigurationsdaten."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Zugriff erfolgt nur über verschlüsselte Terminals mit MFA und zeitlich begrenzter Freigabe."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Test des JIT-Workflows. Prüfung, ob Zugriffsrechte nach Ablauf der Zeit automatisch entzogen werden."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Konfiguration SOLLTE den Zugriff auf dokumentierte Konfigurationen einschränken."
+                  "prose": "Zero-Trust-Zugriff mit Just-In-Time Berechtigungen für sensible Konfigurationsdaten.",
+                  "parts": [
+                    {
+                      "id": "KONF.1.4-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Zugriff erfolgt nur über verschlüsselte Terminals mit MFA und zeitlich begrenzter Freigabe."
+                    },
+                    {
+                      "id": "KONF.1.4-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Test des JIT-Workflows. Prüfung, ob Zugriffsrechte nach Ablauf der Zeit automatisch entzogen werden."
+                    }
+                  ]
                 }
               ]
             }
@@ -564,21 +564,21 @@
                     {
                       "name": "label",
                       "value": "m1"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Geheimnisse werden in Konfigurationsdateien teilweise manuell durch einfache Tools verschlüsselt."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Nutzen Sie Tools wie GnuPG, um Passwörter in Dateien vor der Speicherung zu verschlüsseln."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Suche nach Klartext-Passwörtern in Skripten mittels 'grep -ri \"password\" /etc/'."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Konfiguration SOLLTE Konfigurationsgeheimnisse verschlüsseln."
+                  "prose": "Geheimnisse werden in Konfigurationsdateien teilweise manuell durch einfache Tools verschlüsselt.",
+                  "parts": [
+                    {
+                      "id": "KONF.1.5-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Nutzen Sie Tools wie GnuPG, um Passwörter in Dateien vor der Speicherung zu verschlüsseln."
+                    },
+                    {
+                      "id": "KONF.1.5-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Suche nach Klartext-Passwörtern in Skripten mittels 'grep -ri \"password\" /etc/'."
+                    }
+                  ]
                 },
                 {
                   "id": "KONF.1.5-m2_custom",
@@ -612,21 +612,21 @@
                     {
                       "name": "label",
                       "value": "m2"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Verwendung von Standard-Verschlüsselungsmechanismen der Plattform (z.B. Dateisystemverschlüsselung)."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Aktivieren Sie LUKS oder ähnliche Technologien für Partitionen, auf denen Geheimnisse liegen."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Prüfen Sie den Status der Festplattenverschlüsselung mit 'lsblk' oder 'cryptsetup status'."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Konfiguration SOLLTE Konfigurationsgeheimnisse verschlüsseln."
+                  "prose": "Verwendung von Standard-Verschlüsselungsmechanismen der Plattform (z.B. Dateisystemverschlüsselung).",
+                  "parts": [
+                    {
+                      "id": "KONF.1.5-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Aktivieren Sie LUKS oder ähnliche Technologien für Partitionen, auf denen Geheimnisse liegen."
+                    },
+                    {
+                      "id": "KONF.1.5-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfen Sie den Status der Festplattenverschlüsselung mit 'lsblk' oder 'cryptsetup status'."
+                    }
+                  ]
                 },
                 {
                   "id": "KONF.1.5-m3_custom",
@@ -660,21 +660,21 @@
                     {
                       "name": "label",
                       "value": "m3"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Konfiguration SOLLTE Konfigurationsgeheimnisse verschlüsseln."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Geheimnisse in Konfigurationsdateien dürfen nicht im Klartext gespeichert werden."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Manuelle Stichprobe in Konfigurationsdateien auf verschlüsselte Werte (z.B. Ansible Vault Header)."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Konfiguration SOLLTE Konfigurationsgeheimnisse verschlüsseln."
+                  "prose": "Konfiguration SOLLTE Konfigurationsgeheimnisse verschlüsseln.",
+                  "parts": [
+                    {
+                      "id": "KONF.1.5-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Geheimnisse in Konfigurationsdateien dürfen nicht im Klartext gespeichert werden."
+                    },
+                    {
+                      "id": "KONF.1.5-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Manuelle Stichprobe in Konfigurationsdateien auf verschlüsselte Werte (z.B. Ansible Vault Header)."
+                    }
+                  ]
                 },
                 {
                   "id": "KONF.1.5-m4_custom",
@@ -708,21 +708,21 @@
                     {
                       "name": "label",
                       "value": "m4"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Einsatz eines zentralen Secret-Management-Systems zur dynamischen Bereitstellung von Geheimnissen."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Integrieren Sie Lösungen wie einen Vault-Server, um Secrets zur Laufzeit injizieren zu lassen."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Überprüfung der API-Aufrufe zum Secret-Store. Sicherstellen, dass keine Secrets im Git liegen."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Konfiguration SOLLTE Konfigurationsgeheimnisse verschlüsseln."
+                  "prose": "Einsatz eines zentralen Secret-Management-Systems zur dynamischen Bereitstellung von Geheimnissen.",
+                  "parts": [
+                    {
+                      "id": "KONF.1.5-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Integrieren Sie Lösungen wie einen Vault-Server, um Secrets zur Laufzeit injizieren zu lassen."
+                    },
+                    {
+                      "id": "KONF.1.5-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Überprüfung der API-Aufrufe zum Secret-Store. Sicherstellen, dass keine Secrets im Git liegen."
+                    }
+                  ]
                 },
                 {
                   "id": "KONF.1.5-m5_custom",
@@ -756,21 +756,21 @@
                     {
                       "name": "label",
                       "value": "m5"
-                    },
-                    {
-                      "name": "statement",
-                      "value": "Hardware-gestützte Verschlüsselung und automatisierte Rotation aller Konfigurationsgeheimnisse."
-                    },
-                    {
-                      "name": "guidance",
-                      "value": "Nutzen Sie HSMs für Root-Keys und automatisieren Sie den Passwortwechsel via API-Hooks."
-                    },
-                    {
-                      "name": "assessment-method",
-                      "value": "Audit der Rotations-Logs. Nachweis der Hardware-Anbindung für die Key-Generierung."
                     }
                   ],
-                  "prose": "(BSI Baustein ) Konfiguration SOLLTE Konfigurationsgeheimnisse verschlüsseln."
+                  "prose": "Hardware-gestützte Verschlüsselung und automatisierte Rotation aller Konfigurationsgeheimnisse.",
+                  "parts": [
+                    {
+                      "id": "KONF.1.5-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Nutzen Sie HSMs für Root-Keys und automatisieren Sie den Passwortwechsel via API-Hooks."
+                    },
+                    {
+                      "id": "KONF.1.5-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Audit der Rotations-Logs. Nachweis der Hardware-Anbindung für die Key-Generierung."
+                    }
+                  ]
                 }
               ]
             }

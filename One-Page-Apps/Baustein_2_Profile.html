@@ -1,0 +1,2732 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>Baustein_2_Profile</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<style>
+:root {
+  --bg-deep:        oklch(0.13 0.02 280);
+  --bg-elev-1:      oklch(0.95 0.005 280 / 0.04);
+  --bg-elev-2:      oklch(0.95 0.005 280 / 0.06);
+  --bg-elev-3:      oklch(0.95 0.005 280 / 0.08);
+  --border-1:       oklch(0.95 0.005 280 / 0.06);
+  --border-2:       oklch(0.95 0.005 280 / 0.10);
+  --text-primary:   oklch(0.95 0.005 280);
+  --text-secondary: oklch(0.75 0.02 280);
+  --text-tertiary:  oklch(0.65 0.02 280);
+  --text-quiet:     oklch(0.55 0.02 280);
+  --accent:         oklch(0.7  0.18 300);
+  --accent-soft:    oklch(0.7  0.18 300 / 0.15);
+  --accent-glow:    oklch(0.7  0.18 300 / 0.4);
+  --red:            oklch(0.65 0.20 25);
+  --amber:          oklch(0.80 0.15 80);
+  --green:          oklch(0.75 0.18 145);
+  --blue:           oklch(0.70 0.15 240);
+  --rail-w: 260px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;height:100%;width:100%;overflow:hidden}
+body{
+  font-family:'Inter',system-ui,sans-serif;
+  background:var(--bg-deep);color:var(--text-primary);font-size:13px;line-height:1.5;
+}
+::selection{background:oklch(0.7 0.18 300 / 0.35);color:var(--text-primary)}
+::-webkit-scrollbar{width:6px;height:6px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:oklch(0.95 0.005 280 / 0.1);border-radius:3px}
+::-webkit-scrollbar-thumb:hover{background:var(--accent-soft)}
+.aurora-1{position:fixed;width:600px;height:600px;border-radius:50%;
+  background:radial-gradient(circle,oklch(0.4 0.18 300 / 0.5),transparent 70%);
+  top:-200px;left:-100px;filter:blur(60px);pointer-events:none;z-index:0}
+.aurora-2{position:fixed;width:700px;height:700px;border-radius:50%;
+  background:radial-gradient(circle,oklch(0.4 0.16 240 / 0.4),transparent 70%);
+  bottom:-300px;right:-200px;filter:blur(80px);pointer-events:none;z-index:0}
+.noise{position:fixed;inset:0;opacity:0.03;pointer-events:none;z-index:0;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100'><filter id='n'><feTurbulence baseFrequency='0.9'/></filter><rect width='100' height='100' filter='url(%23n)'/></svg>")}
+
+.shell{position:relative;z-index:1;display:flex;flex-direction:column;height:100vh}
+.topbar{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 24px;height:62px;flex:0 0 62px;
+  background:var(--bg-elev-1);backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border-1);
+}
+.brand{display:flex;align-items:center;gap:12px}
+.brand-icon{width:28px;height:28px;display:flex;align-items:center;justify-content:center;
+  background:var(--accent-soft);border-radius:8px;color:var(--accent);font-size:16px}
+.brand-name{font-weight:600;letter-spacing:-0.01em}
+.brand-sub{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-quiet);
+  letter-spacing:0.05em;text-transform:uppercase;margin-left:8px}
+.meta-pills{display:flex;gap:8px;align-items:center}
+.pill{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.1em;
+  padding:4px 10px;border-radius:99px;background:var(--bg-elev-2);
+  color:var(--text-tertiary);border:1px solid var(--border-1);text-transform:uppercase}
+.pill.live{color:var(--green)}
+
+.main{display:flex;flex:1;min-height:0;overflow:hidden}
+.rail{
+  width:var(--rail-w);flex:0 0 var(--rail-w);
+  background:var(--bg-elev-1);border-right:1px solid var(--border-1);
+  display:flex;flex-direction:column;overflow:hidden;
+}
+.rail-scroll{overflow-y:auto;flex:1;padding:18px 16px 24px;min-height:0}
+.rail-section{margin-bottom:22px}
+.rail-label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.15em;
+  text-transform:uppercase;color:var(--text-quiet);margin-bottom:10px;display:flex;
+  align-items:center;justify-content:space-between}
+.rail-label .glyph{color:var(--accent)}
+.field{margin-bottom:10px}
+.field label{display:block;font-size:11px;color:var(--text-tertiary);margin-bottom:4px;
+  font-weight:500}
+.field input,.field select,.field textarea{
+  width:100%;background:var(--bg-elev-2);border:1px solid var(--border-1);
+  color:var(--text-primary);font-family:'JetBrains Mono',monospace;font-size:11px;
+  padding:7px 9px;border-radius:7px;outline:none;transition:border-color .15s ease;
+}
+.field input:focus,.field select:focus,.field textarea:focus{
+  border-color:var(--accent);box-shadow:0 0 0 2px var(--accent-soft)}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.toggle{display:flex;align-items:center;gap:8px;padding:8px 10px;background:var(--bg-elev-2);
+  border:1px solid var(--border-1);border-radius:7px;cursor:pointer;font-size:11px;
+  margin-bottom:6px;transition:all .15s ease}
+.toggle:hover{background:var(--bg-elev-3)}
+.toggle input{margin:0;accent-color:var(--accent)}
+.toggle .desc{color:var(--text-tertiary);font-size:10px;margin-top:2px;display:block}
+
+.splitter{width:4px;flex:0 0 4px;background:transparent;cursor:col-resize;
+  transition:background .15s ease;position:relative}
+.splitter:hover,.splitter.dragging{background:var(--accent-soft)}
+
+.work{flex:1;min-width:0;display:flex;flex-direction:column;overflow:hidden}
+.work-scroll{flex:1;overflow-y:auto;min-height:0;padding:24px 32px}
+
+.card{
+  background:var(--bg-elev-1);border:1px solid var(--border-1);
+  backdrop-filter:blur(20px);border-radius:12px;padding:20px 22px;margin-bottom:18px;
+}
+.card-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.card-title{display:flex;align-items:center;gap:10px;font-weight:600;font-size:14px}
+.card-title .num{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.15em;
+  color:var(--accent);background:var(--accent-soft);padding:3px 8px;border-radius:4px;
+  text-transform:uppercase}
+.card-title .glyph{color:var(--accent);font-size:18px}
+.card-desc{color:var(--text-tertiary);font-size:12px;margin-top:-6px;margin-bottom:14px}
+
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:9px 16px;border-radius:8px;font-size:12px;font-weight:500;
+  border:1px solid var(--border-2);background:var(--bg-elev-2);color:var(--text-primary);
+  cursor:pointer;transition:all .15s ease;font-family:inherit;
+}
+.btn:hover{background:var(--bg-elev-3);border-color:var(--accent-soft)}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:white;font-weight:600;
+  box-shadow:0 6px 20px var(--accent-glow)}
+.btn.primary:hover{background:oklch(0.75 0.18 300)}
+.btn.ghost{background:transparent}
+.btn.danger{color:var(--red);border-color:oklch(0.65 0.2 25 / 0.3)}
+.btn.sm{padding:5px 10px;font-size:11px}
+
+.dropzone{
+  border:1.5px dashed var(--border-2);border-radius:10px;padding:24px;
+  text-align:center;color:var(--text-tertiary);cursor:pointer;
+  transition:all .15s ease;background:var(--bg-elev-2);
+}
+.dropzone:hover,.dropzone.drag{border-color:var(--accent);background:var(--accent-soft);
+  color:var(--text-primary)}
+.dropzone .glyph{font-size:24px;color:var(--accent);display:block;margin-bottom:8px}
+.dropzone-info{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-quiet);
+  margin-top:8px;display:block;letter-spacing:0.05em}
+
+.url-row{display:flex;gap:8px;margin-bottom:8px}
+.url-row input{flex:1;background:var(--bg-elev-2);border:1px solid var(--border-1);
+  color:var(--text-primary);font-family:'JetBrains Mono',monospace;font-size:11px;
+  padding:8px 10px;border-radius:7px;outline:none}
+.url-row input:focus{border-color:var(--accent)}
+
+.prompt-block{margin-bottom:16px;padding:14px 16px;background:var(--bg-elev-2);
+  border:1px solid var(--border-1);border-radius:10px}
+.prompt-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.prompt-label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.15em;
+  text-transform:uppercase;color:var(--text-tertiary);font-weight:600}
+.prompt-label .stage{color:var(--accent);margin-right:6px}
+.prompt-actions{display:flex;gap:6px;align-items:center}
+.prompt-warn{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--amber);
+  margin-top:6px;display:none;letter-spacing:0.05em}
+.prompt-warn.show{display:block}
+.prompt-ta{
+  width:100%;background:var(--bg-deep);border:1px solid var(--border-1);
+  color:var(--text-primary);font-family:'JetBrains Mono',monospace;font-size:11px;
+  padding:10px 12px;border-radius:7px;outline:none;resize:vertical;
+  min-height:180px;line-height:1.55;
+}
+.prompt-ta:focus{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent-soft)}
+
+.run-bar{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.run-bar .grow{flex:1}
+.testdrive{display:flex;align-items:center;gap:8px;font-size:11px;
+  color:var(--text-tertiary);cursor:pointer;user-select:none}
+.testdrive input{accent-color:var(--amber)}
+
+.progress-track{height:1px;background:var(--border-1);overflow:hidden;
+  margin-top:14px;border-radius:1px}
+.progress-fill{height:100%;background:var(--accent);width:0%;
+  transition:width .25s ease}
+.progress-fill.done{background:var(--green)}
+.progress-meta{display:flex;justify-content:space-between;margin-top:8px;
+  font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-quiet);
+  letter-spacing:0.05em}
+
+.testdrive-banner{display:none;padding:10px 14px;border-radius:8px;margin-bottom:14px;
+  background:oklch(0.80 0.15 80 / 0.1);border:1px solid oklch(0.80 0.15 80 / 0.3);
+  color:var(--amber);font-size:11px;font-family:'JetBrains Mono',monospace;
+  letter-spacing:0.05em}
+.testdrive-banner.show{display:block}
+
+.stage-line{display:flex;gap:12px;margin-bottom:16px}
+.stage-pip{flex:1;padding:10px 12px;border-radius:8px;background:var(--bg-elev-2);
+  border:1px solid var(--border-1);display:flex;align-items:center;gap:10px}
+.stage-pip.active{border-color:var(--accent);background:var(--accent-soft)}
+.stage-pip.done{border-color:oklch(0.75 0.18 145 / 0.5)}
+.stage-pip .pn{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--accent);
+  background:var(--bg-deep);padding:2px 7px;border-radius:4px;letter-spacing:0.1em}
+.stage-pip .pt{font-size:11px;color:var(--text-tertiary)}
+.stage-pip.active .pt{color:var(--text-primary)}
+.stage-pip .pdot{margin-left:auto;width:6px;height:6px;border-radius:50%;
+  background:var(--text-quiet)}
+.stage-pip.active .pdot{background:var(--accent);animation:pulse 1.4s ease infinite}
+.stage-pip.done .pdot{background:var(--green)}
+@keyframes pulse{0%,100%{opacity:.4}50%{opacity:1}}
+
+.result-section{margin-top:6px}
+.req-row{display:grid;grid-template-columns:90px 1fr 110px 130px;gap:14px;align-items:start;
+  padding:10px 12px;background:var(--bg-elev-2);border:1px solid var(--border-1);
+  border-radius:8px;margin-bottom:6px;font-size:11.5px;line-height:1.5}
+.req-row.miss{border-color:oklch(0.65 0.2 25 / 0.3);background:oklch(0.65 0.2 25 / 0.04)}
+.req-row.pending{opacity:.6}
+.req-id{font-family:'JetBrains Mono',monospace;color:var(--accent);font-size:10.5px;
+  letter-spacing:0.05em;display:flex;align-items:center;gap:5px}
+.req-id .mv{color:var(--text-quiet);font-size:9px;padding:1px 5px;border-radius:3px;
+  background:var(--bg-deep);letter-spacing:0.05em}
+.req-title{color:var(--text-primary)}
+.req-title .rationale{color:var(--text-quiet);font-size:10.5px;margin-top:3px;line-height:1.5}
+.req-ctrl{font-family:'JetBrains Mono',monospace;color:var(--green);font-size:10.5px}
+.req-ctrl.miss{color:var(--red)}
+.req-conf{display:flex;align-items:center;gap:6px;font-size:10.5px;color:var(--text-quiet);
+  font-family:'JetBrains Mono',monospace}
+.conf-bar{flex:1;height:3px;background:var(--bg-deep);border-radius:2px;overflow:hidden}
+.conf-bar > div{height:100%;background:var(--accent);border-radius:2px}
+
+.zo-card{padding:14px 16px;background:var(--bg-elev-2);border:1px solid var(--border-1);
+  border-radius:10px;margin-bottom:10px}
+.zo-card.primary{border-color:var(--accent);background:var(--accent-soft)}
+.zo-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
+.zo-name{font-weight:600;font-size:12.5px}
+.zo-type{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-quiet);
+  letter-spacing:0.1em;text-transform:uppercase}
+.zo-rationale{color:var(--text-tertiary);font-size:11.5px;line-height:1.55}
+
+.output-area{
+  width:100%;min-height:280px;background:var(--bg-deep);border:1px solid var(--border-1);
+  color:var(--text-primary);font-family:'JetBrains Mono',monospace;font-size:11px;
+  padding:14px 16px;border-radius:8px;outline:none;resize:vertical;line-height:1.55;
+}
+
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.stat-sub{padding:14px 16px;background:var(--bg-elev-2);border:1px solid var(--border-1);
+  border-radius:10px}
+.stat-head{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.15em;
+  text-transform:uppercase;color:var(--text-quiet);margin-bottom:12px;display:flex;
+  align-items:center;justify-content:space-between}
+.donut-wrap{display:flex;align-items:center;gap:14px}
+.donut-legend{flex:1;display:flex;flex-direction:column;gap:5px;font-size:10.5px}
+.legend-row{display:flex;align-items:center;gap:8px}
+.legend-dot{width:8px;height:8px;border-radius:50%}
+.legend-label{color:var(--text-tertiary);flex:1}
+.legend-val{font-family:'JetBrains Mono',monospace;color:var(--text-primary)}
+.hbar-row{display:grid;grid-template-columns:100px 1fr 30px;gap:8px;align-items:center;
+  margin-bottom:5px;font-size:10.5px}
+.hbar-label{font-family:'JetBrains Mono',monospace;color:var(--text-tertiary);
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.hbar-track{height:5px;background:var(--bg-deep);border-radius:3px;overflow:hidden}
+.hbar-fill{height:100%;border-radius:3px;transition:width .25s ease}
+.hbar-value{font-family:'JetBrains Mono',monospace;color:var(--text-primary);text-align:right}
+
+.console{flex:0 0 220px;background:var(--bg-elev-1);border-top:1px solid var(--border-1);
+  display:flex;flex-direction:column;backdrop-filter:blur(20px)}
+.console-head{padding:8px 16px;border-bottom:1px solid var(--border-1);display:flex;
+  align-items:center;justify-content:space-between;font-family:'JetBrains Mono',monospace;
+  font-size:10px;letter-spacing:0.15em;color:var(--text-quiet);text-transform:uppercase}
+.console-actions{display:flex;align-items:center;gap:10px}
+.console-body{flex:1;overflow-y:auto;padding:8px 16px;font-family:'JetBrains Mono',monospace;
+  font-size:10.5px;line-height:1.6;min-height:0}
+.log-line{display:flex;gap:10px;padding:1px 0}
+.log-ts{color:var(--text-quiet);flex:0 0 auto}
+.log-lvl{flex:0 0 38px;text-transform:uppercase;font-weight:600;letter-spacing:0.05em}
+.log-msg{flex:1;color:var(--text-secondary);word-break:break-word}
+.log-info .log-lvl{color:var(--blue)}
+.log-ok   .log-lvl{color:var(--green)}
+.log-warn .log-lvl{color:var(--amber)}
+.log-err  .log-lvl{color:var(--red)}
+.log-debug .log-lvl{color:var(--text-quiet)}
+.log-debug .log-msg{color:var(--text-quiet)}
+
+.hidden{display:none !important}
+.muted{color:var(--text-quiet)}
+.chip{display:inline-flex;align-items:center;gap:5px;padding:3px 8px;border-radius:99px;
+  background:var(--bg-elev-2);border:1px solid var(--border-1);
+  font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:0.05em;
+  color:var(--text-tertiary);text-transform:uppercase}
+.chip.ok{color:var(--green);border-color:oklch(0.75 0.18 145 / 0.3)}
+.chip.warn{color:var(--amber);border-color:oklch(0.8 0.15 80 / 0.3)}
+.chip.err{color:var(--red);border-color:oklch(0.65 0.2 25 / 0.3)}
+.chip.accent{color:var(--accent);border-color:var(--accent-soft)}
+
+.validation-block{margin-top:10px;padding:10px 12px;border-radius:8px;
+  border:1px solid var(--border-1);border-left-width:3px;
+  background:oklch(0.95 0.005 280 / 0.03);font-size:11px;line-height:1.55}
+.validation-block.confirmed       { border-left-color: oklch(0.75 0.18 145 / 0.8) }
+.validation-block.minor_corrections{ border-left-color: oklch(0.80 0.15 80 / 0.8) }
+.validation-block.major_issues    { border-left-color: oklch(0.65 0.20 50 / 0.8) }
+.validation-block.incorrect       { border-left-color: oklch(0.65 0.20 25 / 0.8) }
+.validation-block.uncertain       { border-left-color: var(--text-quiet) }
+.validation-block .vh{font-family:'JetBrains Mono',monospace;font-size:9.5px;
+  letter-spacing:0.1em;text-transform:uppercase;color:var(--text-quiet);
+  margin-bottom:5px;display:flex;gap:8px;align-items:center}
+.validation-block .vissues{color:var(--text-secondary);margin-top:4px}
+.validation-block .vissues li{margin-left:14px}
+
+.filter-bar{display:flex;gap:8px;align-items:center;margin-bottom:10px;flex-wrap:wrap}
+</style>
+</head>
+<body>
+
+<div class="aurora-1"></div>
+<div class="aurora-2"></div>
+<div class="noise"></div>
+
+<div class="shell">
+
+  <div class="topbar">
+    <div class="brand">
+      <div class="brand-icon">◬</div>
+      <div>
+        <div class="brand-name">Baustein_2_Profile</div>
+      </div>
+      <span class="brand-sub">build 0.8.1 · LLM-Klassifikation → G++-Pool (chunked, cached prefix) → Satz-Mapping → OSCAL-Profil mit alters · Token-Tracking · v5-chunked prompt</span>
+    </div>
+    <div class="meta-pills">
+      <span id="token-pill" class="pill" title="Token-Verbrauch (kumuliert pro Run)">Σ 0 tok · cache 0 (0%)</span>
+      <span id="status-pill" class="pill">bereit</span>
+      <span class="pill live">● Gemini 3</span>
+    </div>
+  </div>
+
+  <div class="main">
+
+    <div class="rail">
+      <div class="rail-scroll">
+
+        <div class="rail-section">
+          <div class="rail-label"><span><span class="glyph">◇</span> Modell</span></div>
+          <div class="field">
+            <label>API-Key</label>
+            <input id="api-key" type="password" placeholder="x-goog-api-key">
+          </div>
+          <div class="field">
+            <label>Modell</label>
+            <select id="model">
+              <option value="gemini-3.1-pro-preview">gemini-3.1-pro-preview</option>
+              <option value="gemini-3-flash-preview">gemini-3-flash-preview</option>
+              <option value="gemini-3.1-flash-lite-preview">gemini-3.1-flash-lite-preview</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Thinking-Level</label>
+            <select id="thinking">
+              <option value="minimal">minimal</option>
+              <option value="low">low</option>
+              <option value="medium" selected>medium</option>
+              <option value="high">high</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="rail-section">
+          <div class="rail-label"><span><span class="glyph">◈</span> Pool</span></div>
+          <div class="field-row">
+            <div class="field">
+              <label>Parallel</label>
+              <input id="concurrency" type="number" min="1" max="12" value="4">
+            </div>
+            <div class="field">
+              <label>Retries</label>
+              <input id="retries" type="number" min="0" max="5" value="2">
+            </div>
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label>Controls/Chunk (S2)</label>
+              <input id="ctrl-chunk" type="number" min="10" max="400" value="100">
+            </div>
+            <div class="field">
+              <label>Chunk (Checker)</label>
+              <input id="chunk-size" type="number" min="1" max="30" value="8">
+            </div>
+          </div>
+        </div>
+
+        <div class="rail-section">
+          <div class="rail-label"><span><span class="glyph">⬡</span> Modus</span></div>
+          <label class="toggle">
+            <input type="checkbox" id="maker-checker">
+            <span>Maker-Checker
+              <span class="desc">Zweite Prüfung der Matches</span>
+            </span>
+          </label>
+          <label class="toggle">
+            <input type="checkbox" id="grounding">
+            <span>Google-Search-Grounding
+              <span class="desc">Recherche-Tools für Modell</span>
+            </span>
+          </label>
+        </div>
+
+        <div class="rail-section">
+          <div class="rail-label"><span><span class="glyph">▣</span> Output</span></div>
+            </select>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="splitter" id="splitter"></div>
+
+    <div class="work">
+      <div class="work-scroll">
+
+        <!-- INPUT CARD -->
+        <div class="card">
+          <div class="card-head">
+            <div class="card-title"><span class="num">01 · input</span> Baustein-PDF & G++ Katalog</div>
+          </div>
+          <div class="card-desc">PDF eines BSI-Bausteins (Ed. 2023) per Drop. G++ Anwenderkatalog (Prose-Quelle), Zielobjektkategorien (CSV) und Control-Pools werden beim Start automatisch via raw-URL geladen.</div>
+
+          <div class="dropzone" id="dropzone">
+            <span class="glyph">⤓</span>
+            <div><strong>BSI-Baustein als PDF</strong> hierher ziehen oder klicken</div>
+            <span class="dropzone-info" id="pdf-info">noch keine Datei geladen</span>
+            <input id="pdf-input" type="file" accept="application/pdf" style="display:none">
+          </div>
+
+          <div style="margin-top:14px">
+            <label style="display:block;font-size:11px;color:var(--text-tertiary);margin-bottom:4px;font-weight:500">G++ Anwenderkatalog (raw JSON-URL · Prose-Quelle für beide Pfade)</label>
+            <div class="url-row">
+              <input id="cat-url" type="text" value="https://raw.githubusercontent.com/BSI-Bund/Stand-der-Technik-Bibliothek/refs/heads/main/Anwenderkataloge/Grundschutz%2B%2B/Grundschutz%2B%2B-catalog.json">
+              <button class="btn sm" id="btn-load-cat">⤓ laden</button>
+              <button class="btn sm ghost" id="btn-upload-cat">⤴ upload</button>
+              <input id="cat-file" type="file" accept="application/json" style="display:none">
+            </div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-quiet);letter-spacing:0.05em">
+              <span id="cat-info">Katalog nicht geladen</span>
+            </div>
+          </div>
+
+          <div style="margin-top:14px">
+            <label style="display:block;font-size:11px;color:var(--text-tertiary);margin-bottom:4px;font-weight:500">Zielobjektkategorien (CSV) + Pools werden automatisch geladen</label>
+            <div class="url-row">
+              <input id="pi-url" type="text" value="https://raw.githubusercontent.com/BSI-Bund/Stand-der-Technik-Bibliothek/refs/heads/main/Dokumentation/namespaces/target_object_categories.csv">
+              <button class="btn sm" id="btn-load-pi">⤓ laden</button>
+              <button class="btn sm ghost" id="btn-upload-pi">⤴ upload</button>
+              <input id="pi-file" type="file" accept=".csv,text/csv" style="display:none">
+            </div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-quiet);letter-spacing:0.05em;margin-bottom:8px">
+              <span id="pi-info">Zielobjektkategorien nicht geladen</span> · <span id="pool-info">Pools nicht geladen</span>
+            </div>
+            <div>
+              <label style="display:block;font-size:11px;color:var(--text-tertiary);margin-bottom:4px;font-weight:500">Kategorie manuell wählen (überschreibt Stage 1)</label>
+              <select id="pi-pick" style="width:100%;background:var(--bg-elev-2);border:1px solid var(--border-1);color:var(--text-primary);font-family:'JetBrains Mono',monospace;font-size:11px;padding:7px 9px;border-radius:7px;outline:none">
+                <option value="">— auto via Stage 1 —</option>
+                <option value="__prozess__">— force PROZESS (ISMS-Pool) —</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- PROMPTS CARD -->
+        <div class="card">
+          <div class="card-head">
+            <div class="card-title"><span class="num">02 · prompts</span> Editierbare Prompts pro Stage</div>
+            <div class="muted" style="font-size:10.5px">alle Änderungen werden in localStorage gespeichert</div>
+          </div>
+          <div class="card-desc">Defaults sind produktiv nutzbar. Felder unten lassen sich frei umformulieren — Platzhalter wie <code>{baustein_id}</code> müssen erhalten bleiben.</div>
+
+          <!-- STAGE 1 PROMPT -->
+          <div class="prompt-block">
+            <div class="prompt-head">
+              <div class="prompt-label"><span class="stage">▶ STAGE 1</span> Klassifikation — PDF → Zielobjektkategorie / Prozess</div>
+              <div class="prompt-actions">
+                <button class="btn sm ghost" data-reset="s1">Reset</button>
+              </div>
+            </div>
+            <textarea class="prompt-ta" id="prompt-s1" data-placeholders="{baustein_id},{baustein_title},{baustein_summary},{categories}"></textarea>
+            <div class="prompt-warn" id="warn-s1"></div>
+          </div>
+
+          <!-- STAGE 2 PROMPT (sentence mapping) -->
+          <div class="prompt-block">
+            <div class="prompt-head">
+              <div class="prompt-label"><span class="stage">▶ STAGE 2</span> Satz-Mapping — PDF-Sätze → G++-Controls aus dem Pool</div>
+              <div class="prompt-actions">
+                <button class="btn sm ghost" data-reset="s2">Reset</button>
+              </div>
+            </div>
+            <textarea class="prompt-ta" id="prompt-s2" data-placeholders="{baustein_id},{baustein_title},{controls},{anforderungen_with_sentences}"></textarea>
+            <div class="prompt-warn" id="warn-s2"></div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-quiet);margin-top:6px;letter-spacing:0.05em">
+              Fallback (kein Pool auflösbar) erzeugt Custom-Controls deterministisch aus den Anforderungen — kein Modell-Call.
+            </div>
+          </div>
+
+          <!-- CHECKER PROMPT -->
+          <div class="prompt-block" id="checker-block" style="display:none">
+            <div class="prompt-head">
+              <div class="prompt-label"><span class="stage" style="color:var(--amber)">▶ CHECKER</span> Validierung der Stage-2-Implementation-Descriptions</div>
+              <div class="prompt-actions">
+                <button class="btn sm ghost" data-reset="check">Reset</button>
+              </div>
+            </div>
+            <textarea class="prompt-ta" id="prompt-check" data-placeholders="{pairs}"></textarea>
+            <div class="prompt-warn" id="warn-check"></div>
+          </div>
+        </div>
+
+        <!-- RUN CARD -->
+        <div class="card">
+          <div class="card-head">
+            <div class="card-title"><span class="num">03 · run</span> Pipeline starten</div>
+          </div>
+
+          <div class="stage-line">
+            <div class="stage-pip" id="pip-s0"><span class="pn">00</span><span class="pt">PDF parse</span><span class="pdot"></span></div>
+            <div class="stage-pip" id="pip-s1"><span class="pn">01</span><span class="pt">profile-match</span><span class="pdot"></span></div>
+            <div class="stage-pip" id="pip-s2"><span class="pn">02</span><span class="pt">impl-reqs</span><span class="pdot"></span></div>
+            <div class="stage-pip" id="pip-s3"><span class="pn">03</span><span class="pt">assemble</span><span class="pdot"></span></div>
+            <div class="stage-pip hidden" id="pip-s4"><span class="pn">04</span><span class="pt">checker</span><span class="pdot"></span></div>
+          </div>
+
+          <div class="run-bar">
+            <button class="btn primary" id="btn-run">▶ <span id="btn-run-label">Pipeline starten</span></button>
+            <button class="btn danger hidden" id="btn-cancel">■ cancel</button>
+            <label class="testdrive">
+              <input type="checkbox" id="testdrive">
+              <span>Test drive (5%)</span>
+            </label>
+            <span class="grow"></span>
+            <button class="btn sm ghost" id="btn-clear">⌕ clear results</button>
+          </div>
+
+          <div class="progress-track"><div class="progress-fill" id="pbar"></div></div>
+          <div class="progress-meta">
+            <span id="pbar-label">idle</span>
+            <span id="pbar-count">0/0</span>
+          </div>
+        </div>
+
+        <!-- TESTDRIVE BANNER -->
+        <div class="testdrive-banner" id="td-banner"></div>
+
+        <!-- STATS CARD -->
+        <div class="card hidden" id="stats-card">
+          <div class="card-head">
+            <div class="card-title"><span class="num">stats</span> Aggregat-Sicht</div>
+          </div>
+          <div class="stats-grid" id="stats-grid"></div>
+        </div>
+
+        <!-- STAGE 1 RESULT -->
+        <div class="card hidden" id="s1-result">
+          <div class="card-head">
+            <div class="card-title"><span class="num">▸ stage 1</span> Klassifikation</div>
+            <span class="chip" id="s1-chip">—</span>
+          </div>
+          <div id="s1-body" class="result-section"></div>
+        </div>
+
+        <!-- STAGE 2 RESULT -->
+        <div class="card hidden" id="s2-result">
+          <div class="card-head">
+            <div class="card-title"><span class="num">▸ stage 2</span> Implemented-Requirements <span id="s2-mode-tag" class="chip accent" style="margin-left:8px">—</span></div>
+            <div class="filter-bar">
+              <span class="chip ok"><span id="s2-ok">0</span> generated</span>
+              <span class="chip err"><span id="s2-miss">0</span> missing-coverage</span>
+              <span class="chip warn hidden" id="s2-val-chip"><span id="s2-val">0</span> validation issues</span>
+              <select id="s2-filter" class="btn sm">
+                <option value="all">alle anzeigen</option>
+                <option value="ok">nur coverage=full</option>
+                <option value="partial">nur partial</option>
+                <option value="missing">nur missing</option>
+                <option value="issues">nur validation issues</option>
+              </select>
+            </div>
+          </div>
+          <div id="s2-body" class="result-section"></div>
+        </div>
+
+        <!-- STAGE 3 RESULT -->
+        <div class="card hidden" id="s3-result">
+          <div class="card-head">
+            <div class="card-title"><span class="num">▸ stage 3</span> OSCAL Profile</div>
+            <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+              <span class="chip accent" id="s3-chip">—</span>
+              <button class="btn sm" id="btn-download">⤓ Profile</button>
+              <button class="btn sm hidden" id="btn-download-cat">⤓ Custom-Catalog (C.2)</button>
+              <button class="btn sm ghost" id="btn-copy">⌕ copy</button>
+            </div>
+          </div>
+          <textarea class="output-area" id="s3-output" spellcheck="false"></textarea>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- LOG CONSOLE -->
+  <div class="console">
+    <div class="console-head">
+      <span><span style="color:var(--accent)">⌕</span> log · <span id="log-count">0</span> lines</span>
+      <div class="console-actions">
+        <label style="display:flex;align-items:center;gap:5px;color:var(--text-tertiary);text-transform:none;letter-spacing:0">
+          <input type="checkbox" id="log-autoscroll" checked style="accent-color:var(--accent)">
+          autoscroll
+        </label>
+        <button class="btn sm ghost" id="btn-toggle-log">▤ text</button>
+        <button class="btn sm ghost" id="btn-copy-log">⌕ copy</button>
+        <button class="btn sm ghost" id="btn-clear-log">clear</button>
+      </div>
+    </div>
+    <div class="console-body" id="log-body"></div>
+    <textarea id="log-ta" class="hidden" readonly spellcheck="false"
+      style="flex:1;min-height:0;margin:0;border:0;border-radius:0;resize:none;background:var(--bg-deep);color:var(--text-secondary);font-family:'JetBrains Mono',monospace;font-size:10.5px;line-height:1.6;padding:8px 16px;outline:none"></textarea>
+  </div>
+
+</div>
+
+<script>
+"use strict";
+
+/* ════════════════════════════════════════════════════════════════════════
+   Default prompts — production-quality. Editable in the UI; reset restores.
+   ════════════════════════════════════════════════════════════════════════ */
+
+const DEFAULT_S1_PROMPT = `Du bist Senior-Auditor für BSI IT-Grundschutz und kennst die Grundschutz++ (G++) Methodik im Detail. Aufgabe: Bestimme aus dem PDF eines BSI-Bausteins (Edition 2023), WAS für ein Objekt der Baustein beschreibt und ordne ihn der G++-Welt zu.
+
+ZWEI MÖGLICHKEITEN:
+1. ZIELOBJEKT — der Baustein beschreibt ein konkretes technisches oder organisatorisches Schutzobjekt (z.B. ein IT-System, eine Anwendung, ein Server, ein Netz, ein Gebäude, eine Nutzendengruppe, einen Dienstleister). Dann wähle GENAU EINE passende Zielobjektkategorie aus der Liste unten.
+2. PROZESS — der Baustein beschreibt einen übergreifenden ISMS-/Management-Prozess, der kein einzelnes Schutzobjekt ist (z.B. Sicherheitsmanagement, Notfallmanagement, Personal-Prozesse, Patch-/Änderungsmanagement, Audits, Risikomanagement, Sensibilisierung). Dann setze object_type="prozess" und zielobjekt_name=null.
+
+REGELN:
+- Entscheide zuerst object_type ("zielobjekt" oder "prozess") aufgrund von Titel und Beschreibung.
+- Bei "zielobjekt": wähle die Kategorie, deren Definition den Baustein-Gegenstand am besten beschreibt. Nutze die Synonyme als Hinweis. Gib den Kategorie-NAMEN exakt wie in der Liste zurück.
+- Confidence strikt:
+  · 0.90+ = Definition trifft den Baustein-Gegenstand exakt
+  · 0.70–0.89 = klar dieselbe Objektart, leichte Abweichung
+  · 0.50–0.69 = plausibel, aber unsicher
+  · < 0.50 = sehr unsicher
+- alternatives: bis zu 3 weitere plausible Kategorienamen (nur bei object_type="zielobjekt"), absteigend nach Eignung.
+- rationale auf Deutsch, knapp (2–3 Sätze): woran die Zuordnung erkennbar ist.
+
+PDF-BAUSTEIN:
+ID: {baustein_id}
+Titel: {baustein_title}
+Beschreibung (Abschnitt 1 der Edition 2023):
+{baustein_summary}
+
+VERFÜGBARE ZIELOBJEKTKATEGORIEN (Name — Definition — Synonyme):
+{categories}
+
+OUTPUT: JSON:
+{
+  "object_type": "zielobjekt" | "prozess",
+  "zielobjekt_name": string|null,
+  "confidence": number,
+  "rationale": string,
+  "alternatives": string[]
+}`;
+
+const DEFAULT_S2_PROMPT = `Du bist Senior-Auditor für BSI IT-Grundschutz mit langjähriger Erfahrung in der Migration von Edition-2023-Bausteinen zum Grundschutz++ (G++) Anwenderkatalog.
+
+KONTEXT-MODELL:
+- Die unten gelisteten G++-Controls sind GENAU der Pool, der für die in Stage 1 bestimmte Zielobjektkategorie bzw. den Prozess gilt. Es sind die einzig erlaubten Mapping-Ziele.
+- Jede Anforderung aus dem Edition-2023-Baustein besteht aus mehreren Sätzen.
+- Jeder G++-Control hat einen Titel und eine Statement-Prosa.
+- Deine Aufgabe: Verteile JEDEN Satz auf alle inhaltlich verwandten G++-Controls aus dem Pool.
+
+KARDINAL-REGEL — DER DEFAULT IST: ES GIBT EIN MAPPING.
+- Ein normativer Satz (enthält MUSS/MÜSSEN/SOLLTE/SOLLTEN/DARF/KANN) wird grundsätzlich auf MINDESTENS EIN Control gemappt, sofern auch nur eine inhaltliche Verwandtschaft besteht.
+- GROSSZÜGIG mappen ist explizit gewollt. Bei mehreren plausiblen Controls: ALLE listen, nicht nur den "besten".
+- Themen-Verwandtschaft ist SEMANTISCH zu verstehen, nicht wörtlich. Beispiele für äquivalente Themen:
+  · "Berechtigung" ≈ "Zugriff" ≈ "Identität" ≈ "Authentifizierung" ≈ "Privilegien" ≈ "Rolle"
+  · "Konfiguration" ≈ "Härtung" ≈ "sichere Voreinstellung" ≈ "Hardening" ≈ "Parametrierung"
+  · "Protokollierung" ≈ "Logging" ≈ "Audit-Trail" ≈ "Monitoring" ≈ "Aufzeichnung"
+  · "Dokumentation" ≈ "Verfahrensbeschreibung" ≈ "Spezifikation" ≈ "Regelwerk"
+  · "Schulung" ≈ "Sensibilisierung" ≈ "Awareness" ≈ "Qualifikation"
+  · "Verfügbarkeit" ≈ "Hochverfügbarkeit" ≈ "Ausfallsicherheit" ≈ "Redundanz"
+
+VORGEHEN PRO SATZ:
+1. Identifiziere die Haupt-Thematik(en) des Satzes.
+2. Prüfe JEDEN Control in DIESEM Chunk auf inhaltliche Berührungspunkte (auch bei nur teilweiser Überlappung). Im Zweifel mappen statt verwerfen.
+3. Bei Mehrfach-Adressierung im Satz ("Es MUSS dokumentiert UND freigegeben werden") → mappe auf BEIDE Themen, sofern in diesem Chunk vorhanden.
+
+WICHTIG — CHUNKING:
+- Du bekommst pro Request nur einen AUSSCHNITT (Chunk) des Control-Pools. Mappe jeden Satz NUR auf Controls aus DIESEM Chunk.
+- Gib NUR Mapping-Elemente für Sätze zurück, die in DIESEM Chunk mindestens ein passendes Control haben. Sätze ohne Treffer in diesem Chunk einfach WEGLASSEN — das spart Tokens und ist erwünscht, da die übrigen Controls in anderen Chunks stehen.
+- Erfinde NICHTS, um einen Treffer zu erzwingen.
+
+REGELN:
+- mapped_control_ids: mindestens eine, nur IDs aus der unten gelieferten Control-Liste (diesem Chunk). KEINE Halluzination, KEIN Erfinden von Control-IDs.
+- sentence_text: VERBATIM aus der Eingabe zurückgeben — Wort für Wort, kein Umformulieren (dient nur der Zuordnung; anforderung_id + sentence_idx sind maßgeblich).
+- rationale: ein kurzer Satz Deutsch, was den Satz mit dem/den Control(s) verbindet.
+
+BAUSTEIN: {baustein_id} – {baustein_title}
+
+ANFORDERUNGEN AUS DEM BAUSTEIN MIT EINZELSÄTZEN (zu verteilen):
+{anforderungen_with_sentences}
+
+OUTPUT-JSON:
+{
+  "mappings": [
+    {
+      "anforderung_id": string,
+      "sentence_idx": integer,
+      "sentence_text": string,
+      "mapped_control_ids": string[],
+      "rationale": string
+    }
+  ]
+}
+
+════════════════════════════════════════════════════════════
+G++-CONTROLS — NUR DIESER CHUNK (ID — Titel: Beschreibung):
+{controls}`;
+
+const DEFAULT_CHECK_PROMPT = `Du bist QS für BSI-Compliance-Mappings. Vor dir liegen Implementation-Statements, die ein erster AI-Pass (Maker) für Kernel-Controls erzeugt hat, gestützt auf einen Edition-2023-Baustein. Audit-Aufgabe: Bestätige, korrigiere oder verwirf jedes Statement.
+
+VERDICTS (fünfstufig, kein boolean):
+- confirmed         = Statement ist korrekt, source_anforderungen plausibel, coverage richtig
+- minor_corrections = Statement kann bleiben, Feinjustierung an Wortwahl, Modalverb oder remarks
+- major_issues      = Statement ist schief — relevante Anforderung wurde übersehen, falsch verknüpft, oder coverage falsch klassifiziert
+- incorrect         = Statement ist falsch und ein klar besserer Text existiert
+- uncertain         = du kannst nicht entscheiden (Begründung pflicht)
+
+confidence_check (im Sinne von "wie sicher ist der Maker mit seiner coverage-Einstufung"):
+- appropriate / too_high / too_low
+
+PAARE ZUM PRÜFEN:
+{pairs}
+
+OUTPUT: JSON mit "validations": Liste in Eingabereihenfolge:
+{
+  "item_id": string (entspricht control_id aus dem Pair),
+  "verdict": one of [confirmed, minor_corrections, major_issues, incorrect, uncertain],
+  "issues": string[],
+  "corrections": string,
+  "confidence_check": one of [appropriate, too_high, too_low],
+  "reviewer_notes": string
+}`;
+
+const DEFAULTS = {
+  s1:    DEFAULT_S1_PROMPT,
+  s2:    DEFAULT_S2_PROMPT,
+  check: DEFAULT_CHECK_PROMPT,
+};
+
+/* ════════════════════════════════════════════════════════════════════════
+   Data sources — all via raw.githubusercontent.com (no GitHub-API rate limit).
+   The G++ Anwenderkatalog is the single prose source for BOTH paths:
+   Zielobjekt-Pools (zielobjekt_controls.json, keyed by category-UUID) and
+   the ISMS/Prozess-Pool (all controls listed in gpp_isms_stripped.md).
+   ════════════════════════════════════════════════════════════════════════ */
+
+const GPP_CATALOG_URL = "https://raw.githubusercontent.com/BSI-Bund/Stand-der-Technik-Bibliothek/refs/heads/main/Anwenderkataloge/Grundschutz%2B%2B/Grundschutz%2B%2B-catalog.json";
+const ZOK_CSV_URL     = "https://raw.githubusercontent.com/BSI-Bund/Stand-der-Technik-Bibliothek/refs/heads/main/Dokumentation/namespaces/target_object_categories.csv";
+const ZO_CONTROLS_URL = "https://raw.githubusercontent.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/main/hilfsdateien/zielobjekt_controls.json";
+const ISMS_MD_URL     = "https://raw.githubusercontent.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/main/hilfsdateien/gpp_isms_stripped.md";
+// href written into the assembled OSCAL profile's import (un-escaped form)
+const GPP_CATALOG_HREF = "https://raw.githubusercontent.com/BSI-Bund/Stand-der-Technik-Bibliothek/refs/heads/main/Anwenderkataloge/Grundschutz%2B%2B/Grundschutz%2B%2B-catalog.json";
+
+/* ════════════════════════════════════════════════════════════════════════
+   State
+   ════════════════════════════════════════════════════════════════════════ */
+
+const state = {
+  // input
+  pdfFile: null,
+  pdfText: "",
+  baustein: null,           // { id, title, summary, requirements }
+
+  // catalog (G++ Anwenderkatalog — single prose source for both paths)
+  catalog: null,
+  catalogSource: null,
+  catalogControls: [],      // flattened [{id, title, statement, guidance, modalverb, sec_level, group}]
+
+  // classification context (raw-URL loaded, no GitHub-API)
+  categories: [],           // [{uuid, name, definition, typ, kategorie, synonyme, childOf}]
+  categoriesByName: null,   // Map name(lower) → category
+  zoControlsMap: null,      // Map zielobjekt-UUID → [control-id]
+  ismsControlIds: [],       // [control-id] for the Prozess/ISMS pool
+  strippedById: null,       // Map control-id → {name, desc} from gpp_isms_stripped.md (cheap match context)
+
+  // token accounting (Gemini usageMetadata, accumulated per run)
+  tokens: { prompt: 0, cached: 0, candidates: 0, thoughts: 0, total: 0, calls: 0 },
+
+  // pipeline outputs
+  classification: null,     // { object_type, zielobjekt_name, zielobjekt_uuid, confidence, rationale, alternatives }
+  poolControlIds: [],       // candidate G++ control-ids for the matched category / prozess
+  pipelineMode: null,       // "ZIELOBJEKT" | "PROZESS" | "C2" (rare custom fallback)
+  implReqs: [],             // [{control_id, control_title, control_statement, control_guidance, control_modalverb, mapped_sentences, statement_prose, description, source_anforderungen, coverage, remarks, pending, error, validation}]
+  sentenceMappings: [],     // C1: raw mappings from LLM, per sentence
+  unmappedSentences: [],    // C1: sentences classified as context (no control mapping)
+  customCatalog: null,      // C2 only
+  profileDef: null,
+
+  // runtime
+  running: false,
+  cancel: false,
+  currentStage: null,
+};
+
+const $ = id => document.getElementById(id);
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+
+/* ════════════════════════════════════════════════════════════════════════
+   Logging
+   ════════════════════════════════════════════════════════════════════════ */
+
+const logBody = $("log-body");
+const logTA = $("log-ta");
+let logCount = 0;
+
+const l = {
+  _add(level, msg) {
+    const ts = new Date().toISOString().slice(11, 23);
+    const div = document.createElement("div");
+    div.className = `log-line log-${level}`;
+    div.innerHTML = `<span class="log-ts">${ts}</span><span class="log-lvl">${level}</span><span class="log-msg"></span>`;
+    div.querySelector(".log-msg").textContent = msg;
+    logBody.appendChild(div);
+    // mirror as plaintext into the selectable/copyable textarea
+    logTA.value += `${ts} ${level.toUpperCase().padEnd(5)} ${msg}\n`;
+    logCount++;
+    $("log-count").textContent = logCount;
+    if ($("log-autoscroll").checked) {
+      logBody.scrollTop = logBody.scrollHeight;
+      logTA.scrollTop = logTA.scrollHeight;
+    }
+  },
+  info(m)  { this._add("info", m) },
+  ok(m)    { this._add("ok", m) },
+  warn(m)  { this._add("warn", m) },
+  err(m)   { this._add("err", m) },
+  debug(m) { this._add("debug", m) },
+};
+
+l.info("init · build 0.8.1 · pdf → klassifikation → pool-chunk-mapping → oscal-profil mit alters");
+
+$("btn-clear-log").addEventListener("click", () => {
+  logBody.innerHTML = "";
+  logTA.value = "";
+  logCount = 0;
+  $("log-count").textContent = "0";
+});
+$("btn-toggle-log").addEventListener("click", () => {
+  const showTA = logBody.classList.toggle("hidden");
+  logTA.classList.toggle("hidden", !showTA);
+  $("btn-toggle-log").textContent = showTA ? "▤ pretty" : "▤ text";
+});
+$("btn-copy-log").addEventListener("click", async () => {
+  try { await navigator.clipboard.writeText(logTA.value); l.ok("Log in Zwischenablage"); }
+  catch (e) { l.err(`copy failed: ${e.message}`); }
+});
+
+/* ════════════════════════════════════════════════════════════════════════
+   Persistence + prompt textareas
+   ════════════════════════════════════════════════════════════════════════ */
+
+const PROMPT_VERSION = "v5-chunked";  // bumps when DEFAULTS change shape — invalidates user overrides
+
+function loadPrefs() {
+  // Migration: if stored prompt-version differs, clear stored prompt overrides so new defaults load
+  const storedVer = localStorage.getItem("gpp.prompt.version");
+  if (storedVer !== PROMPT_VERSION) {
+    for (const k of ["s1","s2","check"]) {
+      localStorage.removeItem(`gpp.prompt.${k}`);
+    }
+    // v4-gpp also retargets the data sources — drop stale Kernel/GitHub-API URLs
+    localStorage.removeItem("gpp.caturl");
+    localStorage.removeItem("gpp.piurl");
+    localStorage.setItem("gpp.prompt.version", PROMPT_VERSION);
+    if (storedVer) l.info(`prompt-version migration ${storedVer} → ${PROMPT_VERSION} · stored prompts + URLs gelöscht, defaults aktiv`);
+  }
+
+  $("api-key").value         = localStorage.getItem("gpp.apikey")    || "";
+  $("model").value           = localStorage.getItem("gpp.model")     || "gemini-3.1-pro-preview";
+  $("thinking").value        = localStorage.getItem("gpp.thinking")  || "medium";
+  $("concurrency").value     = localStorage.getItem("gpp.conc")      || "4";
+  $("retries").value         = localStorage.getItem("gpp.retries")   || "2";
+  $("chunk-size").value      = localStorage.getItem("gpp.chunk")     || "8";
+  $("ctrl-chunk").value      = localStorage.getItem("gpp.ctrlchunk") || "100";
+  $("maker-checker").checked = localStorage.getItem("gpp.mc")        === "1";
+  $("grounding").checked     = localStorage.getItem("gpp.ground")    === "1";
+  $("testdrive").checked     = localStorage.getItem("gpp.td")        === "1";
+  $("cat-url").value         = localStorage.getItem("gpp.caturl")    || $("cat-url").value;
+  $("pi-url").value          = localStorage.getItem("gpp.piurl")     || $("pi-url").value;
+  for (const k of ["s1","s2","check"]) {
+    $(`prompt-${k}`).value = localStorage.getItem(`gpp.prompt.${k}`) || DEFAULTS[k];
+  }
+  toggleCheckerUI();
+}
+
+function bindPersist(id, key) {
+  $(id).addEventListener("input",  () => localStorage.setItem(key, $(id).value));
+  $(id).addEventListener("change", () => localStorage.setItem(key, $(id).value));
+}
+
+bindPersist("api-key", "gpp.apikey");
+bindPersist("model", "gpp.model");
+bindPersist("thinking", "gpp.thinking");
+bindPersist("concurrency", "gpp.conc");
+bindPersist("retries", "gpp.retries");
+bindPersist("chunk-size", "gpp.chunk");
+bindPersist("ctrl-chunk", "gpp.ctrlchunk");
+bindPersist("cat-url", "gpp.caturl");
+bindPersist("pi-url", "gpp.piurl");
+
+$("maker-checker").addEventListener("change", e => {
+  localStorage.setItem("gpp.mc", e.target.checked ? "1" : "0");
+  toggleCheckerUI();
+});
+$("grounding").addEventListener("change", e => {
+  localStorage.setItem("gpp.ground", e.target.checked ? "1" : "0");
+});
+$("testdrive").addEventListener("change", e => {
+  localStorage.setItem("gpp.td", e.target.checked ? "1" : "0");
+  updateRunLabel();
+});
+
+for (const k of ["s1","s2","check"]) {
+  const ta = $(`prompt-${k}`);
+  const warn = $(`warn-${k}`);
+  const expected = ta.dataset.placeholders.split(",");
+  const validate = () => {
+    const missing = expected.filter(p => !ta.value.includes(p));
+    if (missing.length) {
+      warn.classList.add("show");
+      warn.textContent = `⚠ fehlende Platzhalter: ${missing.join(", ")} — werden zur Laufzeit defensiv ergänzt`;
+    } else {
+      warn.classList.remove("show");
+    }
+  };
+  ta.addEventListener("input", () => {
+    localStorage.setItem(`gpp.prompt.${k}`, ta.value);
+    validate();
+  });
+  validate();
+}
+
+document.querySelectorAll("[data-reset]").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const key = btn.dataset.reset;
+    $(`prompt-${key}`).value = DEFAULTS[key];
+    localStorage.removeItem(`gpp.prompt.${key}`);
+    $(`prompt-${key}`).dispatchEvent(new Event("input"));
+    l.info(`prompt-${key} → default`);
+  });
+});
+
+function toggleCheckerUI() {
+  const on = $("maker-checker").checked;
+  $("checker-block").style.display = on ? "block" : "none";
+  $("pip-s4").classList.toggle("hidden", !on);
+}
+
+/* ════════════════════════════════════════════════════════════════════════
+   Splitter
+   ════════════════════════════════════════════════════════════════════════ */
+
+(() => {
+  const sp = $("splitter");
+  let drag = false;
+  const saved = parseInt(localStorage.getItem("gpp.rail") || "260");
+  document.documentElement.style.setProperty("--rail-w", saved + "px");
+  sp.addEventListener("mousedown", () => { drag = true; sp.classList.add("dragging"); document.body.style.cursor = "col-resize"; });
+  window.addEventListener("mouseup", () => { if (drag) { drag = false; sp.classList.remove("dragging"); document.body.style.cursor = ""; } });
+  window.addEventListener("mousemove", e => {
+    if (!drag) return;
+    const w = Math.max(200, Math.min(420, e.clientX));
+    document.documentElement.style.setProperty("--rail-w", w + "px");
+    localStorage.setItem("gpp.rail", String(w));
+  });
+})();
+
+/* ════════════════════════════════════════════════════════════════════════
+   PDF.js setup
+   ════════════════════════════════════════════════════════════════════════ */
+
+if (window.pdfjsLib) {
+  pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+} else {
+  l.err("pdf.js wurde nicht geladen — CDN blockiert? prüfe Netzwerk/Adblocker oder lade die Datei via http://localhost:…");
+}
+
+async function extractPdfText(file) {
+  if (!window.pdfjsLib) {
+    throw new Error("pdf.js nicht geladen (CDN blockiert?). Falls Adblocker aktiv: deaktivieren, oder via http://localhost:… öffnen statt file://.");
+  }
+  const buf = await file.arrayBuffer();
+  const pdf = await pdfjsLib.getDocument({ data: buf }).promise;
+  const pages = [];
+  for (let i = 1; i <= pdf.numPages; i++) {
+    const page = await pdf.getPage(i);
+    const tc = await page.getTextContent();
+    pages.push(tc.items.map(it => it.str).join(" "));
+  }
+  return pages.join("\n\n");
+}
+
+/* ════════════════════════════════════════════════════════════════════════
+   Baustein parsing — heuristic
+   ════════════════════════════════════════════════════════════════════════ */
+
+function splitSentences(text) {
+  if (!text) return [];
+  const raw = String(text).replace(/\s+/g, " ").trim();
+  // Protect common German abbreviations from being treated as sentence ends
+  const abbrevs = [
+    "z. B.", "z.B.", "ggf.", "u. a.", "u.a.", "etc.", "bzw.", "ca.",
+    "d. h.", "d.h.", "i. d. R.", "i.d.R.", "i. e. S.", "i.e.S.",
+    "Abs.", "Art.", "Nr.", "Bd.", "Kap.", "Abb.", "Tab.", "Nr.",
+    "vgl.", "evtl.", "sog.", "inkl.", "ggü.", "z. T.", "z.T.",
+  ];
+  let mungled = raw;
+  for (const a of abbrevs) {
+    mungled = mungled.split(a).join(a.replace(/\./g, "·"));
+  }
+  // Split on . ! ? followed by whitespace + uppercase letter; ignore if preceded by digit (e.g. "Abschnitt 4.1")
+  const parts = mungled.split(/(?<=(?<!\d)[.!?])\s+(?=[A-ZÄÖÜ])/);
+  return parts
+    .map(s => s.replace(/·/g, ".").trim())
+    .filter(s => s.length > 8);
+}
+
+function parseBausteinHeuristic(text) {
+  const out = { id: null, title: null, summary: "", requirements: [] };
+
+  const titleRe = /\b([A-Z]{3,6}(?:\.\d+){1,4})\s+([A-ZÄÖÜ][^\n]{2,80})/;
+  const tm = text.match(titleRe);
+  if (tm) {
+    out.id = tm[1];
+    out.title = tm[2].trim().replace(/\s{2,}/g, " ").slice(0, 120);
+  }
+
+  const descMatch = text.match(/1\s*(?:Beschreibung|Einleitung)([\s\S]{200,8000}?)(?=2\s*Gef|2\.\d|Gefährdungslage)/);
+  out.summary = descMatch ? descMatch[1].trim().slice(0, 4000) : text.slice(0, 4000);
+
+  const reqIdRe = new RegExp(`(${(out.id || "[A-Z]{3,6}(?:\\.\\d+){1,4}").replace(/\./g,"\\.")}\\.A\\d+\\.?\\d*)`, "g");
+  const matches = [...text.matchAll(reqIdRe)];
+  for (let i = 0; i < matches.length; i++) {
+    const start = matches[i].index;
+    const end = (i + 1 < matches.length) ? matches[i + 1].index : Math.min(text.length, start + 4000);
+    let block = text.slice(start, end).trim();
+    if (block.length < 80) continue;
+
+    const id = matches[i][1];
+
+    // Extract the Anforderungs-name: after ID, before [Role] or modal verb or newline
+    // BSI pattern: "{ID} {Name} [{Rolle}]\n{Body}" or "{ID} {Name}\n{Body}"
+    const afterIdIdx = matches[i].index + id.length;
+    const titleSlice = text.slice(afterIdIdx, Math.min(afterIdIdx + 250, text.length));
+    let name = null;
+    const nameMatch = titleSlice.match(/^\s+([^\[\n]+?)(?:\s*\[|\s*\n|\s+(?:MUSS|MÜSSEN|SOLLTE|SOLLTEN|DARF|KANN|KÖNNEN)\b|\s*\((?:CIA|[CIA, ]+)\))/);
+    if (nameMatch) {
+      name = nameMatch[1].trim().replace(/\s{2,}/g, " ");
+    } else {
+      name = titleSlice.replace(/^\s+/, "").split(/[\[\n]/)[0].trim().slice(0, 120);
+    }
+    name = (name || "").replace(/[\.\s]+$/, "").slice(0, 140);
+    if (!name) name = id;
+
+    // Strip the header (ID + name + optional [role]) from block, keep body for sentence splitting
+    let body = block;
+    const headerRe = new RegExp(`^${id.replace(/\./g,"\\.")}\\s+[^\\n]+\\n?`);
+    body = body.replace(headerRe, "").trim();
+    if (body.length < 40) body = block; // fallback if stripping went wrong
+
+    const sentences = splitSentences(body).map((s, idx) => ({ idx: idx + 1, text: s }));
+
+    let modalverb = null;
+    if (/\bMUSS\b/.test(block) || /\bMÜSSEN\b/.test(block) || /\bDARF NICHT\b/.test(block)) modalverb = "MUSS";
+    else if (/\bSOLLTE\b/.test(block) || /\bSOLLTEN\b/.test(block)) modalverb = "SOLLTE";
+    else if (/\bDARF\b/.test(block)) modalverb = "DARF";
+    else if (/\bKANN\b/.test(block) || /\bKÖNNEN\b/.test(block)) modalverb = "KANN";
+
+    if (out.requirements.some(r => r.id === id)) continue;
+    out.requirements.push({
+      id, name, modalverb,
+      text: block.replace(/\s{2,}/g, " ").slice(0, 3000),
+      sentences,
+    });
+  }
+
+  return out;
+}
+
+/* ════════════════════════════════════════════════════════════════════════
+   Catalog flattening — Kernel structure has statement + guidance parts,
+   modal_verb (with underscore), sec_level on control props.
+   ════════════════════════════════════════════════════════════════════════ */
+
+function namesOfAnforderungen(ids) {
+  if (!Array.isArray(ids) || !ids.length) return [];
+  const byId = new Map((state.baustein?.requirements || []).map(r => [r.id, r]));
+  return ids.map(id => {
+    const r = byId.get(id);
+    return r ? `${id} ${r.name || ""}`.trim() : id;
+  });
+}
+
+function flattenCatalog(cat) {
+  const root = cat?.catalog ?? cat;
+  const flat = [];
+
+  const walkGroup = (group, breadcrumb) => {
+    const here = breadcrumb.concat([group?.title || group?.id || ""]);
+    for (const c of (group?.controls || [])) walkControl(c, group?.id || "", here);
+    for (const sg of (group?.groups   || [])) walkGroup(sg, here);
+  };
+
+  const walkControl = (ctl, groupId, breadcrumb) => {
+    if (!ctl?.id) return;
+    let statement = "";
+    let guidance  = "";
+    let modalverb = null;
+
+    const collectPart = part => {
+      if (!part) return;
+      if (part.name === "statement" && typeof part.prose === "string") {
+        statement += (statement ? "\n" : "") + part.prose;
+      }
+      if (part.name === "guidance" && typeof part.prose === "string") {
+        guidance += (guidance ? "\n" : "") + part.prose;
+      }
+      for (const pr of (part.props || [])) {
+        if ((pr?.name === "modal_verb" || pr?.name === "modalverb") && !modalverb) modalverb = pr.value;
+      }
+      for (const sub of (part.parts || [])) collectPart(sub);
+    };
+    for (const p of (ctl.parts || [])) collectPart(p);
+
+    // Resolve OSCAL "{{ insert: param, id }}" placeholders to their values so
+    // the prose sent to the model is clean, readable text.
+    const paramVals = new Map();
+    for (const pm of (ctl.params || [])) {
+      if (!pm?.id) continue;
+      const v = Array.isArray(pm.values) && pm.values.length ? pm.values.join(", ")
+              : (pm.select?.choice?.join(", ") || pm.label || "");
+      paramVals.set(pm.id, v);
+    }
+    const resolveParams = s => s.replace(/\{\{\s*insert:\s*param,\s*([^\s}]+)\s*\}\}/g,
+      (_, id) => paramVals.get(id) ?? `[${id}]`);
+    statement = resolveParams(statement);
+    guidance  = resolveParams(guidance);
+
+    let sec_level = null;
+    for (const pr of (ctl.props || [])) {
+      if (pr?.name === "sec_level" && !sec_level) sec_level = pr.value;
+      if ((pr?.name === "modal_verb" || pr?.name === "modalverb") && !modalverb) modalverb = pr.value;
+    }
+
+    flat.push({
+      id: ctl.id,
+      title: ctl.title || "",
+      statement: statement.slice(0, 4000),
+      guidance:  guidance.slice(0, 4000),
+      modalverb,
+      sec_level,
+      group: groupId,
+      breadcrumb: breadcrumb.join(" › "),
+    });
+
+    for (const sub of (ctl.controls || [])) walkControl(sub, groupId, breadcrumb);
+  };
+
+  for (const g of (root?.groups   || [])) walkGroup(g, []);
+  for (const c of (root?.controls || [])) walkControl(c, "", []);
+  return flat;
+}
+
+/* ════════════════════════════════════════════════════════════════════════
+   Loaders — PDF, catalog, profile index, profile content
+   ════════════════════════════════════════════════════════════════════════ */
+
+$("dropzone").addEventListener("click", () => $("pdf-input").click());
+$("dropzone").addEventListener("dragover", e => { e.preventDefault(); e.currentTarget.classList.add("drag") });
+$("dropzone").addEventListener("dragleave", e => e.currentTarget.classList.remove("drag"));
+$("dropzone").addEventListener("drop", e => {
+  e.preventDefault();
+  e.currentTarget.classList.remove("drag");
+  const f = e.dataTransfer.files?.[0];
+  if (f) loadPdf(f);
+});
+$("pdf-input").addEventListener("change", e => {
+  const f = e.target.files?.[0];
+  if (f) loadPdf(f);
+});
+
+async function loadPdf(file) {
+  state.pdfFile = file;
+  $("pdf-info").textContent = `${file.name} · ${(file.size / 1024).toFixed(0)} KB · parse läuft…`;
+  l.info(`pdf · ${file.name} (${(file.size/1024).toFixed(0)} KB)`);
+  try {
+    const t0 = performance.now();
+    state.pdfText = await extractPdfText(file);
+    const ms = Math.round(performance.now() - t0);
+    state.baustein = parseBausteinHeuristic(state.pdfText);
+    const b = state.baustein;
+    $("pdf-info").textContent = `${file.name} · ${b.id || "??"} – ${b.title || "??"} · ${b.requirements.length} Anforderungen · ${b.requirements.reduce((s, r) => s + (r.sentences?.length || 0), 0)} Sätze`;
+    l.ok(`pdf parse done in ${ms}ms · id=${b.id} · "${b.title}" · ${b.requirements.length} Anforderungen · ${b.requirements.reduce((s, r) => s + (r.sentences?.length || 0), 0)} Sätze`);
+    if (b.requirements.length === 0) {
+      l.warn("keine Anforderungen heuristisch erkannt — C.2-Pfad bleibt leer, C.1 läuft trotzdem aber ohne Source-Coverage");
+    }
+    updateRunLabel();
+  } catch (e) {
+    l.err(`pdf parse failed: ${e.message}`);
+    $("pdf-info").textContent = `Fehler: ${e.message}`;
+  }
+}
+
+// Catalog loaders
+$("btn-upload-cat").addEventListener("click", () => $("cat-file").click());
+$("cat-file").addEventListener("change", async e => {
+  const f = e.target.files?.[0];
+  if (!f) return;
+  try {
+    const text = await f.text();
+    setCatalog(JSON.parse(text), `file://${f.name}`);
+  } catch (err) { l.err(`catalog file: ${err.message}`); }
+});
+
+$("btn-load-cat").addEventListener("click", async () => {
+  const url = $("cat-url").value.trim();
+  if (!url) return l.warn("keine Katalog-URL angegeben");
+  l.info(`fetch catalog · ${url}`);
+  try {
+    const t0 = performance.now();
+    const r = await fetch(url);
+    if (!r.ok) throw new Error(`HTTP ${r.status}`);
+    const json = await r.json();
+    setCatalog(json, url);
+    l.ok(`catalog fetched in ${Math.round(performance.now()-t0)}ms`);
+  } catch (e) {
+    l.err(`catalog fetch failed: ${e.message}`);
+    $("cat-info").textContent = `Fehler: ${e.message}`;
+  }
+});
+
+function setCatalog(json, src) {
+  state.catalog = json;
+  state.catalogSource = src;
+  state.catalogControls = flattenCatalog(json);
+  const title = json?.catalog?.metadata?.title || "ohne Titel";
+  $("cat-info").textContent = `${state.catalogControls.length} Controls · ${title} · ${src.length > 80 ? src.slice(0,80) + "…" : src}`;
+  l.ok(`catalog flattened · ${state.catalogControls.length} controls`);
+}
+
+/* ════════════════════════════════════════════════════════════════════════
+   Zielobjektkategorien (CSV) + Control-Pools — all via raw URLs.
+   CSV columns: Zielobjektkategorie,Definition,Typ,Kategorie,Synonyme,ChildOfUUID,UUID
+   ════════════════════════════════════════════════════════════════════════ */
+
+// Minimal RFC-4180-ish CSV parser: handles quoted fields with commas + newlines.
+function parseCsv(text) {
+  const rows = [];
+  let row = [], field = "", inQ = false;
+  const s = text.replace(/\r\n/g, "\n").replace(/\r/g, "\n");
+  for (let i = 0; i < s.length; i++) {
+    const c = s[i];
+    if (inQ) {
+      if (c === '"') {
+        if (s[i + 1] === '"') { field += '"'; i++; }
+        else inQ = false;
+      } else field += c;
+    } else if (c === '"') inQ = true;
+    else if (c === ",") { row.push(field); field = ""; }
+    else if (c === "\n") { row.push(field); rows.push(row); row = []; field = ""; }
+    else field += c;
+  }
+  if (field.length || row.length) { row.push(field); rows.push(row); }
+  return rows.filter(r => r.length && r.some(x => x.trim() !== ""));
+}
+
+function setCategories(csvText, src) {
+  const rows = parseCsv(csvText);
+  const header = rows.shift() || [];
+  const col = name => header.findIndex(h => h.trim().toLowerCase() === name.toLowerCase());
+  const ci = {
+    name: col("Zielobjektkategorie"), def: col("Definition"), typ: col("Typ"),
+    kat: col("Kategorie"), syn: col("Synonyme"), child: col("ChildOfUUID"), uuid: col("UUID"),
+  };
+  const cats = rows.map(r => ({
+    name: (r[ci.name] || "").trim(),
+    definition: (r[ci.def] || "").trim(),
+    typ: (r[ci.typ] || "").trim(),
+    kategorie: (r[ci.kat] || "").trim(),
+    synonyme: (r[ci.syn] || "").trim(),
+    childOf: (r[ci.child] || "").trim(),
+    uuid: (r[ci.uuid] || "").trim(),
+  })).filter(c => c.name && c.uuid);
+
+  state.categories = cats;
+  state.categoriesByName = new Map(cats.map(c => [c.name.toLowerCase(), c]));
+  $("pi-info").textContent = `${cats.length} Zielobjektkategorien · ${src.length > 60 ? src.slice(0,60) + "…" : src}`;
+  l.ok(`Zielobjektkategorien geladen · ${cats.length}`);
+
+  // Populate manual picker, preserving the static options
+  const sel = $("pi-pick");
+  const prev = sel.value;
+  sel.innerHTML = `<option value="">— auto via Stage 1 —</option>
+    <option value="__prozess__">— force PROZESS (ISMS-Pool) —</option>` + cats
+      .slice().sort((a, b) => a.name.localeCompare(b.name))
+      .map(c => `<option value="${escapeHtml(c.uuid)}">${escapeHtml(c.name)}</option>`).join("");
+  if (prev) sel.value = prev;
+}
+
+$("btn-upload-pi").addEventListener("click", () => $("pi-file").click());
+$("pi-file").addEventListener("change", async e => {
+  const f = e.target.files?.[0];
+  if (!f) return;
+  try { setCategories(await f.text(), `file://${f.name}`); }
+  catch (err) { l.err(`Kategorien-Datei: ${err.message}`); }
+});
+
+$("btn-load-pi").addEventListener("click", async () => {
+  const url = $("pi-url").value.trim() || ZOK_CSV_URL;
+  l.info(`fetch Zielobjektkategorien · ${url}`);
+  try {
+    const t0 = performance.now();
+    const r = await fetch(url);
+    if (!r.ok) throw new Error(`HTTP ${r.status}`);
+    setCategories(await r.text(), url);
+    l.ok(`Kategorien fetched in ${Math.round(performance.now()-t0)}ms`);
+  } catch (e) {
+    l.err(`Kategorien fetch failed: ${e.message}`);
+    $("pi-info").textContent = `Fehler: ${e.message}`;
+  }
+});
+
+// Load the deterministic control pools (zielobjekt → ids) + ISMS id set.
+async function loadPools() {
+  try {
+    const t0 = performance.now();
+    const [zoRes, ismsRes] = await Promise.all([fetch(ZO_CONTROLS_URL), fetch(ISMS_MD_URL)]);
+    if (!zoRes.ok) throw new Error(`zielobjekt_controls HTTP ${zoRes.status}`);
+    if (!ismsRes.ok) throw new Error(`isms HTTP ${ismsRes.status}`);
+    const zoJson = await zoRes.json();
+    const map = zoJson?.zielobjekt_controls_map ?? zoJson;
+    state.zoControlsMap = new Map(Object.entries(map));
+
+    // gpp_isms_stripped.md → id + name + description per table row (cheap match context)
+    const ismsText = await ismsRes.text();
+    const ids = [];
+    const stripped = new Map();
+    for (const line of ismsText.split("\n")) {
+      // | ID | name | description | UUID |
+      const m = line.match(/^\s*\|\s*([A-Z][A-Z0-9]*(?:\.\d+)+)\s*\|([^|]*)\|([^|]*)\|/);
+      if (!m) continue;
+      const id = m[1];
+      ids.push(id);
+      stripped.set(id, { name: m[2].trim(), desc: m[3].trim() });
+    }
+    state.ismsControlIds = ids;
+    state.strippedById = stripped;
+    $("pool-info").textContent = `${state.zoControlsMap.size} ZO-Pools · ${ids.length} ISMS-Controls (stripped)`;
+    l.ok(`Pools geladen in ${Math.round(performance.now()-t0)}ms · ${state.zoControlsMap.size} ZO-Pools · ${ids.length} ISMS-Controls (mit stripped-Beschreibung)`);
+  } catch (e) {
+    l.err(`Pool-Load fehlgeschlagen: ${e.message}`);
+    $("pool-info").textContent = `Pools Fehler: ${e.message}`;
+  }
+}
+
+// Resolve a Zielobjektkategorie name (as returned by the LLM) to a category object.
+function resolveCategory(name) {
+  if (!name || !state.categoriesByName) return null;
+  const lc = name.trim().toLowerCase();
+  let hit = state.categoriesByName.get(lc);
+  if (hit) return hit;
+  // fuzzy: contains / synonym match
+  for (const c of state.categories) {
+    if (c.name.toLowerCase().includes(lc) || lc.includes(c.name.toLowerCase())) return c;
+    if (c.synonyme && c.synonyme.toLowerCase().split(/[;,]/).some(s => s.trim() && s.trim() === lc)) return c;
+  }
+  return null;
+}
+
+/* ════════════════════════════════════════════════════════════════════════
+   Gemini wrapper · structured JSON · grounding · retries
+   ════════════════════════════════════════════════════════════════════════ */
+
+const stripFences = s => s.replace(/^\s*```(?:json)?/i, "").replace(/```\s*$/i, "").trim();
+
+function extractJson(text) {
+  const trim = text.trim();
+  try { return JSON.parse(trim); } catch {}
+  const stripped = stripFences(trim);
+  try { return JSON.parse(stripped); } catch {}
+  const s = stripped.indexOf("{");
+  const e = stripped.lastIndexOf("}");
+  if (s >= 0 && e > s) {
+    try { return JSON.parse(stripped.slice(s, e + 1)); } catch {}
+  }
+  const sa = stripped.indexOf("[");
+  const ea = stripped.lastIndexOf("]");
+  if (sa >= 0 && ea > sa) {
+    try { return JSON.parse(stripped.slice(sa, ea + 1)); } catch {}
+  }
+  throw new Error("JSON aus Modellantwort nicht extrahierbar");
+}
+
+async function llmOnce(prompt, schema) {
+  const apiKey = $("api-key").value.trim();
+  if (!apiKey) throw new Error("API-Key fehlt");
+  const model    = $("model").value;
+  const thinking = $("thinking").value;
+  const grounded = $("grounding").checked;
+
+  const body = {
+    contents: [{ role: "user", parts: [{ text: prompt }] }],
+    generationConfig: { thinkingConfig: { thinkingLevel: thinking } },
+  };
+  if (grounded) {
+    body.tools = [{ googleSearch: {} }];
+  } else if (schema) {
+    body.generationConfig.responseMimeType  = "application/json";
+    body.generationConfig.responseJsonSchema = schema;
+  }
+
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`;
+  const res = await fetch(url, {
+    method: "POST",
+    headers: { "Content-Type": "application/json", "x-goog-api-key": apiKey },
+    body: JSON.stringify(body),
+  });
+  if (!res.ok) {
+    let detail = `HTTP ${res.status}`;
+    try { detail += " · " + (await res.text()).slice(0, 400); } catch {}
+    throw new Error(detail);
+  }
+  const data = await res.json();
+  addTokens(data?.usageMetadata);
+  const text = (data?.candidates?.[0]?.content?.parts || []).map(p => p.text || "").join("\n");
+  if (!text) throw new Error("leere Modellantwort");
+  return text;
+}
+
+/* ── Token accounting (Gemini usageMetadata) ─────────────────────────────── */
+function resetTokens() {
+  state.tokens = { prompt: 0, cached: 0, candidates: 0, thoughts: 0, total: 0, calls: 0 };
+  updateTokenPill();
+}
+function addTokens(u) {
+  if (!u) return;
+  const t = state.tokens;
+  t.prompt     += u.promptTokenCount        || 0;
+  t.cached     += u.cachedContentTokenCount || 0;
+  t.candidates += u.candidatesTokenCount    || 0;
+  t.thoughts   += u.thoughtsTokenCount      || 0;
+  t.total      += u.totalTokenCount         || 0;
+  t.calls      += 1;
+  updateTokenPill();
+}
+const fmtTok = n => n >= 1000 ? (n / 1000).toFixed(n >= 10000 ? 0 : 1) + "k" : String(n);
+function updateTokenPill() {
+  const t = state.tokens;
+  const pill = $("token-pill");
+  if (!pill) return;
+  const pct = t.prompt > 0 ? Math.round((t.cached / t.prompt) * 100) : 0;
+  pill.textContent = `Σ ${fmtTok(t.total)} tok · cache ${fmtTok(t.cached)} (${pct}%)`;
+  pill.title = `${t.calls} calls · prompt ${t.prompt} (davon cached ${t.cached}) · output ${t.candidates} · thoughts ${t.thoughts} · total ${t.total}`;
+  pill.classList.toggle("live", t.cached > 0);
+}
+
+async function llm(prompt, label, schema) {
+  const retries = Math.max(0, parseInt($("retries").value) || 0);
+  let attempt = 0;
+  while (true) {
+    if (state.cancel) throw new Error("cancelled");
+    const t0 = performance.now();
+    try {
+      const text = await llmOnce(prompt, schema);
+      l.debug(`${label} ← ${(text.length/1024).toFixed(1)}kb in ${Math.round(performance.now()-t0)}ms`);
+      return text;
+    } catch (e) {
+      attempt++;
+      if (attempt > retries) throw e;
+      const wait = 500 * Math.pow(2, attempt - 1);
+      l.warn(`${label} failed (${e.message.slice(0,200)}) — retry ${attempt}/${retries} in ${wait}ms`);
+      await sleep(wait);
+    }
+  }
+}
+
+/* ════════════════════════════════════════════════════════════════════════
+   Worker pool
+   ════════════════════════════════════════════════════════════════════════ */
+
+async function runPool(tasks, limit, onProgress) {
+  const results = new Array(tasks.length);
+  let done = 0, next = 0;
+  const workers = Array.from({ length: Math.min(limit, tasks.length) }, async () => {
+    while (next < tasks.length) {
+      const i = next++;
+      if (state.cancel) { results[i] = { cancelled: true }; done++; onProgress?.(done, tasks.length); continue; }
+      try { results[i] = await tasks[i](); }
+      catch (e) { results[i] = { error: e }; }
+      done++;
+      onProgress?.(done, tasks.length);
+    }
+  });
+  await Promise.all(workers);
+  return results;
+}
+
+/* ════════════════════════════════════════════════════════════════════════
+   Progress / stage UI
+   ════════════════════════════════════════════════════════════════════════ */
+
+function showProgress(label, done, total) {
+  $("pbar-label").textContent = label;
+  $("pbar-count").textContent = `${done}/${total}`;
+  const pct = total > 0 ? (done / total) * 100 : 0;
+  $("pbar").style.width = pct + "%";
+  $("pbar").classList.toggle("done", done === total && total > 0);
+}
+
+function setStage(name) {
+  for (const id of ["pip-s0","pip-s1","pip-s2","pip-s3","pip-s4"]) {
+    const el = $(id);
+    el.classList.remove("active");
+    if (el.dataset.done === "1") el.classList.add("done");
+  }
+  if (name) $(`pip-${name}`).classList.add("active");
+  state.currentStage = name;
+}
+function doneStage(name) {
+  const el = $(`pip-${name}`);
+  el.dataset.done = "1";
+  el.classList.remove("active");
+  el.classList.add("done");
+}
+function resetStages() {
+  for (const id of ["pip-s0","pip-s1","pip-s2","pip-s3","pip-s4"]) {
+    const el = $(id);
+    el.dataset.done = "0";
+    el.classList.remove("active","done");
+  }
+}
+
+/* ════════════════════════════════════════════════════════════════════════
+   Prompt builders — defensively append missing placeholders
+   ════════════════════════════════════════════════════════════════════════ */
+
+function buildPrompt(key, vars) {
+  let tpl = $(`prompt-${key}`).value;
+  if (!tpl.trim()) tpl = DEFAULTS[key];
+  for (const [name, val] of Object.entries(vars)) {
+    const ph = `{${name}}`;
+    if (!tpl.includes(ph)) tpl += `\n\n${name.toUpperCase()}:\n${ph}`;
+    tpl = tpl.replaceAll(ph, val);
+  }
+  return tpl;
+}
+
+/* ════════════════════════════════════════════════════════════════════════
+   STAGE 1 — Klassifikation: Zielobjektkategorie vs. Prozess (LLM)
+   ════════════════════════════════════════════════════════════════════════ */
+
+const SCHEMA_S1 = {
+  type: "object",
+  properties: {
+    object_type:    { type: "string", enum: ["zielobjekt","prozess"] },
+    zielobjekt_name:{ type: ["string","null"] },
+    confidence:     { type: "number" },
+    rationale:      { type: "string" },
+    alternatives:   { type: "array", items: { type: "string" } },
+  },
+  required: ["object_type","confidence","rationale"],
+};
+
+async function runStage1Classify() {
+  setStage("s1");
+  showProgress("stage 1 · klassifikation", 0, 1);
+
+  const b = state.baustein;
+
+  // Build the category list as context (name — definition — synonyme)
+  const catBlock = state.categories.map(c => {
+    const def = (c.definition || "").replace(/\s+/g, " ").trim().slice(0, 320);
+    const syn = c.synonyme ? ` — Synonyme: ${c.synonyme}` : "";
+    return `- ${c.name}: ${def}${syn}`;
+  }).join("\n");
+  if (!state.categories.length) {
+    l.warn("keine Zielobjektkategorien geladen — Klassifikation läuft ohne Kategorie-Liste (nur zielobjekt/prozess möglich)");
+  }
+
+  const prompt = buildPrompt("s1", {
+    baustein_id: b.id || "(unbekannt)",
+    baustein_title: b.title || "(unbekannt)",
+    baustein_summary: (b.summary || "").slice(0, 3500),
+    categories: catBlock || "(keine Kategorien geladen)",
+  });
+
+  const text = await llm(prompt, "s1 klassifikation", $("grounding").checked ? null : SCHEMA_S1);
+  const parsed = extractJson(text);
+
+  const cls = {
+    object_type: parsed.object_type === "prozess" ? "prozess" : "zielobjekt",
+    zielobjekt_name: parsed.zielobjekt_name || null,
+    zielobjekt_uuid: null,
+    confidence: typeof parsed.confidence === "number" ? parsed.confidence : null,
+    rationale: parsed.rationale || "",
+    alternatives: Array.isArray(parsed.alternatives) ? parsed.alternatives : [],
+  };
+
+  if (cls.object_type === "zielobjekt") {
+    const cat = resolveCategory(cls.zielobjekt_name);
+    if (cat) {
+      cls.zielobjekt_uuid = cat.uuid;
+      cls.zielobjekt_name = cat.name;  // canonical
+    } else if (cls.zielobjekt_name) {
+      l.warn(`Modell nannte unbekannte Kategorie "${cls.zielobjekt_name}" — nicht in der CSV auflösbar`);
+    }
+  }
+
+  state.classification = cls;
+  showProgress("stage 1 · done", 1, 1);
+  renderStage1();
+  doneStage("s1");
+}
+
+function renderStage1() {
+  const card = $("s1-result");
+  const body = $("s1-body");
+  card.classList.remove("hidden");
+  body.innerHTML = "";
+
+  // Manual override via picker (uuid or __prozess__)
+  const manual = $("pi-pick").value;
+  if (manual) {
+    const isProz = manual === "__prozess__";
+    const cat = isProz ? null : (state.categories.find(c => c.uuid === manual) || null);
+    const div = document.createElement("div");
+    div.className = "zo-card primary";
+    div.innerHTML = `
+      <div class="zo-top">
+        <div class="zo-name">${escapeHtml(isProz ? "PROZESS (ISMS-Pool)" : (cat?.name || manual))}</div>
+        <div class="zo-type">manual override</div>
+      </div>
+      <div class="zo-rationale">Manuelle Auswahl überschreibt die Stage-1-Klassifikation.${cat ? ` <code style="font-family:'JetBrains Mono',monospace;color:var(--accent)">${escapeHtml(cat.uuid)}</code>` : ""}</div>
+    `;
+    body.appendChild(div);
+    $("s1-chip").textContent = isProz ? "manual: PROZESS" : `manual: ${cat?.name || manual}`;
+    return;
+  }
+
+  const c = state.classification || {};
+  const confPct = c.confidence != null ? Math.round(c.confidence * 100) : null;
+
+  const div = document.createElement("div");
+  if (c.object_type === "prozess") {
+    div.className = "zo-card primary";
+    div.innerHTML = `
+      <div class="zo-top">
+        <div class="zo-name">PROZESS</div>
+        <div class="zo-type">ISMS-Pool</div>
+      </div>
+      <div class="zo-rationale">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--green);letter-spacing:0.05em">confidence: ${confPct ?? "—"}%</span><br>
+        ${escapeHtml(c.rationale || "")}
+      </div>`;
+    $("s1-chip").textContent = `PROZESS (conf ${confPct ?? "—"}%)`;
+  } else if (c.zielobjekt_uuid) {
+    div.className = "zo-card primary";
+    div.innerHTML = `
+      <div class="zo-top">
+        <div class="zo-name">${escapeHtml(c.zielobjekt_name || "?")}</div>
+        <div class="zo-type">Zielobjektkategorie</div>
+      </div>
+      <div class="zo-rationale">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--green);letter-spacing:0.05em">confidence: ${confPct ?? "—"}%</span><br>
+        ${escapeHtml(c.rationale || "")}<br>
+        <code style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--accent)">${escapeHtml(c.zielobjekt_uuid)}</code>
+      </div>`;
+    $("s1-chip").textContent = `ZIELOBJEKT: ${c.zielobjekt_name} (conf ${confPct ?? "—"}%)`;
+  } else {
+    div.className = "zo-card";
+    div.style.borderColor = "oklch(0.65 0.2 25 / 0.3)";
+    div.innerHTML = `
+      <div class="zo-top">
+        <div class="zo-name">${escapeHtml(c.zielobjekt_name || "Kategorie nicht auflösbar")}</div>
+        <div class="zo-type" style="color:var(--amber)">→ Kategorie manuell wählen</div>
+      </div>
+      <div class="zo-rationale">${escapeHtml(c.rationale || "Keine Kategorie zugeordnet.")}</div>`;
+    $("s1-chip").textContent = "kein Pool — manuell wählen";
+  }
+  body.appendChild(div);
+
+  // Alternatives (zielobjekt only)
+  if (c.object_type === "zielobjekt" && Array.isArray(c.alternatives) && c.alternatives.length) {
+    const alt = document.createElement("div");
+    alt.style.marginTop = "8px";
+    alt.innerHTML = `<div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-quiet);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:6px">Alternativen</div>`;
+    for (const a of c.alternatives.slice(0, 3)) {
+      const e = document.createElement("div");
+      e.className = "zo-card";
+      e.style.padding = "8px 12px";
+      e.style.marginBottom = "5px";
+      e.innerHTML = `<div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text-tertiary)">${escapeHtml(a)}</div>`;
+      alt.appendChild(e);
+    }
+    body.appendChild(alt);
+  }
+}
+
+/* ════════════════════════════════════════════════════════════════════════
+   STAGE 2 — Branched: C.1 (LLM per control) or C.2 (deterministic)
+   ════════════════════════════════════════════════════════════════════════ */
+
+const SCHEMA_S2 = {
+  type: "object",
+  properties: {
+    mappings: {
+      type: "array",
+      items: {
+        type: "object",
+        properties: {
+          anforderung_id: { type: "string" },
+          sentence_idx: { type: "integer" },
+          sentence_text: { type: "string" },
+          mapped_control_ids: { type: "array", items: { type: "string" } },
+          rationale: { type: "string" },
+        },
+        required: ["anforderung_id","sentence_idx","sentence_text","mapped_control_ids"],
+      },
+    },
+  },
+  required: ["mappings"],
+};
+
+function sampleForTestDrive(items, pct = 0.05, minSample = 3) {
+  const n = Math.max(minSample, Math.ceil(items.length * pct));
+  if (items.length <= n) return items.map((it, i) => ({ ...it, _origIdx: i }));
+  const stride = Math.max(1, Math.floor(items.length / n));
+  const picked = [];
+  for (let i = 0; i < items.length && picked.length < n; i += stride) {
+    picked.push({ ...items[i], _origIdx: i });
+  }
+  return picked;
+}
+
+// Determine the candidate G++ control pool. Sets state.pipelineMode and
+// state.poolControlIds. ZIELOBJEKT → zielobjekt_controls.json[uuid];
+// PROZESS → the ISMS control set; C2 → no pool (rare custom fallback).
+function determinePool() {
+  const manual = $("pi-pick").value;
+  let mode, uuid = null;
+  if (manual === "__prozess__") { mode = "PROZESS"; }
+  else if (manual) { mode = "ZIELOBJEKT"; uuid = manual; }
+  else {
+    const c = state.classification;
+    if (c?.object_type === "prozess") mode = "PROZESS";
+    else if (c?.zielobjekt_uuid) { mode = "ZIELOBJEKT"; uuid = c.zielobjekt_uuid; }
+    else mode = "C2";
+  }
+
+  let ids = [];
+  if (mode === "PROZESS") {
+    ids = state.ismsControlIds.slice();
+    if (!ids.length) l.warn("ISMS-Pool leer — gpp_isms_stripped.md nicht geladen?");
+  } else if (mode === "ZIELOBJEKT") {
+    ids = (state.zoControlsMap && state.zoControlsMap.get(uuid)) || [];
+    if (!ids.length) l.warn(`kein Control-Pool für Zielobjekt ${uuid} in zielobjekt_controls.json`);
+  }
+  state.pipelineMode = mode;
+  state.poolControlIds = ids;
+}
+
+async function runStage2() {
+  setStage("s2");
+  determinePool();
+
+  if (state.pipelineMode !== "C2" && state.poolControlIds.length === 0) {
+    l.warn(`${state.pipelineMode}-Pool ist leer — Fallback auf C.2 (deterministische Custom-Controls)`);
+    state.pipelineMode = "C2";
+  }
+
+  const cat = state.classification?.zielobjekt_name;
+  $("s2-mode-tag").textContent = state.pipelineMode === "ZIELOBJEKT" && cat
+    ? `ZIELOBJEKT · ${cat}` : state.pipelineMode;
+
+  if (state.pipelineMode === "C2") {
+    await runStage2_C2_deterministic();
+  } else {
+    await runStage2_SentenceMapping();
+  }
+
+  renderStage2();
+  renderStats();
+  doneStage("s2");
+}
+
+async function runStage2_SentenceMapping() {
+  // 1. Resolve the candidate pool IDs to controls (title + full prose) from the
+  //    G++ Anwenderkatalog.
+  const ids = state.poolControlIds;
+  l.info(`stage 2 (${state.pipelineMode}) · Pool mit ${ids.length} G++-Controls`);
+  const controlsById = new Map(state.catalogControls.map(c => [c.id, c]));
+  const controls = ids.map(id => controlsById.get(id)).filter(Boolean);
+  const missing = ids.filter(id => !controlsById.has(id));
+  if (missing.length) {
+    l.warn(`${missing.length}/${ids.length} Pool-Control-IDs nicht im Anwenderkatalog gefunden: ${missing.slice(0,5).join(", ")}${missing.length>5?"…":""}`);
+  }
+  if (controls.length === 0) {
+    throw new Error("keine Pool-Controls im G++ Anwenderkatalog auflösbar — ist der Katalog geladen?");
+  }
+  l.ok(`${controls.length} Pool-Controls mit Prose aufgelöst`);
+
+  // 2. Test drive: sample Anforderungen
+  const td = $("testdrive").checked;
+  let anforderungen = state.baustein.requirements;
+  if (anforderungen.length === 0) {
+    l.warn("PDF enthält keine erkannten Anforderungen — keine Mappings möglich");
+  }
+  if (td && anforderungen.length > 3) {
+    anforderungen = sampleForTestDrive(anforderungen, 0.2, 3);
+    const banner = $("td-banner");
+    banner.classList.add("show");
+    banner.textContent = `TEST DRIVE — ${anforderungen.length} von ${state.baustein.requirements.length} Anforderungen werden gemappt.`;
+    l.warn(`TEST DRIVE: ${anforderungen.length} Anforderungen sampled`);
+  } else {
+    $("td-banner").classList.remove("show");
+  }
+
+  // 3. Constant prefix (cache-friendly): ALL Anforderungen + their sentences are
+  //    sent in every request unchanged — only the control-chunk at the end varies.
+  const anfBlock = anforderungen.map(a => {
+    const sentLines = (a.sentences || []).map(s => `  Satz ${s.idx}: ${s.text}`).join("\n");
+    return `${a.id} — ${a.name || "(ohne Name)"}\n${sentLines || "  (keine Sätze erkannt)"}`;
+  }).join("\n\n");
+
+  // Control context line: prefer the cheap stripped description, else catalog statement.
+  const ctxLine = c => {
+    const st = state.strippedById?.get(c.id);
+    const text = (st && st.desc) ? st.desc : (c.statement || "").replace(/\s+/g, " ").trim();
+    return `${c.id} — ${c.title}: ${text.slice(0, 500)}`;
+  };
+
+  // 4. Chunk the control pool (variable suffix). ~chunkSize controls per request.
+  const chunkSize = Math.max(10, parseInt($("ctrl-chunk").value) || 100);
+  const chunks = [];
+  for (let i = 0; i < controls.length; i += chunkSize) chunks.push(controls.slice(i, i + chunkSize));
+  l.info(`stage 2 (${state.pipelineMode}) · ${controls.length} Controls in ${chunks.length} Chunks à ${chunkSize} · ${anforderungen.length} Anforderungen (konstanter Prefix → Prompt-Caching)`);
+
+  // 5. Pre-seed every PDF sentence so each is accounted even if never returned.
+  //    A sentence's mapped controls are the UNION across all chunk responses.
+  const sentMap = new Map();  // `${anfId}#${idx}` → {…, ids:Set}
+  for (const a of anforderungen) for (const s of (a.sentences || [])) {
+    sentMap.set(`${a.id}#${s.idx}`, {
+      anforderung_id: a.id, anforderung_name: a.name, anforderung_modalverb: a.modalverb,
+      sentence_idx: s.idx, sentence_text: s.text, ids: new Set(), rationale: "",
+    });
+  }
+
+  // 6. Run pool — one call per control-chunk; merge mappings into sentMap.
+  const concurrency = Math.max(1, parseInt($("concurrency").value) || 4);
+  const tasks = chunks.map((chunk, idx) => async () => {
+    const prompt = buildPrompt("s2", {
+      baustein_id: state.baustein.id || "?",
+      baustein_title: state.baustein.title || "?",
+      anforderungen_with_sentences: anfBlock,                 // constant prefix
+      controls: chunk.map(ctxLine).join("\n\n"),              // variable suffix
+    });
+
+    try {
+      const text = await llm(prompt, `s2 chunk ${idx+1}/${chunks.length} (${chunk.length} Controls)`, $("grounding").checked ? null : SCHEMA_S2);
+      const parsed = extractJson(text);
+      const validControlIds = new Set(chunk.map(c => c.id));
+      for (const m of (parsed?.mappings || [])) {
+        const slot = sentMap.get(`${m.anforderung_id}#${m.sentence_idx}`);
+        if (!slot) continue;  // unknown sentence — silently skip (chunk noise)
+        const validIds = (m.mapped_control_ids || []).filter(id => validControlIds.has(id));
+        for (const id of validIds) slot.ids.add(id);
+        if (validIds.length && !slot.rationale) slot.rationale = m.rationale || "";
+      }
+    } catch (e) {
+      l.err(`chunk ${idx+1} failed: ${e.message}`);
+    }
+  });
+
+  await runPool(tasks, concurrency, (d, t) => {
+    showProgress(`stage 2 (${state.pipelineMode}) · chunk-mapping (${d}/${t} Chunks)`, d, t);
+  });
+
+  // 7. Finalize sentence mappings (merged, one entry per PDF sentence).
+  state.sentenceMappings = [...sentMap.values()].map(v => ({
+    anforderung_id: v.anforderung_id,
+    anforderung_name: v.anforderung_name,
+    anforderung_modalverb: v.anforderung_modalverb,
+    sentence_idx: v.sentence_idx,
+    sentence_text: v.sentence_text,
+    mapped_control_ids: [...v.ids],
+    rationale: v.rationale,
+  }));
+
+  // 8. Invert mappings: build one implReq slot per control with mapped sentences attached
+  const sentencesByControl = new Map();
+  const unmappedSentences = [];
+  for (const m of state.sentenceMappings) {
+    if (m.mapped_control_ids.length === 0) { unmappedSentences.push(m); continue; }
+    for (const cid of m.mapped_control_ids) {
+      if (!sentencesByControl.has(cid)) sentencesByControl.set(cid, []);
+      sentencesByControl.get(cid).push(m);
+    }
+  }
+  state.unmappedSentences = unmappedSentences;
+  if (unmappedSentences.length) {
+    l.info(`${unmappedSentences.length} Sätze ohne Control-Treffer (Kontext / kein passendes Control im Pool)`);
+  }
+
+  // 9. Build implReqs from controls, attach mapped sentences
+  state.implReqs = controls.map(c => {
+    const mapped = sentencesByControl.get(c.id) || [];
+    const sourceNames = [...new Set(mapped.map(m => `${m.anforderung_id} ${m.anforderung_name || ""}`.trim()))];
+    const description = sourceNames.length
+      ? sourceNames.join("; ")
+      : `(Kein Mapping aus Baustein ${state.baustein.id || "?"} verfügbar)`;
+    const statementProse = mapped.length
+      ? mapped.map(m => `[${m.anforderung_id}, Satz ${m.sentence_idx}] ${m.sentence_text}`).join("\n\n")
+      : "";
+    return {
+      control_id: c.id,
+      control_title: c.title,
+      control_statement: c.statement,
+      control_guidance: c.guidance,
+      control_modalverb: c.modalverb,
+      mapped_sentences: mapped,
+      statement_prose: statementProse,
+      description,
+      source_anforderungen: [...new Set(mapped.map(m => m.anforderung_id))],
+      coverage: mapped.length === 0 ? "missing" : mapped.length <= 2 ? "partial" : "full",
+      remarks: null,
+      pending: false,
+      error: null,
+      validation: null,
+    };
+  });
+
+  // Log sentence-side accounting so the user sees recall at the sentence level
+  const totalSent = state.sentenceMappings.length;
+  const mappedSent = totalSent - state.unmappedSentences.length;
+  l.ok(`stage 2 (${state.pipelineMode}) done · ${mappedSent}/${totalSent} PDF-Sätze gemappt · ${state.unmappedSentences.length} ohne Treffer · ${state.implReqs.filter(r => r.coverage !== "missing").length}/${state.implReqs.length} Controls erhalten ≥1 Satz`);
+}
+
+async function runStage2_C2_deterministic() {
+  l.info(`stage 2 (C.2) · deterministic — Anforderungen werden direkt zu impl-reqs und custom controls`);
+  $("td-banner").classList.remove("show");  // test drive ignored in C.2
+
+  const reqs = state.baustein.requirements;
+  if (reqs.length === 0) {
+    l.warn("PDF enthält keine erkannten Anforderungen — C.2 erzeugt einen leeren Catalog + Component Definition");
+  }
+
+  // Build implReqs deterministically: one per Anforderung, control_id = anforderung_id
+  // Statement-prose uses the same [ID, Satz N] marker convention as C.1
+  state.implReqs = reqs.map(r => {
+    const name = r.name || extractFirstSentenceAsTitle(r.text);
+    const sentences = r.sentences || [];
+    const statementProse = sentences.length
+      ? sentences.map(s => `[${r.id}, Satz ${s.idx}] ${s.text}`).join("\n\n")
+      : r.text;
+    const mapped_sentences = sentences.map(s => ({
+      anforderung_id: r.id,
+      anforderung_name: name,
+      anforderung_modalverb: r.modalverb,
+      sentence_idx: s.idx,
+      sentence_text: s.text,
+      rationale: "Deterministisch (C.2): 1:1-Mapping Satz → Custom-Control",
+    }));
+    return {
+      control_id: r.id,
+      control_title: name,
+      control_statement: r.text,
+      control_guidance: "",
+      control_modalverb: r.modalverb,
+      mapped_sentences,
+      statement_prose: statementProse,
+      description: `${r.id} ${name}`.trim(),
+      source_anforderungen: [r.id],
+      coverage: "full",
+      remarks: `Deterministisch erzeugt aus ${state.baustein.id} – kein passendes Kernel-Profil. Modalverb: ${r.modalverb || "—"}. ${sentences.length} Sätze.`,
+      pending: false,
+      error: null,
+      validation: null,
+    };
+  });
+
+  // No sentence-mappings array in C.2 (since each Satz maps deterministically 1:1)
+  state.sentenceMappings = [];
+  state.unmappedSentences = [];
+
+  // Build a custom OSCAL Catalog
+  state.customCatalog = buildCustomCatalog(reqs);
+  showProgress("stage 2 (C.2) · deterministic", reqs.length, Math.max(1, reqs.length));
+  l.ok(`stage 2 (C.2) done · ${reqs.length} impl-reqs + custom catalog mit ${reqs.length} Controls`);
+}
+
+function extractFirstSentenceAsTitle(text) {
+  // Extract first sentence-fragment up to first period or 80 chars
+  const t = String(text || "").replace(/\s+/g, " ").trim();
+  // Try to take everything up to first ". " or before MUSS/SOLLTE
+  const m = t.match(/^[\s\S]*?(?:[\.\n]|\bMUSS\b|\bSOLLTE\b|\bDARF\b|\bKANN\b)/);
+  let head = m ? m[0] : t;
+  head = head.replace(/[\.\s]+$/, "").slice(0, 90).trim();
+  return head || t.slice(0, 80);
+}
+
+function buildCustomCatalog(reqs) {
+  const now = new Date().toISOString();
+  const bId  = state.baustein.id || "BSI-Baustein";
+  const bTit = state.baustein.title || "Baustein";
+  return {
+    catalog: {
+      uuid: crypto.randomUUID(),
+      metadata: {
+        title: `Custom Catalog · ${bId} – ${bTit} (deterministic C.2)`,
+        published: now,
+        "last-modified": now,
+        version: "0.1.0",
+        "oscal-version": "1.1.3",
+        remarks: `Erzeugt aus BSI IT-Grundschutz Edition 2023 Baustein ${bId}. C.2-Pfad: kein passendes Profil im Stand-der-Technik-Kernel gefunden.`,
+        roles: [{ id: "generator", title: "Generator" }],
+        parties: [{
+          uuid: crypto.randomUUID(),
+          type: "tool",
+          name: "Baustein_2_Profile (one-page-app) · build 0.7.1",
+        }],
+      },
+      groups: [{
+        id: `LOCAL.${bId.replace(/[^A-Z0-9.]/g,"_")}`,
+        title: `Lokale Controls aus ${bId}`,
+        props: [
+          { name: "source-baustein", value: bId },
+        ],
+        controls: reqs.map(r => ({
+          id: r.id,
+          title: r.name || extractFirstSentenceAsTitle(r.text),
+          "class": "local-from-pdf",
+          props: [
+            { name: "source-baustein", value: bId },
+            ...(r.modalverb ? [{ name: "modal_verb", value: r.modalverb }] : []),
+          ],
+          parts: [
+            {
+              id: `${r.id}_stm`,
+              name: "statement",
+              prose: r.text,
+              ...(r.modalverb ? { props: [{ name: "modal_verb", value: r.modalverb }] } : {}),
+            },
+            {
+              id: `${r.id}_gdn`,
+              name: "guidance",
+              prose: `Diese Control wurde deterministisch aus dem Edition-2023-Baustein ${bId} erzeugt, weil kein Profil aus dem Stand-der-Technik-Kernel-Katalog inhaltlich passte. Der prose-Text entspricht dem Original-Anforderungstext.`,
+            },
+          ],
+        })),
+      }],
+    },
+  };
+}
+
+/* ════════════════════════════════════════════════════════════════════════
+   Stage-2 result rendering
+   ════════════════════════════════════════════════════════════════════════ */
+
+function renderStage2() {
+  const card = $("s2-result");
+  const body = $("s2-body");
+  card.classList.remove("hidden");
+
+  const filter = $("s2-filter").value;
+  const rows = state.implReqs.filter(r => {
+    if (filter === "ok")      return r.coverage === "full";
+    if (filter === "partial") return r.coverage === "partial";
+    if (filter === "missing") return r.coverage === "missing" || r.error;
+    if (filter === "issues")  return r.validation && ["minor_corrections","major_issues","incorrect"].includes(r.validation.verdict);
+    return true;
+  });
+
+  body.innerHTML = "";
+  for (const r of rows) {
+    const div = document.createElement("div");
+    const miss = r.coverage === "missing" || r.error;
+    div.className = "req-row" + (miss ? " miss" : "") + (r.pending ? " pending" : "");
+    const covColor = r.coverage === "full" ? "var(--green)"
+                  : r.coverage === "partial" ? "var(--amber)"
+                  : r.coverage === "missing" ? "var(--red)"
+                  : "var(--text-quiet)";
+
+    const srcList = (r.source_anforderungen || []).slice(0, 5).join(", ") + ((r.source_anforderungen || []).length > 5 ? "…" : "");
+
+    const renderMapped = (r.mapped_sentences || []).slice(0, 8).map(m =>
+      `<div style="margin-bottom:4px"><span style="color:var(--accent);font-family:'JetBrains Mono',monospace;font-size:10px">[${escapeHtml(m.anforderung_id)}, Satz ${m.sentence_idx}]</span> ${escapeHtml(m.sentence_text)}</div>`
+    ).join("");
+    const moreMapped = (r.mapped_sentences || []).length > 8 ? `<div style="color:var(--text-quiet);font-size:10px">… und ${(r.mapped_sentences || []).length - 8} weitere</div>` : "";
+
+    div.innerHTML = `
+      <div class="req-id">${escapeHtml(r.control_id)}<span class="mv">${escapeHtml(r.control_modalverb || "—")}</span></div>
+      <div class="req-title">
+        <div style="font-weight:500;margin-bottom:2px">${escapeHtml(r.control_title || "")}</div>
+        ${r.pending ? '<div class="rationale"><span class="muted">pending…</span></div>'
+          : r.error
+            ? `<div class="rationale" style="color:var(--red)">${escapeHtml(r.error)}</div>`
+            : `<div class="rationale">
+                  <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-quiet);letter-spacing:0.04em;margin-bottom:3px">DESCRIPTION (Anforderungs-Namen):</div>
+                  <div style="margin-bottom:8px">${escapeHtml(r.description || "—")}</div>
+                  ${(r.mapped_sentences || []).length ? `
+                    <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-quiet);letter-spacing:0.04em;margin-bottom:3px">STATEMENT (${(r.mapped_sentences || []).length} verbatim Sätze aus Baustein):</div>
+                    <div>${renderMapped}${moreMapped}</div>
+                  ` : `<div style="color:var(--text-quiet);font-size:10.5px;font-style:italic">— keine Sätze aus dem Baustein adressieren dieses Control —</div>`}
+                  ${r.remarks ? `<br><span style="color:var(--amber);font-size:10px;font-family:'JetBrains Mono',monospace">remarks: ${escapeHtml(r.remarks)}</span>` : ""}
+              </div>`}
+      </div>
+      <div class="req-ctrl" style="color:${covColor}">${r.pending ? "—" : escapeHtml(r.coverage || "—")}</div>
+      <div class="req-conf">
+        <span style="color:var(--text-quiet);font-size:9.5px">src:</span>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:9.5px">${escapeHtml(srcList || "—")}</span>
+      </div>
+    `;
+    if (r.validation) {
+      const vb = document.createElement("div");
+      vb.className = `validation-block ${r.validation.verdict || "uncertain"}`;
+      vb.style.gridColumn = "1 / -1";
+      vb.innerHTML = `
+        <div class="vh">
+          <span>checker · ${escapeHtml(r.validation.verdict || "uncertain")}</span>
+          <span>confidence: ${escapeHtml(r.validation.confidence_check || "—")}</span>
+        </div>
+        ${r.validation.issues?.length ? `<ul class="vissues">${r.validation.issues.map(i => `<li>${escapeHtml(i)}</li>`).join("")}</ul>` : ""}
+        ${r.validation.corrections ? `<div style="margin-top:6px"><strong style="color:var(--text-tertiary);font-size:10px;text-transform:uppercase;letter-spacing:0.1em">korrektur</strong><br>${escapeHtml(r.validation.corrections)}</div>` : ""}
+        ${r.validation.reviewer_notes ? `<div style="margin-top:6px;color:var(--text-tertiary)">${escapeHtml(r.validation.reviewer_notes)}</div>` : ""}
+      `;
+      div.appendChild(vb);
+    }
+    body.appendChild(div);
+  }
+
+  // Unmapped sentences panel (sentences that the model classified as context, no control mapping)
+  if ((state.unmappedSentences || []).length) {
+    const panel = document.createElement("div");
+    panel.style.marginTop = "12px";
+    panel.style.padding = "10px 12px";
+    panel.style.border = "1px solid var(--border-1)";
+    panel.style.borderRadius = "8px";
+    panel.style.background = "var(--bg-elev-1)";
+    panel.innerHTML = `
+      <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-quiet);margin-bottom:8px">
+        Unmapped Sätze — Kontext / Erklärung (${state.unmappedSentences.length})
+      </div>
+      ${state.unmappedSentences.slice(0, 20).map(m =>
+        `<div style="font-size:11px;color:var(--text-tertiary);margin-bottom:6px;line-height:1.45">
+          <span style="color:var(--accent);font-family:'JetBrains Mono',monospace;font-size:10px">[${escapeHtml(m.anforderung_id)}, Satz ${m.sentence_idx}]</span>
+          ${escapeHtml(m.sentence_text)}
+          ${m.rationale ? `<div style="color:var(--text-quiet);font-size:10px;margin-top:2px;font-style:italic">${escapeHtml(m.rationale)}</div>` : ""}
+        </div>`
+      ).join("")}
+      ${state.unmappedSentences.length > 20 ? `<div style="color:var(--text-quiet);font-size:10px">… und ${state.unmappedSentences.length - 20} weitere</div>` : ""}
+    `;
+    body.appendChild(panel);
+  }
+
+  const ok    = state.implReqs.filter(r => r.coverage === "full").length;
+  const miss  = state.implReqs.filter(r => r.coverage === "missing" || r.error).length;
+  const vIs   = state.implReqs.filter(r => r.validation && ["minor_corrections","major_issues","incorrect"].includes(r.validation.verdict)).length;
+  $("s2-ok").textContent   = ok;
+  $("s2-miss").textContent = miss;
+  $("s2-val").textContent  = vIs;
+  $("s2-val-chip").classList.toggle("hidden", vIs === 0);
+}
+
+$("s2-filter").addEventListener("change", renderStage2);
+$("pi-pick").addEventListener("change", () => {
+  // Re-render stage 1 to reflect the manual override
+  if (state.classification || $("pi-pick").value) renderStage1();
+});
+
+/* ════════════════════════════════════════════════════════════════════════
+   STAGE 3 — Assemble OSCAL Profile
+   ════════════════════════════════════════════════════════════════════════ */
+
+async function runStage3() {
+  setStage("s3");
+  showProgress("stage 3 · assembling", 0, 1);
+  state.profileDef = assembleProfile();
+  renderStage3();
+  showProgress("stage 3 · done", 1, 1);
+  doneStage("s3");
+}
+
+function assembleProfile() {
+  const now = new Date().toISOString();
+  const bId  = state.baustein?.id || "BSI-Baustein";
+  const bTit = state.baustein?.title || "Baustein";
+  const cat  = state.classification?.zielobjekt_name;
+  const profileTitle = (bTit ? `${bId} ${bTit}` : bId)
+    + (state.pipelineMode === "ZIELOBJEKT" && cat ? ` → ${cat}` : state.pipelineMode === "PROZESS" ? " → Prozess" : "");
+
+  // Only controls that actually received ≥1 mapped sentence end up in the profile.
+  const matched = state.implReqs.filter(r => !r.pending && !r.error && r.coverage !== "missing");
+  const uniqueControls = [...new Set(matched.map(r => r.control_id))];
+
+  // OSCAL "alters": embed the verbatim Ed2023 PDF text at the matched control,
+  // so the migrated requirement source is traceable inside the profile itself.
+  const NS = "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools";
+  const alters = matched.map(r => {
+    const prose = (r.mapped_sentences || [])
+      .map(m => `[${m.anforderung_id}, Satz ${m.sentence_idx}] ${m.sentence_text}`)
+      .join("\n\n");
+    return {
+      "control-id": r.control_id,
+      "adds": [{
+        "position": "ending",
+        "props": [{ "name": "source-baustein", "ns": NS, "value": bId }],
+        "parts": [{
+          "id": `${r.control_id}_ed2023-quelle`,
+          "name": "ed2023-quelle",
+          "ns": NS,
+          "title": `Quelle: BSI IT-Grundschutz Ed2023 · ${bId}`,
+          "prose": prose || `(kein Satz aus ${bId} gemappt)`,
+        }],
+      }],
+    };
+  });
+
+  const profile = {
+    "profile": {
+      "uuid": crypto.randomUUID(),
+      "metadata": {
+        "title": profileTitle,
+        "last-modified": now,
+        "version": "0.1.0",
+        "oscal-version": "1.1.3",
+        "props": [
+          { "name": "source-baustein", "ns": NS, "value": bId },
+          { "name": "mapping-mode", "ns": NS, "value": state.pipelineMode || "?" },
+          ...(state.classification?.zielobjekt_uuid ? [{ "name": "zielobjekt-uuid", "ns": NS, "value": state.classification.zielobjekt_uuid }] : []),
+        ],
+      },
+      "imports": [
+        {
+          "href": GPP_CATALOG_HREF,
+          "include-controls": [{ "with-ids": uniqueControls }],
+        },
+      ],
+      ...(alters.length ? { "modify": { "alters": alters } } : {}),
+    },
+  };
+
+  return profile;
+}
+
+function renderStage3() {
+  const card = $("s3-result");
+  card.classList.remove("hidden");
+  $("s3-output").value = JSON.stringify(state.profileDef, null, 2);
+  const n = state.profileDef?.["profile"]?.["imports"]?.[0]?.["include-controls"]?.[0]?.["with-ids"]?.length || 0;
+  const a = state.profileDef?.["profile"]?.["modify"]?.["alters"]?.length || 0;
+  $("s3-chip").textContent = `${state.pipelineMode} · ${n} Controls · ${a} alters`;
+  $("btn-download-cat").classList.toggle("hidden", state.pipelineMode !== "C2" || !state.customCatalog);
+}
+
+$("btn-download").addEventListener("click", () => {
+  if (!state.profileDef) return;
+  const text = $("s3-output").value;
+  const bId  = state.baustein?.id || "baustein";
+  const blob = new Blob([text], { type: "application/json" });
+  const url  = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = `${bId.replace(/[^A-Za-z0-9.]/g,"_")}_${state.pipelineMode || "x"}_profile.json`;
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+  l.ok(`download · ${a.download}`);
+});
+
+$("btn-download-cat").addEventListener("click", () => {
+  if (!state.customCatalog) return;
+  const text = JSON.stringify(state.customCatalog, null, 2);
+  const bId  = state.baustein?.id || "baustein";
+  const blob = new Blob([text], { type: "application/json" });
+  const url  = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = `${bId.replace(/[^A-Za-z0-9.]/g,"_")}_custom-catalog.json`;
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+  l.ok(`download · ${a.download}`);
+});
+
+$("btn-copy").addEventListener("click", async () => {
+  try {
+    await navigator.clipboard.writeText($("s3-output").value);
+    l.ok("OSCAL JSON in Zwischenablage");
+  } catch (e) { l.err(`copy failed: ${e.message}`) }
+});
+
+/* ════════════════════════════════════════════════════════════════════════
+   Maker-Checker — validates the C.1 impl-req descriptions
+   (skipped in C.2 since that path is deterministic)
+   ════════════════════════════════════════════════════════════════════════ */
+
+const SCHEMA_CHECK = {
+  type: "object",
+  properties: {
+    validations: {
+      type: "array",
+      items: {
+        type: "object",
+        properties: {
+          item_id: { type: "string" },
+          verdict: { type: "string", enum: ["confirmed","minor_corrections","major_issues","incorrect","uncertain"] },
+          issues: { type: "array", items: { type: "string" } },
+          corrections: { type: "string" },
+          confidence_check: { type: "string", enum: ["appropriate","too_high","too_low"] },
+          reviewer_notes: { type: "string" },
+        },
+        required: ["item_id","verdict","issues","corrections","confidence_check","reviewer_notes"],
+      },
+    },
+  },
+  required: ["validations"],
+};
+
+function chunk(arr, n) {
+  const out = [];
+  for (let i = 0; i < arr.length; i += n) out.push(arr.slice(i, i + n));
+  return out;
+}
+
+async function runChecker() {
+  setStage("s4");
+  if (state.pipelineMode === "C2") {
+    l.info("checker übersprungen — C.2-Pfad ist deterministisch und braucht keine Validierung");
+    doneStage("s4");
+    return;
+  }
+
+  const items = state.implReqs.filter(r => !r.pending && !r.error && r.coverage !== "missing");
+  if (items.length === 0) {
+    l.warn("checker übersprungen · keine validierbaren impl-reqs");
+    doneStage("s4");
+    return;
+  }
+
+  state.implReqs.forEach(r => { r.validation = null });
+
+  const chunkSize = Math.max(1, parseInt($("chunk-size").value) || 8);
+  const chunks = chunk(items, chunkSize);
+  const concurrency = Math.max(1, parseInt($("concurrency").value) || 4);
+
+  const tasks = chunks.map((ch, idx) => async () => {
+    const pairsBlock = ch.map((p, i) => {
+      const sentBlock = (p.mapped_sentences || []).length
+        ? (p.mapped_sentences || []).map(m => `  [${m.anforderung_id}, Satz ${m.sentence_idx}] ${m.sentence_text}`).join("\n")
+        : "  (keine Sätze gemappt — coverage=missing)";
+      return `=== PAIR ${i+1}: ${p.control_id} ===
+KERNEL-CONTROL:
+  Titel: ${p.control_title || ""}
+  Statement: ${(p.control_statement || "").replace(/\s+/g," ").slice(0,900)}
+  Guidance:  ${(p.control_guidance  || "").replace(/\s+/g," ").slice(0,900)}
+  Modalverb: ${p.control_modalverb || "?"}
+
+GEMAPPTE SÄTZE AUS DEM BAUSTEIN (Maker hat zugeordnet, ${(p.mapped_sentences || []).length} Sätze):
+${sentBlock}
+
+Beurteile, ob diese Sätze inhaltlich tatsächlich zu dem Kernel-Control passen:
+- confirmed         = alle Sätze passen sinnvoll zu diesem Control
+- minor_corrections = passen weitgehend, aber einer/mehrere Sätze sind nur am Rand relevant
+- major_issues      = mindestens ein Satz gehört NICHT zu diesem Control, oder ein offensichtlich relevanter Satz wurde NICHT gemappt
+- incorrect         = das Mapping ist als Ganzes falsch
+- uncertain         = du kannst nicht entscheiden`;
+    }).join("\n\n");
+
+    const prompt = buildPrompt("check", { pairs: pairsBlock });
+    const text = await llm(prompt, `checker ${idx+1}/${chunks.length}`, $("grounding").checked ? null : SCHEMA_CHECK);
+    const parsed = extractJson(text);
+    for (const v of (parsed?.validations || [])) {
+      const slot = state.implReqs.find(s => s.control_id === v.item_id);
+      if (slot) slot.validation = v;
+    }
+  });
+
+  await runPool(tasks, concurrency, (d, t) => {
+    showProgress("checker · validating", d, t);
+    renderStage2();
+    renderStats();
+  });
+
+  doneStage("s4");
+}
+
+/* ════════════════════════════════════════════════════════════════════════
+   Stats card
+   ════════════════════════════════════════════════════════════════════════ */
+
+function renderStats() {
+  const completed = state.implReqs.filter(r => !r.pending);
+  if (completed.length < 3) {
+    $("stats-card").classList.add("hidden");
+    return;
+  }
+  $("stats-card").classList.remove("hidden");
+  const grid = $("stats-grid");
+
+  // 1. Coverage distribution donut (Control-Seite)
+  const covBuckets = { full: 0, partial: 0, missing: 0, error: 0 };
+  for (const r of completed) {
+    if (r.error) covBuckets.error++;
+    else covBuckets[r.coverage || "missing"]++;
+  }
+  const covSlices = [
+    { label: "full (3+ Sätze)",    value: covBuckets.full,    color: "oklch(0.75 0.18 145)" },
+    { label: "partial (1–2 Sätze)", value: covBuckets.partial, color: "oklch(0.80 0.15 80)"  },
+    { label: "missing (0 Sätze)",   value: covBuckets.missing, color: "oklch(0.65 0.20 25)"  },
+    { label: "error",               value: covBuckets.error,   color: "oklch(0.55 0.02 280)" },
+  ];
+
+  // 1b. Sentence-side coverage (Anforderungs-Seite) — how many sentences found a Control home
+  const totalSentenceMappings = state.sentenceMappings.length;
+  const unmappedSentencesCnt  = state.unmappedSentences.length;
+  const mappedSentencesCnt    = totalSentenceMappings - unmappedSentencesCnt;
+  const sentSlices = [
+    { label: "gemappt",              value: mappedSentencesCnt,    color: "oklch(0.75 0.18 145)" },
+    { label: "unmapped (Kontext)",   value: unmappedSentencesCnt,  color: "oklch(0.65 0.20 25)"  },
+  ];
+
+  // 2. Modalverb distribution (of the Kernel controls)
+  const mvBuckets = {};
+  for (const r of completed) {
+    const k = r.control_modalverb || "—";
+    mvBuckets[k] = (mvBuckets[k] || 0) + 1;
+  }
+  const mvRows = Object.entries(mvBuckets)
+    .sort(([,a],[,b]) => b - a)
+    .map(([label, value]) => ({
+      label, value,
+      color: label === "MUSS" ? "oklch(0.7 0.18 300)" : label === "SOLLTE" ? "oklch(0.80 0.15 80)" : "var(--text-quiet)",
+    }));
+
+  // 3. Top source-anforderungen referenced (how many controls cite each Anforderung)
+  const srcBuckets = {};
+  for (const r of completed) {
+    for (const aId of (r.source_anforderungen || [])) srcBuckets[aId] = (srcBuckets[aId] || 0) + 1;
+  }
+  const srcRows = Object.entries(srcBuckets)
+    .sort(([,a],[,b]) => b - a)
+    .slice(0, 8)
+    .map(([label, value]) => ({ label, value, color: "oklch(0.7 0.15 240)" }));
+
+  // 3b. Per-Anforderung sentence breakdown (mapped vs unmapped for each Anforderung)
+  const anfStats = new Map();  // anfId → {mapped: n, unmapped: n}
+  for (const m of state.sentenceMappings) {
+    const slot = anfStats.get(m.anforderung_id) || { mapped: 0, unmapped: 0 };
+    if (m.mapped_control_ids.length) slot.mapped++;
+    else slot.unmapped++;
+    anfStats.set(m.anforderung_id, slot);
+  }
+  const anfRows = [...anfStats.entries()]
+    .sort(([a],[b]) => a.localeCompare(b))
+    .map(([id, s]) => ({
+      label: id,
+      value: s.mapped,
+      max: s.mapped + s.unmapped,
+      color: s.unmapped === 0 ? "oklch(0.75 0.18 145)" : s.mapped === 0 ? "oklch(0.65 0.20 25)" : "oklch(0.80 0.15 80)",
+      sub: `${s.mapped}/${s.mapped + s.unmapped} Sätze gemappt`,
+    }));
+
+  // 4. Validation distribution
+  const validations = completed.filter(r => r.validation).map(r => r.validation);
+  let valSection = "";
+  if (validations.length) {
+    const VAL_COLORS = {
+      confirmed:         "oklch(0.75 0.18 145)",
+      minor_corrections: "oklch(0.80 0.15 80)",
+      major_issues:      "oklch(0.65 0.20 50)",
+      incorrect:         "oklch(0.65 0.20 25)",
+      uncertain:         "oklch(0.55 0.02 280)",
+    };
+    const valBuckets = {};
+    for (const v of validations) valBuckets[v.verdict] = (valBuckets[v.verdict] || 0) + 1;
+    const valRows = Object.entries(valBuckets).map(([label, value]) => ({
+      label, value, color: VAL_COLORS[label] || "var(--text-quiet)"
+    }));
+    valSection = `
+      <div class="stat-sub">
+        <div class="stat-head">Checker-Verdict</div>
+        ${hBarRows(valRows)}
+      </div>`;
+  }
+
+  grid.innerHTML = `
+    <div class="stat-sub">
+      <div class="stat-head">Coverage-Verteilung (Control-Seite)</div>
+      <div class="donut-wrap">
+        ${donutChart(covSlices, 140, 0.6)}
+        <div class="donut-legend">
+          ${covSlices.map(s => `
+            <div class="legend-row">
+              <span class="legend-dot" style="background:${s.color}"></span>
+              <span class="legend-label">${s.label}</span>
+              <span class="legend-val">${s.value}</span>
+            </div>`).join("")}
+        </div>
+      </div>
+    </div>
+    ${totalSentenceMappings ? `
+    <div class="stat-sub">
+      <div class="stat-head">Satz-Verteilung (Anforderungs-Seite)</div>
+      <div class="donut-wrap">
+        ${donutChart(sentSlices, 140, 0.6)}
+        <div class="donut-legend">
+          ${sentSlices.map(s => `
+            <div class="legend-row">
+              <span class="legend-dot" style="background:${s.color}"></span>
+              <span class="legend-label">${s.label}</span>
+              <span class="legend-val">${s.value}</span>
+            </div>`).join("")}
+        </div>
+      </div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--text-quiet);margin-top:8px;letter-spacing:0.05em">
+        ${mappedSentencesCnt} von ${totalSentenceMappings} Sätzen wurden auf mindestens 1 Control verteilt.
+        ${unmappedSentencesCnt > totalSentenceMappings * 0.3 ? "⚠ Hohe Unmapped-Quote — Modell evtl. zu konservativ" : ""}
+      </div>
+    </div>` : ""}
+    <div class="stat-sub">
+      <div class="stat-head">Modalverben (Kernel-Side)</div>
+      ${hBarRows(mvRows)}
+    </div>
+    ${srcRows.length ? `
+    <div class="stat-sub">
+      <div class="stat-head">Top-Anforderungen (in Controls referenziert)</div>
+      ${hBarRows(srcRows)}
+    </div>` : ""}
+    ${anfRows.length ? `
+    <div class="stat-sub" style="grid-column: 1 / -1">
+      <div class="stat-head">Per-Anforderung Recall (Satz-Mapping)</div>
+      ${hBarRowsWithSub(anfRows)}
+    </div>` : ""}
+    ${valSection}
+  `;
+}
+
+// Variant of hBarRows that shows mapped/total via `max` and adds a per-row sublabel
+function hBarRowsWithSub(items) {
+  if (!items.length) return `<div class="muted" style="font-size:10.5px">keine Daten</div>`;
+  return items.map(i => {
+    const pct = i.max > 0 ? (i.value / i.max) * 100 : 0;
+    return `
+      <div class="hbar-row">
+        <div class="hbar-label">${escapeHtml(i.label)}</div>
+        <div class="hbar-track"><div class="hbar-fill" style="width:${pct}%; background:${i.color}"></div></div>
+        <div class="hbar-value" style="font-size:9.5px;color:var(--text-quiet)">${escapeHtml(i.sub || "")}</div>
+      </div>`;
+  }).join("");
+}
+
+function donutChart(slices, size = 160, innerRatio = 0.6) {
+  const total = slices.reduce((s, x) => s + x.value, 0);
+  if (total === 0) return `<svg width="${size}" height="${size}"></svg>`;
+  const cx = size / 2, cy = size / 2, r = size / 2 - 8, ri = r * innerRatio;
+  let a = -Math.PI / 2;
+  const paths = slices.filter(s => s.value > 0).map(s => {
+    const sweep = (s.value / total) * Math.PI * 2;
+    const a1 = a, a2 = a + sweep; a = a2;
+    const x1 = cx + r * Math.cos(a1), y1 = cy + r * Math.sin(a1);
+    const x2 = cx + r * Math.cos(a2), y2 = cy + r * Math.sin(a2);
+    const xi1 = cx + ri * Math.cos(a1), yi1 = cy + ri * Math.sin(a1);
+    const xi2 = cx + ri * Math.cos(a2), yi2 = cy + ri * Math.sin(a2);
+    const large = sweep > Math.PI ? 1 : 0;
+    return `<path d="M ${x1} ${y1} A ${r} ${r} 0 ${large} 1 ${x2} ${y2} L ${xi2} ${yi2} A ${ri} ${ri} 0 ${large} 0 ${xi1} ${yi1} Z" fill="${s.color}" />`;
+  }).join("");
+  return `<svg viewBox="0 0 ${size} ${size}" width="${size}" height="${size}">${paths}
+    <text x="${cx}" y="${cy - 2}" text-anchor="middle" dominant-baseline="central"
+          fill="currentColor" font-family="JetBrains Mono" font-size="22" font-weight="600">${total}</text>
+    <text x="${cx}" y="${cy + 18}" text-anchor="middle" fill="currentColor" opacity="0.55"
+          font-family="JetBrains Mono" font-size="9" letter-spacing="1.5">TOTAL</text></svg>`;
+}
+
+function hBarRows(items) {
+  if (!items.length) return `<div class="muted" style="font-size:10.5px">keine Daten</div>`;
+  const max = Math.max(1, ...items.map(i => i.value));
+  return items.map(i => `
+    <div class="hbar-row">
+      <div class="hbar-label">${escapeHtml(i.label)}</div>
+      <div class="hbar-track"><div class="hbar-fill" style="width:${(i.value/max)*100}%; background:${i.color}"></div></div>
+      <div class="hbar-value">${i.value}</div>
+    </div>`).join("");
+}
+
+function escapeHtml(s) {
+  return String(s ?? "").replace(/[&<>"']/g, c => ({
+    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+  }[c]));
+}
+
+/* ════════════════════════════════════════════════════════════════════════
+   Run / cancel / clear
+   ════════════════════════════════════════════════════════════════════════ */
+
+function updateRunLabel() {
+  const td = $("testdrive").checked;
+  const n = state.baustein?.requirements?.length || 0;
+  if (td && n > 0) {
+    const k = Math.max(3, Math.ceil(n * 0.05));
+    $("btn-run-label").textContent = `Test drive (${Math.min(k, n)} sampled)`;
+  } else {
+    $("btn-run-label").textContent = "Pipeline starten";
+  }
+}
+
+async function run() {
+  if (state.running) return;
+  if (!$("api-key").value.trim()) { l.err("API-Key fehlt"); return; }
+  if (!state.baustein) { l.err("kein PDF geladen"); return; }
+  if (!state.catalogControls.length) { l.err("kein G++ Anwenderkatalog geladen"); return; }
+
+  state.running = true;
+  state.cancel = false;
+  resetTokens();
+  $("btn-run").disabled = true;
+  $("btn-cancel").classList.remove("hidden");
+  resetStages();
+  doneStage("s0");
+  $("status-pill").textContent = "läuft";
+
+  try {
+    const tAll = performance.now();
+
+    // Stage 1 — classification (skipped if a category is manually picked)
+    const manual = $("pi-pick").value;
+    if (manual) {
+      const isProz = manual === "__prozess__";
+      const cat = isProz ? null : (state.categories.find(c => c.uuid === manual) || null);
+      l.info(`manual override · ${isProz ? "PROZESS" : (cat?.name || manual)} — Stage 1 übersprungen`);
+      state.classification = {
+        object_type: isProz ? "prozess" : "zielobjekt",
+        zielobjekt_name: cat?.name || null,
+        zielobjekt_uuid: isProz ? null : manual,
+        confidence: 1.0,
+        rationale: "Manuell ausgewählt durch Anwender.",
+        alternatives: [],
+      };
+      doneStage("s1");
+      renderStage1();
+    } else {
+      await runStage1Classify();
+    }
+    if (state.cancel) throw new Error("cancelled");
+
+    await runStage2();
+    if (state.cancel) throw new Error("cancelled");
+
+    if ($("maker-checker").checked && state.pipelineMode !== "C2") {
+      await runChecker();
+      if (state.cancel) throw new Error("cancelled");
+    } else if ($("maker-checker").checked && state.pipelineMode === "C2") {
+      l.info("checker übersprungen — C.2-Fallback ist deterministisch");
+    }
+
+    await runStage3();
+    showProgress("done", 1, 1);
+    l.ok(`pipeline done in ${Math.round((performance.now()-tAll)/100)/10}s · mode=${state.pipelineMode} · ${state.tokens.calls} calls · ${state.tokens.total} tok (cached ${state.tokens.cached})`);
+    $("status-pill").textContent = "fertig";
+  } catch (e) {
+    l.err(`pipeline aborted: ${e.message}`);
+    $("status-pill").textContent = state.cancel ? "abgebrochen" : "fehler";
+  } finally {
+    state.running = false;
+    state.cancel = false;
+    $("btn-run").disabled = false;
+    $("btn-cancel").classList.add("hidden");
+    setTimeout(() => {
+      if (!state.running) {
+        $("pbar").classList.add("done");
+        setTimeout(() => { $("pbar").style.width = "0%"; $("pbar").classList.remove("done") }, 1200);
+      }
+    }, 600);
+  }
+}
+
+$("btn-run").addEventListener("click", run);
+$("btn-cancel").addEventListener("click", () => {
+  state.cancel = true;
+  l.warn("cancel requested — finishing in-flight calls");
+});
+$("btn-clear").addEventListener("click", () => {
+  state.classification = null;
+  state.poolControlIds = [];
+  state.pipelineMode = null;
+  state.implReqs = [];
+  state.sentenceMappings = [];
+  state.unmappedSentences = [];
+  state.customCatalog = null;
+  state.profileDef = null;
+  $("s1-result").classList.add("hidden");
+  $("s2-result").classList.add("hidden");
+  $("s3-result").classList.add("hidden");
+  $("stats-card").classList.add("hidden");
+  $("td-banner").classList.remove("show");
+  $("btn-download-cat").classList.add("hidden");
+  resetStages();
+  showProgress("idle", 0, 0);
+  l.info("results cleared");
+});
+
+/* ════════════════════════════════════════════════════════════════════════
+   Init
+   ════════════════════════════════════════════════════════════════════════ */
+
+loadPrefs();
+updateRunLabel();
+
+// Auto-load G++ Anwenderkatalog + Zielobjektkategorien + Pools on startup
+window.addEventListener("load", () => {
+  if ($("cat-url").value.trim()) {
+    l.info("auto-loading G++ Anwenderkatalog…");
+    $("btn-load-cat").click();
+  }
+  if ($("pi-url").value.trim()) {
+    l.info("auto-loading Zielobjektkategorien…");
+    setTimeout(() => $("btn-load-pi").click(), 200);  // stagger to not collide
+  }
+  l.info("auto-loading Control-Pools…");
+  setTimeout(loadPools, 400);
+});
+
+</script>
+</body>
+</html>

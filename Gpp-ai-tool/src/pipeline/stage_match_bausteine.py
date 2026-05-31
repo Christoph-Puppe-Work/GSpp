@@ -115,7 +115,7 @@ async def run_stage_match_bausteine() -> None:
     bausteine_with_prose = find_bausteine_with_prose(bsi_data)
     zielobjekte_map = {
         z["UUID"]: {
-            "Zielobjekt": z["Zielobjekt"],
+            "Zielobjekt": z["Zielobjektkategorie"],
             "Definition": z.get("Definition", ""),
         }
         for z in zielobjekte_data

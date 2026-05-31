@@ -1,0 +1,3002 @@
+{
+  "profile": {
+    "uuid": "55c8f068-cd94-4097-85e7-0c632f985bb7",
+    "metadata": {
+      "title": "ASST_prozesse ASST_prozesse - Enhanced (ED2023)",
+      "last-modified": "2026-05-30T09:10:50.060572+00:00",
+      "version": "0.0.1",
+      "oscal-version": "1.1.3"
+    },
+    "imports": [
+      {
+        "href": "https://raw.githubusercontent.com/BSI-Bund/Stand-der-Technik-Bibliothek/refs/heads/main/Anwenderkataloge/Grundschutz%2B%2B/Grundschutz%2B%2B-catalog.json",
+        "include-controls": [
+          {
+            "with-ids": [
+              "ASST.2.1",
+              "ASST.2.2",
+              "ASST.2.3",
+              "ASST.2.3.2.1",
+              "ASST.3.14",
+              "ASST.3.15",
+              "ASST.3.3",
+              "ASST.4.3",
+              "ASST.6.1",
+              "ASST.6.2",
+              "ASST.7.6",
+              "ASST.7.7"
+            ]
+          }
+        ]
+      }
+    ],
+    "modify": {
+      "alters": [
+        {
+          "control-id": "ASST.2.1",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "ASST.2.1_stm",
+              "parts": [
+                {
+                  "id": "ASST.2.1-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    }
+                  ],
+                  "prose": "Assets werden nur vereinzelt und ohne festen Prozess dokumentiert.",
+                  "parts": [
+                    {
+                      "id": "ASST.2.1-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Beginnen Sie mit einer einfachen Liste kritischer Dokumente."
+                    },
+                    {
+                      "id": "ASST.2.1-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Manuelle Durchsicht vorhandener Listen in Abteilungen."
+                    }
+                  ]
+                },
+                {
+                  "id": "ASST.2.1-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    }
+                  ],
+                  "prose": "Es existiert eine zentrale, manuell gepflegte Liste aller wesentlichen Assets.",
+                  "parts": [
+                    {
+                      "id": "ASST.2.1-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Nutzen Sie eine Tabellenkalkulation zur konsolidierten Erfassung."
+                    },
+                    {
+                      "id": "ASST.2.1-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung der Aktualität der zentralen Asset-Liste durch Stichproben."
+                    }
+                  ]
+                },
+                {
+                  "id": "ASST.2.1-m3_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m3"
+                    }
+                  ],
+                  "prose": "Informationen und Assets SOLLTE ein Inventar der Informationen und damit verbundener Assets dokumentieren.",
+                  "parts": [
+                    {
+                      "id": "ASST.2.1-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Setzen Sie die Vorgabe gemäß der dokumentierten Asset-Management-Richtlinie um."
+                    },
+                    {
+                      "id": "ASST.2.1-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Abgleich des Inventars mit den tatsächlich vorhandenen Systemen und Daten."
+                    }
+                  ]
+                },
+                {
+                  "id": "ASST.2.1-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    }
+                  ],
+                  "prose": "Das Inventar wird durch regelmäßige Scans und automatisierte Meldungen aktualisiert.",
+                  "parts": [
+                    {
+                      "id": "ASST.2.1-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Implementieren Sie automatisierte Discovery-Tools für das Asset-Tracking."
+                    },
+                    {
+                      "id": "ASST.2.1-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Validierung der Discovery-Logs gegen den Datenbestand: `nmap -sP 192.168.1.0/24`."
+                    }
+                  ]
+                },
+                {
+                  "id": "ASST.2.1-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    }
+                  ],
+                  "prose": "Vollintegriertes Asset-Management mit automatisierter Risikobewertung in Echtzeit.",
+                  "parts": [
+                    {
+                      "id": "ASST.2.1-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Koppeln Sie das Inventar mit dem automatisierten Konfigurationsmanagement (IaC)."
+                    },
+                    {
+                      "id": "ASST.2.1-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung der API-Schnittstellen zwischen Asset-Datenbank und Deployment-Tools."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "control-id": "ASST.2.2",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "ASST.2.2_stm",
+              "parts": [
+                {
+                  "id": "ASST.2.2-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Technical",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    }
+                  ],
+                  "prose": "IT-Systeme werden ad-hoc ohne einheitliche Kennzeichnung erfasst.",
+                  "parts": [
+                    {
+                      "id": "ASST.2.2-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Notieren Sie Hardware-IDs bei der Inbetriebnahme neuer Rechner."
+                    },
+                    {
+                      "id": "ASST.2.2-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Sichtprüfung von Aufklebern an Hardware-Komponenten."
+                    }
+                  ]
+                },
+                {
+                  "id": "ASST.2.2-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Technical",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    }
+                  ],
+                  "prose": "Systeme werden mit Namen und Standort in einer Datenbank gelistet.",
+                  "parts": [
+                    {
+                      "id": "ASST.2.2-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Führen Sie eine einfache CMDB für die IT-Infrastruktur ein."
+                    },
+                    {
+                      "id": "ASST.2.2-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Abgleich der CMDB mit dem physischen Standort der Server."
+                    }
+                  ]
+                },
+                {
+                  "id": "ASST.2.2-m3_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Technical",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m3"
+                    }
+                  ],
+                  "prose": "Informationen und Assets SOLLTE ein Inventar der IT-Systeme einschließlich Identifikationsbezeichnung und letztem bekannten Verbleib dokumentieren.",
+                  "parts": [
+                    {
+                      "id": "ASST.2.2-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Dokumentieren Sie jedes System mit eindeutiger ID und Standortverlauf."
+                    },
+                    {
+                      "id": "ASST.2.2-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung des Inventars auf Vollständigkeit der Identifikationsmerkmale."
+                    }
+                  ]
+                },
+                {
+                  "id": "ASST.2.2-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Technical",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    }
+                  ],
+                  "prose": "Automatisierte Erfassung von Standortdaten und Systemstatus über Monitoring-Agenten.",
+                  "parts": [
+                    {
+                      "id": "ASST.2.2-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Nutzen Sie SNMP oder Agenten-Software zur Standortverfolgung."
+                    },
+                    {
+                      "id": "ASST.2.2-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Abfrage des Standorts via Skript: `ssh host 'hostnamectl'`."
+                    }
+                  ]
+                },
+                {
+                  "id": "ASST.2.2-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Technical",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    }
+                  ],
+                  "prose": "Echtzeit-Tracking aller IT-Assets inklusive automatischer Depositionierung.",
+                  "parts": [
+                    {
+                      "id": "ASST.2.2-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Integrieren Sie RFID oder Netzwerkport-Mapping zur Standorterkennung."
+                    },
+                    {
+                      "id": "ASST.2.2-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung der Echtzeit-Standortdaten im zentralen Dashboard."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "control-id": "ASST.2.3",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "ASST.2.3_stm",
+              "parts": [
+                {
+                  "id": "ASST.2.3-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Technical",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    }
+                  ],
+                  "prose": "Anwendungen werden unsystematisch ohne Versionskontrolle gelistet.",
+                  "parts": [
+                    {
+                      "id": "ASST.2.3-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Erstellen Sie eine Liste der genutzten Standard-Software."
+                    },
+                    {
+                      "id": "ASST.2.3-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Stichprobenartige Prüfung installierter Software auf Clients."
+                    }
+                  ]
+                },
+                {
+                  "id": "ASST.2.3-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Technical",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    }
+                  ],
+                  "prose": "Anwendungsliste mit Versionen wird manuell bei Änderungen gepflegt.",
+                  "parts": [
+                    {
+                      "id": "ASST.2.3-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Erfassen Sie Version und Lizenz beim Rollout jeder Anwendung."
+                    },
+                    {
+                      "id": "ASST.2.3-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Kontrolle der Lizenzdokumentation gegen installierte Instanzen."
+                    }
+                  ]
+                },
+                {
+                  "id": "ASST.2.3-m3_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Technical",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m3"
+                    }
+                  ],
+                  "prose": "Informationen und Assets SOLLTE ein Inventar der Anwendungen einschließlich Produktname, Versionsstand, Herkunft und Lizenzierung dokumentieren.",
+                  "parts": [
+                    {
+                      "id": "ASST.2.3-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Pflegen Sie das Anwendungs-Inventar gemäß der Lizenzrichtlinie."
+                    },
+                    {
+                      "id": "ASST.2.3-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Audit des Software-Inventars auf Korrektheit der Versionsangaben."
+                    }
+                  ]
+                },
+                {
+                  "id": "ASST.2.3-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Technical",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    }
+                  ],
+                  "prose": "Automatisierte Software-Inventur durch zentrales Management-System.",
+                  "parts": [
+                    {
+                      "id": "ASST.2.3-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Einsatz von Software-Asset-Management (SAM) Tools zur Automatisierung."
+                    },
+                    {
+                      "id": "ASST.2.3-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Automatisierter Check via `dpkg -l` oder `rpm -qa` auf Endgeräten."
+                    }
+                  ]
+                },
+                {
+                  "id": "ASST.2.3-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Technical",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    }
+                  ],
+                  "prose": "Continuous Compliance der Softwarestände inklusive automatischer Patch-Validierung.",
+                  "parts": [
+                    {
+                      "id": "ASST.2.3-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Verknüpfen Sie das Inventar mit CVE-Datenbanken für automatische Warnungen."
+                    },
+                    {
+                      "id": "ASST.2.3-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Validierung der automatisierten Schwachstellen-Zuordnung im Inventar."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "control-id": "ASST.2.3.2.1",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "ASST.2.3.2.1_stm",
+              "parts": [
+                {
+                  "id": "ASST.2.3.2.1-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    }
+                  ],
+                  "prose": "Unspezifische Erfassung von Metadaten auf ad-hoc Basis.",
+                  "parts": [
+                    {
+                      "id": "ASST.2.3.2.1-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Dokumentieren Sie wesentliche Merkmale bei Bedarf."
+                    },
+                    {
+                      "id": "ASST.2.3.2.1-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung unsortierter Dokumentationen auf Vollständigkeit."
+                    }
+                  ]
+                },
+                {
+                  "id": "ASST.2.3.2.1-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    }
+                  ],
+                  "prose": "Strukturierte Ablage von Zusatzattributen für wichtige Assets.",
+                  "parts": [
+                    {
+                      "id": "ASST.2.3.2.1-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Verwenden Sie vordefinierte Felder in Ihren Asset-Listen."
+                    },
+                    {
+                      "id": "ASST.2.3.2.1-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Sichtung der Attributfelder in der Asset-Datenbank."
+                    }
+                  ]
+                },
+                {
+                  "id": "ASST.2.3.2.1-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    }
+                  ],
+                  "prose": "Erweiterte Attributerfassung durch Verknüpfung externer Datenquellen.",
+                  "parts": [
+                    {
+                      "id": "ASST.2.3.2.1-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Automatisieren Sie den Import von Zusatzdaten via API."
+                    },
+                    {
+                      "id": "ASST.2.3.2.1-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Test der Datenkonsistenz über automatisierte SQL-Abfragen."
+                    }
+                  ]
+                },
+                {
+                  "id": "ASST.2.3.2.1-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    }
+                  ],
+                  "prose": "Vollständige semantische Modellierung aller Asset-Abhängigkeiten.",
+                  "parts": [
+                    {
+                      "id": "ASST.2.3.2.1-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Nutzen Sie Graphen-Datenbanken zur Abbildung von Asset-Beziehungen."
+                    },
+                    {
+                      "id": "ASST.2.3.2.1-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Analyse der Abhängigkeitsgraphen auf Korrektheit."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "control-id": "ASST.3.14",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "ASST.3.14_stm",
+              "parts": [
+                {
+                  "id": "ASST.3.14-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    }
+                  ],
+                  "prose": "Einzelne Ersatzgeräte sind zufällig im Lager vorhanden.",
+                  "parts": [
+                    {
+                      "id": "ASST.3.14-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Lagern Sie ausrangierte, aber funktionstüchtige Hardware ein."
+                    },
+                    {
+                      "id": "ASST.3.14-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Besichtigung des Lagers auf verfügbare Ersatzgeräte."
+                    }
+                  ]
+                },
+                {
+                  "id": "ASST.3.14-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    }
+                  ],
+                  "prose": "Es existiert eine definierte Mindestanzahl an kritischen Ersatz-Assets.",
+                  "parts": [
+                    {
+                      "id": "ASST.3.14-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Legen Sie Schwellenwerte für den Mindestbestand an Hardware fest."
+                    },
+                    {
+                      "id": "ASST.3.14-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Bestandsprüfung gegen die Liste der Mindestmengen."
+                    }
+                  ]
+                },
+                {
+                  "id": "ASST.3.14-m3_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m3"
+                    }
+                  ],
+                  "prose": "Informationen und Assets SOLLTE eine Reserve physischer Assets verankern.",
+                  "parts": [
+                    {
+                      "id": "ASST.3.14-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Stellen Sie sicher, dass kritische Komponenten sofort verfügbar sind."
+                    },
+                    {
+                      "id": "ASST.3.14-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung der Reservebestände auf Funktionsfähigkeit und Vollständigkeit."
+                    }
+                  ]
+                },
+                {
+                  "id": "ASST.3.14-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    }
+                  ],
+                  "prose": "Automatisierte Bestandsüberwachung mit Alarmierung bei Unterschreitung.",
+                  "parts": [
+                    {
+                      "id": "ASST.3.14-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Integrieren Sie das Lager in ein ERP-System mit Warnmeldungen."
+                    },
+                    {
+                      "id": "ASST.3.14-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Test der Alarmierungskette bei künstlicher Bestandsreduzierung."
+                    }
+                  ]
+                },
+                {
+                  "id": "ASST.3.14-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    }
+                  ],
+                  "prose": "Prädiktive Bevorratung basierend auf Ausfallwahrscheinlichkeiten und SLAs.",
+                  "parts": [
+                    {
+                      "id": "ASST.3.14-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Nutzen Sie Statistik-Modelle zur Optimierung der Hardware-Reserve."
+                    },
+                    {
+                      "id": "ASST.3.14-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Review der Prognosegenauigkeit und Wiederherstellungszeiten."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "control-id": "ASST.3.15",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "ASST.3.15_stm",
+              "parts": [
+                {
+                  "id": "ASST.3.15-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    }
+                  ],
+                  "prose": "Geräte werden informell und ohne Dokumentation verliehen.",
+                  "parts": [
+                    {
+                      "id": "ASST.3.15-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Führen Sie ein einfaches Übergabebuch für Leihgeräte."
+                    },
+                    {
+                      "id": "ASST.3.15-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Einsichtnahme in formlose Ausleihnotizen."
+                    }
+                  ]
+                },
+                {
+                  "id": "ASST.3.15-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    }
+                  ],
+                  "prose": "Es gibt einen festen Bestand an Leihgeräten mit Rückgabefristen.",
+                  "parts": [
+                    {
+                      "id": "ASST.3.15-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Definieren Sie einen Prozess zur Ausgabe und Rücknahme."
+                    },
+                    {
+                      "id": "ASST.3.15-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Kontrolle der Rückgabeliste auf überfällige Geräte."
+                    }
+                  ]
+                },
+                {
+                  "id": "ASST.3.15-m3_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m3"
+                    }
+                  ],
+                  "prose": "Informationen und Assets KANN einen ausreichenden Ausleihbestand verankern.",
+                  "parts": [
+                    {
+                      "id": "ASST.3.15-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Stellen Sie einen Pool an Geräten für temporäre Bedarfe bereit."
+                    },
+                    {
+                      "id": "ASST.3.15-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Bewertung der Verfügbarkeit von Geräten bei plötzlichem Bedarf."
+                    }
+                  ]
+                },
+                {
+                  "id": "ASST.3.15-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    }
+                  ],
+                  "prose": "Self-Service Portal zur Ausleihe mit automatisierter Mahnung.",
+                  "parts": [
+                    {
+                      "id": "ASST.3.15-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Digitalisieren Sie den Ausleihprozess inkl. Bestätigungs-Workflow."
+                    },
+                    {
+                      "id": "ASST.3.15-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Funktionstest des automatisierten Mahnwesens via E-Mail."
+                    }
+                  ]
+                },
+                {
+                  "id": "ASST.3.15-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    }
+                  ],
+                  "prose": "Vollautomatisierte Schließfachsysteme mit biometrischer Authentisierung.",
+                  "parts": [
+                    {
+                      "id": "ASST.3.15-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Nutzen Sie Smart-Lockers zur physischen Verwaltung der Leihgeräte."
+                    },
+                    {
+                      "id": "ASST.3.15-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung der Systemlogs des Ausleihautomaten."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "control-id": "ASST.3.3",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "ASST.3.3_stm",
+              "parts": [
+                {
+                  "id": "ASST.3.3-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    }
+                  ],
+                  "prose": "Informationen werden nur in Ausnahmefällen manuell markiert.",
+                  "parts": [
+                    {
+                      "id": "ASST.3.3-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Kennzeichnen Sie geheime Dokumente im Dateinamen."
+                    },
+                    {
+                      "id": "ASST.3.3-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Stichprobenprüfung von Dateinamen auf Klassifizierungsmerkmale."
+                    }
+                  ]
+                },
+                {
+                  "id": "ASST.3.3-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    }
+                  ],
+                  "prose": "Es gibt Vorgaben für Wasserzeichen und Kopfzeilen in Dokumenten.",
+                  "parts": [
+                    {
+                      "id": "ASST.3.3-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Nutzen Sie Vorlagen mit integrierten Klassifizierungsfeldern."
+                    },
+                    {
+                      "id": "ASST.3.3-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Sichtung von Stichproben aus dem Dokumentenmanagementsystem."
+                    }
+                  ]
+                },
+                {
+                  "id": "ASST.3.3-m3_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m3"
+                    }
+                  ],
+                  "prose": "Informationen und Assets SOLLTE die Kennzeichnung von Informationen verankern.",
+                  "parts": [
+                    {
+                      "id": "ASST.3.3-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Wenden Sie die Richtlinie zur Informationsklassifizierung strikt an."
+                    },
+                    {
+                      "id": "ASST.3.3-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung der Kennzeichnung gemäß dem Schutzbedarf der Informationen."
+                    }
+                  ]
+                },
+                {
+                  "id": "ASST.3.3-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    }
+                  ],
+                  "prose": "Erzwungene Klassifizierung beim Speichern durch Software-Plugins.",
+                  "parts": [
+                    {
+                      "id": "ASST.3.3-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Implementieren Sie Tools zur digitalen Kennzeichnung (Labels)."
+                    },
+                    {
+                      "id": "ASST.3.3-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Versuch, ein Dokument ohne Label zu speichern."
+                    }
+                  ]
+                },
+                {
+                  "id": "ASST.3.3-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    }
+                  ],
+                  "prose": "Automatisierte Klassifizierung durch KI-gestützte Inhaltsanalyse.",
+                  "parts": [
+                    {
+                      "id": "ASST.3.3-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Nutzen Sie DLP-Systeme zur automatischen Metadaten-Kennzeichnung."
+                    },
+                    {
+                      "id": "ASST.3.3-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Check der Metadaten: `exiftool document.pdf | grep Classification`."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "control-id": "ASST.4.3",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "ASST.4.3_stm",
+              "parts": [
+                {
+                  "id": "ASST.4.3-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    }
+                  ],
+                  "prose": "Veröffentlichungen erfolgen nach mündlicher Absprache.",
+                  "parts": [
+                    {
+                      "id": "ASST.4.3-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Holen Sie sich eine Freigabe per E-Mail ein."
+                    },
+                    {
+                      "id": "ASST.4.3-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung des E-Mail-Verlaufs vor Publikationen."
+                    }
+                  ]
+                },
+                {
+                  "id": "ASST.4.3-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    }
+                  ],
+                  "prose": "Es existiert ein einfaches Formular zur Freigabe von Inhalten.",
+                  "parts": [
+                    {
+                      "id": "ASST.4.3-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Nutzen Sie ein Ticketsystem für Freigabeanfragen."
+                    },
+                    {
+                      "id": "ASST.4.3-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Kontrolle der Ticket-Historie auf erfolgte Freigaben."
+                    }
+                  ]
+                },
+                {
+                  "id": "ASST.4.3-m3_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m3"
+                    }
+                  ],
+                  "prose": "Informationen und Assets SOLLTE Veröffentlichungen durch {{ insert: param, asst.4.3-prm1 }} autorisieren.",
+                  "parts": [
+                    {
+                      "id": "ASST.4.3-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Stellen Sie sicher, dass die benannte Instanz jede Publikation prüft."
+                    },
+                    {
+                      "id": "ASST.4.3-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Vergleich veröffentlichter Dokumente mit den Freigabeprotokollen."
+                    }
+                  ]
+                },
+                {
+                  "id": "ASST.4.3-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    }
+                  ],
+                  "prose": "Mehrstufiger digitaler Freigabeprozess mit revisionssicherer Log.",
+                  "parts": [
+                    {
+                      "id": "ASST.4.3-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Implementieren Sie einen Workflow in Ihrem CMS."
+                    },
+                    {
+                      "id": "ASST.4.3-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Review der Audit-Logs im Content-Management-System."
+                    }
+                  ]
+                },
+                {
+                  "id": "ASST.4.3-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    }
+                  ],
+                  "prose": "Automatisierte Prüfung auf sensible Inhalte vor der Freigabe.",
+                  "parts": [
+                    {
+                      "id": "ASST.4.3-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Integrieren Sie Data-Leakage-Prevention in den Publikations-Workflow."
+                    },
+                    {
+                      "id": "ASST.4.3-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Test des Sperrmechanismus bei Triggerung von Sensitivitätsfiltern."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "control-id": "ASST.6.1",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "ASST.6.1_stm",
+              "parts": [
+                {
+                  "id": "ASST.6.1-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Risk Treatment",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    }
+                  ],
+                  "prose": "Verluste werden formlos dem Vorgesetzten gemeldet.",
+                  "parts": [
+                    {
+                      "id": "ASST.6.1-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Informieren Sie die IT bei Verlust von Hardware sofort."
+                    },
+                    {
+                      "id": "ASST.6.1-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Befragung von Mitarbeitern zum Verhalten bei Verlust."
+                    }
+                  ]
+                },
+                {
+                  "id": "ASST.6.1-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Risk Treatment",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    }
+                  ],
+                  "prose": "Es gibt eine schriftliche Anweisung zur Meldung von Asset-Verlusten.",
+                  "parts": [
+                    {
+                      "id": "ASST.6.1-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Stellen Sie eine Checkliste für die Verlustmeldung bereit."
+                    },
+                    {
+                      "id": "ASST.6.1-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung der Vollständigkeit eingegangener Verlustmeldungen."
+                    }
+                  ]
+                },
+                {
+                  "id": "ASST.6.1-m3_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Risk Treatment",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m3"
+                    }
+                  ],
+                  "prose": "Informationen und Assets SOLLTE eine Vorgehensweise beim Abhandenkommen von Assets verankern.",
+                  "parts": [
+                    {
+                      "id": "ASST.6.1-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Folgen Sie dem definierten Incident-Management-Prozess bei Verlust."
+                    },
+                    {
+                      "id": "ASST.6.1-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Audit der Incident-Tickets bezüglich Asset-Verlusten."
+                    }
+                  ]
+                },
+                {
+                  "id": "ASST.6.1-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Risk Treatment",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    }
+                  ],
+                  "prose": "Automatisierte Sperrung und Löschung (Remote Wipe) bei Verlustmeldung.",
+                  "parts": [
+                    {
+                      "id": "ASST.6.1-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Nutzen Sie MDM-Lösungen zur sofortigen Reaktion auf Verluste."
+                    },
+                    {
+                      "id": "ASST.6.1-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Funktionstest eines Remote-Wipe Kommandos via MDM-Konsole."
+                    }
+                  ]
+                },
+                {
+                  "id": "ASST.6.1-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Risk Treatment",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    }
+                  ],
+                  "prose": "Präventive Ortung und Geofencing zur automatischen Verlustdetektion.",
+                  "parts": [
+                    {
+                      "id": "ASST.6.1-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Einsatz von Diebstahlschutz-Software mit automatischer Alarmierung."
+                    },
+                    {
+                      "id": "ASST.6.1-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung der Geofencing-Logs auf unbefugte Standortänderungen."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "control-id": "ASST.6.2",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "ASST.6.2_stm",
+              "parts": [
+                {
+                  "id": "ASST.6.2-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Risk Treatment",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    }
+                  ],
+                  "prose": "Wiedergefundene Geräte werden ohne Prüfung weitergenutzt.",
+                  "parts": [
+                    {
+                      "id": "ASST.6.2-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Prüfen Sie Hardware optisch auf Beschädigungen."
+                    },
+                    {
+                      "id": "ASST.6.2-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Beobachtung der Geräterückgabe in der IT-Abteilung."
+                    }
+                  ]
+                },
+                {
+                  "id": "ASST.6.2-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Risk Treatment",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    }
+                  ],
+                  "prose": "Rückkehrer werden formell erfasst und einmalig neu gestartet.",
+                  "parts": [
+                    {
+                      "id": "ASST.6.2-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Dokumentieren Sie den Zustand des zurückgekehrten Assets."
+                    },
+                    {
+                      "id": "ASST.6.2-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Sichtung der Rückgabeprotokolle auf Zustandsbeschreibungen."
+                    }
+                  ]
+                },
+                {
+                  "id": "ASST.6.2-m3_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Risk Treatment",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m3"
+                    }
+                  ],
+                  "prose": "Informationen und Assets SOLLTE eine Vorgehensweise bei Rückkehr von abhandengekommenen Assets verankern.",
+                  "parts": [
+                    {
+                      "id": "ASST.6.2-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Führen Sie eine Integritätsprüfung durch, bevor das Asset reaktiviert wird."
+                    },
+                    {
+                      "id": "ASST.6.2-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Nachweis der durchgeführten Sicherheitschecks nach Asset-Rückkehr."
+                    }
+                  ]
+                },
+                {
+                  "id": "ASST.6.2-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Risk Treatment",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    }
+                  ],
+                  "prose": "Zwingende Neuinstallation (Reimaging) aller zurückgekehrten Systeme.",
+                  "parts": [
+                    {
+                      "id": "ASST.6.2-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Automatisieren Sie das Deployment bei Geräterückgabe."
+                    },
+                    {
+                      "id": "ASST.6.2-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung der Installations-Logs für rückgeführte Hardware."
+                    }
+                  ]
+                },
+                {
+                  "id": "ASST.6.2-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Risk Treatment",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    }
+                  ],
+                  "prose": "Forensische Analyse des Datenbestands vor Freigabe oder Löschung.",
+                  "parts": [
+                    {
+                      "id": "ASST.6.2-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Nutzen Sie Forensik-Tools zur Suche nach Manipulationen."
+                    },
+                    {
+                      "id": "ASST.6.2-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Review forensischer Berichte über untersuchte Rückkehrer."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "control-id": "ASST.7.6",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "ASST.7.6_stm",
+              "parts": [
+                {
+                  "id": "ASST.7.6-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    }
+                  ],
+                  "prose": "Veräußerungen von Assets werden gelegentlich ohne formale Genehmigung durchgeführt.",
+                  "parts": [
+                    {
+                      "id": "ASST.7.6-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Sorgen Sie dafür, dass Mitarbeiter die Notwendigkeit einer informellen Rücksprache vor der Asset-Abgabe erkennen."
+                    },
+                    {
+                      "id": "ASST.7.6-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Befragung der Materialverwaltung zu informellen Abläufen bei der Entsorgung von IT-Geräten."
+                    }
+                  ]
+                },
+                {
+                  "id": "ASST.7.6-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    }
+                  ],
+                  "prose": "Veräußerungen werden manuell auf Basis von Listen durch Vorgesetzte freigegeben.",
+                  "parts": [
+                    {
+                      "id": "ASST.7.6-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Führen Sie einfache Freigabelisten für Hardware-Verkäufe ein, um einen Überblick zu behalten."
+                    },
+                    {
+                      "id": "ASST.7.6-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Einsichtnahme in manuelle Freigabelisten oder E-Mail-Korrespondenzen zur Asset-Veräußerung."
+                    }
+                  ]
+                },
+                {
+                  "id": "ASST.7.6-m3_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m3"
+                    }
+                  ],
+                  "prose": "Informationen und Assets SOLLTE Veräußerungen von Assets durch {{ insert: param, asst.7.6-prm1 }} autorisieren.",
+                  "parts": [
+                    {
+                      "id": "ASST.7.6-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Setzen Sie den definierten Prozess zur Autorisierung jeder Veräußerung durch die benannte Stelle um."
+                    },
+                    {
+                      "id": "ASST.7.6-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung der Übereinstimmung von Veräußerungsbelegen mit den Genehmigungen von {{ insert: param, asst.7.6-prm1 }}."
+                    }
+                  ]
+                },
+                {
+                  "id": "ASST.7.6-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    }
+                  ],
+                  "prose": "Ein digitaler Workflow steuert die Autorisierung von Veräußerungen und protokolliert jeden Schritt.",
+                  "parts": [
+                    {
+                      "id": "ASST.7.6-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Integrieren Sie die Freigabeprozesse in Ihr ITSM-Tool für eine lückenlose Revisionsfähigkeit."
+                    },
+                    {
+                      "id": "ASST.7.6-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Audit des ITSM-Workflows. Abfrage der Genehmigungshistorie via SQL: SELECT * FROM asset_approvals WHERE status='disposed'."
+                    }
+                  ]
+                },
+                {
+                  "id": "ASST.7.6-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    }
+                  ],
+                  "prose": "Die Autorisierung erfolgt vollautomatisch durch Abgleich von Asset-Lebenszyklus-Richtlinien im ERP-System.",
+                  "parts": [
+                    {
+                      "id": "ASST.7.6-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Nutzen Sie Policy-as-Code, um Veräußerungskriterien und Autorisierungsschwellen automatisiert zu validieren."
+                    },
+                    {
+                      "id": "ASST.7.6-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Validierung der automatisierten Entscheidungskriterien im ERP/ITSM-System. API-Test der Freigabeschnittstelle."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "control-id": "ASST.7.7",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "ASST.7.7_stm",
+              "parts": [
+                {
+                  "id": "ASST.7.7-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    }
+                  ],
+                  "prose": "Sichtbare Aufkleber auf Assets werden vor der Weitergabe oft nur oberflächlich entfernt.",
+                  "parts": [
+                    {
+                      "id": "ASST.7.7-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Sensibilisieren Sie das Personal dafür, offensichtliche Firmenlogos von Hardware zu entfernen."
+                    },
+                    {
+                      "id": "ASST.7.7-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Sichtprüfung von für den Verkauf bereitgestellten Geräten auf verbliebene Inventarnummern."
+                    }
+                  ]
+                },
+                {
+                  "id": "ASST.7.7-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    }
+                  ],
+                  "prose": "Es erfolgt eine manuelle Reinigung der Gehäuseoberflächen von identifizierenden Merkmalen.",
+                  "parts": [
+                    {
+                      "id": "ASST.7.7-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Stellen Sie sicher, dass Standard-Aufkleber und Gravuren vor der Abgabe systematisch unkenntlich gemacht werden."
+                    },
+                    {
+                      "id": "ASST.7.7-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Stichprobenartige Kontrolle der zur Abholung bereitstehenden Hardware auf Rückstände von Beschriftungen."
+                    }
+                  ]
+                },
+                {
+                  "id": "ASST.7.7-m3_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m3"
+                    }
+                  ],
+                  "prose": "Informationen und Assets SOLLTE alle der Institution zuzuordnenden Beschriftungen vor der Veräußerung von Assets löschen.",
+                  "parts": [
+                    {
+                      "id": "ASST.7.7-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Entfernen Sie gründlich alle Kennzeichnungen, die einen Rückschluss auf die Institution zulassen."
+                    },
+                    {
+                      "id": "ASST.7.7-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Dokumentierte Prüfung des Reinigungsprozesses. Abgleich der Asset-Checkliste: 'Beschriftung entfernt: Ja/Nein'."
+                    }
+                  ]
+                },
+                {
+                  "id": "ASST.7.7-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    }
+                  ],
+                  "prose": "Ein standardisierter De-Labeling-Prozess mit anschließender Vier-Augen-Kontrolle ist etabliert.",
+                  "parts": [
+                    {
+                      "id": "ASST.7.7-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Nutzen Sie Checklisten und Fotodokumentation, um die Neutralisierung der Hardware zu belegen."
+                    },
+                    {
+                      "id": "ASST.7.7-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung der Fotodokumentation im Asset-Management-System auf Neutralität der Hardware."
+                    }
+                  ]
+                },
+                {
+                  "id": "ASST.7.7-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    }
+                  ],
+                  "prose": "Der Prozess ist in die Hardware-Lifecycle-Automation integriert, inklusive zertifizierter Neutralisierungsbestätigung.",
+                  "parts": [
+                    {
+                      "id": "ASST.7.7-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Setzen Sie spezialisierte Dienstleister ein, die den De-Labeling-Status digital an das Asset-Inventory melden."
+                    },
+                    {
+                      "id": "ASST.7.7-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Automatisierter Abgleich der Vernichtungsprotokolle externer Dienstleister mit dem internen Asset-Status 'neutralized'."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

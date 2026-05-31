@@ -1,0 +1,1034 @@
+{
+  "profile": {
+    "uuid": "96c6bd98-d0be-43f8-9684-ec0204169efb",
+    "metadata": {
+      "title": "VRB_prozesse VRB_prozesse - Enhanced (ED2023)",
+      "last-modified": "2026-05-30T10:12:27.822857+00:00",
+      "version": "0.0.1",
+      "oscal-version": "1.1.3"
+    },
+    "imports": [
+      {
+        "href": "https://raw.githubusercontent.com/BSI-Bund/Stand-der-Technik-Bibliothek/refs/heads/main/Anwenderkataloge/Grundschutz%2B%2B/Grundschutz%2B%2B-catalog.json",
+        "include-controls": [
+          {
+            "with-ids": [
+              "VRB.2.2",
+              "VRB.3.1",
+              "VRB.7.1",
+              "VRB.8.1"
+            ]
+          }
+        ]
+      }
+    ],
+    "modify": {
+      "alters": [
+        {
+          "control-id": "VRB.2.2",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "VRB.2.2_stm",
+              "parts": [
+                {
+                  "id": "VRB.2.2-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Improvement",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    }
+                  ],
+                  "prose": "Anpassungen am ISMS erfolgen nur bei schwerwiegenden Vorfällen ohne festen Prozess.",
+                  "parts": [
+                    {
+                      "id": "VRB.2.2-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Prüfen Sie Abweichungen unsystematisch bei Bedarf."
+                    },
+                    {
+                      "id": "VRB.2.2-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Sichtung von Protokollen über außerordentliche ISMS-Änderungen."
+                    }
+                  ]
+                },
+                {
+                  "id": "VRB.2.2-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Improvement",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    }
+                  ],
+                  "prose": "Es erfolgt eine grundlegende, manuelle Prüfung von Nicht-Konformitäten zur ISMS-Anpassung.",
+                  "parts": [
+                    {
+                      "id": "VRB.2.2-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Nutzen Sie einfache Checklisten zur Identifikation von Anpassungsbedarf."
+                    },
+                    {
+                      "id": "VRB.2.2-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Manuelle Prüfung der Liste dokumentierter Nicht-Konformitäten gegen ISMS-Updates."
+                    }
+                  ]
+                },
+                {
+                  "id": "VRB.2.2-m3_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Improvement",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m3"
+                    }
+                  ],
+                  "prose": "Verbesserung SOLLTE Notwendigkeit zur Anpassung des ISMS hinsichtlich der Nicht-Konformitäten überprüfen.",
+                  "parts": [
+                    {
+                      "id": "VRB.2.2-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Etablieren Sie einen Review-Prozess, der systematisch alle identifizierten Nicht-Konformitäten bewertet und daraus notwendige Änderungen am ISMS ableitet."
+                    },
+                    {
+                      "id": "VRB.2.2-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfen Sie Dokumente zur Ursachenanalyse und die Nachweise über beschlossene ISMS-Änderungen."
+                    }
+                  ]
+                },
+                {
+                  "id": "VRB.2.2-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Improvement",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    }
+                  ],
+                  "prose": "Systematische Überprüfung von Nicht-Konformitäten inklusive Trendanalyse zur proaktiven ISMS-Anpassung.",
+                  "parts": [
+                    {
+                      "id": "VRB.2.2-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Verwenden Sie Kennzahlen zur Häufigkeit von Abweichungen für gezielte Prozessoptimierungen."
+                    },
+                    {
+                      "id": "VRB.2.2-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Auditierung der Trendberichte und der daraus resultierenden präventiven Maßnahmen."
+                    }
+                  ]
+                },
+                {
+                  "id": "VRB.2.2-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Improvement",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    }
+                  ],
+                  "prose": "Vollautomatisierte Überwachung der ISMS-Konformität mit integrierten Workflows zur Sofortanpassung.",
+                  "parts": [
+                    {
+                      "id": "VRB.2.2-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Integrieren Sie GRC-Tools, die bei Abweichungen automatisch Anpassungsvorschläge generieren."
+                    },
+                    {
+                      "id": "VRB.2.2-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Automatisierter API-Check der Konformitätsrate und Review der automatisierten Workflow-Historie."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "control-id": "VRB.3.1",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "VRB.3.1_stm",
+              "parts": [
+                {
+                  "id": "VRB.3.1-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Improvement",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    }
+                  ],
+                  "prose": "Verbesserungspotenziale werden sporadisch und informell ohne Risikoabwägung gesammelt.",
+                  "parts": [
+                    {
+                      "id": "VRB.3.1-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Notieren Sie Ideen zur Verbesserung formlos, wenn sie auftreten."
+                    },
+                    {
+                      "id": "VRB.3.1-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Befragung von Mitarbeitern zu informellen Verbesserungsvorschlägen."
+                    }
+                  ]
+                },
+                {
+                  "id": "VRB.3.1-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Improvement",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    }
+                  ],
+                  "prose": "Es existiert eine einfache Liste für Potenziale mit grober Einschätzung der Vorteile.",
+                  "parts": [
+                    {
+                      "id": "VRB.3.1-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Führen Sie eine einfache Tabelle zur Erfassung von Potenzialen."
+                    },
+                    {
+                      "id": "VRB.3.1-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Einsichtnahme in die Liste der Verbesserungspotenziale."
+                    }
+                  ]
+                },
+                {
+                  "id": "VRB.3.1-m3_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Improvement",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m3"
+                    }
+                  ],
+                  "prose": "Verbesserung SOLLTE eine Methode zur Überprüfung und Bewertung von Verbesserungspotentialen unter Berücksichtigung der damit verbundenen Risiken verankern.",
+                  "parts": [
+                    {
+                      "id": "VRB.3.1-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Definieren Sie ein Verfahren, das Potenziale systematisch identifiziert und gegen die Sicherheitsrisiken und Kosten-Nutzen-Aspekte abwägt."
+                    },
+                    {
+                      "id": "VRB.3.1-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfen Sie das schriftlich fixierte Verfahren und die Protokolle der Bewertungsrunden."
+                    }
+                  ]
+                },
+                {
+                  "id": "VRB.3.1-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Improvement",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    }
+                  ],
+                  "prose": "Strukturierte Bewertung von Potenzialen unter Einbeziehung quantitativer Risikoanalysen.",
+                  "parts": [
+                    {
+                      "id": "VRB.3.1-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Nutzen Sie mathematische Modelle zur Priorisierung von Verbesserungsmaßnahmen."
+                    },
+                    {
+                      "id": "VRB.3.1-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Review der quantitativen Bewertungsmatrix für aktuelle Verbesserungsprojekte."
+                    }
+                  ]
+                },
+                {
+                  "id": "VRB.3.1-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Improvement",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    }
+                  ],
+                  "prose": "Kontinuierliche, datengestützte Identifikation von Potenzialen durch KI-Analyse von Systemdaten.",
+                  "parts": [
+                    {
+                      "id": "VRB.3.1-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Implementieren Sie Systeme, die Anomalien und Ineffizienzen zur Optimierung vorschlagen."
+                    },
+                    {
+                      "id": "VRB.3.1-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Überprüfung der automatisierten Analyseergebnisse und deren Umsetzungserfolg im GRC-System."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "control-id": "VRB.7.1",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "VRB.7.1_stm",
+              "parts": [
+                {
+                  "id": "VRB.7.1-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Improvement",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    }
+                  ],
+                  "prose": "Erreichte Verbesserungen werden nur in Einzelfällen oberflächlich betrachtet.",
+                  "parts": [
+                    {
+                      "id": "VRB.7.1-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Sichten Sie nach Abschluss großer Projekte grob das Ergebnis."
+                    },
+                    {
+                      "id": "VRB.7.1-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung auf Vorhandensein von Abschlussberichten für Maßnahmen."
+                    }
+                  ]
+                },
+                {
+                  "id": "VRB.7.1-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Improvement",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    }
+                  ],
+                  "prose": "Manuelle Dokumentation der Wirksamkeit von Verbesserungen ohne formale Risikobetrachtung.",
+                  "parts": [
+                    {
+                      "id": "VRB.7.1-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Erfassen Sie in einem Statusbericht, ob Ziele erreicht wurden."
+                    },
+                    {
+                      "id": "VRB.7.1-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Stichprobenartige Prüfung von Statusberichten umgesetzter Maßnahmen."
+                    }
+                  ]
+                },
+                {
+                  "id": "VRB.7.1-m3_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Improvement",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m3"
+                    }
+                  ],
+                  "prose": "Verbesserung SOLLTE ein Verfahren zur Bewertung der erreichte Verbesserung unter Berücksichtigung der damit verbundenen Risiken verankern.",
+                  "parts": [
+                    {
+                      "id": "VRB.7.1-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Legen Sie fest, wie die Wirksamkeit umgesetzter Maßnahmen geprüft wird und bewerten Sie, wie sich das Risikoprofil dadurch verändert hat."
+                    },
+                    {
+                      "id": "VRB.7.1-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Sichtung der Nachweise über die Wirksamkeitsprüfung und der aktualisierten Risikobehandlungspläne."
+                    }
+                  ]
+                },
+                {
+                  "id": "VRB.7.1-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Improvement",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    }
+                  ],
+                  "prose": "KPI-basierte Bewertung der Verbesserungen mit Fokus auf die Reduzierung von Restrisiken.",
+                  "parts": [
+                    {
+                      "id": "VRB.7.1-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Definieren Sie Metriken, die den Erfolg einer Verbesserung objektiv messbar machen."
+                    },
+                    {
+                      "id": "VRB.7.1-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Abgleich der Ziel-KPIs mit den Ist-Werten nach Umsetzung der Maßnahmen."
+                    }
+                  ]
+                },
+                {
+                  "id": "VRB.7.1-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Improvement",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    }
+                  ],
+                  "prose": "Echtzeit-Validierung der Verbesserungswirksamkeit durch Continuous Security Monitoring.",
+                  "parts": [
+                    {
+                      "id": "VRB.7.1-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Nutzen Sie automatisierte Tests zur Bestätigung, dass Verbesserungen das Risiko dauerhaft senken."
+                    },
+                    {
+                      "id": "VRB.7.1-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Automatisierter Report über die Wirksamkeit von Kontrollen aus dem Monitoring-Tool."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "control-id": "VRB.8.1",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "VRB.8.1_stm",
+              "parts": [
+                {
+                  "id": "VRB.8.1-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Improvement",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    }
+                  ],
+                  "prose": "Compliance-Verstöße werden ad-hoc behandelt, Betroffenenrechte werden kaum berücksichtigt.",
+                  "parts": [
+                    {
+                      "id": "VRB.8.1-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Reagieren Sie auf Verstöße, wenn diese bekannt werden."
+                    },
+                    {
+                      "id": "VRB.8.1-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Einsicht in Korrespondenz zu vergangenen Vorfällen."
+                    }
+                  ]
+                },
+                {
+                  "id": "VRB.8.1-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Improvement",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    }
+                  ],
+                  "prose": "Einfaches Meldeverfahren für Verstöße vorhanden, Grundzüge des Datenschutzes werden beachtet.",
+                  "parts": [
+                    {
+                      "id": "VRB.8.1-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Führen Sie ein einfaches Verzeichnis für Compliance-Verstöße."
+                    },
+                    {
+                      "id": "VRB.8.1-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung des Verzeichnisses auf Vollständigkeit und Datenschutzkonformität."
+                    }
+                  ]
+                },
+                {
+                  "id": "VRB.8.1-m3_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Improvement",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m3"
+                    }
+                  ],
+                  "prose": "Verbesserung SOLLTE ein Verfahren zur Behandlung von Verstößen unter Berücksichtigung der Betroffenenrechte verankern.",
+                  "parts": [
+                    {
+                      "id": "VRB.8.1-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Etablieren Sie einen Prozess zur Meldung, Untersuchung und Behebung von Verstößen, der Informationspflichten gegenüber Betroffenen einschließt."
+                    },
+                    {
+                      "id": "VRB.8.1-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Review der Verfahrensanweisung zum Incident Management und der Dokumentation von Betroffenenbenachrichtigungen."
+                    }
+                  ]
+                },
+                {
+                  "id": "VRB.8.1-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Improvement",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    }
+                  ],
+                  "prose": "Strukturierter Workflow zur Compliance-Behandlung inkl. Rechtsberatung und proaktiver Risikominderung.",
+                  "parts": [
+                    {
+                      "id": "VRB.8.1-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Integrieren Sie juristische Expertise und Datenschutz-Folgenabschätzungen in den Prozess."
+                    },
+                    {
+                      "id": "VRB.8.1-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Audit der Workflow-Dokumentation im Ticketsystem auf Einhaltung der DSGVO-Fristen."
+                    }
+                  ]
+                },
+                {
+                  "id": "VRB.8.1-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Improvement",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    }
+                  ],
+                  "prose": "Automatisierte Detektion und geführte Remediation von Verstößen mit integriertem Fallmanagement.",
+                  "parts": [
+                    {
+                      "id": "VRB.8.1-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Setzen Sie Tools ein, die Verstöße automatisch melden und die Kommunikation mit Betroffenen rechtssicher steuern."
+                    },
+                    {
+                      "id": "VRB.8.1-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Funktionstest des automatisierten Meldesystems und Review der verschlüsselten Fallakten."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

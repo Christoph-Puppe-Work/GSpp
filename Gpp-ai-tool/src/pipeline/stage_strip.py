@@ -10,6 +10,25 @@ import json
 import os
 from config import app_config
 from constants import *
+from utils.file_utils import read_source_text
+
+
+def _write_if_needed(path, content):
+    """
+    Idempotent write: skips the file if it already exists and OVERWRITE_TEMP_FILES
+    is false, so re-running the stage does not recreate existing outputs.
+    """
+    logger = logging.getLogger(__name__)
+    if os.path.exists(path) and not app_config.overwrite_temp_files:
+        logger.info(
+            f"File already exists at {path} and OVERWRITE_TEMP_FILES is false. Skipping."
+        )
+        return
+    os.makedirs(SDT_HELPER_OUTPUT_DIR, exist_ok=True)
+    with open(path, "w", encoding="utf-8") as f:
+        f.write(content)
+    logger.debug(f"Wrote {path}")
+
 
 def _process_controls_recursively(controls, target_objects_list, isms_list):
     """
@@ -61,17 +80,10 @@ def _strip_gpp_file():
     logger = logging.getLogger(__name__)
     logger.debug(f"Reading G++ Kompendium file from: {GPP_KOMPENDIUM_JSON_PATH}")
 
-    if app_config.overwrite_temp_files:
-        for path in [GPP_STRIPPED_MD_PATH, GPP_STRIPPED_ISMS_MD_PATH]:
-            if os.path.exists(path):
-                os.remove(path)
-                logger.debug(f"Removed existing file: {path}")
-
     try:
-        with open(GPP_KOMPENDIUM_JSON_PATH, "r", encoding="utf-8") as f:
-            data = json.load(f)
-    except FileNotFoundError:
-        logger.error(f"G++ input file not found at: {GPP_KOMPENDIUM_JSON_PATH}")
+        data = json.loads(read_source_text(GPP_KOMPENDIUM_JSON_PATH))
+    except (FileNotFoundError, OSError) as e:
+        logger.error(f"G++ input source could not be read from {GPP_KOMPENDIUM_JSON_PATH}: {e}")
         return
     except json.JSONDecodeError:
         logger.error(f"Failed to decode JSON from: {GPP_KOMPENDIUM_JSON_PATH}")
@@ -89,18 +101,13 @@ def _strip_gpp_file():
     rows_target = [f"| {c[0]} | {c[1]} | {c[2]} | {c[3]} |" for c in target_objects_controls]
     markdown_content_target = header + "\n".join(rows_target)
 
-    os.makedirs(SDT_HELPER_OUTPUT_DIR, exist_ok=True)
-    with open(GPP_STRIPPED_MD_PATH, "w", encoding="utf-8") as f:
-        f.write(markdown_content_target)
-    logger.debug(f"Successfully wrote {len(target_objects_controls)} controls with target_objects to: {GPP_STRIPPED_MD_PATH}")
+    _write_if_needed(GPP_STRIPPED_MD_PATH, markdown_content_target)
 
     # --- Write the file for controls WITHOUT target_objects ---
     rows_isms = [f"| {c[0]} | {c[1]} | {c[2]} | {c[3]} |" for c in isms_controls]
     markdown_content_isms = header + "\n".join(rows_isms)
 
-    with open(GPP_STRIPPED_ISMS_MD_PATH, "w", encoding="utf-8") as f:
-        f.write(markdown_content_isms)
-    logger.debug(f"Successfully wrote {len(isms_controls)} ISMS controls to: {GPP_STRIPPED_ISMS_MD_PATH}")
+    _write_if_needed(GPP_STRIPPED_ISMS_MD_PATH, markdown_content_isms)
 
 
 def _strip_bsi_file():
@@ -112,10 +119,9 @@ def _strip_bsi_file():
     logger.debug(f"Reading BSI 2023 file from: {BSI_2023_JSON_PATH}")
 
     try:
-        with open(BSI_2023_JSON_PATH, "r", encoding="utf-8") as f:
-            data = json.load(f)
-    except FileNotFoundError:
-        logger.error(f"BSI input file not found at: {BSI_2023_JSON_PATH}")
+        data = json.loads(read_source_text(BSI_2023_JSON_PATH))
+    except (FileNotFoundError, OSError) as e:
+        logger.error(f"BSI input source could not be read from {BSI_2023_JSON_PATH}: {e}")
         return
     except json.JSONDecodeError:
         logger.error(f"Failed to decode JSON from: {BSI_2023_JSON_PATH}")
@@ -161,18 +167,13 @@ def _strip_bsi_file():
     allowed_rows = [f"| {c[0]} | {c[1]} | {c[2]} |" for c in allowed_controls]
     allowed_content = header + "\n".join(allowed_rows)
 
-    os.makedirs(SDT_HELPER_OUTPUT_DIR, exist_ok=True)
-    with open(BSI_STRIPPED_MD_PATH, "w", encoding="utf-8") as f:
-        f.write(allowed_content)
-    logger.debug(f"Successfully wrote {len(allowed_controls)} allowed BSI controls to: {BSI_STRIPPED_MD_PATH}")
+    _write_if_needed(BSI_STRIPPED_MD_PATH, allowed_content)
 
     # Write the ISMS (non-allowed) controls file
     isms_rows = [f"| {c[0]} | {c[1]} | {c[2]} |" for c in isms_controls]
     isms_content = header + "\n".join(isms_rows)
 
-    with open(BSI_STRIPPED_ISMS_MD_PATH, "w", encoding="utf-8") as f:
-        f.write(isms_content)
-    logger.debug(f"Successfully wrote {len(isms_controls)} ISMS BSI controls to: {BSI_STRIPPED_ISMS_MD_PATH}")
+    _write_if_needed(BSI_STRIPPED_ISMS_MD_PATH, isms_content)
 
 
 def run_stage_strip():

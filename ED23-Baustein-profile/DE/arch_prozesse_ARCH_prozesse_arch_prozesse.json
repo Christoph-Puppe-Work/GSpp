@@ -1,0 +1,530 @@
+{
+  "profile": {
+    "uuid": "592790fa-1efe-49e6-8ed0-a447e1bd120f",
+    "metadata": {
+      "title": "ARCH_prozesse ARCH_prozesse - Enhanced (ED2023)",
+      "last-modified": "2026-05-30T09:11:19.320932+00:00",
+      "version": "0.0.1",
+      "oscal-version": "1.1.3"
+    },
+    "imports": [
+      {
+        "href": "https://raw.githubusercontent.com/BSI-Bund/Stand-der-Technik-Bibliothek/refs/heads/main/Anwenderkataloge/Grundschutz%2B%2B/Grundschutz%2B%2B-catalog.json",
+        "include-controls": [
+          {
+            "with-ids": [
+              "ARCH.2.2.12",
+              "ARCH.2.4"
+            ]
+          }
+        ]
+      }
+    ],
+    "modify": {
+      "alters": [
+        {
+          "control-id": "ARCH.2.2.12",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "ARCH.2.2.12_stm",
+              "parts": [
+                {
+                  "id": "ARCH.2.2.12-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Initiation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    }
+                  ],
+                  "prose": "Die Dokumentation der IT-Architektur erfolgt lediglich ad-hoc und unvollständig für einzelne isolierte Systeme.",
+                  "parts": [
+                    {
+                      "id": "ARCH.2.2.12-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Erfassen Sie grobe Skizzen der wichtigsten IT-Systeme ohne Anspruch auf Vollständigkeit."
+                    },
+                    {
+                      "id": "ARCH.2.2.12-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfen Sie manuell, ob für kritische Server einfache Beschreibungen vorliegen."
+                    }
+                  ]
+                },
+                {
+                  "id": "ARCH.2.2.12-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Initiation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    }
+                  ],
+                  "prose": "Es existiert eine grundlegende, statische Dokumentation der zentralen Architekturkomponenten.",
+                  "parts": [
+                    {
+                      "id": "ARCH.2.2.12-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Erstellen Sie eine Liste der Server und Netze in einem zentralen Dokument (z.B. Wiki)."
+                    },
+                    {
+                      "id": "ARCH.2.2.12-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Sichtprüfung des Architektur-Wikis auf Aktualität der zentralen Komponenten."
+                    }
+                  ]
+                },
+                {
+                  "id": "ARCH.2.2.12-m3_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Initiation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m3"
+                    }
+                  ],
+                  "prose": "Die Architekturkomponenten und deren Abhängigkeiten MÜSSEN dokumentiert werden.",
+                  "parts": [
+                    {
+                      "id": "ARCH.2.2.12-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Dokumentieren Sie alle relevanten IT-Komponenten, deren Schnittstellen und logischen Abhängigkeiten präzise."
+                    },
+                    {
+                      "id": "ARCH.2.2.12-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Vergleich der Dokumentation mit Stichproben aus der Live-Umgebung durchführen."
+                    }
+                  ]
+                },
+                {
+                  "id": "ARCH.2.2.12-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Initiation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    }
+                  ],
+                  "prose": "Die Architekturdokumentation ist in ein zentrales Bestandsmanagement integriert und wird regelmäßig überprüft.",
+                  "parts": [
+                    {
+                      "id": "ARCH.2.2.12-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Nutzen Sie ein CMDB-System zur Abbildung der Abhängigkeiten und führen Sie vierteljährliche Reviews durch."
+                    },
+                    {
+                      "id": "ARCH.2.2.12-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfen des Review-Logs und automatisierter Abgleich der CMDB-Daten mit Netzscans."
+                    }
+                  ]
+                },
+                {
+                  "id": "ARCH.2.2.12-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Initiation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    }
+                  ],
+                  "prose": "Die Dokumentation erfolgt automatisiert über Infrastructure-as-Code und wird kontinuierlich verifiziert.",
+                  "parts": [
+                    {
+                      "id": "ARCH.2.2.12-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Integrieren Sie die Dokumentationserstellung direkt in CI/CD-Pipelines (z.B. mittels Terraform-Docs oder Graphviz)."
+                    },
+                    {
+                      "id": "ARCH.2.2.12-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Automatisierte Validierung der Live-Umgebung gegen das Git-Repository der Architektur (diff-Abfrage)."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "control-id": "ARCH.2.4",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "ARCH.2.4_stm",
+              "parts": [
+                {
+                  "id": "ARCH.2.4-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    }
+                  ],
+                  "prose": "Ein Inventar der Netze ist nur für einzelne, besonders kritische Segmente vorhanden.",
+                  "parts": [
+                    {
+                      "id": "ARCH.2.4-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Listen Sie die IP-Bereiche Ihrer wichtigsten Server manuell in einer Textdatei auf."
+                    },
+                    {
+                      "id": "ARCH.2.4-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfen Sie, ob für das Hauptrechenzentrum eine IP-Liste existiert."
+                    }
+                  ]
+                },
+                {
+                  "id": "ARCH.2.4-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    }
+                  ],
+                  "prose": "Es wird eine einfache, manuell gepflegte Übersicht aller VLANs und externen Anbindungen geführt.",
+                  "parts": [
+                    {
+                      "id": "ARCH.2.4-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Nutzen Sie eine Tabellenkalkulation zur Erfassung von VLAN-ID, Netzmaske und Verantwortlichem."
+                    },
+                    {
+                      "id": "ARCH.2.4-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Abgleich der Tabelle mit der Konfiguration eines Core-Switches per SSH (show vlan)."
+                    }
+                  ]
+                },
+                {
+                  "id": "ARCH.2.4-m3_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m3"
+                    }
+                  ],
+                  "prose": "Architektur SOLLTE ein Inventar der Netze einschließlich interner Segmente, externer Netzanschlüsse und deren Verwendungszweck dokumentieren.",
+                  "parts": [
+                    {
+                      "id": "ARCH.2.4-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Führen Sie ein strukturiertes Verzeichnis, das jedes Segment eindeutig einem Zweck und einer Sicherheitszone zuordnet."
+                    },
+                    {
+                      "id": "ARCH.2.4-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Audit des Netzplans gegen die Firewall-Regelsätze und Routing-Tabellen."
+                    }
+                  ]
+                },
+                {
+                  "id": "ARCH.2.4-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    }
+                  ],
+                  "prose": "Ein IPAM-System verwaltet zentral alle Netzinformationen und gleicht diese regelmäßig ab.",
+                  "parts": [
+                    {
+                      "id": "ARCH.2.4-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Setzen Sie ein Open-Source IPAM wie NetBox ein, um Segmente, Präfixe und externe Peers zu verwalten."
+                    },
+                    {
+                      "id": "ARCH.2.4-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Führen Sie einen nmap-Scan durch und vergleichen Sie die aktiven Netze mit den IPAM-Einträgen per Skript."
+                    }
+                  ]
+                },
+                {
+                  "id": "ARCH.2.4-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    }
+                  ],
+                  "prose": "Das Netzinventar wird dynamisch über APIs generiert und dient als Single Source of Truth für die Netzsteuerung.",
+                  "parts": [
+                    {
+                      "id": "ARCH.2.4-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Implementieren Sie automatisierte Discovery-Tools, die das Inventar in Echtzeit bei Änderungen aktualisieren."
+                    },
+                    {
+                      "id": "ARCH.2.4-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung der API-Logs auf automatische Updates des Inventars nach Netzänderungen."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

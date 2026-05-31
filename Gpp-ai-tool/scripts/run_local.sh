@@ -28,13 +28,15 @@ cd "$SCRIPT_DIR/.."
 if [[ " $@ " =~ " --clear-all " ]]; then
     echo "--- Clearing Generated Files (--clear-all) ---"
 
-    # Define directories to be cleared
-    # Note: Paths are relative to the project root where this script cd's into.
+    # Define directories to be cleared.
+    # Note: Paths are relative to the project root where this script cd's into,
+    # so "../" resolves to REPO_ROOT. These mirror the output directories defined
+    # in src/constants.py (SDT_HELPER_OUTPUT_DIR, SDT_PROFILES_*_DIR, ED23_PROFILES_*_DIR).
     declare -a DIRS_TO_CLEAR=(
-        "../Stand-der-Technik-Bibliothek/Nutzergenerierte-Inhalte/hilfsdateien"
-        "../Stand-der-Technik-Bibliothek/Nutzergenerierte-Inhalte/komponenten/DE"
-        "../Stand-der-Technik-Bibliothek/Kompendien/Grundschutz++-Kompendium/profile"
-        "../Stand-der-Technik-Bibliothek/Kompendien/Grundschutz++-Kompendium/komponenten"
+        "../hilfsdateien"
+        "../Zielobjektkategorien/profile/regular"
+        "../Zielobjektkategorien/profile/process"
+        "../ED23-Baustein-profile"
     )
 
     for dir in "${DIRS_TO_CLEAR[@]}"; do
@@ -47,7 +49,7 @@ if [[ " $@ " =~ " --clear-all " ]]; then
             echo "Warning: Directory '$dir' not found. Skipping."
         fi
     done
-    cp src/assets/json/prozessbausteine_mapping.json ../Stand-der-Technik-Bibliothek/Nutzergenerierte-Inhalte/hilfsdateien/
+    cp src/assets/json/prozessbausteine_mapping.json ../hilfsdateien/
     echo "--- Finished Clearing Files ---"
 fi
 
@@ -67,7 +69,10 @@ export AI_ENDPOINT_ID="local-dev-endpoint"
 export SOURCE_PREFIX="input"
 export OUTPUT_PREFIX="output"
 export TEST="false"
-export OVERWRITE_TEMP_FILES="true"
+# Default to false so stages keep existing outputs (they skip files that
+# already exist). Override with OVERWRITE_TEMP_FILES=true ./scripts/run_local.sh
+# to force regeneration, or pass --clear-all to wipe outputs first.
+export OVERWRITE_TEMP_FILES="${OVERWRITE_TEMP_FILES:-false}"
 
 # Ensure that Python output is unbuffered, so logs appear immediately.
 export PYTHONUNBUFFERED=1
@@ -76,11 +81,19 @@ echo "Environment Variables:"
 echo "GCP_PROJECT_ID: $GCP_PROJECT_ID"
 echo "BUCKET_NAME: $BUCKET_NAME"
 echo "TEST: $TEST"
+echo "OVERWRITE_TEMP_FILES: $OVERWRITE_TEMP_FILES"
 echo "---------------------------------------"
 
 # --- Execution ---
 # Run the main Python application from the application root.
-# "$@" passes all command-line arguments from this script to the python script.
-python3 src/main.py "$@"
+# Forward all arguments to the Python script, except "--clear-all" which is
+# handled by this wrapper above and is not understood by main.py's argparse.
+declare -a PYTHON_ARGS=()
+for arg in "$@"; do
+    if [ "$arg" != "--clear-all" ]; then
+        PYTHON_ARGS+=("$arg")
+    fi
+done
+python3 src/main.py "${PYTHON_ARGS[@]}"
 
 echo "--- Local Pipeline Execution Finished ---"

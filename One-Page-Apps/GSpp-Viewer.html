@@ -122,6 +122,16 @@
         .bd-label { font-size: 0.65rem; color: #90a4ae; text-transform: uppercase; font-weight: bold; display: block; margin-bottom: 3px; }
         .bd-value { display: block; background: #fff; border: 1px solid #eceff1; padding: 6px 10px; border-radius: 4px; font-weight: 600; font-size: 0.9rem; }
         .guidance-box { background-color: var(--guidance-bg); border: 1px solid #b6dbfb; color: #0c5460; padding: 15px; border-radius: 6px; margin-bottom: 15px; font-size: 0.95em; position: relative; }
+        .maturity-box { background:#f4f1fb; border:1px solid #d6c9f0; border-radius:6px; margin-bottom:15px; padding:8px 12px; font-size:0.92em; }
+        .maturity-box > summary { cursor:pointer; font-weight:600; color:#5b3da8; list-style:none; }
+        .maturity-box > summary::-webkit-details-marker { display:none; }
+        .maturity-level { border-top:1px solid #e3d9f5; padding:10px 0; }
+        .maturity-level:first-of-type { border-top:none; }
+        .maturity-level-head { margin-bottom:4px; }
+        .maturity-badge { display:inline-block; background:#5b3da8; color:#fff; border-radius:4px; padding:1px 8px; font-size:0.8em; font-weight:700; text-transform:uppercase; }
+        .maturity-statement { color:#2b2b3a; line-height:1.5; }
+        .maturity-sub { margin-top:5px; padding-left:10px; border-left:3px solid #d6c9f0; color:#444; }
+        .maturity-sub-label { display:block; font-size:0.75em; font-weight:700; text-transform:uppercase; color:#7a6ba8; }
 
         /* AI Section */
         .ai-actions { display: flex; gap: 10px; margin: 15px 0; padding-top: 10px; border-top: 1px solid #eee; }
@@ -276,7 +286,7 @@
         </div>
 
 <div style="margin-top: auto; padding-top: 15px; border-top: 1px solid #cfd8dc; text-align: center; font-size: 0.75rem; color: #607d8b;">
-    &copy; 2024 NTT DATA Deutschland SE
+    &copy; 2026 NTT DATA Deutschland SE
 </div>
 
     </aside>
@@ -307,6 +317,8 @@
         let loadedCatalogs = [];
         let aiCache = {};
         let activeProfileIds = null; // Speichert Set mit Control-IDs des aktiven Profils
+        let activeProfileMaturity = null; // cid -> [{level, statement, guidance, assessment}] aus enhanced Profilen
+        let controlParamsById = {}; // cid -> control.params, für die Auflösung von {{ insert: param }} in Reifegraden
 
         function updateUrlFromSelect() {
             const select = document.getElementById('quickSelect');
@@ -459,13 +471,28 @@ Gib das Ergebnis ausschließlich als Markdown-Tabelle mit folgendem Format aus:
 
         // --- NEU: Profil-Handling ---
 
+        // Listet eine GitHub-"contents"-Antwort. Enthält sie Unterverzeichnisse
+        // (z.B. .../profile → regular + process), wird eine Ebene tiefer gegangen
+        // und die Dateien zusammengeführt.
+        async function fetchGithubContentsRecursive(url, depth = 0) {
+            const res = await fetch(url);
+            if (!res.ok) throw new Error("API Limit erreicht oder Repo nicht gefunden.");
+            const json = await res.json();
+            if (!Array.isArray(json) || depth >= 2) return json;
+            const dirs = json.filter(e => e && e.type === 'dir' && e.url);
+            if (dirs.length === 0) return json;
+            const files = json.filter(e => !(e && e.type === 'dir'));
+            const nested = await Promise.all(dirs.map(d =>
+                fetchGithubContentsRecursive(d.url, depth + 1).catch(() => [])
+            ));
+            return files.concat(...nested.map(n => Array.isArray(n) ? n : []));
+        }
+
         async function fetchProfilesList() {
             const select = document.getElementById('profileSelect');
             try {
-                const apiURL = 'https://api.github.com/repos/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/contents/zielobjektkategorien/profile';
-                const res = await fetch(apiURL);
-                if (!res.ok) throw new Error("API Limit erreicht oder Repo nicht gefunden.");
-                const files = await res.json();
+                const apiURL = 'https://api.github.com/repos/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/contents/Zielobjektkategorien/profile';
+                const files = await fetchGithubContentsRecursive(apiURL);
 
                 select.innerHTML = '<option value="">-- Kein Profil-Filter --</option>';
                 files.filter(f => f.name.endsWith('.json')).forEach(f => {
@@ -486,7 +513,9 @@ Gib das Ergebnis ausschließlich als Markdown-Tabelle mit folgendem Format aus:
 
             if (!url) {
                 activeProfileIds = null;
+                activeProfileMaturity = null;
                 infoSpan.textContent = "";
+                refreshMaturityDisplay();
                 applyFilters();
                 return;
             }
@@ -511,15 +540,42 @@ Gib das Ergebnis ausschließlich als Markdown-Tabelle mit folgendem Format aus:
                     });
                 }
 
+                // Reifegrade aus angereicherten Profilen (modify.alters[].adds[].parts).
+                // Neue Form (issue 3.1): Statement = pt.prose, Guidance/Assessment als
+                // verschachtelte parts. Alte Form: Text in props. Siehe
+                // Gpp-ai-tool/docs/profile-maturity-contract.md.
+                const maturity = new Map();
+                ((data.profile?.modify?.alters) || []).forEach(alt => {
+                    const cid = alt['control-id']; if (!cid) return;
+                    ids.add(cid);
+                    const list = maturity.get(cid) || [];
+                    (alt.adds || []).forEach(add => (add.parts || []).filter(pt => pt && pt.name === 'statement').forEach(pt => {
+                        const props = Object.fromEntries((pt.props || []).map(p => [p.name, p.value]));
+                        const sub = Object.fromEntries((pt.parts || []).map(np => [np.name, np.prose]));
+                        const statement = (pt.prose != null && props.statement == null) ? pt.prose : (props.statement || pt.prose || '');
+                        list.push({
+                            level: props.label || '',
+                            statement,
+                            guidance: sub.guidance || props.guidance || '',
+                            assessment: sub.assessment || props['assessment-method'] || ''
+                        });
+                    }));
+                    maturity.set(cid, list);
+                });
+                activeProfileMaturity = maturity.size ? maturity : null;
+
                 activeProfileIds = ids;
-                infoSpan.textContent = `${ids.size} Maßnahmen im Profil aktiv.`;
+                const matNote = activeProfileMaturity ? ` (inkl. Reifegrade für ${activeProfileMaturity.size} Controls)` : '';
+                infoSpan.textContent = `${ids.size} Maßnahmen im Profil aktiv${matNote}.`;
                 infoSpan.style.color = "#28a745";
+                refreshMaturityDisplay();
                 applyFilters();
             } catch (e) {
                 infoSpan.textContent = "Fehler beim Laden des Profils.";
                 infoSpan.style.color = "red";
                 console.error("OSCAL Profil Parsing Fehler:", e);
                 activeProfileIds = null;
+                activeProfileMaturity = null;
                 applyFilters();
             }
         }
@@ -605,6 +661,7 @@ Gib das Ergebnis ausschließlich als Markdown-Tabelle mit folgendem Format aus:
             const card = document.createElement('div');
             card.className = isNested ? 'control-card nested-card filterable-item' : 'control-card filterable-item';
             card.id = control.id;
+            if (control.id) controlParamsById[control.id] = control.params || null;
 
             const cClass = control.class || "";
             const sec = control.props?.find(p => p.name === 'sec_level')?.value || "";
@@ -667,6 +724,7 @@ Gib das Ergebnis ausschließlich als Markdown-Tabelle mit folgendem Format aus:
                 </div>
                 <div class="ai-response-area"><div class="ai-response-content"></div></div>
                 ${guidance ? `<div class="guidance-box">${convertOscal(guidance, control.params)}</div>` : ''}
+                ${renderMaturity(control.id, control.params)}
                 <div class="control-footer">
                     <div class="links-area">
                         ${control.links ? control.links.filter(l => l.rel === 'related').map(l => {
@@ -800,6 +858,7 @@ Gib das Ergebnis ausschließlich als Markdown-Tabelle mit folgendem Format aus:
             document.getElementById('profileSelect').value = '';
             document.getElementById('profileInfo').textContent = '';
             activeProfileIds = null;
+            activeProfileMaturity = null;
 
             applyFilters();
         }
@@ -812,6 +871,41 @@ Gib das Ergebnis ausschließlich als Markdown-Tabelle mit folgendem Format aus:
             });
         }
         function escapeHtml(text) { return text ? text.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;") : ""; }
+
+        // Rendert die Reifegrade (ED2023) eines Controls, sofern ein angereichertes
+        // Profil geladen ist. Quelle: activeProfileMaturity (siehe loadProfile).
+        function renderMaturity(cid, params) {
+            if (!activeProfileMaturity) return '';
+            const levels = activeProfileMaturity.get(cid);
+            if (!levels || !levels.length) return '';
+            const order = { m1: 1, m2: 2, m3: 3, m4: 4, m5: 5 };
+            const sorted = [...levels].sort((a, b) => (order[a.level] || 99) - (order[b.level] || 99));
+            const rows = sorted.map(l => `
+                <div class="maturity-level">
+                    <div class="maturity-level-head"><span class="maturity-badge">${escapeHtml(l.level || '?')}</span></div>
+                    <div class="maturity-statement">${convertOscal(l.statement, params)}</div>
+                    ${l.guidance ? `<div class="maturity-sub"><span class="maturity-sub-label">Hinweis</span>${convertOscal(l.guidance, params)}</div>` : ''}
+                    ${l.assessment ? `<div class="maturity-sub"><span class="maturity-sub-label">Prüfung</span>${convertOscal(l.assessment, params)}</div>` : ''}
+                </div>`).join('');
+            return `<details class="maturity-box"><summary>📊 Reifegrade (ED2023) · ${sorted.length}</summary>${rows}</details>`;
+        }
+
+        // Aktualisiert die Reifegrad-Anzeige auf bereits gerenderten Control-Karten,
+        // ohne den gesamten Katalog neu aufzubauen. Wird bei Profilwechsel aufgerufen.
+        function refreshMaturityDisplay() {
+            document.querySelectorAll('.control-card').forEach(card => {
+                const cid = card.id;
+                card.querySelector(':scope > .maturity-box')?.remove();
+                if (!cid) return;
+                const html = renderMaturity(cid, controlParamsById[cid]);
+                if (!html) return;
+                const footer = card.querySelector(':scope > .control-footer');
+                const tmp = document.createElement('template');
+                tmp.innerHTML = html.trim();
+                const box = tmp.content.firstChild;
+                if (footer) card.insertBefore(box, footer); else card.appendChild(box);
+            });
+        }
         function scrollToControl(id, event) {
             if(event) event.preventDefault();
             const target = document.getElementById(id);

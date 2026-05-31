@@ -25,6 +25,9 @@
         .drag-over { border-color: #10b981 !important; background: rgba(16, 185, 129, 0.1) !important; }
         .sb { font-size: 10px; padding: 2px 8px; border-radius: 9999px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; border: 1px solid; }
 
+        /* File input hidden but clickable */
+        input[type="file"].fip { position: absolute; left: -9999px; top: -9999px; width: 0; height: 0; opacity: 0; }
+
         /* FIX A: Harte Überschreibung des Tailwind Forms Plugin für Inputs */
         input[type="text"].inp, input[type="password"].inp, input[type="email"].inp, input[type="date"].inp, select.inp, textarea.inp {
             padding: .5rem .75rem !important;
@@ -58,7 +61,7 @@
         .ai-response-content code { background-color: #312e81; padding: 0.2em 0.4em; border-radius: 0.25em; font-family: monospace; }
 
         /* Sidebar Toggle */
-        .sidebar { width: 320px; min-width: 320px; transition: margin-left .3s ease, opacity .3s; overflow-y: auto; }
+        .sidebar { width: 320px; min-width: 320px; height: 100vh; transition: margin-left .3s ease, opacity .3s; overflow-y: auto; }
         .sidebar.collapsed { margin-left: -320px; opacity: 0; pointer-events: none; }
         .sb-toggle { position: fixed; top: 12px; left: 12px; z-index: 50; background: #1e293b; border: 1px solid #475569; border-radius: .5rem; padding: 6px 10px; color: #e2e8f0; cursor: pointer; font-size: 18px; transition: left .3s; }
         .sb-toggle.shifted { left: 332px; }
@@ -94,15 +97,15 @@
         <div class="space-y-1.5">
             <div id="dz-ssp" class="dz border border-dashed border-slate-600 rounded p-2 text-center cursor-pointer hover:border-blue-500 bg-slate-900/40 text-[10px]" data-type="ssp">
                 📋 1. SSP laden (Main)
-                <input type="file" accept=".json" class="hidden fip" data-type="ssp" id="ssp-uploader">
+                <input type="file" accept=".json" class="fip" data-type="ssp" id="ssp-uploader">
             </div>
             <div id="dz-assoc" class="dz border border-dashed border-slate-600 rounded p-2 text-center cursor-pointer hover:border-emerald-500 bg-slate-900/40 text-[10px]" data-type="assoc">
                 📦 2. Assoziierte laden
-                <input type="file" accept=".json" multiple class="hidden fip" data-type="assoc" id="associated-uploader">
+                <input type="file" accept=".json" multiple class="fip" data-type="assoc" id="associated-uploader">
             </div>
             <div id="dz-state" class="dz border border-dashed border-slate-600 rounded p-2 text-center cursor-pointer hover:border-purple-500 bg-slate-900/40 text-[10px]" data-type="state">
                 💾 Session (.json) laden
-                <input type="file" accept=".json" class="hidden fip" data-type="state">
+                <input type="file" accept=".json" class="fip" data-type="state">
             </div>
         </div>
 
@@ -154,7 +157,7 @@
         </div>
 
 <div style="margin-top: auto; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.1); text-align: center; font-size: 0.75rem; color: #94a3b8;">
-    &copy; 2024 NTT DATA Deutschland SE
+    &copy; 2026 NTT DATA Deutschland SE
 </div>
 
     </aside>
@@ -243,7 +246,7 @@
     let catalogParamMap = new Map();
     let profileModifications = { setParams: new Map(), alters: new Map() };
     let loadedRiskData = [];
-    let componentDefinitions = new Map();
+    let loadedProfiles = new Map();
     let resourceLoadStatus = [];
     let aiCache = {};
 
@@ -314,7 +317,10 @@
     function setupDragAndDrop() {
         document.querySelectorAll('.dz').forEach(dz => {
             const fi = dz.querySelector('.fip'), ty = dz.dataset.type;
-            dz.addEventListener('click', () => fi.click());
+            // Nur auslösen, wenn der Klick NICHT vom (Kind-)File-Input selbst stammt –
+            // sonst löst fi.click() per Bubbling den Handler erneut aus (Rekursion),
+            // und der Browser blockiert den Datei-Dialog als nicht-vertrauenswürdig.
+            dz.addEventListener('click', (e) => { if (e.target !== fi) fi.click(); });
             dz.addEventListener('dragover', e => { e.preventDefault(); dz.classList.add('drag-over') });
             dz.addEventListener('dragleave', () => dz.classList.remove('drag-over'));
             dz.addEventListener('drop', e => {
@@ -705,13 +711,13 @@
 
         catalogControlMap.clear(); catalogParamMap.clear();
         profileModifications = { setParams: new Map(), alters: new Map() };
-        loadedRiskData = []; componentDefinitions.clear(); resourceLoadStatus = [];
+        loadedRiskData = []; loadedProfiles.clear(); resourceLoadStatus = [];
 
         const ssp = sspData['system-security-plan'];
 
         try {
             await processLinkedProfiles(ssp);
-            await processComponentDefinitions(ssp);
+            await processProfiles(ssp);
             await processMainCatalog(ssp);
             extractRiskDataFromSSP(ssp);
 
@@ -790,10 +796,10 @@
         }));
     }
 
-    async function processComponentDefinitions(ssp) {
+    async function processProfiles(ssp) {
         const defLinks = new Set();
         (ssp['system-implementation']?.components || []).forEach(c => {
-            const dl = c.links?.find(l => l.rel === 'component-definition' || l.rel === 'source-profile');
+            const dl = c.links?.find(l => l.rel === 'profile' || l.rel === 'source-profile');
             if (dl?.href) defLinks.add(dl.href);
         });
 
@@ -801,10 +807,12 @@
         await Promise.all(Array.from(defLinks).map(async (href) => {
             const d = await loadReferencedResource(href);
             if (d) {
-                componentDefinitions.set(href, d);
-                if (d['component-definition']) {
-                    (d['component-definition'].metadata?.links || []).forEach(l => {
-                        if ((l.rel === 'source-catalog' || l.rel === 'source') && l.href) catLinks.add(l.href);
+                loadedProfiles.set(href, d);
+                if (d['profile']) {
+                    (d['profile'].metadata?.links || []).forEach(l => {
+                        if (l.rel === 'source-profile') {
+                            loadedProfiles.set(l.href, d);
+                        }
                     });
                 }
             }
@@ -1003,8 +1011,8 @@
             const sNivTag = sNiv ? ` <span class="text-[8px] opacity-60">[${sNiv}]</span>` : '';
             navHtml += `<button onclick="scrollToSec('comp-${c.uuid}')" class="w-full text-left p-1.5 text-[10px] font-bold text-slate-300 bg-slate-900/40 hover:bg-slate-800 rounded truncate border border-transparent hover:border-slate-700">🖥️ ${c.title}${sNivTag}</button>`;
 
-            let dl = c.links?.find(l => l.rel === 'component-definition' || l.rel === 'source-profile');
-            const cd = dl ? componentDefinitions.get(dl.href) : null;
+            let dl = c.links?.find(l => l.rel === 'profile' || l.rel === 'source-profile');
+            const cd = dl ? loadedProfiles.get(dl.href) : null;
 
             const sMap = new Map();
             reqs.forEach(r => { const e = r['by-components']?.find(bc => bc['component-uuid'] === c.uuid); if(e) sMap.set(r['control-id'], e); });
@@ -1012,13 +1020,34 @@
             const dMap = new Map();
             let tc = null;
             try {
-                tc = cd?.['component-definition']?.components?.find(co => co && co.title === c.title) || cd?.['component-definition']?.components?.[0] || null;
-                if (tc) {
-                    (tc['control-implementations']||[]).forEach(ci => { if(ci) (ci['implemented-requirements']||[]).forEach(r => { if(r && r['control-id']) dMap.set(r['control-id'], r); }); });
-                } else if (cd?.profile?.imports) {
-                    cd.profile.imports.forEach(i => { if(i) (i["include-controls"]||[]).forEach(ic => { if(ic) (ic["with-ids"]||[]).forEach(id => { if(id) dMap.set(id, { "control-id": id }); }); }); });
+                tc = cd?.['profile'] || null;
+                if (tc?.imports) {
+                    tc.imports.forEach(i => { if(i) (i["include-controls"]||[]).forEach(ic => { if(ic) (ic["with-ids"]||[]).forEach(id => { if(id) dMap.set(id, { "control-id": id }); }); }); });
                 }
-            } catch(cdErr) { console.warn('Fehler beim Lesen der Komponentendefinition für', c.title, cdErr); }
+                // Reifegrade/Statements liegen im Profil unter modify.alters[].adds[].parts (name:"statement").
+                // OSCAL erlaubt keine neuen statements in einer CDef → sie werden im Profil per `adds`
+                // als neue `part` an das Control angehängt. Hier in die statements des Controls überführen.
+                // Neue Form (issue 3.1): der Reifegrad-Text steht in pt.prose, Guidance/Assessment
+                // als verschachtelte parts. Alte Form: Text lag in props statement/guidance/
+                // assessment-method. Neue zuerst lesen, sonst auf alte zurückfallen.
+                (tc?.modify?.['alters'] || []).forEach(alt => {
+                    const cid = alt && alt['control-id']; if(!cid) return;
+                    const entry = dMap.get(cid) || { "control-id": cid };
+                    entry.statements = entry.statements || [];
+                    (alt.adds || []).forEach(add => (add.parts || []).filter(pt => pt && pt.name === 'statement').forEach(pt => {
+                        const props = pt.props || [];
+                        const propVal = (n) => props.find(p => p && p.name === n)?.value || '';
+                        const label = propVal('label');
+                        const sub = {};
+                        (pt.parts || []).forEach(np => { if(np && np.name) sub[np.name] = np.prose; });
+                        const statementText = (pt.prose != null && !propVal('statement')) ? pt.prose : (propVal('statement') || pt.prose || '');
+                        const guidanceText = sub.guidance || propVal('guidance') || '';
+                        const assessmentText = sub.assessment || propVal('assessment-method') || '';
+                        entry.statements.push({ "statement-id": pt.id, description: label, statementText, guidanceText, assessmentText, props });
+                    }));
+                    dMap.set(cid, entry);
+                });
+            } catch(cdErr) { console.warn('Fehler beim Lesen des Profils für', c.title, cdErr); }
 
             const allKeys = new Set([...sMap.keys(), ...dMap.keys(), ...profileModifications.alters.keys()]);
             const sorted = Array.from(allKeys).sort();
@@ -1067,7 +1096,7 @@
                 });
             }
 
-            // 2. Props aus der Komponenten-Definition (Blaupause)
+            // 2. Props aus dem Profil (Blaupause)
             if (tc && tc.props && tc.props.length > 0) {
                 tc.props.forEach(p => {
                     if (!p || !p.name) return;
@@ -1281,7 +1310,7 @@
             ${stmts.length ? `<div class="mb-3 space-y-1.5">
                 <label class="block text-[10px] text-slate-400 uppercase font-bold">Reifegrad (aus Profil)</label>
                 <label class="flex items-center gap-2 p-1.5 bg-slate-900/50 rounded border border-slate-700 cursor-pointer hover:bg-slate-800"><input type="radio" name="mat-${rk}" value="manual" ${!selId?'checked':''} class="form-radio text-emerald-500 h-3 w-3"><span class="text-xs text-slate-300">Manuell (kein Level gewählt)</span></label>
-                ${stmts.map(s => `<label class="flex items-center gap-2 p-1.5 bg-slate-900/50 rounded border border-slate-700 cursor-pointer hover:bg-slate-800"><input type="radio" name="mat-${rk}" value="${s['statement-id']||''}" ${selId===s['statement-id']?'checked':''} class="form-radio text-emerald-500 h-3 w-3"><div class="text-xs"><span class="font-bold text-emerald-400">${s.description||s['statement-id']||''}</span> <span class="text-slate-400">${s.props?.find(p => p && p.name==='statement')?.value||''}</span></div></label>`).join('')}
+                ${stmts.map(s => `<label class="flex items-center gap-2 p-1.5 bg-slate-900/50 rounded border border-slate-700 cursor-pointer hover:bg-slate-800"><input type="radio" name="mat-${rk}" value="${s['statement-id']||''}" ${selId===s['statement-id']?'checked':''} class="form-radio text-emerald-500 h-3 w-3"><div class="text-xs"><span class="font-bold text-emerald-400">${s.description||s['statement-id']||''}</span> <span class="text-slate-400">${s.statementText||s.props?.find(p => p && p.name==='statement')?.value||''}</span></div></label>`).join('')}
             </div>` : ''}
 
             <div class="border-t border-slate-700 pt-3 flex gap-2 flex-wrap items-center">

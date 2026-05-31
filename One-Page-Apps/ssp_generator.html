@@ -290,14 +290,14 @@
     <script>
         // --- CONFIG & STATE ---
         const CATALOG_URL_BASE = 'https://raw.githubusercontent.com/BSI-Bund/Stand-der-Technik-Bibliothek/refs/heads/main/Anwenderkataloge/Grundschutz%2B%2B/Grundschutz%2B%2B-catalog.json';
-        const API_URL_NUTZERGEN = 'https://api.github.com/repos/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/contents/ED23-Baustein-komponenten/DE';
-        const API_URL_GPLUS = 'https://api.github.com/repos/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/contents/zielobjektkategorien/komponenten';
-        const API_URL_PRAKTIKEN = 'https://api.github.com/repos/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/contents/zielobjektkategorien/komponenten';
-        const PRAKTIKEN_FILE_SUFFIX = 'prozesse-component.json';
+        const API_URL_NUTZERGEN = 'https://api.github.com/repos/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/contents/ED23-Baustein-profile/DE';
+        const API_URL_GPLUS = 'https://api.github.com/repos/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/contents/Zielobjektkategorien/profile/regular';
+        const API_URL_PRAKTIKEN = 'https://api.github.com/repos/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/contents/Zielobjektkategorien/profile/process';
+        const PRAKTIKEN_FILE_SUFFIX = '_process_profile.json';
 
         const METHODIK_URLS = {
-            standard: 'https://raw.githubusercontent.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/refs/heads/main/zielobjektkategorien/komponenten/methodik-component.json',
-            enhanced: 'https://raw.githubusercontent.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/refs/heads/main/ED23-Baustein-komponenten/DE/methodik_isms-component.json'
+            standard: 'https://raw.githubusercontent.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/refs/heads/main/Zielobjektkategorien/profile/process/methodik_process_profile.json',
+            enhanced: 'https://raw.githubusercontent.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/refs/heads/main/ED23-Baustein-profile/DE/methodik_Methodik_methodik.json'
         };
 
         const PRESET_ADDITIONAL_CATALOGS = [
@@ -349,7 +349,7 @@
             await loadBaseCatalog();
             renderCatalogsList();
             fetchGitHubComponents();
-            fetchPraktikenProfiles();
+            // Prozess-Liste wird über switchMethodik('standard') unten passend zur Methodik geladen.
             setupSearchListeners();
             setupRiskTabListeners();
             document.getElementById('main-editor').classList.remove('hidden');
@@ -758,24 +758,22 @@
                 bpState.methodik.type = type;
                 bpState.methodik.url = METHODIK_URLS[type];
                 bpState.methodik.controls = new Set();
-                bpState.methodik.uuid = data['component-definition']?.uuid || crypto.randomUUID();
+                bpState.methodik.uuid = data['profile']?.uuid || crypto.randomUUID();
 
-                if (data['component-definition'] && data['component-definition'].components) {
-                    data['component-definition'].components.forEach(c => {
-                        if (c['control-implementations']) {
-                            c['control-implementations'].forEach(ci => {
-                                if (ci['implemented-requirements']) {
-                                    ci['implemented-requirements'].forEach(req => {
-                                        bpState.methodik.controls.add(req['control-id']);
-                                    });
-                                }
-                            });
-                        }
-                    });
+                if (data['profile']) {
+                    const includeControls = data['profile']?.['imports']?.[0]?.['include-controls']?.[0]?.['with-ids'] || [];
+                    includeControls.forEach(id => bpState.methodik.controls.add(id));
                 }
 
                 document.getElementById('methodik-status').innerHTML = `✓ Methodik (${type}) geladen und ${bpState.methodik.controls.size} Controls zugewiesen.`;
+
+                // Prozesse hängen an der Methodik: Standard ↔ Erweitert nutzen unterschiedliche
+                // Profile (mit/ohne Reifegrade). Beim Umschalten die bisherige Auswahl verwerfen
+                // und die passende Prozess-Liste neu laden.
+                bpState.praktiken = new Map();
+                await fetchPraktikenProfiles();
                 renderTailoredList();
+                if (typeof refreshRiskUI === 'function') refreshRiskUI();
             } catch (e) {
                 document.getElementById('methodik-status').innerHTML = `⚠️ Fehler beim Laden der Methodik!`;
                 console.error(e);
@@ -784,13 +782,28 @@
             }
         }
 
+        // Liefert das Datei-Suffix der Prozess-Profile passend zur gewählten Methodik:
+        // "G++ Erweitert" (enhanced) → angereicherte Profile mit Reifegraden, sonst Standard.
+        function praktikenSuffix() {
+            return bpState.methodik.type === 'enhanced'
+                ? '_process_profile_enhanced.json'
+                : '_process_profile.json';
+        }
+
         async function fetchPraktikenProfiles() {
             try {
                 const res = await fetch(API_URL_PRAKTIKEN);
                 const data = await res.json();
                 const container = document.getElementById('praktiken-container');
 
-                const processFiles = data.filter(file => file.name.endsWith(PRAKTIKEN_FILE_SUFFIX));
+                const suffix = praktikenSuffix();
+                const isEnhanced = suffix.includes('_enhanced');
+                const processFiles = data.filter(file =>
+                    file.name.endsWith(suffix)
+                    // Im Standard-Modus die _enhanced-Dateien ausschließen (beide enden auf _process_profile…json)
+                    && (isEnhanced || !file.name.endsWith('_process_profile_enhanced.json'))
+                    && !file.name.includes('methodik')
+                );
 
                 if (processFiles.length === 0) {
                     container.innerHTML = '<div class="text-slate-500 text-sm">Keine Prozess-Komponenten gefunden.</div>';
@@ -798,19 +811,20 @@
                 }
 
                 container.innerHTML = processFiles.map(file => {
-                    // Filenames follow "<prefix>prozesse-component.json" — e.g. archprozesse → ARCH
-                    const stem = file.name.replace(/-component\.json$/, '');
-                    const prefixMatch = stem.match(/^(.*?)prozesse$/i);
+                    // Filenames follow "<prefix>_prozesse_process_profile[_enhanced].json" — e.g. arch_prozesse → ARCH
+                    const stem = file.name.replace(/_process_profile(_enhanced)?\.json$/, '').replace(/_profile\.json$/, '');
+                    const prefixMatch = stem.match(/^(.*?)_?prozesse$/i);
                     const prefix = prefixMatch ? prefixMatch[1].toUpperCase() : '';
                     const groupTitle = prefix ? bpState.groupTitles.get(prefix) : null;
                     const label = groupTitle
                         ? `${groupTitle} (${prefix})`
                         : (stem.split(/[_-]/).filter(Boolean).map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ') || stem);
                     const id = crypto.randomUUID();
+                    const checked = bpState.praktiken.has(file.download_url) ? 'checked' : '';
                     return `
                         <label class="flex items-start space-x-3 p-3 bg-slate-800 border border-slate-700 rounded-lg hover:border-blue-500 cursor-pointer transition-colors">
-                            <input type="checkbox" onchange="togglePraktik(this, '${file.download_url}', '${label}', '${id}')" class="mt-0.5 form-checkbox h-4 w-4 text-blue-500 rounded border-slate-600 bg-slate-900 focus:ring-blue-500 focus:ring-offset-slate-800">
-                            <span class="text-sm font-semibold text-slate-200">${label}</span>
+                            <input type="checkbox" ${checked} onchange="togglePraktik(this, '${file.download_url}', '${label}', '${id}')" class="mt-0.5 form-checkbox h-4 w-4 text-blue-500 rounded border-slate-600 bg-slate-900 focus:ring-blue-500 focus:ring-offset-slate-800">
+                            <span class="text-sm font-semibold text-slate-200">${label}${isEnhanced ? ' <span class="text-[10px] text-amber-400 font-normal">★ erweitert</span>' : ''}</span>
                         </label>
                     `;
                 }).join('');
@@ -828,16 +842,11 @@
                     const data = await res.json();
                     const extractedControls = new Set();
 
-                    // New schema: OSCAL component-definition
-                    if (data['component-definition'] && data['component-definition'].components) {
-                        data['component-definition'].components.forEach(c => {
-                            (c['control-implementations'] || []).forEach(ci => {
-                                (ci['implemented-requirements'] || []).forEach(req => {
-                                    if (req['control-id']) extractedControls.add(req['control-id']);
-                                });
-                            });
-                        });
-                    }
+                    // New schema: OSCAL profile
+                    if (data['profile']) {
+                    const includeControls = data['profile']?.['imports']?.[0]?.['include-controls']?.[0]?.['with-ids'] || [];
+                    includeControls.forEach(id => extractedControls.add(id));
+                }
                     // Legacy schema fallback: profile with imports
                     else if (data.profile && data.profile.imports) {
                         data.profile.imports.forEach(imp => {
@@ -901,18 +910,9 @@
                 const data = await res.json();
 
                 const extractedControls = new Set();
-                if (data['component-definition'] && data['component-definition'].components) {
-                    data['component-definition'].components.forEach(c => {
-                        if (c['control-implementations']) {
-                            c['control-implementations'].forEach(ci => {
-                                if (ci['implemented-requirements']) {
-                                    ci['implemented-requirements'].forEach(req => {
-                                        extractedControls.add(req['control-id']);
-                                    });
-                                }
-                            });
-                        }
-                    });
+                if (data['profile']) {
+                    const includeControls = data['profile']?.['imports']?.[0]?.['include-controls']?.[0]?.['with-ids'] || [];
+                    includeControls.forEach(id => extractedControls.add(id));
                 }
 
                 bpState.components.push({
@@ -964,21 +964,7 @@
 				const extractedControls = new Set();
 				let isValid = false;
 
-				if (data['component-definition'] && data['component-definition'].components) {
-					isValid = true;
-					data['component-definition'].components.forEach(c => {
-						if (c['control-implementations']) {
-							c['control-implementations'].forEach(ci => {
-								if (ci['implemented-requirements']) {
-									ci['implemented-requirements'].forEach(req => {
-										extractedControls.add(req['control-id']);
-									});
-								}
-							});
-						}
-					});
-				} 
-				else if (data.profile && data.profile.imports) {
+				if (data.profile && data.profile.imports) {
 					isValid = true;
 					data.profile.imports.forEach(imp => {
 						if (imp['include-controls']) {
@@ -992,7 +978,7 @@
 				}
 
 				if (!isValid) {
-					throw new Error("Die Datei muss entweder ein OSCAL 'component-definition' oder 'profile' sein.");
+					throw new Error("Die Datei muss ein OSCAL 'profile' sein.");
 				}
 
 				// Speichern im State als identisches, vollwertiges Asset
@@ -1733,11 +1719,7 @@
                             const res = await fetch(url);
                             const data = await res.json();
                             const controls = new Set();
-                            (data['component-definition']?.components || []).forEach(comp => {
-                                (comp['control-implementations'] || []).forEach(ci => {
-                                    (ci['implemented-requirements'] || []).forEach(req => controls.add(req['control-id']));
-                                });
-                            });
+                            (data.profile?.['imports']?.[0]?.['include-controls']?.[0]?.['with-ids'] || []).forEach(id => controls.add(id));
                             bpState.methodik.type = type;
                             bpState.methodik.url = url;
                             bpState.methodik.controls = controls;
@@ -1757,15 +1739,7 @@
                             const res = await fetch(href);
                             const data = await res.json();
                             const controls = new Set();
-                            if (data['component-definition']?.components) {
-                                data['component-definition'].components.forEach(comp => {
-                                    (comp['control-implementations'] || []).forEach(ci => {
-                                        (ci['implemented-requirements'] || []).forEach(req => {
-                                            if (req['control-id']) controls.add(req['control-id']);
-                                        });
-                                    });
-                                });
-                            } else if (data.profile?.imports) {
+                            if (data.profile?.imports) {
                                 data.profile.imports.forEach(imp => {
                                     (imp['include-controls'] || []).forEach(inc => {
                                         (inc['with-ids'] || []).forEach(cid => controls.add(cid));
@@ -1777,17 +1751,13 @@
                         continue;
                     }
 
-                    // Asset component (service + component-definition link)
+                    // Asset component (service + profile link)
                     if (c.type === 'service' && href) {
                         try {
                             const res = await fetch(href);
                             const data = await res.json();
                             const controls = new Set();
-                            (data['component-definition']?.components || []).forEach(comp => {
-                                (comp['control-implementations'] || []).forEach(ci => {
-                                    (ci['implemented-requirements'] || []).forEach(req => controls.add(req['control-id']));
-                                });
-                            });
+                            (data.profile?.['imports']?.[0]?.['include-controls']?.[0]?.['with-ids'] || []).forEach(id => controls.add(id));
                             const schutzProp = (c.props || []).find(p => p.name === 'sicherheitsniveau');
                             bpState.components.push({
                                 id: c.uuid,
@@ -1884,11 +1854,17 @@
                     const key = `${sourceId}||${cid}`;
                     (a.adds || []).forEach(add => {
                         const prosePart = (add.parts || []).find(p => p.name === 'statement');
+                        // Reifegrad-Text: neue Form = pt.prose, alte Form = props "statement".
+                        // Beide Formen unterstützen (siehe Gpp-ai-tool/docs/profile-maturity-contract.md).
+                        const oldStmt = (prosePart?.props || []).find(p => p && p.name === 'statement')?.value;
+                        const text = (prosePart?.prose != null && oldStmt == null)
+                            ? prosePart.prose
+                            : (oldStmt || prosePart?.prose || '');
                         if (!bpState.modifications.has(key)) bpState.modifications.set(key, []);
                         bpState.modifications.get(key).push({
                             type: 'add',
                             position: add.position || 'ending',
-                            text: prosePart?.prose || ''
+                            text
                         });
                     });
                 });
@@ -1913,6 +1889,9 @@
             // --- Re-render UI ---
             renderCatalogsList();
             renderAssetsList();
+            // Prozess-Liste passend zur importierten Methodik (Standard/Erweitert) neu laden,
+            // damit die wiederhergestellten Prozesse als angehakt erscheinen.
+            await fetchPraktikenProfiles();
             // Re-check praktik checkboxes that matched
             document.querySelectorAll('#praktiken-container input[type="checkbox"]').forEach(cb => {
                 const handler = cb.getAttribute('onchange') || '';
@@ -2057,9 +2036,9 @@
                     uuid: bpState.methodik.uuid,
                     type: "service",
                     title: `Basis Methodik (${bpState.methodik.type})`,
-                    description: `Instanz 'Basis Methodik', basierend auf Komponentendefinition ${bpState.methodik.url.split('/').pop()}.`,
+                    description: `Instanz 'Basis Methodik', basierend auf Profil ${bpState.methodik.url.split('/').pop()}.`,
                     status: { state: "operational" },
-                    links: [{ href: bpState.methodik.url, rel: "component-definition" }]
+                    links: [{ href: bpState.methodik.url, rel: "profile" }]
                 }
             ];
 
@@ -2068,9 +2047,9 @@
                     uuid: p.id,
                     type: "process",
                     title: `Prozess: ${p.name}`,
-                    description: `Prozess-Instanz, basierend auf Komponentendefinition ${p.url.split('/').pop()}.`,
+                    description: `Prozess-Instanz, basierend auf Profil ${p.url.split('/').pop()}.`,
                     status: { state: "operational" },
-                    links: [{ href: p.url, rel: "component-definition" }]
+                    links: [{ href: p.url, rel: "profile" }]
                 });
             });
 
@@ -2079,7 +2058,7 @@
                     uuid: c.id,
                     type: "service",
                     title: c.name,
-                    description: `Instanz '${c.name}', basierend auf Komponentendefinition ${c.source.split('/').pop()}.`,
+                    description: `Instanz '${c.name}', basierend auf Profil ${c.source.split('/').pop()}.`,
                     status: { state: c.state || "operational" },
                     props: [
                         {
@@ -2089,7 +2068,7 @@
                             remarks: `Schutzbedarf des Assets '${c.name}': ${c.schutzbedarf || 'normal-SdT'}. Festgelegt im Rahmen der Blaupausen-Erstellung.`
                         }
                     ],
-                    links: [{ href: c.source, rel: "component-definition" }]
+                    links: [{ href: c.source, rel: "profile" }]
                 });
             });
 
@@ -2225,7 +2204,7 @@
             a.click(); document.body.removeChild(a); URL.revokeObjectURL(a.href);
         }
     </script>
-    <div style="text-align:center; padding:20px; color:#94a3b8;">&copy; 2024 NTT DATA Deutschland SE</div>
+    <div style="text-align:center; padding:20px; color:#94a3b8;">&copy; 2026 NTT DATA Deutschland SE</div>
 </body>
 
 </html>

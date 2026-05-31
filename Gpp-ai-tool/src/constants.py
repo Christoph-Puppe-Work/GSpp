@@ -58,14 +58,6 @@ ED23_PROFILES_DIR = os.path.abspath(
 
 
 
-# Paths for the 'stage_strip' output files
-
-GPP_STRIPPED_MD_PATH = os.path.join(SDT_HELPER_OUTPUT_DIR, "gpp_stripped.md")
-GPP_STRIPPED_ISMS_MD_PATH = os.path.join(SDT_HELPER_OUTPUT_DIR, "gpp_isms_stripped.md")
-BSI_STRIPPED_MD_PATH = os.path.join(SDT_HELPER_OUTPUT_DIR, "bsi_2023_stripped.md")
-BSI_STRIPPED_ISMS_MD_PATH = os.path.join(SDT_HELPER_OUTPUT_DIR, "bsi_2023_stripped_ISMS.md")
-
-
 # --- Asset Paths ---
 PROMPT_CONFIG_PATH = os.path.join(SRC_ROOT, "assets/json/prompt_config.json")
 BAUSTEIN_TO_ZIELOBJEKT_SCHEMA_PATH = os.path.join(SRC_ROOT, "assets/schemas/baustein_to_zielobjekt_schema.json")

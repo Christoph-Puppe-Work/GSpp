@@ -138,51 +138,6 @@ def parse_gpp_kompendium_controls(
     return zielobjekt_to_controls_map, gpp_control_titles
 
 
-def extract_all_gpp_controls(gpp_kompendium_data: Dict[str, Any]) -> Dict[str, Dict[str, Any]]:
-    """
-    Recursively extracts all controls from the G++ Kompendium data into a flat dictionary.
-
-    Args:
-        gpp_kompendium_data: The loaded G++ Kompendium JSON data.
-
-    Returns:
-        A dictionary mapping Control IDs to their full Control objects.
-    """
-    logger.debug("Recursively extracting all G++ controls...")
-    all_controls = {}
-
-    def _traverse(controls_list: List[Dict[str, Any]]):
-        for control in controls_list:
-            control_id = control.get("id")
-            if control_id:
-                all_controls[control_id] = control
-
-            if "controls" in control and control["controls"]:
-                _traverse(control["controls"])
-
-    def _traverse_group(group_list: List[Dict[str, Any]]):
-        for group in group_list:
-            # Extract controls from the current group
-            if group.get("controls"):
-                _traverse(group["controls"])
-
-            # Recursively process subgroups
-            if group.get("groups"):
-                _traverse_group(group["groups"])
-
-    try:
-        # Start traversal from the top-level groups
-        groups = gpp_kompendium_data.get("catalog", {}).get("groups", [])
-        _traverse_group(groups)
-
-    except Exception as e:
-        logger.error(f"Failed to extract all G++ controls due to error: {e}")
-        raise
-
-    logger.debug(f"Successfully extracted {len(all_controls)} G++ controls.")
-    return all_controls
-
-
 def filter_markdown(control_ids: List[str], markdown_content: str) -> str:
     """
     Filters a markdown table to include only rows with specified IDs.

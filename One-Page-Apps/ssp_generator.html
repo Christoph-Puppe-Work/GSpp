@@ -1854,11 +1854,17 @@
                     const key = `${sourceId}||${cid}`;
                     (a.adds || []).forEach(add => {
                         const prosePart = (add.parts || []).find(p => p.name === 'statement');
+                        // Reifegrad-Text: neue Form = pt.prose, alte Form = props "statement".
+                        // Beide Formen unterstützen (siehe Gpp-ai-tool/docs/profile-maturity-contract.md).
+                        const oldStmt = (prosePart?.props || []).find(p => p && p.name === 'statement')?.value;
+                        const text = (prosePart?.prose != null && oldStmt == null)
+                            ? prosePart.prose
+                            : (oldStmt || prosePart?.prose || '');
                         if (!bpState.modifications.has(key)) bpState.modifications.set(key, []);
                         bpState.modifications.get(key).push({
                             type: 'add',
                             position: add.position || 'ending',
-                            text: prosePart?.prose || ''
+                            text
                         });
                     });
                 });

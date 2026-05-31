@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OSCAL Assessment Plan & Results Generator v9</title>
+    <title>OSCAL Assessment Plan & Results Generator v9 (build 9.1 — local:// Defs ladbar)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>tailwind.config={theme:{extend:{fontFamily:{sans:['Inter','sans-serif']}}}}</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/15.0.0/marked.min.js"></script>
@@ -66,6 +66,7 @@
         <div class="space-y-1.5">
             <div id="dz-ssp" class="dz border border-dashed border-slate-600 rounded p-2 text-center cursor-pointer hover:border-emerald-500 bg-slate-900/40 text-[10px]" data-type="ssp">📋 SSP laden<input type="file" accept=".json" class="hidden fip" data-type="ssp"></div>
             <div id="dz-state" class="dz border border-dashed border-slate-600 rounded p-2 text-center cursor-pointer hover:border-purple-500 bg-slate-900/40 text-[10px]" data-type="state">💾 Session laden<input type="file" accept=".json" class="hidden fip" data-type="state"></div>
+            <div id="dz-defs" class="dz border border-dashed border-slate-600 rounded p-2 text-center cursor-pointer hover:border-cyan-500 bg-slate-900/40 text-[10px]" data-type="defs">📁 Profile/Defs laden<span class="block text-[8px] text-slate-500">für local:// Referenzen — mehrere möglich</span><input type="file" accept=".json" multiple class="hidden fip" data-type="defs"></div>
         </div>
         <!-- AI -->
         <div class="border border-slate-700 rounded overflow-hidden">
@@ -175,6 +176,7 @@ const S={
     compMeta:new Map(), compGroups:new Map(), allCids:new Set(),
     excluded:new Set(), methods:new Map(), findings:new Map(),
     aiCache:new Map(), // cid -> {explain:'(markdown)'}
+    localDefs:new Map(), // filename -> parsed profile JSON (für local:// Referenzen)
     meta:{title:'',version:'1.0.0',desc:''},
     assessor:{name:'',type:'organization',email:''},
     terms:{roe:'',disclosures:'',methodology:''},
@@ -202,8 +204,8 @@ document.addEventListener('DOMContentLoaded',()=>{
         dz.addEventListener('click',()=>fi.click());
         dz.addEventListener('dragover',e=>{e.preventDefault();dz.classList.add('drag-over')});
         dz.addEventListener('dragleave',()=>dz.classList.remove('drag-over'));
-        dz.addEventListener('drop',e=>{e.preventDefault();dz.classList.remove('drag-over');if(e.dataTransfer.files.length)loadFile(e.dataTransfer.files[0],ty)});
-        fi.addEventListener('change',e=>{if(e.target.files.length)loadFile(e.target.files[0],ty)});
+        dz.addEventListener('drop',e=>{e.preventDefault();dz.classList.remove('drag-over');const fs=e.dataTransfer.files;if(!fs.length)return;ty==='defs'?loadDefFiles(fs):loadFile(fs[0],ty)});
+        fi.addEventListener('change',e=>{const fs=e.target.files;if(!fs.length)return;ty==='defs'?loadDefFiles(fs):loadFile(fs[0],ty);e.target.value=''});
     });
     loadAICfg();
     loadCatalog();
@@ -279,6 +281,69 @@ function loadFile(file,type){
         }catch(err){alert('Fehler: '+err.message)}
     };
     r.readAsText(file);
+}
+
+// Lädt eine oder mehrere Profil-/Definitions-Dateien für local://-Referenzen.
+// Gespeichert nach Dateiname; danach werden offene Component-Defs neu aufgelöst.
+function loadDefFiles(files){
+    let pending=files.length,loaded=0,errs=[];
+    const done=()=>{
+        if(pending)return;
+        if(errs.length)alert('Einige Dateien nicht geladen:\n'+errs.join('\n'));
+        if(S.ssp){loadCompDefs()} // erneut auflösen — local:// greift jetzt auf S.localDefs zu
+        else{const cs=document.getElementById('comp-status');cs.classList.remove('hidden');cs.style.display='flex';cs.className="px-3 py-1 rounded-lg text-xs font-semibold bg-cyan-900/50 text-cyan-300 border border-cyan-700 flex items-center";cs.innerHTML=`<span class="w-2 h-2 rounded-full bg-cyan-500 mr-2"></span>${loaded} Profil(e) bereit — jetzt SSP laden`}
+    };
+    [...files].forEach(file=>{
+        if(!file.name.endsWith('.json')){errs.push(file.name+' (kein JSON)');pending--;done();return}
+        const r=new FileReader();
+        r.onload=e=>{try{S.localDefs.set(file.name,JSON.parse(e.target.result.replace(/^﻿/,'')));loaded++}catch(err){errs.push(file.name+': '+err.message)}pending--;done()};
+        r.onerror=()=>{errs.push(file.name);pending--;done()};
+        r.readAsText(file);
+    });
+}
+
+// Wandelt eine local://-Referenz in einen Dateinamen um (sonst null).
+function localName(u){return /^local:\/\//i.test(u)?u.replace(/^local:\/\//i,'').split(/[\\/]/).pop():null}
+
+// Liefert das geparste Profil zu einer defUrl: local:// → erst aus geladenen
+// Dateien (S.localDefs), sonst relativer Fetch (nur über http-Server); http(s) → CORS-Fetch.
+async function fetchDef(u){
+    const ln=localName(u);
+    if(ln!=null){
+        if(S.localDefs.has(ln))return S.localDefs.get(ln);
+        if(S.localDefs.has(u.replace(/^local:\/\//i,'')))return S.localDefs.get(u.replace(/^local:\/\//i,''));
+        let r;
+        try{r=await fetch(ln,{cache:'no-cache'})}
+        catch(e){throw new Error(`"${ln}" nicht gefunden — bitte über "📁 Profile/Defs laden" wählen (oder Seite per Webserver öffnen)`)}
+        if(!r.ok)throw new Error(`"${ln}" nicht gefunden (HTTP ${r.status}) — bitte über "📁 Profile/Defs laden" wählen`);
+        return JSON.parse((await r.text()).replace(/^﻿/,''));
+    }
+    const r=await fetch(u,{mode:'cors',cache:'no-cache'});
+    if(!r.ok)throw new Error(`HTTP ${r.status} ${r.statusText}`);
+    return JSON.parse((await r.text()).replace(/^﻿/,''));
+}
+
+// Wendet ein geparstes Profil auf eine Komponente an; gibt Anzahl neuer Controls zurück.
+function applyDefData(uuid,d){
+    const grp=S.compGroups.get(uuid)||new Map();let a=0;
+    const {ids,stmtByCtrl}=parseProfileEntry(d);
+    ids.forEach(cid=>{
+        if(!cid)return;
+        const ci=catInfo(cid);
+        const stmts=stmtByCtrl.get(cid)||[];
+        const defDesc=(stmts[0]&&stmts[0].prose)||ci.prose||'';
+        if(!grp.has(cid)){
+            grp.set(cid,{status:'nur-komponente',user:'',date:'',desc:'',stmtId:'',fromDef:true,defDesc:defDesc,defProps:[],statements:stmts});
+            a++;
+        } else {
+            const existing=grp.get(cid);
+            if((!existing.statements||!existing.statements.length)&&stmts.length)existing.statements=stmts;
+            if(!existing.defDesc)existing.defDesc=defDesc;
+        }
+        if(!S.allCids.has(cid)){S.allCids.add(cid);S.methods.set(cid,new Set(['EXAMINE']));S.findings.set(cid,{status:'',observation:'',risk:'',remarks:''})}
+    });
+    S.compGroups.set(uuid,grp);const m=S.compMeta.get(uuid);if(m){m.defLoaded=true;m.defN=grp.size}
+    return a;
 }
 
 // ============================================================
@@ -372,36 +437,17 @@ async function loadCompDefs(){
     for(const it of toLoad){
         cs.innerHTML=`<span class="loader-sm mr-2"></span>${esc(it.title)} (${done+1}/${toLoad.length})`;
         try{
-            const r=await fetch(it.url,{mode:'cors',cache:'no-cache'});
-            if(!r.ok)throw new Error(`HTTP ${r.status} ${r.statusText}`);
-            const txt=await r.text();
+            const txt=JSON.stringify(await fetchDef(it.url));
             let d;try{d=JSON.parse(txt.replace(/^\uFEFF/,''))}catch(pe){throw new Error('Kein gültiges JSON: '+pe.message)}
-            const grp=S.compGroups.get(it.uuid)||new Map();let a=0;
-            const {ids,stmtByCtrl}=parseProfileEntry(d);
-            ids.forEach(cid=>{
-                if(!cid)return;
-                const ci=catInfo(cid);
-                const stmts=stmtByCtrl.get(cid)||[];
-                const defDesc=(stmts[0]&&stmts[0].prose)||ci.prose||'';
-                if(!grp.has(cid)){
-                    grp.set(cid,{status:'nur-komponente',user:'',date:'',desc:'',stmtId:'',fromDef:true,
-                        defDesc:defDesc,defProps:[],statements:stmts});
-                    a++;
-                } else {
-                    const existing=grp.get(cid);
-                    if((!existing.statements||!existing.statements.length)&&stmts.length)existing.statements=stmts;
-                    if(!existing.defDesc)existing.defDesc=defDesc;
-                }
-                if(!S.allCids.has(cid)){S.allCids.add(cid);S.methods.set(cid,new Set(['EXAMINE']));S.findings.set(cid,{status:'',observation:'',risk:'',remarks:''})}
-            });
-            S.compGroups.set(it.uuid,grp);const m=S.compMeta.get(it.uuid);m.defLoaded=true;m.defN=grp.size;newN+=a;
+            newN+=applyDefData(it.uuid,d);
         }catch(e){
             console.error(`Fehler bei ${it.title}:`,e);
             fails.push({title:it.title,err:e.message,url:it.url,uuid:it.uuid});
         }done++}
     if(fails.length){
         cs.className="px-3 py-1 rounded-lg text-xs font-semibold bg-amber-900/50 text-amber-300 border border-amber-700 flex items-center";
-        cs.innerHTML=`<span class="w-2 h-2 rounded-full bg-amber-500 mr-2"></span>${done-fails.length}/${done} Defs geladen, +${newN} Controls — <button onclick="retryFailedDefs()" class="ml-2 underline text-amber-200 hover:text-white font-bold">⟳ ${fails.length} fehlgeschlagene neu laden</button>`;
+        const hasLocal=fails.some(f=>/^local:\/\//i.test(f.url));
+        cs.innerHTML=`<span class="w-2 h-2 rounded-full bg-amber-500 mr-2"></span>${done-fails.length}/${done} Defs geladen, +${newN} Controls — <button onclick="retryFailedDefs()" class="ml-2 underline text-amber-200 hover:text-white font-bold">⟳ ${fails.length} fehlgeschlagene neu laden</button>${hasLocal?' &middot; <span class="text-amber-200">local:// Profile per „📁 Profile/Defs laden" wählen</span>':''}`;
         S._failedDefs=fails;
     }else{
         cs.className="px-3 py-1 rounded-lg text-xs font-semibold bg-emerald-900/50 text-emerald-400 border border-emerald-700 flex items-center";
@@ -417,21 +463,9 @@ window.retryFailedDefs=async()=>{
     for(const it of fails){
         cs.innerHTML=`<span class="loader-sm mr-2"></span>Retry: ${esc(it.title)} (${retried+1}/${fails.length})`;
         try{
-            const r=await fetch(it.url,{mode:'cors',cache:'reload'});
-            if(!r.ok)throw new Error(`HTTP ${r.status}`);
-            const d=JSON.parse((await r.text()).replace(/^\uFEFF/,''));
-            const grp=S.compGroups.get(it.uuid)||new Map();let a=0;
-            const {ids,stmtByCtrl}=parseProfileEntry(d);
-            ids.forEach(cid=>{
-                if(!cid)return;
-                const ci=catInfo(cid);
-                const stmts=stmtByCtrl.get(cid)||[];
-                const defDesc=(stmts[0]&&stmts[0].prose)||ci.prose||'';
-                if(!grp.has(cid)){grp.set(cid,{status:'nur-komponente',user:'',date:'',desc:'',stmtId:'',fromDef:true,defDesc:defDesc,defProps:[],statements:stmts});a++}
-                if(!S.allCids.has(cid)){S.allCids.add(cid);S.methods.set(cid,new Set(['EXAMINE']));S.findings.set(cid,{status:'',observation:'',risk:'',remarks:''})}
-            });
-            S.compGroups.set(it.uuid,grp);const m=S.compMeta.get(it.uuid);m.defLoaded=true;m.defN=grp.size;newN+=a;
-        }catch(e){stillFailing.push(it)}retried++}
+            const d=await fetchDef(it.url);
+            newN+=applyDefData(it.uuid,d);
+        }catch(e){stillFailing.push({...it,err:e.message})}retried++}
     S._failedDefs=stillFailing;
     if(stillFailing.length){
         cs.innerHTML=`<span class="w-2 h-2 rounded-full bg-red-500 mr-2"></span>${stillFailing.length} Defs nicht ladbar: ${stillFailing.map(f=>'<span class="text-red-300">'+esc(f.title)+' ('+esc(f.err)+')</span>').join(', ')}`;

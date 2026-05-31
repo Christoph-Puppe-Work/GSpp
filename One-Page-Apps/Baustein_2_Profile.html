@@ -317,9 +317,10 @@ body{
       <div>
         <div class="brand-name">Baustein_2_Profile</div>
       </div>
-      <span class="brand-sub">build 0.8.0 · LLM-Klassifikation → G++ Anwenderkatalog-Pool → Satz-Mapping → OSCAL-Profil mit alters · v4-gpp prompt</span>
+      <span class="brand-sub">build 0.8.1 · LLM-Klassifikation → G++-Pool (chunked, cached prefix) → Satz-Mapping → OSCAL-Profil mit alters · Token-Tracking · v5-chunked prompt</span>
     </div>
     <div class="meta-pills">
+      <span id="token-pill" class="pill" title="Token-Verbrauch (kumuliert pro Run)">Σ 0 tok · cache 0 (0%)</span>
       <span id="status-pill" class="pill">bereit</span>
       <span class="pill live">● Gemini 3</span>
     </div>
@@ -369,8 +370,8 @@ body{
           </div>
           <div class="field-row">
             <div class="field">
-              <label>Anf./Batch (Stage 2)</label>
-              <input id="anf-batch" type="number" min="1" max="20" value="5">
+              <label>Controls/Chunk (S2)</label>
+              <input id="ctrl-chunk" type="number" min="10" max="400" value="100">
             </div>
             <div class="field">
               <label>Chunk (Checker)</label>
@@ -605,10 +606,14 @@ body{
           <input type="checkbox" id="log-autoscroll" checked style="accent-color:var(--accent)">
           autoscroll
         </label>
+        <button class="btn sm ghost" id="btn-toggle-log">▤ text</button>
+        <button class="btn sm ghost" id="btn-copy-log">⌕ copy</button>
         <button class="btn sm ghost" id="btn-clear-log">clear</button>
       </div>
     </div>
     <div class="console-body" id="log-body"></div>
+    <textarea id="log-ta" class="hidden" readonly spellcheck="false"
+      style="flex:1;min-height:0;margin:0;border:0;border-radius:0;resize:none;background:var(--bg-deep);color:var(--text-secondary);font-family:'JetBrains Mono',monospace;font-size:10.5px;line-height:1.6;padding:8px 16px;outline:none"></textarea>
   </div>
 
 </div>
@@ -676,25 +681,20 @@ KARDINAL-REGEL — DER DEFAULT IST: ES GIBT EIN MAPPING.
 
 VORGEHEN PRO SATZ:
 1. Identifiziere die Haupt-Thematik(en) des Satzes.
-2. Scanne die GESAMTE G++-Control-Liste — nicht nur den Anfang oder die offensichtlichen Treffer. Der Pool ist bereits auf die richtige Zielobjektkategorie/Prozess eingegrenzt, also passt fast immer mindestens ein Control.
-3. Liste JEDEN Control, der inhaltlich Berührungspunkte hat (auch bei nur teilweiser Überlappung). Im Zweifel mappen statt verwerfen.
-4. Bei Mehrfach-Adressierung im Satz ("Es MUSS dokumentiert UND freigegeben werden") → mappe auf BEIDE Themen.
+2. Prüfe JEDEN Control in DIESEM Chunk auf inhaltliche Berührungspunkte (auch bei nur teilweiser Überlappung). Im Zweifel mappen statt verwerfen.
+3. Bei Mehrfach-Adressierung im Satz ("Es MUSS dokumentiert UND freigegeben werden") → mappe auf BEIDE Themen, sofern in diesem Chunk vorhanden.
 
-WANN GILT EIN SATZ ALS UNMAPPED (Ausnahme, selten):
-- Reine Einleitung ohne Modalverb ("Dieser Abschnitt regelt …")
-- Pure Erklärung/Hintergrund ("Kubernetes besteht aus Master und Worker Nodes")
-- Bloßer Verweis ohne eigenen Inhalt ("Siehe APP.4.5")
+WICHTIG — CHUNKING:
+- Du bekommst pro Request nur einen AUSSCHNITT (Chunk) des Control-Pools. Mappe jeden Satz NUR auf Controls aus DIESEM Chunk.
+- Gib NUR Mapping-Elemente für Sätze zurück, die in DIESEM Chunk mindestens ein passendes Control haben. Sätze ohne Treffer in diesem Chunk einfach WEGLASSEN — das spart Tokens und ist erwünscht, da die übrigen Controls in anderen Chunks stehen.
+- Erfinde NICHTS, um einen Treffer zu erzwingen.
 
 REGELN:
-- mapped_control_ids: nur IDs aus der unten gelieferten Liste. KEINE Halluzination, KEIN Erfinden von Control-IDs.
-- sentence_text: VERBATIM aus der Eingabe zurückgeben — Wort für Wort, kein Umformulieren.
-- rationale: ein Satz Deutsch — bei Mapping: was den Satz mit den Controls verbindet; bei unmapped: warum gar keine Verwandtschaft besteht.
-- Liefere EIN Mapping-Element PRO SATZ aus den unten gelisteten Anforderungen — keinen Satz weglassen.
+- mapped_control_ids: mindestens eine, nur IDs aus der unten gelieferten Control-Liste (diesem Chunk). KEINE Halluzination, KEIN Erfinden von Control-IDs.
+- sentence_text: VERBATIM aus der Eingabe zurückgeben — Wort für Wort, kein Umformulieren (dient nur der Zuordnung; anforderung_id + sentence_idx sind maßgeblich).
+- rationale: ein kurzer Satz Deutsch, was den Satz mit dem/den Control(s) verbindet.
 
 BAUSTEIN: {baustein_id} – {baustein_title}
-
-G++-CONTROLS (target-Pool, jeweils Titel + Statement-Prosa):
-{controls}
 
 ANFORDERUNGEN AUS DEM BAUSTEIN MIT EINZELSÄTZEN (zu verteilen):
 {anforderungen_with_sentences}
@@ -710,7 +710,11 @@ OUTPUT-JSON:
       "rationale": string
     }
   ]
-}`;
+}
+
+════════════════════════════════════════════════════════════
+G++-CONTROLS — NUR DIESER CHUNK (ID — Titel: Beschreibung):
+{controls}`;
 
 const DEFAULT_CHECK_PROMPT = `Du bist QS für BSI-Compliance-Mappings. Vor dir liegen Implementation-Statements, die ein erster AI-Pass (Maker) für Kernel-Controls erzeugt hat, gestützt auf einen Edition-2023-Baustein. Audit-Aufgabe: Bestätige, korrigiere oder verwirf jedes Statement.
 
@@ -777,6 +781,10 @@ const state = {
   categoriesByName: null,   // Map name(lower) → category
   zoControlsMap: null,      // Map zielobjekt-UUID → [control-id]
   ismsControlIds: [],       // [control-id] for the Prozess/ISMS pool
+  strippedById: null,       // Map control-id → {name, desc} from gpp_isms_stripped.md (cheap match context)
+
+  // token accounting (Gemini usageMetadata, accumulated per run)
+  tokens: { prompt: 0, cached: 0, candidates: 0, thoughts: 0, total: 0, calls: 0 },
 
   // pipeline outputs
   classification: null,     // { object_type, zielobjekt_name, zielobjekt_uuid, confidence, rationale, alternatives }
@@ -802,6 +810,7 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
    ════════════════════════════════════════════════════════════════════════ */
 
 const logBody = $("log-body");
+const logTA = $("log-ta");
 let logCount = 0;
 
 const l = {
@@ -812,9 +821,14 @@ const l = {
     div.innerHTML = `<span class="log-ts">${ts}</span><span class="log-lvl">${level}</span><span class="log-msg"></span>`;
     div.querySelector(".log-msg").textContent = msg;
     logBody.appendChild(div);
+    // mirror as plaintext into the selectable/copyable textarea
+    logTA.value += `${ts} ${level.toUpperCase().padEnd(5)} ${msg}\n`;
     logCount++;
     $("log-count").textContent = logCount;
-    if ($("log-autoscroll").checked) logBody.scrollTop = logBody.scrollHeight;
+    if ($("log-autoscroll").checked) {
+      logBody.scrollTop = logBody.scrollHeight;
+      logTA.scrollTop = logTA.scrollHeight;
+    }
   },
   info(m)  { this._add("info", m) },
   ok(m)    { this._add("ok", m) },
@@ -823,19 +837,29 @@ const l = {
   debug(m) { this._add("debug", m) },
 };
 
-l.info("init · build 0.7.1 · pdf → profile-match → impl-reqs → component");
+l.info("init · build 0.8.1 · pdf → klassifikation → pool-chunk-mapping → oscal-profil mit alters");
 
 $("btn-clear-log").addEventListener("click", () => {
   logBody.innerHTML = "";
+  logTA.value = "";
   logCount = 0;
   $("log-count").textContent = "0";
+});
+$("btn-toggle-log").addEventListener("click", () => {
+  const showTA = logBody.classList.toggle("hidden");
+  logTA.classList.toggle("hidden", !showTA);
+  $("btn-toggle-log").textContent = showTA ? "▤ pretty" : "▤ text";
+});
+$("btn-copy-log").addEventListener("click", async () => {
+  try { await navigator.clipboard.writeText(logTA.value); l.ok("Log in Zwischenablage"); }
+  catch (e) { l.err(`copy failed: ${e.message}`); }
 });
 
 /* ════════════════════════════════════════════════════════════════════════
    Persistence + prompt textareas
    ════════════════════════════════════════════════════════════════════════ */
 
-const PROMPT_VERSION = "v4-gpp";  // bumps when DEFAULTS change shape — invalidates user overrides
+const PROMPT_VERSION = "v5-chunked";  // bumps when DEFAULTS change shape — invalidates user overrides
 
 function loadPrefs() {
   // Migration: if stored prompt-version differs, clear stored prompt overrides so new defaults load
@@ -857,7 +881,7 @@ function loadPrefs() {
   $("concurrency").value     = localStorage.getItem("gpp.conc")      || "4";
   $("retries").value         = localStorage.getItem("gpp.retries")   || "2";
   $("chunk-size").value      = localStorage.getItem("gpp.chunk")     || "8";
-  $("anf-batch").value       = localStorage.getItem("gpp.anfbatch")  || "5";
+  $("ctrl-chunk").value      = localStorage.getItem("gpp.ctrlchunk") || "100";
   $("maker-checker").checked = localStorage.getItem("gpp.mc")        === "1";
   $("grounding").checked     = localStorage.getItem("gpp.ground")    === "1";
   $("testdrive").checked     = localStorage.getItem("gpp.td")        === "1";
@@ -880,7 +904,7 @@ bindPersist("thinking", "gpp.thinking");
 bindPersist("concurrency", "gpp.conc");
 bindPersist("retries", "gpp.retries");
 bindPersist("chunk-size", "gpp.chunk");
-bindPersist("anf-batch", "gpp.anfbatch");
+bindPersist("ctrl-chunk", "gpp.ctrlchunk");
 bindPersist("cat-url", "gpp.caturl");
 bindPersist("pi-url", "gpp.piurl");
 
@@ -1317,16 +1341,22 @@ async function loadPools() {
     const map = zoJson?.zielobjekt_controls_map ?? zoJson;
     state.zoControlsMap = new Map(Object.entries(map));
 
-    // gpp_isms_stripped.md → set of control IDs from the first table column
+    // gpp_isms_stripped.md → id + name + description per table row (cheap match context)
     const ismsText = await ismsRes.text();
     const ids = [];
+    const stripped = new Map();
     for (const line of ismsText.split("\n")) {
-      const m = line.match(/^\s*\|\s*([A-Z][A-Z0-9]*(?:\.\d+)+)\s*\|/);
-      if (m) ids.push(m[1]);
+      // | ID | name | description | UUID |
+      const m = line.match(/^\s*\|\s*([A-Z][A-Z0-9]*(?:\.\d+)+)\s*\|([^|]*)\|([^|]*)\|/);
+      if (!m) continue;
+      const id = m[1];
+      ids.push(id);
+      stripped.set(id, { name: m[2].trim(), desc: m[3].trim() });
     }
     state.ismsControlIds = ids;
-    $("pool-info").textContent = `${state.zoControlsMap.size} ZO-Pools · ${ids.length} ISMS-Controls`;
-    l.ok(`Pools geladen in ${Math.round(performance.now()-t0)}ms · ${state.zoControlsMap.size} ZO-Pools · ${ids.length} ISMS-Controls`);
+    state.strippedById = stripped;
+    $("pool-info").textContent = `${state.zoControlsMap.size} ZO-Pools · ${ids.length} ISMS-Controls (stripped)`;
+    l.ok(`Pools geladen in ${Math.round(performance.now()-t0)}ms · ${state.zoControlsMap.size} ZO-Pools · ${ids.length} ISMS-Controls (mit stripped-Beschreibung)`);
   } catch (e) {
     l.err(`Pool-Load fehlgeschlagen: ${e.message}`);
     $("pool-info").textContent = `Pools Fehler: ${e.message}`;
@@ -1401,9 +1431,37 @@ async function llmOnce(prompt, schema) {
     throw new Error(detail);
   }
   const data = await res.json();
+  addTokens(data?.usageMetadata);
   const text = (data?.candidates?.[0]?.content?.parts || []).map(p => p.text || "").join("\n");
   if (!text) throw new Error("leere Modellantwort");
   return text;
+}
+
+/* ── Token accounting (Gemini usageMetadata) ─────────────────────────────── */
+function resetTokens() {
+  state.tokens = { prompt: 0, cached: 0, candidates: 0, thoughts: 0, total: 0, calls: 0 };
+  updateTokenPill();
+}
+function addTokens(u) {
+  if (!u) return;
+  const t = state.tokens;
+  t.prompt     += u.promptTokenCount        || 0;
+  t.cached     += u.cachedContentTokenCount || 0;
+  t.candidates += u.candidatesTokenCount    || 0;
+  t.thoughts   += u.thoughtsTokenCount      || 0;
+  t.total      += u.totalTokenCount         || 0;
+  t.calls      += 1;
+  updateTokenPill();
+}
+const fmtTok = n => n >= 1000 ? (n / 1000).toFixed(n >= 10000 ? 0 : 1) + "k" : String(n);
+function updateTokenPill() {
+  const t = state.tokens;
+  const pill = $("token-pill");
+  if (!pill) return;
+  const pct = t.prompt > 0 ? Math.round((t.cached / t.prompt) * 100) : 0;
+  pill.textContent = `Σ ${fmtTok(t.total)} tok · cache ${fmtTok(t.cached)} (${pct}%)`;
+  pill.title = `${t.calls} calls · prompt ${t.prompt} (davon cached ${t.cached}) · output ${t.candidates} · thoughts ${t.thoughts} · total ${t.total}`;
+  pill.classList.toggle("live", t.cached > 0);
 }
 
 async function llm(prompt, label, schema) {
@@ -1767,83 +1825,82 @@ async function runStage2_SentenceMapping() {
     $("td-banner").classList.remove("show");
   }
 
-  // 3. Prepare the controls block — same in every batch (Titel + Statement-Prosa)
-  const controlsBlock = controls.map(c => {
-    const stm = (c.statement || "").replace(/\s+/g, " ").trim();
-    return `${c.id} — ${c.title}\n  (${c.modalverb || "?"}) ${stm.slice(0, 700)}`;
+  // 3. Constant prefix (cache-friendly): ALL Anforderungen + their sentences are
+  //    sent in every request unchanged — only the control-chunk at the end varies.
+  const anfBlock = anforderungen.map(a => {
+    const sentLines = (a.sentences || []).map(s => `  Satz ${s.idx}: ${s.text}`).join("\n");
+    return `${a.id} — ${a.name || "(ohne Name)"}\n${sentLines || "  (keine Sätze erkannt)"}`;
   }).join("\n\n");
 
-  // 6. Batch the Anforderungen
-  const batchSize = Math.max(1, parseInt($("anf-batch").value) || 5);
-  const batches = [];
-  for (let i = 0; i < anforderungen.length; i += batchSize) {
-    batches.push(anforderungen.slice(i, i + batchSize));
+  // Control context line: prefer the cheap stripped description, else catalog statement.
+  const ctxLine = c => {
+    const st = state.strippedById?.get(c.id);
+    const text = (st && st.desc) ? st.desc : (c.statement || "").replace(/\s+/g, " ").trim();
+    return `${c.id} — ${c.title}: ${text.slice(0, 500)}`;
+  };
+
+  // 4. Chunk the control pool (variable suffix). ~chunkSize controls per request.
+  const chunkSize = Math.max(10, parseInt($("ctrl-chunk").value) || 100);
+  const chunks = [];
+  for (let i = 0; i < controls.length; i += chunkSize) chunks.push(controls.slice(i, i + chunkSize));
+  l.info(`stage 2 (${state.pipelineMode}) · ${controls.length} Controls in ${chunks.length} Chunks à ${chunkSize} · ${anforderungen.length} Anforderungen (konstanter Prefix → Prompt-Caching)`);
+
+  // 5. Pre-seed every PDF sentence so each is accounted even if never returned.
+  //    A sentence's mapped controls are the UNION across all chunk responses.
+  const sentMap = new Map();  // `${anfId}#${idx}` → {…, ids:Set}
+  for (const a of anforderungen) for (const s of (a.sentences || [])) {
+    sentMap.set(`${a.id}#${s.idx}`, {
+      anforderung_id: a.id, anforderung_name: a.name, anforderung_modalverb: a.modalverb,
+      sentence_idx: s.idx, sentence_text: s.text, ids: new Set(), rationale: "",
+    });
   }
-  l.info(`stage 2 (${state.pipelineMode}) · ${anforderungen.length} Anforderungen in ${batches.length} Batches à ${batchSize} · ${controls.length} Controls per Batch`);
 
-  // 7. Run pool — one call per batch; accumulate mappings
-  state.sentenceMappings = [];
+  // 6. Run pool — one call per control-chunk; merge mappings into sentMap.
   const concurrency = Math.max(1, parseInt($("concurrency").value) || 4);
-  const tasks = batches.map((batch, idx) => async () => {
-    const anfBlock = batch.map(a => {
-      const sentLines = (a.sentences || []).map(s => `  Satz ${s.idx}: ${s.text}`).join("\n");
-      return `${a.id} — ${a.name || "(ohne Name)"}\n${sentLines || "  (keine Sätze erkannt)"}`;
-    }).join("\n\n");
-
+  const tasks = chunks.map((chunk, idx) => async () => {
     const prompt = buildPrompt("s2", {
       baustein_id: state.baustein.id || "?",
       baustein_title: state.baustein.title || "?",
-      controls: controlsBlock,
-      anforderungen_with_sentences: anfBlock,
+      anforderungen_with_sentences: anfBlock,                 // constant prefix
+      controls: chunk.map(ctxLine).join("\n\n"),              // variable suffix
     });
 
     try {
-      const text = await llm(prompt, `s2 batch ${idx+1}/${batches.length} (${batch.length} Anf.)`, $("grounding").checked ? null : SCHEMA_S2);
+      const text = await llm(prompt, `s2 chunk ${idx+1}/${chunks.length} (${chunk.length} Controls)`, $("grounding").checked ? null : SCHEMA_S2);
       const parsed = extractJson(text);
-      const mappings = parsed?.mappings || [];
-
-      // Validate: control-ids must be from the profile; anforderung-id+sentence_idx must exist
-      const validControlIds = new Set(controls.map(c => c.id));
-      const anfById = new Map(batch.map(a => [a.id, a]));
-      for (const m of mappings) {
-        const anf = anfById.get(m.anforderung_id);
-        if (!anf) { l.warn(`batch ${idx+1}: Modell mappt unbekannte Anforderung ${m.anforderung_id} — ignoriert`); continue; }
-        const sentObj = (anf.sentences || []).find(s => s.idx === m.sentence_idx);
-        if (!sentObj) {
-          l.warn(`batch ${idx+1}: ${m.anforderung_id} Satz ${m.sentence_idx} existiert nicht (Anf. hat ${anf.sentences?.length || 0} Sätze) — ignoriert`);
-          continue;
-        }
+      const validControlIds = new Set(chunk.map(c => c.id));
+      for (const m of (parsed?.mappings || [])) {
+        const slot = sentMap.get(`${m.anforderung_id}#${m.sentence_idx}`);
+        if (!slot) continue;  // unknown sentence — silently skip (chunk noise)
         const validIds = (m.mapped_control_ids || []).filter(id => validControlIds.has(id));
-        const halluc = (m.mapped_control_ids || []).filter(id => !validControlIds.has(id));
-        if (halluc.length) l.warn(`batch ${idx+1}: ${m.anforderung_id}/s${m.sentence_idx}: ${halluc.length} unbekannte Control-ID(s) entfernt: ${halluc.join(", ")}`);
-
-        state.sentenceMappings.push({
-          anforderung_id: m.anforderung_id,
-          anforderung_name: anf.name,
-          anforderung_modalverb: anf.modalverb,
-          sentence_idx: m.sentence_idx,
-          sentence_text: sentObj.text,  // use the verbatim PDF sentence, not what the model echoed
-          mapped_control_ids: validIds,
-          rationale: m.rationale || "",
-        });
+        for (const id of validIds) slot.ids.add(id);
+        if (validIds.length && !slot.rationale) slot.rationale = m.rationale || "";
       }
     } catch (e) {
-      l.err(`batch ${idx+1} failed: ${e.message}`);
+      l.err(`chunk ${idx+1} failed: ${e.message}`);
     }
   });
 
   await runPool(tasks, concurrency, (d, t) => {
-    showProgress(`stage 2 (${state.pipelineMode}) · sentence-mapping (${d}/${t} batches)`, d, t);
+    showProgress(`stage 2 (${state.pipelineMode}) · chunk-mapping (${d}/${t} Chunks)`, d, t);
   });
 
+  // 7. Finalize sentence mappings (merged, one entry per PDF sentence).
+  state.sentenceMappings = [...sentMap.values()].map(v => ({
+    anforderung_id: v.anforderung_id,
+    anforderung_name: v.anforderung_name,
+    anforderung_modalverb: v.anforderung_modalverb,
+    sentence_idx: v.sentence_idx,
+    sentence_text: v.sentence_text,
+    mapped_control_ids: [...v.ids],
+    rationale: v.rationale,
+  }));
+
   // 8. Invert mappings: build one implReq slot per control with mapped sentences attached
-  const sentencesByControl = new Map();           // controlId → [{anforderung_id, name, modalverb, sentence_idx, sentence_text, rationale}]
-  const unmappedSentences = [];                   // sentences with empty mapped_control_ids
+  const sentencesByControl = new Map();
+  const unmappedSentences = [];
   for (const m of state.sentenceMappings) {
-    if (m.mapped_control_ids.length === 0) {
-      unmappedSentences.push(m);
-      continue;
-    }
+    if (m.mapped_control_ids.length === 0) { unmappedSentences.push(m); continue; }
     for (const cid of m.mapped_control_ids) {
       if (!sentencesByControl.has(cid)) sentencesByControl.set(cid, []);
       sentencesByControl.get(cid).push(m);
@@ -1851,7 +1908,7 @@ async function runStage2_SentenceMapping() {
   }
   state.unmappedSentences = unmappedSentences;
   if (unmappedSentences.length) {
-    l.info(`${unmappedSentences.length} Sätze wurden als Kontext klassifiziert (kein Control-Mapping)`);
+    l.info(`${unmappedSentences.length} Sätze ohne Control-Treffer (Kontext / kein passendes Control im Pool)`);
   }
 
   // 9. Build implReqs from controls, attach mapped sentences
@@ -1885,11 +1942,7 @@ async function runStage2_SentenceMapping() {
   // Log sentence-side accounting so the user sees recall at the sentence level
   const totalSent = state.sentenceMappings.length;
   const mappedSent = totalSent - state.unmappedSentences.length;
-  const totalPdfSent = anforderungen.reduce((s, a) => s + (a.sentences?.length || 0), 0);
-  if (totalSent < totalPdfSent) {
-    l.warn(`Modell hat ${totalSent} Sätze verarbeitet, im PDF waren ${totalPdfSent} (Differenz: ${totalPdfSent - totalSent} Sätze hat das Modell nicht zurückgeliefert)`);
-  }
-  l.ok(`stage 2 (${state.pipelineMode}) done · ${mappedSent}/${totalSent} Sätze gemappt · ${state.unmappedSentences.length} als Kontext · ${state.implReqs.filter(r => r.coverage !== "missing").length}/${state.implReqs.length} Controls erhalten ≥1 Satz`);
+  l.ok(`stage 2 (${state.pipelineMode}) done · ${mappedSent}/${totalSent} PDF-Sätze gemappt · ${state.unmappedSentences.length} ohne Treffer · ${state.implReqs.filter(r => r.coverage !== "missing").length}/${state.implReqs.length} Controls erhalten ≥1 Satz`);
 }
 
 async function runStage2_C2_deterministic() {
@@ -2566,6 +2619,7 @@ async function run() {
 
   state.running = true;
   state.cancel = false;
+  resetTokens();
   $("btn-run").disabled = true;
   $("btn-cancel").classList.remove("hidden");
   resetStages();
@@ -2608,7 +2662,7 @@ async function run() {
 
     await runStage3();
     showProgress("done", 1, 1);
-    l.ok(`pipeline done in ${Math.round((performance.now()-tAll)/100)/10}s · mode=${state.pipelineMode}`);
+    l.ok(`pipeline done in ${Math.round((performance.now()-tAll)/100)/10}s · mode=${state.pipelineMode} · ${state.tokens.calls} calls · ${state.tokens.total} tok (cached ${state.tokens.cached})`);
     $("status-pill").textContent = "fertig";
   } catch (e) {
     l.err(`pipeline aborted: ${e.message}`);

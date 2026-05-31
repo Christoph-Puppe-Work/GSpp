@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OSCAL Assessment Plan & Results Generator v9 (build 9.1 — local:// Defs ladbar)</title>
+    <title>OSCAL Assessment Plan & Results Generator v9 (build 9.2 — local:// Defs ladbar, SSP-Risikoanalyse)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>tailwind.config={theme:{extend:{fontFamily:{sans:['Inter','sans-serif']}}}}</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/15.0.0/marked.min.js"></script>
@@ -178,6 +178,7 @@ const S={
     aiCache:new Map(), // cid -> {explain:'(markdown)'}
     localDefs:new Map(), // filename -> parsed profile JSON (für local:// Referenzen)
     meta:{title:'',version:'1.0.0',desc:''},
+    sspRisks:[], // detaillierte Risiken aus SSP back-matter (risk-analysis.json)
     assessor:{name:'',type:'organization',email:''},
     terms:{roe:'',disclosures:'',methodology:''},
     tasks:[],dateStart:'',dateEnd:'',setParams:[]
@@ -236,6 +237,30 @@ async function loadCatalog(){
 }
 
 function catInfo(cid){return S.catalog.get(cid)||{title:'',prose:''}}
+
+// UTF-8-sicheres Base64-Decoding (atob liefert latin1) — wie in ssp_ausfuellen.
+function base64DecodeUnicode(str){
+    try{return new TextDecoder().decode(Uint8Array.from(atob(str),c=>c.charCodeAt(0)))}
+    catch(e){return null}
+}
+
+// Liest die detaillierte Risikoanalyse aus der SSP back-matter
+// (resource → attachment base64, filename "risk-analysis.json" bzw. decodiertes {risks:[...]}).
+function extractSSPRisks(ssp){
+    const out=[];
+    (ssp['back-matter']?.resources||[]).forEach(r=>{
+        (r.attachments||[]).forEach(att=>{
+            if(!att?.base64?.value)return;
+            const isRisk=att.base64.filename==='risk-analysis.json'||(att['media-type']||'').includes('json');
+            if(!isRisk)return;
+            try{
+                const json=JSON.parse(base64DecodeUnicode(att.base64.value)||'null');
+                if(json&&Array.isArray(json.risks))out.push(...json.risks);
+            }catch(e){}
+        });
+    });
+    return out;
+}
 
 // Parst ein OSCAL-Profil (das alte Format war eine component-definition).
 // Control-IDs stammen aus imports[].include-controls[].with-ids.
@@ -349,11 +374,11 @@ function applyDefData(uuid,d){
 // ============================================================
 // SESSION
 // ============================================================
-function ser(){return JSON.stringify({_v:9,sspFilename:S.sspFilename,meta:S.meta,assessor:S.assessor,terms:S.terms,tasks:S.tasks,dateStart:S.dateStart,dateEnd:S.dateEnd,excluded:[...S.excluded],methods:[...S.methods.entries()].map(([k,v])=>[k,[...v]]),findings:[...S.findings.entries()],aiCache:[...S.aiCache.entries()],compGroups:[...S.compGroups.entries()].map(([k,m])=>[k,[...m.entries()]]),compMeta:[...S.compMeta.entries()],allCids:[...S.allCids]})}
+function ser(){return JSON.stringify({_v:9,sspFilename:S.sspFilename,meta:S.meta,sspRisks:S.sspRisks,assessor:S.assessor,terms:S.terms,tasks:S.tasks,dateStart:S.dateStart,dateEnd:S.dateEnd,excluded:[...S.excluded],methods:[...S.methods.entries()].map(([k,v])=>[k,[...v]]),findings:[...S.findings.entries()],aiCache:[...S.aiCache.entries()],compGroups:[...S.compGroups.entries()].map(([k,m])=>[k,[...m.entries()]]),compMeta:[...S.compMeta.entries()],allCids:[...S.allCids]})}
 
 function restoreSession(d){
     if(!d._v||d._v<6)return alert('Session-Format zu alt oder inkompatibel (v9 benötigt).');
-    S.sspFilename=d.sspFilename||'';S.meta=d.meta||{title:'',version:'1.0.0',desc:''};S.assessor=d.assessor||{name:'',type:'organization',email:''};
+    S.sspFilename=d.sspFilename||'';S.meta=d.meta||{title:'',version:'1.0.0',desc:''};S.sspRisks=d.sspRisks||[];S.assessor=d.assessor||{name:'',type:'organization',email:''};
     S.terms=d.terms||{roe:'',disclosures:'',methodology:''};S.tasks=d.tasks||[];S.dateStart=d.dateStart||'';S.dateEnd=d.dateEnd||'';
     S.excluded=new Set(d.excluded||[]);S.methods=new Map((d.methods||[]).map(([k,v])=>[k,new Set(v)]));
     S.findings=new Map(d.findings||[]);S.aiCache=new Map(d.aiCache||[]);
@@ -394,7 +419,9 @@ async function initSSP(){
         })});
     });
 
-    setSt('ssp-status',true,`SSP: ${sn} — ${S.allCids.size} Controls`);showUI();await loadCompDefs();
+    S.sspRisks=extractSSPRisks(ssp);
+    const riskTxt=S.sspRisks.length?`, ${S.sspRisks.length} Risiken`:'';
+    setSt('ssp-status',true,`SSP: ${sn} — ${S.allCids.size} Controls${riskTxt}`);showUI();await loadCompDefs();
 }
 
 function ensureGrp(u){if(!S.compGroups.has(u))S.compGroups.set(u,new Map());return S.compGroups.get(u)}
@@ -866,7 +893,28 @@ function exportAR(){
             fin.push(fd);
         }
     });
-    
+
+    // Detaillierte Risiken aus der SSP-Risikoanalyse (back-matter) als OSCAL-Risks übernehmen.
+    const NS="http://bsi.bund.de/ns/grundschutz";
+    S.sspRisks.forEach(r=>{
+        const props=[];
+        if(r.likelihood)props.push({name:"likelihood",ns:NS,value:r.likelihood});
+        if(r.impact)props.push({name:"impact",ns:NS,value:r.impact});
+        const oscalRisk={
+            uuid:r.uuid||crypto.randomUUID(),
+            title:r.title||'Risiko',
+            description:r.description||'',
+            statement:r.threat||r.description||r.title||'Risiko aus SSP-Risikoanalyse',
+            status:"open"
+        };
+        if(props.length)oscalRisk.props=props;
+        const notes=[];
+        if(r.targetComponent)notes.push('Betroffene Komponente: '+(S.compMeta.get(r.targetComponent)?.title||r.targetComponent));
+        if(Array.isArray(r.mitigatingControls)&&r.mitigatingControls.length)notes.push('Mitigierende Controls: '+r.mitigatingControls.map(m=>m&&m.id).filter(Boolean).join(', '));
+        if(notes.length)oscalRisk.remarks=notes.join('\n');
+        rsk.push(oscalRisk);
+    });
+
     if(!fin.length)return alert('Keine bewerteten Controls.');
     const ar={"assessment-results":{uuid:crypto.randomUUID(),metadata:{title:`${sn().replace(/_/g,' ')} - Assessment Results`,version:S.meta.version||'1.0.0',"last-modified":ts,"oscal-version":"1.1.3"},"import-ap":{href:`${sn()}_AP.json`},results:[{uuid:crypto.randomUUID(),title:"Assessment-Ergebnis",description:'Ergebnisse',start:S.dateStart?`${S.dateStart}T00:00:00Z`:ts,end:S.dateEnd?`${S.dateEnd}T23:59:59Z`:ts,"reviewed-controls":{"control-selections":[{"include-controls":cids.map(c=>({"control-id":c}))}]},...(obs.length?{observations:obs}:{}),findings:fin,...(rsk.length?{risks:rsk}:{})}]}};
     dl(ar,`${sn()}_AR.json`);autoSave();

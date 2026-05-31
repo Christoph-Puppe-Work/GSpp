@@ -1,0 +1,45 @@
+import re
+from typing import Any, Dict, List
+
+def filter_inventory(ssp: Dict[str, Any], regex_filter: str) -> List[Dict[str, Any]]:
+    """Filters assets from SSP inventory based on a regex."""
+    system_characteristics = ssp.get("system-security-plan", {}).get("system-characteristics", {})
+    inventory_items = system_characteristics.get("inventory-items", [])
+
+    if not regex_filter:
+        return inventory_items
+
+    pattern = re.compile(regex_filter, re.IGNORECASE)
+    filtered = []
+    for item in inventory_items:
+        # Search in description, remarks, or metadata if available
+        search_str = f"{item.get('description', '')} {item.get('remarks', '')}"
+        if pattern.search(search_str):
+            filtered.append(item)
+    return filtered
+
+def filter_implemented_requirements(ssp: Dict[str, Any], status: str | None = None, role_id: str | None = None) -> List[Dict[str, Any]]:
+    """
+    Extracts controls matching a specific implementation status or assigned to a role.
+    """
+    control_implementation = ssp.get("system-security-plan", {}).get("control-implementation", {})
+    implemented_requirements = control_implementation.get("implemented-requirements", [])
+
+    if not status and not role_id:
+        return implemented_requirements
+
+    filtered = []
+    for req in implemented_requirements:
+        match = True
+        if status and req.get("status", {}).get("state") != status:
+            match = False
+
+        if role_id:
+            # Check for role in responsible-roles
+            roles = req.get("responsible-roles", [])
+            if not any(r.get("role-id") == role_id for r in roles):
+                match = False
+
+        if match:
+            filtered.append(req)
+    return filtered

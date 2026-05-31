@@ -32,14 +32,14 @@ Eine serverlose, vollständig im Browser laufende Single-Page Application (SPA),
 
 Der Prozess folgt einer klaren Kette von der Modellierung über die Umsetzung bis hin zur finalen Prüfung.
 
-### 1. Modellierung mit dem [SSP-Generator](./ssp_generator.html)
+### 1. Modellierung mit dem [Profil & SSP Generator](./ssp_generator.html)
 In dieser Phase legen Sie das Fundament für Ihren Informationsverbund.
 * **Profil-Erstellung**: Das Tool generiert ein OSCAL-Profil auf Basis des gewählten ISMS-Typs.
 * **Asset-Management**: Sie integrieren Muster-Assets oder laden eigene Zielobjekte direkt aus der GitHub-Bibliothek.
 * **Einfügen eigener Profiles**: Die mit [BSI 2 Profile](./Baustein_2_Profile.html) erstellten Profile hinzufügen.
 * **Risikoanalyse**: Die Anwendung enthält ein integriertes Risikomanagement inklusive der Erstellung von Custom Controls.
 * **Tailoring**: Sie passen Anforderungstexte und Parameter (z. B. Fristen oder Rollen) bereits hier an die lokale Situation an.
-* **Export**: Sie erhalten die Blaupause als Profil und einen darauf basierenden Muster-SSP.
+* **Export**: Sie erhalten Ihren Informationsverbund als Profil und einen darauf basierenden Muster-SSP.
 
 ### 2. Grundschutzcheck mit [SSP-Ausfüllen](./ssp_ausfuellen.html)
 Hier dokumentieren Sie die tatsächliche Umsetzung der Maßnahmen im Betrieb.

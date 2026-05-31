@@ -44,7 +44,7 @@ class TestStageStrip(unittest.TestCase):
         # Dynamically get the correct truncated prose from the mock file
         import json
         mock_data = json.loads(mock_gpp_content)
-        target_objects_prose = mock_data["catalog"]["groups"][0]["groups"][0]["controls"][0]["parts"][0]["prose"]
+        target_object_categories_prose = mock_data["catalog"]["groups"][0]["groups"][0]["controls"][0]["parts"][0]["prose"]
         isms_control_prose = mock_data["catalog"]["groups"][0]["groups"][0]["controls"][1]["parts"][0]["prose"]
         expected_truncated_desc = isms_control_prose[:150]
 
@@ -66,18 +66,18 @@ class TestStageStrip(unittest.TestCase):
                 call(GPP_STRIPPED_ISMS_MD_PATH)
             ], any_order=True)
 
-            # --- Assertions for the file WITH target_objects ---
-            target_objects_content = written_content.get(GPP_STRIPPED_MD_PATH, "")
-            self.assertIn(f"| GPP.1.A1 | GPP Test Control (With Target Objects) | {target_objects_prose} | 12345-uuid-with-target |", target_objects_content)
-            self.assertNotIn("GPP.2.A2", target_objects_content)
-            self.assertNotIn("GPP.1.A1.1", target_objects_content)
+            # --- Assertions for the file WITH target_object_categories ---
+            target_object_categories_content = written_content.get(GPP_STRIPPED_MD_PATH, "")
+            self.assertIn(f"| GPP.1.A1 | GPP Test Control (With Target Objects) | {target_object_categories_prose} | 12345-uuid-with-target |", target_object_categories_content)
+            self.assertNotIn("GPP.2.A2", target_object_categories_content)
+            self.assertNotIn("GPP.1.A1.1", target_object_categories_content)
 
-            # --- Assertions for the ISMS file WITHOUT target_objects ---
+            # --- Assertions for the ISMS file WITHOUT target_object_categories ---
             isms_content = written_content.get(GPP_STRIPPED_ISMS_MD_PATH, "")
             self.assertIn(f"| GPP.2.A2 | GPP Test Control (ISMS) | {expected_truncated_desc} | 67890-uuid-isms |", isms_content)
             # Check for the nested control
             self.assertIn("| GPP.1.A1.1 | Nested ISMS Control | This is a nested ISMS control. | nested-isms-uuid |", isms_content)
-            # Ensure the parent control (which has target_objects) is NOT in the ISMS file
+            # Ensure the parent control (which has target_object_categories) is NOT in the ISMS file
             self.assertNotIn("| GPP.1.A1 | GPP Test Control (With Target Objects)", isms_content)
 
     @patch('pipeline.stage_strip.os.makedirs')

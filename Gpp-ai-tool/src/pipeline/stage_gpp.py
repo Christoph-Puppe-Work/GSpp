@@ -8,7 +8,7 @@ import os
 from typing import Dict, Any, List, Optional, Tuple
 
 from config import app_config
-from constants import GPP_KOMPENDIUM_JSON_PATH, ZIELOBJEKTE_CSV_PATH, ZIELOBJEKT_CONTROLS_JSON_PATH
+from constants import GPP_KOMPENDIUM_JSON_PATH, ZIELOBJEKTKATEGORIEN_CSV_PATH, ZIELOBJEKT_CONTROLS_JSON_PATH
 from utils.data_loader import load_json_file, save_json_file, load_zielobjekte_csv
 
 logger = logging.getLogger(__name__)
@@ -29,7 +29,7 @@ def _find_prop_value(props_list: List[Dict[str, Any]], prop_name: str) -> Option
 def _process_control(control: Dict[str, Any]) -> Optional[Tuple[List[str], str, Dict[str, Any]]]:
     """
     Extracts key details, UUID, and a simplified representation of a control.
-    Returns a tuple containing a list of keys (target_objects or special categories), UUID, and the simplified control.
+    Returns a tuple containing a list of keys (target_object_categories or special categories), UUID, and the simplified control.
     """
     uuid = _find_prop_value(control.get("props", []), "alt-identifier")
     if not uuid:
@@ -156,8 +156,8 @@ def _create_zielobjekt_map() -> Dict[str, Any]:
     """
     Creates a map of all Zielobjekte with their names and parent names.
     """
-    logger.info(f"Loading Zielobjekte from {ZIELOBJEKTE_CSV_PATH}...")
-    zielobjekte_data = load_zielobjekte_csv(ZIELOBJEKTE_CSV_PATH)
+    logger.info(f"Loading Zielobjekte from {ZIELOBJEKTKATEGORIEN_CSV_PATH}...")
+    zielobjekte_data = load_zielobjekte_csv(ZIELOBJEKTKATEGORIEN_CSV_PATH)
     if not zielobjekte_data:
         logger.error("No data loaded from Zielobjekte CSV.")
         return {}

@@ -79,6 +79,7 @@ Dazu gehören unter anderem Skripte für:
 - Zurücksetzen von Datastores,
 - Code-Status-Extraktion für KI-gestützte Analyse,
 - Statistik- und Auswertungsläufe zu Zielobjekten und Controls,
+- Statistik- und Auswertungsläufe zu Zielobjektkategorien und Controls,
 - kleinere Wartungsaufgaben wie URL-Korrekturen oder Zeilenstatistiken.
 
 Dieses Verzeichnis ist damit der operative Werkzeugkasten für Entwicklung und Betrieb.

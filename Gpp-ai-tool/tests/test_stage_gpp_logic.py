@@ -4,7 +4,7 @@ from pipeline.stage_gpp import _process_control
 
 class TestStageGppLogic(unittest.TestCase):
     def test_process_control_methodik(self):
-        # Control without target_objects and modalverb MUSS
+        # Control without target_object_categories and modalverb MUSS
         control = {
             "id": "SENS.1.1",
             "title": "Test Methodik",
@@ -12,7 +12,7 @@ class TestStageGppLogic(unittest.TestCase):
             "parts": [{
                 "name": "statement",
                 "prose": "MUSS do something",
-                "props": [{"name": "modalverb", "value": "MUSS"}]
+                "props": [{"name": "modal_verb", "value": "MUSS"}]
             }]
         }
         keys, uuid, simplified = _process_control(control)
@@ -20,7 +20,7 @@ class TestStageGppLogic(unittest.TestCase):
         self.assertEqual(uuid, "uuid-1")
 
     def test_process_control_prozesse(self):
-        # Control without target_objects and modalverb NOT MUSS
+        # Control without target_object_categories and modalverb NOT MUSS
         control = {
             "id": "SENS.1.2",
             "title": "Test Prozesse",
@@ -28,22 +28,22 @@ class TestStageGppLogic(unittest.TestCase):
             "parts": [{
                 "name": "statement",
                 "prose": "SOLLTE do something",
-                "props": [{"name": "modalverb", "value": "SOLLTE"}]
+                "props": [{"name": "modal_verb", "value": "SOLLTE"}]
             }]
         }
         keys, uuid, simplified = _process_control(control)
-        self.assertIn("SENSprozesse", keys)
+        self.assertIn("SENS_prozesse", keys)
         self.assertEqual(uuid, "uuid-2")
 
     def test_process_control_with_target(self):
-        # Control with target_objects
+        # Control with target_object_categories
         control = {
             "id": "SYS.1.1",
             "title": "Test Target",
             "props": [{"name": "alt-identifier", "value": "uuid-3"}],
             "parts": [{
                 "name": "statement",
-                "props": [{"name": "target_objects", "value": "Server"}]
+                "props": [{"name": "target_object_categories", "value": "Server"}]
             }]
         }
         keys, uuid, simplified = _process_control(control)

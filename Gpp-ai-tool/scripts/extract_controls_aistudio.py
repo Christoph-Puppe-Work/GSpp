@@ -31,7 +31,7 @@ def process_control(control: Dict[str, Any]) -> Optional[Tuple[str, str, Dict[st
     """
     Extracts key details, UUID, and a simplified representation of a control.
 
-    The key is determined by the 'target_objects' property, defaulting to 'ISMS'.
+    The key is determined by the 'target_object_categories' property, defaulting to 'ISMS'.
     The simplified control contains only id, class, title, and prose.
 
     Args:
@@ -53,7 +53,7 @@ def process_control(control: Dict[str, Any]) -> Optional[Tuple[str, str, Dict[st
     if isinstance(parts, list):
         for part in parts:
             if isinstance(part, dict):
-                target_obj_val = find_prop_value(part.get("props", []), "target_objects")
+                target_obj_val = find_prop_value(part.get("props", []), "target_object_categories")
                 if target_obj_val:
                     key = target_obj_val
                     break

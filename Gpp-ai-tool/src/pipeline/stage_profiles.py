@@ -105,7 +105,10 @@ def run_stage_profiles():
         sanitized_name = sanitize_filename(zielobjekt_name)
 
         if is_process:
-            output_filename = f"{sanitized_name}_process_profile.json"
+            display_name = sanitized_name
+            if display_name.endswith("_prozesse"):
+                display_name = display_name[:-9]
+            output_filename = f"{display_name}_process_profile.json"
             output_path = os.path.join(SDT_PROFILES_PROCESS_DIR, output_filename)
         else:
             output_filename = f"{sanitized_name}_profile.json"

@@ -30,10 +30,10 @@ def _write_if_needed(path, content):
     logger.debug(f"Wrote {path}")
 
 
-def _process_controls_recursively(controls, target_objects_list, isms_list):
+def _process_controls_recursively(controls, target_object_categories_list, isms_list):
     """
     Recursively processes a list of controls, sorting them into two lists
-    based on the presence of 'target_objects'.
+    based on the presence of 'target_object_categories'.
     """
     for control in controls:
         # Extract common control data
@@ -53,29 +53,29 @@ def _process_controls_recursively(controls, target_objects_list, isms_list):
         control_data = [control_id, title, description, uuid]
 
         # Sort the control into the appropriate list
-        if _has_target_objects(control):
-            target_objects_list.append(control_data)
+        if _has_target_object_categories(control):
+            target_object_categories_list.append(control_data)
         else:
             isms_list.append(control_data)
 
         # If there are nested controls, process them recursively
         if "controls" in control:
-            _process_controls_recursively(control["controls"], target_objects_list, isms_list)
+            _process_controls_recursively(control["controls"], target_object_categories_list, isms_list)
 
-def _has_target_objects(control):
+def _has_target_object_categories(control):
     """
-    Checks if a control has a 'target_objects' property within its parts.
+    Checks if a control has a 'target_object_categories' property within its parts.
     """
     for part in control.get("parts", []):
         for prop in part.get("props", []):
-            if prop.get("name") == "target_objects":
+            if prop.get("name") == "target_object_categories":
                 return True
     return False
 
 def _strip_gpp_file():
     """
     Reads the G++ Kompendium JSON, recursively finds all controls, separates
-    them based on 'target_objects', and saves them as two markdown tables.
+    them based on 'target_object_categories', and saves them as two markdown tables.
     """
     logger = logging.getLogger(__name__)
     logger.debug(f"Reading G++ Kompendium file from: {GPP_KOMPENDIUM_JSON_PATH}")
@@ -89,21 +89,21 @@ def _strip_gpp_file():
         logger.error(f"Failed to decode JSON from: {GPP_KOMPENDIUM_JSON_PATH}")
         return
 
-    target_objects_controls = []
+    target_object_categories_controls = []
     isms_controls = []
     for main_group in data.get("catalog", {}).get("groups", []):
         for sub_group in main_group.get("groups", []):
             if "controls" in sub_group:
-                _process_controls_recursively(sub_group["controls"], target_objects_controls, isms_controls)
+                _process_controls_recursively(sub_group["controls"], target_object_categories_controls, isms_controls)
 
-    # --- Write the file for controls WITH target_objects ---
+    # --- Write the file for controls WITH target_object_categories ---
     header = "| ID | name | description | UUID (only for G++ controls!) |\n|---|---|---|---|\n"
-    rows_target = [f"| {c[0]} | {c[1]} | {c[2]} | {c[3]} |" for c in target_objects_controls]
+    rows_target = [f"| {c[0]} | {c[1]} | {c[2]} | {c[3]} |" for c in target_object_categories_controls]
     markdown_content_target = header + "\n".join(rows_target)
 
     _write_if_needed(GPP_STRIPPED_MD_PATH, markdown_content_target)
 
-    # --- Write the file for controls WITHOUT target_objects ---
+    # --- Write the file for controls WITHOUT target_object_categories ---
     rows_isms = [f"| {c[0]} | {c[1]} | {c[2]} | {c[3]} |" for c in isms_controls]
     markdown_content_isms = header + "\n".join(rows_isms)
 

@@ -80,7 +80,7 @@ def _traverse_and_collect_controls(
 
         for part in control.get("parts", []):
             for prop in part.get("props", []):
-                if prop.get("name") == "target_objects":
+                if prop.get("name") == "target_object_categories":
                     zielobjekte = [
                         zo.strip() for zo in prop.get("value", "").split(",")
                     ]

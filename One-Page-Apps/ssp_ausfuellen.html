@@ -25,6 +25,9 @@
         .drag-over { border-color: #10b981 !important; background: rgba(16, 185, 129, 0.1) !important; }
         .sb { font-size: 10px; padding: 2px 8px; border-radius: 9999px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; border: 1px solid; }
 
+        /* File input hidden but clickable */
+        input[type="file"].fip { position: absolute; left: -9999px; top: -9999px; width: 0; height: 0; opacity: 0; }
+
         /* FIX A: Harte Überschreibung des Tailwind Forms Plugin für Inputs */
         input[type="text"].inp, input[type="password"].inp, input[type="email"].inp, input[type="date"].inp, select.inp, textarea.inp {
             padding: .5rem .75rem !important;
@@ -58,7 +61,7 @@
         .ai-response-content code { background-color: #312e81; padding: 0.2em 0.4em; border-radius: 0.25em; font-family: monospace; }
 
         /* Sidebar Toggle */
-        .sidebar { width: 320px; min-width: 320px; transition: margin-left .3s ease, opacity .3s; overflow-y: auto; }
+        .sidebar { width: 320px; min-width: 320px; height: 100vh; transition: margin-left .3s ease, opacity .3s; overflow-y: auto; }
         .sidebar.collapsed { margin-left: -320px; opacity: 0; pointer-events: none; }
         .sb-toggle { position: fixed; top: 12px; left: 12px; z-index: 50; background: #1e293b; border: 1px solid #475569; border-radius: .5rem; padding: 6px 10px; color: #e2e8f0; cursor: pointer; font-size: 18px; transition: left .3s; }
         .sb-toggle.shifted { left: 332px; }
@@ -94,15 +97,15 @@
         <div class="space-y-1.5">
             <div id="dz-ssp" class="dz border border-dashed border-slate-600 rounded p-2 text-center cursor-pointer hover:border-blue-500 bg-slate-900/40 text-[10px]" data-type="ssp">
                 📋 1. SSP laden (Main)
-                <input type="file" accept=".json" class="hidden fip" data-type="ssp" id="ssp-uploader">
+                <input type="file" accept=".json" class="fip" data-type="ssp" id="ssp-uploader">
             </div>
             <div id="dz-assoc" class="dz border border-dashed border-slate-600 rounded p-2 text-center cursor-pointer hover:border-emerald-500 bg-slate-900/40 text-[10px]" data-type="assoc">
                 📦 2. Assoziierte laden
-                <input type="file" accept=".json" multiple class="hidden fip" data-type="assoc" id="associated-uploader">
+                <input type="file" accept=".json" multiple class="fip" data-type="assoc" id="associated-uploader">
             </div>
             <div id="dz-state" class="dz border border-dashed border-slate-600 rounded p-2 text-center cursor-pointer hover:border-purple-500 bg-slate-900/40 text-[10px]" data-type="state">
                 💾 Session (.json) laden
-                <input type="file" accept=".json" class="hidden fip" data-type="state">
+                <input type="file" accept=".json" class="fip" data-type="state">
             </div>
         </div>
 
@@ -154,7 +157,7 @@
         </div>
 
 <div style="margin-top: auto; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.1); text-align: center; font-size: 0.75rem; color: #94a3b8;">
-    &copy; 2024 NTT DATA Deutschland SE
+    &copy; 2026 NTT DATA Deutschland SE
 </div>
 
     </aside>
@@ -314,7 +317,10 @@
     function setupDragAndDrop() {
         document.querySelectorAll('.dz').forEach(dz => {
             const fi = dz.querySelector('.fip'), ty = dz.dataset.type;
-            dz.addEventListener('click', () => fi.click());
+            // Nur auslösen, wenn der Klick NICHT vom (Kind-)File-Input selbst stammt –
+            // sonst löst fi.click() per Bubbling den Handler erneut aus (Rekursion),
+            // und der Browser blockiert den Datei-Dialog als nicht-vertrauenswürdig.
+            dz.addEventListener('click', (e) => { if (e.target !== fi) fi.click(); });
             dz.addEventListener('dragover', e => { e.preventDefault(); dz.classList.add('drag-over') });
             dz.addEventListener('dragleave', () => dz.classList.remove('drag-over'));
             dz.addEventListener('drop', e => {
@@ -808,7 +814,6 @@
                             loadedProfiles.set(l.href, d);
                         }
                     });
-                });
                 }
             }
         }));

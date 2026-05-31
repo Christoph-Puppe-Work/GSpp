@@ -317,7 +317,10 @@
     function setupDragAndDrop() {
         document.querySelectorAll('.dz').forEach(dz => {
             const fi = dz.querySelector('.fip'), ty = dz.dataset.type;
-            dz.addEventListener('click', () => fi.click());
+            // Nur auslösen, wenn der Klick NICHT vom (Kind-)File-Input selbst stammt –
+            // sonst löst fi.click() per Bubbling den Handler erneut aus (Rekursion),
+            // und der Browser blockiert den Datei-Dialog als nicht-vertrauenswürdig.
+            dz.addEventListener('click', (e) => { if (e.target !== fi) fi.click(); });
             dz.addEventListener('dragover', e => { e.preventDefault(); dz.classList.add('drag-over') });
             dz.addEventListener('dragleave', () => dz.classList.remove('drag-over'));
             dz.addEventListener('drop', e => {

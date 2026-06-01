@@ -1,0 +1,278 @@
+{
+  "profile": {
+    "uuid": "99e4486f-03df-47f7-8550-f52371723fcf",
+    "metadata": {
+      "title": "SENS_prozesse SENS_prozesse - Enhanced (ED2023)",
+      "last-modified": "2026-05-31T20:20:23.421651+00:00",
+      "version": "0.0.1",
+      "oscal-version": "1.1.3"
+    },
+    "imports": [
+      {
+        "href": "https://raw.githubusercontent.com/BSI-Bund/Stand-der-Technik-Bibliothek/refs/heads/main/Anwenderkataloge/Grundschutz%2B%2B/Grundschutz%2B%2B-catalog.json",
+        "include-controls": [
+          {
+            "with-ids": [
+              "SENS.1.2"
+            ]
+          }
+        ]
+      }
+    ],
+    "modify": {
+      "alters": [
+        {
+          "control-id": "SENS.1.2",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "SENS.1.2_stm",
+              "parts": [
+                {
+                  "id": "SENS.1.2-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Improvement",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    }
+                  ],
+                  "prose": "Die Erfolgskontrolle von Sensibilisierungsmaßnahmen erfolgt nur sporadisch und informell nach einzelnen Aktionen.",
+                  "parts": [
+                    {
+                      "id": "SENS.1.2-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Sammeln Sie informelles Feedback direkt nach Schulungen, um erste Eindrücke zur Akzeptanz der Inhalte zu gewinnen."
+                    },
+                    {
+                      "id": "SENS.1.2-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfen Sie, ob vereinzelt Feedbacknotizen oder E-Mails nach Schulungen vorliegen, die eine Reaktion belegen."
+                    }
+                  ]
+                },
+                {
+                  "id": "SENS.1.2-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Improvement",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    }
+                  ],
+                  "prose": "Es findet eine regelmäßige, meist rein qualitative Abfrage der Zufriedenheit nach Sensibilisierungsmaßnahmen statt.",
+                  "parts": [
+                    {
+                      "id": "SENS.1.2-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Nutzen Sie standardisierte Fragebögen am Ende jeder Schulung, um die wahrgenommene Relevanz der Themen zu erfassen."
+                    },
+                    {
+                      "id": "SENS.1.2-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Sichten Sie die ausgefüllten Feedbackbögen und Teilnehmerlisten der letzten Sensibilisierungskampagnen."
+                    }
+                  ]
+                },
+                {
+                  "id": "SENS.1.2-m3_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Improvement",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m3"
+                    }
+                  ],
+                  "prose": "Sensibilisierung SOLLTE den Erfolg der Sensibilisierung anhand {{ insert: param, sens.1.2-prm1 }} {{ insert: param, sens.1.2-prm2 }} überprüfen.",
+                  "parts": [
+                    {
+                      "id": "SENS.1.2-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Wenden Sie die definierten Parameter {{ insert: param, sens.1.2-prm1 }} konsequent an, um die Wirksamkeit zu beurteilen."
+                    },
+                    {
+                      "id": "SENS.1.2-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Vergleichen Sie die erhobenen Messdaten mit den in {{ insert: param, sens.1.2-prm2 }} festgelegten Zielvorgaben."
+                    }
+                  ]
+                },
+                {
+                  "id": "SENS.1.2-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Improvement",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    }
+                  ],
+                  "prose": "Die Erfolgsmessung wird durch quantitative Metriken und regelmäßige, simulierte Praxistests (z. B. Phishing-Tests) ergänzt.",
+                  "parts": [
+                    {
+                      "id": "SENS.1.2-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Etablieren Sie ein Dashboard, das Klickraten aus Simulationen und Testergebnisse aus E-Learnings zentral zusammenführt."
+                    },
+                    {
+                      "id": "SENS.1.2-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Analysieren Sie die Reports der Simulationsplattform. CLI: `curl -s https://api.training-metrics.local/stats`."
+                    }
+                  ]
+                },
+                {
+                  "id": "SENS.1.2-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Improvement",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    }
+                  ],
+                  "prose": "Ein integriertes Messsystem analysiert kontinuierlich Verhaltensänderungen und passt Schulungsinhalte dynamisch an.",
+                  "parts": [
+                    {
+                      "id": "SENS.1.2-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Nutzen Sie Korrelationen zwischen Sicherheitsvorfällen und Schulungsstand, um die Effektivität präventiv zu steuern."
+                    },
+                    {
+                      "id": "SENS.1.2-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfen Sie die Kopplung von SOC-Metriken mit dem Awareness-Plan. Check: `grep 'behavior_risk_score' /var/log/security_analytics`."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

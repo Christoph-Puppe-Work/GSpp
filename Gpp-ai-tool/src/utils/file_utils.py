@@ -6,11 +6,64 @@ such as creating directories and reading/writing JSON and CSV files.
 """
 
 import os
+import io
 import json
 import csv
+import time
 import logging
+import urllib.request
 
 logger = logging.getLogger(__name__)
+
+# Network behaviour for remote (GitHub-hosted) source downloads. Without an explicit
+# timeout, urlopen can block the entire pipeline indefinitely if the upstream host hangs.
+URL_FETCH_TIMEOUT_SECONDS = float(os.environ.get("URL_FETCH_TIMEOUT_SECONDS", "30"))
+URL_FETCH_RETRIES = int(os.environ.get("URL_FETCH_RETRIES", "3"))
+URL_FETCH_BACKOFF_SECONDS = float(os.environ.get("URL_FETCH_BACKOFF_SECONDS", "2"))
+
+
+def is_url(path):
+    """Returns True if the given path is an HTTP(S) URL."""
+    return isinstance(path, str) and path.startswith(("http://", "https://"))
+
+
+def read_source_text(path):
+    """
+    Reads text content from either a local file path or an HTTP(S) URL.
+
+    URL downloads use an explicit timeout and a short retry-with-backoff so a slow or
+    flaky upstream host cannot block the pipeline indefinitely.
+
+    Args:
+        path (str): A local filesystem path or an http(s) URL.
+
+    Returns:
+        str: The decoded UTF-8 content of the source.
+
+    Raises:
+        Propagates the last urllib/OS error for URLs (after exhausting retries) and
+        OSError for local files so callers can decide how to handle missing/unreachable
+        sources.
+    """
+    if is_url(path):
+        logger.debug(f"Downloading source from URL: {path}")
+        last_error = None
+        for attempt in range(1, URL_FETCH_RETRIES + 1):
+            try:
+                with urllib.request.urlopen(path, timeout=URL_FETCH_TIMEOUT_SECONDS) as response:
+                    return response.read().decode("utf-8")
+            except Exception as e:  # noqa: BLE001 - retry on any transient network failure
+                last_error = e
+                logger.warning(
+                    f"Download attempt {attempt}/{URL_FETCH_RETRIES} failed for {path}: {e}"
+                )
+                if attempt < URL_FETCH_RETRIES:
+                    time.sleep(URL_FETCH_BACKOFF_SECONDS * attempt)
+        logger.error(f"All {URL_FETCH_RETRIES} download attempts failed for {path}")
+        raise last_error
+    with open(path, "r", encoding="utf-8") as f:
+        return f.read()
+
 
 def create_dir_if_not_exists(directory_path):
     """
@@ -37,8 +90,7 @@ def read_text_file(file_path):
         str: The content of the file, or None if an error occurs.
     """
     try:
-        with open(file_path, 'r', encoding='utf-8') as f:
-            return f.read()
+        return read_source_text(file_path)
     except FileNotFoundError:
         logger.error(f"File not found: {file_path}")
         return None
@@ -57,13 +109,15 @@ def read_json_file(file_path):
         dict: The content of the JSON file, or None if an error occurs.
     """
     try:
-        with open(file_path, 'r', encoding='utf-8') as f:
-            return json.load(f)
+        return json.loads(read_source_text(file_path))
     except FileNotFoundError:
         logger.error(f"File not found: {file_path}")
         return None
     except json.JSONDecodeError:
         logger.error(f"Error decoding JSON from {file_path}")
+        return None
+    except Exception as e:
+        logger.error(f"Error reading JSON source {file_path}: {e}")
         return None
 
 def write_json_file(file_path, data):
@@ -93,8 +147,7 @@ def read_csv_file(file_path):
               or None if an error occurs.
     """
     try:
-        with open(file_path, 'r', encoding='utf-8') as f:
-            return list(csv.DictReader(f))
+        return list(csv.DictReader(io.StringIO(read_source_text(file_path))))
     except FileNotFoundError:
         logger.error(f"File not found: {file_path}")
         return None

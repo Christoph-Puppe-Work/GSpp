@@ -6,7 +6,7 @@ from start to finish, executing each stage in the correct sequence.
 """
 
 import logging
-from pipeline import stage_strip, stage_gpp, stage_match_bausteine, stage_matching, stage_profiles, stage_component
+from pipeline import stage_gpp, stage_match_bausteine, stage_profiles, stage_ED23_profiles_enhanced, stage_base_process_enhanced
 
 logger = logging.getLogger(__name__)
 
@@ -21,37 +21,32 @@ async def run_full_pipeline() -> None:
     logger.info("--- Starting Full Pipeline Execution ---")
 
     try:
-        # Stage 1: Strip source files into markdown for AI context.
-        logger.info("--- STAGE: STRIP ---")
-        stage_strip.run_stage_strip()
-        logger.info("--- STAGE: STRIP - COMPLETE ---")
-
-        # Stage 2: Perform high-level Baustein-to-Zielobjekt mapping.
-        # Stage 2.1: Process G++ Kompendium and create deterministic mappings.
+        # Stage 1: Process G++ Kompendium and create deterministic mappings.
         logger.info("--- STAGE: GPP ---")
         stage_gpp.run_stage_gpp()
         logger.info("--- STAGE: GPP - COMPLETE ---")
 
-        # Stage 2.2: Perform high-level Baustein-to-Zielobjekt mapping.
+        # Stage 2: Perform high-level Baustein-to-Zielobjekt mapping.
         logger.info("--- STAGE: MATCH BAUSTEINE ---")
         await stage_match_bausteine.run_stage_match_bausteine()
         logger.info("--- STAGE: MATCH BAUSTEINE - COMPLETE ---")
 
-        # Stage 3: Perform detailed Anforderung-to-Kontrolle mapping.
-        logger.info("--- STAGE: MATCHING ---")
-        await stage_matching.run_stage_matching()
-        logger.info("--- STAGE: MATCHING - COMPLETE ---")
-
-        # Stage 4: Generate OSCAL profiles for each Zielobjekt.
+        # Stage 3: Generate the base OSCAL profiles for each Zielobjekt.
         logger.info("--- STAGE: PROFILES ---")
         stage_profiles.run_stage_profiles()
         logger.info("--- STAGE: PROFILES - COMPLETE ---")
 
-        # Stage 5: Generate OSCAL components  for each Zielobjekt.
-        logger.info("--- STAGE: COMPONENTS ---")
-        logger.info("Starting: Generating OSCAL components.")
-        await stage_component.run_stage_component()
-        logger.info("--- STAGE: COMPONENTS - COMPLETE ---")
+        # Stage 4: Generate ED2023 enhanced profiles (per Baustein).
+        logger.info("--- STAGE: ED23_PROFILES_ENHANCED ---")
+        logger.info("Starting: Generating ED2023 enhanced profiles.")
+        await stage_ED23_profiles_enhanced.run_stage_ED23_profiles_enhanced()
+        logger.info("--- STAGE: ED23_PROFILES_ENHANCED - COMPLETE ---")
+
+        # Stage 5: Generate base process enhanced profiles.
+        logger.info("--- STAGE: BASE_PROCESS_ENHANCED ---")
+        logger.info("Starting: Generating base process enhanced profiles.")
+        await stage_base_process_enhanced.run_stage_base_process_enhanced()
+        logger.info("--- STAGE: BASE_PROCESS_ENHANCED - COMPLETE ---")
 
 
 

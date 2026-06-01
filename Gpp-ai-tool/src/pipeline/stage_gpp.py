@@ -4,9 +4,11 @@ deterministic mapping between Zielobjekte and their applicable controls.
 """
 import json
 import logging
+import os
 from typing import Dict, Any, List, Optional, Tuple
 
-from constants import GPP_KOMPENDIUM_JSON_PATH, ZIELOBJEKTE_CSV_PATH, ZIELOBJEKT_CONTROLS_JSON_PATH
+from config import app_config
+from constants import GPP_KOMPENDIUM_JSON_PATH, ZIELOBJEKTKATEGORIEN_CSV_PATH, ZIELOBJEKT_CONTROLS_JSON_PATH
 from utils.data_loader import load_json_file, save_json_file, load_zielobjekte_csv
 
 logger = logging.getLogger(__name__)
@@ -27,7 +29,7 @@ def _find_prop_value(props_list: List[Dict[str, Any]], prop_name: str) -> Option
 def _process_control(control: Dict[str, Any]) -> Optional[Tuple[List[str], str, Dict[str, Any]]]:
     """
     Extracts key details, UUID, and a simplified representation of a control.
-    Returns a tuple containing a list of keys (target_objects or special categories), UUID, and the simplified control.
+    Returns a tuple containing a list of keys (target_object_categories or special categories), UUID, and the simplified control.
     """
     uuid = _find_prop_value(control.get("props", []), "alt-identifier")
     if not uuid:
@@ -43,14 +45,14 @@ def _process_control(control: Dict[str, Any]) -> Optional[Tuple[List[str], str, 
         for part in parts:
             if not isinstance(part, dict):
                 continue
-            # Attempt to find target_objects in the properties of the part
-            found_target = _find_prop_value(part.get("props", []), "target_objects")
+            # Attempt to find target object categories in the properties of the part
+            found_target = _find_prop_value(part.get("props", []), "target_object_categories")
             if found_target and not target_obj_val:
                 target_obj_val = found_target
 
             if part.get("name") == "statement":
                 prose = part.get("prose", "")
-                modal_verb = _find_prop_value(part.get("props", []), "modalverb")
+                modal_verb = _find_prop_value(part.get("props", []), "modal_verb")
 
     if target_obj_val:
         keys = [k.strip() for k in target_obj_val.split(',')]
@@ -60,7 +62,7 @@ def _process_control(control: Dict[str, Any]) -> Optional[Tuple[List[str], str, 
         if modal_verb == "MUSS":
             keys = ["Methodik"]
         else:
-            keys = [f"{prefix}prozesse"]
+            keys = [f"{prefix}_prozesse"]
 
     simplified_control = {
         "id": control.get("id"),
@@ -154,8 +156,8 @@ def _create_zielobjekt_map() -> Dict[str, Any]:
     """
     Creates a map of all Zielobjekte with their names and parent names.
     """
-    logger.info(f"Loading Zielobjekte from {ZIELOBJEKTE_CSV_PATH}...")
-    zielobjekte_data = load_zielobjekte_csv(ZIELOBJEKTE_CSV_PATH)
+    logger.info(f"Loading Zielobjekte from {ZIELOBJEKTKATEGORIEN_CSV_PATH}...")
+    zielobjekte_data = load_zielobjekte_csv(ZIELOBJEKTKATEGORIEN_CSV_PATH)
     if not zielobjekte_data:
         logger.error("No data loaded from Zielobjekte CSV.")
         return {}
@@ -163,7 +165,7 @@ def _create_zielobjekt_map() -> Dict[str, Any]:
     # C.3: Create a raw map for easy lookup by UUID
     zielobjekte_raw_map = {
         z["UUID"].strip(): {
-            "Zielobjekt": z["Zielobjekt"],
+            "Zielobjekt": z["Zielobjektkategorie"],
             "ChildOfUUID": z.get("ChildOfUUID")
         }
         for z in zielobjekte_data if "UUID" in z
@@ -186,6 +188,14 @@ def _create_zielobjekt_map() -> Dict[str, Any]:
 def run_stage_gpp():
     """Main function for the stage_gpp."""
     logger.info("Starting stage_gpp...")
+
+    # Idempotency: skip if the output already exists and overwriting is disabled.
+    if os.path.exists(ZIELOBJEKT_CONTROLS_JSON_PATH) and not app_config.overwrite_temp_files:
+        logger.info(
+            f"Output file already exists at {ZIELOBJEKT_CONTROLS_JSON_PATH} and "
+            "OVERWRITE_TEMP_FILES is false. Skipping stage_gpp."
+        )
+        return
 
     # C.2: Flatten the GPP Kompendium into a target-controls-map
     target_controls_map = _create_target_controls_map()

@@ -107,7 +107,7 @@ async def run_stage_match_bausteine() -> None:
 
     # Load all necessary data
     bsi_data = load_json_file(BSI_2023_JSON_PATH)
-    zielobjekte_data = load_zielobjekte_csv(ZIELOBJEKTE_CSV_PATH)
+    zielobjekte_data = load_zielobjekte_csv(ZIELOBJEKTKATEGORIEN_CSV_PATH)
     prompt_config = load_json_file(PROMPT_CONFIG_PATH)
     schema = load_json_file(BAUSTEIN_TO_ZIELOBJEKT_SCHEMA_PATH)
 
@@ -115,7 +115,7 @@ async def run_stage_match_bausteine() -> None:
     bausteine_with_prose = find_bausteine_with_prose(bsi_data)
     zielobjekte_map = {
         z["UUID"]: {
-            "Zielobjekt": z["Zielobjekt"],
+            "Zielobjekt": z["Zielobjektkategorie"],
             "Definition": z.get("Definition", ""),
         }
         for z in zielobjekte_data

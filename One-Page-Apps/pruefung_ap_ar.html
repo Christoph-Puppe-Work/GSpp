@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OSCAL Assessment Plan & Results Generator v9</title>
+    <title>OSCAL Assessment Plan & Results Generator v9 (build 9.2 — local:// Defs ladbar, SSP-Risikoanalyse)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>tailwind.config={theme:{extend:{fontFamily:{sans:['Inter','sans-serif']}}}}</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/15.0.0/marked.min.js"></script>
@@ -66,6 +66,7 @@
         <div class="space-y-1.5">
             <div id="dz-ssp" class="dz border border-dashed border-slate-600 rounded p-2 text-center cursor-pointer hover:border-emerald-500 bg-slate-900/40 text-[10px]" data-type="ssp">📋 SSP laden<input type="file" accept=".json" class="hidden fip" data-type="ssp"></div>
             <div id="dz-state" class="dz border border-dashed border-slate-600 rounded p-2 text-center cursor-pointer hover:border-purple-500 bg-slate-900/40 text-[10px]" data-type="state">💾 Session laden<input type="file" accept=".json" class="hidden fip" data-type="state"></div>
+            <div id="dz-defs" class="dz border border-dashed border-slate-600 rounded p-2 text-center cursor-pointer hover:border-cyan-500 bg-slate-900/40 text-[10px]" data-type="defs">📁 Profile/Defs laden<span class="block text-[8px] text-slate-500">für local:// Referenzen — mehrere möglich</span><input type="file" accept=".json" multiple class="hidden fip" data-type="defs"></div>
         </div>
         <!-- AI -->
         <div class="border border-slate-700 rounded overflow-hidden">
@@ -120,7 +121,7 @@
         </div>
 
 <div style="margin-top: auto; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.1); text-align: center; font-size: 0.75rem; color: #94a3b8;">
-    &copy; 2024 NTT DATA Deutschland SE
+    &copy; 2026 NTT DATA Deutschland SE
 </div>
 
     </aside>
@@ -175,7 +176,9 @@ const S={
     compMeta:new Map(), compGroups:new Map(), allCids:new Set(),
     excluded:new Set(), methods:new Map(), findings:new Map(),
     aiCache:new Map(), // cid -> {explain:'(markdown)'}
+    localDefs:new Map(), // filename -> parsed profile JSON (für local:// Referenzen)
     meta:{title:'',version:'1.0.0',desc:''},
+    sspRisks:[], // detaillierte Risiken aus SSP back-matter (risk-analysis.json)
     assessor:{name:'',type:'organization',email:''},
     terms:{roe:'',disclosures:'',methodology:''},
     tasks:[],dateStart:'',dateEnd:'',setParams:[]
@@ -202,8 +205,8 @@ document.addEventListener('DOMContentLoaded',()=>{
         dz.addEventListener('click',()=>fi.click());
         dz.addEventListener('dragover',e=>{e.preventDefault();dz.classList.add('drag-over')});
         dz.addEventListener('dragleave',()=>dz.classList.remove('drag-over'));
-        dz.addEventListener('drop',e=>{e.preventDefault();dz.classList.remove('drag-over');if(e.dataTransfer.files.length)loadFile(e.dataTransfer.files[0],ty)});
-        fi.addEventListener('change',e=>{if(e.target.files.length)loadFile(e.target.files[0],ty)});
+        dz.addEventListener('drop',e=>{e.preventDefault();dz.classList.remove('drag-over');const fs=e.dataTransfer.files;if(!fs.length)return;ty==='defs'?loadDefFiles(fs):loadFile(fs[0],ty)});
+        fi.addEventListener('change',e=>{const fs=e.target.files;if(!fs.length)return;ty==='defs'?loadDefFiles(fs):loadFile(fs[0],ty);e.target.value=''});
     });
     loadAICfg();
     loadCatalog();
@@ -235,6 +238,60 @@ async function loadCatalog(){
 
 function catInfo(cid){return S.catalog.get(cid)||{title:'',prose:''}}
 
+// UTF-8-sicheres Base64-Decoding (atob liefert latin1) — wie in ssp_ausfuellen.
+function base64DecodeUnicode(str){
+    try{return new TextDecoder().decode(Uint8Array.from(atob(str),c=>c.charCodeAt(0)))}
+    catch(e){return null}
+}
+
+// Liest die detaillierte Risikoanalyse aus der SSP back-matter
+// (resource → attachment base64, filename "risk-analysis.json" bzw. decodiertes {risks:[...]}).
+function extractSSPRisks(ssp){
+    const out=[];
+    (ssp['back-matter']?.resources||[]).forEach(r=>{
+        (r.attachments||[]).forEach(att=>{
+            if(!att?.base64?.value)return;
+            const isRisk=att.base64.filename==='risk-analysis.json'||(att['media-type']||'').includes('json');
+            if(!isRisk)return;
+            try{
+                const json=JSON.parse(base64DecodeUnicode(att.base64.value)||'null');
+                if(json&&Array.isArray(json.risks))out.push(...json.risks);
+            }catch(e){}
+        });
+    });
+    return out;
+}
+
+// Parst ein OSCAL-Profil (das alte Format war eine component-definition).
+// Control-IDs stammen aus imports[].include-controls[].with-ids.
+// Die Reifegrade/Statements liegen in modify.alters[].adds[].parts (name:"statement"):
+// OSCAL erlaubt keine neuen statements in einer CDef — daher werden sie im Profil
+// per `adds` als neue `part` an das jeweilige Control angehängt.
+function parseProfileEntry(d){
+    const prof=(d&&d.profile)||{};
+    const ids=new Set();
+    (prof.imports||[]).forEach(imp=>(imp['include-controls']||[]).forEach(inc=>(inc['with-ids']||[]).forEach(id=>id&&ids.add(id))));
+    const stmtByCtrl=new Map();
+    ((prof.modify||{}).alters||[]).forEach(alt=>{
+        const cid=alt['control-id'];if(!cid)return;
+        const list=stmtByCtrl.get(cid)||[];
+        (alt.adds||[]).forEach(add=>(add.parts||[]).filter(pt=>pt.name==='statement').forEach(pt=>{
+            const p=Object.fromEntries((pt.props||[]).map(pp=>[pp.name,pp.value]));
+            // New shape (issue 3.1): per-level statement is pt.prose; guidance/assessment
+            // are nested parts. Old shape: text lived in props statement/guidance/
+            // assessment-method. Read new first, fall back to old for legacy profiles.
+            const sub=Object.fromEntries((pt.parts||[]).map(np=>[np.name,np.prose]));
+            const statement=(pt.prose!=null&&p.statement==null)?pt.prose:(p.statement||pt.prose||'');
+            const guidance=sub.guidance||p.guidance||'';
+            const assessMethod=sub.assessment||p['assessment-method']||'';
+            list.push({id:pt.id,desc:p.label||'',statement,guidance,assessMethod,prose:pt.prose||''});
+        }));
+        stmtByCtrl.set(cid,list);
+        ids.add(cid); // Control aufnehmen, auch wenn es nur via alter referenziert wird
+    });
+    return {ids,stmtByCtrl};
+}
+
 // ============================================================
 // FILE HANDLING
 // ============================================================
@@ -251,14 +308,77 @@ function loadFile(file,type){
     r.readAsText(file);
 }
 
+// Lädt eine oder mehrere Profil-/Definitions-Dateien für local://-Referenzen.
+// Gespeichert nach Dateiname; danach werden offene Component-Defs neu aufgelöst.
+function loadDefFiles(files){
+    let pending=files.length,loaded=0,errs=[];
+    const done=()=>{
+        if(pending)return;
+        if(errs.length)alert('Einige Dateien nicht geladen:\n'+errs.join('\n'));
+        if(S.ssp){loadCompDefs()} // erneut auflösen — local:// greift jetzt auf S.localDefs zu
+        else{const cs=document.getElementById('comp-status');cs.classList.remove('hidden');cs.style.display='flex';cs.className="px-3 py-1 rounded-lg text-xs font-semibold bg-cyan-900/50 text-cyan-300 border border-cyan-700 flex items-center";cs.innerHTML=`<span class="w-2 h-2 rounded-full bg-cyan-500 mr-2"></span>${loaded} Profil(e) bereit — jetzt SSP laden`}
+    };
+    [...files].forEach(file=>{
+        if(!file.name.endsWith('.json')){errs.push(file.name+' (kein JSON)');pending--;done();return}
+        const r=new FileReader();
+        r.onload=e=>{try{S.localDefs.set(file.name,JSON.parse(e.target.result.replace(/^﻿/,'')));loaded++}catch(err){errs.push(file.name+': '+err.message)}pending--;done()};
+        r.onerror=()=>{errs.push(file.name);pending--;done()};
+        r.readAsText(file);
+    });
+}
+
+// Wandelt eine local://-Referenz in einen Dateinamen um (sonst null).
+function localName(u){return /^local:\/\//i.test(u)?u.replace(/^local:\/\//i,'').split(/[\\/]/).pop():null}
+
+// Liefert das geparste Profil zu einer defUrl: local:// → erst aus geladenen
+// Dateien (S.localDefs), sonst relativer Fetch (nur über http-Server); http(s) → CORS-Fetch.
+async function fetchDef(u){
+    const ln=localName(u);
+    if(ln!=null){
+        if(S.localDefs.has(ln))return S.localDefs.get(ln);
+        if(S.localDefs.has(u.replace(/^local:\/\//i,'')))return S.localDefs.get(u.replace(/^local:\/\//i,''));
+        let r;
+        try{r=await fetch(ln,{cache:'no-cache'})}
+        catch(e){throw new Error(`"${ln}" nicht gefunden — bitte über "📁 Profile/Defs laden" wählen (oder Seite per Webserver öffnen)`)}
+        if(!r.ok)throw new Error(`"${ln}" nicht gefunden (HTTP ${r.status}) — bitte über "📁 Profile/Defs laden" wählen`);
+        return JSON.parse((await r.text()).replace(/^﻿/,''));
+    }
+    const r=await fetch(u,{mode:'cors',cache:'no-cache'});
+    if(!r.ok)throw new Error(`HTTP ${r.status} ${r.statusText}`);
+    return JSON.parse((await r.text()).replace(/^﻿/,''));
+}
+
+// Wendet ein geparstes Profil auf eine Komponente an; gibt Anzahl neuer Controls zurück.
+function applyDefData(uuid,d){
+    const grp=S.compGroups.get(uuid)||new Map();let a=0;
+    const {ids,stmtByCtrl}=parseProfileEntry(d);
+    ids.forEach(cid=>{
+        if(!cid)return;
+        const ci=catInfo(cid);
+        const stmts=stmtByCtrl.get(cid)||[];
+        const defDesc=(stmts[0]&&stmts[0].prose)||ci.prose||'';
+        if(!grp.has(cid)){
+            grp.set(cid,{status:'nur-komponente',user:'',date:'',desc:'',stmtId:'',fromDef:true,defDesc:defDesc,defProps:[],statements:stmts});
+            a++;
+        } else {
+            const existing=grp.get(cid);
+            if((!existing.statements||!existing.statements.length)&&stmts.length)existing.statements=stmts;
+            if(!existing.defDesc)existing.defDesc=defDesc;
+        }
+        if(!S.allCids.has(cid)){S.allCids.add(cid);S.methods.set(cid,new Set(['EXAMINE']));S.findings.set(cid,{status:'',observation:'',risk:'',remarks:''})}
+    });
+    S.compGroups.set(uuid,grp);const m=S.compMeta.get(uuid);if(m){m.defLoaded=true;m.defN=grp.size}
+    return a;
+}
+
 // ============================================================
 // SESSION
 // ============================================================
-function ser(){return JSON.stringify({_v:9,sspFilename:S.sspFilename,meta:S.meta,assessor:S.assessor,terms:S.terms,tasks:S.tasks,dateStart:S.dateStart,dateEnd:S.dateEnd,excluded:[...S.excluded],methods:[...S.methods.entries()].map(([k,v])=>[k,[...v]]),findings:[...S.findings.entries()],aiCache:[...S.aiCache.entries()],compGroups:[...S.compGroups.entries()].map(([k,m])=>[k,[...m.entries()]]),compMeta:[...S.compMeta.entries()],allCids:[...S.allCids]})}
+function ser(){return JSON.stringify({_v:9,sspFilename:S.sspFilename,meta:S.meta,sspRisks:S.sspRisks,assessor:S.assessor,terms:S.terms,tasks:S.tasks,dateStart:S.dateStart,dateEnd:S.dateEnd,excluded:[...S.excluded],methods:[...S.methods.entries()].map(([k,v])=>[k,[...v]]),findings:[...S.findings.entries()],aiCache:[...S.aiCache.entries()],compGroups:[...S.compGroups.entries()].map(([k,m])=>[k,[...m.entries()]]),compMeta:[...S.compMeta.entries()],allCids:[...S.allCids]})}
 
 function restoreSession(d){
     if(!d._v||d._v<6)return alert('Session-Format zu alt oder inkompatibel (v9 benötigt).');
-    S.sspFilename=d.sspFilename||'';S.meta=d.meta||{title:'',version:'1.0.0',desc:''};S.assessor=d.assessor||{name:'',type:'organization',email:''};
+    S.sspFilename=d.sspFilename||'';S.meta=d.meta||{title:'',version:'1.0.0',desc:''};S.sspRisks=d.sspRisks||[];S.assessor=d.assessor||{name:'',type:'organization',email:''};
     S.terms=d.terms||{roe:'',disclosures:'',methodology:''};S.tasks=d.tasks||[];S.dateStart=d.dateStart||'';S.dateEnd=d.dateEnd||'';
     S.excluded=new Set(d.excluded||[]);S.methods=new Map((d.methods||[]).map(([k,v])=>[k,new Set(v)]));
     S.findings=new Map(d.findings||[]);S.aiCache=new Map(d.aiCache||[]);
@@ -281,7 +401,7 @@ async function initSSP(){
     S.compMeta.clear();S.compGroups.clear();S.allCids.clear();S.excluded.clear();S.methods.clear();S.findings.clear();
 
     (ssp['system-implementation']?.components||[]).forEach(c=>{
-        const dl=(c.links||[]).find(l=>l.rel==='component-definition');
+        const dl=(c.links||[]).find(l=>l.rel==='profile');
         S.compMeta.set(c.uuid,{title:c.title,type:c.type,status:c.status?.state,defUrl:dl?.href||null,defLoaded:false,defN:0});
         S.compGroups.set(c.uuid,new Map());
     });
@@ -299,7 +419,9 @@ async function initSSP(){
         })});
     });
 
-    setSt('ssp-status',true,`SSP: ${sn} — ${S.allCids.size} Controls`);showUI();await loadCompDefs();
+    S.sspRisks=extractSSPRisks(ssp);
+    const riskTxt=S.sspRisks.length?`, ${S.sspRisks.length} Risiken`:'';
+    setSt('ssp-status',true,`SSP: ${sn} — ${S.allCids.size} Controls${riskTxt}`);showUI();await loadCompDefs();
 }
 
 function ensureGrp(u){if(!S.compGroups.has(u))S.compGroups.set(u,new Map());return S.compGroups.get(u)}
@@ -342,45 +464,17 @@ async function loadCompDefs(){
     for(const it of toLoad){
         cs.innerHTML=`<span class="loader-sm mr-2"></span>${esc(it.title)} (${done+1}/${toLoad.length})`;
         try{
-            const r=await fetch(it.url,{mode:'cors',cache:'no-cache'});
-            if(!r.ok)throw new Error(`HTTP ${r.status} ${r.statusText}`);
-            const txt=await r.text();
+            const txt=JSON.stringify(await fetchDef(it.url));
             let d;try{d=JSON.parse(txt.replace(/^\uFEFF/,''))}catch(pe){throw new Error('Kein gültiges JSON: '+pe.message)}
-            const grp=S.compGroups.get(it.uuid)||new Map();let a=0;
-            (d['component-definition']?.components||[]).forEach(comp=>{
-                const compProps=(comp.props||[]).filter(p=>p.name&&p.value);
-                const cm=S.compMeta.get(it.uuid);
-                if(cm&&compProps.length)cm.defProps=compProps;
-                (comp['control-implementations']||[]).forEach(ci=>
-                    (ci['implemented-requirements']||[]).forEach(req=>{
-                        const cid=req['control-id'];if(!cid)return;
-                        const stmts=(req.statements||[]).map(st=>{
-                            const p=Object.fromEntries((st.props||[]).map(pp=>[pp.name,pp.value]));
-                            return{id:st['statement-id'],desc:st.description||'',statement:p.statement||'',guidance:p.guidance||'',assessMethod:p['assessment-method']||''}
-                        });
-                        const cProps=(req.props||[]).filter(p=>p.ns).map(p=>({name:p.name,value:p.value}));
-                        if(!grp.has(cid)){
-                            grp.set(cid,{status:'nur-komponente',user:'',date:'',desc:'',stmtId:'',fromDef:true,
-                                defDesc:req.description||'',defProps:cProps,statements:stmts});
-                            a++;
-                        } else {
-                            const existing=grp.get(cid);
-                            if(!existing.statements||!existing.statements.length)existing.statements=stmts;
-                            if(!existing.defDesc)existing.defDesc=req.description||'';
-                            if(!existing.defProps||!existing.defProps.length)existing.defProps=cProps;
-                        }
-                        if(!S.allCids.has(cid)){S.allCids.add(cid);S.methods.set(cid,new Set(['EXAMINE']));S.findings.set(cid,{status:'',observation:'',risk:'',remarks:''})}
-                    })
-                );
-            });
-            S.compGroups.set(it.uuid,grp);const m=S.compMeta.get(it.uuid);m.defLoaded=true;m.defN=grp.size;newN+=a;
+            newN+=applyDefData(it.uuid,d);
         }catch(e){
             console.error(`Fehler bei ${it.title}:`,e);
             fails.push({title:it.title,err:e.message,url:it.url,uuid:it.uuid});
         }done++}
     if(fails.length){
         cs.className="px-3 py-1 rounded-lg text-xs font-semibold bg-amber-900/50 text-amber-300 border border-amber-700 flex items-center";
-        cs.innerHTML=`<span class="w-2 h-2 rounded-full bg-amber-500 mr-2"></span>${done-fails.length}/${done} Defs geladen, +${newN} Controls — <button onclick="retryFailedDefs()" class="ml-2 underline text-amber-200 hover:text-white font-bold">⟳ ${fails.length} fehlgeschlagene neu laden</button>`;
+        const hasLocal=fails.some(f=>/^local:\/\//i.test(f.url));
+        cs.innerHTML=`<span class="w-2 h-2 rounded-full bg-amber-500 mr-2"></span>${done-fails.length}/${done} Defs geladen, +${newN} Controls — <button onclick="retryFailedDefs()" class="ml-2 underline text-amber-200 hover:text-white font-bold">⟳ ${fails.length} fehlgeschlagene neu laden</button>${hasLocal?' &middot; <span class="text-amber-200">local:// Profile per „📁 Profile/Defs laden" wählen</span>':''}`;
         S._failedDefs=fails;
     }else{
         cs.className="px-3 py-1 rounded-lg text-xs font-semibold bg-emerald-900/50 text-emerald-400 border border-emerald-700 flex items-center";
@@ -396,22 +490,9 @@ window.retryFailedDefs=async()=>{
     for(const it of fails){
         cs.innerHTML=`<span class="loader-sm mr-2"></span>Retry: ${esc(it.title)} (${retried+1}/${fails.length})`;
         try{
-            const r=await fetch(it.url,{mode:'cors',cache:'reload'});
-            if(!r.ok)throw new Error(`HTTP ${r.status}`);
-            const d=JSON.parse((await r.text()).replace(/^\uFEFF/,''));
-            const grp=S.compGroups.get(it.uuid)||new Map();let a=0;
-            (d['component-definition']?.components||[]).forEach(comp=>{
-                (comp['control-implementations']||[]).forEach(ci=>
-                    (ci['implemented-requirements']||[]).forEach(req=>{
-                        const cid=req['control-id'];if(!cid)return;
-                        const stmts=(req.statements||[]).map(st=>{const p=Object.fromEntries((st.props||[]).map(pp=>[pp.name,pp.value]));return{id:st['statement-id'],desc:st.description||'',statement:p.statement||'',guidance:p.guidance||'',assessMethod:p['assessment-method']||''}});
-                        const cProps=(req.props||[]).filter(p=>p.ns).map(p=>({name:p.name,value:p.value}));
-                        if(!grp.has(cid)){grp.set(cid,{status:'nur-komponente',user:'',date:'',desc:'',stmtId:'',fromDef:true,defDesc:req.description||'',defProps:cProps,statements:stmts});a++}
-                        if(!S.allCids.has(cid)){S.allCids.add(cid);S.methods.set(cid,new Set(['EXAMINE']));S.findings.set(cid,{status:'',observation:'',risk:'',remarks:''})}
-                    }));
-            });
-            S.compGroups.set(it.uuid,grp);const m=S.compMeta.get(it.uuid);m.defLoaded=true;m.defN=grp.size;newN+=a;
-        }catch(e){stillFailing.push(it)}retried++}
+            const d=await fetchDef(it.url);
+            newN+=applyDefData(it.uuid,d);
+        }catch(e){stillFailing.push({...it,err:e.message})}retried++}
     S._failedDefs=stillFailing;
     if(stillFailing.length){
         cs.innerHTML=`<span class="w-2 h-2 rounded-full bg-red-500 mr-2"></span>${stillFailing.length} Defs nicht ladbar: ${stillFailing.map(f=>'<span class="text-red-300">'+esc(f.title)+' ('+esc(f.err)+')</span>').join(', ')}`;
@@ -812,7 +893,28 @@ function exportAR(){
             fin.push(fd);
         }
     });
-    
+
+    // Detaillierte Risiken aus der SSP-Risikoanalyse (back-matter) als OSCAL-Risks übernehmen.
+    const NS="http://bsi.bund.de/ns/grundschutz";
+    S.sspRisks.forEach(r=>{
+        const props=[];
+        if(r.likelihood)props.push({name:"likelihood",ns:NS,value:r.likelihood});
+        if(r.impact)props.push({name:"impact",ns:NS,value:r.impact});
+        const oscalRisk={
+            uuid:r.uuid||crypto.randomUUID(),
+            title:r.title||'Risiko',
+            description:r.description||'',
+            statement:r.threat||r.description||r.title||'Risiko aus SSP-Risikoanalyse',
+            status:"open"
+        };
+        if(props.length)oscalRisk.props=props;
+        const notes=[];
+        if(r.targetComponent)notes.push('Betroffene Komponente: '+(S.compMeta.get(r.targetComponent)?.title||r.targetComponent));
+        if(Array.isArray(r.mitigatingControls)&&r.mitigatingControls.length)notes.push('Mitigierende Controls: '+r.mitigatingControls.map(m=>m&&m.id).filter(Boolean).join(', '));
+        if(notes.length)oscalRisk.remarks=notes.join('\n');
+        rsk.push(oscalRisk);
+    });
+
     if(!fin.length)return alert('Keine bewerteten Controls.');
     const ar={"assessment-results":{uuid:crypto.randomUUID(),metadata:{title:`${sn().replace(/_/g,' ')} - Assessment Results`,version:S.meta.version||'1.0.0',"last-modified":ts,"oscal-version":"1.1.3"},"import-ap":{href:`${sn()}_AP.json`},results:[{uuid:crypto.randomUUID(),title:"Assessment-Ergebnis",description:'Ergebnisse',start:S.dateStart?`${S.dateStart}T00:00:00Z`:ts,end:S.dateEnd?`${S.dateEnd}T23:59:59Z`:ts,"reviewed-controls":{"control-selections":[{"include-controls":cids.map(c=>({"control-id":c}))}]},...(obs.length?{observations:obs}:{}),findings:fin,...(rsk.length?{risks:rsk}:{})}]}};
     dl(ar,`${sn()}_AR.json`);autoSave();

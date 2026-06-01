@@ -1,0 +1,524 @@
+--- Starting Local Pipeline Execution for: full pipeline ---
+Working Directory: /home/christoph_puppe/work/GSpp/Gpp-ai-tool
+Environment Variables:
+GCP_PROJECT_ID: privates-476309
+BUCKET_NAME: local-dev-bucket
+TEST: false
+OVERWRITE_TEMP_FILES: false
+---------------------------------------
+2026-05-30 10:10:26,611 - __main__ - INFO - No stage specified. Starting full pipeline execution...
+2026-05-30 10:10:26,611 - pipeline.processing - INFO - --- Starting Full Pipeline Execution ---
+2026-05-30 10:10:26,611 - pipeline.processing - INFO - --- STAGE: STRIP ---
+2026-05-30 10:10:27,475 - pipeline.stage_strip - INFO - File already exists at /home/christoph_puppe/work/GSpp/hilfsdateien/gpp_stripped.md and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:27,477 - pipeline.stage_strip - INFO - File already exists at /home/christoph_puppe/work/GSpp/hilfsdateien/gpp_isms_stripped.md and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,298 - pipeline.stage_strip - INFO - File already exists at /home/christoph_puppe/work/GSpp/hilfsdateien/bsi_2023_stripped.md and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,299 - pipeline.stage_strip - INFO - File already exists at /home/christoph_puppe/work/GSpp/hilfsdateien/bsi_2023_stripped_ISMS.md and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,310 - pipeline.stage_strip - INFO - stage_strip finished.
+2026-05-30 10:10:28,311 - pipeline.processing - INFO - --- STAGE: STRIP - COMPLETE ---
+2026-05-30 10:10:28,311 - pipeline.processing - INFO - --- STAGE: GPP ---
+2026-05-30 10:10:28,311 - pipeline.stage_gpp - INFO - Starting stage_gpp...
+2026-05-30 10:10:28,311 - pipeline.stage_gpp - INFO - Output file already exists at /home/christoph_puppe/work/GSpp/hilfsdateien/zielobjekt_controls.json and OVERWRITE_TEMP_FILES is false. Skipping stage_gpp.
+2026-05-30 10:10:28,311 - pipeline.processing - INFO - --- STAGE: GPP - COMPLETE ---
+2026-05-30 10:10:28,311 - pipeline.processing - INFO - --- STAGE: MATCH BAUSTEINE ---
+2026-05-30 10:10:28,311 - pipeline.stage_match_bausteine - INFO - Starting stage_match_bausteine...
+2026-05-30 10:10:28,311 - pipeline.stage_match_bausteine - INFO - Output file already exists and OVERWRITE_TEMP_FILES is false. Skipping Baustein-to-Zielobjekt matching stage.
+2026-05-30 10:10:28,311 - pipeline.processing - INFO - --- STAGE: MATCH BAUSTEINE - COMPLETE ---
+2026-05-30 10:10:28,311 - pipeline.processing - INFO - --- STAGE: PROFILES ---
+2026-05-30 10:10:28,311 - pipeline.stage_profiles - INFO - Starting Stage: Profile Generation
+2026-05-30 10:10:28,486 - pipeline.stage_profiles - INFO - Profile already exists at /home/christoph_puppe/work/GSpp/Zielobjektkategorien/profile/regular/administrierende_profile.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,486 - pipeline.stage_profiles - INFO - Profile already exists at /home/christoph_puppe/work/GSpp/Zielobjektkategorien/profile/regular/anwendungen_profile.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,486 - pipeline.stage_profiles - INFO - Profile already exists at /home/christoph_puppe/work/GSpp/Zielobjektkategorien/profile/regular/cloud-dienste_profile.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,486 - pipeline.stage_profiles - INFO - Profile already exists at /home/christoph_puppe/work/GSpp/Zielobjektkategorien/profile/regular/dateiserver_profile.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,487 - pipeline.stage_profiles - INFO - Profile already exists at /home/christoph_puppe/work/GSpp/Zielobjektkategorien/profile/regular/daten_profile.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,487 - pipeline.stage_profiles - INFO - Profile already exists at /home/christoph_puppe/work/GSpp/Zielobjektkategorien/profile/regular/datentraegerarchiv_profile.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,487 - pipeline.stage_profiles - INFO - Profile already exists at /home/christoph_puppe/work/GSpp/Zielobjektkategorien/profile/regular/dienstleistungen_profile.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,487 - pipeline.stage_profiles - INFO - Profile already exists at /home/christoph_puppe/work/GSpp/Zielobjektkategorien/profile/regular/dns-server_profile.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,487 - pipeline.stage_profiles - INFO - Profile already exists at /home/christoph_puppe/work/GSpp/Zielobjektkategorien/profile/regular/einkaeufe_profile.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,487 - pipeline.stage_profiles - INFO - Profile already exists at /home/christoph_puppe/work/GSpp/Zielobjektkategorien/profile/regular/e-mail_profile.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,488 - pipeline.stage_profiles - INFO - Profile already exists at /home/christoph_puppe/work/GSpp/Zielobjektkategorien/profile/regular/endgeraete_profile.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,488 - pipeline.stage_profiles - INFO - Profile already exists at /home/christoph_puppe/work/GSpp/Zielobjektkategorien/profile/regular/externe_netzanschluesse_profile.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,488 - pipeline.stage_profiles - INFO - Profile already exists at /home/christoph_puppe/work/GSpp/Zielobjektkategorien/profile/regular/fahrzeuge_profile.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,488 - pipeline.stage_profiles - INFO - Profile already exists at /home/christoph_puppe/work/GSpp/Zielobjektkategorien/profile/regular/faxe_profile.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,488 - pipeline.stage_profiles - INFO - Profile already exists at /home/christoph_puppe/work/GSpp/Zielobjektkategorien/profile/regular/fuehrungskraefte_profile.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,488 - pipeline.stage_profiles - INFO - Profile already exists at /home/christoph_puppe/work/GSpp/Zielobjektkategorien/profile/regular/gebaeude_profile.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,488 - pipeline.stage_profiles - INFO - Profile already exists at /home/christoph_puppe/work/GSpp/Zielobjektkategorien/profile/regular/hostsysteme_profile.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,489 - pipeline.stage_profiles - INFO - Profile already exists at /home/christoph_puppe/work/GSpp/Zielobjektkategorien/profile/regular/informationen_profile.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,489 - pipeline.stage_profiles - INFO - Profile already exists at /home/christoph_puppe/work/GSpp/Zielobjektkategorien/profile/regular/institutionsleitung_profile.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,489 - pipeline.stage_profiles - INFO - Profile already exists at /home/christoph_puppe/work/GSpp/Zielobjektkategorien/profile/regular/interne_netzsegmente_profile.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,489 - pipeline.stage_profiles - INFO - Profile already exists at /home/christoph_puppe/work/GSpp/Zielobjektkategorien/profile/regular/interpersonelle_kommunikation_profile.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,489 - pipeline.stage_profiles - INFO - Profile already exists at /home/christoph_puppe/work/GSpp/Zielobjektkategorien/profile/regular/it-produkte_profile.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,489 - pipeline.stage_profiles - INFO - Profile already exists at /home/christoph_puppe/work/GSpp/Zielobjektkategorien/profile/regular/it-systeme_profile.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,489 - pipeline.stage_profiles - INFO - Profile already exists at /home/christoph_puppe/work/GSpp/Zielobjektkategorien/profile/regular/mitarbeitende_profile.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,490 - pipeline.stage_profiles - INFO - Profile already exists at /home/christoph_puppe/work/GSpp/Zielobjektkategorien/profile/regular/mobiltelefone_profile.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,490 - pipeline.stage_profiles - INFO - Profile already exists at /home/christoph_puppe/work/GSpp/Zielobjektkategorien/profile/regular/netze_profile.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,490 - pipeline.stage_profiles - INFO - Profile already exists at /home/christoph_puppe/work/GSpp/Zielobjektkategorien/profile/regular/nutzende_profile.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,490 - pipeline.stage_profiles - INFO - Profile already exists at /home/christoph_puppe/work/GSpp/Zielobjektkategorien/profile/regular/office-anwendungen_profile.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,490 - pipeline.stage_profiles - INFO - Profile already exists at /home/christoph_puppe/work/GSpp/Zielobjektkategorien/profile/regular/outsourcing_profile.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,490 - pipeline.stage_profiles - INFO - Profile already exists at /home/christoph_puppe/work/GSpp/Zielobjektkategorien/profile/regular/raeume_profile.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,490 - pipeline.stage_profiles - INFO - Profile already exists at /home/christoph_puppe/work/GSpp/Zielobjektkategorien/profile/regular/raeume_fuer_technische_infrastruktur_profile.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,491 - pipeline.stage_profiles - INFO - Profile already exists at /home/christoph_puppe/work/GSpp/Zielobjektkategorien/profile/regular/serverraeume_profile.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,491 - pipeline.stage_profiles - INFO - Profile already exists at /home/christoph_puppe/work/GSpp/Zielobjektkategorien/profile/regular/standorte_profile.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,491 - pipeline.stage_profiles - INFO - Profile already exists at /home/christoph_puppe/work/GSpp/Zielobjektkategorien/profile/regular/tk-anwendungen_profile.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,491 - pipeline.stage_profiles - INFO - Profile already exists at /home/christoph_puppe/work/GSpp/Zielobjektkategorien/profile/regular/verzeichnisdienste_profile.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,491 - pipeline.stage_profiles - INFO - Profile already exists at /home/christoph_puppe/work/GSpp/Zielobjektkategorien/profile/regular/virtualisierungsloesungen_profile.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,491 - pipeline.stage_profiles - INFO - Profile already exists at /home/christoph_puppe/work/GSpp/Zielobjektkategorien/profile/regular/vk-anwendungen_profile.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,491 - pipeline.stage_profiles - INFO - Profile already exists at /home/christoph_puppe/work/GSpp/Zielobjektkategorien/profile/regular/webanwendungen_profile.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,492 - pipeline.stage_profiles - INFO - Profile already exists at /home/christoph_puppe/work/GSpp/Zielobjektkategorien/profile/regular/webbrowser_profile.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,492 - pipeline.stage_profiles - INFO - Profile already exists at /home/christoph_puppe/work/GSpp/Zielobjektkategorien/profile/regular/webserver_profile.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,492 - pipeline.stage_profiles - INFO - Profile already exists at /home/christoph_puppe/work/GSpp/Zielobjektkategorien/profile/regular/wlans_profile.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,492 - pipeline.stage_profiles - INFO - Profile already exists at /home/christoph_puppe/work/GSpp/Zielobjektkategorien/profile/process/methodik_process_profile.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,492 - pipeline.stage_profiles - INFO - Profile already exists at /home/christoph_puppe/work/GSpp/Zielobjektkategorien/profile/process/gc_prozesse_process_profile.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,492 - pipeline.stage_profiles - INFO - Profile already exists at /home/christoph_puppe/work/GSpp/Zielobjektkategorien/profile/process/ums_prozesse_process_profile.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,492 - pipeline.stage_profiles - INFO - Profile already exists at /home/christoph_puppe/work/GSpp/Zielobjektkategorien/profile/process/vrb_prozesse_process_profile.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,493 - pipeline.stage_profiles - INFO - Profile already exists at /home/christoph_puppe/work/GSpp/Zielobjektkategorien/profile/process/perf_prozesse_process_profile.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,493 - pipeline.stage_profiles - INFO - Profile already exists at /home/christoph_puppe/work/GSpp/Zielobjektkategorien/profile/process/asst_prozesse_process_profile.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,493 - pipeline.stage_profiles - INFO - Profile already exists at /home/christoph_puppe/work/GSpp/Zielobjektkategorien/profile/process/pers_prozesse_process_profile.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,493 - pipeline.stage_profiles - INFO - Profile already exists at /home/christoph_puppe/work/GSpp/Zielobjektkategorien/profile/process/dls_prozesse_process_profile.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,493 - pipeline.stage_profiles - INFO - Profile already exists at /home/christoph_puppe/work/GSpp/Zielobjektkategorien/profile/process/test_prozesse_process_profile.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,493 - pipeline.stage_profiles - INFO - Profile already exists at /home/christoph_puppe/work/GSpp/Zielobjektkategorien/profile/process/sens_prozesse_process_profile.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,493 - pipeline.stage_profiles - INFO - Profile already exists at /home/christoph_puppe/work/GSpp/Zielobjektkategorien/profile/process/arch_prozesse_process_profile.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,494 - pipeline.stage_profiles - INFO - Profile already exists at /home/christoph_puppe/work/GSpp/Zielobjektkategorien/profile/process/ber_prozesse_process_profile.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,494 - pipeline.stage_profiles - INFO - Profile already exists at /home/christoph_puppe/work/GSpp/Zielobjektkategorien/profile/process/not_prozesse_process_profile.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,494 - pipeline.stage_profiles - INFO - Profile already exists at /home/christoph_puppe/work/GSpp/Zielobjektkategorien/profile/process/det_prozesse_process_profile.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,494 - pipeline.stage_profiles - INFO - Profile already exists at /home/christoph_puppe/work/GSpp/Zielobjektkategorien/profile/process/rea_prozesse_process_profile.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,494 - pipeline.stage_profiles - INFO - Profile already exists at /home/christoph_puppe/work/GSpp/Zielobjektkategorien/profile/process/konf_prozesse_process_profile.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,494 - pipeline.stage_profiles - INFO - Profile already exists at /home/christoph_puppe/work/GSpp/Zielobjektkategorien/profile/process/dev_prozesse_process_profile.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,494 - pipeline.stage_profiles - INFO - Finished Stage: Profile Generation
+2026-05-30 10:10:28,495 - pipeline.processing - INFO - --- STAGE: PROFILES - COMPLETE ---
+2026-05-30 10:10:28,495 - pipeline.processing - INFO - --- STAGE: ED23_PROFILES_ENHANCED ---
+2026-05-30 10:10:28,495 - pipeline.processing - INFO - Starting: Generating ED2023 enhanced profiles.
+2026-05-30 10:10:28,495 - pipeline.stage_ED23_profiles_enhanced - INFO - Starting Stage: ED2023 Enhanced Profile Generation
+2026-05-30 10:10:28,495 - clients.ai_client - INFO - Initializing Google GenAI Client for project 'privates-476309' in region 'global'.
+2026-05-30 10:10:28,948 - pipeline.stage_ED23_profiles_enhanced - INFO - Extracting G++ controls for lookup...
+2026-05-30 10:10:28,950 - pipeline.stage_ED23_profiles_enhanced - INFO - Successfully extracted 651 G++ controls.
+2026-05-30 10:10:28,951 - pipeline.stage_ED23_profiles_enhanced - INFO - Processing Baustein: OPS.2.2
+2026-05-30 10:10:28,951 - pipeline.stage_ED23_profiles_enhanced - INFO - Enhanced profile already exists at /home/christoph_puppe/work/GSpp/ED23-Baustein-profile/DE/cloud-dienste_OPS.2.2_cloud-nutzung.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,951 - pipeline.stage_ED23_profiles_enhanced - INFO - Processing Baustein: OPS.2.3
+2026-05-30 10:10:28,951 - pipeline.stage_ED23_profiles_enhanced - INFO - Enhanced profile already exists at /home/christoph_puppe/work/GSpp/ED23-Baustein-profile/DE/outsourcing_OPS.2.3_nutzung_von_outsourcing.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,951 - pipeline.stage_ED23_profiles_enhanced - INFO - Processing Baustein: OPS.3.2
+2026-05-30 10:10:28,951 - pipeline.stage_ED23_profiles_enhanced - INFO - Enhanced profile already exists at /home/christoph_puppe/work/GSpp/ED23-Baustein-profile/DE/outsourcing_OPS.3.2_anbieten_von_outsourcing.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,952 - pipeline.stage_ED23_profiles_enhanced - INFO - Processing Baustein: APP.1.1
+2026-05-30 10:10:28,952 - pipeline.stage_ED23_profiles_enhanced - INFO - Enhanced profile already exists at /home/christoph_puppe/work/GSpp/ED23-Baustein-profile/DE/office-anwendungen_APP.1.1_office-produkte.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,952 - pipeline.stage_ED23_profiles_enhanced - INFO - Processing Baustein: APP.1.2
+2026-05-30 10:10:28,952 - pipeline.stage_ED23_profiles_enhanced - INFO - Enhanced profile already exists at /home/christoph_puppe/work/GSpp/ED23-Baustein-profile/DE/webbrowser_APP.1.2_webbrowser.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,952 - pipeline.stage_ED23_profiles_enhanced - INFO - Processing Baustein: APP.2.1
+2026-05-30 10:10:28,952 - pipeline.stage_ED23_profiles_enhanced - INFO - Enhanced profile already exists at /home/christoph_puppe/work/GSpp/ED23-Baustein-profile/DE/verzeichnisdienste_APP.2.1_allgemeiner_verzeichnisdienst.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,952 - pipeline.stage_ED23_profiles_enhanced - INFO - Processing Baustein: APP.2.2
+2026-05-30 10:10:28,952 - pipeline.stage_ED23_profiles_enhanced - INFO - Enhanced profile already exists at /home/christoph_puppe/work/GSpp/ED23-Baustein-profile/DE/verzeichnisdienste_APP.2.2_active_directory_domain_services.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,952 - pipeline.stage_ED23_profiles_enhanced - INFO - Processing Baustein: APP.2.3
+2026-05-30 10:10:28,953 - pipeline.stage_ED23_profiles_enhanced - INFO - Enhanced profile already exists at /home/christoph_puppe/work/GSpp/ED23-Baustein-profile/DE/verzeichnisdienste_APP.2.3_openldap.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,953 - pipeline.stage_ED23_profiles_enhanced - INFO - Processing Baustein: APP.3.1
+2026-05-30 10:10:28,953 - pipeline.stage_ED23_profiles_enhanced - INFO - Enhanced profile already exists at /home/christoph_puppe/work/GSpp/ED23-Baustein-profile/DE/webanwendungen_APP.3.1_webanwendungen_und_webservices.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,953 - pipeline.stage_ED23_profiles_enhanced - INFO - Processing Baustein: APP.3.2
+2026-05-30 10:10:28,953 - pipeline.stage_ED23_profiles_enhanced - INFO - Enhanced profile already exists at /home/christoph_puppe/work/GSpp/ED23-Baustein-profile/DE/webserver_APP.3.2_webserver.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,953 - pipeline.stage_ED23_profiles_enhanced - INFO - Processing Baustein: APP.3.4
+2026-05-30 10:10:28,953 - pipeline.stage_ED23_profiles_enhanced - INFO - Enhanced profile already exists at /home/christoph_puppe/work/GSpp/ED23-Baustein-profile/DE/anwendungen_APP.3.4_samba.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,953 - pipeline.stage_ED23_profiles_enhanced - INFO - Processing Baustein: APP.3.6
+2026-05-30 10:10:28,954 - pipeline.stage_ED23_profiles_enhanced - INFO - Enhanced profile already exists at /home/christoph_puppe/work/GSpp/ED23-Baustein-profile/DE/dns-server_APP.3.6_dns-server.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,954 - pipeline.stage_ED23_profiles_enhanced - INFO - Processing Baustein: APP.4.10
+2026-05-30 10:10:28,954 - pipeline.stage_ED23_profiles_enhanced - INFO - Enhanced profile already exists at /home/christoph_puppe/work/GSpp/ED23-Baustein-profile/DE/anwendungen_APP.4.10_benutzerdefiniert_sicherheit_von_ki-systemen.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,954 - pipeline.stage_ED23_profiles_enhanced - INFO - Processing Baustein: APP.4.2
+2026-05-30 10:10:28,954 - pipeline.stage_ED23_profiles_enhanced - INFO - Enhanced profile already exists at /home/christoph_puppe/work/GSpp/ED23-Baustein-profile/DE/anwendungen_APP.4.2_sap-erp-system.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,954 - pipeline.stage_ED23_profiles_enhanced - INFO - Processing Baustein: APP.4.3
+2026-05-30 10:10:28,954 - pipeline.stage_ED23_profiles_enhanced - INFO - Enhanced profile already exists at /home/christoph_puppe/work/GSpp/ED23-Baustein-profile/DE/anwendungen_APP.4.3_relationale_datenbanken.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,954 - pipeline.stage_ED23_profiles_enhanced - INFO - Processing Baustein: APP.4.4
+2026-05-30 10:10:28,954 - pipeline.stage_ED23_profiles_enhanced - INFO - Enhanced profile already exists at /home/christoph_puppe/work/GSpp/ED23-Baustein-profile/DE/virtualisierungsloesungen_APP.4.4_kubernetes.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,954 - pipeline.stage_ED23_profiles_enhanced - INFO - Processing Baustein: APP.4.5
+2026-05-30 10:10:28,955 - pipeline.stage_ED23_profiles_enhanced - INFO - Enhanced profile already exists at /home/christoph_puppe/work/GSpp/ED23-Baustein-profile/DE/anwendungen_APP.4.5_benutzerdefiniert_key-value-datenbanken.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,955 - pipeline.stage_ED23_profiles_enhanced - INFO - Processing Baustein: APP.4.6
+2026-05-30 10:10:28,955 - pipeline.stage_ED23_profiles_enhanced - INFO - Enhanced profile already exists at /home/christoph_puppe/work/GSpp/ED23-Baustein-profile/DE/anwendungen_APP.4.6_sap_abap-programmierung.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,955 - pipeline.stage_ED23_profiles_enhanced - INFO - Processing Baustein: APP.4.7
+2026-05-30 10:10:28,955 - pipeline.stage_ED23_profiles_enhanced - INFO - Enhanced profile already exists at /home/christoph_puppe/work/GSpp/ED23-Baustein-profile/DE/anwendungen_APP.4.7_zeitreihen-datenbanken.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,955 - pipeline.stage_ED23_profiles_enhanced - INFO - Processing Baustein: APP.4.8
+2026-05-30 10:10:28,955 - pipeline.stage_ED23_profiles_enhanced - INFO - Enhanced profile already exists at /home/christoph_puppe/work/GSpp/ED23-Baustein-profile/DE/anwendungen_APP.4.8_benutzerdefiniert_graphdatenbanken.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,955 - pipeline.stage_ED23_profiles_enhanced - INFO - Processing Baustein: APP.4.9
+2026-05-30 10:10:28,955 - pipeline.stage_ED23_profiles_enhanced - INFO - Enhanced profile already exists at /home/christoph_puppe/work/GSpp/ED23-Baustein-profile/DE/anwendungen_APP.4.9_benutzerdefiniert_objektbasierte_speicherloesungen.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,956 - pipeline.stage_ED23_profiles_enhanced - INFO - Processing Baustein: APP.5.2
+2026-05-30 10:10:28,956 - pipeline.stage_ED23_profiles_enhanced - INFO - Enhanced profile already exists at /home/christoph_puppe/work/GSpp/ED23-Baustein-profile/DE/e-mail_APP.5.2_microsoft_exchange_und_outlook.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,956 - pipeline.stage_ED23_profiles_enhanced - INFO - Processing Baustein: APP.5.3
+2026-05-30 10:10:28,956 - pipeline.stage_ED23_profiles_enhanced - INFO - Enhanced profile already exists at /home/christoph_puppe/work/GSpp/ED23-Baustein-profile/DE/e-mail_APP.5.3_allgemeiner_e-mail-client_und_-server.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,956 - pipeline.stage_ED23_profiles_enhanced - INFO - Processing Baustein: APP.5.4
+2026-05-30 10:10:28,956 - pipeline.stage_ED23_profiles_enhanced - INFO - Enhanced profile already exists at /home/christoph_puppe/work/GSpp/ED23-Baustein-profile/DE/interpersonelle_kommunikation_APP.5.4_unified_communications_und_collaboration_ucc.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,956 - pipeline.stage_ED23_profiles_enhanced - INFO - Processing Baustein: APP.6
+2026-05-30 10:10:28,956 - pipeline.stage_ED23_profiles_enhanced - INFO - Enhanced profile already exists at /home/christoph_puppe/work/GSpp/ED23-Baustein-profile/DE/anwendungen_APP.6_allgemeine_software.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,956 - pipeline.stage_ED23_profiles_enhanced - INFO - Processing Baustein: APP.7
+2026-05-30 10:10:28,957 - pipeline.stage_ED23_profiles_enhanced - INFO - Enhanced profile already exists at /home/christoph_puppe/work/GSpp/ED23-Baustein-profile/DE/anwendungen_APP.7_entwicklung_von_individualsoftware.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,957 - pipeline.stage_ED23_profiles_enhanced - INFO - Processing Baustein: SYS.1.1
+2026-05-30 10:10:28,957 - pipeline.stage_ED23_profiles_enhanced - INFO - Enhanced profile already exists at /home/christoph_puppe/work/GSpp/ED23-Baustein-profile/DE/hostsysteme_SYS.1.1_allgemeiner_server.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,957 - pipeline.stage_ED23_profiles_enhanced - INFO - Processing Baustein: SYS.1.10
+2026-05-30 10:10:28,957 - pipeline.stage_ED23_profiles_enhanced - INFO - Enhanced profile already exists at /home/christoph_puppe/work/GSpp/ED23-Baustein-profile/DE/it-systeme_SYS.1.10_benutzerdefiniert_server_unter_openbsd.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,957 - pipeline.stage_ED23_profiles_enhanced - INFO - Processing Baustein: SYS.1.11
+2026-05-30 10:10:28,957 - pipeline.stage_ED23_profiles_enhanced - INFO - Enhanced profile already exists at /home/christoph_puppe/work/GSpp/ED23-Baustein-profile/DE/hostsysteme_SYS.1.11_benutzerdefiniert_server_unter_freebsd.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,957 - pipeline.stage_ED23_profiles_enhanced - INFO - Processing Baustein: SYS.1.2.2
+2026-05-30 10:10:28,957 - pipeline.stage_ED23_profiles_enhanced - INFO - Enhanced profile already exists at /home/christoph_puppe/work/GSpp/ED23-Baustein-profile/DE/anwendungen_SYS.1.2.2_windows_server_2012.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,958 - pipeline.stage_ED23_profiles_enhanced - INFO - Processing Baustein: SYS.1.2.3
+2026-05-30 10:10:28,958 - pipeline.stage_ED23_profiles_enhanced - INFO - Enhanced profile already exists at /home/christoph_puppe/work/GSpp/ED23-Baustein-profile/DE/it-systeme_SYS.1.2.3_windows_server.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,958 - pipeline.stage_ED23_profiles_enhanced - INFO - Processing Baustein: SYS.1.2.4
+2026-05-30 10:10:28,958 - pipeline.stage_ED23_profiles_enhanced - INFO - Enhanced profile already exists at /home/christoph_puppe/work/GSpp/ED23-Baustein-profile/DE/anwendungen_SYS.1.2.4_benutzerdefiniert_windows_server_2022.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,958 - pipeline.stage_ED23_profiles_enhanced - INFO - Processing Baustein: SYS.1.3
+2026-05-30 10:10:28,958 - pipeline.stage_ED23_profiles_enhanced - INFO - Enhanced profile already exists at /home/christoph_puppe/work/GSpp/ED23-Baustein-profile/DE/hostsysteme_SYS.1.3_server_unter_linux_und_unix.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,958 - pipeline.stage_ED23_profiles_enhanced - INFO - Processing Baustein: SYS.1.5
+2026-05-30 10:10:28,958 - pipeline.stage_ED23_profiles_enhanced - INFO - Enhanced profile already exists at /home/christoph_puppe/work/GSpp/ED23-Baustein-profile/DE/virtualisierungsloesungen_SYS.1.5_virtualisierung.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,958 - pipeline.stage_ED23_profiles_enhanced - INFO - Processing Baustein: SYS.1.6
+2026-05-30 10:10:28,959 - pipeline.stage_ED23_profiles_enhanced - INFO - Enhanced profile already exists at /home/christoph_puppe/work/GSpp/ED23-Baustein-profile/DE/virtualisierungsloesungen_SYS.1.6_containerisierung.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,959 - pipeline.stage_ED23_profiles_enhanced - INFO - Processing Baustein: SYS.1.7
+2026-05-30 10:10:28,959 - pipeline.stage_ED23_profiles_enhanced - INFO - Enhanced profile already exists at /home/christoph_puppe/work/GSpp/ED23-Baustein-profile/DE/hostsysteme_SYS.1.7_ibm_z.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,959 - pipeline.stage_ED23_profiles_enhanced - INFO - Processing Baustein: SYS.1.9
+2026-05-30 10:10:28,959 - pipeline.stage_ED23_profiles_enhanced - INFO - Enhanced profile already exists at /home/christoph_puppe/work/GSpp/ED23-Baustein-profile/DE/virtualisierungsloesungen_SYS.1.9_terminalserver.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,959 - pipeline.stage_ED23_profiles_enhanced - INFO - Processing Baustein: SYS.2.1
+2026-05-30 10:10:28,959 - pipeline.stage_ED23_profiles_enhanced - INFO - Enhanced profile already exists at /home/christoph_puppe/work/GSpp/ED23-Baustein-profile/DE/endgeraete_SYS.2.1_allgemeiner_client.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,959 - pipeline.stage_ED23_profiles_enhanced - INFO - Processing Baustein: SYS.2.2.3
+2026-05-30 10:10:28,959 - pipeline.stage_ED23_profiles_enhanced - INFO - Enhanced profile already exists at /home/christoph_puppe/work/GSpp/ED23-Baustein-profile/DE/endgeraete_SYS.2.2.3_clients_unter_windows.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,960 - pipeline.stage_ED23_profiles_enhanced - INFO - Processing Baustein: SYS.2.3
+2026-05-30 10:10:28,960 - pipeline.stage_ED23_profiles_enhanced - INFO - Enhanced profile already exists at /home/christoph_puppe/work/GSpp/ED23-Baustein-profile/DE/endgeraete_SYS.2.3_clients_unter_linux_und_unix.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,960 - pipeline.stage_ED23_profiles_enhanced - INFO - Processing Baustein: SYS.2.4
+2026-05-30 10:10:28,960 - pipeline.stage_ED23_profiles_enhanced - INFO - Enhanced profile already exists at /home/christoph_puppe/work/GSpp/ED23-Baustein-profile/DE/endgeraete_SYS.2.4_clients_unter_macos.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,960 - pipeline.stage_ED23_profiles_enhanced - INFO - Processing Baustein: SYS.2.5
+2026-05-30 10:10:28,960 - pipeline.stage_ED23_profiles_enhanced - INFO - Enhanced profile already exists at /home/christoph_puppe/work/GSpp/ED23-Baustein-profile/DE/virtualisierungsloesungen_SYS.2.5_client-virtualisierung.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,960 - pipeline.stage_ED23_profiles_enhanced - INFO - Processing Baustein: SYS.2.6
+2026-05-30 10:10:28,960 - pipeline.stage_ED23_profiles_enhanced - INFO - Enhanced profile already exists at /home/christoph_puppe/work/GSpp/ED23-Baustein-profile/DE/virtualisierungsloesungen_SYS.2.6_virtual_desktop_infrastructure.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,960 - pipeline.stage_ED23_profiles_enhanced - INFO - Processing Baustein: SYS.3.1
+2026-05-30 10:10:28,961 - pipeline.stage_ED23_profiles_enhanced - INFO - Enhanced profile already exists at /home/christoph_puppe/work/GSpp/ED23-Baustein-profile/DE/endgeraete_SYS.3.1_laptops.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,961 - pipeline.stage_ED23_profiles_enhanced - INFO - Processing Baustein: SYS.3.2.1
+2026-05-30 10:10:28,961 - pipeline.stage_ED23_profiles_enhanced - INFO - Enhanced profile already exists at /home/christoph_puppe/work/GSpp/ED23-Baustein-profile/DE/endgeraete_SYS.3.2.1_allgemeine_smartphones_und_tablets.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,961 - pipeline.stage_ED23_profiles_enhanced - INFO - Processing Baustein: SYS.3.2.2
+2026-05-30 10:10:28,961 - pipeline.stage_ED23_profiles_enhanced - INFO - Enhanced profile already exists at /home/christoph_puppe/work/GSpp/ED23-Baustein-profile/DE/anwendungen_SYS.3.2.2_mobile_device_management_mdm.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,961 - pipeline.stage_ED23_profiles_enhanced - INFO - Processing Baustein: SYS.3.2.3
+2026-05-30 10:10:28,961 - pipeline.stage_ED23_profiles_enhanced - INFO - Enhanced profile already exists at /home/christoph_puppe/work/GSpp/ED23-Baustein-profile/DE/anwendungen_SYS.3.2.3_ios_for_enterprise.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,961 - pipeline.stage_ED23_profiles_enhanced - INFO - Processing Baustein: SYS.3.2.4
+2026-05-30 10:10:28,961 - pipeline.stage_ED23_profiles_enhanced - INFO - Enhanced profile already exists at /home/christoph_puppe/work/GSpp/ED23-Baustein-profile/DE/anwendungen_SYS.3.2.4_android.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,961 - pipeline.stage_ED23_profiles_enhanced - INFO - Processing Baustein: SYS.3.3
+2026-05-30 10:10:28,962 - pipeline.stage_ED23_profiles_enhanced - INFO - Enhanced profile already exists at /home/christoph_puppe/work/GSpp/ED23-Baustein-profile/DE/mobiltelefone_SYS.3.3_mobiltelefon.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,962 - pipeline.stage_ED23_profiles_enhanced - INFO - Processing Baustein: SYS.4.1
+2026-05-30 10:10:28,962 - pipeline.stage_ED23_profiles_enhanced - INFO - Enhanced profile already exists at /home/christoph_puppe/work/GSpp/ED23-Baustein-profile/DE/it-systeme_SYS.4.1_drucker_kopierer_und_multifunktionsgeraete.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,962 - pipeline.stage_ED23_profiles_enhanced - INFO - Processing Baustein: SYS.4.3
+2026-05-30 10:10:28,962 - pipeline.stage_ED23_profiles_enhanced - INFO - Enhanced profile already exists at /home/christoph_puppe/work/GSpp/ED23-Baustein-profile/DE/it-systeme_SYS.4.3_eingebettete_systeme.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,962 - pipeline.stage_ED23_profiles_enhanced - INFO - Processing Baustein: SYS.4.4
+2026-05-30 10:10:28,962 - pipeline.stage_ED23_profiles_enhanced - INFO - Enhanced profile already exists at /home/christoph_puppe/work/GSpp/ED23-Baustein-profile/DE/it-systeme_SYS.4.4_allgemeines_iot-geraet.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,962 - pipeline.stage_ED23_profiles_enhanced - INFO - Processing Baustein: IND.1
+2026-05-30 10:10:28,963 - pipeline.stage_ED23_profiles_enhanced - INFO - Enhanced profile already exists at /home/christoph_puppe/work/GSpp/ED23-Baustein-profile/DE/it-systeme_IND.1_prozessleit-_und_automatisierungstechnik.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,963 - pipeline.stage_ED23_profiles_enhanced - INFO - Processing Baustein: IND.2.1
+2026-05-30 10:10:28,963 - pipeline.stage_ED23_profiles_enhanced - INFO - Enhanced profile already exists at /home/christoph_puppe/work/GSpp/ED23-Baustein-profile/DE/it-systeme_IND.2.1_allgemeine_ics-komponente.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,963 - pipeline.stage_ED23_profiles_enhanced - INFO - Processing Baustein: IND.2.2
+2026-05-30 10:10:28,963 - pipeline.stage_ED23_profiles_enhanced - INFO - Enhanced profile already exists at /home/christoph_puppe/work/GSpp/ED23-Baustein-profile/DE/it-systeme_IND.2.2_speicherprogrammierbare_steuerung_sps.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,963 - pipeline.stage_ED23_profiles_enhanced - INFO - Processing Baustein: IND.2.3
+2026-05-30 10:10:28,963 - pipeline.stage_ED23_profiles_enhanced - INFO - Enhanced profile already exists at /home/christoph_puppe/work/GSpp/ED23-Baustein-profile/DE/it-systeme_IND.2.3_sensoren_und_aktoren.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,963 - pipeline.stage_ED23_profiles_enhanced - INFO - Processing Baustein: IND.2.4
+2026-05-30 10:10:28,963 - pipeline.stage_ED23_profiles_enhanced - INFO - Enhanced profile already exists at /home/christoph_puppe/work/GSpp/ED23-Baustein-profile/DE/it-systeme_IND.2.4_maschine.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,963 - pipeline.stage_ED23_profiles_enhanced - INFO - Processing Baustein: IND.2.7
+2026-05-30 10:10:28,964 - pipeline.stage_ED23_profiles_enhanced - INFO - Enhanced profile already exists at /home/christoph_puppe/work/GSpp/ED23-Baustein-profile/DE/it-systeme_IND.2.7_safety_instrumented_systems.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,964 - pipeline.stage_ED23_profiles_enhanced - INFO - Processing Baustein: IND.3.2
+2026-05-30 10:10:28,964 - pipeline.stage_ED23_profiles_enhanced - INFO - Enhanced profile already exists at /home/christoph_puppe/work/GSpp/ED23-Baustein-profile/DE/it-systeme_IND.3.2_fernwartung_im_industriellen_umfeld.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,964 - pipeline.stage_ED23_profiles_enhanced - INFO - Processing Baustein: NET.1.1
+2026-05-30 10:10:28,964 - pipeline.stage_ED23_profiles_enhanced - INFO - Enhanced profile already exists at /home/christoph_puppe/work/GSpp/ED23-Baustein-profile/DE/netze_NET.1.1_netzarchitektur_und_-design.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,964 - pipeline.stage_ED23_profiles_enhanced - INFO - Processing Baustein: NET.1.2
+2026-05-30 10:10:28,964 - pipeline.stage_ED23_profiles_enhanced - INFO - Enhanced profile already exists at /home/christoph_puppe/work/GSpp/ED23-Baustein-profile/DE/netze_NET.1.2_netzmanagement.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,964 - pipeline.stage_ED23_profiles_enhanced - INFO - Processing Baustein: NET.2.1
+2026-05-30 10:10:28,964 - pipeline.stage_ED23_profiles_enhanced - INFO - Enhanced profile already exists at /home/christoph_puppe/work/GSpp/ED23-Baustein-profile/DE/wlans_NET.2.1_wlan-betrieb.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,965 - pipeline.stage_ED23_profiles_enhanced - INFO - Processing Baustein: NET.2.2
+2026-05-30 10:10:28,965 - pipeline.stage_ED23_profiles_enhanced - INFO - Enhanced profile already exists at /home/christoph_puppe/work/GSpp/ED23-Baustein-profile/DE/wlans_NET.2.2_wlan-nutzung.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,965 - pipeline.stage_ED23_profiles_enhanced - INFO - Processing Baustein: NET.3.1
+2026-05-30 10:10:28,965 - pipeline.stage_ED23_profiles_enhanced - INFO - Enhanced profile already exists at /home/christoph_puppe/work/GSpp/ED23-Baustein-profile/DE/it-systeme_NET.3.1_router_und_switches.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,965 - pipeline.stage_ED23_profiles_enhanced - INFO - Processing Baustein: NET.3.2
+2026-05-30 10:10:28,965 - pipeline.stage_ED23_profiles_enhanced - INFO - Enhanced profile already exists at /home/christoph_puppe/work/GSpp/ED23-Baustein-profile/DE/it-systeme_NET.3.2_firewall.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,965 - pipeline.stage_ED23_profiles_enhanced - INFO - Processing Baustein: NET.3.3
+2026-05-30 10:10:28,965 - pipeline.stage_ED23_profiles_enhanced - INFO - Enhanced profile already exists at /home/christoph_puppe/work/GSpp/ED23-Baustein-profile/DE/externe_netzanschluesse_NET.3.3_vpn.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,965 - pipeline.stage_ED23_profiles_enhanced - INFO - Processing Baustein: NET.3.4
+2026-05-30 10:10:28,966 - pipeline.stage_ED23_profiles_enhanced - INFO - Enhanced profile already exists at /home/christoph_puppe/work/GSpp/ED23-Baustein-profile/DE/netze_NET.3.4_network_access_control.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,966 - pipeline.stage_ED23_profiles_enhanced - INFO - Processing Baustein: NET.4.1
+2026-05-30 10:10:28,966 - pipeline.stage_ED23_profiles_enhanced - INFO - Enhanced profile already exists at /home/christoph_puppe/work/GSpp/ED23-Baustein-profile/DE/tk-anwendungen_NET.4.1_tk-anlagen.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,966 - pipeline.stage_ED23_profiles_enhanced - INFO - Processing Baustein: NET.4.2
+2026-05-30 10:10:28,966 - pipeline.stage_ED23_profiles_enhanced - INFO - Enhanced profile already exists at /home/christoph_puppe/work/GSpp/ED23-Baustein-profile/DE/tk-anwendungen_NET.4.2_voip.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,966 - pipeline.stage_ED23_profiles_enhanced - INFO - Processing Baustein: NET.4.3
+2026-05-30 10:10:28,966 - pipeline.stage_ED23_profiles_enhanced - INFO - Enhanced profile already exists at /home/christoph_puppe/work/GSpp/ED23-Baustein-profile/DE/faxe_NET.4.3_faxgeraete_und_faxserver.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,966 - pipeline.stage_ED23_profiles_enhanced - INFO - Processing Baustein: INF.1
+2026-05-30 10:10:28,966 - pipeline.stage_ED23_profiles_enhanced - INFO - Enhanced profile already exists at /home/christoph_puppe/work/GSpp/ED23-Baustein-profile/DE/gebaeude_INF.1_allgemeines_gebaeude.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,967 - pipeline.stage_ED23_profiles_enhanced - INFO - Processing Baustein: INF.10
+2026-05-30 10:10:28,967 - pipeline.stage_ED23_profiles_enhanced - INFO - Enhanced profile already exists at /home/christoph_puppe/work/GSpp/ED23-Baustein-profile/DE/raeume_INF.10_besprechungs-_veranstaltungs-_und_schulungsraeume.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,967 - pipeline.stage_ED23_profiles_enhanced - INFO - Processing Baustein: INF.11
+2026-05-30 10:10:28,967 - pipeline.stage_ED23_profiles_enhanced - INFO - Enhanced profile already exists at /home/christoph_puppe/work/GSpp/ED23-Baustein-profile/DE/fahrzeuge_INF.11_allgemeines_fahrzeug.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,967 - pipeline.stage_ED23_profiles_enhanced - INFO - Processing Baustein: INF.12
+2026-05-30 10:10:28,967 - pipeline.stage_ED23_profiles_enhanced - INFO - Enhanced profile already exists at /home/christoph_puppe/work/GSpp/ED23-Baustein-profile/DE/netze_INF.12_verkabelung.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,967 - pipeline.stage_ED23_profiles_enhanced - INFO - Processing Baustein: INF.13
+2026-05-30 10:10:28,967 - pipeline.stage_ED23_profiles_enhanced - INFO - Enhanced profile already exists at /home/christoph_puppe/work/GSpp/ED23-Baustein-profile/DE/raeume_fuer_technische_infrastruktur_INF.13_technisches_gebaeudemanagement.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,967 - pipeline.stage_ED23_profiles_enhanced - INFO - Processing Baustein: INF.14
+2026-05-30 10:10:28,968 - pipeline.stage_ED23_profiles_enhanced - INFO - Enhanced profile already exists at /home/christoph_puppe/work/GSpp/ED23-Baustein-profile/DE/gebaeude_INF.14_gebaeudeautomation.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,968 - pipeline.stage_ED23_profiles_enhanced - INFO - Processing Baustein: INF.2
+2026-05-30 10:10:28,968 - pipeline.stage_ED23_profiles_enhanced - INFO - Enhanced profile already exists at /home/christoph_puppe/work/GSpp/ED23-Baustein-profile/DE/serverraeume_INF.2_rechenzentrum_sowie_serverraum.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,968 - pipeline.stage_ED23_profiles_enhanced - INFO - Processing Baustein: INF.5
+2026-05-30 10:10:28,968 - pipeline.stage_ED23_profiles_enhanced - INFO - Enhanced profile already exists at /home/christoph_puppe/work/GSpp/ED23-Baustein-profile/DE/raeume_fuer_technische_infrastruktur_INF.5_raum_sowie_schrank_fuer_technische_infrastruktur.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,968 - pipeline.stage_ED23_profiles_enhanced - INFO - Processing Baustein: INF.6
+2026-05-30 10:10:28,968 - pipeline.stage_ED23_profiles_enhanced - INFO - Enhanced profile already exists at /home/christoph_puppe/work/GSpp/ED23-Baustein-profile/DE/datentraegerarchiv_INF.6_datentraegerarchiv.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,968 - pipeline.stage_ED23_profiles_enhanced - INFO - Processing Baustein: INF.7
+2026-05-30 10:10:28,968 - pipeline.stage_ED23_profiles_enhanced - INFO - Enhanced profile already exists at /home/christoph_puppe/work/GSpp/ED23-Baustein-profile/DE/raeume_INF.7_bueroarbeitsplatz.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,968 - pipeline.stage_ED23_profiles_enhanced - INFO - Processing Baustein: INF.8
+2026-05-30 10:10:28,969 - pipeline.stage_ED23_profiles_enhanced - INFO - Enhanced profile already exists at /home/christoph_puppe/work/GSpp/ED23-Baustein-profile/DE/raeume_INF.8_haeuslicher_arbeitsplatz.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,969 - pipeline.stage_ED23_profiles_enhanced - INFO - Processing Baustein: INF.9
+2026-05-30 10:10:28,969 - pipeline.stage_ED23_profiles_enhanced - INFO - Enhanced profile already exists at /home/christoph_puppe/work/GSpp/ED23-Baustein-profile/DE/raeume_INF.9_mobiler_arbeitsplatz.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,969 - pipeline.stage_ED23_profiles_enhanced - INFO - Processing Baustein: Methodik
+2026-05-30 10:10:28,969 - pipeline.stage_ED23_profiles_enhanced - INFO - Enhanced profile already exists at /home/christoph_puppe/work/GSpp/ED23-Baustein-profile/DE/methodik_Methodik_methodik.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,969 - pipeline.stage_ED23_profiles_enhanced - INFO - Processing Baustein: GC_prozesse
+2026-05-30 10:10:28,969 - pipeline.stage_ED23_profiles_enhanced - INFO - Enhanced profile already exists at /home/christoph_puppe/work/GSpp/ED23-Baustein-profile/DE/gc_prozesse_GC_prozesse_gc_prozesse.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,969 - pipeline.stage_ED23_profiles_enhanced - INFO - Processing Baustein: UMS_prozesse
+2026-05-30 10:10:28,969 - pipeline.stage_ED23_profiles_enhanced - INFO - Enhanced profile already exists at /home/christoph_puppe/work/GSpp/ED23-Baustein-profile/DE/ums_prozesse_UMS_prozesse_ums_prozesse.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,970 - pipeline.stage_ED23_profiles_enhanced - INFO - Processing Baustein: VRB_prozesse
+2026-05-30 10:10:28,970 - pipeline.stage_ED23_profiles_enhanced - INFO - Enhanced profile already exists at /home/christoph_puppe/work/GSpp/ED23-Baustein-profile/DE/vrb_prozesse_VRB_prozesse_vrb_prozesse.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,970 - pipeline.stage_ED23_profiles_enhanced - INFO - Processing Baustein: PERF_prozesse
+2026-05-30 10:10:28,970 - pipeline.stage_ED23_profiles_enhanced - INFO - Enhanced profile already exists at /home/christoph_puppe/work/GSpp/ED23-Baustein-profile/DE/perf_prozesse_PERF_prozesse_perf_prozesse.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,970 - pipeline.stage_ED23_profiles_enhanced - INFO - Processing Baustein: ASST_prozesse
+2026-05-30 10:10:28,970 - pipeline.stage_ED23_profiles_enhanced - INFO - Enhanced profile already exists at /home/christoph_puppe/work/GSpp/ED23-Baustein-profile/DE/asst_prozesse_ASST_prozesse_asst_prozesse.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,970 - pipeline.stage_ED23_profiles_enhanced - INFO - Processing Baustein: PERS_prozesse
+2026-05-30 10:10:28,970 - pipeline.stage_ED23_profiles_enhanced - INFO - Enhanced profile already exists at /home/christoph_puppe/work/GSpp/ED23-Baustein-profile/DE/pers_prozesse_PERS_prozesse_pers_prozesse.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,970 - pipeline.stage_ED23_profiles_enhanced - INFO - Processing Baustein: DLS_prozesse
+2026-05-30 10:10:28,971 - pipeline.stage_ED23_profiles_enhanced - INFO - Enhanced profile already exists at /home/christoph_puppe/work/GSpp/ED23-Baustein-profile/DE/dls_prozesse_DLS_prozesse_dls_prozesse.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,971 - pipeline.stage_ED23_profiles_enhanced - INFO - Processing Baustein: TEST_prozesse
+2026-05-30 10:10:28,971 - pipeline.stage_ED23_profiles_enhanced - INFO - Enhanced profile already exists at /home/christoph_puppe/work/GSpp/ED23-Baustein-profile/DE/test_prozesse_TEST_prozesse_test_prozesse.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,971 - pipeline.stage_ED23_profiles_enhanced - INFO - Processing Baustein: SENS_prozesse
+2026-05-30 10:10:28,971 - pipeline.stage_ED23_profiles_enhanced - INFO - Enhanced profile already exists at /home/christoph_puppe/work/GSpp/ED23-Baustein-profile/DE/sens_prozesse_SENS_prozesse_sens_prozesse.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,971 - pipeline.stage_ED23_profiles_enhanced - INFO - Processing Baustein: ARCH_prozesse
+2026-05-30 10:10:28,971 - pipeline.stage_ED23_profiles_enhanced - INFO - Enhanced profile already exists at /home/christoph_puppe/work/GSpp/ED23-Baustein-profile/DE/arch_prozesse_ARCH_prozesse_arch_prozesse.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,971 - pipeline.stage_ED23_profiles_enhanced - INFO - Processing Baustein: BER_prozesse
+2026-05-30 10:10:28,971 - pipeline.stage_ED23_profiles_enhanced - INFO - Enhanced profile already exists at /home/christoph_puppe/work/GSpp/ED23-Baustein-profile/DE/ber_prozesse_BER_prozesse_ber_prozesse.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,971 - pipeline.stage_ED23_profiles_enhanced - INFO - Processing Baustein: NOT_prozesse
+2026-05-30 10:10:28,972 - pipeline.stage_ED23_profiles_enhanced - INFO - Enhanced profile already exists at /home/christoph_puppe/work/GSpp/ED23-Baustein-profile/DE/not_prozesse_NOT_prozesse_not_prozesse.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,972 - pipeline.stage_ED23_profiles_enhanced - INFO - Processing Baustein: DET_prozesse
+2026-05-30 10:10:28,972 - pipeline.stage_ED23_profiles_enhanced - INFO - Enhanced profile already exists at /home/christoph_puppe/work/GSpp/ED23-Baustein-profile/DE/det_prozesse_DET_prozesse_det_prozesse.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,972 - pipeline.stage_ED23_profiles_enhanced - INFO - Processing Baustein: REA_prozesse
+2026-05-30 10:10:28,972 - pipeline.stage_ED23_profiles_enhanced - INFO - Enhanced profile already exists at /home/christoph_puppe/work/GSpp/ED23-Baustein-profile/DE/rea_prozesse_REA_prozesse_rea_prozesse.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,972 - pipeline.stage_ED23_profiles_enhanced - INFO - Processing Baustein: KONF_prozesse
+2026-05-30 10:10:28,972 - pipeline.stage_ED23_profiles_enhanced - INFO - Enhanced profile already exists at /home/christoph_puppe/work/GSpp/ED23-Baustein-profile/DE/konf_prozesse_KONF_prozesse_konf_prozesse.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,972 - pipeline.stage_ED23_profiles_enhanced - INFO - Processing Baustein: DEV_prozesse
+2026-05-30 10:10:28,972 - pipeline.stage_ED23_profiles_enhanced - INFO - Enhanced profile already exists at /home/christoph_puppe/work/GSpp/ED23-Baustein-profile/DE/dev_prozesse_DEV_prozesse_dev_prozesse.json and OVERWRITE_TEMP_FILES is false. Skipping.
+2026-05-30 10:10:28,973 - pipeline.stage_ED23_profiles_enhanced - INFO - Finished Stage: ED2023 Enhanced Profile Generation
+2026-05-30 10:10:28,990 - pipeline.processing - INFO - --- STAGE: ED23_PROFILES_ENHANCED - COMPLETE ---
+2026-05-30 10:10:28,990 - pipeline.processing - INFO - --- STAGE: BASE_PROCESS_ENHANCED ---
+2026-05-30 10:10:28,990 - pipeline.processing - INFO - Starting: Generating base process enhanced profiles.
+2026-05-30 10:10:28,990 - pipeline.stage_base_process_enhanced - INFO - Starting Stage: Base Process Enhanced Profile Generation
+2026-05-30 10:10:28,990 - clients.ai_client - INFO - Initializing Google GenAI Client for project 'privates-476309' in region 'global'.
+2026-05-30 10:10:29,163 - pipeline.stage_base_process_enhanced - INFO - Extracting G++ controls for lookup...
+2026-05-30 10:10:29,164 - pipeline.stage_base_process_enhanced - INFO - Successfully extracted 651 G++ controls.
+2026-05-30 10:10:29,169 - pipeline.stage_base_process_enhanced - INFO - Processing process profile: not_prozesse_process_profile.json
+2026-05-30 10:10:29,170 - pipeline.stage_base_process_enhanced - INFO - Generating AI enhancements for 20 controls in Baustein 
+2026-05-30 10:10:29,170 - pipeline.stage_base_process_enhanced - INFO - Processing process profile: asst_prozesse_process_profile.json
+2026-05-30 10:10:29,170 - pipeline.stage_base_process_enhanced - INFO - Generating AI enhancements for 12 controls in Baustein 
+2026-05-30 10:10:29,170 - pipeline.stage_base_process_enhanced - INFO - Processing process profile: ums_prozesse_process_profile.json
+2026-05-30 10:10:29,170 - pipeline.stage_base_process_enhanced - INFO - Generating AI enhancements for 1 controls in Baustein 
+2026-05-30 10:10:29,171 - pipeline.stage_base_process_enhanced - INFO - Processing process profile: sens_prozesse_process_profile.json
+2026-05-30 10:10:29,171 - pipeline.stage_base_process_enhanced - INFO - Generating AI enhancements for 1 controls in Baustein 
+2026-05-30 10:10:29,171 - pipeline.stage_base_process_enhanced - INFO - Processing process profile: ber_prozesse_process_profile.json
+2026-05-30 10:10:29,171 - pipeline.stage_base_process_enhanced - INFO - Generating AI enhancements for 57 controls in Baustein 
+2026-05-30 10:10:29,175 - google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+2026-05-30 10:10:29,179 - google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+2026-05-30 10:10:29,182 - google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+2026-05-30 10:10:29,185 - google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+2026-05-30 10:10:29,188 - google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+2026-05-30 10:10:29,190 - google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+2026-05-30 10:10:29,193 - google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+2026-05-30 10:10:29,196 - google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+2026-05-30 10:10:29,198 - google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+2026-05-30 10:10:29,201 - google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+2026-05-30 10:10:29,204 - google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+2026-05-30 10:10:29,206 - google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+2026-05-30 10:10:39,259 - clients.ai_client - WARNING - [ED23Enhance-] Processing error: [Errno -3] Temporary failure in name resolution. Retrying in 1s...
+2026-05-30 10:10:40,260 - google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+2026-05-30 10:10:40,575 - httpx - INFO - HTTP Request: POST https://aiplatform.googleapis.com/v1/projects/privates-476309/locations/global/publishers/google/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-05-30 10:10:40,588 - clients.ai_client - INFO - [ED23Enhance-] Successfully generated and validated JSON on attempt 1.
+2026-05-30 10:10:40,589 - pipeline.stage_base_process_enhanced - INFO - Successfully generated enhanced profile at /home/christoph_puppe/work/GSpp/Zielobjektkategorien/profile/process/sens_prozesse_process_profile_enhanced.json
+2026-05-30 10:10:40,590 - pipeline.stage_base_process_enhanced - INFO - Processing process profile: det_prozesse_process_profile.json
+2026-05-30 10:10:40,590 - pipeline.stage_base_process_enhanced - INFO - Generating AI enhancements for 38 controls in Baustein 
+2026-05-30 10:10:40,591 - google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+2026-05-30 10:10:40,594 - google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+2026-05-30 10:10:40,597 - google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+2026-05-30 10:10:40,601 - google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+2026-05-30 10:10:49,259 - clients.ai_client - WARNING - [ED23Enhance-] Processing error: [Errno -3] Temporary failure in name resolution. Retrying in 1s...
+2026-05-30 10:10:50,261 - google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+2026-05-30 10:11:00,728 - httpx - INFO - HTTP Request: POST https://aiplatform.googleapis.com/v1/projects/privates-476309/locations/global/publishers/google/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-05-30 10:11:00,741 - clients.ai_client - INFO - [ED23Enhance-] Successfully generated and validated JSON on attempt 2.
+2026-05-30 10:11:00,742 - pipeline.stage_base_process_enhanced - INFO - Successfully generated enhanced profile at /home/christoph_puppe/work/GSpp/Zielobjektkategorien/profile/process/ums_prozesse_process_profile_enhanced.json
+2026-05-30 10:11:00,743 - pipeline.stage_base_process_enhanced - INFO - Processing process profile: gc_prozesse_process_profile.json
+2026-05-30 10:11:00,743 - pipeline.stage_base_process_enhanced - INFO - Generating AI enhancements for 6 controls in Baustein 
+2026-05-30 10:11:00,744 - google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+2026-05-30 10:11:02,251 - httpx - INFO - HTTP Request: POST https://aiplatform.googleapis.com/v1/projects/privates-476309/locations/global/publishers/google/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-05-30 10:11:02,265 - clients.ai_client - INFO - [ED23Enhance-] Successfully generated and validated JSON on attempt 1.
+2026-05-30 10:11:06,954 - httpx - INFO - HTTP Request: POST https://aiplatform.googleapis.com/v1/projects/privates-476309/locations/global/publishers/google/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-05-30 10:11:06,968 - clients.ai_client - INFO - [ED23Enhance-] Successfully generated and validated JSON on attempt 1.
+2026-05-30 10:11:07,372 - httpx - INFO - HTTP Request: POST https://aiplatform.googleapis.com/v1/projects/privates-476309/locations/global/publishers/google/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-05-30 10:11:07,386 - clients.ai_client - INFO - [ED23Enhance-] Successfully generated and validated JSON on attempt 1.
+2026-05-30 10:11:08,101 - httpx - INFO - HTTP Request: POST https://aiplatform.googleapis.com/v1/projects/privates-476309/locations/global/publishers/google/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-05-30 10:11:08,114 - clients.ai_client - INFO - [ED23Enhance-] Successfully generated and validated JSON on attempt 1.
+2026-05-30 10:11:08,121 - pipeline.stage_base_process_enhanced - INFO - Successfully generated enhanced profile at /home/christoph_puppe/work/GSpp/Zielobjektkategorien/profile/process/asst_prozesse_process_profile_enhanced.json
+2026-05-30 10:11:08,122 - pipeline.stage_base_process_enhanced - INFO - Processing process profile: arch_prozesse_process_profile.json
+2026-05-30 10:11:08,122 - pipeline.stage_base_process_enhanced - INFO - Generating AI enhancements for 2 controls in Baustein 
+2026-05-30 10:11:08,123 - google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+2026-05-30 10:11:11,030 - httpx - INFO - HTTP Request: POST https://aiplatform.googleapis.com/v1/projects/privates-476309/locations/global/publishers/google/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-05-30 10:11:11,044 - clients.ai_client - INFO - [ED23Enhance-] Successfully generated and validated JSON on attempt 1.
+2026-05-30 10:11:11,519 - httpx - INFO - HTTP Request: POST https://aiplatform.googleapis.com/v1/projects/privates-476309/locations/global/publishers/google/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-05-30 10:11:11,533 - clients.ai_client - INFO - [ED23Enhance-] Successfully generated and validated JSON on attempt 2.
+2026-05-30 10:11:11,591 - httpx - INFO - HTTP Request: POST https://aiplatform.googleapis.com/v1/projects/privates-476309/locations/global/publishers/google/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-05-30 10:11:11,605 - clients.ai_client - INFO - [ED23Enhance-] Successfully generated and validated JSON on attempt 1.
+2026-05-30 10:11:14,487 - httpx - INFO - HTTP Request: POST https://aiplatform.googleapis.com/v1/projects/privates-476309/locations/global/publishers/google/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-05-30 10:11:14,502 - clients.ai_client - INFO - [ED23Enhance-] Successfully generated and validated JSON on attempt 1.
+2026-05-30 10:11:17,526 - httpx - INFO - HTTP Request: POST https://aiplatform.googleapis.com/v1/projects/privates-476309/locations/global/publishers/google/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-05-30 10:11:17,542 - clients.ai_client - INFO - [ED23Enhance-] Successfully generated and validated JSON on attempt 1.
+2026-05-30 10:11:17,544 - pipeline.stage_base_process_enhanced - WARNING - No AI generated data for control BER.5.1.1 in Baustein 
+2026-05-30 10:11:17,544 - pipeline.stage_base_process_enhanced - WARNING - No AI generated data for control BER.5.1.2 in Baustein 
+2026-05-30 10:11:17,544 - pipeline.stage_base_process_enhanced - WARNING - No AI generated data for control BER.5.3.1 in Baustein 
+2026-05-30 10:11:17,576 - pipeline.stage_base_process_enhanced - INFO - Successfully generated enhanced profile at /home/christoph_puppe/work/GSpp/Zielobjektkategorien/profile/process/ber_prozesse_process_profile_enhanced.json
+2026-05-30 10:11:17,577 - pipeline.stage_base_process_enhanced - INFO - Processing process profile: rea_prozesse_process_profile.json
+2026-05-30 10:11:17,577 - pipeline.stage_base_process_enhanced - INFO - Generating AI enhancements for 18 controls in Baustein 
+2026-05-30 10:11:17,578 - google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+2026-05-30 10:11:17,581 - google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+2026-05-30 10:11:18,326 - httpx - INFO - HTTP Request: POST https://aiplatform.googleapis.com/v1/projects/privates-476309/locations/global/publishers/google/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-05-30 10:11:18,340 - clients.ai_client - INFO - [ED23Enhance-] Successfully generated and validated JSON on attempt 1.
+2026-05-30 10:11:18,666 - httpx - INFO - HTTP Request: POST https://aiplatform.googleapis.com/v1/projects/privates-476309/locations/global/publishers/google/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-05-30 10:11:18,680 - clients.ai_client - INFO - [ED23Enhance-] Successfully generated and validated JSON on attempt 1.
+2026-05-30 10:11:19,975 - httpx - INFO - HTTP Request: POST https://aiplatform.googleapis.com/v1/projects/privates-476309/locations/global/publishers/google/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-05-30 10:11:19,989 - clients.ai_client - INFO - [ED23Enhance-] Successfully generated and validated JSON on attempt 1.
+2026-05-30 10:11:20,001 - pipeline.stage_base_process_enhanced - INFO - Successfully generated enhanced profile at /home/christoph_puppe/work/GSpp/Zielobjektkategorien/profile/process/not_prozesse_process_profile_enhanced.json
+2026-05-30 10:11:20,002 - pipeline.stage_base_process_enhanced - INFO - Processing process profile: perf_prozesse_process_profile.json
+2026-05-30 10:11:20,002 - pipeline.stage_base_process_enhanced - INFO - Generating AI enhancements for 15 controls in Baustein 
+2026-05-30 10:11:20,003 - google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+2026-05-30 10:11:20,007 - google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+2026-05-30 10:11:22,774 - httpx - INFO - HTTP Request: POST https://aiplatform.googleapis.com/v1/projects/privates-476309/locations/global/publishers/google/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-05-30 10:11:22,790 - clients.ai_client - INFO - [ED23Enhance-] Successfully generated and validated JSON on attempt 1.
+2026-05-30 10:11:24,606 - httpx - INFO - HTTP Request: POST https://aiplatform.googleapis.com/v1/projects/privates-476309/locations/global/publishers/google/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-05-30 10:11:24,620 - clients.ai_client - INFO - [ED23Enhance-] Successfully generated and validated JSON on attempt 1.
+2026-05-30 10:11:24,625 - pipeline.stage_base_process_enhanced - INFO - Successfully generated enhanced profile at /home/christoph_puppe/work/GSpp/Zielobjektkategorien/profile/process/gc_prozesse_process_profile_enhanced.json
+2026-05-30 10:11:24,625 - pipeline.stage_base_process_enhanced - INFO - Processing process profile: konf_prozesse_process_profile.json
+2026-05-30 10:11:24,625 - pipeline.stage_base_process_enhanced - INFO - Generating AI enhancements for 3 controls in Baustein 
+2026-05-30 10:11:24,626 - google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+2026-05-30 10:11:32,805 - httpx - INFO - HTTP Request: POST https://aiplatform.googleapis.com/v1/projects/privates-476309/locations/global/publishers/google/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-05-30 10:11:32,819 - clients.ai_client - INFO - [ED23Enhance-] Successfully generated and validated JSON on attempt 1.
+2026-05-30 10:11:32,840 - pipeline.stage_base_process_enhanced - INFO - Successfully generated enhanced profile at /home/christoph_puppe/work/GSpp/Zielobjektkategorien/profile/process/det_prozesse_process_profile_enhanced.json
+2026-05-30 10:11:32,840 - pipeline.stage_base_process_enhanced - INFO - Processing process profile: dev_prozesse_process_profile.json
+2026-05-30 10:11:32,841 - pipeline.stage_base_process_enhanced - INFO - Generating AI enhancements for 4 controls in Baustein 
+2026-05-30 10:11:32,842 - google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+2026-05-30 10:11:41,628 - httpx - INFO - HTTP Request: POST https://aiplatform.googleapis.com/v1/projects/privates-476309/locations/global/publishers/google/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-05-30 10:11:41,641 - clients.ai_client - INFO - [ED23Enhance-] Successfully generated and validated JSON on attempt 1.
+2026-05-30 10:11:41,644 - pipeline.stage_base_process_enhanced - INFO - Successfully generated enhanced profile at /home/christoph_puppe/work/GSpp/Zielobjektkategorien/profile/process/konf_prozesse_process_profile_enhanced.json
+2026-05-30 10:11:41,644 - pipeline.stage_base_process_enhanced - INFO - Processing process profile: pers_prozesse_process_profile.json
+2026-05-30 10:11:41,644 - pipeline.stage_base_process_enhanced - INFO - Generating AI enhancements for 15 controls in Baustein 
+2026-05-30 10:11:41,646 - google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+2026-05-30 10:11:41,649 - google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+2026-05-30 10:11:47,682 - httpx - INFO - HTTP Request: POST https://aiplatform.googleapis.com/v1/projects/privates-476309/locations/global/publishers/google/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-05-30 10:11:47,695 - clients.ai_client - INFO - [ED23Enhance-] Successfully generated and validated JSON on attempt 1.
+2026-05-30 10:11:47,910 - httpx - INFO - HTTP Request: POST https://aiplatform.googleapis.com/v1/projects/privates-476309/locations/global/publishers/google/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-05-30 10:11:47,923 - clients.ai_client - INFO - [ED23Enhance-] Successfully generated and validated JSON on attempt 1.
+2026-05-30 10:11:53,590 - httpx - INFO - HTTP Request: POST https://aiplatform.googleapis.com/v1/projects/privates-476309/locations/global/publishers/google/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-05-30 10:11:53,604 - clients.ai_client - INFO - [ED23Enhance-] Successfully generated and validated JSON on attempt 1.
+2026-05-30 10:11:53,608 - pipeline.stage_base_process_enhanced - INFO - Successfully generated enhanced profile at /home/christoph_puppe/work/GSpp/Zielobjektkategorien/profile/process/dev_prozesse_process_profile_enhanced.json
+2026-05-30 10:11:53,608 - pipeline.stage_base_process_enhanced - INFO - Processing process profile: test_prozesse_process_profile.json
+2026-05-30 10:11:53,608 - pipeline.stage_base_process_enhanced - INFO - Generating AI enhancements for 29 controls in Baustein 
+2026-05-30 10:11:53,609 - google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+2026-05-30 10:11:53,613 - google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+2026-05-30 10:11:53,616 - google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+2026-05-30 10:11:56,941 - httpx - INFO - HTTP Request: POST https://aiplatform.googleapis.com/v1/projects/privates-476309/locations/global/publishers/google/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-05-30 10:11:56,956 - clients.ai_client - INFO - [ED23Enhance-] Successfully generated and validated JSON on attempt 1.
+2026-05-30 10:11:56,963 - pipeline.stage_base_process_enhanced - INFO - Successfully generated enhanced profile at /home/christoph_puppe/work/GSpp/Zielobjektkategorien/profile/process/rea_prozesse_process_profile_enhanced.json
+2026-05-30 10:11:56,963 - pipeline.stage_base_process_enhanced - INFO - Processing process profile: methodik_process_profile.json
+2026-05-30 10:11:56,963 - pipeline.stage_base_process_enhanced - INFO - Generating AI enhancements for 152 controls in Baustein 
+2026-05-30 10:11:56,965 - google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+2026-05-30 10:11:56,968 - google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+2026-05-30 10:11:56,972 - google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+2026-05-30 10:11:56,975 - google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+2026-05-30 10:11:56,978 - google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+2026-05-30 10:11:56,982 - google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+2026-05-30 10:11:56,985 - google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+2026-05-30 10:11:56,988 - google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+2026-05-30 10:11:56,992 - google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+2026-05-30 10:11:56,995 - google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+2026-05-30 10:11:56,998 - google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+2026-05-30 10:11:57,001 - google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+2026-05-30 10:11:57,004 - google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+2026-05-30 10:11:57,008 - google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+2026-05-30 10:11:57,012 - google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+2026-05-30 10:11:57,015 - google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+2026-05-30 10:12:07,050 - clients.ai_client - WARNING - [ED23Enhance-] Processing error: [Errno -3] Temporary failure in name resolution. Retrying in 1s...
+2026-05-30 10:12:08,051 - google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+2026-05-30 10:12:09,066 - httpx - INFO - HTTP Request: POST https://aiplatform.googleapis.com/v1/projects/privates-476309/locations/global/publishers/google/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-05-30 10:12:09,081 - clients.ai_client - INFO - [ED23Enhance-] Successfully generated and validated JSON on attempt 1.
+2026-05-30 10:12:09,081 - pipeline.stage_base_process_enhanced - WARNING - No AI generated data for control ARCH.2.2.12 in Baustein 
+2026-05-30 10:12:09,083 - pipeline.stage_base_process_enhanced - INFO - Successfully generated enhanced profile at /home/christoph_puppe/work/GSpp/Zielobjektkategorien/profile/process/arch_prozesse_process_profile_enhanced.json
+2026-05-30 10:12:09,083 - pipeline.stage_base_process_enhanced - INFO - Processing process profile: dls_prozesse_process_profile.json
+2026-05-30 10:12:09,083 - pipeline.stage_base_process_enhanced - INFO - Generating AI enhancements for 1 controls in Baustein 
+2026-05-30 10:12:09,084 - google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+2026-05-30 10:12:09,875 - httpx - INFO - HTTP Request: POST https://aiplatform.googleapis.com/v1/projects/privates-476309/locations/global/publishers/google/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-05-30 10:12:09,890 - clients.ai_client - INFO - [ED23Enhance-] Successfully generated and validated JSON on attempt 1.
+2026-05-30 10:12:09,899 - pipeline.stage_base_process_enhanced - INFO - Successfully generated enhanced profile at /home/christoph_puppe/work/GSpp/Zielobjektkategorien/profile/process/perf_prozesse_process_profile_enhanced.json
+2026-05-30 10:12:09,900 - pipeline.stage_base_process_enhanced - INFO - Processing process profile: vrb_prozesse_process_profile.json
+2026-05-30 10:12:09,900 - pipeline.stage_base_process_enhanced - INFO - Generating AI enhancements for 4 controls in Baustein 
+2026-05-30 10:12:09,901 - google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+2026-05-30 10:12:17,046 - clients.ai_client - WARNING - [ED23Enhance-] Processing error: [Errno -3] Temporary failure in name resolution. Retrying in 1s...
+2026-05-30 10:12:18,048 - google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+2026-05-30 10:12:19,906 - httpx - INFO - HTTP Request: POST https://aiplatform.googleapis.com/v1/projects/privates-476309/locations/global/publishers/google/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-05-30 10:12:19,920 - clients.ai_client - INFO - [ED23Enhance-] Successfully generated and validated JSON on attempt 1.
+2026-05-30 10:12:20,109 - httpx - INFO - HTTP Request: POST https://aiplatform.googleapis.com/v1/projects/privates-476309/locations/global/publishers/google/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-05-30 10:12:20,121 - clients.ai_client - INFO - [ED23Enhance-] Successfully generated and validated JSON on attempt 1.
+2026-05-30 10:12:20,123 - pipeline.stage_base_process_enhanced - INFO - Successfully generated enhanced profile at /home/christoph_puppe/work/GSpp/Zielobjektkategorien/profile/process/dls_prozesse_process_profile_enhanced.json
+2026-05-30 10:12:21,901 - httpx - INFO - HTTP Request: POST https://aiplatform.googleapis.com/v1/projects/privates-476309/locations/global/publishers/google/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-05-30 10:12:21,914 - clients.ai_client - INFO - [ED23Enhance-] Successfully generated and validated JSON on attempt 1.
+2026-05-30 10:12:21,924 - pipeline.stage_base_process_enhanced - INFO - Successfully generated enhanced profile at /home/christoph_puppe/work/GSpp/Zielobjektkategorien/profile/process/pers_prozesse_process_profile_enhanced.json
+2026-05-30 10:12:22,052 - clients.ai_client - WARNING - [ED23Enhance-] Processing error: [Errno -3] Temporary failure in name resolution. Retrying in 1s...
+2026-05-30 10:12:22,054 - clients.ai_client - WARNING - [ED23Enhance-] Processing error: [Errno -3] Temporary failure in name resolution. Retrying in 1s...
+2026-05-30 10:12:22,055 - clients.ai_client - WARNING - [ED23Enhance-] Processing error: [Errno -3] Temporary failure in name resolution. Retrying in 1s...
+2026-05-30 10:12:23,054 - google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+2026-05-30 10:12:23,058 - google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+2026-05-30 10:12:23,060 - google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+2026-05-30 10:12:26,166 - httpx - INFO - HTTP Request: POST https://aiplatform.googleapis.com/v1/projects/privates-476309/locations/global/publishers/google/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-05-30 10:12:26,181 - clients.ai_client - INFO - [ED23Enhance-] Successfully generated and validated JSON on attempt 1.
+2026-05-30 10:12:26,656 - httpx - INFO - HTTP Request: POST https://aiplatform.googleapis.com/v1/projects/privates-476309/locations/global/publishers/google/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-05-30 10:12:26,669 - clients.ai_client - INFO - [ED23Enhance-] Successfully generated and validated JSON on attempt 1.
+2026-05-30 10:12:27,808 - httpx - INFO - HTTP Request: POST https://aiplatform.googleapis.com/v1/projects/privates-476309/locations/global/publishers/google/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-05-30 10:12:27,822 - clients.ai_client - INFO - [ED23Enhance-] Successfully generated and validated JSON on attempt 1.
+2026-05-30 10:12:27,825 - pipeline.stage_base_process_enhanced - INFO - Successfully generated enhanced profile at /home/christoph_puppe/work/GSpp/Zielobjektkategorien/profile/process/vrb_prozesse_process_profile_enhanced.json
+2026-05-30 10:12:28,304 - httpx - INFO - HTTP Request: POST https://aiplatform.googleapis.com/v1/projects/privates-476309/locations/global/publishers/google/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-05-30 10:12:28,320 - clients.ai_client - INFO - [ED23Enhance-] Successfully generated and validated JSON on attempt 1.
+2026-05-30 10:12:36,617 - httpx - INFO - HTTP Request: POST https://aiplatform.googleapis.com/v1/projects/privates-476309/locations/global/publishers/google/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-05-30 10:12:36,632 - clients.ai_client - INFO - [ED23Enhance-] Successfully generated and validated JSON on attempt 1.
+2026-05-30 10:12:36,633 - httpx - INFO - HTTP Request: POST https://aiplatform.googleapis.com/v1/projects/privates-476309/locations/global/publishers/google/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-05-30 10:12:36,649 - clients.ai_client - INFO - [ED23Enhance-] Successfully generated and validated JSON on attempt 1.
+2026-05-30 10:12:37,271 - httpx - INFO - HTTP Request: POST https://aiplatform.googleapis.com/v1/projects/privates-476309/locations/global/publishers/google/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-05-30 10:12:37,286 - clients.ai_client - INFO - [ED23Enhance-] Successfully generated and validated JSON on attempt 1.
+2026-05-30 10:12:40,240 - httpx - INFO - HTTP Request: POST https://aiplatform.googleapis.com/v1/projects/privates-476309/locations/global/publishers/google/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-05-30 10:12:40,254 - clients.ai_client - INFO - [ED23Enhance-] Successfully generated and validated JSON on attempt 1.
+2026-05-30 10:12:40,592 - httpx - INFO - HTTP Request: POST https://aiplatform.googleapis.com/v1/projects/privates-476309/locations/global/publishers/google/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-05-30 10:12:40,607 - clients.ai_client - INFO - [ED23Enhance-] Successfully generated and validated JSON on attempt 2.
+2026-05-30 10:12:41,873 - httpx - INFO - HTTP Request: POST https://aiplatform.googleapis.com/v1/projects/privates-476309/locations/global/publishers/google/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-05-30 10:12:41,888 - clients.ai_client - INFO - [ED23Enhance-] Successfully generated and validated JSON on attempt 1.
+2026-05-30 10:12:47,036 - httpx - INFO - HTTP Request: POST https://aiplatform.googleapis.com/v1/projects/privates-476309/locations/global/publishers/google/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-05-30 10:12:47,051 - clients.ai_client - INFO - [ED23Enhance-] Successfully generated and validated JSON on attempt 1.
+2026-05-30 10:12:47,192 - httpx - INFO - HTTP Request: POST https://aiplatform.googleapis.com/v1/projects/privates-476309/locations/global/publishers/google/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-05-30 10:12:47,206 - clients.ai_client - INFO - [ED23Enhance-] Successfully generated and validated JSON on attempt 1.
+2026-05-30 10:12:47,790 - httpx - INFO - HTTP Request: POST https://aiplatform.googleapis.com/v1/projects/privates-476309/locations/global/publishers/google/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-05-30 10:12:47,806 - clients.ai_client - INFO - [ED23Enhance-] Successfully generated and validated JSON on attempt 1.
+2026-05-30 10:12:53,108 - httpx - INFO - HTTP Request: POST https://aiplatform.googleapis.com/v1/projects/privates-476309/locations/global/publishers/google/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-05-30 10:12:53,123 - clients.ai_client - INFO - [ED23Enhance-] Successfully generated and validated JSON on attempt 1.
+2026-05-30 10:12:57,565 - httpx - INFO - HTTP Request: POST https://aiplatform.googleapis.com/v1/projects/privates-476309/locations/global/publishers/google/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-05-30 10:12:57,580 - clients.ai_client - INFO - [ED23Enhance-] Successfully generated and validated JSON on attempt 1.
+2026-05-30 10:12:58,066 - httpx - INFO - HTTP Request: POST https://aiplatform.googleapis.com/v1/projects/privates-476309/locations/global/publishers/google/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-05-30 10:12:58,082 - clients.ai_client - INFO - [ED23Enhance-] Successfully generated and validated JSON on attempt 1.
+2026-05-30 10:12:58,082 - pipeline.stage_base_process_enhanced - WARNING - No AI generated data for control TEST.4.1.3 in Baustein 
+2026-05-30 10:12:58,101 - pipeline.stage_base_process_enhanced - INFO - Successfully generated enhanced profile at /home/christoph_puppe/work/GSpp/Zielobjektkategorien/profile/process/test_prozesse_process_profile_enhanced.json
+2026-05-30 10:13:03,988 - httpx - INFO - HTTP Request: POST https://aiplatform.googleapis.com/v1/projects/privates-476309/locations/global/publishers/google/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-05-30 10:13:04,004 - clients.ai_client - INFO - [ED23Enhance-] Successfully generated and validated JSON on attempt 2.
+2026-05-30 10:13:04,415 - httpx - INFO - HTTP Request: POST https://aiplatform.googleapis.com/v1/projects/privates-476309/locations/global/publishers/google/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-05-30 10:13:04,429 - clients.ai_client - INFO - [ED23Enhance-] Successfully generated and validated JSON on attempt 2.
+2026-05-30 10:13:07,162 - httpx - INFO - HTTP Request: POST https://aiplatform.googleapis.com/v1/projects/privates-476309/locations/global/publishers/google/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-05-30 10:13:07,178 - clients.ai_client - INFO - [ED23Enhance-] Successfully generated and validated JSON on attempt 2.
+2026-05-30 10:13:07,276 - httpx - INFO - HTTP Request: POST https://aiplatform.googleapis.com/v1/projects/privates-476309/locations/global/publishers/google/models/gemini-3-flash-preview:generateContent "HTTP/1.1 200 OK"
+2026-05-30 10:13:07,291 - clients.ai_client - INFO - [ED23Enhance-] Successfully generated and validated JSON on attempt 2.
+2026-05-30 10:13:07,293 - pipeline.stage_base_process_enhanced - WARNING - No AI generated data for control GC.8.1.5 in Baustein 
+2026-05-30 10:13:07,293 - pipeline.stage_base_process_enhanced - WARNING - No AI generated data for control GC.8.1.6 in Baustein 
+2026-05-30 10:13:07,293 - pipeline.stage_base_process_enhanced - WARNING - No AI generated data for control GC.9.1.2 in Baustein 
+2026-05-30 10:13:07,293 - pipeline.stage_base_process_enhanced - WARNING - No AI generated data for control GC.9.1.3 in Baustein 
+2026-05-30 10:13:07,293 - pipeline.stage_base_process_enhanced - WARNING - No AI generated data for control GEB.1.1.1 in Baustein 
+2026-05-30 10:13:07,293 - pipeline.stage_base_process_enhanced - WARNING - No AI generated data for control GEB.1.1.2 in Baustein 
+2026-05-30 10:13:07,293 - pipeline.stage_base_process_enhanced - WARNING - No AI generated data for control GEB.1.1.3 in Baustein 
+2026-05-30 10:13:07,295 - pipeline.stage_base_process_enhanced - WARNING - No AI generated data for control SENS.1.1.1 in Baustein 
+2026-05-30 10:13:07,295 - pipeline.stage_base_process_enhanced - WARNING - No AI generated data for control SENS.1.1.2 in Baustein 
+2026-05-30 10:13:07,295 - pipeline.stage_base_process_enhanced - WARNING - No AI generated data for control SENS.1.1.3 in Baustein 
+2026-05-30 10:13:07,372 - pipeline.stage_base_process_enhanced - INFO - Successfully generated enhanced profile at /home/christoph_puppe/work/GSpp/Zielobjektkategorien/profile/process/methodik_process_profile_enhanced.json
+2026-05-30 10:13:07,374 - pipeline.stage_base_process_enhanced - INFO - Finished Stage: Base Process Enhanced Profile Generation
+2026-05-30 10:13:07,378 - pipeline.processing - INFO - --- STAGE: BASE_PROCESS_ENHANCED - COMPLETE ---
+2026-05-30 10:13:07,378 - pipeline.processing - INFO - --- Full Pipeline Execution Finished Successfully ---
+--- Local Pipeline Execution Finished ---

@@ -14,8 +14,9 @@ from datetime import datetime, timezone
 from config import app_config
 from constants import (
     ZIELOBJEKT_CONTROLS_JSON_PATH,
-    SDT_PROFILES_DIR,
-    ZIELOBJEKTE_CSV_PATH,
+    SDT_PROFILES_REGULAR_DIR,
+    SDT_PROFILES_PROCESS_DIR,
+    ZIELOBJEKTKATEGORIEN_CSV_PATH,
     OSCAL_VERSION
 )
 from utils.file_utils import create_dir_if_not_exists, read_json_file, write_json_file, read_csv_file
@@ -69,27 +70,32 @@ def run_stage_profiles():
     """
     logger.info("Starting Stage: Profile Generation")
 
-    output_dir = SDT_PROFILES_DIR
-    create_dir_if_not_exists(output_dir)
+    create_dir_if_not_exists(SDT_PROFILES_REGULAR_DIR)
+    create_dir_if_not_exists(SDT_PROFILES_PROCESS_DIR)
 
     zielobjekt_controls = read_json_file(ZIELOBJEKT_CONTROLS_JSON_PATH)
     if not zielobjekt_controls:
         logger.error(f"Could not load Zielobjekt controls from {ZIELOBJEKT_CONTROLS_JSON_PATH}")
         return
 
-    zielobjekte_data = read_csv_file(ZIELOBJEKTE_CSV_PATH)
+    zielobjekte_data = read_csv_file(ZIELOBJEKTKATEGORIEN_CSV_PATH)
     if not zielobjekte_data:
-        logger.error(f"Could not load Zielobjekte from {ZIELOBJEKTE_CSV_PATH}")
+        logger.error(f"Could not load Zielobjekte from {ZIELOBJEKTKATEGORIEN_CSV_PATH}")
         return
 
-    zielobjekt_name_map = {row['UUID']: row['Zielobjekt'] for row in zielobjekte_data if 'UUID' in row and 'Zielobjekt' in row}
+    zielobjekt_name_map = {row['UUID']: row['Zielobjektkategorie'] for row in zielobjekte_data if 'UUID' in row and 'Zielobjektkategorie' in row}
 
     for zielobjekt_id, controls in zielobjekt_controls.get("zielobjekt_controls_map", {}).items():
         zielobjekt_name = ""
+        is_process = False
+
         if zielobjekt_id == "Methodik" or zielobjekt_id.endswith("_prozesse"):
             zielobjekt_name = zielobjekt_id
+            is_process = True
         elif zielobjekt_id in zielobjekt_name_map:
             zielobjekt_name = zielobjekt_name_map[zielobjekt_id]
+            # Some process bausteine could still land here, but generally they're caught by the name check above
+            # Or if they are normal profiles, is_process = False
         else:
             logger.warning(f"No name found for Zielobjekt with UUID {zielobjekt_id}. Skipping profile generation.")
             continue
@@ -97,8 +103,16 @@ def run_stage_profiles():
         profile = create_oscal_profile(zielobjekt_id, zielobjekt_name, controls)
 
         sanitized_name = sanitize_filename(zielobjekt_name)
-        output_filename = f"{sanitized_name}_profile.json"
-        output_path = os.path.join(output_dir, output_filename)
+
+        if is_process:
+            display_name = sanitized_name
+            if display_name.endswith("_prozesse"):
+                display_name = display_name[:-9]
+            output_filename = f"{display_name}_process_profile.json"
+            output_path = os.path.join(SDT_PROFILES_PROCESS_DIR, output_filename)
+        else:
+            output_filename = f"{sanitized_name}_profile.json"
+            output_path = os.path.join(SDT_PROFILES_REGULAR_DIR, output_filename)
 
         if os.path.exists(output_path) and not app_config.overwrite_temp_files:
             logger.info(f"Profile already exists at {output_path} and OVERWRITE_TEMP_FILES is false. Skipping.")

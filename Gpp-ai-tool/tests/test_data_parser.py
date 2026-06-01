@@ -23,7 +23,7 @@ class TestDataParser(unittest.TestCase):
                                             {
                                                 "props": [
                                                     {
-                                                        "name": "target_objects",
+                                                        "name": "target_object_categories",
                                                         "value": "Server, Client"
                                                     }
                                                 ]
@@ -37,7 +37,7 @@ class TestDataParser(unittest.TestCase):
                                             {
                                                 "props": [
                                                     {
-                                                        "name": "target_objects",
+                                                        "name": "target_object_categories",
                                                         "value": "Network"
                                                     }
                                                 ]

@@ -8,7 +8,7 @@ import unittest
 from unittest.mock import patch, mock_open, MagicMock
 
 from pipeline import stage_profiles
-from constants import SDT_PROFILES_DIR
+from constants import SDT_PROFILES_REGULAR_DIR
 
 class TestStageProfiles(unittest.TestCase):
     """
@@ -19,7 +19,7 @@ class TestStageProfiles(unittest.TestCase):
         """
         Set up the test environment.
         """
-        self.output_dir = SDT_PROFILES_DIR
+        self.output_dir = SDT_PROFILES_REGULAR_DIR
         self.mock_zielobjekt_controls = {
             "zielobjekt_controls_map": {
                 "efd76832-f5a1-432a-836d-c8d5c6d212cc": ["ASST.3.1", "ASST.3.1.1"],
@@ -29,8 +29,8 @@ class TestStageProfiles(unittest.TestCase):
             }
         }
         self.mock_zielobjekte_csv = [
-            {"UUID": "efd76832-f5a1-432a-836d-c8d5c6d212cc", "Zielobjekt": "Administrierende"},
-            {"UUID": "d2a23b62-9c66-4f72-98e2-17518d5dbe0f", "Zielobjekt": "Cloud-Dienste"}
+            {"UUID": "efd76832-f5a1-432a-836d-c8d5c6d212cc", "Zielobjektkategorie": "Administrierende"},
+            {"UUID": "d2a23b62-9c66-4f72-98e2-17518d5dbe0f", "Zielobjektkategorie": "Cloud-Dienste"}
         ]
 
     @patch('pipeline.stage_profiles.create_dir_if_not_exists')
@@ -48,7 +48,7 @@ class TestStageProfiles(unittest.TestCase):
         stage_profiles.run_stage_profiles()
 
         # Verify that the output directory is created
-        mock_create_dir.assert_called_once_with(self.output_dir)
+        mock_create_dir.assert_any_call(self.output_dir)
 
         # Verify that the correct number of profiles are written
         self.assertEqual(mock_write_json.call_count, 3)
@@ -71,7 +71,7 @@ class TestStageProfiles(unittest.TestCase):
         self.assertEqual(profile2_content['profile']['imports'][0]['include-controls'][0]['with-ids'], ["ASST.3.12"])
 
         # Profile 3: Methodik
-        methodik_profile_args = next(args for args in call_args_list if "methodik_profile.json" in args[0])
+        methodik_profile_args = next(args for args in call_args_list if "methodik_process_profile.json" in args[0])
         self.assertIsNotNone(methodik_profile_args)
         profile3_content = methodik_profile_args[1]
         self.assertEqual(profile3_content['profile']['metadata']['title'], 'Methodik Methodik')

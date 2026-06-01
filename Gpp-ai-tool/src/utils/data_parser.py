@@ -44,29 +44,6 @@ def find_bausteine_with_prose(bsi_data: Dict[str, Any]) -> List[Dict[str, Any]]:
     return bausteine_with_prose
 
 
-def get_anforderungen_for_bausteine(bsi_data: Dict[str, Any]) -> Dict[str, List[str]]:
-    """
-    Parses the BSI 2023 JSON data to create a map from Baustein ID to a list of its Anforderung IDs.
-    """
-    baustein_anforderungen_map = {}
-    catalog = bsi_data.get("catalog", {})
-    for group in catalog.get("groups", []):
-        for sub_group in group.get("groups", []):
-            baustein_id = sub_group.get("id")
-            if baustein_id:
-                group_id = group.get("id", "").upper()
-                baustein_id_upper = baustein_id.upper()
-                if (
-                    group_id in ALLOWED_MAIN_GROUPS
-                    or baustein_id_upper in ALLOWED_PROCESS_BAUSTEINE
-                ):
-                    anforderung_ids = []
-                    if "controls" in sub_group:
-                        for control in sub_group["controls"]:
-                            anforderung_ids.append(control["id"])
-                    baustein_anforderungen_map[baustein_id] = anforderung_ids
-    return baustein_anforderungen_map
-
 logger = logging.getLogger(__name__)
 
 def _ensure_string_title(title_value: Any) -> str:
@@ -79,116 +56,6 @@ def _ensure_string_title(title_value: Any) -> str:
     # Fallback for empty lists or other types.
     return ""
 
-
-
-def parse_zielobjekte_hierarchy(zielobjekte_data: List[Dict[str, str]]) -> Dict[str, Dict[str, str]]:
-    """
-    Parses Zielobjekte data to create a lookup map by UUID.
-
-    Args:
-        zielobjekte_data: A list of dictionaries, each representing a Zielobjekt.
-
-    Returns:
-        A dictionary mapping each Zielobjekt's UUID to its corresponding data row.
-    """
-    logger.debug("Parsing and normalizing Zielobjekte data into a UUID lookup map...")
-    zielobjekte_map = {}
-    for row in zielobjekte_data:
-        uuid = row.get("UUID")
-        if uuid:
-            # The CSV headers are positional: UUID, Definition, Zielobjekt, ChildOfUUID
-            # The data loader correctly uses these as keys.
-            zielobjekte_map[uuid] = {
-                "UUID": uuid,
-                "Definition": row.get("Definition", ""),
-                "Zielobjekt": row.get("Zielobjekt", ""),
-                "ChildOfUUID": row.get("ChildOfUUID", ""),
-            }
-
-    logger.debug(f"Successfully created a lookup map for {len(zielobjekte_map)} normalized Zielobjekte.")
-    return zielobjekte_map
-
-
-def parse_bsi_2023_controls(
-    bsi_2023_data: Dict[str, Any]
-) -> Tuple[List[Dict[str, Any]], List[Dict[str, Any]]]:
-    """
-    Parses the BSI 2023 JSON to extract a list of Bausteine with their controls.
-
-    This function iterates through the catalog, filters for allowed main groups,
-    and extracts "Bausteine" along with a reduced list of their controls.
-    Bausteine from non-allowed groups are collected separately.
-
-    Args:
-        bsi_2023_data: The loaded BSI 2023 JSON data.
-
-    Returns:
-        A tuple containing two lists:
-        - The first list has Bausteine to be processed.
-        - The second list has Bausteine that were filtered out.
-    """
-    logger.debug("Parsing BSI 2023 Bausteine and their controls...")
-    parsed_bausteine = []
-    filtered_out_bausteine = []
-
-    try:
-        main_groups = bsi_2023_data.get("catalog", {}).get("groups", [])
-        for main_group in main_groups:
-
-            def _parse_baustein_details(baustein: Dict[str, Any]) -> Dict[str, Any]:
-                # Find the 'usage' description for the Baustein
-                baustein_description = ""
-                for part in baustein.get("parts", []):
-                    if part.get("name") == "usage":
-                        baustein_description = part.get("prose", "")
-                        break
-
-                parsed_baustein = {
-                    "id": baustein.get("id"),
-                    "title": _ensure_string_title(baustein.get("title")),
-                    "description": baustein_description,
-                    "controls": [],
-                }
-                for control in baustein.get("controls", []):
-                    reduced_control = {
-                        "id": control.get("id"),
-                        "title": _ensure_string_title(control.get("title")),
-                        "prose": None,
-                    }
-                    for part in control.get("parts", []):
-                        if part.get("class") == "maturity-level-defined":
-                            for sub_part in part.get("parts", []):
-                                if sub_part.get("name") == "statement":
-                                    reduced_control["prose"] = sub_part.get("prose")
-                                    break
-                            break
-                    parsed_baustein["controls"].append(reduced_control)
-                return parsed_baustein
-
-            bausteine_in_group = main_group.get("groups", [])
-
-            for baustein in bausteine_in_group:
-                if baustein.get("class") == "baustein":
-                    baustein_id = baustein.get("id", "")
-                    baustein_main_group = baustein_id.split('.')[0].upper()
-
-                    # Decide which list to add the baustein to
-                    if (baustein_main_group in ALLOWED_MAIN_GROUPS or
-                            baustein_id.upper() in ALLOWED_PROCESS_BAUSTEINE):
-                        target_list = parsed_bausteine
-                    else:
-                        target_list = filtered_out_bausteine
-                    target_list.append(_parse_baustein_details(baustein))
-
-    except Exception as e:
-        logger.error(f"Failed to parse BSI 2023 Bausteine due to an error: {e}")
-        raise
-
-    logger.debug(f"Successfully parsed {len(parsed_bausteine)} Bausteine for processing.")
-    logger.info(
-        f"Filtered out {len(filtered_out_bausteine)} Bausteine for later use."
-    )
-    return parsed_bausteine, filtered_out_bausteine
 
 
 def _traverse_and_collect_controls(
@@ -213,7 +80,7 @@ def _traverse_and_collect_controls(
 
         for part in control.get("parts", []):
             for prop in part.get("props", []):
-                if prop.get("name") == "target_objects":
+                if prop.get("name") == "target_object_categories":
                     zielobjekte = [
                         zo.strip() for zo in prop.get("value", "").split(",")
                     ]
@@ -269,51 +136,6 @@ def parse_gpp_kompendium_controls(
     logger.debug(f"Successfully mapped {len(zielobjekt_to_controls_map)} Zielobjekte to controls.")
     logger.debug(f"Successfully parsed {len(gpp_control_titles)} G++ control titles.")
     return zielobjekt_to_controls_map, gpp_control_titles
-
-
-def extract_all_gpp_controls(gpp_kompendium_data: Dict[str, Any]) -> Dict[str, Dict[str, Any]]:
-    """
-    Recursively extracts all controls from the G++ Kompendium data into a flat dictionary.
-
-    Args:
-        gpp_kompendium_data: The loaded G++ Kompendium JSON data.
-
-    Returns:
-        A dictionary mapping Control IDs to their full Control objects.
-    """
-    logger.debug("Recursively extracting all G++ controls...")
-    all_controls = {}
-
-    def _traverse(controls_list: List[Dict[str, Any]]):
-        for control in controls_list:
-            control_id = control.get("id")
-            if control_id:
-                all_controls[control_id] = control
-
-            if "controls" in control and control["controls"]:
-                _traverse(control["controls"])
-
-    def _traverse_group(group_list: List[Dict[str, Any]]):
-        for group in group_list:
-            # Extract controls from the current group
-            if group.get("controls"):
-                _traverse(group["controls"])
-
-            # Recursively process subgroups
-            if group.get("groups"):
-                _traverse_group(group["groups"])
-
-    try:
-        # Start traversal from the top-level groups
-        groups = gpp_kompendium_data.get("catalog", {}).get("groups", [])
-        _traverse_group(groups)
-
-    except Exception as e:
-        logger.error(f"Failed to extract all G++ controls due to error: {e}")
-        raise
-
-    logger.debug(f"Successfully extracted {len(all_controls)} G++ controls.")
-    return all_controls
 
 
 def filter_markdown(control_ids: List[str], markdown_content: str) -> str:

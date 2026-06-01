@@ -306,15 +306,6 @@ Es ist die technische und fachliche Materialsammlung für wiederkehrende Hinterg
 
 Die vorhandenen Dateien lassen sich in mehrere Gruppen einordnen:
 
-##### Referenz- und Textgrundlagen
-
-- `bsi_2023_stripped.md`
-- `bsi_2023_stripped_ISMS.md`
-- `gpp_stripped.md`
-- `gpp_isms_stripped.md`
-
-Diese Dateien sind reduzierte bzw. arbeitsfreundlich aufbereitete Textfassungen, die sich für Parsing, Vergleich, Extraktion oder KI-gestützte Verarbeitung eignen.
-
 ##### Mapping- und Strukturdateien
 
 - `baustein_zielobjekt.json`

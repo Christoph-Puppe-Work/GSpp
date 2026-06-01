@@ -22,7 +22,7 @@ from constants import (
     BAUSTEIN_ZIELOBJEKT_JSON_PATH,
     BSI_2023_JSON_PATH,
     GPP_KOMPENDIUM_JSON_PATH,
-    ZIELOBJEKTE_CSV_PATH,
+    ZIELOBJEKTKATEGORIEN_CSV_PATH,
     SDT_PROFILES_REGULAR_DIR,
     SDT_PROFILES_PROCESS_DIR,
     ED23_PROFILES_DIR,
@@ -298,9 +298,9 @@ async def run_stage_ED23_profiles_enhanced():
         raise
 
     try:
-        zielobjekte_data = read_csv_file(ZIELOBJEKTE_CSV_PATH)
+        zielobjekte_data = read_csv_file(ZIELOBJEKTKATEGORIEN_CSV_PATH)
         if not zielobjekte_data:
-            raise FileNotFoundError(f"Zielobjekte data is empty or could not be loaded from {ZIELOBJEKTE_CSV_PATH}")
+            raise FileNotFoundError(f"Zielobjekte data is empty or could not be loaded from {ZIELOBJEKTKATEGORIEN_CSV_PATH}")
         zielobjekt_name_map = {row['UUID'].strip(): row['Zielobjektkategorie'].strip() for row in zielobjekte_data if 'UUID' in row and 'Zielobjektkategorie' in row}
     except (IOError, FileNotFoundError, TypeError, KeyError) as e:
         logger.critical(f"Failed to load or parse Zielobjekte CSV data: {e}", exc_info=True)
@@ -366,15 +366,19 @@ async def run_stage_ED23_profiles_enhanced():
 
             sanitized_name = sanitize_filename(zielobjekt_name)
 
+            display_name = sanitized_name
+            if is_process and display_name.endswith("_prozesse"):
+                display_name = display_name[:-9]
+
             if is_process:
-                input_path = os.path.join(SDT_PROFILES_PROCESS_DIR, f"{sanitized_name}_process_profile.json")
+                input_path = os.path.join(SDT_PROFILES_PROCESS_DIR, f"{display_name}_process_profile.json")
             else:
                 input_path = os.path.join(SDT_PROFILES_REGULAR_DIR, f"{sanitized_name}_profile.json")
 
             # ED23 profiles are per-Baustein, so the filename combines the
             # Zielobjektkategorie, the Baustein ID (kept readable, e.g. INF.8)
             # and the Baustein name.
-            output_filename = f"{sanitized_name}_{baustein_id}_{sanitize_filename(baustein_title)}.json"
+            output_filename = f"{display_name}_{baustein_id}_{sanitize_filename(baustein_title)}.json"
             output_path = os.path.join(ED23_PROFILES_DIR, output_filename)
 
             await generate_enhanced_profile(

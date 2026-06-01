@@ -1,0 +1,3761 @@
+{
+  "profile": {
+    "uuid": "875c0815-e836-4d23-9cc4-b03e4ffa95f9",
+    "metadata": {
+      "title": "PERF_prozesse PERF_prozesse - Enhanced (ED2023)",
+      "last-modified": "2026-05-31T20:19:56.785971+00:00",
+      "version": "0.0.1",
+      "oscal-version": "1.1.3"
+    },
+    "imports": [
+      {
+        "href": "https://raw.githubusercontent.com/BSI-Bund/Stand-der-Technik-Bibliothek/refs/heads/main/Anwenderkataloge/Grundschutz%2B%2B/Grundschutz%2B%2B-catalog.json",
+        "include-controls": [
+          {
+            "with-ids": [
+              "PERF.1.1.1",
+              "PERF.1.1.2",
+              "PERF.1.1.3",
+              "PERF.1.1.4",
+              "PERF.2.1",
+              "PERF.3.1.1",
+              "PERF.4.1.1",
+              "PERF.5.1.1",
+              "PERF.5.1.2",
+              "PERF.5.1.3",
+              "PERF.5.1.4",
+              "PERF.5.1.5",
+              "PERF.5.1.6",
+              "PERF.5.1.7",
+              "PERF.5.1.8"
+            ]
+          }
+        ]
+      }
+    ],
+    "modify": {
+      "alters": [
+        {
+          "control-id": "PERF.1.1.1",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "PERF.1.1.1_stm",
+              "parts": [
+                {
+                  "id": "PERF.1.1.1-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Risk Assessment",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    }
+                  ],
+                  "prose": "Informelles Monitoring der Bedrohungslage erfolgt sporadisch.",
+                  "parts": [
+                    {
+                      "id": "PERF.1.1.1-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Sichtung von Nachrichten und Newslettern ohne festen Rhythmus."
+                    },
+                    {
+                      "id": "PERF.1.1.1-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Stichprobenartige Abfrage aktueller Bedrohungen beim Admin. Shell: `grep 'threat' /var/log/syslog`."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERF.1.1.1-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Risk Assessment",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    }
+                  ],
+                  "prose": "Manuelle Prüfung der Gefährdungslage bei wesentlichen Änderungen.",
+                  "parts": [
+                    {
+                      "id": "PERF.1.1.1-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Gefährdungen werden bei Infrastrukturwechseln ad-hoc bewertet."
+                    },
+                    {
+                      "id": "PERF.1.1.1-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Einsicht in Protokolle der letzten Systemänderung. Shell: `ls -ltr /etc/security/threat_assessments/`."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERF.1.1.1-m3_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Risk Assessment",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m3"
+                    }
+                  ],
+                  "prose": "Monitoring-Evaluation SOLLTE die Gefährdungslage in Bezug auf geänderte Rahmenbedingungen überprüfen.",
+                  "parts": [
+                    {
+                      "id": "PERF.1.1.1-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Die Gefährdungslage muss systematisch gegen interne und externe Änderungen geprüft werden."
+                    },
+                    {
+                      "id": "PERF.1.1.1-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung der Dokumentation des Review-Prozesses. Shell: `cat /var/log/security/review_status.log`."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERF.1.1.1-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Risk Assessment",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    }
+                  ],
+                  "prose": "Systematisches Monitoring unter Einbeziehung von Threat Intelligence Feeds.",
+                  "parts": [
+                    {
+                      "id": "PERF.1.1.1-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Nutzung externer Datenquellen zur proaktiven Anpassung der Gefährdungslage."
+                    },
+                    {
+                      "id": "PERF.1.1.1-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Verifizierung der Feed-Integration. Shell: `curl -I https://threat-intel-api.internal/v1/status`."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERF.1.1.1-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Risk Assessment",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    }
+                  ],
+                  "prose": "Automatisierte Echtzeit-Bewertung der Gefährdungslage durch KI-gestützte Analysen.",
+                  "parts": [
+                    {
+                      "id": "PERF.1.1.1-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Integration von Threat-Scores direkt in die Risiko-Management-Plattform."
+                    },
+                    {
+                      "id": "PERF.1.1.1-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Abfrage des aktuellen Risiko-Scores über API. Shell: `curl -s https://risk-engine.internal/score | jq`."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "control-id": "PERF.1.1.2",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "PERF.1.1.2_stm",
+              "parts": [
+                {
+                  "id": "PERF.1.1.2-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    }
+                  ],
+                  "prose": "Sporadische Statusabfragen zum Umsetzungsplan.",
+                  "parts": [
+                    {
+                      "id": "PERF.1.1.2-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Keine feste Struktur bei der Verfolgung von Projektfortschritten."
+                    },
+                    {
+                      "id": "PERF.1.1.2-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung von E-Mail-Verläufen zu Projekten. Shell: `find ~/mail -name '*status*'`."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERF.1.1.2-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    }
+                  ],
+                  "prose": "Manuelle Fortschrittskontrolle mittels statischer Listen (z.B. Tabellen).",
+                  "parts": [
+                    {
+                      "id": "PERF.1.1.2-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Regelmäßiges Update einer Umsetzungsliste durch Projektleiter."
+                    },
+                    {
+                      "id": "PERF.1.1.2-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Abgleich der Liste mit tatsächlichen Systemzuständen. Shell: `ls -l /opt/security_tools/`."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERF.1.1.2-m3_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m3"
+                    }
+                  ],
+                  "prose": "Monitoring-Evaluation SOLLTE den Umsetzungsplan in Bezug auf den Fortschritt, die Einhaltung von Fristen und der inhaltlichen Korrektheit {{ insert: param, perf.1.1.2-prm1 }} überprüfen.",
+                  "parts": [
+                    {
+                      "id": "PERF.1.1.2-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Überprüfung erfolgt gemäß den definierten Parametern und Zeitplänen."
+                    },
+                    {
+                      "id": "PERF.1.1.2-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Sichtung der Berichte zur Planumsetzung. Shell: `cat /var/log/isms/implementation_plan.status`."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERF.1.1.2-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    }
+                  ],
+                  "prose": "Zentralisiertes Monitoring des Umsetzungsplans mit Dashboards.",
+                  "parts": [
+                    {
+                      "id": "PERF.1.1.2-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Echtzeit-Tracking von Meilensteinen in einem PM-Tool."
+                    },
+                    {
+                      "id": "PERF.1.1.2-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Überprüfung der Dashboard-Metriken. Shell: `curl -s https://pm-tool.internal/api/stats`."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERF.1.1.2-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    }
+                  ],
+                  "prose": "Vollautomatisierte Kopplung von Deployment-Pipelines mit dem Umsetzungsplan.",
+                  "parts": [
+                    {
+                      "id": "PERF.1.1.2-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung der Integration zwischen Git und ISMS. Shell: `git log --grep='closes security-item-'`."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "control-id": "PERF.1.1.3",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "PERF.1.1.3_stm",
+              "parts": [
+                {
+                  "id": "PERF.1.1.3-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Audit",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    }
+                  ],
+                  "prose": "Auditergebnisse werden ohne systematische Nachverfolgung abgelegt.",
+                  "parts": [
+                    {
+                      "id": "PERF.1.1.3-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Es findet keine strukturierte Kontrolle der Mängelbehebung statt."
+                    },
+                    {
+                      "id": "PERF.1.1.3-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Frage nach dem letzten Auditbericht und dessen Ablageort. Shell: `locate audit_report.pdf`."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERF.1.1.3-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Audit",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    }
+                  ],
+                  "prose": "Einmalige Nachprüfung der Auditmängel nach Abschluss der Maßnahmen.",
+                  "parts": [
+                    {
+                      "id": "PERF.1.1.3-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Manuelle Bestätigung durch den Bereichsverantwortlichen."
+                    },
+                    {
+                      "id": "PERF.1.1.3-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Sichtung der Bestätigungs-E-Mails. Shell: `grep 'Audit abgeschlossen' /var/mail/admin`."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERF.1.1.3-m3_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Audit",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m3"
+                    }
+                  ],
+                  "prose": "Monitoring-Evaluation SOLLTE die Umsetzung von festgelegten Maßnahmen aus Auditergebnissen überprüfen.",
+                  "parts": [
+                    {
+                      "id": "PERF.1.1.3-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Maßnahmen aus Audits müssen auf ihre tatsächliche Umsetzung hin evaluiert werden."
+                    },
+                    {
+                      "id": "PERF.1.1.3-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Audit-Log-Review der Maßnahmenumsetzung. Shell: `cat /var/log/audit/remediation_tasks.log`."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERF.1.1.3-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Audit",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    }
+                  ],
+                  "prose": "Quartalsweises Review der Audit-Remediation mit Stakeholder-Reporting.",
+                  "parts": [
+                    {
+                      "id": "PERF.1.1.3-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Proaktives Tracking offener Punkte über ein GRC-Tool."
+                    },
+                    {
+                      "id": "PERF.1.1.3-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung der GRC-Taskliste. Shell: `curl -X GET https://grc-api.internal/tasks?status=open`."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERF.1.1.3-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Audit",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    }
+                  ],
+                  "prose": "Automatisierte Validierung technischer Audit-Findings (Compliance-as-Code).",
+                  "parts": [
+                    {
+                      "id": "PERF.1.1.3-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Ausführung automatisierter Test-Suites zur Mängelprüfung. Shell: `pytest /opt/compliance_tests/`."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "control-id": "PERF.1.1.4",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "PERF.1.1.4_stm",
+              "parts": [
+                {
+                  "id": "PERF.1.1.4-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Improvement",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    }
+                  ],
+                  "prose": "Sicherheitsvorfälle werden dokumentiert, aber Korrekturmaßnahmen selten geprüft.",
+                  "parts": [
+                    {
+                      "id": "PERF.1.1.4-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Fokus liegt auf der Behebung des akuten Schadens."
+                    },
+                    {
+                      "id": "PERF.1.1.4-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Sichtung alter Tickets auf 'Lessons Learned'. Shell: `grep 'Incident' /var/log/tickets.log`."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERF.1.1.4-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Improvement",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    }
+                  ],
+                  "prose": "Manuelle Überprüfung der Wirksamkeit nach kritischen Vorfällen.",
+                  "parts": [
+                    {
+                      "id": "PERF.1.1.4-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Ad-hoc Review nach Abschluss der Incident-Response."
+                    },
+                    {
+                      "id": "PERF.1.1.4-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung von Post-Incident-Reports. Shell: `ls /doc/incidents/reports/`."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERF.1.1.4-m3_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Improvement",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m3"
+                    }
+                  ],
+                  "prose": "Monitoring-Evaluation SOLLTE umgesetzte Maßnahmen als Folge von Sicherheitsvorfällen überprüfen.",
+                  "parts": [
+                    {
+                      "id": "PERF.1.1.4-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Es muss sichergestellt werden, dass Maßnahmen aus Incidents nachhaltig wirken."
+                    },
+                    {
+                      "id": "PERF.1.1.4-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Review der Maßnahmenliste aus dem Incident-Log. Shell: `cat /var/log/security/incident_actions.log`."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERF.1.1.4-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Improvement",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    }
+                  ],
+                  "prose": "Systematische Erfolgskontrolle durch Simulationen und Penetrationstests.",
+                  "parts": [
+                    {
+                      "id": "PERF.1.1.4-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Gezielte Tests, ob ein Vorfall erneut eintreten könnte."
+                    },
+                    {
+                      "id": "PERF.1.1.4-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung der Testprotokolle. Shell: `nmap -sV --script vuln 192.168.1.0/24`."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERF.1.1.4-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Improvement",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    }
+                  ],
+                  "prose": "Integration automatisierter Regressionstests für jeden behobenen Sicherheitsvorfall.",
+                  "parts": [
+                    {
+                      "id": "PERF.1.1.4-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Validierung der CI/CD Security Gates. Shell: `check_pipeline --id incident-fix-verify`."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "control-id": "PERF.2.1",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "PERF.2.1_stm",
+              "parts": [
+                {
+                  "id": "PERF.2.1-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    }
+                  ],
+                  "prose": "Verpflichtungen werden nur bei Beschwerden oder rechtlichen Hinweisen geprüft.",
+                  "parts": [
+                    {
+                      "id": "PERF.2.1-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Kein proaktives Management rechtlicher oder vertraglicher Pflichten."
+                    },
+                    {
+                      "id": "PERF.2.1-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Suche nach Beschwerdeprotokollen. Shell: `find /records/compliance/ -name 'complaint_*'`."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERF.2.1-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    }
+                  ],
+                  "prose": "Jährliche manuelle Liste der Verpflichtungen wird abgeglichen.",
+                  "parts": [
+                    {
+                      "id": "PERF.2.1-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Sichtung von Verträgen und Gesetzen in festen Abständen."
+                    },
+                    {
+                      "id": "PERF.2.1-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung der Checkliste 'Gesetzeskonformität'. Shell: `ls -l /docs/compliance_check.xlsx`."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERF.2.1-m3_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m3"
+                    }
+                  ],
+                  "prose": "Monitoring-Evaluation SOLLTE die Einhaltung von Verpflichtungen {{ insert: param, perf.2.1-prm1 }} sowie anlassbezogen überprüfen.",
+                  "parts": [
+                    {
+                      "id": "PERF.2.1-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Überwachung muss gemäß Zeitplan und bei relevanten Ereignissen erfolgen."
+                    },
+                    {
+                      "id": "PERF.2.1-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Review der Compliance-Reports. Shell: `cat /var/log/compliance/obligation_status.log`."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERF.2.1-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    }
+                  ],
+                  "prose": "Kontinuierliches Monitoring über ein Compliance-Management-System (CMS).",
+                  "parts": [
+                    {
+                      "id": "PERF.2.1-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Zentrale Erfassung und Überwachung aller Fristen und Pflichten."
+                    },
+                    {
+                      "id": "PERF.2.1-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "API-Abfrage des Compliance-Status. Shell: `curl -s https://cms.internal/status`."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERF.2.1-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    }
+                  ],
+                  "prose": "Echtzeit-Compliance-Dashboard mit automatisierter Alerting-Funktion.",
+                  "parts": [
+                    {
+                      "id": "PERF.2.1-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Verifizierung der Alarmierung bei Verstößen. Shell: `check_alerts --source compliance_monitor`."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "control-id": "PERF.3.1.1",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "PERF.3.1.1_stm",
+              "parts": [
+                {
+                  "id": "PERF.3.1.1-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Audit",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    }
+                  ],
+                  "prose": "Audits finden informell ohne detaillierten Plan statt.",
+                  "parts": [
+                    {
+                      "id": "PERF.3.1.1-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Ziele und Termine werden kurzfristig abgestimmt."
+                    },
+                    {
+                      "id": "PERF.3.1.1-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Einsicht in Terminkalender der Auditoren. Shell: `grep 'Audit' ~/calendar.ics`."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERF.3.1.1-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Audit",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    }
+                  ],
+                  "prose": "Grobplanung der Audits mit einer einfachen Checkliste.",
+                  "parts": [
+                    {
+                      "id": "PERF.3.1.1-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Basis-Zeitplan für den Audit-Zeitraum ist vorhanden."
+                    },
+                    {
+                      "id": "PERF.3.1.1-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung des Audit-Kalenders. Shell: `ls /audit/plans/2026/`."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERF.3.1.1-m3_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Audit",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m3"
+                    }
+                  ],
+                  "prose": "Monitoring-Evaluation SOLLTE für jedes durchzuführende Audit einen Auditplan festlegen.",
+                  "parts": [
+                    {
+                      "id": "PERF.3.1.1-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Jedes Audit erfordert eine formale Planung von Umfang, Zielen und Ressourcen."
+                    },
+                    {
+                      "id": "PERF.3.1.1-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Validierung der Existenz eines Plans pro Audit. Shell: `cat /var/log/audit/plans/audit_2026_01.json`."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERF.3.1.1-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Audit",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    }
+                  ],
+                  "prose": "Risikobasierte Auditplanung über den gesamten ISMS-Zyklus.",
+                  "parts": [
+                    {
+                      "id": "PERF.3.1.1-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Pläne berücksichtigen vorherige Ergebnisse und aktuelle Risiken."
+                    },
+                    {
+                      "id": "PERF.3.1.1-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Abgleich Risikoanalyse vs. Auditplan. Shell: `diff risk_map.json audit_plan.json`."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERF.3.1.1-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Audit",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    }
+                  ],
+                  "prose": "Dynamische, datengestützte Auditplanung basierend auf Echtzeit-KPIs.",
+                  "parts": [
+                    {
+                      "id": "PERF.3.1.1-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung der Planungs-Algorithmen. Shell: `python3 /opt/audit/generate_dynamic_plan.py`."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "control-id": "PERF.4.1.1",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "PERF.4.1.1_stm",
+              "parts": [
+                {
+                  "id": "PERF.4.1.1-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Audit",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    }
+                  ],
+                  "prose": "Bewertungen von Audit-Feststellungen erfolgen rein subjektiv.",
+                  "parts": [
+                    {
+                      "id": "PERF.4.1.1-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Keine festen Kriterien für Schweregrade vorhanden."
+                    },
+                    {
+                      "id": "PERF.4.1.1-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Vergleich verschiedener Auditberichte auf Konsistenz. Shell: `grep 'Schweregrad' audit_*.txt`."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERF.4.1.1-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Audit",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    }
+                  ],
+                  "prose": "Einfaches Bewertungsschema (z.B. Ampel-System) wird genutzt.",
+                  "parts": [
+                    {
+                      "id": "PERF.4.1.1-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Grobe Einteilung in Kritisch, Hoch, Mittel, Niedrig."
+                    },
+                    {
+                      "id": "PERF.4.1.1-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Einsicht in die Definition des Farbschemas. Shell: `cat /docs/audit/rating_key.txt`."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERF.4.1.1-m3_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Audit",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m3"
+                    }
+                  ],
+                  "prose": "Monitoring-Evaluation SOLLTE für Feststellungen in Audits ein einheitliches Bewertungsschema festlegen.",
+                  "parts": [
+                    {
+                      "id": "PERF.4.1.1-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Die Vergleichbarkeit der Auditergebnisse muss durch ein festes Schema gesichert werden."
+                    },
+                    {
+                      "id": "PERF.4.1.1-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung der Einhaltung des Schemas in Berichten. Shell: `cat /var/log/audit/findings_schema.v1`."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERF.4.1.1-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Audit",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    }
+                  ],
+                  "prose": "Detailliertes Schema mit Scoring-System (z.B. angelehnt an CVSS).",
+                  "parts": [
+                    {
+                      "id": "PERF.4.1.1-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Quantitative Bewertung zur besseren Priorisierung."
+                    },
+                    {
+                      "id": "PERF.4.1.1-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Berechnung einiger Scores manuell prüfen. Shell: `cvss-calc --vector AV:N/AC:L/...`."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERF.4.1.1-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Audit",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    }
+                  ],
+                  "prose": "Automatisierte Risikoeinstufung durch Korrelation mit Asset-Daten.",
+                  "parts": [
+                    {
+                      "id": "PERF.4.1.1-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung der Scoring-Engine. Shell: `curl -X POST https://risk-calc.internal/evaluate`."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "control-id": "PERF.5.1.1",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "PERF.5.1.1_stm",
+              "parts": [
+                {
+                  "id": "PERF.5.1.1-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Audit",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    }
+                  ],
+                  "prose": "Folgemaßnahmen werden mündlich im Management besprochen.",
+                  "parts": [
+                    {
+                      "id": "PERF.5.1.1-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Keine schriftliche Fixierung der Ergebnisse."
+                    },
+                    {
+                      "id": "PERF.5.1.1-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Befragung des Managements zum Status. Shell: `history | grep 'mgmt-meeting'`."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERF.5.1.1-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Audit",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    }
+                  ],
+                  "prose": "Zusammenfassung der Maßnahmen in Protokollen oder E-Mails.",
+                  "parts": [
+                    {
+                      "id": "PERF.5.1.1-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Ergebnisse sind nachvollziehbar, aber unstrukturiert."
+                    },
+                    {
+                      "id": "PERF.5.1.1-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Sichtung der Meeting-Minutes. Shell: `ls /office/meetings/2026/`."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERF.5.1.1-m3_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Audit",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m3"
+                    }
+                  ],
+                  "prose": "Monitoring-Evaluation SOLLTE die Ergebnisse dieser Überprüfungen in einem Managementbericht, der den Status von Folgemaßnahmen vorangegangener Managementbewertungen enthält, dokumentieren.",
+                  "parts": [
+                    {
+                      "id": "PERF.5.1.1-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Folgemaßnahmen müssen explizit im Managementbericht aufgeführt sein."
+                    },
+                    {
+                      "id": "PERF.5.1.1-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung des Abschnitts 'Folgemaßnahmen' im Bericht. Shell: `grep 'Folgemaßnahme' mgmt_report_2026.pdf`."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERF.5.1.1-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Audit",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    }
+                  ],
+                  "prose": "Managementbericht mit Trendanalyse zum Status der Folgemaßnahmen.",
+                  "parts": [
+                    {
+                      "id": "PERF.5.1.1-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Visualisierung des Fortschritts über mehrere Berichtsperioden."
+                    },
+                    {
+                      "id": "PERF.5.1.1-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung der Diagramme im Bericht. Shell: `python3 /opt/report_gen/plot_trends.py`."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERF.5.1.1-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Audit",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    }
+                  ],
+                  "prose": "Live-Management-Portal mit Echtzeit-Tracking der Folgemaßnahmen.",
+                  "parts": [
+                    {
+                      "id": "PERF.5.1.1-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Test der Portal-Funktionalität. Shell: `curl -s https://mgmt-portal.internal/actions/summary`."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "control-id": "PERF.5.1.2",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "PERF.5.1.2_stm",
+              "parts": [
+                {
+                  "id": "PERF.5.1.2-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Audit",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    }
+                  ],
+                  "prose": "Rahmenbedingungen werden nur bei massiven Krisen berichtet.",
+                  "parts": [
+                    {
+                      "id": "PERF.5.1.2-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Kontextänderungen fließen kaum in die Berichterstattung ein."
+                    },
+                    {
+                      "id": "PERF.5.1.2-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Suche nach 'Änderung' in alten Berichten. Shell: `grep 'Rahmenbedingung' /var/log/reports`."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERF.5.1.2-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Audit",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    }
+                  ],
+                  "prose": "Kurze Erwähnung bekannter externer Einflüsse im Bericht.",
+                  "parts": [
+                    {
+                      "id": "PERF.5.1.2-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Wichtige Änderungen werden als Textblock eingefügt."
+                    },
+                    {
+                      "id": "PERF.5.1.2-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Sichtung des Berichtsabschnitts 'Umfeld'. Shell: `cat /docs/mgmt_summary.txt`."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERF.5.1.2-m3_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Audit",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m3"
+                    }
+                  ],
+                  "prose": "Monitoring-Evaluation SOLLTE die Ergebnisse dieser Überprüfungen in einem Managementbericht, der geänderte Rahmenbedingungen mit Auswirkungen auf das Informationssicherheitsmanagement berücksichtigt, dokumentieren.",
+                  "parts": [
+                    {
+                      "id": "PERF.5.1.2-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Änderungen des Kontexts müssen analysiert und dokumentiert werden."
+                    },
+                    {
+                      "id": "PERF.5.1.2-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung auf Vollständigkeit der Kontextanalyse. Shell: `grep 'impact' mgmt_review_2026.json`."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERF.5.1.2-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Audit",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    }
+                  ],
+                  "prose": "Strukturierte Horizon-Scanning Analyse ist fester Bestandteil des Berichts.",
+                  "parts": [
+                    {
+                      "id": "PERF.5.1.2-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Proaktive Bewertung kommender regulatorischer Änderungen."
+                    },
+                    {
+                      "id": "PERF.5.1.2-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung der PESTEL-Analyse im Bericht. Shell: `ls /docs/analysis/horizon_scan/`."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERF.5.1.2-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Audit",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    }
+                  ],
+                  "prose": "KI-gestützte Vorhersage von Auswirkungen geänderter Rahmenbedingungen.",
+                  "parts": [
+                    {
+                      "id": "PERF.5.1.2-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Validierung der Vorhersagemodelle. Shell: `predict_impact --model regulatory_v2`."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "control-id": "PERF.5.1.3",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "PERF.5.1.3_stm",
+              "parts": [
+                {
+                  "id": "PERF.5.1.3-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Audit",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    }
+                  ],
+                  "prose": "Erfolge werden berichtet, Probleme oft verschwiegen oder informell geklärt.",
+                  "parts": [
+                    {
+                      "id": "PERF.5.1.3-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Kein ehrliches Bild über den Prozessstatus."
+                    },
+                    {
+                      "id": "PERF.5.1.3-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Abgleich Incident-Log vs. Managementbericht. Shell: `diff incident.log mgmt_report.txt`."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERF.5.1.3-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Audit",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    }
+                  ],
+                  "prose": "Listung bekannter Sicherheitsvorfälle im Anhang des Berichts.",
+                  "parts": [
+                    {
+                      "id": "PERF.5.1.3-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Einfache Aufzählung ohne tiefe Analyse der Ursachen."
+                    },
+                    {
+                      "id": "PERF.5.1.3-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung der Incident-Liste im Bericht. Shell: `grep -c 'Vorfall' report_2026.pdf`."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERF.5.1.3-m3_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Audit",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m3"
+                    }
+                  ],
+                  "prose": "Monitoring-Evaluation SOLLTE die Ergebnisse dieser Überprüfungen in einem Managementbericht, der bisherige Erfolge und Probleme (z. B. Sicherheitsvorfälle) beim Informationssicherheitsprozess berücksichtigt, dokumentieren.",
+                  "parts": [
+                    {
+                      "id": "PERF.5.1.3-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Erfolge und Probleme müssen ausgewogen dargestellt werden."
+                    },
+                    {
+                      "id": "PERF.5.1.3-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Review der KPI-Sektion im Managementbericht. Shell: `cat /var/log/isms/perf_report.status`."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERF.5.1.3-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Audit",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    }
+                  ],
+                  "prose": "Einsatz standardisierter Metriken für Erfolgsraten und Incident-Trends.",
+                  "parts": [
+                    {
+                      "id": "PERF.5.1.3-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "KPI-basierte Berichterstattung zur Effektivität."
+                    },
+                    {
+                      "id": "PERF.5.1.3-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Validierung der Metrik-Berechnung. Shell: `check_kpi --metric mttr`."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERF.5.1.3-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Audit",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    }
+                  ],
+                  "prose": "Vollautomatisiertes Dashboard-Extrakt für den Managementbericht.",
+                  "parts": [
+                    {
+                      "id": "PERF.5.1.3-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Export-Funktion des SIEM prüfen. Shell: `siem_cli export --report management_summary`."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "control-id": "PERF.5.1.4",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "PERF.5.1.4_stm",
+              "parts": [
+                {
+                  "id": "PERF.5.1.4-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Audit",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    }
+                  ],
+                  "prose": "Interne Überprüfungen werden sporadisch durchgeführt und Ergebnisse nur lückenhaft erfasst.",
+                  "parts": [
+                    {
+                      "id": "PERF.5.1.4-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Ergebnisse einzelner Audits sollten formlos festgehalten werden."
+                    },
+                    {
+                      "id": "PERF.5.1.4-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung vorhandener E-Mails oder Notizen zu vergangenen Audits. CLI: ls -l /var/log/audit_notes"
+                    }
+                  ]
+                },
+                {
+                  "id": "PERF.5.1.4-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Audit",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    }
+                  ],
+                  "prose": "Interne Überprüfungen folgen einem einfachen Zeitplan, Ergebnisse werden manuell gelistet.",
+                  "parts": [
+                    {
+                      "id": "PERF.5.1.4-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Erstellen Sie eine einfache Liste aller durchgeführten Überprüfungen."
+                    },
+                    {
+                      "id": "PERF.5.1.4-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Einsicht in die Audit-Liste des laufenden Jahres. Script: check_audit_files.sh"
+                    }
+                  ]
+                },
+                {
+                  "id": "PERF.5.1.4-m3_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Audit",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m3"
+                    }
+                  ],
+                  "prose": "Monitoring-Evaluation SOLLTE die Ergebnisse dieser Überprüfungen in einem Managementbericht, der Ergebnisse interner Überprüfungen und Audits enthält, dokumentieren.",
+                  "parts": [
+                    {
+                      "id": "PERF.5.1.4-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Der Bericht muss alle wesentlichen Feststellungen interner Audits zusammenfassen."
+                    },
+                    {
+                      "id": "PERF.5.1.4-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Stichprobenartige Prüfung des aktuellen Managementberichts auf Audit-Ergebnisse."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERF.5.1.4-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Audit",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    }
+                  ],
+                  "prose": "Auditergebnisse werden automatisiert in einem zentralen Governance-Tool zusammengeführt.",
+                  "parts": [
+                    {
+                      "id": "PERF.5.1.4-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Nutzen Sie automatisierte Workflows zur Konsolidierung von Audit-Daten."
+                    },
+                    {
+                      "id": "PERF.5.1.4-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Validierung der automatisierten Datenübergabe. CLI: curl -X GET https://g-api/audits"
+                    }
+                  ]
+                },
+                {
+                  "id": "PERF.5.1.4-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Audit",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    }
+                  ],
+                  "prose": "Echtzeit-Audit-Reporting mit prädiktiver Analyse von Compliance-Abweichungen.",
+                  "parts": [
+                    {
+                      "id": "PERF.5.1.4-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Integrieren Sie kontinuierliche Überwachungstools für ein lebendes Reporting."
+                    },
+                    {
+                      "id": "PERF.5.1.4-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Demo des Dashboards mit Echtzeit-Compliance-Status. Script: verify_realtime_sync.py"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "control-id": "PERF.5.1.5",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "PERF.5.1.5_stm",
+              "parts": [
+                {
+                  "id": "PERF.5.1.5-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Improvement",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    }
+                  ],
+                  "prose": "Maßnahmen werden nur nach Vorfällen oberflächlich auf ihre Eignung geprüft.",
+                  "parts": [
+                    {
+                      "id": "PERF.5.1.5-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Dokumentieren Sie Ursachenanalysen nach Sicherheitsvorfällen."
+                    },
+                    {
+                      "id": "PERF.5.1.5-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung von Incident-Reports auf Empfehlungen. CLI: grep -i 'root cause' incident.log"
+                    }
+                  ]
+                },
+                {
+                  "id": "PERF.5.1.5-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Improvement",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    }
+                  ],
+                  "prose": "Jährliche manuelle Bewertung der Wirksamkeit wesentlicher Sicherheitsmaßnahmen.",
+                  "parts": [
+                    {
+                      "id": "PERF.5.1.5-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Listen Sie Maßnahmen auf und bewerten Sie diese mit 'geeignet' oder 'unbenügend'."
+                    },
+                    {
+                      "id": "PERF.5.1.5-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Einsicht in die Wirksamkeitsmatrix der Maßnahmen. Check: Excel/CSV Import."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERF.5.1.5-m3_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Improvement",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m3"
+                    }
+                  ],
+                  "prose": "Monitoring-Evaluation SOLLTE die Ergebnisse dieser Überprüfungen in einem Managementbericht, der eine Bewertung enthält, ob sich die Sicherheitsmaßnahmen zur Erreichung der Sicherheitsziele als geeignet erwiesen haben oder ob Maßnahmen geändert oder ergänzt werden müssen, dokumentieren.",
+                  "parts": [
+                    {
+                      "id": "PERF.5.1.5-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Der Bericht muss eine explizite Bewertung der Eignung jeder Maßnahme enthalten."
+                    },
+                    {
+                      "id": "PERF.5.1.5-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Abgleich der Maßnahmenziele mit den im Bericht dokumentierten Ergebnissen."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERF.5.1.5-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Improvement",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    }
+                  ],
+                  "prose": "Kennzahlenbasierte Bewertung der Maßnahmenwirksamkeit mit Trendanalysen.",
+                  "parts": [
+                    {
+                      "id": "PERF.5.1.5-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Definieren Sie Key Performance Indicators (KPIs) für jede Sicherheitsmaßnahme."
+                    },
+                    {
+                      "id": "PERF.5.1.5-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung der KPI-Datenquelle. CLI: sql_query 'SELECT effectivity FROM security_kpis'"
+                    }
+                  ]
+                },
+                {
+                  "id": "PERF.5.1.5-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Improvement",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    }
+                  ],
+                  "prose": "KI-gestützte Simulation und Validierung der Wirksamkeit des gesamten Kontrollsets.",
+                  "parts": [
+                    {
+                      "id": "PERF.5.1.5-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Setzen Sie Automated Security Control Assessment (ASCA) Tools ein."
+                    },
+                    {
+                      "id": "PERF.5.1.5-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Auswertung automatisierter Breach-and-Attack Simulation Reports."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "control-id": "PERF.5.1.6",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "PERF.5.1.6_stm",
+              "parts": [
+                {
+                  "id": "PERF.5.1.6-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    }
+                  ],
+                  "prose": "Stakeholder-Feedback wird informell und unregelmäßig aufgenommen.",
+                  "parts": [
+                    {
+                      "id": "PERF.5.1.6-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Sammeln Sie sicherheitsrelevante Rückmeldungen in einem zentralen Postfach."
+                    },
+                    {
+                      "id": "PERF.5.1.6-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung des E-Mail-Eingangs auf Stakeholder-Anfragen."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERF.5.1.6-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    }
+                  ],
+                  "prose": "Strukturierte Umfragen unter Mitarbeitern zu Sicherheitsaspekten finden statt.",
+                  "parts": [
+                    {
+                      "id": "PERF.5.1.6-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Führen Sie mindestens einmal jährlich eine Mitarbeiterumfrage durch."
+                    },
+                    {
+                      "id": "PERF.5.1.6-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Einsicht in die Auswertung der letzten Mitarbeiterbefragung."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERF.5.1.6-m3_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m3"
+                    }
+                  ],
+                  "prose": "Monitoring-Evaluation SOLLTE die Ergebnisse dieser Überprüfungen in einem Managementbericht, der Rückmeldungen von Kunden, Geschäftspartnern, Mitarbeitern oder der Öffentlichkeit zu Sicherheitsaspekten  bei der Bewertung berücksichtigt, dokumentieren.",
+                  "parts": [
+                    {
+                      "id": "PERF.5.1.6-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Integrieren Sie externe und interne Stimmen explizit in die Managementbewertung."
+                    },
+                    {
+                      "id": "PERF.5.1.6-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung des Abschnitts 'Stakeholder-Feedback' im Managementbericht."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERF.5.1.6-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    }
+                  ],
+                  "prose": "Systematisches Beschwerdemanagement für Sicherheitsaspekte mit SLA-Tracking.",
+                  "parts": [
+                    {
+                      "id": "PERF.5.1.6-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Etablieren Sie ein Ticketsystem für Rückmeldungen von Geschäftspartnern."
+                    },
+                    {
+                      "id": "PERF.5.1.6-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Abfrage der Ticket-Statistik. CLI: ticket-tool --status open --tag security"
+                    }
+                  ]
+                },
+                {
+                  "id": "PERF.5.1.6-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    }
+                  ],
+                  "prose": "Echtzeit-Sentiment-Analyse und Feedback-Integration in die Risikostrategie.",
+                  "parts": [
+                    {
+                      "id": "PERF.5.1.6-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Automatisieren Sie die Kategorisierung von Feedback mittels NLP."
+                    },
+                    {
+                      "id": "PERF.5.1.6-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung der Schnittstelle zwischen Feedback-Tool und Risikomanagement-System."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "control-id": "PERF.5.1.7",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "PERF.5.1.7_stm",
+              "parts": [
+                {
+                  "id": "PERF.5.1.7-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    }
+                  ],
+                  "prose": "Der Status der Maßnahmenumsetzung wird nur grob geschätzt.",
+                  "parts": [
+                    {
+                      "id": "PERF.5.1.7-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Halten Sie den Umsetzungsstand wichtiger Projekte fest."
+                    },
+                    {
+                      "id": "PERF.5.1.7-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Sichtprüfung von Projektfortschrittsbalken oder Meilensteinen."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERF.5.1.7-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    }
+                  ],
+                  "prose": "Regelmäßige manuelle Abfrage des Status offener Sicherheitsmaßnahmen.",
+                  "parts": [
+                    {
+                      "id": "PERF.5.1.7-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Erstellen Sie quartalsweise eine Statusliste des Realisierungsplans."
+                    },
+                    {
+                      "id": "PERF.5.1.7-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung der Liste 'Offene Punkte'. CLI: ls docs/implementation_status_*.pdf"
+                    }
+                  ]
+                },
+                {
+                  "id": "PERF.5.1.7-m3_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m3"
+                    }
+                  ],
+                  "prose": "Monitoring-Evaluation SOLLTE die Ergebnisse dieser Überprüfungen in einem Managementbericht, der Berichte über die Reduzierung bestehender Umsetzungsdefizite und der damit verbundenen Risiken (Status des Realisierungsplans) dokumentieren.",
+                  "parts": [
+                    {
+                      "id": "PERF.5.1.7-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Der Bericht muss den Fortschritt der Risikominimierung klar aufzeigen."
+                    },
+                    {
+                      "id": "PERF.5.1.7-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Vergleich des aktuellen Status mit dem ursprünglichen Realisierungsplan."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERF.5.1.7-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    }
+                  ],
+                  "prose": "Automatisierter Abgleich des Umsetzungsstatus mit dem Risikoregister.",
+                  "parts": [
+                    {
+                      "id": "PERF.5.1.7-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Nutzen Sie Projektmanagement-Software mit API-Anbindung zum ISMS."
+                    },
+                    {
+                      "id": "PERF.5.1.7-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Automatischer Check: script verify_sync_status.sh"
+                    }
+                  ]
+                },
+                {
+                  "id": "PERF.5.1.7-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    }
+                  ],
+                  "prose": "Vollautomatisches Tracking der Restrisiken basierend auf technischem Rollout.",
+                  "parts": [
+                    {
+                      "id": "PERF.5.1.7-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Verknüpfen Sie Configuration Management (IaC) direkt mit dem Realisierungsplan."
+                    },
+                    {
+                      "id": "PERF.5.1.7-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung der Pipeline-Integration. CLI: git log --grep='closes risk-id'"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "control-id": "PERF.5.1.8",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "PERF.5.1.8_stm",
+              "parts": [
+                {
+                  "id": "PERF.5.1.8-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Improvement",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    }
+                  ],
+                  "prose": "Verbesserungen werden ad-hoc nach kritischen Fehlern umgesetzt.",
+                  "parts": [
+                    {
+                      "id": "PERF.5.1.8-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Dokumentieren Sie einzelne Korrekturmaßnahmen nach Vorfällen."
+                    },
+                    {
+                      "id": "PERF.5.1.8-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Einsicht in Korrekturmaßnahmenprotokolle. CLI: tail -n 20 improvement_log.txt"
+                    }
+                  ]
+                },
+                {
+                  "id": "PERF.5.1.8-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Improvement",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    }
+                  ],
+                  "prose": "Es existiert eine Liste potenzieller Verbesserungen für das ISMS.",
+                  "parts": [
+                    {
+                      "id": "PERF.5.1.8-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Sammeln Sie Optimierungsvorschläge aus allen Fachbereichen."
+                    },
+                    {
+                      "id": "PERF.5.1.8-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung des Backlogs für ISMS-Optimierungen."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERF.5.1.8-m3_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Improvement",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m3"
+                    }
+                  ],
+                  "prose": "Monitoring-Evaluation SOLLTE die Ergebnisse dieser Überprüfungen in einem Managementbericht, der die Ergebnisse der Bewertung in Form von Verbesserungen in das ISMS einfließen lässt, dokumentieren.",
+                  "parts": [
+                    {
+                      "id": "PERF.5.1.8-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Überführen Sie die Bewertungsergebnisse in konkrete ISMS-Änderungen."
+                    },
+                    {
+                      "id": "PERF.5.1.8-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung, ob Feststellungen aus Berichten in neue Aufgaben gewandelt wurden."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERF.5.1.8-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Improvement",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    }
+                  ],
+                  "prose": "Workflow-gesteuerter kontinuierlicher Verbesserungsprozess (KVP).",
+                  "parts": [
+                    {
+                      "id": "PERF.5.1.8-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Automatisieren Sie die Zuweisung und Überwachung von Verbesserungsmaßnahmen."
+                    },
+                    {
+                      "id": "PERF.5.1.8-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Statusprüfung im Workflow-Tool. CLI: workflowctl list --type improvement"
+                    }
+                  ]
+                },
+                {
+                  "id": "PERF.5.1.8-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Improvement",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    }
+                  ],
+                  "prose": "Selbstoptimierendes ISMS durch Feedback-Loops und automatische Anpassung.",
+                  "parts": [
+                    {
+                      "id": "PERF.5.1.8-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Implementieren Sie Mechanismen zur automatischen Richtlinienanpassung (Policy-as-Code)."
+                    },
+                    {
+                      "id": "PERF.5.1.8-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung automatisierter Pull-Requests für ISMS-Dokumentation. CLI: git status"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

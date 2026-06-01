@@ -36,7 +36,7 @@ if [[ " $@ " =~ " --clear-all " ]]; then
         "../hilfsdateien"
         "../Zielobjektkategorien/profile/regular"
         "../Zielobjektkategorien/profile/process"
-        "../ED23-Baustein-profile"
+        "../ED23-Baustein-profile/DE"
     )
 
     for dir in "${DIRS_TO_CLEAR[@]}"; do
@@ -93,6 +93,7 @@ for arg in "$@"; do
     if [ "$arg" != "--clear-all" ]; then
         PYTHON_ARGS+=("$arg")
     fi
+    exit
 done
 python3 src/main.py "${PYTHON_ARGS[@]}"
 

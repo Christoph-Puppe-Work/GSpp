@@ -130,26 +130,33 @@ def extract_all_gpp_controls(catalog: dict) -> dict:
     """Recursively extracts all controls from a G++ catalog for quick lookup."""
     controls = {}
 
+    def traverse_controls(control_list):
+        for control in control_list:
+            control_id = control.get("id")
+            if control_id:
+                stmt_part_id = _find_statement_part_id(control)
+                # Prefer the statement part's prose for the Level 3 baseline; fall
+                # back to the first part's prose for controls without a statement part.
+                prose = ""
+                if control.get("parts"):
+                    prose = control["parts"][0].get("prose", "")
+                    for part in control["parts"]:
+                        if part.get("id") == stmt_part_id:
+                            prose = part.get("prose", prose)
+                            break
+                controls[control_id] = {
+                    "title": control.get("title", ""),
+                    "prose": prose,
+                    "statement_part_id": stmt_part_id,
+                }
+            # Controls can nest sub-controls (e.g. TEST.2.2.1 under TEST.2.2); these
+            # are referenced directly in profiles, so they must be in the lookup too.
+            if control.get("controls"):
+                traverse_controls(control["controls"])
+
     def traverse_groups(groups):
         for group in groups:
-            for control in group.get("controls", []):
-                control_id = control.get("id")
-                if control_id:
-                    stmt_part_id = _find_statement_part_id(control)
-                    # Prefer the statement part's prose for the Level 3 baseline; fall
-                    # back to the first part's prose for controls without a statement part.
-                    prose = ""
-                    if control.get("parts"):
-                        prose = control["parts"][0].get("prose", "")
-                        for part in control["parts"]:
-                            if part.get("id") == stmt_part_id:
-                                prose = part.get("prose", prose)
-                                break
-                    controls[control_id] = {
-                        "title": control.get("title", ""),
-                        "prose": prose,
-                        "statement_part_id": stmt_part_id,
-                    }
+            traverse_controls(group.get("controls", []))
             if "groups" in group:
                 traverse_groups(group["groups"])
 

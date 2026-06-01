@@ -16,7 +16,7 @@ from constants import (
     ZIELOBJEKT_CONTROLS_JSON_PATH,
     SDT_PROFILES_REGULAR_DIR,
     SDT_PROFILES_PROCESS_DIR,
-    ZIELOBJEKTE_CSV_PATH,
+    ZIELOBJEKTKATEGORIEN_CSV_PATH,
     OSCAL_VERSION
 )
 from utils.file_utils import create_dir_if_not_exists, read_json_file, write_json_file, read_csv_file
@@ -78,9 +78,9 @@ def run_stage_profiles():
         logger.error(f"Could not load Zielobjekt controls from {ZIELOBJEKT_CONTROLS_JSON_PATH}")
         return
 
-    zielobjekte_data = read_csv_file(ZIELOBJEKTE_CSV_PATH)
+    zielobjekte_data = read_csv_file(ZIELOBJEKTKATEGORIEN_CSV_PATH)
     if not zielobjekte_data:
-        logger.error(f"Could not load Zielobjekte from {ZIELOBJEKTE_CSV_PATH}")
+        logger.error(f"Could not load Zielobjekte from {ZIELOBJEKTKATEGORIEN_CSV_PATH}")
         return
 
     zielobjekt_name_map = {row['UUID']: row['Zielobjektkategorie'] for row in zielobjekte_data if 'UUID' in row and 'Zielobjektkategorie' in row}
@@ -105,7 +105,10 @@ def run_stage_profiles():
         sanitized_name = sanitize_filename(zielobjekt_name)
 
         if is_process:
-            output_filename = f"{sanitized_name}_process_profile.json"
+            display_name = sanitized_name
+            if display_name.endswith("_prozesse"):
+                display_name = display_name[:-9]
+            output_filename = f"{display_name}_process_profile.json"
             output_path = os.path.join(SDT_PROFILES_PROCESS_DIR, output_filename)
         else:
             output_filename = f"{sanitized_name}_profile.json"

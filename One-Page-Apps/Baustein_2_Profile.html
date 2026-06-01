@@ -750,14 +750,15 @@ const DEFAULTS = {
 /* ════════════════════════════════════════════════════════════════════════
    Data sources — all via raw.githubusercontent.com (no GitHub-API rate limit).
    The G++ Anwenderkatalog is the single prose source for BOTH paths:
-   Zielobjekt-Pools (zielobjekt_controls.json, keyed by category-UUID) and
-   the ISMS/Prozess-Pool (all controls listed in gpp_isms_stripped.md).
+   • ZIELOBJEKT: zielobjekt_controls.json maps category-UUID → control-ids
+     (deterministic, includes parent-hierarchy inheritance from stage_gpp).
+   • PROZESS: derived in RAM from the catalog itself — controls that carry NO
+     `target_object_categories` prop govern processes/ISMS (see determinePool).
    ════════════════════════════════════════════════════════════════════════ */
 
 const GPP_CATALOG_URL = "https://raw.githubusercontent.com/BSI-Bund/Stand-der-Technik-Bibliothek/refs/heads/main/Anwenderkataloge/Grundschutz%2B%2B/Grundschutz%2B%2B-catalog.json";
 const ZOK_CSV_URL     = "https://raw.githubusercontent.com/BSI-Bund/Stand-der-Technik-Bibliothek/refs/heads/main/Dokumentation/namespaces/target_object_categories.csv";
 const ZO_CONTROLS_URL = "https://raw.githubusercontent.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/main/hilfsdateien/zielobjekt_controls.json";
-const ISMS_MD_URL     = "https://raw.githubusercontent.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/main/hilfsdateien/gpp_isms_stripped.md";
 // href written into the assembled OSCAL profile's import (un-escaped form)
 const GPP_CATALOG_HREF = "https://raw.githubusercontent.com/BSI-Bund/Stand-der-Technik-Bibliothek/refs/heads/main/Anwenderkataloge/Grundschutz%2B%2B/Grundschutz%2B%2B-catalog.json";
 
@@ -774,14 +775,12 @@ const state = {
   // catalog (G++ Anwenderkatalog — single prose source for both paths)
   catalog: null,
   catalogSource: null,
-  catalogControls: [],      // flattened [{id, title, statement, guidance, modalverb, sec_level, group}]
+  catalogControls: [],      // flattened [{id, title, statement, guidance, modalverb, sec_level, targetCategories, group}]
 
   // classification context (raw-URL loaded, no GitHub-API)
   categories: [],           // [{uuid, name, definition, typ, kategorie, synonyme, childOf}]
   categoriesByName: null,   // Map name(lower) → category
   zoControlsMap: null,      // Map zielobjekt-UUID → [control-id]
-  ismsControlIds: [],       // [control-id] for the Prozess/ISMS pool
-  strippedById: null,       // Map control-id → {name, desc} from gpp_isms_stripped.md (cheap match context)
 
   // token accounting (Gemini usageMetadata, accumulated per run)
   tokens: { prompt: 0, cached: 0, candidates: 0, thoughts: 0, total: 0, calls: 0 },
@@ -837,7 +836,7 @@ const l = {
   debug(m) { this._add("debug", m) },
 };
 
-l.info("init · build 0.8.1 · pdf → klassifikation → pool-chunk-mapping → oscal-profil mit alters");
+l.info("init · build 0.8.2 · pdf → klassifikation → pool-chunk-mapping → oscal-profil mit alters · Prozess-Pool aus Katalog (target_object_categories)");
 
 $("btn-clear-log").addEventListener("click", () => {
   logBody.innerHTML = "";
@@ -1116,6 +1115,16 @@ function flattenCatalog(cat) {
     let statement = "";
     let guidance  = "";
     let modalverb = null;
+    // Zielobjektkategorie names this control applies to. A control with NO
+    // target_object_categories governs processes/ISMS (see determinePool).
+    const targetCats = new Set();
+
+    const addTargetCats = value => {
+      for (const n of String(value || "").split(",")) {
+        const t = n.trim();
+        if (t) targetCats.add(t);
+      }
+    };
 
     const collectPart = part => {
       if (!part) return;
@@ -1127,6 +1136,7 @@ function flattenCatalog(cat) {
       }
       for (const pr of (part.props || [])) {
         if ((pr?.name === "modal_verb" || pr?.name === "modalverb") && !modalverb) modalverb = pr.value;
+        if (pr?.name === "target_object_categories") addTargetCats(pr.value);
       }
       for (const sub of (part.parts || [])) collectPart(sub);
     };
@@ -1150,6 +1160,7 @@ function flattenCatalog(cat) {
     for (const pr of (ctl.props || [])) {
       if (pr?.name === "sec_level" && !sec_level) sec_level = pr.value;
       if ((pr?.name === "modal_verb" || pr?.name === "modalverb") && !modalverb) modalverb = pr.value;
+      if (pr?.name === "target_object_categories") addTargetCats(pr.value);
     }
 
     flat.push({
@@ -1159,6 +1170,7 @@ function flattenCatalog(cat) {
       guidance:  guidance.slice(0, 4000),
       modalverb,
       sec_level,
+      targetCategories: [...targetCats],   // [] ⇒ governs processes/ISMS
       group: groupId,
       breadcrumb: breadcrumb.join(" › "),
     });
@@ -1330,33 +1342,19 @@ $("btn-load-pi").addEventListener("click", async () => {
   }
 });
 
-// Load the deterministic control pools (zielobjekt → ids) + ISMS id set.
+// Load the deterministic ZIELOBJEKT control pools (category-UUID → ids).
+// The PROZESS pool is NOT fetched — it is derived in RAM from the catalog
+// (controls without target_object_categories) in determinePool().
 async function loadPools() {
   try {
     const t0 = performance.now();
-    const [zoRes, ismsRes] = await Promise.all([fetch(ZO_CONTROLS_URL), fetch(ISMS_MD_URL)]);
+    const zoRes = await fetch(ZO_CONTROLS_URL);
     if (!zoRes.ok) throw new Error(`zielobjekt_controls HTTP ${zoRes.status}`);
-    if (!ismsRes.ok) throw new Error(`isms HTTP ${ismsRes.status}`);
     const zoJson = await zoRes.json();
     const map = zoJson?.zielobjekt_controls_map ?? zoJson;
     state.zoControlsMap = new Map(Object.entries(map));
-
-    // gpp_isms_stripped.md → id + name + description per table row (cheap match context)
-    const ismsText = await ismsRes.text();
-    const ids = [];
-    const stripped = new Map();
-    for (const line of ismsText.split("\n")) {
-      // | ID | name | description | UUID |
-      const m = line.match(/^\s*\|\s*([A-Z][A-Z0-9]*(?:\.\d+)+)\s*\|([^|]*)\|([^|]*)\|/);
-      if (!m) continue;
-      const id = m[1];
-      ids.push(id);
-      stripped.set(id, { name: m[2].trim(), desc: m[3].trim() });
-    }
-    state.ismsControlIds = ids;
-    state.strippedById = stripped;
-    $("pool-info").textContent = `${state.zoControlsMap.size} ZO-Pools · ${ids.length} ISMS-Controls (stripped)`;
-    l.ok(`Pools geladen in ${Math.round(performance.now()-t0)}ms · ${state.zoControlsMap.size} ZO-Pools · ${ids.length} ISMS-Controls (mit stripped-Beschreibung)`);
+    $("pool-info").textContent = `${state.zoControlsMap.size} ZO-Pools · Prozess-Pool aus Katalog (target_object_categories)`;
+    l.ok(`ZO-Pools geladen in ${Math.round(performance.now()-t0)}ms · ${state.zoControlsMap.size} Zielobjekt-Pools · Prozess-Pool wird aus dem Anwenderkatalog abgeleitet`);
   } catch (e) {
     l.err(`Pool-Load fehlgeschlagen: ${e.message}`);
     $("pool-info").textContent = `Pools Fehler: ${e.message}`;
@@ -1744,7 +1742,8 @@ function sampleForTestDrive(items, pct = 0.05, minSample = 3) {
 
 // Determine the candidate G++ control pool. Sets state.pipelineMode and
 // state.poolControlIds. ZIELOBJEKT → zielobjekt_controls.json[uuid];
-// PROZESS → the ISMS control set; C2 → no pool (rare custom fallback).
+// PROZESS → catalog controls without a target_object_categories prop (governs
+// processes/ISMS); C2 → no pool (rare custom fallback).
 function determinePool() {
   const manual = $("pi-pick").value;
   let mode, uuid = null;
@@ -1759,8 +1758,10 @@ function determinePool() {
 
   let ids = [];
   if (mode === "PROZESS") {
-    ids = state.ismsControlIds.slice();
-    if (!ids.length) l.warn("ISMS-Pool leer — gpp_isms_stripped.md nicht geladen?");
+    // Process/ISMS controls are exactly those the catalog does NOT tie to a
+    // Zielobjektkategorie via target_object_categories.
+    ids = state.catalogControls.filter(c => !c.targetCategories?.length).map(c => c.id);
+    if (!ids.length) l.warn("Prozess-Pool leer — G++ Anwenderkatalog geladen? (abgeleitet aus Controls ohne target_object_categories)");
   } else if (mode === "ZIELOBJEKT") {
     ids = (state.zoControlsMap && state.zoControlsMap.get(uuid)) || [];
     if (!ids.length) l.warn(`kein Control-Pool für Zielobjekt ${uuid} in zielobjekt_controls.json`);
@@ -1832,10 +1833,10 @@ async function runStage2_SentenceMapping() {
     return `${a.id} — ${a.name || "(ohne Name)"}\n${sentLines || "  (keine Sätze erkannt)"}`;
   }).join("\n\n");
 
-  // Control context line: prefer the cheap stripped description, else catalog statement.
+  // Control context line: the control's statement prose from the in-RAM catalog,
+  // truncated to keep the per-chunk suffix small.
   const ctxLine = c => {
-    const st = state.strippedById?.get(c.id);
-    const text = (st && st.desc) ? st.desc : (c.statement || "").replace(/\s+/g, " ").trim();
+    const text = (c.statement || "").replace(/\s+/g, " ").trim();
     return `${c.id} — ${c.title}: ${text.slice(0, 500)}`;
   };
 

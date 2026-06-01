@@ -1,0 +1,16 @@
+FROM python:3.13-slim
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
+WORKDIR /app
+
+# Copy the package source
+COPY . ./GS_backend_MCP/
+COPY pyproject.toml ./
+
+# Now we can sync
+RUN uv sync --no-dev
+
+ENV PYTHONUNBUFFERED=1
+ENV PYTHONPATH=/app
+EXPOSE 8080
+
+CMD ["uv", "run", "python", "-m", "GS_backend_MCP.myserver.main"]

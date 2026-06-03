@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "array",
+  "description": "All BSI Edition-2023 Anforderungen that match the given G++ control. Empty array if none match.",
+  "items": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string",
+        "description": "The exact ID of the matching ED2023 Anforderung, copied verbatim from the provided list (e.g. 'SYS.1.1.A1')."
+      },
+      "name": {
+        "type": "string",
+        "description": "The name/title of the Anforderung."
+      },
+      "begruendung": {
+        "type": "string",
+        "description": "Short justification why this Anforderung matches the G++ control."
+      }
+    },
+    "required": [
+      "id",
+      "name",
+      "begruendung"
+    ]
+  }
+}

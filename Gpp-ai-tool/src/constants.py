@@ -46,6 +46,11 @@ ZIELOBJEKT_CONTROLS_JSON_PATH = os.path.join(SDT_HELPER_OUTPUT_DIR, "zielobjekt_
 BAUSTEIN_ZIELOBJEKTKATEGORIE_JSON_PATH = os.path.join(SDT_HELPER_OUTPUT_DIR, "baustein_zielobjektkategorien.json")
 ZIELOBJEKTKATEGORIE_CONTROLS_JSON_PATH = os.path.join(SDT_HELPER_OUTPUT_DIR, "zielobjektkategorien_controls.json")
 PROZZESSBAUSTEINE_CONTROLS_JSON_PATH = os.path.join(SDT_HELPER_OUTPUT_DIR, "prozessbausteine_mapping.json")
+# Per-G++-control mapping to matching BSI Edition-2023 Anforderungen (stage_ed23_anforderungen).
+# Consumed by the One-Page-Apps to show the "Zeige BSI ED23 Anforderungen" panel.
+GPP_ED23_ANFORDERUNGEN_JSON_PATH = os.path.join(SDT_HELPER_OUTPUT_DIR, "gpp_ed23_anforderungen.json")
+# A compact projection of the ED23 catalog (id | name | prose) used as the cached grounding corpus.
+ED23_ANFORDERUNGEN_STRIPPED_JSON_PATH = os.path.join(SDT_HELPER_OUTPUT_DIR, "ed23_anforderungen_stripped.json")
 SDT_PROFILES_REGULAR_DIR = os.path.abspath(
     os.environ.get("SDT_PROFILES_REGULAR_DIR", os.path.join(OUTPUT_ROOT, "Zielobjektkategorien/profile/regular"))
 )
@@ -62,6 +67,7 @@ ED23_PROFILES_DIR = os.path.abspath(
 PROMPT_CONFIG_PATH = os.path.join(SRC_ROOT, "assets/json/prompt_config.json")
 BAUSTEIN_TO_ZIELOBJEKT_SCHEMA_PATH = os.path.join(SRC_ROOT, "assets/schemas/baustein_to_zielobjekt_schema.json")
 ENHANCED_CONTROL_RESPONSE_SCHEMA_PATH = os.path.join(SRC_ROOT, "assets/schemas/enhanced_control_response_schema.json")
+ED23_ANFORDERUNGEN_RESPONSE_SCHEMA_PATH = os.path.join(SRC_ROOT, "assets/schemas/ed23_anforderungen_response_schema.json")
 
 # --- AI Model Configuration ---
 # These default to current Gemini preview identifiers. They are env-overridable so a stable,

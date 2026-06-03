@@ -53,8 +53,48 @@ class AiClient:
         
         logger.debug(f"System Message Context includes today's date: {current_date}")
 
-    def _prepare_generation_config(self, json_schema: Dict[str, Any], use_thinking: bool = False) -> types.GenerateContentConfig:
-        """Prepares and converts the JSON schema for the GenerateContentConfig."""
+    def create_context_cache(self, content: str, system_instruction: str, model_override: Optional[str] = None) -> Optional[str]:
+        """Creates an explicit Vertex AI context cache for a large, reused grounding corpus.
+
+        Implicit caching does not engage for this model/region, so a fixed corpus that every
+        request shares (e.g. the stripped ED2023 Anforderungen list) is cached once here and
+        reused via `cached_content=<name>` on subsequent calls — paying for the prefix tokens
+        a single time. Returns the cache resource name, or None if caching is unavailable
+        (e.g. the corpus is below the model's minimum cacheable token count); callers should
+        fall back to sending the corpus inline.
+        """
+        model_to_use = model_override if model_override else GROUND_TRUTH_MODEL
+        try:
+            cache = self.client.caches.create(
+                model=model_to_use,
+                config=types.CreateCachedContentConfig(
+                    contents=[content],
+                    system_instruction=system_instruction,
+                ),
+            )
+            logger.info(f"Created context cache '{cache.name}' for model '{model_to_use}'.")
+            return cache.name
+        except Exception as e:
+            logger.warning(f"Could not create context cache (falling back to inline corpus): {e}")
+            return None
+
+    def delete_context_cache(self, name: str) -> None:
+        """Deletes a previously created context cache. Best-effort; logs and continues on error."""
+        if not name:
+            return
+        try:
+            self.client.caches.delete(name=name)
+            logger.info(f"Deleted context cache '{name}'.")
+        except Exception as e:
+            logger.warning(f"Failed to delete context cache '{name}': {e}")
+
+    def _prepare_generation_config(self, json_schema: Dict[str, Any], use_thinking: bool = False, cached_content: Optional[str] = None) -> types.GenerateContentConfig:
+        """Prepares and converts the JSON schema for the GenerateContentConfig.
+
+        When `cached_content` (an explicit context-cache resource name) is provided, the
+        system instruction lives inside that cache, so we attach the cache and must NOT also
+        set `system_instruction` on the request (the API rejects setting both).
+        """
         try:
             # Create a copy to avoid modifying the original
             schema_for_api = json.loads(json.dumps(json_schema))
@@ -71,8 +111,12 @@ class AiClient:
                 "response_schema": schema_for_api,
                 "max_output_tokens": API_MAX_OUTPUT_TOKEN,
                 "temperature": API_TEMPERATURE,
-                "system_instruction": self.system_message
             }
+            if cached_content:
+                # System instruction + grounding corpus are baked into the cache.
+                config_kwargs["cached_content"] = cached_content
+            else:
+                config_kwargs["system_instruction"] = self.system_message
             if use_thinking:
                 config_kwargs["thinking_config"] = types.ThinkingConfig(
                     thinking_level=types.ThinkingLevel.HIGH
@@ -149,23 +193,28 @@ class AiClient:
         self, 
         prompt: str, 
         json_schema: Dict[str, Any], 
-        gcs_uris: List[str] = None, 
+        gcs_uris: List[str] = None,
         request_context_log: str = "Generic AI Request",
         model_override: Optional[str] = None,
-        max_retries: int = None
+        max_retries: int = None,
+        cached_content: Optional[str] = None
     ) -> Dict[str, Any]:
-      
+
         """
         Generates a JSON response from the AI model using google-genai SDK.
+
+        If `cached_content` (an explicit context-cache resource name from
+        `create_context_cache`) is given, it is attached to the request so the model reuses
+        the cached system instruction + grounding corpus instead of re-sending it.
         """
-        
+
         retries = max_retries if max_retries is not None else API_MAX_RETRIES
         model_to_use = model_override if model_override else GROUND_TRUTH_MODEL
 
         try:
-            # Prepare configuration (includes system_instruction)
+            # Prepare configuration (includes system_instruction unless a cache supplies it)
             use_thinking = True if model_to_use == GROUND_TRUTH_MODEL_PRO else False
-            gen_config = self._prepare_generation_config(json_schema, use_thinking=use_thinking)
+            gen_config = self._prepare_generation_config(json_schema, use_thinking=use_thinking, cached_content=cached_content)
         except ValueError as e:
             logger.error(f"[{request_context_log}] Configuration failed. Cannot proceed with AI request: {e}")
             raise

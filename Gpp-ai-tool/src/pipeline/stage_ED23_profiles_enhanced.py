@@ -30,6 +30,7 @@ from constants import (
     ZIELOBJEKT_CONTROLS_JSON_PATH,
     PROMPT_CONFIG_PATH,
     ENHANCED_CONTROL_RESPONSE_SCHEMA_PATH,
+    PRACTICE_ABBREVIATIONS,
 )
 from utils.file_utils import create_dir_if_not_exists, read_json_file, write_json_file, read_csv_file
 from utils.text_utils import sanitize_filename
@@ -253,6 +254,7 @@ async def generate_enhanced_profile(
     baustein_title: str,
     baustein_description: str,
     zielobjekt_name: str,
+    profile_title: str,
     input_profile_path: str,
     output_path: str,
     gpp_controls_lookup: dict,
@@ -273,11 +275,12 @@ async def generate_enhanced_profile(
     if alters:
         profile = read_json_file(input_profile_path)
         profile["profile"]["modify"] = {"alters": alters}
-        # Set a readable, per-Baustein title ("APP.3.4_samba - Anwendungen") instead of
-        # inheriting the base profile's "<uuid> <Kategorie>" string, and give the profile
-        # a stable deterministic UUID so re-runs don't churn.
+        # Set a readable title (e.g. "APP.3.4 - Anwendungen" or, for process profiles,
+        # "Personal Prozess Profil") instead of inheriting the base profile's
+        # "<uuid> <Kategorie>" string, and give the profile a stable deterministic UUID so
+        # re-runs don't churn.
         profile["profile"]["uuid"] = deterministic_profile_uuid(baustein_id, zielobjekt_name)
-        profile["profile"]["metadata"]["title"] = f"{baustein_id} - {zielobjekt_name}"
+        profile["profile"]["metadata"]["title"] = profile_title
         profile["profile"]["metadata"]["last-modified"] = datetime.now(timezone.utc).isoformat()
 
         # Structurally validate the generated profile before writing (issue 3.3). This is a
@@ -394,14 +397,23 @@ async def run_stage_ED23_profiles_enhanced():
             else:
                 input_path = os.path.join(SDT_PROFILES_REGULAR_DIR, f"{sanitized_name}_profile.json")
 
-            # ED23 profiles are per-Baustein, so the filename combines the
-            # Zielobjektkategorie, the Baustein ID (kept readable, e.g. INF.8)
+            # ED23 profiles are per-Baustein. For process profiles the Baustein ID, name
+            # and Zielobjektkategorie are all the same "<KÜRZEL>_prozesse" string, so the
+            # filename is just that ID (e.g. "PERS_prozesse.json"). For regular profiles the
+            # filename combines the Zielobjektkategorie, the readable Baustein ID (e.g. INF.8)
             # and the Baustein name.
-            output_filename = f"{display_name}_{baustein_id}_{sanitize_filename(baustein_title)}.json"
+            if is_process:
+                output_filename = f"{baustein_id}.json"
+                # e.g. "PERS_prozesse" -> "Personal Prozess Profil"
+                practice_key = baustein_id[:-9] if baustein_id.endswith("_prozesse") else baustein_id
+                profile_title = f"{PRACTICE_ABBREVIATIONS.get(practice_key.upper(), practice_key)} Prozess Profil"
+            else:
+                output_filename = f"{display_name}_{baustein_id}_{sanitize_filename(baustein_title)}.json"
+                profile_title = f"{baustein_id} - {zielobjekt_name}"
             output_path = os.path.join(ED23_PROFILES_DIR, output_filename)
 
             await generate_enhanced_profile(
-                baustein_id, baustein_title, baustein_description, zielobjekt_name,
+                baustein_id, baustein_title, baustein_description, zielobjekt_name, profile_title,
                 input_path, output_path,
                 gpp_controls_lookup, prompt_instruction, enhanced_schema, ai_client,
             )

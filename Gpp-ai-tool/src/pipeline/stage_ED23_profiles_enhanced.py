@@ -14,6 +14,7 @@ One enhanced profile is written per Baustein to ED23_PROFILES_DIR.
 import os
 import logging
 import asyncio
+import uuid
 from datetime import datetime, timezone
 import sys
 
@@ -40,6 +41,19 @@ logger = logging.getLogger(__name__)
 
 # Chunk controls to avoid overwhelming the model in a single request.
 CHUNK_SIZE = 10
+
+# Stable namespace for deriving deterministic (UUIDv5) profile UUIDs. Re-running the
+# pipeline must yield identical UUIDs for the same Baustein/Kategorie so the generated
+# profiles don't churn in git.
+ED23_PROFILE_UUID_NAMESPACE = uuid.uuid5(
+    uuid.NAMESPACE_URL,
+    "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/ED2023-enhanced-profiles",
+)
+
+
+def deterministic_profile_uuid(baustein_id: str, zielobjekt_name: str) -> str:
+    """Derives a stable UUIDv5 for an enhanced profile from its Baustein + Kategorie."""
+    return str(uuid.uuid5(ED23_PROFILE_UUID_NAMESPACE, f"{baustein_id}|{zielobjekt_name}"))
 
 
 def build_oscal_maturity_statements(control_id: str, generated_data: dict, original_description: str, baustein_id: str) -> list:
@@ -238,6 +252,7 @@ async def generate_enhanced_profile(
     baustein_id: str,
     baustein_title: str,
     baustein_description: str,
+    zielobjekt_name: str,
     input_profile_path: str,
     output_path: str,
     gpp_controls_lookup: dict,
@@ -258,7 +273,11 @@ async def generate_enhanced_profile(
     if alters:
         profile = read_json_file(input_profile_path)
         profile["profile"]["modify"] = {"alters": alters}
-        profile["profile"]["metadata"]["title"] += " - Enhanced (ED2023)"
+        # Set a readable, per-Baustein title ("APP.3.4_samba - Anwendungen") instead of
+        # inheriting the base profile's "<uuid> <Kategorie>" string, and give the profile
+        # a stable deterministic UUID so re-runs don't churn.
+        profile["profile"]["uuid"] = deterministic_profile_uuid(baustein_id, zielobjekt_name)
+        profile["profile"]["metadata"]["title"] = f"{baustein_id} - {zielobjekt_name}"
         profile["profile"]["metadata"]["last-modified"] = datetime.now(timezone.utc).isoformat()
 
         # Structurally validate the generated profile before writing (issue 3.3). This is a
@@ -382,7 +401,8 @@ async def run_stage_ED23_profiles_enhanced():
             output_path = os.path.join(ED23_PROFILES_DIR, output_filename)
 
             await generate_enhanced_profile(
-                baustein_id, baustein_title, baustein_description, input_path, output_path,
+                baustein_id, baustein_title, baustein_description, zielobjekt_name,
+                input_path, output_path,
                 gpp_controls_lookup, prompt_instruction, enhanced_schema, ai_client,
             )
 

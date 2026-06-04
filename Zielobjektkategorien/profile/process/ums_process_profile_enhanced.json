@@ -1,9 +1,9 @@
 {
   "profile": {
-    "uuid": "51665e40-fee4-455a-bec0-73a928471cfd",
+    "uuid": "0609182a-710e-510d-9658-c6a8cbc3031f",
     "metadata": {
-      "title": "UMS_prozesse UMS_prozesse - Enhanced (ED2023)",
-      "last-modified": "2026-05-31T20:20:13.270099+00:00",
+      "title": "Umsetzung Prozess Profil - Enhanced (ED2023)",
+      "last-modified": "2026-06-04T14:36:10.634004+00:00",
       "version": "0.0.1",
       "oscal-version": "1.1.3"
     },
@@ -44,7 +44,7 @@
                     },
                     {
                       "name": "effective_on_c",
-                      "value": "low",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -62,17 +62,17 @@
                       "value": "m1"
                     }
                   ],
-                  "prose": "Restrisiken werden ad-hoc und ohne systematische Dokumentation nach Umsetzung einzelner Maßnahmen betrachtet.",
+                  "prose": "Restrisiken werden nur sporadisch und informell bei kritischen Vorfällen betrachtet.",
                   "parts": [
                     {
                       "id": "UMS.2.1-m1_custom_gdn",
                       "name": "guidance",
-                      "prose": "Erfassen Sie sporadisch verbleibende Unsicherheiten nach der Implementierung von Sicherheitskontrollen."
+                      "prose": "Identifizieren Sie offensichtliche Sicherheitslücken ad-hoc und dokumentieren Sie diese unsystematisch in Besprechungsprotokollen."
                     },
                     {
                       "id": "UMS.2.1-m1_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung auf Vorhandensein informeller Risikonotizen. Manuelle Durchsicht von Besprechungsprotokollen."
+                      "prose": "Sichtung von informellen Aufzeichnungen oder E-Mails zu bekannten Sicherheitsmängeln und deren Akzeptanz."
                     }
                   ]
                 },
@@ -92,7 +92,7 @@
                     },
                     {
                       "name": "effective_on_c",
-                      "value": "low",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -110,17 +110,17 @@
                       "value": "m2"
                     }
                   ],
-                  "prose": "Eine einfache, manuell gepflegte Liste nicht umgesetzter Anforderungen und deren grobe Auswirkung ist vorhanden.",
+                  "prose": "Restrisiken aus wesentlichen nicht umgesetzten Anforderungen werden manuell in Listenform erfasst.",
                   "parts": [
                     {
                       "id": "UMS.2.1-m2_custom_gdn",
                       "name": "guidance",
-                      "prose": "Nutzen Sie Tabellen zur Erfassung von Abweichungen vom Soll-Zustand und bewerten Sie diese oberflächlich."
+                      "prose": "Erstellen Sie eine einfache Übersicht (z. B. Tabelle) aller bekannten Abweichungen und bewerten Sie das Risiko oberflächlich."
                     },
                     {
                       "id": "UMS.2.1-m2_custom_asm",
                       "name": "assessment",
-                      "prose": "Sichten der zentralen Abweichungsliste. Befehl: grep -i \"offen\" risikotabelle.csv"
+                      "prose": "Prüfung der manuell geführten Liste nicht umgesetzter Anforderungen auf Plausibilität der Risikoeinschätzung."
                     }
                   ]
                 },
@@ -140,7 +140,7 @@
                     },
                     {
                       "name": "effective_on_c",
-                      "value": "low",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -163,12 +163,12 @@
                     {
                       "id": "UMS.2.1-m3_custom_gdn",
                       "name": "guidance",
-                      "prose": "Identifizieren Sie alle nicht erfüllten Anforderungen und bewerten Sie das verbleibende Risiko formal für die Leitungsebene."
+                      "prose": "Dokumentieren Sie alle Anforderungen, die nicht vollständig umgesetzt wurden, und bewerten Sie das daraus resultierende Restrisiko systematisch im Risikoregister."
                     },
                     {
                       "id": "UMS.2.1-m3_custom_asm",
                       "name": "assessment",
-                      "prose": "Abgleich der Risikoanalyse mit dem Umsetzungsplan. Dokumentenprüfung der formalen Management-Abnahme."
+                      "prose": "Prüfen Sie die Dokumentation der Risikoakzeptanz. Audit: Abgleich der Liste nicht umgesetzter Maßnahmen mit dem formalen Risikobericht."
                     }
                   ]
                 },
@@ -188,7 +188,7 @@
                     },
                     {
                       "name": "effective_on_c",
-                      "value": "low",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -206,17 +206,17 @@
                       "value": "m4"
                     }
                   ],
-                  "prose": "Restrisiken werden quantitativ bewertet und durch automatisierte Monitoring-Gaps kontinuierlich aktualisiert.",
+                  "prose": "Die Restrisikobewertung erfolgt toolgestützt und berücksichtigt proaktiv Prozessänderungen.",
                   "parts": [
                     {
                       "id": "UMS.2.1-m4_custom_gdn",
                       "name": "guidance",
-                      "prose": "Verknüpfen Sie Compliance-Scan-Ergebnisse direkt mit der Risikomatrix zur proaktiven Steuerung."
+                      "prose": "Nutzen Sie GRC-Software zur Verknüpfung von Maßnahmenstatus und Risikobewertung mit automatisierten Wiedervorlagen."
                     },
                     {
                       "id": "UMS.2.1-m4_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung des automatisierten Reportings. Script-Check: python3 check_compliance_gaps.py --report"
+                      "prose": "Validierung der automatisierten Benachrichtigungen bei Änderung des Umsetzungsstatus im GRC-Tool durch System-Logs."
                     }
                   ]
                 },
@@ -236,7 +236,7 @@
                     },
                     {
                       "name": "effective_on_c",
-                      "value": "low",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -254,17 +254,17 @@
                       "value": "m5"
                     }
                   ],
-                  "prose": "Integriertes Echtzeit-Risikomanagement mittels Policy-as-Code zur sofortigen Visualisierung von Restrisiken.",
+                  "prose": "Dynamische Restrisikobewertung integriert Echtzeit-Daten aus dem Monitoring und Schwachstellenmanagement.",
                   "parts": [
                     {
                       "id": "UMS.2.1-m5_custom_gdn",
                       "name": "guidance",
-                      "prose": "Nutzen Sie API-gestützte Plattformen zur kontinuierlichen Validierung der Risikolandschaft und automatischen Alarmierung."
+                      "prose": "Integrieren Sie SIEM- und Schwachstellen-Scanner-Daten, um das Restrisiko basierend auf der aktuellen Bedrohungslage automatisiert anzupassen."
                     },
                     {
                       "id": "UMS.2.1-m5_custom_asm",
                       "name": "assessment",
-                      "prose": "Validierung der Echtzeit-Schnittstellen. API-Test: curl -X GET https://risk-api/v1/residual-risks-status"
+                      "prose": "Automatisierter API-Check: Abfrage des Risikostatus via REST-API zur Verifikation der Echtzeit-Anpassung bei neuen Schwachstellen."
                     }
                   ]
                 }

@@ -1,0 +1,278 @@
+{
+  "profile": {
+    "uuid": "f0c4a214-5a0b-551f-9369-76ece6f69e75",
+    "metadata": {
+      "title": "Dienstleistersteuerung Prozess Profil",
+      "last-modified": "2026-06-04T14:32:26.733268+00:00",
+      "version": "0.0.1",
+      "oscal-version": "1.1.3"
+    },
+    "imports": [
+      {
+        "href": "https://raw.githubusercontent.com/BSI-Bund/Stand-der-Technik-Bibliothek/refs/heads/main/Anwenderkataloge/Grundschutz%2B%2B/Grundschutz%2B%2B-catalog.json",
+        "include-controls": [
+          {
+            "with-ids": [
+              "DLS.3.5"
+            ]
+          }
+        ]
+      }
+    ],
+    "modify": {
+      "alters": [
+        {
+          "control-id": "DLS.3.5",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "DLS.3.5_stm",
+              "parts": [
+                {
+                  "id": "DLS.3.5-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    }
+                  ],
+                  "prose": "Dienstleister werden nur vereinzelt und ad-hoc bei kritischen Ausfällen blockiert.",
+                  "parts": [
+                    {
+                      "id": "DLS.3.5-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Es gibt keinen strukturierten Prozess; Entscheidungen zur Sperrung von Dienstleistern hängen von Einzelpersonen ab und erfolgen rein reaktiv."
+                    },
+                    {
+                      "id": "DLS.3.5-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Befragung der IT-Leitung zu vergangenen Vorfällen und Prüfung, ob manuelle Reaktionen auf unzuverlässige Dienstleister dokumentiert wurden."
+                    }
+                  ]
+                },
+                {
+                  "id": "DLS.3.5-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    }
+                  ],
+                  "prose": "Eine manuell geführte Liste unzuverlässiger Dienstleister wird bei Neuverträgen oder Verlängerungen geprüft.",
+                  "parts": [
+                    {
+                      "id": "DLS.3.5-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Grundlegende Kriterien für die Zuverlässigkeit sind definiert. Die Liste wird unregelmäßig gepflegt und manuell gegen Lieferantendaten abgeglichen."
+                    },
+                    {
+                      "id": "DLS.3.5-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Stichprobenartige Prüfung der Lieferantenliste gegen die interne Blacklist. Prüfung der Kriterienliste auf Aktualität."
+                    }
+                  ]
+                },
+                {
+                  "id": "DLS.3.5-m3_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m3"
+                    }
+                  ],
+                  "prose": "Dienstleistersteuerung SOLLTE unzuverlässige Dienstleister oder Subdienstleister blockieren.",
+                  "parts": [
+                    {
+                      "id": "DLS.3.5-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Ein definierter Prozess regelt die Kriterien und Abläufe zur Sperrung von Dienstleistern. Verantwortlichkeiten innerhalb der Steuerung sind klar zugewiesen."
+                    },
+                    {
+                      "id": "DLS.3.5-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Audit der Prozessbeschreibung für das Dienstleistermanagement und Nachweis der Sperrung eines konkreten Dienstleisters gemäß Prozess."
+                    }
+                  ]
+                },
+                {
+                  "id": "DLS.3.5-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    }
+                  ],
+                  "prose": "Proaktive Überwachung der Dienstleistergüte mit regelmäßigen automatisierten Reports zur Identifikation von Sperrkandidaten.",
+                  "parts": [
+                    {
+                      "id": "DLS.3.5-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Schwellenwerte für Unzuverlässigkeit (SLAs, Sicherheitsvorfälle) lösen automatisch Warnungen und Sperrempfehlungen an den Einkauf oder die IT aus."
+                    },
+                    {
+                      "id": "DLS.3.5-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Review der automatisierten Performance-Berichte und Prüfung der Reaktionszeiten des Workflows zur Sperrung bei Schwellenwertüberschreitung."
+                    }
+                  ]
+                },
+                {
+                  "id": "DLS.3.5-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    }
+                  ],
+                  "prose": "Vollautomatisierte Sperrung im ERP- und IAM-System bei Verstoß gegen definierte SLAs oder Compliance-Vorgaben.",
+                  "parts": [
+                    {
+                      "id": "DLS.3.5-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Die Sperrung erfolgt systemisch integriert. Bei Nichterfüllung kritischer Parameter werden Zugänge und Bestellprozesse in Echtzeit unterbunden."
+                    },
+                    {
+                      "id": "DLS.3.5-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Technischer Test der API-Schnittstelle zwischen dem Risk-Management-Tool und dem Provisionierungssystem. Prüfung der automatischen Sperr-Logs."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

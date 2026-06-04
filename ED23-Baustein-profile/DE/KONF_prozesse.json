@@ -1,0 +1,729 @@
+{
+  "profile": {
+    "uuid": "ea86d811-4c6d-57b8-8aff-0290cc3c74e2",
+    "metadata": {
+      "title": "Konfiguration Prozess Profil",
+      "last-modified": "2026-06-04T14:33:30.690924+00:00",
+      "version": "0.0.1",
+      "oscal-version": "1.1.3"
+    },
+    "imports": [
+      {
+        "href": "https://raw.githubusercontent.com/BSI-Bund/Stand-der-Technik-Bibliothek/refs/heads/main/Anwenderkataloge/Grundschutz%2B%2B/Grundschutz%2B%2B-catalog.json",
+        "include-controls": [
+          {
+            "with-ids": [
+              "KONF.1.3",
+              "KONF.1.4",
+              "KONF.1.5"
+            ]
+          }
+        ]
+      }
+    ],
+    "modify": {
+      "alters": [
+        {
+          "control-id": "KONF.1.3",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "KONF.1.3_stm",
+              "parts": [
+                {
+                  "id": "KONF.1.3-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    }
+                  ],
+                  "prose": "Werkzeuge zur Konfiguration werden sporadisch und informell in Textdateien oder Tabellen ohne Herkunftsnachweis erfasst.",
+                  "parts": [
+                    {
+                      "id": "KONF.1.3-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Erstellen Sie eine erste einfache Liste der genutzten Administrationswerkzeuge."
+                    },
+                    {
+                      "id": "KONF.1.3-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Sichtprüfung der vorhandenen Listen. Abgleich mit installierter Software via 'apt list --installed' oder 'rpm -qa'."
+                    }
+                  ]
+                },
+                {
+                  "id": "KONF.1.3-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    }
+                  ],
+                  "prose": "Es existiert eine grundlegende Liste der Konfigurationswerkzeuge, die den Verwendungszweck grob beschreibt.",
+                  "parts": [
+                    {
+                      "id": "KONF.1.3-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Führen Sie eine strukturierte Liste ein, die Tool-Namen und deren primäre Aufgabe enthält."
+                    },
+                    {
+                      "id": "KONF.1.3-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Stichprobenartige Prüfung der Dokumentation gegen die tatsächlich genutzten Tools in der Infrastruktur."
+                    }
+                  ]
+                },
+                {
+                  "id": "KONF.1.3-m3_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m3"
+                    }
+                  ],
+                  "prose": "Konfiguration SOLLTE verwendete Konfigurationswerkzeuge einschließlich Verwendungszweck und Herkunft dokumentieren.",
+                  "parts": [
+                    {
+                      "id": "KONF.1.3-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Stellen Sie sicher, dass für jedes Werkzeug dokumentiert ist, wofür es genutzt wird und aus welcher Quelle es stammt."
+                    },
+                    {
+                      "id": "KONF.1.3-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Review der Tool-Dokumentation. Prüfung der Integrität der Herkunftsquellen (z.B. GPG-Signaturen von Repositories)."
+                    }
+                  ]
+                },
+                {
+                  "id": "KONF.1.3-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    }
+                  ],
+                  "prose": "Die Dokumentation der Werkzeuge ist in einem zentralen Asset-Management-System integriert und enthält Versionen sowie Freigabestände.",
+                  "parts": [
+                    {
+                      "id": "KONF.1.3-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Nutzen Sie ein Asset-Management-System, um Lebenszyklen und Versionen der Werkzeuge proaktiv zu verwalten."
+                    },
+                    {
+                      "id": "KONF.1.3-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Automatisierter Abgleich zwischen Asset-Datenbank und installierten Paketen mittels API-Skripten."
+                    }
+                  ]
+                },
+                {
+                  "id": "KONF.1.3-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    }
+                  ],
+                  "prose": "Werkzeuge werden automatisiert inventarisiert und nur signierte, verifizierte Quellen sind systemseitig zugelassen (Policy as Code).",
+                  "parts": [
+                    {
+                      "id": "KONF.1.3-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Implementieren Sie Mechanismen, die nur dokumentierte und freigegebene Werkzeuge zur Ausführung zulassen."
+                    },
+                    {
+                      "id": "KONF.1.3-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung der Block-Logs von Security-Suiten (z.B. SELinux oder AppArmor) auf abgelehnte, nicht dokumentierte Tools."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "control-id": "KONF.1.4",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "KONF.1.4_stm",
+              "parts": [
+                {
+                  "id": "KONF.1.4-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Technical",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    }
+                  ],
+                  "prose": "Der Zugriff auf Konfigurationsdokumentationen ist nur für hochkritische Systeme durch einfache Passwortabfragen geschützt.",
+                  "parts": [
+                    {
+                      "id": "KONF.1.4-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Identifizieren Sie kritische Dokumente und legen Sie diese in passwortgeschützten Verzeichnissen ab."
+                    },
+                    {
+                      "id": "KONF.1.4-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfen Sie Stichprobenartig Datei-Berechtigungen auf Fileshares mit 'ls -l' oder 'Get-Acl'."
+                    }
+                  ]
+                },
+                {
+                  "id": "KONF.1.4-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Technical",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    }
+                  ],
+                  "prose": "Standard-Dateiberechtigungen auf Fileshares oder Wikis regeln den Zugriff auf die gesamte Konfigurationsdokumentation.",
+                  "parts": [
+                    {
+                      "id": "KONF.1.4-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Nutzen Sie bestehende Gruppenstrukturen im Verzeichnisdienst, um den Zugriff einzuschränken."
+                    },
+                    {
+                      "id": "KONF.1.4-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Validierung der Gruppenmitgliedschaften und Zugriffsberechtigungen auf die Dokumentationsablage."
+                    }
+                  ]
+                },
+                {
+                  "id": "KONF.1.4-m3_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Technical",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m3"
+                    }
+                  ],
+                  "prose": "Konfiguration SOLLTE den Zugriff auf dokumentierte Konfigurationen einschränken.",
+                  "parts": [
+                    {
+                      "id": "KONF.1.4-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Implementieren Sie Zugriffskontrollen, sodass nur berechtigtes Personal Einsicht in die Konfigurationsdetails erhält."
+                    },
+                    {
+                      "id": "KONF.1.4-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Audit der Zugriffskontrolllisten (ACLs). Testen des unberechtigten Zugriffs durch Test-User ohne Privilegien."
+                    }
+                  ]
+                },
+                {
+                  "id": "KONF.1.4-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Technical",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    }
+                  ],
+                  "prose": "Ein rollenbasiertes Zugriffskonzept (RBAC) steuert den Zugriff feingranular; alle Zugriffe werden revisionssicher protokolliert.",
+                  "parts": [
+                    {
+                      "id": "KONF.1.4-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Verwenden Sie ein IAM-System zur Durchsetzung von Rollen und überwachen Sie die Zugriffsprotokolle proaktiv."
+                    },
+                    {
+                      "id": "KONF.1.4-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Analyse der Audit-Logs auf unbefugte Zugriffsversuche. Skriptbasierte Prüfung der Rollenzuweisungen."
+                    }
+                  ]
+                },
+                {
+                  "id": "KONF.1.4-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Technical",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    }
+                  ],
+                  "prose": "Zugriff erfolgt nach dem Zero-Trust-Prinzip mit Multi-Faktor-Authentisierung und Just-in-Time Berechtigungen.",
+                  "parts": [
+                    {
+                      "id": "KONF.1.4-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Integrieren Sie MFA und zeitlich begrenzte Zugriffsfreigaben für die Einsicht in sensitive Konfigurationen."
+                    },
+                    {
+                      "id": "KONF.1.4-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Verifikation der MFA-Erzwingung und Prüfung der JIT-Bereitstellungslogs im Identity Provider."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "control-id": "KONF.1.5",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "KONF.1.5_stm",
+              "parts": [
+                {
+                  "id": "KONF.1.5-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Technical",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    }
+                  ],
+                  "prose": "Geheimnisse in Konfigurationen werden vereinzelt durch einfache Base64-Kodierung oder Obfuskation unkenntlich gemacht.",
+                  "parts": [
+                    {
+                      "id": "KONF.1.5-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Vermeiden Sie Klartextpasswörter in Skripten und nutzen Sie erste Verschleierungstechniken."
+                    },
+                    {
+                      "id": "KONF.1.5-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Suche nach Klartext-Strings wie 'password=' in Konfigurationsdateien mittels 'grep -r'."
+                    }
+                  ]
+                },
+                {
+                  "id": "KONF.1.5-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Technical",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    }
+                  ],
+                  "prose": "Konfigurationsgeheimnisse werden mittels lokaler, betriebssystemeigener Verschlüsselungstools gesichert.",
+                  "parts": [
+                    {
+                      "id": "KONF.1.5-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Nutzen Sie Tools wie GnuPG oder integrierte Verschlüsselungsfunktionen der Betriebssysteme."
+                    },
+                    {
+                      "id": "KONF.1.5-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Überprüfung, ob verschlüsselte Dateien mit 'file' oder Entropie-Analysen als solche erkannt werden."
+                    }
+                  ]
+                },
+                {
+                  "id": "KONF.1.5-m3_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Technical",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m3"
+                    }
+                  ],
+                  "prose": "Konfiguration SOLLTE Konfigurationsgeheimnisse verschlüsseln.",
+                  "parts": [
+                    {
+                      "id": "KONF.1.5-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Stellen Sie sicher, dass alle Passwörter, Keys und Token in Konfigurationsdateien kryptografisch geschützt sind."
+                    },
+                    {
+                      "id": "KONF.1.5-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung der Konfigurationsdateien auf Verschlüsselung. Verifikation der Schlüsselaufbewahrung."
+                    }
+                  ]
+                },
+                {
+                  "id": "KONF.1.5-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Technical",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    }
+                  ],
+                  "prose": "Einsatz eines zentralen Secret Management Systems zur dynamischen Bereitstellung verschlüsselter Geheimnisse.",
+                  "parts": [
+                    {
+                      "id": "KONF.1.5-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Implementieren Sie ein System zur Verwaltung von Geheimnissen, um statische Keys in Files zu eliminieren."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

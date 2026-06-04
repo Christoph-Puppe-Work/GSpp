@@ -299,6 +299,7 @@
     document.addEventListener('DOMContentLoaded', () => {
         setupDragAndDrop();
         loadAICfg();
+        loadED23Map();
         tryAutoRestore();
 
         // Header Toggles
@@ -1316,12 +1317,38 @@
             <div class="border-t border-slate-700 pt-3 flex gap-2 flex-wrap items-center">
                 <button onclick="triggerAI('${rk}', '${cid}', 'implementation')" class="px-2 py-1 bg-violet-900/50 hover:bg-violet-800 border border-violet-700/50 text-violet-300 text-[10px] font-bold uppercase rounded flex items-center gap-1 transition-colors">✨ Umsetzungsvorschlag</button>
                 <button onclick="triggerAI('${rk}', '${cid}', 'risk')" class="px-2 py-1 bg-orange-900/50 hover:bg-orange-800 border border-orange-700/50 text-orange-300 text-[10px] font-bold uppercase rounded flex items-center gap-1 transition-colors">✨ Risiken</button>
-                <button onclick="triggerAI('${rk}', '${cid}', 'edition2023')" class="px-2 py-1 bg-blue-900/50 hover:bg-blue-800 border border-blue-700/50 text-blue-300 text-[10px] font-bold uppercase rounded flex items-center gap-1 transition-colors">✨ Abgleich Edition 2023</button>
+                <button onclick="showED23('${cid}', '${rk}')" class="px-2 py-1 bg-blue-900/50 hover:bg-blue-800 border border-blue-700/50 text-blue-300 text-[10px] font-bold uppercase rounded flex items-center gap-1 transition-colors">📑 Zeige BSI ED23 Anforderungen</button>
                 <div id="loader-${rk}" class="ai-loader ml-auto"></div>
             </div>
             <div id="ai-out-${rk}" class="hidden mt-3 p-3 bg-slate-900 border border-violet-800/30 rounded ai-response-content max-h-96 overflow-y-auto cscroll"></div>
+            <div id="ed23-${rk}" class="hidden mt-3 p-3 bg-slate-900 border border-blue-800/30 rounded max-h-96 overflow-y-auto cscroll"></div>
         </div>`;
     }
+
+    // --- BSI ED2023 Anforderungen (vorberechnet von Gpp-ai-tool, ohne Laufzeit-KI) ---
+    let ED23_MAP = {};
+    const ED23_MAP_URL = "https://raw.githubusercontent.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/main/hilfsdateien/gpp_ed23_anforderungen.json";
+    async function loadED23Map() {
+        try {
+            const r = await fetch(ED23_MAP_URL);
+            if (!r.ok) throw new Error("HTTP " + r.status);
+            const d = await r.json();
+            ED23_MAP = d.gpp_ed23_anforderungen_map || {};
+        } catch (e) { console.warn("BSI ED23-Anforderungen nicht geladen:", e); ED23_MAP = {}; }
+    }
+    const ed23Esc = s => (s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    function renderED23Table(list) {
+        if (!list || !list.length) return '<p class="text-xs text-slate-500 italic">Keine passenden BSI ED23-Anforderungen hinterlegt.</p>';
+        const rows = list.map(a => `<tr class="border-b border-slate-700/50 align-top"><td class="py-1 pr-2 font-mono font-bold text-blue-300 whitespace-nowrap">${ed23Esc(a.id)}</td><td class="py-1 pr-2 text-slate-200">${ed23Esc(a.name)}</td><td class="py-1 text-slate-400">${ed23Esc(a.begruendung || '')}</td></tr>`).join('');
+        return `<div class="text-[10px] font-bold text-blue-400 uppercase mb-2">📑 BSI IT-Grundschutz Edition 2023 – passende Anforderungen</div><table class="w-full text-xs border-collapse"><thead><tr class="text-left text-slate-500"><th class="py-1 pr-2">ID</th><th class="py-1 pr-2">Name der Anforderung</th><th class="py-1">Begründung</th></tr></thead><tbody>${rows}</tbody></table>`;
+    }
+    window.showED23 = (cid, rk) => {
+        const box = document.getElementById('ed23-' + rk);
+        if (!box) return;
+        if (!box.classList.contains('hidden')) { box.classList.add('hidden'); return; }
+        box.innerHTML = renderED23Table(ED23_MAP[cid]);
+        box.classList.remove('hidden');
+    };
 
     window.applyFilters = () => {
         const term = document.getElementById('global-search')?.value.toLowerCase() || '';
@@ -1392,10 +1419,6 @@ Verstehe: Der neue Grundschutz++ nutzt einen granularen Katalog, in dem jede Anf
 Keine Einleitenden Worte über deine Rolle oder wie der GRundschutz++ aufgebaut ist. Fokus ist nur die Aufgabe ohne Ausschmückungen. Du Schreibst wie ein Experte, aber nicht wie
 eine KI. Dein Satzbau ist Abwechslungsreich, konkret, präßise und du nutzt keine KI Floskeln. Heute ist der ${heute}.`;
 
-        if (type === 'edition2023') {
-            system = `Du bist ein Experte für den BSI IT-Grundschutz. Deine Aufgabe ist das genaue Mapping zwischen dem neuen Grundschutz++ und den Bausteinen des IT-Grundschutz-Kompendiums Edition 2023. Antworte in strukturierter Markdown-Form ohne unnötige Floskeln.`;
-        }
-
         const userContext = ai.ctx;
         if (userContext) {
             system += "\n\nBerücksichtige zwingend folgenden Unternehmenskontext für deine Antwort:\n" + userContext;
@@ -1405,16 +1428,6 @@ eine KI. Dein Satzbau ist Abwechslungsreich, konkret, präßise und du nutzt kei
 
         if (type === 'implementation') {
             prompt = `Erstelle einen Umsetzungsvorschlag für die BSI Maßnahme "${title}". Beschreibung: ${prose}${guidanceText}. Nenne praktische Schritte. Drei sehr ausführliche Praxis Beispiele die alle Aspekte des Controls abdecken.`;
-        } else if (type === 'edition2023') {
-            prompt = `Suche gründlich nach *allen* passenden Anforderungen aus den IT-Grundschutz Bausteinen der Edition 2023, die zur Maßnahme "${title}" (Beschreibung: ${prose}${guidanceText}) passen. *Wichtig:* Nur Bausteine der Edition 2023, deren PDF haben "2023.pdf" im Namen!
-Nutze für deine Suche zwingend diese Parameter, um in den offiziellen BSI PDFs zu suchen:
-inurl:https://www.bsi.bund.de/SharedDocs/Downloads/DE/BSI/Grundschutz/IT-GS-Kompendium_Einzel_PDFs_2023 filetype:pdf
-
-*Wichtig*: Validiere jeden Namen und die Nummer der genannten Anforderungen und ob der Baustein dazu Wirklich aus der Edition 2023 ist penibel, bevor Du sie einfügst. Erfinde keine IDs! Nutze keine alten Editionen!
-
-Gib das Ergebnis ausschließlich als Markdown-Tabelle mit folgendem Format aus:
-| ID | Name der Anforderung | Begründung |
-|---|---|---|`;
         } else {
             prompt = `Welche Risiken bestehen bei Nicht-Umsetzung von "${title}"? Beschreibung: ${prose}. Nenne mindestens Gefahren mit kritischem Schadenspotential und mit hoher eintrittshäufigkeit.`;
         }

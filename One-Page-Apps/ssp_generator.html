@@ -346,6 +346,7 @@
         // --- INIT ---
         document.addEventListener('DOMContentLoaded', async () => {
             renderMainStructure();
+            loadED23Map();
             await loadBaseCatalog();
             renderCatalogsList();
             fetchGitHubComponents();
@@ -355,6 +356,31 @@
             document.getElementById('main-editor').classList.remove('hidden');
             await switchMethodik('standard');
         });
+
+        // --- BSI ED2023 Anforderungen (vorberechnet von Gpp-ai-tool, ohne Laufzeit-KI) ---
+        let ED23_MAP = {};
+        const ED23_MAP_URL = "https://raw.githubusercontent.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/main/hilfsdateien/gpp_ed23_anforderungen.json";
+        async function loadED23Map() {
+            try {
+                const r = await fetch(ED23_MAP_URL);
+                if (!r.ok) throw new Error("HTTP " + r.status);
+                const d = await r.json();
+                ED23_MAP = d.gpp_ed23_anforderungen_map || {};
+            } catch (e) { console.warn("BSI ED23-Anforderungen nicht geladen:", e); ED23_MAP = {}; }
+        }
+        const ed23Esc = s => (s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        function renderED23Table(list) {
+            if (!list || !list.length) return '<p class="text-xs text-slate-500 italic">Keine passenden BSI ED23-Anforderungen hinterlegt.</p>';
+            const rows = list.map(a => `<tr class="border-b border-slate-700/50 align-top"><td class="py-1 pr-2 font-mono font-bold text-blue-300 whitespace-nowrap">${ed23Esc(a.id)}</td><td class="py-1 pr-2 text-slate-200">${ed23Esc(a.name)}</td><td class="py-1 text-slate-400">${ed23Esc(a.begruendung || '')}</td></tr>`).join('');
+            return `<div class="text-[10px] font-bold text-blue-400 uppercase mb-2">📑 BSI IT-Grundschutz Edition 2023 – passende Anforderungen</div><table class="w-full text-xs border-collapse"><thead><tr class="text-left text-slate-500"><th class="py-1 pr-2">ID</th><th class="py-1 pr-2">Name der Anforderung</th><th class="py-1">Begründung</th></tr></thead><tbody>${rows}</tbody></table>`;
+        }
+        window.showED23 = (cid, rk) => {
+            const box = document.getElementById('ed23-' + rk);
+            if (!box) return;
+            if (!box.classList.contains('hidden')) { box.classList.add('hidden'); return; }
+            box.innerHTML = renderED23Table(ED23_MAP[cid]);
+            box.classList.remove('hidden');
+        };
 
         function toggleLoader(show, text = "Lade...") {
             const overlay = document.getElementById('loading-overlay');
@@ -1102,6 +1128,7 @@
                 filteredControls.forEach(cid => {
                     const info = bpState.controlsIndex.get(cid);
                     const modKey = `${sourceId}||${cid}`;
+                    const rk = `${sourceId}-${cid}`.replace(/[^a-zA-Z0-9]/g, '-');
                     const mods = bpState.modifications.get(modKey) || [];
                     const isMuss = info?.modalverb?.toUpperCase() === 'MUSS';
 
@@ -1113,7 +1140,8 @@
                     const safeTextForTitle = info?.text ? info.text.replace(/"/g, '&quot;') : '';
 
                     html += `
-                        <li class="bg-slate-900 border border-slate-700 rounded-lg p-3 flex justify-between items-center group hover:border-slate-500 transition-colors">
+                        <li class="bg-slate-900 border border-slate-700 rounded-lg p-3 group hover:border-slate-500 transition-colors">
+                          <div class="flex justify-between items-center">
                             <div class="flex-1 min-w-0 pr-4">
                                 <div class="flex items-center gap-2 mb-1">
                                     <span class="font-bold text-white font-mono text-sm">${cid}</span>
@@ -1123,12 +1151,15 @@
                                 ${info?.text ? `<div class="text-[11px] text-slate-400 mt-1 line-clamp-2 leading-relaxed" title="${safeTextForTitle}">${info.text}</div>` : ''}
                             </div>
                             <div class="flex items-center gap-2 flex-shrink-0 opacity-100 md:opacity-0 group-hover:opacity-100 transition-opacity">
+                                <button onclick="showED23('${cid}', '${rk}')" class="px-3 py-1.5 bg-slate-700 text-blue-300 hover:bg-slate-600 rounded text-xs font-bold transition-colors">📑 ED23</button>
                                 <button onclick="openModifyModal('${cid}', '${sourceId}', '${title.replace(/'/g, "\\'")}')" class="px-3 py-1.5 bg-slate-700 text-blue-300 hover:bg-slate-600 rounded text-xs font-bold transition-colors">⚙️ Modify</button>
                                 ${isMuss
                             ? `<button disabled class="px-3 py-1.5 bg-slate-800/50 text-slate-600 border border-slate-700 rounded text-xs font-bold cursor-not-allowed" title="MUSS-Anforderung kann nicht entfernt werden">🔒</button>`
                             : `<button onclick="removeControl('${cid}', '${sourceId}')" class="px-3 py-1.5 bg-slate-800 text-red-400 hover:bg-slate-700 border border-slate-700 rounded text-xs font-bold transition-colors">✕</button>`
                         }
                             </div>
+                          </div>
+                          <div id="ed23-${rk}" class="hidden mt-2 p-2 bg-slate-800/60 border-l-2 border-blue-700 rounded"></div>
                         </li>
                     `;
                 });

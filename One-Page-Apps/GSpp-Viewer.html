@@ -316,6 +316,47 @@
         let filterOptions = { class: new Set(), sec_level: new Set(), effort_level: new Set(), modalverb: new Set(), handlung: new Set(), tags: new Set() };
         let loadedCatalogs = [];
         let aiCache = {};
+        // Vorberechnetes Mapping G++-Control -> passende BSI ED2023-Anforderungen
+        // (erzeugt von Gpp-ai-tool stage_ed23_anforderungen, statt zur Laufzeit per KI).
+        let ED23_MAP = {};
+        const ED23_MAP_URL = "https://raw.githubusercontent.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/main/hilfsdateien/gpp_ed23_anforderungen.json";
+        async function loadED23Map() {
+            try {
+                const res = await fetch(ED23_MAP_URL);
+                if (!res.ok) throw new Error("HTTP " + res.status);
+                const data = await res.json();
+                ED23_MAP = data.gpp_ed23_anforderungen_map || {};
+            } catch (e) {
+                console.warn("BSI ED23-Anforderungen konnten nicht geladen werden:", e);
+                ED23_MAP = {};
+            }
+        }
+
+        function renderED23Table(list) {
+            if (!list || list.length === 0) {
+                return '<p style="color:#607d8b; font-style:italic; margin:0;">Keine passenden BSI ED23-Anforderungen hinterlegt.</p>';
+            }
+            const rows = list.map(a => `<tr>
+                <td style="white-space:nowrap; font-weight:600; vertical-align:top; padding:6px 10px; border-bottom:1px solid #e1e8ed;">${escapeHtml(a.id)}</td>
+                <td style="vertical-align:top; padding:6px 10px; border-bottom:1px solid #e1e8ed;">${escapeHtml(a.name)}</td>
+                <td style="vertical-align:top; padding:6px 10px; border-bottom:1px solid #e1e8ed; color:#455a64;">${escapeHtml(a.begruendung || '')}</td>
+            </tr>`).join('');
+            return `<table style="width:100%; border-collapse:collapse; font-size:0.85rem;">
+                <thead><tr style="text-align:left; color:var(--primary-color);">
+                    <th style="padding:6px 10px;">ID</th><th style="padding:6px 10px;">Name der Anforderung</th><th style="padding:6px 10px;">Begründung</th>
+                </tr></thead><tbody>${rows}</tbody></table>`;
+        }
+
+        function showED23(controlId, btn) {
+            const card = btn.closest('.control-card');
+            const responseArea = card.querySelector('.ai-response-area');
+            const contentArea = card.querySelector('.ai-response-content');
+            responseArea.classList.add('active');
+            contentArea.innerHTML =
+                '<div style="font-weight:bold; color:var(--primary-color); margin-bottom:10px;">📑 BSI IT-Grundschutz Edition 2023 – passende Anforderungen</div>'
+                + renderED23Table(ED23_MAP[controlId]);
+        }
+
         let activeProfileIds = null; // Speichert Set mit Control-IDs des aktiven Profils
         let activeProfileMaturity = null; // cid -> [{level, statement, guidance, assessment}] aus enhanced Profilen
         let controlParamsById = {}; // cid -> control.params, für die Auflösung von {{ insert: param }} in Reifegraden
@@ -422,10 +463,6 @@ Verstehe: Der neue Grundschutz++ nutzt einen granularen Katalog, in dem jede Anf
 Keine Einleitenden Worte über deine Rolle oder wie der GRundschutz++ aufgebaut ist. Fokus ist nur die Aufgabe ohne Ausschmückungen. Du Schreibst wie ein Experte, aber nicht wie
 eine KI. Dein Satzbau ist Abwechslungsreich, konkret, präßise und du nutzt keine KI Floskeln. Heute ist der ${heute}.`;
 
-            if (type === 'edition2023') {
-                system = `Du bist ein Experte für den BSI IT-Grundschutz. Deine Aufgabe ist das genaue Mapping zwischen dem neuen Grundschutz++ und den Bausteinen des IT-Grundschutz-Kompendiums Edition 2023. Antworte in strukturierter Markdown-Form ohne unnötige Floskeln.`;
-            }
-
             const userContext = document.getElementById('aiContextInput').value.trim();
             if (userContext) {
                 system += "\n\nBerücksichtige zwingend folgenden Unternehmenskontext für deine Antwort:\n" + userContext;
@@ -434,16 +471,6 @@ eine KI. Dein Satzbau ist Abwechslungsreich, konkret, präßise und du nutzt kei
 
             if (type === 'implementation') {
                 prompt = `Erstelle einen Umsetzungsvorschlag für die BSI Maßnahme "${title}". Beschreibung: ${prose}${guidanceText}. Nenne praktische Schritte. Drei sehr ausführliche Praxis Beispiele die alle Aspekte des Controls abdecken.`;
-            } else if (type === 'edition2023') {
-                prompt = `Suche gründlich nach *allen* passenden Anforderungen aus den IT-Grundschutz Bausteinen der Edition 2023, die zur Maßnahme "${title}" (Beschreibung: ${prose}${guidanceText}) passen. *Wichtig:* Nur Bausteine der Edition 2023, deren PDF haben "2023.pdf" im Namen!
-Nutze für deine Suche zwingend diese Parameter, um in den offiziellen BSI PDFs zu suchen:
-inurl:https://www.bsi.bund.de/SharedDocs/Downloads/DE/BSI/Grundschutz/IT-GS-Kompendium_Einzel_PDFs_2023 filetype:pdf
-
-*Wichtig*: Validiere jeden Namen und die Nummer der genannten Anforderungen und ob der Baustein dazu Wirklich aus der Edition 2023 ist penibel, bevor Du sie einfügst. Erfinde keine IDs! Nutze keine alten Editionen!
-
-Gib das Ergebnis ausschließlich als Markdown-Tabelle mit folgendem Format aus:
-| ID | Name der Anforderung | Begründung |
-|---|---|---|`;
             } else {
                 prompt = `Welche Risiken bestehen bei Nicht-Umsetzung von "${title}"? Beschreibung: ${prose}. Nenne mindestens Gefahren mit kritischem Schadenspotential und mit hoher eintrittshäufigkeit.`;
             }
@@ -719,8 +746,10 @@ Gib das Ergebnis ausschließlich als Markdown-Tabelle mit folgendem Format aus:
                 <div class="ai-actions">
                     <button class="ai-btn" onclick="triggerAI('${control.id}', 'implementation')">✨ Umsetzung</button>
                     <button class="ai-btn" onclick="triggerAI('${control.id}', 'risk')">✨ Risiko</button>
-					<button class="ai-btn" onclick="triggerAI('${control.id}', 'edition2023')">✨ Abgleich Edition 2023</button>
                     <div class="ai-loader"></div>
+                </div>
+                <div class="ed23-actions" style="margin:10px 0;">
+                    <button class="ed23-btn" onclick="showED23('${control.id}', this)" style="background:#eef2f7; color:var(--primary-color); border:1px solid var(--border-color); padding:6px 12px; border-radius:6px; cursor:pointer; font-size:0.8rem; font-weight:600;">📑 Zeige BSI ED23 Anforderungen</button>
                 </div>
                 <div class="ai-response-area"><div class="ai-response-content"></div></div>
                 ${guidance ? `<div class="guidance-box">${convertOscal(guidance, control.params)}</div>` : ''}
@@ -972,6 +1001,9 @@ Gib das Ergebnis ausschließlich als Markdown-Tabelle mit folgendem Format aus:
 
             // Lade die Liste der verfügbaren Profile initial
             fetchProfilesList();
+
+            // Lade das vorberechnete BSI ED2023-Anforderungen-Mapping
+            loadED23Map();
         });
     </script>
 </body>

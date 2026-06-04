@@ -295,9 +295,22 @@
         const API_URL_PRAKTIKEN = 'https://api.github.com/repos/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/contents/Zielobjektkategorien/profile/process';
         const PRAKTIKEN_FILE_SUFFIX = '_process_profile.json';
 
+        // Praktik-Kürzel → Begriff. Fallback für die Anzeige, falls der Basis-Katalog (mit
+        // den Gruppentiteln) noch nicht geladen ist. Quelle (in sync halten):
+        // https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/blob/main/Dokumentation/namespaces/practices.csv
+        const PRACTICE_ABBREVIATIONS = {
+            GC: "Governance und Compliance", STM: "Strukturmodellierung", UMS: "Umsetzung",
+            VRB: "Verbesserung", PERF: "Monitoring-Evaluation", RISK: "Risikomanagement",
+            ASST: "Informationen und Assets", PERS: "Personal", BES: "Beschaffungsmanagement",
+            DLS: "Dienstleistersteuerung", TEST: "Änderungen und Tests", GEB: "Gebäudemanagement",
+            SENS: "Sensibilisierung", ARCH: "Architektur", BER: "Berechtigung", NOT: "Notfallplanung",
+            DET: "Detektion", REA: "Sicherheitsvorfallsbehandlung", KONF: "Konfiguration",
+            DEV: "Entwicklung", METHODIK: "Methodik"
+        };
+
         const METHODIK_URLS = {
             standard: 'https://raw.githubusercontent.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/refs/heads/main/Zielobjektkategorien/profile/process/methodik_process_profile.json',
-            enhanced: 'https://raw.githubusercontent.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/refs/heads/main/ED23-Baustein-profile/DE/methodik_Methodik_methodik.json'
+            enhanced: 'https://raw.githubusercontent.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/refs/heads/main/ED23-Baustein-profile/DE/Methodik.json'
         };
 
         const PRESET_ADDITIONAL_CATALOGS = [
@@ -837,11 +850,14 @@
                 }
 
                 container.innerHTML = processFiles.map(file => {
-                    // Filenames follow "<prefix>_prozesse_process_profile[_enhanced].json" — e.g. arch_prozesse → ARCH
+                    // Base process filenames are "<kürzel>_process_profile[_enhanced].json"
+                    // (e.g. "arch_process_profile.json"); a legacy "_prozesse" suffix is also
+                    // tolerated. The stem is the practice Kürzel, which we resolve to its term.
                     const stem = file.name.replace(/_process_profile(_enhanced)?\.json$/, '').replace(/_profile\.json$/, '');
-                    const prefixMatch = stem.match(/^(.*?)_?prozesse$/i);
-                    const prefix = prefixMatch ? prefixMatch[1].toUpperCase() : '';
-                    const groupTitle = prefix ? bpState.groupTitles.get(prefix) : null;
+                    const prefix = stem.replace(/_?prozesse$/i, '').toUpperCase();
+                    // Prefer the catalog group title, fall back to the static Kürzel→Begriff
+                    // map (e.g. ARCH → Architektur).
+                    const groupTitle = bpState.groupTitles.get(prefix) || PRACTICE_ABBREVIATIONS[prefix];
                     const label = groupTitle
                         ? `${groupTitle} (${prefix})`
                         : (stem.split(/[_-]/).filter(Boolean).map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ') || stem);
@@ -904,7 +920,7 @@
                 const ddG = document.getElementById('dd-gplus');
 
                 ddN.innerHTML = '<option value="" disabled selected>Asset wählen...</option>';
-                d1.filter(i => i.name.endsWith('.json') && !i.name.includes('methodik')).forEach(f => ddN.appendChild(new Option(f.name.replace('.json', ''), f.download_url)));
+                d1.filter(i => i.name.endsWith('.json') && !i.name.toLowerCase().includes('methodik')).forEach(f => ddN.appendChild(new Option(f.name.replace('.json', ''), f.download_url)));
 
                 ddG.innerHTML = '<option value="" disabled selected>Asset wählen...</option>';
                 d2.filter(i => i.name.endsWith('.json') && !i.name.endsWith(PRAKTIKEN_FILE_SUFFIX)).forEach(f => ddG.appendChild(new Option(f.name.replace('.json', ''), f.download_url)));

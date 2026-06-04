@@ -515,6 +515,34 @@ eine KI. Dein Satzbau ist Abwechslungsreich, konkret, präßise und du nutzt kei
             return files.concat(...nested.map(n => Array.isArray(n) ? n : []));
         }
 
+        // Praktik-Kürzel → Begriff. Quelle (in sync halten):
+        // https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/blob/main/Dokumentation/namespaces/practices.csv
+        const PRACTICE_ABBREVIATIONS = {
+            GC: "Governance und Compliance", STM: "Strukturmodellierung", UMS: "Umsetzung",
+            VRB: "Verbesserung", PERF: "Monitoring-Evaluation", RISK: "Risikomanagement",
+            ASST: "Informationen und Assets", PERS: "Personal", BES: "Beschaffungsmanagement",
+            DLS: "Dienstleistersteuerung", TEST: "Änderungen und Tests", GEB: "Gebäudemanagement",
+            SENS: "Sensibilisierung", ARCH: "Architektur", BER: "Berechtigung", NOT: "Notfallplanung",
+            DET: "Detektion", REA: "Sicherheitsvorfallsbehandlung", KONF: "Konfiguration",
+            DEV: "Entwicklung", METHODIK: "Methodik"
+        };
+
+        // Macht aus einem Profil-Dateinamen ein lesbares Label und löst Praktik-Kürzel auf.
+        // z.B. "arch_process_profile" → "Architektur (Prozess)", "administrierende_profile" → "Administrierende"
+        function prettifyProfileName(name) {
+            let n = name.replace(/\.json$/, '');
+            const enhanced = /_enhanced$/.test(n);
+            n = n.replace(/_enhanced$/, '');
+            if (/_process_profile$/.test(n)) {
+                const key = n.replace(/_process_profile$/, '').toUpperCase();
+                const label = PRACTICE_ABBREVIATIONS[key] || n.replace(/_process_profile$/, '');
+                return `${label} (Prozess)${enhanced ? ' – Enhanced' : ''}`;
+            }
+            n = n.replace(/_profile$/, '').replace(/[-_]/g, ' ').trim();
+            const label = n.charAt(0).toUpperCase() + n.slice(1);
+            return `${label}${enhanced ? ' – Enhanced' : ''}`;
+        }
+
         async function fetchProfilesList() {
             const select = document.getElementById('profileSelect');
             try {
@@ -525,7 +553,7 @@ eine KI. Dein Satzbau ist Abwechslungsreich, konkret, präßise und du nutzt kei
                 files.filter(f => f.name.endsWith('.json')).forEach(f => {
                     const opt = document.createElement('option');
                     opt.value = f.download_url; // Nutzt die direkte Raw-URL der Datei
-                    opt.textContent = f.name.replace('.json', '');
+                    opt.textContent = prettifyProfileName(f.name);
                     select.appendChild(opt);
                 });
             } catch (e) {

@@ -1,0 +1,3806 @@
+{
+  "profile": {
+    "uuid": "ae2e4daa-6d54-5357-a345-960826e557a8",
+    "metadata": {
+      "title": "Personal Prozess Profil",
+      "last-modified": "2026-06-04T14:32:46.795980+00:00",
+      "version": "0.0.1",
+      "oscal-version": "1.1.3"
+    },
+    "imports": [
+      {
+        "href": "https://raw.githubusercontent.com/BSI-Bund/Stand-der-Technik-Bibliothek/refs/heads/main/Anwenderkataloge/Grundschutz%2B%2B/Grundschutz%2B%2B-catalog.json",
+        "include-controls": [
+          {
+            "with-ids": [
+              "PERS.2.1",
+              "PERS.2.2",
+              "PERS.2.3",
+              "PERS.2.3.1",
+              "PERS.2.3.2",
+              "PERS.2.3.3",
+              "PERS.2.3.4",
+              "PERS.2.4",
+              "PERS.3.4",
+              "PERS.3.5",
+              "PERS.3.6",
+              "PERS.3.6.1",
+              "PERS.5.1",
+              "PERS.5.2",
+              "PERS.5.3"
+            ]
+          }
+        ]
+      }
+    ],
+    "modify": {
+      "alters": [
+        {
+          "control-id": "PERS.2.1",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "PERS.2.1_stm",
+              "parts": [
+                {
+                  "id": "PERS.2.1-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Initiation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    }
+                  ],
+                  "prose": "Aufgaben werden nur vereinzelt für Kernfunktionen informell besprochen.",
+                  "parts": [
+                    {
+                      "id": "PERS.2.1-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Dokumentieren Sie Aufgaben zumindest für die IT-Leitung."
+                    },
+                    {
+                      "id": "PERS.2.1-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Befragung der Leitung. Prüfung einzelner E-Mails."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERS.2.1-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Initiation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    }
+                  ],
+                  "prose": "Grundlegende Aufgabenbeschreibungen liegen für wichtige IT-Rollen vor.",
+                  "parts": [
+                    {
+                      "id": "PERS.2.1-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Erstellen Sie einfache Listen mit Hauptaufgaben."
+                    },
+                    {
+                      "id": "PERS.2.1-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Sichtprüfung der Aufgabenlisten in Textform."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERS.2.1-m3_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Initiation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m3"
+                    }
+                  ],
+                  "prose": "Personal SOLLTE für alle Tätigkeiten im Geltungsbereich Aufgaben mit Abgrenzungen und Schnittstellen verankern.",
+                  "parts": [
+                    {
+                      "id": "PERS.2.1-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Stellen Sie sicher, dass jede Tätigkeit im ISMS-Scope einer dokumentierten Aufgabe zugeordnet ist, wobei klare Grenzen und Übergabepunkte zu anderen Aufgaben definiert sind."
+                    },
+                    {
+                      "id": "PERS.2.1-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfen Sie das Aufgabenverzeichnis gegen das Organigramm. Abgleich via: `diff <(grep -r 'Schnittstelle' ./docs) <(ls ./personal/aufgaben)`."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERS.2.1-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Initiation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    }
+                  ],
+                  "prose": "Aufgabenprofile sind proaktiv in einem zentralen Managementsystem gepflegt.",
+                  "parts": [
+                    {
+                      "id": "PERS.2.1-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Verknüpfen Sie Aufgaben direkt mit Prozesslandkarten."
+                    },
+                    {
+                      "id": "PERS.2.1-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Audit des GRC-Systems auf Konsistenz der Aufgabenverknüpfung."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERS.2.1-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Initiation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    }
+                  ],
+                  "prose": "Die Aufgabensteuerung erfolgt integriert und dynamisch mit automatischer Konfliktprüfung.",
+                  "parts": [
+                    {
+                      "id": "PERS.2.1-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Nutzen Sie Workflow-Engines zur Aufgabensteuerung."
+                    },
+                    {
+                      "id": "PERS.2.1-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung der Workflow-Logs auf automatisierte Schnittstellenfreigaben."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "control-id": "PERS.2.2",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "PERS.2.2_stm",
+              "parts": [
+                {
+                  "id": "PERS.2.2-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Initiation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    }
+                  ],
+                  "prose": "Rollen sind nur in Ansätzen für Kernverantwortliche vorhanden.",
+                  "parts": [
+                    {
+                      "id": "PERS.2.2-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Benennen Sie Verantwortliche für IT und Sicherheit."
+                    },
+                    {
+                      "id": "PERS.2.2-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung der Organigramm-Skizzen auf Rollenzuweisungen."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERS.2.2-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Initiation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    }
+                  ],
+                  "prose": "Standardrollen sind definiert, jedoch ohne detaillierte Kompetenzprofile.",
+                  "parts": [
+                    {
+                      "id": "PERS.2.2-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Nutzen Sie Vorlagen für Standard-IT-Rollen."
+                    },
+                    {
+                      "id": "PERS.2.2-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Sichtprüfung der Rollenbeschreibungen auf Vollständigkeit."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERS.2.2-m3_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Initiation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m3"
+                    }
+                  ],
+                  "prose": "Personal SOLLTE für alle Tätigkeiten im Geltungsbereich Rollen mit Zielen, Aufgaben, erforderlichen Kompetenzen und Qualifikationen verankern.",
+                  "parts": [
+                    {
+                      "id": "PERS.2.2-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Definieren Sie für jede Rolle im Geltungsbereich spezifische Ziele, die zugehörigen Aufgaben sowie die notwendigen fachlichen Kompetenzen und Qualifikationsnachweise."
+                    },
+                    {
+                      "id": "PERS.2.2-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Abgleich der Rollenbeschreibungen mit Qualifikationsmatrix. Script-Check: `grep -E 'Ziel|Kompetenz' /hr/roles/*.md | wc -l` gegen Rollenanzahl."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERS.2.2-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Initiation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    }
+                  ],
+                  "prose": "Rollenprofile beinhalten detaillierte Reifegradanforderungen.",
+                  "parts": [
+                    {
+                      "id": "PERS.2.2-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Integrieren Sie Fortbildungspläne direkt in Rollenprofile."
+                    },
+                    {
+                      "id": "PERS.2.2-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung der Kopplung zwischen Rollenprofil und Schulungskatalog."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERS.2.2-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Initiation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    }
+                  ],
+                  "prose": "Rollenmodelle werden durch KI-gestützte Kompetenzanalysen optimiert.",
+                  "parts": [
+                    {
+                      "id": "PERS.2.2-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Automatisieren Sie den Abgleich von Ist-Qualifikation zu Rollen-Soll."
+                    },
+                    {
+                      "id": "PERS.2.2-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Validierung der automatisierten Skill-Gap-Reports."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "control-id": "PERS.2.3",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "PERS.2.3_stm",
+              "parts": [
+                {
+                  "id": "PERS.2.3-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Risk Treatment",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    }
+                  ],
+                  "prose": "Eine Rollentrennung erfolgt nur bei offensichtlichen Interessenkonflikten.",
+                  "parts": [
+                    {
+                      "id": "PERS.2.3-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Trennen Sie zumindest Kasse und Buchhaltung."
+                    },
+                    {
+                      "id": "PERS.2.3-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Interview zur personellen Besetzung kritischer Funktionen."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERS.2.3-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Risk Treatment",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    }
+                  ],
+                  "prose": "Konfliktäre Rollenpaare sind identifiziert und grob dokumentiert.",
+                  "parts": [
+                    {
+                      "id": "PERS.2.3-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Erstellen Sie eine Matrix unvereinbarer Tätigkeiten (SoD)."
+                    },
+                    {
+                      "id": "PERS.2.3-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Stichprobenartige Prüfung der Doppelbesetzungen in der Personalakte."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERS.2.3-m3_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Risk Treatment",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m3"
+                    }
+                  ],
+                  "prose": "Personal SOLLTE für unvereinbare Aufgaben eine Rollentrennung verankern.",
+                  "parts": [
+                    {
+                      "id": "PERS.2.3-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Identifizieren Sie alle unvereinbaren Aufgabenkombinationen und stellen Sie sicher, dass diese organisatorisch durch verschiedene Personen wahrgenommen werden."
+                    },
+                    {
+                      "id": "PERS.2.3-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung der SoD-Matrix gegen das IAM-System. Abgleich via: `comm -12 <(getent group admin) <(getent group audit)` darf leer sein."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERS.2.3-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Risk Treatment",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    }
+                  ],
+                  "prose": "Die Rollentrennung wird durch technische Sperren im ERP/IAM unterstützt.",
+                  "parts": [
+                    {
+                      "id": "PERS.2.3-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Implementieren Sie SoD-Prüfregeln in Ihren IT-Systemen."
+                    },
+                    {
+                      "id": "PERS.2.3-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Test der technischen Fehlermeldung bei Zuweisung inkompatibler Rechte."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERS.2.3-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Risk Treatment",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    }
+                  ],
+                  "prose": "Dynamische Rollentrennung mit Echtzeit-Compliance-Überwachung.",
+                  "parts": [
+                    {
+                      "id": "PERS.2.3-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Nutzen Sie Policy-as-Code zur Durchsetzung von SoD-Regeln."
+                    },
+                    {
+                      "id": "PERS.2.3-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung der Echtzeit-Alerts bei versuchter SoD-Verletzung."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "control-id": "PERS.2.3.1",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "PERS.2.3.1_stm",
+              "parts": [
+                {
+                  "id": "PERS.2.3.1-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Technical",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    }
+                  ],
+                  "prose": "Admins pflegen Daten sporadisch ohne formale Trennung.",
+                  "parts": [
+                    {
+                      "id": "PERS.2.3.1-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Vermeiden Sie, dass Domänen-Admins täglich User-Daten ändern."
+                    },
+                    {
+                      "id": "PERS.2.3.1-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung der AD-Logs auf administrative Dateneingriffe."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERS.2.3.1-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Technical",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    }
+                  ],
+                  "prose": "Es existieren separate Konten für Admin- und Datenpflegeaufgaben.",
+                  "parts": [
+                    {
+                      "id": "PERS.2.3.1-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Verwenden Sie dedizierte Konten für die Datenpflege."
+                    },
+                    {
+                      "id": "PERS.2.3.1-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Abfrage der Gruppenmitglieder im Verzeichnisdienst."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERS.2.3.1-m3_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Technical",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m3"
+                    }
+                  ],
+                  "prose": "Personal SOLLTE zwischen Administration von Verzeichnisdiensten und Pflege der verwalteten Daten eine Rollentrennung verankern.",
+                  "parts": [
+                    {
+                      "id": "PERS.2.3.1-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Stellen Sie sicher, dass Systemadministratoren des Verzeichnisdienstes keinen Zugriff auf die inhaltliche Pflege der Datensätze haben und umgekehrt."
+                    },
+                    {
+                      "id": "PERS.2.3.1-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Analyse der Berechtigungsgruppen (RBAC). Script: `Get-ADGroupMember -Identity 'Domain Admins' | select SamAccountName` vs Datenpflege-Gruppe."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERS.2.3.1-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Technical",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    }
+                  ],
+                  "prose": "Technische Durchsetzung der Trennung mittels Just-In-Time Administration.",
+                  "parts": [
+                    {
+                      "id": "PERS.2.3.1-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Nutzen Sie PAM-Lösungen zur strikten Trennung der Rechte."
+                    },
+                    {
+                      "id": "PERS.2.3.1-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Audit der PAM-Zugriffsprotokolle auf Trennungsscharfe."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERS.2.3.1-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Technical",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    }
+                  ],
+                  "prose": "Vollautomatisierte Datenpflege über API ohne direkten Admin-Zugriff.",
+                  "parts": [
+                    {
+                      "id": "PERS.2.3.1-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Implementieren Sie Infrastructure as Code für Verzeichnisobjekte."
+                    },
+                    {
+                      "id": "PERS.2.3.1-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung der Git-Commits und Pipeline-Logs auf Zugriffsrechte."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "control-id": "PERS.2.3.2",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "PERS.2.3.2_stm",
+              "parts": [
+                {
+                  "id": "PERS.2.3.2-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Technical",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    }
+                  ],
+                  "prose": "Admin-Zugriffe auf Host und VM sind oft identisch besetzt.",
+                  "parts": [
+                    {
+                      "id": "PERS.2.3.2-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Trennen Sie Passwörter für Hypervisor und Gast-Systeme."
+                    },
+                    {
+                      "id": "PERS.2.3.2-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Befragung zur Passwort-Handhabung bei Virtualisierung."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERS.2.3.2-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Technical",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    }
+                  ],
+                  "prose": "Verschiedene Personen betreuen Host und Gast-Systeme, wo möglich.",
+                  "parts": [
+                    {
+                      "id": "PERS.2.3.2-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Teilen Sie Admin-Teams nach Infrastruktur-Ebenen auf."
+                    },
+                    {
+                      "id": "PERS.2.3.2-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Stichprobenprüfung der Zugriffsberechtigungen am Hypervisor."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERS.2.3.2-m3_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Technical",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m3"
+                    }
+                  ],
+                  "prose": "Personal SOLLTE zwischen Administration von virtuellen Systemen und Virtualisierungslösungen eine Rollentrennung verankern.",
+                  "parts": [
+                    {
+                      "id": "PERS.2.3.2-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Administratoren der Virtualisierungsplattform dürfen keinen Zugriff auf die Betriebssystemebene der darin laufenden VMs haben."
+                    },
+                    {
+                      "id": "PERS.2.3.2-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung der Hypervisor-Berechtigungen (z.B. vCenter-Rollen). Check via API: `curl -X GET 'https://vcenter/api/roles' | grep 'NoGuestAccess'`."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERS.2.3.2-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Technical",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    }
+                  ],
+                  "prose": "Isolation der Management-Netze und strikte MFA-Vorschrift.",
+                  "parts": [
+                    {
+                      "id": "PERS.2.3.2-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Erzwingen Sie separate MFA-Token für Host-Admins."
+                    },
+                    {
+                      "id": "PERS.2.3.2-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Test der MFA-Erzwingung bei Anmeldung an Virtualisierungs-Management."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERS.2.3.2-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Technical",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    }
+                  ],
+                  "prose": "No-Ops Ansatz: Zugriff auf Hypervisor ist technisch für Personen gesperrt.",
+                  "parts": [
+                    {
+                      "id": "PERS.2.3.2-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Automatisieren Sie die Provisionierung vollständig (Terraform)."
+                    },
+                    {
+                      "id": "PERS.2.3.2-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung der fehlenden interaktiven Logins auf Hypervisoren."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "control-id": "PERS.2.3.3",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "PERS.2.3.3_stm",
+              "parts": [
+                {
+                  "id": "PERS.2.3.3-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Audit",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    }
+                  ],
+                  "prose": "Implementierer prüfen ihre eigene Arbeit informell selbst.",
+                  "parts": [
+                    {
+                      "id": "PERS.2.3.3-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Lassen Sie Konfigurationen durch Kollegen gegenlesen."
+                    },
+                    {
+                      "id": "PERS.2.3.3-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Nachweis von Vier-Augen-Prinzip in Change-Tickets."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERS.2.3.3-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Audit",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    }
+                  ],
+                  "prose": "Interne Audits werden von sachkundigen Kollegen anderer Teams durchgeführt.",
+                  "parts": [
+                    {
+                      "id": "PERS.2.3.3-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Nutzen Sie ein Peer-Review-Verfahren für Sicherheitsänderungen."
+                    },
+                    {
+                      "id": "PERS.2.3.3-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Einsicht in Audit-Berichte und deren Autorenliste."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERS.2.3.3-m3_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Audit",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m3"
+                    }
+                  ],
+                  "prose": "Personal SOLLTE zwischen Implementierung von Sicherheitsanforderungen und deren Überprüfung eine Rollentrennung verankern.",
+                  "parts": [
+                    {
+                      "id": "PERS.2.3.3-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Personen, die Sicherheitsmaßnahmen umsetzen, dürfen nicht dieselben sein, die die Wirksamkeit dieser Maßnahmen offiziell prüfen oder auditieren."
+                    },
+                    {
+                      "id": "PERS.2.3.3-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Vergleich der Namen in Implementierungs- und Abnahme-Logs. Script: `grep 'Author:' log.txt | sort -u` vs `grep 'Auditor:' report.txt`."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERS.2.3.3-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Audit",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    }
+                  ],
+                  "prose": "Etablierung einer unabhängigen internen Revision für IT-Sicherheit.",
+                  "parts": [
+                    {
+                      "id": "PERS.2.3.3-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Trennen Sie die ISB-Rolle disziplinarisch von der IT-Leitung."
+                    },
+                    {
+                      "id": "PERS.2.3.3-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung des Organigramms auf disziplinarische Unabhängigkeit."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERS.2.3.3-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Audit",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    }
+                  ],
+                  "prose": "Automatisierte Continuous-Auditing-Systeme ohne Personaleingriff.",
+                  "parts": [
+                    {
+                      "id": "PERS.2.3.3-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Implementieren Sie automatisierte Compliance-Scans (OpenSCAP)."
+                    },
+                    {
+                      "id": "PERS.2.3.3-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Validierung der Scan-Integrity und Manipulationsschutz der Reports."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "control-id": "PERS.2.3.4",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "PERS.2.3.4_stm",
+              "parts": [
+                {
+                  "id": "PERS.2.3.4-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Technical",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    }
+                  ],
+                  "prose": "Entwickler testen ihre Änderungen meistens selbst.",
+                  "parts": [
+                    {
+                      "id": "PERS.2.3.4-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Führen Sie einfache Testprotokolle vor dem Rollout."
+                    },
+                    {
+                      "id": "PERS.2.3.4-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung von Testberichten auf Ersteller-Informationen."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERS.2.3.4-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Technical",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    }
+                  ],
+                  "prose": "Separate Testumgebungen werden für kritische Änderungen genutzt.",
+                  "parts": [
+                    {
+                      "id": "PERS.2.3.4-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Stellen Sie sicher, dass Tester Zugriff auf die Testumgebung haben."
+                    },
+                    {
+                      "id": "PERS.2.3.4-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Sichtprüfung der Testumgebung und Benutzerzugriffe."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERS.2.3.4-m3_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Technical",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m3"
+                    }
+                  ],
+                  "prose": "Personal SOLLTE zwischen Implementierung und Test eine Rollentrennung verankern.",
+                  "parts": [
+                    {
+                      "id": "PERS.2.3.4-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Stellen Sie sicher, dass Softwareänderungen oder Konfigurationen von Personen getestet werden, die nicht an der Erstellung beteiligt waren."
+                    },
+                    {
+                      "id": "PERS.2.3.4-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung der Git-Merge-Requests auf Reviewer-Zwang. Command: `git log --pretty=format:'%an %cn' | awk '$1==$2 {print \"Fehler: \"$1}'`."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERS.2.3.4-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Technical",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    }
+                  ],
+                  "prose": "Dedizierte QA-Abteilung übernimmt die Endabnahme in Staging.",
+                  "parts": [
+                    {
+                      "id": "PERS.2.3.4-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Automatisieren Sie Unit-Tests in einer separaten Pipeline."
+                    },
+                    {
+                      "id": "PERS.2.3.4-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Review der CI/CD-Pipeline-Konfiguration auf Trennungsschärfe."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERS.2.3.4-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Technical",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    }
+                  ],
+                  "prose": "Erzwingung der Trennung durch kryptografisch signierte Review-Attestierungen.",
+                  "parts": [
+                    {
+                      "id": "PERS.2.3.4-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Nutzen Sie binäre Autorisierung für Deployments in Produktion."
+                    },
+                    {
+                      "id": "PERS.2.3.4-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung der Kritisierungsschlüssel für Release-Freigaben."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "control-id": "PERS.2.4",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "PERS.2.4_stm",
+              "parts": [
+                {
+                  "id": "PERS.2.4-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    }
+                  ],
+                  "prose": "Zuständigkeiten werden mündlich im Team verteilt.",
+                  "parts": [
+                    {
+                      "id": "PERS.2.4-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Bestätigen Sie Aufgabenverteilungen kurz per E-Mail."
+                    },
+                    {
+                      "id": "PERS.2.4-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Interviews mit Mitarbeitern zu ihren Zuständigkeiten."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERS.2.4-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    }
+                  ],
+                  "prose": "Zuständigkeiten sind in einer einfachen Excel-Liste festgehalten.",
+                  "parts": [
+                    {
+                      "id": "PERS.2.4-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Führen Sie eine Liste: Wer macht was im IT-Betrieb."
+                    },
+                    {
+                      "id": "PERS.2.4-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Sichtprüfung der Liste auf Aktualität und Unterschriften."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERS.2.4-m3_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m3"
+                    }
+                  ],
+                  "prose": "Personal SOLLTE Zuständigkeiten für die Rollen zuweisen.",
+                  "parts": [
+                    {
+                      "id": "PERS.2.4-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Ordnen Sie jeder definierten Rolle im Geltungsbereich namentlich genannte Mitarbeitende zu und kommunizieren Sie diese Zuweisung."
+                    },
+                    {
+                      "id": "PERS.2.4-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Abgleich der Ernennungsurkunden mit der Rollenmatrix. Prüfung via: `ldapsearch -x '(title=ISB)'` gegen offizielle Benennung."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERS.2.4-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    }
+                  ],
+                  "prose": "Zuständigkeiten sind direkt im zentralen HR-Portal abrufbar.",
+                  "parts": [
+                    {
+                      "id": "PERS.2.4-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Verlinken Sie Rollenbeschreibungen mit Mitarbeiter-Accounts."
+                    },
+                    {
+                      "id": "PERS.2.4-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Stichprobenartige Suche von Rolleninhabern im Firmen-Portal."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERS.2.4-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    }
+                  ],
+                  "prose": "Dynamische Zuweisung basierend auf Verfügbarkeit und Skillset.",
+                  "parts": [
+                    {
+                      "id": "PERS.2.4-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Integrieren Sie das Ressourcenmanagement in Echtzeit."
+                    },
+                    {
+                      "id": "PERS.2.4-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung der automatisierten Onboarding- und Rollen-Flows."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "control-id": "PERS.3.4",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "PERS.3.4_stm",
+              "parts": [
+                {
+                  "id": "PERS.3.4-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Initiation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    }
+                  ],
+                  "prose": "Stellenausschreibungen basieren auf generischen Vorlagen.",
+                  "parts": [
+                    {
+                      "id": "PERS.3.4-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Listen Sie Haupttätigkeiten in der Anzeige auf."
+                    },
+                    {
+                      "id": "PERS.3.4-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Sichtprüfung aktueller Stellenausschreibungen."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERS.3.4-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Initiation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    }
+                  ],
+                  "prose": "Grobe Stellenprofile liegen vor der Ausschreibung schriftlich vor.",
+                  "parts": [
+                    {
+                      "id": "PERS.3.4-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Definieren Sie Mindestanforderungen an Bewerber vorab."
+                    },
+                    {
+                      "id": "PERS.3.4-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Einsicht in den Genehmigungsprozess von Ausschreibungen."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERS.3.4-m3_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Initiation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m3"
+                    }
+                  ],
+                  "prose": "Personal SOLLTE Stellenbeschreibungen vor Ausschreibung zu besetzender Stellen dokumentieren.",
+                  "parts": [
+                    {
+                      "id": "PERS.3.4-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Erstellen Sie vor der Veröffentlichung einer Vakanz eine detaillierte Stellenbeschreibung, die Anforderungen und Verantwortlichkeiten präzise definiert."
+                    },
+                    {
+                      "id": "PERS.3.4-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Vergleich des Erstellungsdatums der Stellenbeschreibung mit dem Ausschreibungsdatum. `stat stellenbeschreibung.pdf` vor `date` Anzeige."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERS.3.4-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Initiation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    }
+                  ],
+                  "prose": "Stellenbeschreibungen enthalten detaillierte Sicherheitskompetenzen.",
+                  "parts": [
+                    {
+                      "id": "PERS.3.4-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Nutzen Sie standardisierte Frameworks (z.B. NIST NICE) für IT-Profile."
+                    },
+                    {
+                      "id": "PERS.3.4-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Review der Profile auf Integration von Sicherheitsanforderungen."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERS.3.4-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Initiation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    }
+                  ],
+                  "prose": "Automatisierte Profilerstellung basierend auf Prozessanforderungen.",
+                  "parts": [
+                    {
+                      "id": "PERS.3.4-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Leiten Sie Stellenprofile direkt aus ISMS-Prozessverantwortungen ab."
+                    },
+                    {
+                      "id": "PERS.3.4-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Validierung der Tool-Kette von Prozess- zu Stellen-Mapping."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "control-id": "PERS.3.5",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "PERS.3.5_stm",
+              "parts": [
+                {
+                  "id": "PERS.3.5-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Initiation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    }
+                  ],
+                  "prose": "Bewerbungen werden nur auf Plausibilität der Abschlüsse geprüft.",
+                  "parts": [
+                    {
+                      "id": "PERS.3.5-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Prüfen Sie Zeugnisse auf offensichtliche Fälschungen."
+                    },
+                    {
+                      "id": "PERS.3.5-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Einsicht in Stichproben von Bewerbungseingängen."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERS.3.5-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Initiation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    }
+                  ],
+                  "prose": "Checklisten für Qualifikationsabgleiche werden genutzt.",
+                  "parts": [
+                    {
+                      "id": "PERS.3.5-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Vergleichen Sie Lebenslauf-Inhalte mit dem Soll-Profil."
+                    },
+                    {
+                      "id": "PERS.3.5-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung ausgefüllter Auswahlmatrizen bei Neueinstellungen."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERS.3.5-m3_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Initiation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m3"
+                    }
+                  ],
+                  "prose": "Personal SOLLTE die Qualifikation von Bewerbenden anhand der Bewerbungsunterlagen vor der Besetzung von Stellen testen.",
+                  "parts": [
+                    {
+                      "id": "PERS.3.5-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Validieren Sie die fachliche und persönliche Eignung der Bewerber systematisch durch Abgleich der Nachweise mit dem Anforderungsprofil."
+                    },
+                    {
+                      "id": "PERS.3.5-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung der Einstellungsakten auf Vorhandensein validierter Zertifikate. `ls /bewerber/checkliste_validiert.pdf`."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERS.3.5-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Initiation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    }
+                  ],
+                  "prose": "Strukturierte Fachinterviews und technische Tests sind Standard.",
+                  "parts": [
+                    {
+                      "id": "PERS.3.5-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Führen Sie standardisierte Skill-Assessments für IT-Personal durch."
+                    },
+                    {
+                      "id": "PERS.3.5-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Einsicht in technische Testprotokolle aus dem Recruiting."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERS.3.5-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Initiation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    }
+                  ],
+                  "prose": "Hintergrundüberprüfung und Verifizierung der Zertifikate bei Ausstellern.",
+                  "parts": [
+                    {
+                      "id": "PERS.3.5-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Nutzen Sie Verifizierungsdienste für akademische Grade und Zertifikate."
+                    },
+                    {
+                      "id": "PERS.3.5-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung der Korrespondenz mit Zertifizierungsstellen/Hochschulen."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "control-id": "PERS.3.6",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "PERS.3.6_stm",
+              "parts": [
+                {
+                  "id": "PERS.3.6-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    }
+                  ],
+                  "prose": "Die Vertrauenswürdigkeit wird vereinzelt und ad-hoc bei kritischen Stellen durch informelle Referenzprüfungen bewertet.",
+                  "parts": [
+                    {
+                      "id": "PERS.3.6-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Sicherstellen, dass zumindest für Führungspositionen mündliche Referenzen eingeholt werden."
+                    },
+                    {
+                      "id": "PERS.3.6-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Stichprobenartige Prüfung von Einstellungsnotizen auf Hinweise zur Referenzprüfung."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERS.3.6-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    }
+                  ],
+                  "prose": "Es existiert ein grundlegender Prozess zur Prüfung von Lebensläufen und Zeugnissen für alle Bewerbenden.",
+                  "parts": [
+                    {
+                      "id": "PERS.3.6-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Standardisierte Checklisten für HR zur Verifizierung von Qualifikationsnachweisen nutzen."
+                    },
+                    {
+                      "id": "PERS.3.6-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Einsicht in die HR-Checklisten für die letzten zehn Neueinstellungen."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERS.3.6-m3_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m3"
+                    }
+                  ],
+                  "prose": "Personal SOLLTE die Vertrauenswürdigkeit von Bewerbenden vor der Besetzung von Stellen testen.",
+                  "parts": [
+                    {
+                      "id": "PERS.3.6-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Implementieren Sie einen standardisierten Prozess zur Prüfung der Vertrauenswürdigkeit gemäß Organisationsrichtlinie."
+                    },
+                    {
+                      "id": "PERS.3.6-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Abgleich der Prozessbeschreibung mit den Dokumentationen in den Personalakten. Automatisierung: Script-Abfrage im HR-Tool auf Vollständigkeit des Feldes 'Vertrauens-Check'."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERS.3.6-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    }
+                  ],
+                  "prose": "Erweiterte Hintergrundüberprüfungen inklusive Führungszeugnissen sind für alle sicherheitskritischen Rollen verpflichtend.",
+                  "parts": [
+                    {
+                      "id": "PERS.3.6-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Einbindung externer Dienstleister für Deep-Level-Hintergrundchecks bei Schlüsselpositionen."
+                    },
+                    {
+                      "id": "PERS.3.6-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung der Verträge mit Dienstleistern und stichprobenartige Validierung der Ergebnisberichte."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERS.3.6-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    }
+                  ],
+                  "prose": "Kontinuierliche und automatisierte Überprüfung der Vertrauenswürdigkeit durch Integration von HR- und Security-Systemen.",
+                  "parts": [
+                    {
+                      "id": "PERS.3.6-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Nutzung von automatisierten Workflows zur regelmäßigen Erneuerung von Nachweisen (z.B. polizeiliches Führungszeugnis)."
+                    },
+                    {
+                      "id": "PERS.3.6-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Validierung der API-Schnittstelle zwischen HR-System und Identity Management zur automatischen Sperrung bei fehlenden Nachweisen."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "control-id": "PERS.3.6.1",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "PERS.3.6.1_stm",
+              "parts": [
+                {
+                  "id": "PERS.3.6.1-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    }
+                  ],
+                  "prose": "Interne Sicherheitsüberprüfungen erfolgen nur in Einzelfällen bei offensichtlichem Bedarf.",
+                  "parts": [
+                    {
+                      "id": "PERS.3.6.1-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Mindestens bei Administratoren mit Root-Rechten eine einfache Prüfung vornehmen."
+                    },
+                    {
+                      "id": "PERS.3.6.1-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Befragung der IT-Leitung zu durchgeführten Prüfungen bei Neuaufnahmen im Admin-Team."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERS.3.6.1-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    }
+                  ],
+                  "prose": "Es gibt eine Liste von Rollen, für die eine einfache interne Sicherheitsüberprüfung vorgesehen ist.",
+                  "parts": [
+                    {
+                      "id": "PERS.3.6.1-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Festlegung von Kriterien für die Auswahl sicherheitsrelevanter Rollen."
+                    },
+                    {
+                      "id": "PERS.3.6.1-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung der Rollenliste und Abgleich mit den durchgeführten internen Checks."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERS.3.6.1-m3_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m3"
+                    }
+                  ],
+                  "prose": "Personal KANN eine Sicherheitsüberprüfung vor der Besetzung von sicherheitsrelevanten Stellen ausführen.",
+                  "parts": [
+                    {
+                      "id": "PERS.3.6.1-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Führen Sie interne Sicherheitsüberprüfungen basierend auf einer Risikoanalyse der jeweiligen Stelle durch."
+                    },
+                    {
+                      "id": "PERS.3.6.1-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Auditierung der Prozessdokumentation für interne SÜ. Automatisierung: LDAP-Query zur Identifikation von Nutzern in 'Privileged Groups' und Abgleich mit SÜ-Datenbank."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERS.3.6.1-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    }
+                  ],
+                  "prose": "Die Sicherheitsüberprüfung folgt standardisierten Verfahren ähnlich dem SÜG und wird periodisch wiederholt.",
+                  "parts": [
+                    {
+                      "id": "PERS.3.6.1-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Einführung eines strukturierten Fragebogens zur Selbsterklärung und Referenzprüfung."
+                    },
+                    {
+                      "id": "PERS.3.6.1-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Einsicht in die standardisierten Protokolle der Sicherheitsüberprüfungen."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERS.3.6.1-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    }
+                  ],
+                  "prose": "Hochgradig integriertes SÜ-Management mit automatischer Überwachung von Re-Zertifizierungsfristen.",
+                  "parts": [
+                    {
+                      "id": "PERS.3.6.1-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Automatisierte Benachrichtigung an HR und Sicherheitsbeauftragte bei Ablauf der Überprüfungsfrist."
+                    },
+                    {
+                      "id": "PERS.3.6.1-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Test des automatisierten E-Mail-Workflows und der Protokollierung im GRC-Tool."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "control-id": "PERS.5.1",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "PERS.5.1_stm",
+              "parts": [
+                {
+                  "id": "PERS.5.1-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    }
+                  ],
+                  "prose": "Maßregelungen erfolgen ad-hoc und hängen stark von der Entscheidung der direkten Vorgesetzten ab.",
+                  "parts": [
+                    {
+                      "id": "PERS.5.1-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Sicherstellen, dass schwerwiegende Verstöße zumindest aktenkundig gemacht werden."
+                    },
+                    {
+                      "id": "PERS.5.1-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Sichtung von Gesprächsprotokollen nach IT-Sicherheitsvorfällen."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERS.5.1-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    }
+                  ],
+                  "prose": "Es existieren grundlegende Leitlinien für den Umgang mit Fehlverhalten im IT-Bereich.",
+                  "parts": [
+                    {
+                      "id": "PERS.5.1-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Erstellung eines informellen Katalogs möglicher Konsequenzen bei Richtlinienverstößen."
+                    },
+                    {
+                      "id": "PERS.5.1-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung der Leitlinien auf Verständlichkeit und Bekanntheitsgrad unter Führungskräften."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERS.5.1-m3_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m3"
+                    }
+                  ],
+                  "prose": "Personal SOLLTE ein Verfahren zur Maßregelung verankern.",
+                  "parts": [
+                    {
+                      "id": "PERS.5.1-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Etablieren Sie ein formelles, mit dem Personalrat abgestimmtes Verfahren zur Maßregelung bei Sicherheitsverstößen."
+                    },
+                    {
+                      "id": "PERS.5.1-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung der Betriebsvereinbarung oder Dienstanweisung zum Thema Maßregelung. Automatisierung: Check des Ticketing-Systems auf Verknüpfung von 'Policy Violation' Incidents mit HR-Folgeaktionen."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERS.5.1-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    }
+                  ],
+                  "prose": "Das Verfahren umfasst detaillierte Sanktionsstufen und Eskalationspfade je nach Schwere des Verstoßes.",
+                  "parts": [
+                    {
+                      "id": "PERS.5.1-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Transparente Kommunikation der Sanktionsmatrix an alle Mitarbeitenden zur Abschreckung."
+                    },
+                    {
+                      "id": "PERS.5.1-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Interviews mit Mitarbeitenden zur Kenntnis der Sanktionsstufen."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERS.5.1-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    }
+                  ],
+                  "prose": "Das Maßregelungsverfahren ist Teil eines umfassenden Insider-Threat-Management-Systems.",
+                  "parts": [
+                    {
+                      "id": "PERS.5.1-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Automatisierte Korrelation von technischen Verstößen mit dem Disziplinarverfahren unter Wahrung der Anonymität bis zur Beweissicherung."
+                    },
+                    {
+                      "id": "PERS.5.1-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Audit der Workflow-Integrität im Incident Management Tool (z.B. Request Tracker oder OTRS)."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "control-id": "PERS.5.2",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "PERS.5.2_stm",
+              "parts": [
+                {
+                  "id": "PERS.5.2-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    }
+                  ],
+                  "prose": "Verdachtsmomente bezüglich Innentätern werden informell zwischen Führungskräften besprochen.",
+                  "parts": [
+                    {
+                      "id": "PERS.5.2-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Sensibilisierung der IT-Leitung für unübliche Zugriffsmuster."
+                    },
+                    {
+                      "id": "PERS.5.2-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Befragung des CISO zu vergangenen Verdachtsfällen und deren Handhabung."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERS.5.2-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    }
+                  ],
+                  "prose": "Es gibt einen zentralen Meldeweg (Whistleblowing) für die vertrauliche Meldung von Insider-Risiken.",
+                  "parts": [
+                    {
+                      "id": "PERS.5.2-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Einrichtung eines anonymen Postfachs oder einer externen Meldestelle."
+                    },
+                    {
+                      "id": "PERS.5.2-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Test der Erreichbarkeit und Vertraulichkeit des Meldewegs."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERS.5.2-m3_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m3"
+                    }
+                  ],
+                  "prose": "Personal SOLLTE ein interdisziplinäres Verfahren zum Umgang mit potenziellen Innentätern verankern.",
+                  "parts": [
+                    {
+                      "id": "PERS.5.2-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Bilden Sie ein Team aus IT, HR und Recht, um Verdachtsfälle strukturiert zu bearbeiten."
+                    },
+                    {
+                      "id": "PERS.5.2-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung der Benennung der Teammitglieder und der Verfahrensanweisung. Automatisierung: Log-Analyse-Check auf Zugriffsberechtigungen für das Fallmanagement-Tool."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERS.5.2-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    }
+                  ],
+                  "prose": "Proaktive Risikoanalyse zur Identifikation besonders gefährdeter Bereiche und Rollen für Innentäter.",
+                  "parts": [
+                    {
+                      "id": "PERS.5.2-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Regelmäßige Workshops zur Bedrohungslage durch Insider-Bedrohungen."
+                    },
+                    {
+                      "id": "PERS.5.2-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Einsicht in die Protokolle der Risikoanalysen und abgeleitete Maßnahmen."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERS.5.2-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    }
+                  ],
+                  "prose": "Einsatz von User and Entity Behavior Analytics (UEBA) zur automatisierten Erkennung von Anomalien.",
+                  "parts": [
+                    {
+                      "id": "PERS.5.2-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Integration von SIEM-Daten mit HR-Kontextinformationen zur KI-gestützten Risikofrüherkennung."
+                    },
+                    {
+                      "id": "PERS.5.2-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Demonstration der UEBA-Alarmierung bei simuliertem anomalem Verhalten (z.B. Massen-Download außerhalb der Arbeitszeit)."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "control-id": "PERS.5.3",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "PERS.5.3_stm",
+              "parts": [
+                {
+                  "id": "PERS.5.3-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    }
+                  ],
+                  "prose": "Die Vertrauenswürdigkeit für kritische Rollen wird nur bei gravierenden Vorfällen geprüft.",
+                  "parts": [
+                    {
+                      "id": "PERS.5.3-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Manuelle Liste der wichtigsten Administratoren führen."
+                    },
+                    {
+                      "id": "PERS.5.3-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Sichtung der Liste kritischer Rollen."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERS.5.3-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    }
+                  ],
+                  "prose": "Eine jährliche Bestätigung der Vertrauenswürdigkeit erfolgt durch die direkten Vorgesetzten.",
+                  "parts": [
+                    {
+                      "id": "PERS.5.3-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Einfache Abfrage per E-Mail an die Fachbereichsleiter."
+                    },
+                    {
+                      "id": "PERS.5.3-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung der Rücklaufquote der letzten jährlichen Abfrage."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERS.5.3-m3_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m3"
+                    }
+                  ],
+                  "prose": "Personal SOLLTE die Vertrauenswürdigkeit für {{ insert: param, pers.5.3-prm1 }} {{ insert: param, pers.5.3-prm2 }} und anlassbezogen überprüfen.",
+                  "parts": [
+                    {
+                      "id": "PERS.5.3-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Führen Sie die definierten Intervalle und anlassbezogenen Prüfungen konsequent durch."
+                    },
+                    {
+                      "id": "PERS.5.3-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Abgleich der Prüfprotokolle mit dem Zeitplan. Automatisierung: SQL-Query auf die Benutzerdatenbank zur Identifikation abgelaufener Prüfintervalle (Field: 'LastTrustCheck')."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERS.5.3-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    }
+                  ],
+                  "prose": "Automatisierte Workflows erinnern Verantwortliche an fällige Überprüfungen und dokumentieren die Ergebnisse revisionssicher.",
+                  "parts": [
+                    {
+                      "id": "PERS.5.3-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Integration der Wiedervorlage in das Ticketing- oder GRC-System."
+                    },
+                    {
+                      "id": "PERS.5.3-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung der automatisierten Benachrichtigungshistorie im System."
+                    }
+                  ]
+                },
+                {
+                  "id": "PERS.5.3-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    }
+                  ],
+                  "prose": "Dynamische Vertrauensbewertung basierend auf aktuellen Security-Events und kontinuierlicher Compliance-Überprüfung.",
+                  "parts": [
+                    {
+                      "id": "PERS.5.3-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Koppelung des Vertrauensstatus an den Zugriffsschutz (Zero Trust Architektur)."
+                    },
+                    {
+                      "id": "PERS.5.3-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Test der automatischen Rechte-Eskalation/Deeskalation bei Änderung des Vertrauensstatus im IAM-System."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

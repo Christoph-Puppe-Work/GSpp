@@ -1,9 +1,9 @@
 {
   "profile": {
-    "uuid": "eb750fb6-1462-4e41-a569-0ab8758f0a2d",
+    "uuid": "255ec03c-dd49-5338-b40c-32022a4bc19e",
     "metadata": {
-      "title": "GC_prozesse GC_prozesse - Enhanced (ED2023)",
-      "last-modified": "2026-05-31T20:20:26.154980+00:00",
+      "title": "Governance und Compliance Prozess Profil - Enhanced (ED2023)",
+      "last-modified": "2026-06-04T14:36:25.267901+00:00",
       "version": "0.0.1",
       "oscal-version": "1.1.3"
     },
@@ -49,17 +49,17 @@
                     },
                     {
                       "name": "effective_on_c",
-                      "value": "low",
+                      "value": "high",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "low",
+                      "value": "high",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_a",
-                      "value": "low",
+                      "value": "high",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -67,17 +67,17 @@
                       "value": "m1"
                     }
                   ],
-                  "prose": "Einzelne Sicherheitsziele sind ohne formale Gesamtstrategie vorhanden.",
+                  "prose": "Informelle Sicherheitsziele existieren ohne schriftliche Fixierung.",
                   "parts": [
                     {
                       "id": "GC.6.1.1-m1_custom_gdn",
                       "name": "guidance",
-                      "prose": "Informelle Abstimmung von Einzelzielen durch IT-Abteilung."
+                      "prose": "Sicherheitsziele sollten im Team besprochen und grob skizziert werden."
                     },
                     {
                       "id": "GC.6.1.1-m1_custom_asm",
                       "name": "assessment",
-                      "prose": "Dokumentenprüfung auf isolierte Zieldefinitionen in Protokollen."
+                      "prose": "Befragung der Leitung zu informellen Sicherheitszielen."
                     }
                   ]
                 },
@@ -97,17 +97,17 @@
                     },
                     {
                       "name": "effective_on_c",
-                      "value": "low",
+                      "value": "high",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "low",
+                      "value": "high",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_a",
-                      "value": "low",
+                      "value": "high",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -115,17 +115,17 @@
                       "value": "m2"
                     }
                   ],
-                  "prose": "Ein Entwurf einer Sicherheitsstrategie existiert, ist aber noch nicht institutionsweit verabschiedet.",
+                  "prose": "Ein erster Entwurf einer Sicherheitsstrategie liegt vor, ist aber nicht final abgestimmt.",
                   "parts": [
                     {
                       "id": "GC.6.1.1-m2_custom_gdn",
                       "name": "guidance",
-                      "prose": "Zusammenstellung von Basis-Sicherheitsanforderungen in einem Entwurf."
+                      "prose": "Dokumentieren Sie die Ziele in einem einfachen Textdokument."
                     },
                     {
                       "id": "GC.6.1.1-m2_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung des Entwurfsstatus und der Entwurfsdokumentation durch Befragung."
+                      "prose": "Prüfung des Entwurfsstatus. CLI: \"ls -l /docs/strategy_draft.md\""
                     }
                   ]
                 },
@@ -145,17 +145,17 @@
                     },
                     {
                       "name": "effective_on_c",
-                      "value": "low",
+                      "value": "high",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "low",
+                      "value": "high",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_a",
-                      "value": "low",
+                      "value": "high",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -168,12 +168,12 @@
                     {
                       "id": "GC.6.1.1-m3_custom_gdn",
                       "name": "guidance",
-                      "prose": "Erarbeitung und formale Freigabe des Strategiedokuments durch das Management."
+                      "prose": "Die Strategie muss mit den Geschäftszielen harmonieren und von der Leitung gezeichnet sein."
                     },
                     {
                       "id": "GC.6.1.1-m3_custom_asm",
                       "name": "assessment",
-                      "prose": "Einsicht in die unterzeichnete Sicherheitsstrategie und Management-Review."
+                      "prose": "Prüfung der unterzeichneten Strategie und Abgleich mit Sitzungsprotokollen."
                     }
                   ]
                 },
@@ -193,17 +193,17 @@
                     },
                     {
                       "name": "effective_on_c",
-                      "value": "low",
+                      "value": "high",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "low",
+                      "value": "high",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_a",
-                      "value": "low",
+                      "value": "high",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -211,17 +211,17 @@
                       "value": "m4"
                     }
                   ],
-                  "prose": "Die Sicherheitsstrategie wird proaktiv überwacht und jährlich an die aktuelle Bedrohungslage angepasst.",
+                  "prose": "Die Strategie wird jährlich anhand von Kennzahlen (KPIs) überprüft und angepasst.",
                   "parts": [
                     {
                       "id": "GC.6.1.1-m4_custom_gdn",
                       "name": "guidance",
-                      "prose": "Implementierung eines Review-Zyklus und Feedback-Prozesses zur Strategieanpassung."
+                      "prose": "Etablieren Sie ein Berichtswesen zur Überprüfung der Strategieerreichung."
                     },
                     {
                       "id": "GC.6.1.1-m4_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung der Revisionshistorie und Änderungsnachweise im Strategiedokument."
+                      "prose": "Einsicht in die KPI-Berichte der letzten 12 Monate."
                     }
                   ]
                 },
@@ -241,17 +241,17 @@
                     },
                     {
                       "name": "effective_on_c",
-                      "value": "low",
+                      "value": "high",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "low",
+                      "value": "high",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_a",
-                      "value": "low",
+                      "value": "high",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -259,17 +259,17 @@
                       "value": "m5"
                     }
                   ],
-                  "prose": "Die Sicherheitsstrategie ist vollständig in das Enterprise Risk Management integriert und wird durch KPIs gesteuert.",
+                  "prose": "Die Sicherheitsstrategie ist in ein automatisiertes GRC-System integriert.",
                   "parts": [
                     {
                       "id": "GC.6.1.1-m5_custom_gdn",
                       "name": "guidance",
-                      "prose": "Echtzeit-Tracking der Zielerreichung über Dashboards."
+                      "prose": "Nutzen Sie Dashboards zur Echtzeit-Überwachung der strategischen Zielerreichung."
                     },
                     {
                       "id": "GC.6.1.1-m5_custom_asm",
                       "name": "assessment",
-                      "prose": "API-Abfrage des GRC-Tools: `curl -X GET https://grc-api/kpis/security-strategy` zur Statusprüfung."
+                      "prose": "Prüfung der GRC-Tool-Integration. CLI: \"curl -s https://grc.internal/api/v1/strategy/status\""
                     }
                   ]
                 }
@@ -300,17 +300,17 @@
                     },
                     {
                       "name": "effective_on_c",
-                      "value": "low",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "low",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_a",
-                      "value": "low",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -318,17 +318,17 @@
                       "value": "m1"
                     }
                   ],
-                  "prose": "Ad-hoc Analyse gesetzlicher Anforderungen bei konkretem Anlass.",
+                  "prose": "Rechtliche Anforderungen werden nur punktuell und anlassbezogen betrachtet.",
                   "parts": [
                     {
                       "id": "GC.7.1.1-m1_custom_gdn",
                       "name": "guidance",
-                      "prose": "Gesetzliche Anforderungen werden erst bei konkreten Projekten geprüft."
+                      "prose": "Identifizieren Sie die wichtigsten Gesetze für Ihren Sektor."
                     },
                     {
                       "id": "GC.7.1.1-m1_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung von Projektdokumenten auf rechtliche Einzelbewertungen."
+                      "prose": "Abfrage des Wissensstandes zu DSGVO und sektorspezifischen Gesetzen."
                     }
                   ]
                 },
@@ -348,17 +348,17 @@
                     },
                     {
                       "name": "effective_on_c",
-                      "value": "low",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "low",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_a",
-                      "value": "low",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -366,17 +366,17 @@
                       "value": "m2"
                     }
                   ],
-                  "prose": "Eine statische Liste der wichtigsten relevanten Gesetze existiert.",
+                  "prose": "Es existiert eine einfache Liste relevanter Gesetze ohne detaillierte Analyse.",
                   "parts": [
                     {
                       "id": "GC.7.1.1-m2_custom_gdn",
                       "name": "guidance",
-                      "prose": "Identifikation von Kern-Gesetzen wie DSGVO oder IT-SiG."
+                      "prose": "Erstellen Sie eine Übersichtstabelle aller anwendbaren Rechtsnormen."
                     },
                     {
                       "id": "GC.7.1.1-m2_custom_asm",
                       "name": "assessment",
-                      "prose": "Einsicht in das Verzeichnis der verarbeitungsrelevanten Gesetze."
+                      "prose": "Sichtprüfung des Rechtsverzeichnisses. CLI: \"cat /compliance/legal_list.csv\""
                     }
                   ]
                 },
@@ -396,17 +396,17 @@
                     },
                     {
                       "name": "effective_on_c",
-                      "value": "low",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "low",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_a",
-                      "value": "low",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -419,12 +419,12 @@
                     {
                       "id": "GC.7.1.1-m3_custom_gdn",
                       "name": "guidance",
-                      "prose": "Systematische Analyse und Dokumentation aller gesetzlichen Pflichten."
+                      "prose": "Führen Sie eine strukturierte Analyse der Auswirkungen jedes Gesetzes auf die IT durch."
                     },
                     {
                       "id": "GC.7.1.1-m3_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung des Analysedokuments auf Vollständigkeit und Aktualität."
+                      "prose": "Prüfung der Dokumentation zur Rechtsanalyse und deren Vollständigkeit."
                     }
                   ]
                 },
@@ -444,17 +444,17 @@
                     },
                     {
                       "name": "effective_on_c",
-                      "value": "low",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "low",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_a",
-                      "value": "low",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -462,17 +462,17 @@
                       "value": "m4"
                     }
                   ],
-                  "prose": "Regelmäßiges Monitoring gesetzlicher Änderungen durch professionelle Datenbankabonnements.",
+                  "prose": "Ein systematisches Rechtskataster mit Verantwortlichkeiten wird gepflegt.",
                   "parts": [
                     {
                       "id": "GC.7.1.1-m4_custom_gdn",
                       "name": "guidance",
-                      "prose": "Automatisierte Benachrichtigung bei Gesetzesänderungen durch Fachdienste."
+                      "prose": "Weisen Sie jedem Gesetz einen internen Verantwortlichen zu."
                     },
                     {
                       "id": "GC.7.1.1-m4_custom_asm",
                       "name": "assessment",
-                      "prose": "Nachweis über aktive Abonnements und Bearbeitung der Änderungsmeldungen."
+                      "prose": "Prüfung der Zuweisungen im Rechtskataster."
                     }
                   ]
                 },
@@ -492,17 +492,17 @@
                     },
                     {
                       "name": "effective_on_c",
-                      "value": "low",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "low",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_a",
-                      "value": "low",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -510,17 +510,17 @@
                       "value": "m5"
                     }
                   ],
-                  "prose": "Automatisierte Zuordnung von gesetzlichen Anforderungen zu technischen Kontrollen.",
+                  "prose": "Ein automatisiertes Abo-System informiert über Rechtsänderungen in Echtzeit.",
                   "parts": [
                     {
                       "id": "GC.7.1.1-m5_custom_gdn",
                       "name": "guidance",
-                      "prose": "Integration von Legal-Tech-Schnittstellen in das ISMS-Tool."
+                      "prose": "Integrieren Sie externe Feeds von Rechtsdatenbanken in Ihr Risikomanagement."
                     },
                     {
                       "id": "GC.7.1.1-m5_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfe Mapping-Tabelle in SQL: `SELECT * FROM compliance_mapping WHERE requirement_status = 'verified'`."
+                      "prose": "Prüfung der automatisierten Benachrichtigungs-Workflows."
                     }
                   ]
                 }
@@ -569,17 +569,17 @@
                       "value": "m1"
                     }
                   ],
-                  "prose": "Unregelmäßige Anfragen an zuständige Stellen nach Bedarf.",
+                  "prose": "Zuständige Stellen werden nur bei akuten rechtlichen Problemen kontaktiert.",
                   "parts": [
                     {
                       "id": "GC.7.1.2-m1_custom_gdn",
                       "name": "guidance",
-                      "prose": "Anhörung erfolgt informell und unsystematisch."
+                      "prose": "Ermitteln Sie die Ansprechpartner für Recht und Datenschutz."
                     },
                     {
                       "id": "GC.7.1.2-m1_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung von E-Mail-Korrespondenz mit Rechts- oder Datenschutzstellen."
+                      "prose": "Prüfung, ob Kontaktlisten für Fachstellen vorhanden sind."
                     }
                   ]
                 },
@@ -617,17 +617,17 @@
                       "value": "m2"
                     }
                   ],
-                  "prose": "Definierte Ansprechpartner für rechtliche Belange sind benannt.",
+                  "prose": "Fachstellen werden unregelmäßig in Projekte einbezogen.",
                   "parts": [
                     {
                       "id": "GC.7.1.2-m2_custom_gdn",
                       "name": "guidance",
-                      "prose": "Erstellung einer Liste zuständiger Stellen zur Anhörung."
+                      "prose": "Fragen Sie bei neuen IT-Projekten proaktiv bei der Rechtsabteilung an."
                     },
                     {
                       "id": "GC.7.1.2-m2_custom_asm",
                       "name": "assessment",
-                      "prose": "Einsicht in die Kontaktliste und Rollendefinitionen für Fachbereiche."
+                      "prose": "Stichprobenartige Prüfung von E-Mail-Korrespondenzen mit Fachstellen."
                     }
                   ]
                 },
@@ -670,12 +670,12 @@
                     {
                       "id": "GC.7.1.2-m3_custom_gdn",
                       "name": "guidance",
-                      "prose": "Einbindung der Fachstellen in relevante IT-Entscheidungsprozesse."
+                      "prose": "Etablieren Sie einen festen Prozess zur Beteiligung von Recht und Datenschutz."
                     },
                     {
                       "id": "GC.7.1.2-m3_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung von Sitzungsprotokollen auf Teilnahme der zuständigen Stellen."
+                      "prose": "Prüfung der Prozessbeschreibung und Nachweise über durchgeführte Anhörungen."
                     }
                   ]
                 },
@@ -713,17 +713,17 @@
                       "value": "m4"
                     }
                   ],
-                  "prose": "Standardisierter Workflow zur obligatorischen Anhörung bei IT-Projekten.",
+                  "prose": "Anhörungen sind fester Bestandteil des Projektmanagement-Workflows.",
                   "parts": [
                     {
                       "id": "GC.7.1.2-m4_custom_gdn",
                       "name": "guidance",
-                      "prose": "Nutzung von Workflow-Vorlagen für die strukturierte Stellungnahme."
+                      "prose": "Nutzen Sie Checklisten für die Beteiligung von Fachstellen in Projekten."
                     },
                     {
                       "id": "GC.7.1.2-m4_custom_asm",
                       "name": "assessment",
-                      "prose": "Stichprobenartige Prüfung der Workflow-Compliance in Projektmanagementsystemen."
+                      "prose": "Prüfung der Projektdokumentation auf Beteiligungs-Checklisten."
                     }
                   ]
                 },
@@ -761,17 +761,17 @@
                       "value": "m5"
                     }
                   ],
-                  "prose": "Integrierte GRC-Kollaborationsplattform mit digitalem Audit-Trail.",
+                  "prose": "Die Beteiligung erfolgt automatisiert über ein Workflow-Management-System.",
                   "parts": [
                     {
                       "id": "GC.7.1.2-m5_custom_gdn",
                       "name": "guidance",
-                      "prose": "Automatisierte Freigabeprozesse durch Fachstellen im GRC-System."
+                      "prose": "Stellen Sie sicher, dass Freigaben technisch im System erzwungen werden."
                     },
                     {
                       "id": "GC.7.1.2-m5_custom_asm",
                       "name": "assessment",
-                      "prose": "Abfrage des GRC-Audit-Logs via `compliance-cli get approvals --status approved`."
+                      "prose": "Prüfung der Workflow-Historie im Ticket-System (z.B. Zammad/OTRS)."
                     }
                   ]
                 }
@@ -802,17 +802,17 @@
                     },
                     {
                       "name": "effective_on_c",
-                      "value": "low",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "low",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_a",
-                      "value": "low",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -820,17 +820,17 @@
                       "value": "m1"
                     }
                   ],
-                  "prose": "Vertragliche Verpflichtungen liegen dezentral und unsortiert vor.",
+                  "prose": "Vertragliche Pflichten sind über verschiedene Abteilungen verstreut.",
                   "parts": [
                     {
                       "id": "GC.7.1.3-m1_custom_gdn",
                       "name": "guidance",
-                      "prose": "Keine zentrale Übersicht über IT-relevante Vertragsklauseln."
+                      "prose": "Beginnen Sie mit der Sammlung wichtiger IT-Dienstleistungsverträge."
                     },
                     {
                       "id": "GC.7.1.3-m1_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung der Aktenlage in einzelnen Fachabteilungen."
+                      "prose": "Sichtung vorhandener IT-Vertragsordner."
                     }
                   ]
                 },
@@ -850,17 +850,17 @@
                     },
                     {
                       "name": "effective_on_c",
-                      "value": "low",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "low",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_a",
-                      "value": "low",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -868,17 +868,17 @@
                       "value": "m2"
                     }
                   ],
-                  "prose": "Zentrale Ablage der wichtigsten Provider- und Dienstleisterverträge.",
+                  "prose": "Eine Liste der wichtigsten Dienstleister und Verträge ist vorhanden.",
                   "parts": [
                     {
                       "id": "GC.7.1.3-m2_custom_gdn",
                       "name": "guidance",
-                      "prose": "Aufbau eines zentralen Dateiordners für Verträge."
+                      "prose": "Dokumentieren Sie Fristen und Sicherheitsanforderungen manuell."
                     },
                     {
                       "id": "GC.7.1.3-m2_custom_asm",
                       "name": "assessment",
-                      "prose": "Einsicht in das zentrale Vertragsverzeichnis auf dem Fileserver."
+                      "prose": "Prüfung der Vertragsliste auf Vollständigkeit."
                     }
                   ]
                 },
@@ -898,17 +898,17 @@
                     },
                     {
                       "name": "effective_on_c",
-                      "value": "low",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "low",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_a",
-                      "value": "low",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -921,12 +921,12 @@
                     {
                       "id": "GC.7.1.3-m3_custom_gdn",
                       "name": "guidance",
-                      "prose": "Detaillierte Erfassung der Informationssicherheits-Klauseln in Verträgen."
+                      "prose": "Erfassen Sie alle sicherheitsrelevanten Klauseln in einer zentralen Übersicht."
                     },
                     {
                       "id": "GC.7.1.3-m3_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung der Dokumentation der vertraglichen Sicherheitsverpflichtungen."
+                      "prose": "Prüfung der Dokumentation der vertraglichen Verpflichtungen."
                     }
                   ]
                 },
@@ -946,17 +946,17 @@
                     },
                     {
                       "name": "effective_on_c",
-                      "value": "low",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "low",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_a",
-                      "value": "low",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -964,17 +964,17 @@
                       "value": "m4"
                     }
                   ],
-                  "prose": "Datenbankgestützte Erfassung und proaktive Überwachung von Vertragsklauseln.",
+                  "prose": "Ein zentrales Vertragsmanagement überwacht Compliance-Vorgaben aktiv.",
                   "parts": [
                     {
                       "id": "GC.7.1.3-m4_custom_gdn",
                       "name": "guidance",
-                      "prose": "Nutzung einer Vertragsmanagement-Software zur Risikoklassifizierung."
+                      "prose": "Implementieren Sie ein Monitoring für die Einhaltung von SLAs."
                     },
                     {
                       "id": "GC.7.1.3-m4_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung der Vertragsdatenbank auf korrekte Erfassung der Sicherheits-KPIs."
+                      "prose": "Abgleich von SLA-Berichten mit vertraglichen Vorgaben."
                     }
                   ]
                 },
@@ -994,17 +994,17 @@
                     },
                     {
                       "name": "effective_on_c",
-                      "value": "low",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "low",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_a",
-                      "value": "low",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -1012,17 +1012,17 @@
                       "value": "m5"
                     }
                   ],
-                  "prose": "Automatisiertes Vertrags-Monitoring mit Alerting bei Verstößen oder Fristen.",
+                  "prose": "Vertragspflichten werden automatisiert extrahiert und überwacht.",
                   "parts": [
                     {
                       "id": "GC.7.1.3-m5_custom_gdn",
                       "name": "guidance",
-                      "prose": "Anbindung der Vertragsmanagement-Software an das Risk-Management-System."
+                      "prose": "Nutzen Sie Open-Source-Tools zur Analyse von Vertragsdokumenten."
                     },
                     {
                       "id": "GC.7.1.3-m5_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung automatisierter Alerts: `check_contracts_api --alert-level critical`."
+                      "prose": "Prüfung der automatisierten Extraktions-Engine. CLI: \"contract-analyzer --check-all\""
                     }
                   ]
                 }
@@ -1043,7 +1043,7 @@
                   "props": [
                     {
                       "name": "control_class",
-                      "value": "Operational",
+                      "value": "Management",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -1053,17 +1053,17 @@
                     },
                     {
                       "name": "effective_on_c",
-                      "value": "medium",
+                      "value": "high",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "medium",
+                      "value": "high",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_a",
-                      "value": "medium",
+                      "value": "high",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -1071,17 +1071,17 @@
                       "value": "m1"
                     }
                   ],
-                  "prose": "Reaktive Maßnahmen gegen Verstöße nach deren Bekanntwerden.",
+                  "prose": "Prävention findet nur durch allgemeine Appelle an die Mitarbeiter statt.",
                   "parts": [
                     {
                       "id": "GC.7.1.4-m1_custom_gdn",
                       "name": "guidance",
-                      "prose": "Keine strukturierten Präventionsverfahren etabliert."
+                      "prose": "Informieren Sie Mitarbeiter über die Notwendigkeit von Regeltreue."
                     },
                     {
                       "id": "GC.7.1.4-m1_custom_asm",
                       "name": "assessment",
-                      "prose": "Einsicht in Vorfallsprotokolle und durchgeführte Sanktionen."
+                      "prose": "Prüfung, ob Informationsmails zur Compliance versendet wurden."
                     }
                   ]
                 },
@@ -1091,7 +1091,7 @@
                   "props": [
                     {
                       "name": "control_class",
-                      "value": "Operational",
+                      "value": "Management",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -1101,17 +1101,17 @@
                     },
                     {
                       "name": "effective_on_c",
-                      "value": "medium",
+                      "value": "high",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "medium",
+                      "value": "high",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_a",
-                      "value": "medium",
+                      "value": "high",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -1119,17 +1119,17 @@
                       "value": "m2"
                     }
                   ],
-                  "prose": "Einführung von Richtlinien und grundlegenden Schulungsmaßnahmen.",
+                  "prose": "Es existieren grundlegende Richtlinien für korrektes Verhalten.",
                   "parts": [
                     {
                       "id": "GC.7.1.4-m2_custom_gdn",
                       "name": "guidance",
-                      "prose": "Veröffentlichung von Verhaltensregeln im Intranet."
+                      "prose": "Erstellen Sie einen einfachen Verhaltenskodex (Code of Conduct)."
                     },
                     {
                       "id": "GC.7.1.4-m2_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung der Veröffentlichungsdaten von Richtlinien und Teilnehmerlisten."
+                      "prose": "Sichtung des unterzeichneten Verhaltenskodex."
                     }
                   ]
                 },
@@ -1139,7 +1139,7 @@
                   "props": [
                     {
                       "name": "control_class",
-                      "value": "Operational",
+                      "value": "Management",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -1149,17 +1149,17 @@
                     },
                     {
                       "name": "effective_on_c",
-                      "value": "medium",
+                      "value": "high",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "medium",
+                      "value": "high",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_a",
-                      "value": "medium",
+                      "value": "high",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -1172,12 +1172,12 @@
                     {
                       "id": "GC.7.1.4-m3_custom_gdn",
                       "name": "guidance",
-                      "prose": "Implementierung systematischer Präventionskontrollen und Schulungsprogramme."
+                      "prose": "Definieren und kommunizieren Sie klare Verfahren und Konsequenzen bei Verstößen."
                     },
                     {
                       "id": "GC.7.1.4-m3_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung der Wirksamkeit der verankerten Präventionsverfahren."
+                      "prose": "Prüfung der schriftlich fixierten Präventionsverfahren und Schulungsnachweise."
                     }
                   ]
                 },
@@ -1187,7 +1187,7 @@
                   "props": [
                     {
                       "name": "control_class",
-                      "value": "Operational",
+                      "value": "Management",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -1197,17 +1197,17 @@
                     },
                     {
                       "name": "effective_on_c",
-                      "value": "medium",
+                      "value": "high",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "medium",
+                      "value": "high",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_a",
-                      "value": "medium",
+                      "value": "high",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -1215,17 +1215,17 @@
                       "value": "m4"
                     }
                   ],
-                  "prose": "Regelmäßige Compliance-Scans und gezielte Awareness-Kampagnen.",
+                  "prose": "Regelmäßige Schulungen und Compliance-Audits stärken die Prävention.",
                   "parts": [
                     {
                       "id": "GC.7.1.4-m4_custom_gdn",
                       "name": "guidance",
-                      "prose": "Durchführung von Phishing-Simulationen und technischen Policy-Audits."
+                      "prose": "Führen Sie mindestens jährlich Compliance-Awareness-Kampagnen durch."
                     },
                     {
                       "id": "GC.7.1.4-m4_custom_asm",
                       "name": "assessment",
-                      "prose": "Auswertung der Scan-Reports und Awareness-Statistiken."
+                      "prose": "Prüfung der Teilnehmerlisten und Audit-Berichte."
                     }
                   ]
                 },
@@ -1235,7 +1235,7 @@
                   "props": [
                     {
                       "name": "control_class",
-                      "value": "Operational",
+                      "value": "Management",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -1245,17 +1245,17 @@
                     },
                     {
                       "name": "effective_on_c",
-                      "value": "medium",
+                      "value": "high",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "medium",
+                      "value": "high",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_a",
-                      "value": "medium",
+                      "value": "high",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -1263,17 +1263,17 @@
                       "value": "m5"
                     }
                   ],
-                  "prose": "Implementierung von Policy-as-Code und automatisierten Blockierungen.",
+                  "prose": "Technische Kontrollen verhindern Policy-Verstöße automatisiert (Guardrails).",
                   "parts": [
                     {
                       "id": "GC.7.1.4-m5_custom_gdn",
                       "name": "guidance",
-                      "prose": "Automatisierte Verhinderung von Richtlinienverstößen in Echtzeit."
+                      "prose": "Implementieren Sie Policy-as-Code, um Verstöße technisch auszuschließen."
                     },
                     {
                       "id": "GC.7.1.4-m5_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfe DLP-Logs auf blockierte Verstöße: `grep 'POLICY_VIOLATION' /var/log/dlp/alerts.log`."
+                      "prose": "Prüfung der Policy-Durchsetzung. CLI: \"opa eval -d policy.rego input.json\""
                     }
                   ]
                 }
@@ -1304,17 +1304,17 @@
                     },
                     {
                       "name": "effective_on_c",
-                      "value": "low",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "low",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_a",
-                      "value": "low",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -1322,17 +1322,17 @@
                       "value": "m1"
                     }
                   ],
-                  "prose": "Sporadische Teilnahme an externen Informationsveranstaltungen.",
+                  "prose": "Informationsaustausch findet nur zufällig oder bei großen Vorfällen statt.",
                   "parts": [
                     {
                       "id": "GC.9.1.1-m1_custom_gdn",
                       "name": "guidance",
-                      "prose": "Gelegentlicher Besuch von Messen oder Vorträgen."
+                      "prose": "Suchen Sie nach relevanten Foren oder Mailinglisten."
                     },
                     {
                       "id": "GC.9.1.1-m1_custom_asm",
                       "name": "assessment",
-                      "prose": "Nachweis von Teilnahmezertifikaten einzelner Mitarbeiter."
+                      "prose": "Abfrage der genutzten Informationsquellen im Team."
                     }
                   ]
                 },
@@ -1352,17 +1352,17 @@
                     },
                     {
                       "name": "effective_on_c",
-                      "value": "low",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "low",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_a",
-                      "value": "low",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -1370,17 +1370,17 @@
                       "value": "m2"
                     }
                   ],
-                  "prose": "Mitgliedschaft in relevanten Sicherheitsverbänden oder Foren.",
+                  "prose": "Mitarbeiter nehmen gelegentlich an externen Veranstaltungen teil.",
                   "parts": [
                     {
                       "id": "GC.9.1.1-m2_custom_gdn",
                       "name": "guidance",
-                      "prose": "Beitritt zu Organisationen wie dem UP KRITIS oder lokalen CERT-Verbünden."
+                      "prose": "Ermöglichen Sie den Besuch von Fachkonferenzen und lokalen Arbeitskreisen."
                     },
                     {
                       "id": "GC.9.1.1-m2_custom_asm",
                       "name": "assessment",
-                      "prose": "Einsicht in Mitgliedsurkunden und regelmäßige Protokolle."
+                      "prose": "Prüfung der Fortbildungsnachweise im Bereich Informationssicherheit."
                     }
                   ]
                 },
@@ -1400,17 +1400,17 @@
                     },
                     {
                       "name": "effective_on_c",
-                      "value": "low",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "low",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_a",
-                      "value": "low",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -1423,12 +1423,12 @@
                     {
                       "id": "GC.9.1.1-m3_custom_gdn",
                       "name": "guidance",
-                      "prose": "Systematischer Austausch über Bedrohungslagen mit externen Experten."
+                      "prose": "Etablieren Sie feste Kommunikationskanäle zu Behörden und Fachgruppen."
                     },
                     {
                       "id": "GC.9.1.1-m3_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung von Austauschprotokollen und Berichten aus Kooperationen."
+                      "prose": "Nachweis über die aktive Teilnahme an institutionalisierten Austauschformaten."
                     }
                   ]
                 },
@@ -1448,17 +1448,17 @@
                     },
                     {
                       "name": "effective_on_c",
-                      "value": "low",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "low",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_a",
-                      "value": "low",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -1466,17 +1466,17 @@
                       "value": "m4"
                     }
                   ],
-                  "prose": "Aktive Mitarbeit in Arbeitsgruppen und direkter Austausch mit CERTs.",
+                  "prose": "Die Institution ist aktives Mitglied in CERT-Verbünden oder ISACs.",
                   "parts": [
                     {
                       "id": "GC.9.1.1-m4_custom_gdn",
                       "name": "guidance",
-                      "prose": "Regelmäßige Teilnahme an Fachgremien zur Informationssicherheit."
+                      "prose": "Teilen Sie eigene Erkenntnisse anonymisiert mit der Community."
                     },
                     {
                       "id": "GC.9.1.1-m4_custom_asm",
                       "name": "assessment",
-                      "prose": "Nachweis eigener Beiträge in Fachgremien oder ISAC-Arbeitsgruppen."
+                      "prose": "Prüfung der Mitgliedsbestätigungen und Beiträge in Fachforen."
                     }
                   ]
                 },
@@ -1496,17 +1496,17 @@
                     },
                     {
                       "name": "effective_on_c",
-                      "value": "low",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "low",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_a",
-                      "value": "low",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -1514,17 +1514,17 @@
                       "value": "m5"
                     }
                   ],
-                  "prose": "Automatisierte Anbindung an Threat-Intelligence-Plattformen.",
+                  "prose": "Bedrohungsinformationen werden automatisiert ausgetauscht.",
                   "parts": [
                     {
                       "id": "GC.9.1.1-m5_custom_gdn",
                       "name": "guidance",
-                      "prose": "Synchronisation externer Bedrohungsdaten mit internen Systemen."
+                      "prose": "Nutzen Sie MISP zum automatisierten Empfang und Senden von IoCs."
                     },
                     {
                       "id": "GC.9.1.1-m5_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfe MISP-Sync-Status: `misp-cli sync status` zur Validierung des Datenaustauschs."
+                      "prose": "Prüfung der MISP-Anbindung. CLI: \"misp-cli --sync --status\""
                     }
                   ]
                 }

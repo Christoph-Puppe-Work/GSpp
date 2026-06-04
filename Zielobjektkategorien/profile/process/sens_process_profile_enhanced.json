@@ -1,9 +1,9 @@
 {
   "profile": {
-    "uuid": "99e4486f-03df-47f7-8550-f52371723fcf",
+    "uuid": "8c11d3f7-5a9e-5bfb-953d-787ae5a06bb2",
     "metadata": {
-      "title": "SENS_prozesse SENS_prozesse - Enhanced (ED2023)",
-      "last-modified": "2026-05-31T20:20:23.421651+00:00",
+      "title": "Sensibilisierung Prozess Profil - Enhanced (ED2023)",
+      "last-modified": "2026-06-04T14:36:20.921524+00:00",
       "version": "0.0.1",
       "oscal-version": "1.1.3"
     },
@@ -34,7 +34,7 @@
                   "props": [
                     {
                       "name": "control_class",
-                      "value": "Management",
+                      "value": "Operational",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -44,7 +44,7 @@
                     },
                     {
                       "name": "effective_on_c",
-                      "value": "low",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -62,17 +62,17 @@
                       "value": "m1"
                     }
                   ],
-                  "prose": "Die Erfolgskontrolle von Sensibilisierungsmaßnahmen erfolgt nur sporadisch und informell nach einzelnen Aktionen.",
+                  "prose": "Erfolgskontrolle erfolgt nur sporadisch und informell nach einzelnen Maßnahmen.",
                   "parts": [
                     {
                       "id": "SENS.1.2-m1_custom_gdn",
                       "name": "guidance",
-                      "prose": "Sammeln Sie informelles Feedback direkt nach Schulungen, um erste Eindrücke zur Akzeptanz der Inhalte zu gewinnen."
+                      "prose": "Feedback wird unsystematisch eingeholt, etwa durch mündliche Rücksprache nach einer Präsenzschulung ohne zentrale Auswertung."
                     },
                     {
                       "id": "SENS.1.2-m1_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfen Sie, ob vereinzelt Feedbacknotizen oder E-Mails nach Schulungen vorliegen, die eine Reaktion belegen."
+                      "prose": "Prüfung auf Vorhandensein informeller Protokolle oder E-Mails mit Feedback-Charakter in den Schulungsunterlagen."
                     }
                   ]
                 },
@@ -82,7 +82,7 @@
                   "props": [
                     {
                       "name": "control_class",
-                      "value": "Management",
+                      "value": "Operational",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -92,7 +92,7 @@
                     },
                     {
                       "name": "effective_on_c",
-                      "value": "low",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -110,17 +110,17 @@
                       "value": "m2"
                     }
                   ],
-                  "prose": "Es findet eine regelmäßige, meist rein qualitative Abfrage der Zufriedenheit nach Sensibilisierungsmaßnahmen statt.",
+                  "prose": "Die Erfolgsmessung stützt sich primär auf die Dokumentation von einfachen Teilnahmequoten.",
                   "parts": [
                     {
                       "id": "SENS.1.2-m2_custom_gdn",
                       "name": "guidance",
-                      "prose": "Nutzen Sie standardisierte Fragebögen am Ende jeder Schulung, um die wahrgenommene Relevanz der Themen zu erfassen."
+                      "prose": "Manuelle Erfassung der absolvierten Schulungen pro Abteilung zur Ermittlung einer Basis-Abdeckungsquote ohne inhaltliche Prüfung."
                     },
                     {
                       "id": "SENS.1.2-m2_custom_asm",
                       "name": "assessment",
-                      "prose": "Sichten Sie die ausgefüllten Feedbackbögen und Teilnehmerlisten der letzten Sensibilisierungskampagnen."
+                      "prose": "Einsicht in Teilnehmerlisten; Abgleich mit Personalbestand mittels LDAP-Abfrage oder Export aus dem Personalverwaltungssystem."
                     }
                   ]
                 },
@@ -130,7 +130,7 @@
                   "props": [
                     {
                       "name": "control_class",
-                      "value": "Management",
+                      "value": "Operational",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -140,7 +140,7 @@
                     },
                     {
                       "name": "effective_on_c",
-                      "value": "low",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -163,12 +163,12 @@
                     {
                       "id": "SENS.1.2-m3_custom_gdn",
                       "name": "guidance",
-                      "prose": "Wenden Sie die definierten Parameter {{ insert: param, sens.1.2-prm1 }} konsequent an, um die Wirksamkeit zu beurteilen."
+                      "prose": "Die Messung erfolgt nach definierten Parametern wie Wissenstests oder Phishing-Simulationen in festen, dokumentierten Intervallen."
                     },
                     {
                       "id": "SENS.1.2-m3_custom_asm",
                       "name": "assessment",
-                      "prose": "Vergleichen Sie die erhobenen Messdaten mit den in {{ insert: param, sens.1.2-prm2 }} festgelegten Zielvorgaben."
+                      "prose": "Prüfung der Berichte gegen die Parameter {{ insert: param, sens.1.2-prm1 }}. Abgleich der Zielvorgaben mit den Ist-Ergebnissen."
                     }
                   ]
                 },
@@ -178,7 +178,7 @@
                   "props": [
                     {
                       "name": "control_class",
-                      "value": "Management",
+                      "value": "Operational",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -188,7 +188,7 @@
                     },
                     {
                       "name": "effective_on_c",
-                      "value": "low",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -206,17 +206,17 @@
                       "value": "m4"
                     }
                   ],
-                  "prose": "Die Erfolgsmessung wird durch quantitative Metriken und regelmäßige, simulierte Praxistests (z. B. Phishing-Tests) ergänzt.",
+                  "prose": "Metriken werden durch regelmäßige, simulierte Angriffs-Szenarien und Verhaltensanalysen validiert.",
                   "parts": [
                     {
                       "id": "SENS.1.2-m4_custom_gdn",
                       "name": "guidance",
-                      "prose": "Etablieren Sie ein Dashboard, das Klickraten aus Simulationen und Testergebnisse aus E-Learnings zentral zusammenführt."
+                      "prose": "Nutzung von automatisierten Phishing-Simulationen zur Messung der realen Verhaltensänderung. Ergebnisse steuern die Lernpfade."
                     },
                     {
                       "id": "SENS.1.2-m4_custom_asm",
                       "name": "assessment",
-                      "prose": "Analysieren Sie die Reports der Simulationsplattform. CLI: `curl -s https://api.training-metrics.local/stats`."
+                      "prose": "Prüfung der Simulationsberichte. Automatisierte Abfrage der Klick- und Report-Raten über die API des genutzten Simulationstools."
                     }
                   ]
                 },
@@ -226,7 +226,7 @@
                   "props": [
                     {
                       "name": "control_class",
-                      "value": "Management",
+                      "value": "Operational",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -236,7 +236,7 @@
                     },
                     {
                       "name": "effective_on_c",
-                      "value": "low",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -254,17 +254,17 @@
                       "value": "m5"
                     }
                   ],
-                  "prose": "Ein integriertes Messsystem analysiert kontinuierlich Verhaltensänderungen und passt Schulungsinhalte dynamisch an.",
+                  "prose": "Ein integriertes Reporting-System korreliert Trainingsdaten in Echtzeit mit realen Sicherheitsvorfällen.",
                   "parts": [
                     {
                       "id": "SENS.1.2-m5_custom_gdn",
                       "name": "guidance",
-                      "prose": "Nutzen Sie Korrelationen zwischen Sicherheitsvorfällen und Schulungsstand, um die Effektivität präventiv zu steuern."
+                      "prose": "Automatisierte Anpassung der Schulungsintensität basierend auf detektiertem Fehlverhalten im SIEM oder angebundenen Endpoint-Systemen."
                     },
                     {
                       "id": "SENS.1.2-m5_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfen Sie die Kopplung von SOC-Metriken mit dem Awareness-Plan. Check: `grep 'behavior_risk_score' /var/log/security_analytics`."
+                      "prose": "Validierung der Datenflüsse zwischen SIEM und Awareness-Plattform via API-Log-Analyse zur Prüfung der Feedback-Schleife."
                     }
                   ]
                 }

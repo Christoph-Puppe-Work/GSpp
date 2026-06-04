@@ -1,9 +1,9 @@
 {
   "profile": {
-    "uuid": "5cb99ac1-5a40-497e-a89c-07f8b859a658",
+    "uuid": "a6ccf2c0-00f8-5e4f-80aa-4c4bfd8118d7",
     "metadata": {
-      "title": "ASST_prozesse ASST_prozesse - Enhanced (ED2023)",
-      "last-modified": "2026-05-31T20:20:07.520589+00:00",
+      "title": "Informationen und Assets Prozess Profil - Enhanced (ED2023)",
+      "last-modified": "2026-06-04T14:35:53.626818+00:00",
       "version": "0.0.1",
       "oscal-version": "1.1.3"
     },
@@ -73,17 +73,17 @@
                       "value": "m1"
                     }
                   ],
-                  "prose": "Informationen werden nur in Einzelfällen und ohne formales Schema dokumentiert.",
+                  "prose": "Informationen und Assets werden vereinzelt in dezentralen Listen ohne einheitliches Format erfasst.",
                   "parts": [
                     {
                       "id": "ASST.2.1-m1_custom_gdn",
                       "name": "guidance",
-                      "prose": "Führen Sie Listen für kritische Projekte."
+                      "prose": "Erfassen Sie die wichtigsten Informationen ad-hoc in Tabellen innerhalb der Fachbereiche."
                     },
                     {
                       "id": "ASST.2.1-m1_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfen Sie, ob für Kernbereiche Asset-Listen existieren. Shell: 'ls /path/to/assets'."
+                      "prose": "Sichtprüfung vorhandener informeller Listen in Stichproben. Manueller Abgleich mit bekannten Assets."
                     }
                   ]
                 },
@@ -121,17 +121,17 @@
                       "value": "m2"
                     }
                   ],
-                  "prose": "Es existieren manuelle Inventarlisten für wichtige Asset-Gruppen.",
+                  "prose": "Es existiert ein grundlegendes, manuell geführtes Inventar für die kritischsten Informationswerte.",
                   "parts": [
                     {
                       "id": "ASST.2.1-m2_custom_gdn",
                       "name": "guidance",
-                      "prose": "Nutzen Sie Tabellenkalkulationen zur zentralen Erfassung."
+                      "prose": "Nutzen Sie eine zentrale Tabelle zur Erfassung der Assets nach einem einfachen Schema."
                     },
                     {
                       "id": "ASST.2.1-m2_custom_asm",
                       "name": "assessment",
-                      "prose": "Sichtprüfung der Excel-Listen auf Vollständigkeit und Aktualität."
+                      "prose": "Prüfung der Aktualität der zentralen Liste durch Befragung der Asset-Owner."
                     }
                   ]
                 },
@@ -174,12 +174,12 @@
                     {
                       "id": "ASST.2.1-m3_custom_gdn",
                       "name": "guidance",
-                      "prose": "Erstellen Sie ein strukturiertes Inventar nach den Vorgaben der Informationssicherheitsrichtlinie."
+                      "prose": "Führen Sie ein vollständiges Asset-Inventar gemäß der internen Richtlinie und halten Sie dieses aktuell."
                     },
                     {
                       "id": "ASST.2.1-m3_custom_asm",
                       "name": "assessment",
-                      "prose": "Abgleich des Inventars mit der Realität durch Stichproben."
+                      "prose": "Audit des Asset-Registers auf Vollständigkeit. Check via CMDB-API: `curl -X GET https://cmdb.local/api/assets`."
                     }
                   ]
                 },
@@ -217,17 +217,17 @@
                       "value": "m4"
                     }
                   ],
-                  "prose": "Das Inventar wird regelmäßig auditiert und proaktiv aktualisiert.",
+                  "prose": "Das Inventar ist in automatisierte Workflows integriert und wird regelmäßig proaktiv validiert.",
                   "parts": [
                     {
                       "id": "ASST.2.1-m4_custom_gdn",
                       "name": "guidance",
-                      "prose": "Implementieren Sie einen Prozess zur quartalsweisen Überprüfung."
+                      "prose": "Verknüpfen Sie das Inventar mit dem Incident- und Change-Management für automatische Updates."
                     },
                     {
                       "id": "ASST.2.1-m4_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung der Audit-Logs der Inventar-Software auf regelmäßige Validierung."
+                      "prose": "Überprüfung der Prozessintegration und automatischer Reports über Bestandsänderungen."
                     }
                   ]
                 },
@@ -265,17 +265,17 @@
                       "value": "m5"
                     }
                   ],
-                  "prose": "Vollintegriertes Asset-Lifecycle-Management mit automatischer Klassifizierung.",
+                  "prose": "Ein dynamisches Echtzeit-Inventar klassifiziert Assets automatisch und überwacht deren Lebenszyklus.",
                   "parts": [
                     {
                       "id": "ASST.2.1-m5_custom_gdn",
                       "name": "guidance",
-                      "prose": "Nutzen Sie Tools zur automatischen Erkennung neuer Datenbestände."
+                      "prose": "Setzen Sie KI-gestützte Tools zur automatischen Erkennung und Klassifizierung neuer Informationen ein."
                     },
                     {
                       "id": "ASST.2.1-m5_custom_asm",
                       "name": "assessment",
-                      "prose": "Verifizierung der API-Integration zwischen Inventar und DLP-Systemen."
+                      "prose": "Validierung der automatischen Klassifizierung durch Abgleich mit Metadaten-Scans."
                     }
                   ]
                 }
@@ -311,7 +311,7 @@
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "medium",
+                      "value": "high",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -324,17 +324,17 @@
                       "value": "m1"
                     }
                   ],
-                  "prose": "IT-Systeme werden ad-hoc in lokalen Listen erfasst.",
+                  "prose": "IT-Systeme werden unsystematisch bei der Beschaffung erfasst, ohne den aktuellen Standort zu pflegen.",
                   "parts": [
                     {
                       "id": "ASST.2.2-m1_custom_gdn",
                       "name": "guidance",
-                      "prose": "Notieren Sie Hostnamen und Standorte."
+                      "prose": "Listen Sie Hardware bei Erhalt manuell auf, um einen groben Überblick zu behalten."
                     },
                     {
                       "id": "ASST.2.2-m1_custom_asm",
                       "name": "assessment",
-                      "prose": "Fragen Sie Administratoren nach ihren lokalen Bestandslisten."
+                      "prose": "Stichprobenartige Prüfung von Lieferscheinen gegen vorhandene Hardware."
                     }
                   ]
                 },
@@ -359,7 +359,7 @@
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "medium",
+                      "value": "high",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -372,17 +372,17 @@
                       "value": "m2"
                     }
                   ],
-                  "prose": "Eine zentrale Liste der IT-Systeme wird manuell gepflegt.",
+                  "prose": "Ein zentrales Hardware-Register erfasst Identifikationsmerkmale, wird jedoch nur sporadisch aktualisiert.",
                   "parts": [
                     {
                       "id": "ASST.2.2-m2_custom_gdn",
                       "name": "guidance",
-                      "prose": "Nutzen Sie eine zentrale Datenbank für alle Hardware-Assets."
+                      "prose": "Pflegen Sie Seriennummern und Standorte in einer zentralen Datenbank nach jedem Umzug ein."
                     },
                     {
                       "id": "ASST.2.2-m2_custom_asm",
                       "name": "assessment",
-                      "prose": "Stichprobenartige Prüfung: Stimmt der physische Standort mit der Liste überein?"
+                      "prose": "Manueller Abgleich von Inventarnummern an Geräten mit der Datenbank."
                     }
                   ]
                 },
@@ -407,7 +407,7 @@
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "medium",
+                      "value": "high",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -425,12 +425,12 @@
                     {
                       "id": "ASST.2.2-m3_custom_gdn",
                       "name": "guidance",
-                      "prose": "Dokumentieren Sie jedes System mit einer eindeutigen ID und dem aktuellen Standort."
+                      "prose": "Stellen Sie sicher, dass jedes IT-System eindeutig identifizierbar und sein Standort jederzeit bekannt ist."
                     },
                     {
                       "id": "ASST.2.2-m3_custom_asm",
                       "name": "assessment",
-                      "prose": "Abgleich der Liste gegen Netzwerk-Scans. Shell: 'nmap -sn 192.168.1.0/24'."
+                      "prose": "Audit der Datenbankeinträge. Test via Netzwerk-Scan: `nmap -sP 192.168.1.0/24` zum Abgleich mit dem Inventar."
                     }
                   ]
                 },
@@ -455,7 +455,7 @@
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "medium",
+                      "value": "high",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -468,17 +468,17 @@
                       "value": "m4"
                     }
                   ],
-                  "prose": "Ein automatisiertes Inventarisierungssystem überwacht Hardware-Änderungen.",
+                  "prose": "Automatisierte Network Access Control (NAC) Systeme validieren den Bestand und Standort der IT-Systeme.",
                   "parts": [
                     {
                       "id": "ASST.2.2-m4_custom_gdn",
                       "name": "guidance",
-                      "prose": "Setzen Sie Agenten-basierte Software zur Echtzeit-Erfassung ein."
+                      "prose": "Integrieren Sie einen automatischen Discovery-Prozess, der neue Systeme sofort im Inventar registriert."
                     },
                     {
                       "id": "ASST.2.2-m4_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfen Sie die Konfiguration des Scan-Tools auf tägliche Aktualisierungsintervalle."
+                      "prose": "Prüfung der NAC-Logs auf Übereinstimmung mit dem Asset-Inventar."
                     }
                   ]
                 },
@@ -503,7 +503,7 @@
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "medium",
+                      "value": "high",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -516,17 +516,17 @@
                       "value": "m5"
                     }
                   ],
-                  "prose": "Dynamische CMDB mit Echtzeit-Synchronisation und NAC-Anbindung.",
+                  "prose": "Das Systeminventar ist vollständig automatisiert und erkennt Hardware-Änderungen in Echtzeit per Agent.",
                   "parts": [
                     {
                       "id": "ASST.2.2-m5_custom_gdn",
                       "name": "guidance",
-                      "prose": "Integrieren Sie das Inventar in die Netzwerkzugangskontrolle."
+                      "prose": "Nutzen Sie hardwaregebundene Zertifikate und TPM-basierte Identitäten für die automatische Bestandsführung."
                     },
                     {
                       "id": "ASST.2.2-m5_custom_asm",
                       "name": "assessment",
-                      "prose": "Testen Sie, ob ein unbekanntes System automatisch blockiert und gemeldet wird."
+                      "prose": "Test der Echtzeit-Alarmierung bei Entfernen eines Systems aus dem Netzwerk."
                     }
                   ]
                 }
@@ -562,7 +562,7 @@
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "medium",
+                      "value": "high",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -575,17 +575,17 @@
                       "value": "m1"
                     }
                   ],
-                  "prose": "Installationsmedien werden gesammelt, aber nicht systematisch erfasst.",
+                  "prose": "Software wird nur projektbezogen dokumentiert, Lizenzen liegen ungeordnet vor.",
                   "parts": [
                     {
                       "id": "ASST.2.3-m1_custom_gdn",
                       "name": "guidance",
-                      "prose": "Sammeln Sie Lizenzkeys in einem Ordner."
+                      "prose": "Erstellen Sie einfache Übersichten über installierte Standardsoftware in den Abteilungen."
                     },
                     {
                       "id": "ASST.2.3-m1_custom_asm",
                       "name": "assessment",
-                      "prose": "Sichtung des Verzeichnisses für Software-Lizenzen."
+                      "prose": "Sichtung von Installationsmedien und Lizenzordnern."
                     }
                   ]
                 },
@@ -610,7 +610,7 @@
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "medium",
+                      "value": "high",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -623,17 +623,17 @@
                       "value": "m2"
                     }
                   ],
-                  "prose": "Es existiert eine Liste der Standardsoftware und deren Versionen.",
+                  "prose": "Ein zentrales Software-Verzeichnis wird manuell gepflegt, enthält aber nicht alle Versionsstände.",
                   "parts": [
                     {
                       "id": "ASST.2.3-m2_custom_gdn",
                       "name": "guidance",
-                      "prose": "Erfassen Sie Version und Lizenztyp in einer Tabelle."
+                      "prose": "Erfassen Sie Versionen und Lizenzabläufe in einer Liste, um Compliance-Risiken zu minimieren."
                     },
                     {
                       "id": "ASST.2.3-m2_custom_asm",
                       "name": "assessment",
-                      "prose": "Vergleich installierter Software auf Testrechnern mit der Liste."
+                      "prose": "Abgleich der Liste mit Stichproben installierter Software auf Endgeräten."
                     }
                   ]
                 },
@@ -658,7 +658,7 @@
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "medium",
+                      "value": "high",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -676,12 +676,12 @@
                     {
                       "id": "ASST.2.3-m3_custom_gdn",
                       "name": "guidance",
-                      "prose": "Pflegen Sie ein vollständiges Anwendungs-Inventar mit allen relevanten Metadaten."
+                      "prose": "Dokumentieren Sie alle Anwendungen systematisch, um Wartung und Lizenzmanagement zu ermöglichen."
                     },
                     {
                       "id": "ASST.2.3-m3_custom_asm",
                       "name": "assessment",
-                      "prose": "Audit der Softwareliste auf Vollständigkeit der Felder (Name, Version, Lizenz)."
+                      "prose": "Prüfung des Software-Inventars. Command-Check: `dpkg -l` oder `rpm -qa` auf Servern zum Abgleich."
                     }
                   ]
                 },
@@ -706,7 +706,7 @@
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "medium",
+                      "value": "high",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -719,17 +719,17 @@
                       "value": "m4"
                     }
                   ],
-                  "prose": "Zentrales Software-Asset-Management (SAM) steuert Versionen und Lizenzen.",
+                  "prose": "Ein Software-Asset-Management (SAM) Tool überwacht Versionen und Patch-Stände automatisiert.",
                   "parts": [
                     {
                       "id": "ASST.2.3-m4_custom_gdn",
                       "name": "guidance",
-                      "prose": "Überwachen Sie Lizenzabläufe proaktiv durch das SAM-Tool."
+                      "prose": "Automatisieren Sie den Abgleich zwischen installierter Software und Lizenzbestand."
                     },
                     {
                       "id": "ASST.2.3-m4_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfen Sie die Warnmeldungen des SAM-Systems auf abgelaufene Lizenzen."
+                      "prose": "Auswertung der Compliance-Reports aus dem SAM-Tool."
                     }
                   ]
                 },
@@ -754,7 +754,7 @@
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "medium",
+                      "value": "high",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -767,17 +767,17 @@
                       "value": "m5"
                     }
                   ],
-                  "prose": "Vollautomatisches Lizenz- und Patch-Management mit integrierter Compliance-Prüfung.",
+                  "prose": "Continuous Software Inventory ist in die CI/CD-Pipeline und Security-Scanning-Tools integriert.",
                   "parts": [
                     {
                       "id": "ASST.2.3-m5_custom_gdn",
                       "name": "guidance",
-                      "prose": "Nutzen Sie Infrastructure as Code zur Durchsetzung von Softwarestandards."
+                      "prose": "Implementieren Sie 'Software Bill of Materials' (SBOM) zur lückenlosen Verfolgung aller Komponenten."
                     },
                     {
                       "id": "ASST.2.3-m5_custom_asm",
                       "name": "assessment",
-                      "prose": "Check: 'ansible-playbook --check' zum Abgleich des Ist-Zustands mit der Policy."
+                      "prose": "Validierung der SBOM-Integration in der Build-Pipeline."
                     }
                   ]
                 }
@@ -826,17 +826,17 @@
                       "value": "m1"
                     }
                   ],
-                  "prose": "Manuelle Abfrage installierter Software auf Einzelrechnern bei Bedarf.",
+                  "prose": "Software-Scans erfolgen unregelmäßig auf Einzelrechnern bei Verdacht auf Fehlkonfiguration.",
                   "parts": [
                     {
                       "id": "ASST.2.3.2.1-m1_custom_gdn",
                       "name": "guidance",
-                      "prose": "Nutzen Sie Befehle wie 'dpkg -l' manuell."
+                      "prose": "Führen Sie bei Wartungsarbeiten stichprobenartig manuelle Software-Checks durch."
                     },
                     {
                       "id": "ASST.2.3.2.1-m1_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung von Stichproben-Protokollen manueller Abfragen."
+                      "prose": "Prüfung von Wartungsprotokollen auf Software-Listen."
                     }
                   ]
                 },
@@ -874,17 +874,17 @@
                       "value": "m2"
                     }
                   ],
-                  "prose": "Skriptgesteuerte Inventarisierung auf wichtigen Servern.",
+                  "prose": "Regelmäßige manuelle Abfragen der installierten Software über Skripte werden durchgeführt.",
                   "parts": [
                     {
                       "id": "ASST.2.3.2.1-m2_custom_gdn",
                       "name": "guidance",
-                      "prose": "Verteilen Sie Skripte via Cron zur Inventarisierung."
+                      "prose": "Nutzen Sie einfache Skripte, um monatlich den Softwarestand der Server abzufragen."
                     },
                     {
                       "id": "ASST.2.3.2.1-m2_custom_asm",
                       "name": "assessment",
-                      "prose": "Kontrolle der Log-Files zentral gesammelter Inventardaten."
+                      "prose": "Prüfung der monatlichen Skript-Outputs. Skript-Check: `ps -ef` Analyse."
                     }
                   ]
                 },
@@ -927,12 +927,12 @@
                     {
                       "id": "ASST.2.3.2.1-m3_custom_gdn",
                       "name": "guidance",
-                      "prose": "Implementieren Sie das automatisierte Verfahren gemäß dem definierten Parameter."
+                      "prose": "Implementieren Sie das automatisierte Verfahren zur regelmäßigen Validierung des Softwarebestands."
                     },
                     {
                       "id": "ASST.2.3.2.1-m3_custom_asm",
                       "name": "assessment",
-                      "prose": "Verifizierung der Ausführung des automatisierten Verfahrens im Zeitplan."
+                      "prose": "Prüfung der Konfiguration des Automatisierungstools. Test: Ausführung des Scan-Jobs."
                     }
                   ]
                 },
@@ -970,17 +970,17 @@
                       "value": "m4"
                     }
                   ],
-                  "prose": "Kontinuierlicher Abgleich des Inventars mit Echtzeit-Scans.",
+                  "prose": "Das automatisierte Discovery-Verfahren läuft täglich und meldet Abweichungen sofort an das SOC.",
                   "parts": [
                     {
                       "id": "ASST.2.3.2.1-m4_custom_gdn",
                       "name": "guidance",
-                      "prose": "Konfigurieren Sie automatische Meldungen bei Abweichungen vom Soll-Stand."
+                      "prose": "Konfigurieren Sie Alerts für unbekannte oder veraltete Softwareversionen im Überwachungsverfahren."
                     },
                     {
                       "id": "ASST.2.3.2.1-m4_custom_asm",
                       "name": "assessment",
-                      "prose": "Testen der Alarmierung bei Installation nicht autorisierter Software."
+                      "prose": "Simulation einer Software-Installation und Prüfung der Alarmierungskette."
                     }
                   ]
                 },
@@ -1018,17 +1018,17 @@
                       "value": "m5"
                     }
                   ],
-                  "prose": "Self-Healing-Infrastruktur korrigiert Inventarabweichungen automatisch.",
+                  "prose": "Echtzeit-Discovery mit automatischer Quarantäne für nicht autorisierte Software ist aktiv.",
                   "parts": [
                     {
                       "id": "ASST.2.3.2.1-m5_custom_gdn",
                       "name": "guidance",
-                      "prose": "Koppeln Sie Discovery mit automatischen Rollback-Mechanismen."
+                      "prose": "Koppeln Sie den Software-Discovery-Prozess mit einer Application-Whitelisting-Lösung."
                     },
                     {
                       "id": "ASST.2.3.2.1-m5_custom_asm",
                       "name": "assessment",
-                      "prose": "Simulation einer Software-Installation und Messung der Zeit bis zur Korrektur."
+                      "prose": "Test der automatischen Blockierung einer nicht im Inventar befindlichen Anwendung."
                     }
                   ]
                 }
@@ -1077,17 +1077,17 @@
                       "value": "m1"
                     }
                   ],
-                  "prose": "Vereinzelt sind Ersatzgeräte in Büros gelagert.",
+                  "prose": "Einzelne Ersatzgeräte sind vorhanden, aber nicht zentral verwaltet oder geprüft.",
                   "parts": [
                     {
                       "id": "ASST.3.14-m1_custom_gdn",
                       "name": "guidance",
-                      "prose": "Halten Sie einzelne Tastaturen und Mäuse bereit."
+                      "prose": "Halten Sie einige Standard-Laptops in einem Schrank für Notfälle bereit."
                     },
                     {
                       "id": "ASST.3.14-m1_custom_asm",
                       "name": "assessment",
-                      "prose": "Begehung der Lagerräume auf vorhandene Hardware."
+                      "prose": "Sichtprüfung der physischen Verfügbarkeit von Ersatzhardware."
                     }
                   ]
                 },
@@ -1125,17 +1125,17 @@
                       "value": "m2"
                     }
                   ],
-                  "prose": "Definierter Mindestbestand an Standardkomponenten im Lager.",
+                  "prose": "Ein kleiner Reservebestand ist definiert, wird jedoch nicht regelmäßig auf Funktion geprüft.",
                   "parts": [
                     {
                       "id": "ASST.3.14-m2_custom_gdn",
                       "name": "guidance",
-                      "prose": "Erstellen Sie eine Liste notwendiger Ersatz-Hardware."
+                      "prose": "Legen Sie fest, wie viele Geräte pro Typ als Reserve vorgehalten werden müssen."
                     },
                     {
                       "id": "ASST.3.14-m2_custom_asm",
                       "name": "assessment",
-                      "prose": "Abgleich des Lagerbestands mit der Mindestmengenliste."
+                      "prose": "Bestandsaufnahme der Reserve gegen die Soll-Vorgabe."
                     }
                   ]
                 },
@@ -1178,12 +1178,12 @@
                     {
                       "id": "ASST.3.14-m3_custom_gdn",
                       "name": "guidance",
-                      "prose": "Stellen Sie sicher, dass kritische Hardware-Assets in ausreichender Menge gepuffert sind."
+                      "prose": "Etablieren Sie einen Prozess zur Vorhaltung und Wartung einer angemessenen Asset-Reserve."
                     },
                     {
                       "id": "ASST.3.14-m3_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung des Reservekonzepts und der tatsächlichen Verfügbarkeit."
+                      "prose": "Prüfung des Reserve-Konzepts und Stichprobe der Funktionsfähigkeit der Reserve-Assets."
                     }
                   ]
                 },
@@ -1221,17 +1221,17 @@
                       "value": "m4"
                     }
                   ],
-                  "prose": "Zentralisiertes Ersatzteilmanagement mit dedizierten Wiederbeschaffungszeiten.",
+                  "prose": "Die Asset-Reserve wird proaktiv überwacht und bei Entnahme automatisch nachbestellt.",
                   "parts": [
                     {
                       "id": "ASST.3.14-m4_custom_gdn",
                       "name": "guidance",
-                      "prose": "Legen Sie Service Level Agreements für die Wiederbeschaffung fest."
+                      "prose": "Integrieren Sie die Bestandsführung der Reserve in das ERP- oder Ticketsystem."
                     },
                     {
                       "id": "ASST.3.14-m4_custom_asm",
                       "name": "assessment",
-                      "prose": "Überprüfung der SLA-Einhaltung bei den letzten Hardware-Ausfällen."
+                      "prose": "Prüfung der automatischen Nachbestellschwellen im System."
                     }
                   ]
                 },
@@ -1269,17 +1269,17 @@
                       "value": "m5"
                     }
                   ],
-                  "prose": "Just-in-Time Lieferverträge mit Partnern für unterbrechungsfreien Betrieb.",
+                  "prose": "Ein hochverfügbares 'Hot-Standby'-Lager garantiert den Austausch kritischer Assets innerhalb kürzester Zeit.",
                   "parts": [
                     {
                       "id": "ASST.3.14-m5_custom_gdn",
                       "name": "guidance",
-                      "prose": "Integrieren Sie Lieferanten-Schnittstellen in das Bestandsmanagement."
+                      "prose": "Nutzen Sie ein automatisiertes Lagersystem mit kontinuierlicher Selbstprüfung der Hardware-Integrität."
                     },
                     {
                       "id": "ASST.3.14-m5_custom_asm",
                       "name": "assessment",
-                      "prose": "Simulation eines Hardware-Engpasses und Test der automatischen Nachbestellung."
+                      "prose": "Messung der Wiederherstellungszeit bei simuliertem Hardwareausfall (MTTR)."
                     }
                   ]
                 }
@@ -1310,17 +1310,17 @@
                     },
                     {
                       "name": "effective_on_c",
-                      "value": "low",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "low",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_a",
-                      "value": "high",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -1328,12 +1328,12 @@
                       "value": "m1"
                     }
                   ],
-                  "prose": "Ausleihe erfolgt informell zwischen Kollegen.",
+                  "prose": "Geräte werden informell und ohne Dokumentation zwischen Mitarbeitern verliehen.",
                   "parts": [
                     {
                       "id": "ASST.3.15-m1_custom_gdn",
                       "name": "guidance",
-                      "prose": "Nutzen Sie Notizzettel für die Verleih-Dokumentation."
+                      "prose": "Notieren Sie Ausleihen kurz in einem Notizbuch oder einer E-Mail."
                     },
                     {
                       "id": "ASST.3.15-m1_custom_asm",
@@ -1358,17 +1358,17 @@
                     },
                     {
                       "name": "effective_on_c",
-                      "value": "low",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "low",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_a",
-                      "value": "high",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -1376,17 +1376,17 @@
                       "value": "m2"
                     }
                   ],
-                  "prose": "Manuelle Verleihliste für mobile Endgeräte vorhanden.",
+                  "prose": "Es gibt eine einfache Liste für Leihgeräte, die bei Bedarf manuell befüllt wird.",
                   "parts": [
                     {
                       "id": "ASST.3.15-m2_custom_gdn",
                       "name": "guidance",
-                      "prose": "Tragen Sie Name, Gerät und Datum in ein Buch ein."
+                      "prose": "Verwenden Sie ein Formular zur Quittierung der Herausgabe von Assets."
                     },
                     {
                       "id": "ASST.3.15-m2_custom_asm",
                       "name": "assessment",
-                      "prose": "Sichtung des Verleihbuchs auf Aktualität."
+                      "prose": "Abgleich der Quittungen mit dem physischen Bestand im Ausleihpool."
                     }
                   ]
                 },
@@ -1406,17 +1406,17 @@
                     },
                     {
                       "name": "effective_on_c",
-                      "value": "low",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "low",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_a",
-                      "value": "high",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -1429,12 +1429,12 @@
                     {
                       "id": "ASST.3.15-m3_custom_gdn",
                       "name": "guidance",
-                      "prose": "Halten Sie einen Pool an Geräten für die temporäre Nutzung vor."
+                      "prose": "Definieren Sie einen Pool an Leihgeräten und dokumentieren Sie deren Ausgabe und Rücknahme systematisch."
                     },
                     {
                       "id": "ASST.3.15-m3_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung der Ausleih-Statistik auf Engpässe."
+                      "prose": "Prüfung des Ausleihjournals und des Bestandsniveaus. Check: `select * from loan_db where status='out'`."
                     }
                   ]
                 },
@@ -1454,17 +1454,17 @@
                     },
                     {
                       "name": "effective_on_c",
-                      "value": "low",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "low",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_a",
-                      "value": "high",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -1472,17 +1472,17 @@
                       "value": "m4"
                     }
                   ],
-                  "prose": "Digitales Buchungssystem steuert den Ausleihprozess.",
+                  "prose": "Die Ausleihe erfolgt über ein Self-Service-Portal mit automatischer Fristüberwachung.",
                   "parts": [
                     {
                       "id": "ASST.3.15-m4_custom_gdn",
                       "name": "guidance",
-                      "prose": "Implementieren Sie ein Tool zur Reservierung von Leih-Assets."
+                      "prose": "Implementieren Sie automatische Erinnerungsmails bei Überschreitung der Leihfrist."
                     },
                     {
                       "id": "ASST.3.15-m4_custom_asm",
                       "name": "assessment",
-                      "prose": "Check der Buchungshistorie im digitalen System."
+                      "prose": "Prüfung der automatisierten Mahnprozesse bei überfälligen Geräten."
                     }
                   ]
                 },
@@ -1502,17 +1502,17 @@
                     },
                     {
                       "name": "effective_on_c",
-                      "value": "low",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "low",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_a",
-                      "value": "high",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -1520,17 +1520,17 @@
                       "value": "m5"
                     }
                   ],
-                  "prose": "Vollautomatisierte Asset-Ausgabestation mit Benutzer-Authentifizierung.",
+                  "prose": "Vollautomatisierte Asset-Stationen regeln Ausgabe und Rücknahme mit biometrischer Authentifizierung.",
                   "parts": [
                     {
                       "id": "ASST.3.15-m5_custom_gdn",
                       "name": "guidance",
-                      "prose": "Nutzen Sie Schließfachsysteme mit Badge-Integration."
+                      "prose": "Nutzen Sie RFID-Tags zur lückenlosen Verfolgung des Standorts der Leihgeräte im Gebäude."
                     },
                     {
                       "id": "ASST.3.15-m5_custom_asm",
                       "name": "assessment",
-                      "prose": "Funktionstest der automatischen Rückgabemeldung an das Inventarsystem."
+                      "prose": "Validierung der RFID-Tracking-Daten gegen das Buchungssystem."
                     }
                   ]
                 }
@@ -1579,17 +1579,17 @@
                       "value": "m1"
                     }
                   ],
-                  "prose": "Wichtige Dokumente werden sporadisch händisch markiert.",
+                  "prose": "Kennzeichnungen erfolgen nur bei besonders sensiblen Papierdokumenten handschriftlich.",
                   "parts": [
                     {
                       "id": "ASST.3.3-m1_custom_gdn",
                       "name": "guidance",
-                      "prose": "Nutzen Sie einen 'Vertraulich'-Stempel für Papier."
+                      "prose": "Markieren Sie streng vertrauliche Unterlagen manuell mit einem entsprechenden Hinweis."
                     },
                     {
                       "id": "ASST.3.3-m1_custom_asm",
                       "name": "assessment",
-                      "prose": "Stichprobenartige Sichtprüfung gedruckter Unterlagen."
+                      "prose": "Stichprobenartige Durchsicht von Dokumenten auf Klassifizierungshinweise."
                     }
                   ]
                 },
@@ -1627,17 +1627,17 @@
                       "value": "m2"
                     }
                   ],
-                  "prose": "Vorgaben zur Kennzeichnung in der Sicherheitsrichtlinie definiert.",
+                  "prose": "Es gibt einfache Vorgaben für die Kennzeichnung von E-Mails und Dokumenten per Stempel.",
                   "parts": [
                     {
                       "id": "ASST.3.3-m2_custom_gdn",
                       "name": "guidance",
-                      "prose": "Verwenden Sie Standard-Header in Textverarbeitungsprogrammen."
+                      "prose": "Nutzen Sie Standard-Kopfzeilen in Dokumentenvorlagen zur Kennzeichnung des Schutzbedarfs."
                     },
                     {
                       "id": "ASST.3.3-m2_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung von Dokumentenvorlagen auf Kennzeichnungspflichten."
+                      "prose": "Prüfung von Vorlagen in der Textverarbeitung auf integrierte Labels."
                     }
                   ]
                 },
@@ -1680,12 +1680,12 @@
                     {
                       "id": "ASST.3.3-m3_custom_gdn",
                       "name": "guidance",
-                      "prose": "Stellen Sie sicher, dass alle Informationen gemäß ihrer Schutzbedürftigkeit gekennzeichnet sind."
+                      "prose": "Setzen Sie die Richtlinie zur Kennzeichnung für alle Informationsträger konsequent um."
                     },
                     {
                       "id": "ASST.3.3-m3_custom_asm",
                       "name": "assessment",
-                      "prose": "Review der Kennzeichnungspraxis in verschiedenen Abteilungen."
+                      "prose": "Audit der Umsetzung der Kennzeichnungsvorgaben in verschiedenen Medien (Digital/Physisch)."
                     }
                   ]
                 },
@@ -1723,17 +1723,17 @@
                       "value": "m4"
                     }
                   ],
-                  "prose": "Automatisierte Metadaten-Kennzeichnung in Office-Anwendungen.",
+                  "prose": "Digitale Kennzeichnung wird durch Tools erzwungen, die Metadaten automatisch setzen.",
                   "parts": [
                     {
                       "id": "ASST.3.3-m4_custom_gdn",
                       "name": "guidance",
-                      "prose": "Nutzen Sie Plug-ins zur erzwungenen Klassifizierung beim Speichern."
+                      "prose": "Implementieren Sie Software-Erweiterungen, die vor dem Speichern zur Auswahl einer Schutzklasse zwingen."
                     },
                     {
                       "id": "ASST.3.3-m4_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung der Metadaten einer Datei mit 'exiftool'."
+                      "prose": "Prüfung der Metadaten in Dokumenten via `exiftool` auf korrekte Labels."
                     }
                   ]
                 },
@@ -1771,17 +1771,17 @@
                       "value": "m5"
                     }
                   ],
-                  "prose": "Klassifizierung mittels KI und automatisierte Verschlüsselung basierend auf Labels.",
+                  "prose": "Automatisierte Data Loss Prevention (DLP) Systeme erkennen Inhalte und kennzeichnen diese in Echtzeit.",
                   "parts": [
                     {
                       "id": "ASST.3.3-m5_custom_gdn",
                       "name": "guidance",
-                      "prose": "Setzen Sie ML-Modelle zur Inhaltsanalyse und Kennzeichnung ein."
+                      "prose": "Nutzen Sie Machine Learning zur automatischen Analyse und Kennzeichnung unstrukturierter Daten."
                     },
                     {
                       "id": "ASST.3.3-m5_custom_asm",
                       "name": "assessment",
-                      "prose": "Test: Kann eine falsch gekennzeichnete Datei die Organisation verlassen? (DLP-Check)."
+                      "prose": "Test des DLP-Systems auf korrekte Erkennung und automatische Label-Vergabe."
                     }
                   ]
                 }
@@ -1817,7 +1817,7 @@
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "medium",
+                      "value": "high",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -1830,17 +1830,17 @@
                       "value": "m1"
                     }
                   ],
-                  "prose": "Veröffentlichungen erfolgen nach mündlicher Absprache.",
+                  "prose": "Veröffentlichungen werden ad-hoc durch Vorgesetzte mündlich freigegeben.",
                   "parts": [
                     {
                       "id": "ASST.4.3-m1_custom_gdn",
                       "name": "guidance",
-                      "prose": "Holen Sie das OK vom direkten Vorgesetzten ein."
+                      "prose": "Holen Sie vor einer Veröffentlichung eine kurze Bestätigung per E-Mail ein."
                     },
                     {
                       "id": "ASST.4.3-m1_custom_asm",
                       "name": "assessment",
-                      "prose": "Befragung der Marketing-Abteilung zum Freigabeprozess."
+                      "prose": "Sichtung von E-Mail-Korrespondenzen zu aktuellen Veröffentlichungen."
                     }
                   ]
                 },
@@ -1865,7 +1865,7 @@
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "medium",
+                      "value": "high",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -1878,17 +1878,17 @@
                       "value": "m2"
                     }
                   ],
-                  "prose": "Freigaben werden formlos per E-Mail dokumentiert.",
+                  "prose": "Es existiert ein einfaches Formular zur Freigabe von Inhalten, das manuell archiviert wird.",
                   "parts": [
                     {
                       "id": "ASST.4.3-m2_custom_gdn",
                       "name": "guidance",
-                      "prose": "Archivieren Sie die Bestätigungs-E-Mail des Verantwortlichen."
+                      "prose": "Dokumentieren Sie die Freigabe zentral, bevor Informationen extern publiziert werden."
                     },
                     {
                       "id": "ASST.4.3-m2_custom_asm",
                       "name": "assessment",
-                      "prose": "Stichprobenartige Prüfung des E-Mail-Archivs auf Freigaben."
+                      "prose": "Abgleich veröffentlichter Dokumente mit den zugehörigen Freigabeformularen."
                     }
                   ]
                 },
@@ -1913,7 +1913,7 @@
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "medium",
+                      "value": "high",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -1931,12 +1931,12 @@
                     {
                       "id": "ASST.4.3-m3_custom_gdn",
                       "name": "guidance",
-                      "prose": "Stellen Sie sicher, dass jede Veröffentlichung formal durch die definierte Stelle autorisiert wurde."
+                      "prose": "Stellen Sie sicher, dass jede Veröffentlichung den definierten Autorisierungsprozess durchläuft."
                     },
                     {
                       "id": "ASST.4.3-m3_custom_asm",
                       "name": "assessment",
-                      "prose": "Abgleich veröffentlichter Inhalte mit den vorliegenden Autorisierungen."
+                      "prose": "Prüfung der Einhaltung des Autorisierungsprozesses anhand von Stichproben. Check: Freigabe-Logbuch."
                     }
                   ]
                 },
@@ -1961,7 +1961,7 @@
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "medium",
+                      "value": "high",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -1974,17 +1974,17 @@
                       "value": "m4"
                     }
                   ],
-                  "prose": "Workflow-gestütztes Autorisierungssystem für alle Publikationen.",
+                  "prose": "Der Freigabeprozess ist digital in einem Workflow-System mit Vier-Augen-Prinzip abgebildet.",
                   "parts": [
                     {
                       "id": "ASST.4.3-m4_custom_gdn",
                       "name": "guidance",
-                      "prose": "Implementieren Sie ein Ticketing-System für den Freigabeprozess."
+                      "prose": "Automatisieren Sie die Benachrichtigung der zuständigen Stellen bei neuen Freigabeanfragen."
                     },
                     {
                       "id": "ASST.4.3-m4_custom_asm",
                       "name": "assessment",
-                      "prose": "Audit des Workflow-History im Managementsystem."
+                      "prose": "Audit der Workflow-Historie im Freigabesystem auf Vollständigkeit."
                     }
                   ]
                 },
@@ -2009,7 +2009,7 @@
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "medium",
+                      "value": "high",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -2022,17 +2022,17 @@
                       "value": "m5"
                     }
                   ],
-                  "prose": "Digital signierte Freigaben mit automatischer Integritätsprüfung vor Web-Upload.",
+                  "prose": "Content Management Systeme verhindern technisch jede Publikation ohne digitale Signatur der Freigabestelle.",
                   "parts": [
                     {
                       "id": "ASST.4.3-m5_custom_gdn",
                       "name": "guidance",
-                      "prose": "Nutzen Sie kryptographische Signaturen für freigegebene Dokumente."
+                      "prose": "Integrieren Sie eine Policy-Engine, die Veröffentlichungen gegen Schutzbedarfs-Regeln prüft."
                     },
                     {
                       "id": "ASST.4.3-m5_custom_asm",
                       "name": "assessment",
-                      "prose": "Verifizierung der digitalen Signatur auf der veröffentlichten Datei via 'gpg --verify'."
+                      "prose": "Versuch einer unautorisierten Veröffentlichung zur Verifizierung der technischen Sperre."
                     }
                   ]
                 }
@@ -2053,12 +2053,12 @@
                   "props": [
                     {
                       "name": "control_class",
-                      "value": "Management",
+                      "value": "Operational",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "phase",
-                      "value": "Risk Treatment",
+                      "value": "Operation",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -2073,7 +2073,7 @@
                     },
                     {
                       "name": "effective_on_a",
-                      "value": "high",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -2081,17 +2081,17 @@
                       "value": "m1"
                     }
                   ],
-                  "prose": "Verlustmeldungen erfolgen auf Zuruf an die IT.",
+                  "prose": "Verluste werden informell an den IT-Support gemeldet, ohne standardisierten Ablauf.",
                   "parts": [
                     {
                       "id": "ASST.6.1-m1_custom_gdn",
                       "name": "guidance",
-                      "prose": "Geben Sie Mitarbeitern eine Notfallnummer für Verluste."
+                      "prose": "Informieren Sie bei Verlust eines Geräts umgehend Ihren direkten Vorgesetzten."
                     },
                     {
                       "id": "ASST.6.1-m1_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung, ob Mitarbeiter wissen, wen sie bei Verlust anrufen müssen."
+                      "prose": "Befragung von Personal zu Vorfällen in der Vergangenheit."
                     }
                   ]
                 },
@@ -2101,12 +2101,12 @@
                   "props": [
                     {
                       "name": "control_class",
-                      "value": "Management",
+                      "value": "Operational",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "phase",
-                      "value": "Risk Treatment",
+                      "value": "Operation",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -2121,7 +2121,7 @@
                     },
                     {
                       "name": "effective_on_a",
-                      "value": "high",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -2129,17 +2129,17 @@
                       "value": "m2"
                     }
                   ],
-                  "prose": "Standard-Meldeformular für den Verlust von Geräten vorhanden.",
+                  "prose": "Ein einfaches Meldeformular für verlorene Assets ist im Intranet verfügbar.",
                   "parts": [
                     {
                       "id": "ASST.6.1-m2_custom_gdn",
                       "name": "guidance",
-                      "prose": "Definieren Sie die notwendigen Datenfelder für eine Verlustmeldung."
+                      "prose": "Nutzen Sie eine Checkliste, um bei Verlust sofort Sperrungen (z.B. SIM-Karte) einzuleiten."
                     },
                     {
                       "id": "ASST.6.1-m2_custom_asm",
                       "name": "assessment",
-                      "prose": "Sichtung ausgefüllter Meldeformulare der letzten 12 Monate."
+                      "prose": "Sichtung der Meldeliste und der eingeleiteten Sofortmaßnahmen."
                     }
                   ]
                 },
@@ -2149,12 +2149,12 @@
                   "props": [
                     {
                       "name": "control_class",
-                      "value": "Management",
+                      "value": "Operational",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "phase",
-                      "value": "Risk Treatment",
+                      "value": "Operation",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -2169,7 +2169,7 @@
                     },
                     {
                       "name": "effective_on_a",
-                      "value": "high",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -2182,12 +2182,12 @@
                     {
                       "id": "ASST.6.1-m3_custom_gdn",
                       "name": "guidance",
-                      "prose": "Etablieren Sie einen formalen Prozess zur Reaktion auf den Verlust von Assets."
+                      "prose": "Etablieren und kommunizieren Sie einen verbindlichen Prozess für den Umgang mit verlorenen Assets."
                     },
                     {
                       "id": "ASST.6.1-m3_custom_asm",
                       "name": "assessment",
-                      "prose": "Review der schriftlich fixierten Vorgehensweise zum Asset-Verlust."
+                      "prose": "Prüfung der Prozessbeschreibung und Dokumentation bearbeiteter Verlustmeldungen."
                     }
                   ]
                 },
@@ -2197,12 +2197,12 @@
                   "props": [
                     {
                       "name": "control_class",
-                      "value": "Management",
+                      "value": "Operational",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "phase",
-                      "value": "Risk Treatment",
+                      "value": "Operation",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -2217,7 +2217,7 @@
                     },
                     {
                       "name": "effective_on_a",
-                      "value": "high",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -2225,17 +2225,17 @@
                       "value": "m4"
                     }
                   ],
-                  "prose": "Automatisierte Einleitung von Sperrmaßnahmen bei Verlustmeldung.",
+                  "prose": "Der Verlustprozess ist Teil des Incident Managements und löst automatische Remote-Wipe Befehle aus.",
                   "parts": [
                     {
                       "id": "ASST.6.1-m4_custom_gdn",
                       "name": "guidance",
-                      "prose": "Koppeln Sie die Verlustmeldung mit dem Identity Management."
+                      "prose": "Verknüpfen Sie Verlustmeldungen mit dem MDM-System zur sofortigen Datenlöschung."
                     },
                     {
                       "id": "ASST.6.1-m4_custom_asm",
                       "name": "assessment",
-                      "prose": "Test der Reaktionskette: Wie schnell wird ein Account nach Meldung gesperrt?"
+                      "prose": "Prüfung der MDM-Logs auf erfolgreiche Ausführung von Sperrbefehlen."
                     }
                   ]
                 },
@@ -2245,12 +2245,12 @@
                   "props": [
                     {
                       "name": "control_class",
-                      "value": "Management",
+                      "value": "Operational",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "phase",
-                      "value": "Risk Treatment",
+                      "value": "Operation",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -2265,7 +2265,7 @@
                     },
                     {
                       "name": "effective_on_a",
-                      "value": "high",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -2273,17 +2273,17 @@
                       "value": "m5"
                     }
                   ],
-                  "prose": "Echtzeit-Asset-Tracking und Remote-Wipe-Automatisierung weltweit.",
+                  "prose": "KI-basierte Anomalieerkennung meldet potenzielles Abhandenkommen, bevor der Nutzer es bemerkt.",
                   "parts": [
                     {
                       "id": "ASST.6.1-m5_custom_gdn",
                       "name": "guidance",
-                      "prose": "Nutzen Sie MDM-Lösungen zur sofortigen Datenlöschung bei Diebstahl."
+                      "prose": "Implementieren Sie Geofencing, das Assets bei Verlassen definierter Zonen automatisch sperrt."
                     },
                     {
                       "id": "ASST.6.1-m5_custom_asm",
                       "name": "assessment",
-                      "prose": "Simulation eines Diebstahls und Audit des Remote-Wipe-Logs."
+                      "prose": "Test der Geofencing-Funktion und der automatischen Alarmierung."
                     }
                   ]
                 }
@@ -2304,17 +2304,17 @@
                   "props": [
                     {
                       "name": "control_class",
-                      "value": "Management",
+                      "value": "Operational",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "phase",
-                      "value": "Risk Treatment",
+                      "value": "Operation",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_c",
-                      "value": "high",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -2324,7 +2324,7 @@
                     },
                     {
                       "name": "effective_on_a",
-                      "value": "high",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -2332,17 +2332,17 @@
                       "value": "m1"
                     }
                   ],
-                  "prose": "Wiedergefundene Geräte werden einfach wieder in Betrieb genommen.",
+                  "prose": "Wiedergefundene Geräte werden ohne Prüfung direkt wieder in Betrieb genommen.",
                   "parts": [
                     {
                       "id": "ASST.6.2-m1_custom_gdn",
                       "name": "guidance",
-                      "prose": "Ändern Sie vorsorglich das lokale Passwort."
+                      "prose": "Übergeben Sie gefundene Geräte dem Support zur kurzen Sichtprüfung."
                     },
                     {
                       "id": "ASST.6.2-m1_custom_asm",
                       "name": "assessment",
-                      "prose": "Befragung der IT-Techniker zum Umgang mit Rückläufern."
+                      "prose": "Stichprobenhafte Befragung zur Wiedereingliederung von Assets."
                     }
                   ]
                 },
@@ -2352,17 +2352,17 @@
                   "props": [
                     {
                       "name": "control_class",
-                      "value": "Management",
+                      "value": "Operational",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "phase",
-                      "value": "Risk Treatment",
+                      "value": "Operation",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_c",
-                      "value": "high",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -2372,7 +2372,7 @@
                     },
                     {
                       "name": "effective_on_a",
-                      "value": "high",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -2380,17 +2380,17 @@
                       "value": "m2"
                     }
                   ],
-                  "prose": "Grundlegende Sichtprüfung und Passwortänderung bei Rückkehr.",
+                  "prose": "Es erfolgt eine manuelle Neuinstallation von Betriebssystemen bei zurückgekehrten Geräten.",
                   "parts": [
                     {
                       "id": "ASST.6.2-m2_custom_gdn",
                       "name": "guidance",
-                      "prose": "Prüfen Sie das Gehäuse auf Manipulationen."
+                      "prose": "Stellen Sie sicher, dass zurückgekehrte Hardware vor der Nutzung komplett gelöscht wird."
                     },
                     {
                       "id": "ASST.6.2-m2_custom_asm",
                       "name": "assessment",
-                      "prose": "Checkliste für die Wiederinbetriebnahme gesichteter Geräte."
+                      "prose": "Prüfung der Neuinstallationsprotokolle für Rückläufer."
                     }
                   ]
                 },
@@ -2400,17 +2400,17 @@
                   "props": [
                     {
                       "name": "control_class",
-                      "value": "Management",
+                      "value": "Operational",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "phase",
-                      "value": "Risk Treatment",
+                      "value": "Operation",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_c",
-                      "value": "high",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -2420,7 +2420,7 @@
                     },
                     {
                       "name": "effective_on_a",
-                      "value": "high",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -2433,12 +2433,12 @@
                     {
                       "id": "ASST.6.2-m3_custom_gdn",
                       "name": "guidance",
-                      "prose": "Definieren Sie einen klaren Prüfprozess für zurückkehrende Assets vor der Wiederverwendung."
+                      "prose": "Definieren Sie einen Prozess zur Sicherheitsüberprüfung und Integritätsprüfung zurückgekehrter Assets."
                     },
                     {
                       "id": "ASST.6.2-m3_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung der Einhaltung des Prüfprozesses anhand von Rückgabeprotokollen."
+                      "prose": "Audit des Rückkehr-Prozesses. Check: Dokumentation der Integritätsprüfung."
                     }
                   ]
                 },
@@ -2448,17 +2448,17 @@
                   "props": [
                     {
                       "name": "control_class",
-                      "value": "Management",
+                      "value": "Operational",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "phase",
-                      "value": "Risk Treatment",
+                      "value": "Operation",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_c",
-                      "value": "high",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -2468,7 +2468,7 @@
                     },
                     {
                       "name": "effective_on_a",
-                      "value": "high",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -2476,17 +2476,17 @@
                       "value": "m4"
                     }
                   ],
-                  "prose": "Obligatorisches Re-Imaging und Hardware-Integritätscheck.",
+                  "prose": "Zurückgekehrte Hardware durchläuft einen forensischen Standard-Scan vor der Freigabe.",
                   "parts": [
                     {
                       "id": "ASST.6.2-m4_custom_gdn",
                       "name": "guidance",
-                      "prose": "Setzen Sie das Betriebssystem über PXE-Boot vollständig neu auf."
+                      "prose": "Nutzen Sie automatisierte Tools zur Suche nach Malware und Hardware-Manipulationen."
                     },
                     {
                       "id": "ASST.6.2-m4_custom_asm",
                       "name": "assessment",
-                      "prose": "Nachweis der Neuinstallation über die Deployment-Logs."
+                      "prose": "Prüfung der Scan-Reports für wiedergekehrte Assets."
                     }
                   ]
                 },
@@ -2496,17 +2496,17 @@
                   "props": [
                     {
                       "name": "control_class",
-                      "value": "Management",
+                      "value": "Operational",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "phase",
-                      "value": "Risk Treatment",
+                      "value": "Operation",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_c",
-                      "value": "high",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -2516,7 +2516,7 @@
                     },
                     {
                       "name": "effective_on_a",
-                      "value": "high",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -2524,17 +2524,17 @@
                       "value": "m5"
                     }
                   ],
-                  "prose": "Forensische Analyse und Überprüfung der TPM-Integrität.",
+                  "prose": "Assets validieren ihre eigene Hardware-Integrität via Attestierung (z.B. Remote Attestation) nach Rückkehr.",
                   "parts": [
                     {
                       "id": "ASST.6.2-m5_custom_gdn",
                       "name": "guidance",
-                      "prose": "Führen Sie einen Vergleich der Hardware-Hashes (PCRs) durch."
+                      "prose": "Implementieren Sie hardwarebasierte Vertrauensanker, die Manipulationen sofort beim Booten erkennen."
                     },
                     {
                       "id": "ASST.6.2-m5_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung der Attestierungsprotokolle des TPM-Chips. Shell: 'tpm2_pcrread'."
+                      "prose": "Simulation einer Manipulation und Test der Erkennung durch das Attestierungs-System."
                     }
                   ]
                 }
@@ -2555,7 +2555,7 @@
                   "props": [
                     {
                       "name": "control_class",
-                      "value": "Management",
+                      "value": "Operational",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -2565,12 +2565,12 @@
                     },
                     {
                       "name": "effective_on_c",
-                      "value": "low",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "low",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -2583,17 +2583,17 @@
                       "value": "m1"
                     }
                   ],
-                  "prose": "Vereinzelt werden Veräußerungen von Assets ad-hoc ohne einen formalen Autorisierungsprozess abgestimmt.",
+                  "prose": "Veräußerungen erfolgen ad-hoc ohne formelle Autorisierung.",
                   "parts": [
                     {
                       "id": "ASST.7.6-m1_custom_gdn",
                       "name": "guidance",
-                      "prose": "Informelle Absprachen dominieren; es gibt keine festen Regeln, welche Rollen Assets zur Veräußerung freigeben dürfen."
+                      "prose": "Asset-Verkäufe werden informell besprochen, aber nicht zentral dokumentiert oder durch eine feste Instanz genehmigt."
                     },
                     {
                       "id": "ASST.7.6-m1_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfen Sie stichprobenartig, ob für verkaufte Assets eine schriftliche Notiz oder formlose E-Mail-Freigabe vorliegt."
+                      "prose": "Stichprobenartige Prüfung von Verkaufsbelegen gegen E-Mail-Verläufe zur Identifizierung informeller Freigaben."
                     }
                   ]
                 },
@@ -2603,7 +2603,7 @@
                   "props": [
                     {
                       "name": "control_class",
-                      "value": "Management",
+                      "value": "Operational",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -2613,12 +2613,12 @@
                     },
                     {
                       "name": "effective_on_c",
-                      "value": "low",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "low",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -2631,17 +2631,17 @@
                       "value": "m2"
                     }
                   ],
-                  "prose": "Veräußerungen werden manuell durch Linienvorgesetzte per E-Mail oder einfachem Formular autorisiert.",
+                  "prose": "Veräußerungen werden manuell durch Vorgesetzte auf Basis von Einzelfallentscheidungen autorisiert.",
                   "parts": [
                     {
                       "id": "ASST.7.6-m2_custom_gdn",
                       "name": "guidance",
-                      "prose": "Eine grundlegende Dokumentation der Freigabe erfolgt dezentral in den Fachabteilungen mittels Vorlagen."
+                      "prose": "Ein einfaches Formular oder eine E-Mail dient als Nachweis der Freigabe vor dem physischen Asset-Transfer."
                     },
                     {
                       "id": "ASST.7.6-m2_custom_asm",
                       "name": "assessment",
-                      "prose": "Einsichtnahme in die E-Mail-Korrespondenz oder physische Freigabebelege der letzten drei Monate zur Verifizierung."
+                      "prose": "Einsicht in die Freigabedokumente der letzten fünf Veräußerungsvorgänge zur Bestätigung einer manuellen Kontrolle."
                     }
                   ]
                 },
@@ -2651,7 +2651,7 @@
                   "props": [
                     {
                       "name": "control_class",
-                      "value": "Management",
+                      "value": "Operational",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -2661,12 +2661,12 @@
                     },
                     {
                       "name": "effective_on_c",
-                      "value": "low",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "low",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -2684,12 +2684,12 @@
                     {
                       "id": "ASST.7.6-m3_custom_gdn",
                       "name": "guidance",
-                      "prose": "Strikte Einhaltung der Freigabeprozesse durch die in {{ insert: param, asst.7.6-prm1 }} definierte Rolle oder Instanz."
+                      "prose": "Gemäß dem definierten Prozess autorisiert die genannte Stelle jeden Verkauf schriftlich oder elektronisch."
                     },
                     {
                       "id": "ASST.7.6-m3_custom_asm",
                       "name": "assessment",
-                      "prose": "Abgleich der Veräußerungsprotokolle mit der Berechtigungsmatrix gemäß der Vorgabe in {{ insert: param, asst.7.6-prm1 }}."
+                      "prose": "Prüfung der Autorisierungsprotokolle. SQL-Check: `SELECT * FROM asset_disposal WHERE auth_status != 'approved';`"
                     }
                   ]
                 },
@@ -2699,7 +2699,7 @@
                   "props": [
                     {
                       "name": "control_class",
-                      "value": "Management",
+                      "value": "Operational",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -2709,12 +2709,12 @@
                     },
                     {
                       "name": "effective_on_c",
-                      "value": "low",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "low",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -2727,17 +2727,17 @@
                       "value": "m4"
                     }
                   ],
-                  "prose": "Ein digitaler Workflow in einem Open-Source Asset-Management-System steuert und überwacht die Autorisierung proaktiv.",
+                  "prose": "Workflow-basierte Autorisierung von Asset-Verkäufen mit integrierter Rollentrennung.",
                   "parts": [
                     {
                       "id": "ASST.7.6-m4_custom_gdn",
                       "name": "guidance",
-                      "prose": "Nutzung von Workflows in Tools wie GLPI für den Genehmigungsfluss, inklusive Eskalationsmanagement bei Verzögerungen."
+                      "prose": "Nutzung eines digitalen Ticketsystems zur Einholung und revisionssicheren Dokumentation der Freigaben."
                     },
                     {
                       "id": "ASST.7.6-m4_custom_asm",
                       "name": "assessment",
-                      "prose": "Audit der Workflow-Logs in der Datenbank: sqlite3 inventory.db \"SELECT * FROM transfer_approvals WHERE status='done';\""
+                      "prose": "Abfrage des Ticketsystems auf Einhaltung der Freigabepflicht: `grep 'status: approved' asset_disposal.log`."
                     }
                   ]
                 },
@@ -2747,7 +2747,7 @@
                   "props": [
                     {
                       "name": "control_class",
-                      "value": "Management",
+                      "value": "Operational",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -2757,12 +2757,12 @@
                     },
                     {
                       "name": "effective_on_c",
-                      "value": "low",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "low",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -2775,17 +2775,17 @@
                       "value": "m5"
                     }
                   ],
-                  "prose": "Vollintegrierter Prozess mit kryptografisch signierten Audit-Trails für unveränderliche und revisionssichere Freigaben.",
+                  "prose": "Vollständig integrierter, digital signierter Veräußerungs-Workflow mit Anbindung an die Finanzbuchhaltung.",
                   "parts": [
                     {
                       "id": "ASST.7.6-m5_custom_gdn",
                       "name": "guidance",
-                      "prose": "Best-Practice Integration zwischen IT-Inventar und ERP zur lückenlosen, automatisierten Verfolgung jeder Veräußerung."
+                      "prose": "Die Autorisierung ist systemseitig erzwungen und nutzt kryptografische Signaturen zur Authentizitätssicherung."
                     },
                     {
                       "id": "ASST.7.6-m5_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung der digitalen Signaturen der Freigabeprozesse mittels OpenSSL oder GPG-Verifizierung der System-Logs."
+                      "prose": "Automatisierter API-Check der Asset-Management-Software auf Vollständigkeit der kryptografischen Genehmigungs-Flags."
                     }
                   ]
                 }
@@ -2834,17 +2834,17 @@
                       "value": "m1"
                     }
                   ],
-                  "prose": "Sichtbare Aufkleber und Logos der Institution werden vor der Veräußerung nur sporadisch oder bei Bedarf entfernt.",
+                  "prose": "Physische Markierungen werden teilweise vor der Abgabe oder dem Verkauf entfernt.",
                   "parts": [
                     {
                       "id": "ASST.7.7-m1_custom_gdn",
                       "name": "guidance",
-                      "prose": "Die Entfernung konzentriert sich auf leicht lösliche Etiketten ohne eine systematische Endprüfung der Geräte."
+                      "prose": "Mitarbeiter entfernen offensichtliche Aufkleber bei Gelegenheit, jedoch ohne systematische Kontrolle."
                     },
                     {
                       "id": "ASST.7.7-m1_custom_asm",
                       "name": "assessment",
-                      "prose": "Sichtprüfung von Altgeräten im Warenausgang auf verbliebene Inventarnummern oder institutionelle Aufkleber."
+                      "prose": "Sichtprüfung von zur Abholung bereitstehenden Alt-Geräten auf verbliebene Inventaraufkleber oder Firmenlogos."
                     }
                   ]
                 },
@@ -2882,17 +2882,17 @@
                       "value": "m2"
                     }
                   ],
-                  "prose": "Manuelle Entfernung aller physischen Kennzeichnungen nach einer einfachen, internen Checkliste durch die Technik.",
+                  "prose": "Ein Prozessschritt zum Entfernen von Beschriftungen ist in der Entsorgungsrichtlinie enthalten.",
                   "parts": [
                     {
                       "id": "ASST.7.7-m2_custom_gdn",
                       "name": "guidance",
-                      "prose": "Mitarbeiter reinigen Assets manuell; Inventaraufkleber werden mit geeigneten Reinigungsmitteln rückstandsfrei entfernt."
+                      "prose": "Die Richtlinie schreibt das Entfernen aller Tags vor, die Umsetzung wird manuell auf Checklisten abgehakt."
                     },
                     {
                       "id": "ASST.7.7-m2_custom_asm",
                       "name": "assessment",
-                      "prose": "Kontrolle der Einhaltung der Checkliste bei einer Begehung des Bereitstellungsbereichs für veräußerte Assets."
+                      "prose": "Prüfung der ausgefüllten Entsorgungs-Checklisten auf den Punkt 'Entfernung von institutionsspezifischen Logos'."
                     }
                   ]
                 },
@@ -2935,12 +2935,12 @@
                     {
                       "id": "ASST.7.7-m3_custom_gdn",
                       "name": "guidance",
-                      "prose": "Etablierter Prozess zur Neutralisierung aller Geräte vor der physischen Übergabe an Dritte oder Dienstleister."
+                      "prose": "Systematisches Entfernen aller internen Kennzeichnungen wie Inventarnummern oder BIOS-Einträge."
                     },
                     {
                       "id": "ASST.7.7-m3_custom_asm",
                       "name": "assessment",
-                      "prose": "Stichprobenartige Prüfung der Geräte vor dem Versand auf institutionelle Merkmale gemäß der Prozessvorgabe."
+                      "prose": "Stichprobenprüfung der Assets. Prüfung digitaler Kennungen via: `dmidecode -s system-manufacturer | grep 'Institut'`."
                     }
                   ]
                 },
@@ -2978,17 +2978,17 @@
                       "value": "m4"
                     }
                   ],
-                  "prose": "Automatisierte Erfassung der physischen Bereinigung inklusive Fotodokumentation pro serialisiertem Asset.",
+                  "prose": "Fotodokumentierte Neutralisierung der Assets inklusive Löschung digitaler Brandings.",
                   "parts": [
                     {
                       "id": "ASST.7.7-m4_custom_gdn",
                       "name": "guidance",
-                      "prose": "Nutzung mobiler Open-Source Apps zur Erfassung des neutralisierten Zustands direkt im Asset-Management-System."
+                      "prose": "Der Zustand des neutralisierten Assets wird digital erfasst und im Asset-Management-System als Nachweis hinterlegt."
                     },
                     {
                       "id": "ASST.7.7-m4_custom_asm",
                       "name": "assessment",
-                      "prose": "Abfrage der Bilddatenbank zur Verifizierung der Nachweise: find /mnt/asset_photos/cleanup -type f -mtime -30 | wc -l"
+                      "prose": "Abgleich der Asset-ID mit den archivierten Fotos der neutralisierten Hardware im zentralen Dokumentenmanagement."
                     }
                   ]
                 },
@@ -3026,17 +3026,17 @@
                       "value": "m5"
                     }
                   ],
-                  "prose": "Zertifizierter Entsorgungsprozess mit lückenlosem, digitalem Nachweis der vollständigen physischen Anonymisierung.",
+                  "prose": "Zertifizierter Prozess zur Asset-Anonymisierung mit externer Auditierung der Rückstandslosigkeit.",
                   "parts": [
                     {
                       "id": "ASST.7.7-m5_custom_gdn",
                       "name": "guidance",
-                      "prose": "Einsatz von industriellen Verfahren zur Entfernung jeglicher Brandings und Integration in den ITAD-Lebenszyklus."
+                      "prose": "Spezialisierte Verfahren garantieren die Entfernung aller Merkmale, inklusive versteckter Asset-Tags in der Firmware."
                     },
                     {
                       "id": "ASST.7.7-m5_custom_asm",
                       "name": "assessment",
-                      "prose": "Regelmäßiges Audit des Entsorgers und automatisierte Prüfung der digitalen Löschzertifikate via API-Schnittstelle."
+                      "prose": "Prüfung der externen Zertifikate und Audit-Berichte des Entsorgungsdienstleisters auf Konformität."
                     }
                   ]
                 }

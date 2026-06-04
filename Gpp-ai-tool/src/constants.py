@@ -94,3 +94,34 @@ LOG_FORMAT = "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
 # Default values and namespaces for OSCAL artifact generation.
 OSCAL_VERSION = "1.1.3"
 OSCAL_NAMESPACE = "http://csrc.nist.gov/ns/oscal/1.0"
+
+# --- Praktiken (Practices) ---
+# Maps a practice abbreviation (Kürzel, e.g. "ARCH") to its full German term (Begriff,
+# e.g. "Architektur"). The process-Zielobjekt ids are these Kürzel suffixed with
+# "_prozesse" (e.g. "ARCH_prozesse"), so resolving them yields readable profile titles.
+# Source of truth (keep in sync):
+# https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/blob/main/Dokumentation/namespaces/practices.csv
+PRACTICE_ABBREVIATIONS = {
+    "GC": "Governance und Compliance",
+    "STM": "Strukturmodellierung",
+    "UMS": "Umsetzung",
+    "VRB": "Verbesserung",
+    "PERF": "Monitoring-Evaluation",
+    "RISK": "Risikomanagement",
+    "ASST": "Informationen und Assets",
+    "PERS": "Personal",
+    "BES": "Beschaffungsmanagement",
+    "DLS": "Dienstleistersteuerung",
+    "TEST": "Änderungen und Tests",
+    "GEB": "Gebäudemanagement",
+    "SENS": "Sensibilisierung",
+    "ARCH": "Architektur",
+    "BER": "Berechtigung",
+    "NOT": "Notfallplanung",
+    "DET": "Detektion",
+    "REA": "Sicherheitsvorfallsbehandlung",
+    "KONF": "Konfiguration",
+    "DEV": "Entwicklung",
+    # Not a practice per se, but used as a process-Zielobjekt id for the methodology pool.
+    "METHODIK": "Methodik",
+}

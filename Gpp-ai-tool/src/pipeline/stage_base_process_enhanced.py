@@ -10,6 +10,7 @@ The enhanced profile is written back to the same directory with `_enhanced.json`
 import os
 import logging
 import asyncio
+import uuid
 from datetime import datetime, timezone
 import sys
 
@@ -254,6 +255,11 @@ async def generate_enhanced_profile(
     if alters:
         profile = read_json_file(input_profile_path)
         profile["profile"]["modify"] = {"alters": alters}
+        # The base process profile already carries a readable title (e.g. "Architektur
+        # Prozess Profil") and a deterministic UUID; inherit and extend both so this
+        # enhanced artifact gets its own stable UUID instead of colliding with the base.
+        base_uuid = profile["profile"].get("uuid", "")
+        profile["profile"]["uuid"] = str(uuid.uuid5(uuid.NAMESPACE_URL, f"{base_uuid}|enhanced-ed2023"))
         profile["profile"]["metadata"]["title"] += " - Enhanced (ED2023)"
         profile["profile"]["metadata"]["last-modified"] = datetime.now(timezone.utc).isoformat()
 

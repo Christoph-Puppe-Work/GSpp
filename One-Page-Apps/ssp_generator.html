@@ -295,6 +295,19 @@
         const API_URL_PRAKTIKEN = 'https://api.github.com/repos/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/contents/Zielobjektkategorien/profile/process';
         const PRAKTIKEN_FILE_SUFFIX = '_process_profile.json';
 
+        // Praktik-Kürzel → Begriff. Fallback für die Anzeige, falls der Basis-Katalog (mit
+        // den Gruppentiteln) noch nicht geladen ist. Quelle (in sync halten):
+        // https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/blob/main/Dokumentation/namespaces/practices.csv
+        const PRACTICE_ABBREVIATIONS = {
+            GC: "Governance und Compliance", STM: "Strukturmodellierung", UMS: "Umsetzung",
+            VRB: "Verbesserung", PERF: "Monitoring-Evaluation", RISK: "Risikomanagement",
+            ASST: "Informationen und Assets", PERS: "Personal", BES: "Beschaffungsmanagement",
+            DLS: "Dienstleistersteuerung", TEST: "Änderungen und Tests", GEB: "Gebäudemanagement",
+            SENS: "Sensibilisierung", ARCH: "Architektur", BER: "Berechtigung", NOT: "Notfallplanung",
+            DET: "Detektion", REA: "Sicherheitsvorfallsbehandlung", KONF: "Konfiguration",
+            DEV: "Entwicklung", METHODIK: "Methodik"
+        };
+
         const METHODIK_URLS = {
             standard: 'https://raw.githubusercontent.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/refs/heads/main/Zielobjektkategorien/profile/process/methodik_process_profile.json',
             enhanced: 'https://raw.githubusercontent.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/refs/heads/main/ED23-Baustein-profile/DE/methodik_Methodik_methodik.json'
@@ -841,7 +854,9 @@
                     const stem = file.name.replace(/_process_profile(_enhanced)?\.json$/, '').replace(/_profile\.json$/, '');
                     const prefixMatch = stem.match(/^(.*?)_?prozesse$/i);
                     const prefix = prefixMatch ? prefixMatch[1].toUpperCase() : '';
-                    const groupTitle = prefix ? bpState.groupTitles.get(prefix) : null;
+                    // Resolve the practice term: prefer the catalog group title, fall back to
+                    // the static Kürzel→Begriff map (e.g. ARCH → Architektur).
+                    const groupTitle = prefix ? (bpState.groupTitles.get(prefix) || PRACTICE_ABBREVIATIONS[prefix]) : null;
                     const label = groupTitle
                         ? `${groupTitle} (${prefix})`
                         : (stem.split(/[_-]/).filter(Boolean).map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ') || stem);

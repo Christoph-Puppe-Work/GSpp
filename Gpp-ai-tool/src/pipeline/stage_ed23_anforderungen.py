@@ -15,8 +15,10 @@ reach the output.
 """
 
 import asyncio
+import json
 import logging
 import os
+import tempfile
 from typing import Any, Dict, List, Tuple
 
 from config import app_config
@@ -169,6 +171,41 @@ async def _match_control(
     return control_id, matches
 
 
+# The checkpoint sits next to the final output and holds the per-control results accumulated
+# so far, so a crashed run (e.g. cache/network failure) can be resumed instead of re-querying
+# every control from scratch. It is deleted once the final output is written successfully.
+CHECKPOINT_PATH = GPP_ED23_ANFORDERUNGEN_JSON_PATH + ".partial"
+
+
+def _atomic_save_json(data: Dict[str, Any], path: str) -> None:
+    """Writes JSON via a temp file + os.replace so a crash mid-write never corrupts `path`."""
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    fd, tmp = tempfile.mkstemp(dir=os.path.dirname(path), suffix=".tmp")
+    try:
+        with os.fdopen(fd, "w", encoding="utf-8") as f:
+            json.dump(data, f, ensure_ascii=False, indent=2)
+        os.replace(tmp, path)
+    except Exception:
+        if os.path.exists(tmp):
+            os.remove(tmp)
+        raise
+
+
+def _load_checkpoint(path: str) -> Dict[str, List[Dict[str, str]]]:
+    """Loads the per-control results from a prior run. Returns {} if absent or unreadable."""
+    if not os.path.exists(path):
+        return {}
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+        done = data.get("gpp_ed23_anforderungen_map", {})
+        logger.info(f"Resuming from checkpoint '{path}': {len(done)} G++ controls already done.")
+        return done
+    except Exception as e:
+        logger.warning(f"Could not read checkpoint '{path}' ({e}); starting fresh.")
+        return {}
+
+
 async def run_stage_ed23_anforderungen() -> None:
     """Main entry point for the G++ → ED2023 Anforderungen mapping stage."""
     logger.info("Starting stage_ed23_anforderungen...")
@@ -220,25 +257,43 @@ async def run_stage_ed23_anforderungen() -> None:
         control_items = control_items[:3]
         logger.info("TEST mode: limiting to the first 3 G++ controls.")
 
+    # Resume support: load already-computed controls and only query the remaining ones. Each
+    # completed control is appended to the checkpoint immediately, so a crash loses at most the
+    # controls that were still in flight.
+    final_map: Dict[str, List[Dict[str, str]]] = _load_checkpoint(CHECKPOINT_PATH)
+    pending = [(cid, control) for cid, control in control_items if cid not in final_map]
+    checkpoint_lock = asyncio.Lock()
+
     semaphore = asyncio.Semaphore(app_config.max_concurrent_ai_requests)
-    logger.info(f"Matching {len(control_items)} G++ controls against the ED2023 corpus...")
+    logger.info(
+        f"Matching {len(pending)} of {len(control_items)} G++ controls against the ED2023 corpus "
+        f"({len(final_map)} restored from checkpoint)..."
+    )
 
-    try:
-        tasks = [
-            _match_control(
-                ai_client, cid, control, prompt_template, schema, id_lookup,
-                cached_content, inline_prefix, semaphore,
-            )
-            for cid, control in control_items
-        ]
-        results = await asyncio.gather(*tasks)
-    finally:
+    async def _match_and_checkpoint(cid: str, control: Dict[str, Any]) -> None:
+        control_id, matches = await _match_control(
+            ai_client, cid, control, prompt_template, schema, id_lookup,
+            cached_content, inline_prefix, semaphore,
+        )
+        # Serialize writes so the checkpoint file stays consistent under concurrency.
+        async with checkpoint_lock:
+            final_map[control_id] = matches
+            _atomic_save_json({"gpp_ed23_anforderungen_map": final_map}, CHECKPOINT_PATH)
+
+    if pending:
+        try:
+            await asyncio.gather(*(_match_and_checkpoint(cid, c) for cid, c in pending))
+        finally:
+            ai_client.delete_context_cache(cached_content)
+    else:
         ai_client.delete_context_cache(cached_content)
-
-    final_map = {control_id: matches for control_id, matches in results}
+        logger.info("All G++ controls already present in checkpoint; nothing to query.")
 
     output_data = {"gpp_ed23_anforderungen_map": final_map}
     save_json_file(output_data, GPP_ED23_ANFORDERUNGEN_JSON_PATH)
+    # Final output is committed; the checkpoint is now redundant.
+    if os.path.exists(CHECKPOINT_PATH):
+        os.remove(CHECKPOINT_PATH)
     total = sum(len(m) for m in final_map.values())
     logger.info(
         f"stage_ed23_anforderungen finished. Mapped {len(final_map)} G++ controls "

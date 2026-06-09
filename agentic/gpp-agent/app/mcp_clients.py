@@ -1,21 +1,52 @@
+import logging
 import os
-import google.auth
+import time
+
 import google.auth.transport.requests
 from google.adk.tools.mcp_tool import McpToolset
 from google.adk.tools.mcp_tool.mcp_session_manager import StreamableHTTPConnectionParams
 
+logger = logging.getLogger("gpp_agent.mcp_clients")
+
+# Generous connect timeout: the MCP Cloud Run services may cold-start
+# (observed ~7 s); the ADK default of 5 s loses that race.
+_MCP_TIMEOUT_S = float(os.environ.get("MCP_CONNECT_TIMEOUT_S", "30"))
+_MCP_SSE_READ_TIMEOUT_S = float(os.environ.get("MCP_SSE_READ_TIMEOUT_S", "300"))
+
+# Refresh ID tokens 5 minutes before their (1 h) expiry.
+_TOKEN_TTL_S = 55 * 60
+_token_cache: dict[str, tuple[str, float]] = {}
+
 
 def _id_token_for(audience_url: str) -> str | None:
-    """Holt Identity-Token für einen Cloud-Run-Audience.
-    Gibt None zurück bei localhost (kein Auth nötig) oder wenn ADC fehlt."""
+    """Return a cached Google identity token for a Cloud Run audience.
+
+    Returns None for localhost targets (no auth needed). For remote targets a
+    failure to obtain a token is logged at ERROR — an unauthenticated request
+    to a private Cloud Run service yields an opaque 401/403 that is easily
+    misread as "MCP server down".
+    """
     if audience_url.startswith("http://localhost") or audience_url.startswith("http://127."):
         return None
+
+    cached = _token_cache.get(audience_url)
+    if cached and cached[1] > time.monotonic():
+        return cached[0]
+
     try:
-        from google.auth import compute_engine, default
         from google.oauth2 import id_token
+
         request = google.auth.transport.requests.Request()
-        return id_token.fetch_id_token(request, audience_url)
+        token = id_token.fetch_id_token(request, audience_url)
+        _token_cache[audience_url] = (token, time.monotonic() + _TOKEN_TTL_S)
+        return token
     except Exception:
+        logger.exception(
+            "Failed to fetch identity token for MCP audience %s — the request "
+            "will go out UNAUTHENTICATED and a private Cloud Run service will "
+            "reject it.",
+            audience_url,
+        )
         return None
 
 
@@ -43,7 +74,11 @@ class McpClientService:
             return headers
 
         return McpToolset(
-            connection_params=StreamableHTTPConnectionParams(url=url),
+            connection_params=StreamableHTTPConnectionParams(
+                url=url,
+                timeout=_MCP_TIMEOUT_S,
+                sse_read_timeout=_MCP_SSE_READ_TIMEOUT_S,
+            ),
             tool_filter=allow,
             header_provider=header_provider,
         )

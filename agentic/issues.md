@@ -4,6 +4,62 @@ Review date: 2026-06-09 (agentic-only review, live deployment in `gpp-agentic-3`
 Updated 2026-06-09 (evening): P0-1 resolved; new findings from the first real playground run added
 (P0-4, P1-20…22, P2-23) plus an architecture review summary.
 
+---
+
+## Work status (end of session 2026-06-09)
+
+**Decisions taken:**
+
+- **P0-2 transport: deferred.** Frontend wiring (CopilotKit ↔ agent) is postponed; the
+  playground is the UI for now. Note for the decision: `ag-ui-adk` 0.6.5 declares
+  `google-adk >=1.16,<3.0`, so Option A (Cloud Run + ag-ui-adk, per architecture.md)
+  is dependency-compatible with the ADK 2.0 agent.
+- **P1-4 scope: all five phases** get the inspector/judge split (not just a pilot).
+- **Deploy: approved** — terraform apply (MCP min-instances, dev-IV fallback env,
+  model env vars) + redeploy of both MCPs and the agent, then E2E verify, once the
+  code changes land.
+
+**Done in this session:**
+
+- P0-1 resolved (real agent redeployed; playground answers).
+- `app/mcp_clients.py` hardened (committed): 30 s connect timeout for MCP
+  Streamable-HTTP (ADK default of 5 s loses the Cloud-Run cold-start race, see P1-20),
+  per-audience ID-token caching (~55 min TTL), and loud ERROR logging when token fetch
+  fails instead of silently sending unauthenticated requests (P1-8). Smoke-tested:
+  toolset builds against ADK 2.0.0b1.
+
+**Next steps (in order, not yet started):**
+
+1. `app/models.py` — central model defaults (P1-9): Flash for classifier/judges,
+   3.1 Pro for producers, env-overridable (`ORCHESTRATOR_MODEL`, `REVIEWER_MODEL`,
+   `PRODUCER_MODEL`, `PHASEn_MODEL`).
+2. Inspector/judge split for all 5 phase agents (P1-4): inspectors keep tools, drop
+   `output_schema`, write notes to `state["phaseN_notes"]` (add these fields to
+   `WorkflowState`); new judges (no tools, `output_schema`, `output_key="phaseN_result"`,
+   instruction reads `{phaseN_notes?}` — ADK 2.0 supports optional state injection).
+   Graph chains: `(pN, judgeN, gate_request, gate_ack)` — arbitrary-length chains
+   verified supported in `google/adk/workflow/_graph_definitions.py`.
+3. P0-4: Phase 1 gets `create_oscal_model`/`update_oscal_model` + prompt update to
+   bootstrap a schema-valid skeleton SSP when none exists.
+4. P1-5: clear `classifier_route` in `classify_router`; add a tenant-context node
+   writing a validated `iv_id` into state (P0-3 agent half, lenient for playground).
+5. Update graph-structure tests (node count 19 → 25 with 5 judges + tenant node).
+6. MCP servers: `stateless_http=True` both (P1-7); `Dockerfile.mcp` pre-builds venv,
+   exec python directly (P1-20); pytest pythonpath + import unification (P2-13);
+   resolver cache cap (P2-16); delete broken duplicate `Dockerfile` (P2-12).
+7. Terraform: `min_instance_count=1` for both MCP services, dev-IV fallback env on
+   backend MCP (`GPP_BACKEND_ALLOW_DEV_IV_FALLBACK=1`, `GPP_BACKEND_DEV_IV_ID=iv-dev-playground`),
+   model env vars on the engine.
+8. Deploy scripts: drop `--set-env-vars` (Terraform owns config, P2-23); guard
+   `deploy_frontend.sh` with a clear "deferred pending P0-2" exit.
+9. Cleanup: delete stale `gpp-agent/uv.lock` + `GS_backend_MCP/uv.lock` (P2-10),
+   stray root scripts + `frontend/logs.run.txt` + broken `agentic/venv/` (P2-17),
+   unused scaffold tree `gpp-agent/deployment/` + `.cloudbuild/` (P2-11).
+10. Docs: `.env.example` drift, architecture.md status banner (P2-15).
+11. `terraform apply`, redeploy both MCPs + agent, then E2E verify: playground-style
+    `streamQuery` asking for a new SSP → expect `create_oscal_model` call in backend
+    logs and `ivs/iv-dev-playground/ssp/save_v1.json` in the OSCAL bucket.
+
 **Verified working (so you don't chase ghosts):**
 
 - Both MCP servers on Cloud Run are healthy and answer correctly when called with a

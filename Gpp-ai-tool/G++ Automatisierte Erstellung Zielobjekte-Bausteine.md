@@ -1,6 +1,6 @@
 # Automatisiertes Rahmenwerk zur Erstellung von OSCAL-Komponentendefinitionen mittels KI-gestützter Abbildung und Anreicherung
 
-Dieses Dokument beschreibt das technische Konzept und die Implementierungsdetails eines automatisierten Pipelinesystems zur Erstellung von OSCAL 1.1.3 Komponentendefinitionen. Das System unterstützt die Migration von BSI IT-Grundschutz Edition 2023 (Ed2023) zum modernisierten Grundschutz++ (G++). Es nutzt eine Strategie, die auf Python und Google Cloud Vertex AI (Gemini) basiert, um semantische 1:1 Abbildungen durchzuführen und die resultierenden Kontrollen mit KI-generierten Implementierungsdetails anzureichern.
+Dieses Dokument beschreibt das technische Konzept und die Implementierungsdetails eines automatisierten Pipelinesystems zur Erstellung von OSCAL 1.2.2 Komponentendefinitionen. Das System unterstützt die Migration von BSI IT-Grundschutz Edition 2023 (Ed2023) zum modernisierten Grundschutz++ (G++). Es nutzt eine Strategie, die auf Python und Google Cloud Vertex AI (Gemini) basiert, um semantische 1:1 Abbildungen durchzuführen und die resultierenden Kontrollen mit KI-generierten Implementierungsdetails anzureichern.
 
 ## 1.0 Einleitung und strategischer Kontext
 

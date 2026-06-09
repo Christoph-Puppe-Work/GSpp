@@ -31,7 +31,7 @@ The migration away from component-definitions is **correct**. Enrichment is inje
 This was validated against the live G++ catalog
 (`…/Grundschutz%2B%2B/Grundschutz%2B%2B-catalog.json`): every Anforderung has a
 `"{control_id}_stm"` statement part (998 `_stm` parts; e.g. `ARCH.7.1_stm`), so all `by-id`
-anchors resolve and the generated profiles are structurally OSCAL 1.1.3-conformant. This
+anchors resolve and the generated profiles are structurally OSCAL 1.2.2-conformant. This
 correctly solves the original problem (OSCAL does not allow creating new statements inside a
 component-definition's `implemented-requirements`). The remaining items below are quality,
 interoperability, and reliability concerns — not a regression of the refactor.
@@ -142,7 +142,7 @@ all part ids unique). Both enhancement stages now run it before writing (warn-on
 glitch doesn't abort a batch). Removed the dead, misleading `OSCAL_COMPONENT_SCHEMA_PATH`
 constant. Verified: the validator catches injected uuid/position/by-id/prose/duplicate-id
 defects, and **all 116 generated profiles pass clean (0 problems)**.
-**Still open (medium):** validation against the *full* OSCAL 1.1.3 profile JSON schema
+**Still open (medium):** validation against the *full* OSCAL 1.2.2 profile JSON schema
 (would need the schema bundled and the `TokenDatatype`/Unicode-regex limitation addressed,
 e.g. via the `regex` module). The structural validator covers the pipeline-specific
 invariants in the meantime.

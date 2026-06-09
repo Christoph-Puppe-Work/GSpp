@@ -398,7 +398,7 @@ function exportPOAM(){
         if(it.findingUuids?.length)item["related-findings"]=it.findingUuids.map(u=>({"finding-uuid":u}));
         if(it.riskUuids?.length)item["related-risks"]=it.riskUuids.map(u=>({"risk-uuid":u}));
         if(it.remarks)item.remarks=it.remarks;return item});
-    const poam={"plan-of-action-and-milestones":{uuid:crypto.randomUUID(),metadata:{title:P.meta.title||'POA&M',version:P.meta.version||'1.0.0',"last-modified":ts,"oscal-version":"1.1.3",roles:[{id:"system-owner",title:"System Owner"},{id:"isso",title:"ISSO"}]},"import-ssp":{href:P.sspHref||'SSP.json'},
+    const poam={"plan-of-action-and-milestones":{uuid:crypto.randomUUID(),metadata:{title:P.meta.title||'POA&M',version:P.meta.version||'1.0.0',"last-modified":ts,"oscal-version":"1.2.2",roles:[{id:"system-owner",title:"System Owner"},{id:"isso",title:"ISSO"}]},"import-ssp":{href:P.sspHref||'SSP.json'},
         ...(P.observations.length?{observations:P.observations.map(o=>({uuid:o.uuid,title:o.title,description:o.description,methods:o.methods,collected:o.collected}))}:{}),
         ...(P.findings.length?{findings:P.findings.map(f=>({uuid:f.uuid,title:f.title,description:f.description,target:{type:"objective-id","target-id":f.targetId,status:{state:f.status}}}))}:{}),
         risks:oscalRisks,"poam-items":oscalItems}};

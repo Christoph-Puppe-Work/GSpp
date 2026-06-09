@@ -1,6 +1,6 @@
 # Gpp-ai-tool
 
-Gpp-ai-tool is a Python-based automation framework designed to facilitate the migration from BSI IT-Grundschutz Edition 2023 (Ed2023) to the modernized Grundschutz++ (G++) methodology using OSCAL 1.1.3 profiles.
+Gpp-ai-tool is a Python-based automation framework designed to facilitate the migration from BSI IT-Grundschutz Edition 2023 (Ed2023) to the modernized Grundschutz++ (G++) methodology using OSCAL 1.2.2 profiles.
 
 The tool leverages Google Vertex AI (Gemini) to perform semantic mapping and enrich OSCAL components with AI-generated implementation details.
 
@@ -134,7 +134,7 @@ The tool is designed to run as a Google Cloud Run Job. Use the deployment script
 2.  **Mapping:** The tool establishes, per Zielobjektkategorie, the set of applicable G++ controls (deterministic) and matches each BSI Baustein to a Zielobjekt (AI).
 3.  **Profiles:** It generates a base OSCAL profile per Zielobjekt that imports the G++ catalog and includes all of that Zielobjektkategorie's controls.
 4.  **Enrichment:** For each matched Baustein, Gemini generates implementation guidance and maturity-level descriptions for every control, based on best practices and the Baustein's description.
-5.  **Finalization:** The tool outputs valid OSCAL 1.1.3 profiles (enriched with `alter` blocks) ready for use in G++ compatible tools.
+5.  **Finalization:** The tool outputs valid OSCAL 1.2.2 profiles (enriched with `alter` blocks) ready for use in G++ compatible tools.
 
 ---
 

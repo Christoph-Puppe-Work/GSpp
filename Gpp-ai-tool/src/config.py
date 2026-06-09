@@ -27,6 +27,11 @@ class AppConfig:
         self.max_concurrent_ai_requests: int = int(
             os.environ.get("MAX_CONCURRENT_AI_REQUESTS", "5")
         )
+        # TTL for explicit Vertex context caches. The default (60 min) can elapse before a
+        # full G++ run finishes, expiring the cache mid-stage; 4h comfortably outlives a run.
+        self.context_cache_ttl_seconds: int = int(
+            os.environ.get("CONTEXT_CACHE_TTL_SECONDS", "14400")
+        )
 
         if not self.is_test_mode:
             self._validate_production_config()

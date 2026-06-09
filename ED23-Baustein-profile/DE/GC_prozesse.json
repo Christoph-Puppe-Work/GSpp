@@ -1,0 +1,1538 @@
+{
+  "profile": {
+    "uuid": "4a805de0-1d3a-5773-9bc3-50bdf20ecf2a",
+    "metadata": {
+      "title": "Governance und Compliance Prozess Profil",
+      "last-modified": "2026-06-04T14:32:13.176745+00:00",
+      "version": "0.0.1",
+      "oscal-version": "1.2.2"
+    },
+    "imports": [
+      {
+        "href": "https://raw.githubusercontent.com/BSI-Bund/Stand-der-Technik-Bibliothek/refs/heads/main/Anwenderkataloge/Grundschutz%2B%2B/Grundschutz%2B%2B-catalog.json",
+        "include-controls": [
+          {
+            "with-ids": [
+              "GC.6.1.1",
+              "GC.7.1.1",
+              "GC.7.1.2",
+              "GC.7.1.3",
+              "GC.7.1.4",
+              "GC.9.1.1"
+            ]
+          }
+        ]
+      }
+    ],
+    "modify": {
+      "alters": [
+        {
+          "control-id": "GC.6.1.1",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "GC.6.1.1_stm",
+              "parts": [
+                {
+                  "id": "GC.6.1.1-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Initiation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    }
+                  ],
+                  "prose": "Informationssicherheitsziele werden nur vereinzelt und ohne formale Strategie in Projekten berücksichtigt.",
+                  "parts": [
+                    {
+                      "id": "GC.6.1.1-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Sicherheitsaspekte werden ad-hoc ohne strategischen Überbau behandelt."
+                    },
+                    {
+                      "id": "GC.6.1.1-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung von Projektunterlagen auf vereinzelte Erwähnung von Sicherheitszielen."
+                    }
+                  ]
+                },
+                {
+                  "id": "GC.6.1.1-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Initiation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    }
+                  ],
+                  "prose": "Es existiert ein Entwurf für eine Sicherheitsstrategie, der jedoch noch nicht mit der Leitung abgestimmt ist.",
+                  "parts": [
+                    {
+                      "id": "GC.6.1.1-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Die Strategie liegt als Dokument vor, wird aber nicht flächendeckend gelebt."
+                    },
+                    {
+                      "id": "GC.6.1.1-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Sichtung des Strategie-Entwurfs und Befragung der IT-Leitung."
+                    }
+                  ]
+                },
+                {
+                  "id": "GC.6.1.1-m3_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Initiation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m3"
+                    }
+                  ],
+                  "prose": "Governance und Compliance SOLLTE eine grundlegende Strategie zur Erreichung der Ziele für die Informationssicherheit gemeinsam mit der Institutionsleitung festlegen.",
+                  "parts": [
+                    {
+                      "id": "GC.6.1.1-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Diese Strategie bildet das Fundament für alle Sicherheitsmaßnahmen und muss formal durch die Leitung freigegeben sein."
+                    },
+                    {
+                      "id": "GC.6.1.1-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung des unterzeichneten Strategiedokuments. Check: 'grep \"Sicherheitsstrategie\" /share/policy/approved_docs.txt'"
+                    }
+                  ]
+                },
+                {
+                  "id": "GC.6.1.1-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Initiation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    }
+                  ],
+                  "prose": "Die Sicherheitsstrategie wird durch messbare Kennzahlen (KPIs) überwacht und regelmäßig an die Bedrohungslage angepasst.",
+                  "parts": [
+                    {
+                      "id": "GC.6.1.1-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Die Leitung wird proaktiv über den Erreichungsgrad der strategischen Ziele informiert."
+                    },
+                    {
+                      "id": "GC.6.1.1-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung des KPI-Reports. Check: 'curl -s https://grc-api.local/v1/kpi/security_strategy_alignment'"
+                    }
+                  ]
+                },
+                {
+                  "id": "GC.6.1.1-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Initiation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    }
+                  ],
+                  "prose": "Die Sicherheitsstrategie ist voll automatisiert in die Geschäftsstrategie integriert und wird durch KI-gestützte Analysen optimiert.",
+                  "parts": [
+                    {
+                      "id": "GC.6.1.1-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Abweichungen von der Strategie werden in Echtzeit erkannt und lösen automatische Governance-Workflows aus."
+                    },
+                    {
+                      "id": "GC.6.1.1-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Demonstration des Governance-Dashboards. Check: 'python3 check_strategy_drift.py --auto-remediate'"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "control-id": "GC.7.1.1",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "GC.7.1.1_stm",
+              "parts": [
+                {
+                  "id": "GC.7.1.1-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Risk Assessment",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    }
+                  ],
+                  "prose": "Gesetzliche Verpflichtungen werden nur bei konkreten Vorfällen oder großen Projekten punktuell geprüft.",
+                  "parts": [
+                    {
+                      "id": "GC.7.1.1-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Es fehlt eine systematische Übersicht über alle relevanten Gesetze."
+                    },
+                    {
+                      "id": "GC.7.1.1-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Stichprobenartige Prüfung, ob Datenschutzgrundregeln bekannt sind."
+                    }
+                  ]
+                },
+                {
+                  "id": "GC.7.1.1-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Risk Assessment",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    }
+                  ],
+                  "prose": "Es liegt eine einfache Liste der wichtigsten Gesetze (z.B. DSGVO, BSIG) für die Institution vor.",
+                  "parts": [
+                    {
+                      "id": "GC.7.1.1-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Die Liste wird manuell geführt und unregelmäßig aktualisiert."
+                    },
+                    {
+                      "id": "GC.7.1.1-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Sichtung der Compliance-Liste in der Dokumentenablage."
+                    }
+                  ]
+                },
+                {
+                  "id": "GC.7.1.1-m3_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Risk Assessment",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m3"
+                    }
+                  ],
+                  "prose": "Governance und Compliance SOLLTE die Analyse der gesetzlichen Verpflichtungen, welche die Verarbeitung von Informationen durch die Institution betreffen, ausführen.",
+                  "parts": [
+                    {
+                      "id": "GC.7.1.1-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Die Analyse muss alle relevanten Rechtsbereiche abdecken und dokumentiert sein."
+                    },
+                    {
+                      "id": "GC.7.1.1-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Einsicht in die Analyseergebnisse der Rechtsprüfung. Check: 'ls /compliance/legal_assessments/*.pdf'"
+                    }
+                  ]
+                },
+                {
+                  "id": "GC.7.1.1-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Risk Assessment",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    }
+                  ],
+                  "prose": "Ein automatisiertes Monitoring-System verfolgt Gesetzesänderungen und bewertet deren Auswirkung auf die IT-Sicherheit.",
+                  "parts": [
+                    {
+                      "id": "GC.7.1.1-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Änderungen führen zu automatisierten Benachrichtigungen an die Prozessverantwortlichen."
+                    },
+                    {
+                      "id": "GC.7.1.1-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung des Monitoring-Tools. Check: 'sqlcmd -Q \"SELECT * FROM LegalUpdateQueue WHERE Status='Pending'\"'"
+                    }
+                  ]
+                },
+                {
+                  "id": "GC.7.1.1-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Risk Assessment",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    }
+                  ],
+                  "prose": "Rechtliche Verpflichtungen sind als 'Compliance-as-Code' in die CI/CD-Pipelines und Betriebsabläufe integriert.",
+                  "parts": [
+                    {
+                      "id": "GC.7.1.1-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Verstöße gegen gesetzliche Vorgaben werden technisch bereits vor der Implementierung verhindert."
+                    },
+                    {
+                      "id": "GC.7.1.1-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Validierung der Policy-Engine. Check: 'opa test ./policies/legal_compliance/'"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "control-id": "GC.7.1.2",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "GC.7.1.2_stm",
+              "parts": [
+                {
+                  "id": "GC.7.1.2-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    }
+                  ],
+                  "prose": "Zuständige Stellen werden nur im Bedarfsfall und ohne festen Prozess angehört.",
+                  "parts": [
+                    {
+                      "id": "GC.7.1.2-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Die Kommunikation erfolgt informell und wird selten dokumentiert."
+                    },
+                    {
+                      "id": "GC.7.1.2-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Befragung von Datenschutzbeauftragten zu ad-hoc Anfragen."
+                    }
+                  ]
+                },
+                {
+                  "id": "GC.7.1.2-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    }
+                  ],
+                  "prose": "Es finden regelmäßige Termine mit den zuständigen Stellen statt, Ergebnisse werden jedoch nicht formalisiert.",
+                  "parts": [
+                    {
+                      "id": "GC.7.1.2-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Ein Austausch ist etabliert, aber die Bindungswirkung der Empfehlungen ist gering."
+                    },
+                    {
+                      "id": "GC.7.1.2-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Einsicht in Terminkalender oder Besprechungsnotizen."
+                    }
+                  ]
+                },
+                {
+                  "id": "GC.7.1.2-m3_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m3"
+                    }
+                  ],
+                  "prose": "Governance und Compliance SOLLTE für die Einhaltung gesetzlicher Verpflichtungen in der Informationsverarbeitung zuständige Stellen in der Institution anhören.",
+                  "parts": [
+                    {
+                      "id": "GC.7.1.2-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Die Anhörung dient der Absicherung der Rechtskonformität und muss für wesentliche Prozesse erfolgen."
+                    },
+                    {
+                      "id": "GC.7.1.2-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung von Protokollen über die Einbindung von Stellen wie DSB oder Personalrat."
+                    }
+                  ]
+                },
+                {
+                  "id": "GC.7.1.2-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    }
+                  ],
+                  "prose": "Anhörungsprozesse sind fest in das GRC-Workflow-System integriert und für alle Fachbereiche verpflichtend.",
+                  "parts": [
+                    {
+                      "id": "GC.7.1.2-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Der Fortschritt der Anhörung ist jederzeit transparent einsehbar."
+                    },
+                    {
+                      "id": "GC.7.1.2-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Check im GRC-Tool: 'api-cli get-workflows --type legal_consultation --state active'"
+                    }
+                  ]
+                },
+                {
+                  "id": "GC.7.1.2-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    }
+                  ],
+                  "prose": "Ein integriertes Stakeholder-Portal ermöglicht eine synchrone und automatisierte Abstimmung über Sicherheitsanforderungen.",
+                  "parts": [
+                    {
+                      "id": "GC.7.1.2-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Entscheidungen der Stellen werden digital signiert und automatisch in die Risikomatrix übernommen."
+                    },
+                    {
+                      "id": "GC.7.1.2-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung der digitalen Signaturen im Workflow. Check: 'gpg --verify stakeholder_approval.sig'"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "control-id": "GC.7.1.3",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "GC.7.1.3_stm",
+              "parts": [
+                {
+                  "id": "GC.7.1.3-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Risk Treatment",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    }
+                  ],
+                  "prose": "Vertragliche Verpflichtungen sind dezentral in den Fachbereichen verteilt und nicht gesammelt erfasst.",
+                  "parts": [
+                    {
+                      "id": "GC.7.1.3-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Es besteht kein Überblick über alle IT-sicherheitsrelevanten Klauseln in Dienstleistungsverträgen."
+                    },
+                    {
+                      "id": "GC.7.1.3-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Stichprobenartige Abfrage von Verträgen bei Fachbereichsleitern."
+                    }
+                  ]
+                },
+                {
+                  "id": "GC.7.1.3-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Risk Treatment",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    }
+                  ],
+                  "prose": "Es existiert ein zentrales Verzeichnis (z.B. Dateiaustausch), in dem Kopien der wichtigsten Verträge liegen.",
+                  "parts": [
+                    {
+                      "id": "GC.7.1.3-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Die Erfassung ist manuell und die Vollständigkeit wird nicht regelmäßig geprüft."
+                    },
+                    {
+                      "id": "GC.7.1.3-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Sichtung des zentralen Vertragsverzeichnisses."
+                    }
+                  ]
+                },
+                {
+                  "id": "GC.7.1.3-m3_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Risk Treatment",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m3"
+                    }
+                  ],
+                  "prose": "Governance und Compliance SOLLTE die Zusammenstellung vertraglicher Verpflichtungen, welche die Verarbeitung von Informationen durch die Institution betreffen, dokumentieren.",
+                  "parts": [
+                    {
+                      "id": "GC.7.1.3-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Die Dokumentation muss die für die Informationssicherheit relevanten Vertragsdetails explizit hervorheben."
+                    },
+                    {
+                      "id": "GC.7.1.3-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung der Vertragsliste und der darin enthaltenen Sicherheitsvorgaben."
+                    }
+                  ]
+                },
+                {
+                  "id": "GC.7.1.3-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Risk Treatment",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    }
+                  ],
+                  "prose": "Vertragliche Sicherheitsanforderungen werden in einer Datenbank verwaltet und proaktiv auf Einhaltung geprüft.",
+                  "parts": [
+                    {
+                      "id": "GC.7.1.3-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Fristen und Auditrechte aus Verträgen werden automatisiert überwacht."
+                    },
+                    {
+                      "id": "GC.7.1.3-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Check der Monitoring-DB: 'psql -c \"SELECT contract_id FROM obligations WHERE next_audit < CURRENT_DATE\"'"
+                    }
+                  ]
+                },
+                {
+                  "id": "GC.7.1.3-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Risk Treatment",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    }
+                  ],
+                  "prose": "Vertragliche SLAs und Sicherheitsvorgaben werden mittels automatisierter API-Abfragen bei Dienstleistern validiert.",
+                  "parts": [
+                    {
+                      "id": "GC.7.1.3-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Bei Nichterfüllung vertraglicher Parameter werden automatisch Tickets im Risikomanagement erstellt."
+                    },
+                    {
+                      "id": "GC.7.1.3-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung der API-Integration zum Dienstleister. Check: 'python3 check_provider_sla.py --contract-id 42'"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "control-id": "GC.7.1.4",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "GC.7.1.4_stm",
+              "parts": [
+                {
+                  "id": "GC.7.1.4-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Technical",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    }
+                  ],
+                  "prose": "Prävention basiert primär auf allgemeinen Verhaltensregeln ohne technische Überwachung.",
+                  "parts": [
+                    {
+                      "id": "GC.7.1.4-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Mitarbeiter werden lediglich aufgefordert, sich korrekt zu verhalten."
+                    },
+                    {
+                      "id": "GC.7.1.4-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung, ob Verhaltensregeln (AUP) existieren."
+                    }
+                  ]
+                },
+                {
+                  "id": "GC.7.1.4-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Technical",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    }
+                  ],
+                  "prose": "Es werden regelmäßige Awareness-Schulungen durchgeführt, um Verstöße durch Unwissenheit zu minimieren.",
+                  "parts": [
+                    {
+                      "id": "GC.7.1.4-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Fokus liegt auf der Sensibilisierung, nicht auf technischer Prävention."
+                    },
+                    {
+                      "id": "GC.7.1.4-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung der Schulungsnachweise in der Personalabteilung."
+                    }
+                  ]
+                },
+                {
+                  "id": "GC.7.1.4-m3_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Technical",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m3"
+                    }
+                  ],
+                  "prose": "Governance und Compliance SOLLTE Verfahren zur Prävention gegen Verstöße verankern.",
+                  "parts": [
+                    {
+                      "id": "GC.7.1.4-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Verfahren können organisatorischer (z.B. Vier-Augen-Prinzip) oder technischer Natur sein."
+                    },
+                    {
+                      "id": "GC.7.1.4-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung der Prozessbeschreibungen zur Missbrauchsprävention."
+                    }
+                  ]
+                },
+                {
+                  "id": "GC.7.1.4-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Technical",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    }
+                  ],
+                  "prose": "Technische Kontrollen (z.B. Data Loss Prevention - DLP) verhindern aktiv den Abfluss sensitiver Daten.",
+                  "parts": [
+                    {
+                      "id": "GC.7.1.4-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Verstöße werden automatisiert erkannt und an das Security Operations Center (SOC) gemeldet."
+                    },
+                    {
+                      "id": "GC.7.1.4-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Auswertung der DLP-Logs: 'grep \"BLOCK\" /var/log/dlp/violations.log'"
+                    }
+                  ]
+                },
+                {
+                  "id": "GC.7.1.4-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Technical",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    }
+                  ],
+                  "prose": "Zero-Trust-Architektur und Policy-as-Code stellen sicher, dass Verstöße systembedingt ausgeschlossen sind.",
+                  "parts": [
+                    {
+                      "id": "GC.7.1.4-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Jede Aktion wird in Echtzeit gegen das Regelwerk geprüft und nur bei Compliance autorisiert."
+                    },
+                    {
+                      "id": "GC.7.1.4-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung der Policy-Enforcer. Check: 'kyverno test /policies/security-defaults'"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "control-id": "GC.9.1.1",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "GC.9.1.1_stm",
+              "parts": [
+                {
+                  "id": "GC.9.1.1-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Improvement",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    }
+                  ],
+                  "prose": "Informationen zu neuen Bedrohungen werden nur gelegentlich aus öffentlichen News-Portalen bezogen.",
+                  "parts": [
+                    {
+                      "id": "GC.9.1.1-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Es erfolgt keine strukturierte Weitergabe der Informationen innerhalb der Institution."
+                    },
+                    {
+                      "id": "GC.9.1.1-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Befragung zur Nutzung von Sicherheitsnewsquellen."
+                    }
+                  ]
+                },
+                {
+                  "id": "GC.9.1.1-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Improvement",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    }
+                  ],
+                  "prose": "Die Institution ist Abonnent von Sicherheits-Mailinglisten (z.B. CERT-Bund) und verteilt diese intern.",
+                  "parts": [
+                    {
+                      "id": "GC.9.1.1-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Der Austausch ist rein passiv und beschränkt sich auf das Empfangen von Meldungen."
+                    },
+                    {
+                      "id": "GC.9.1.1-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Nachweis über die Anmeldung bei relevanten Mailinglisten."
+                    }
+                  ]
+                },
+                {
+                  "id": "GC.9.1.1-m3_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Improvement",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m3"
+                    }
+                  ],
+                  "prose": "Governance und Compliance SOLLTE einen externen Austausch zur Informationssicherheit ausführen.",
+                  "parts": [
+                    {
+                      "id": "GC.9.1.1-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Dies beinhaltet den Kontakt zu Behörden, Verbänden oder anderen Institutionen zum Wissensaustausch."
+                    },
+                    {
+                      "id": "GC.9.1.1-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung der Liste der Kontakte und Nachweise über den erfolgten Austausch (E-Mails, Protokolle)."
+                    }
+                  ]
+                },
+                {
+                  "id": "GC.9.1.1-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Improvement",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    }
+                  ],
+                  "prose": "Aktive Teilnahme an Arbeitsgruppen und ISACs (Information Sharing and Analysis Centers).",
+                  "parts": [
+                    {
+                      "id": "GC.9.1.1-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Eigene Erkenntnisse werden anonymisiert mit der Community geteilt, um das allgemeine Sicherheitsniveau zu heben."
+                    },
+                    {
+                      "id": "GC.9.1.1-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Nachweis der aktiven Mitarbeit in Gremien. Check: 'misp-cli search-events --published-by-me'"
+                    }
+                  ]
+                },
+                {
+                  "id": "GC.9.1.1-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Improvement",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    }
+                  ],
+                  "prose": "Automatisierter Austausch von Bedrohungsinformationen (Threat Intelligence) über standardisierte Protokolle (STIX/TAXII).",
+                  "parts": [
+                    {
+                      "id": "GC.9.1.1-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Externe Feeds werden direkt in die Sicherheitsinfrastruktur (SIEM/Firewall) eingespeist."
+                    },
+                    {
+                      "id": "GC.9.1.1-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung der MISP-Anbindung. Check: 'curl -H \"Authorization: $KEY\" https://misp.local/feeds/status'"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

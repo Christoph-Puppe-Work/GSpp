@@ -1,0 +1,2614 @@
+3c3
+<   "$id" : "http://csrc.nist.gov/ns/oscal/1.0/1.1.3/oscal-complete-schema.json",
+---
+>   "$id" : "http://csrc.nist.gov/ns/oscal/1.0/1.2.2/oscal-complete-schema.json",
+50,95c50,134
+<     "properties" : 
+<     { "id" : 
+<      { "title" : "Group Identifier",
+<       "description" : "Identifies the group for the purpose of cross-linking within the defining instance or from other instances that reference the catalog.",
+<       "$ref" : "#/definitions/TokenDatatype" },
+<      "class" : 
+<      { "title" : "Group Class",
+<       "description" : "A textual label that provides a sub-type or characterization of the group.",
+<       "$ref" : "#/definitions/TokenDatatype" },
+<      "title" : 
+<      { "title" : "Group Title",
+<       "description" : "A name given to the group, which may be used by a tool for display and navigation.",
+<       "type" : "string" },
+<      "params" : 
+<      { "type" : "array",
+<       "minItems" : 1,
+<       "items" : 
+<       { "$ref" : "#/definitions/oscal-complete-oscal-control-common:parameter" } },
+<      "props" : 
+<      { "type" : "array",
+<       "minItems" : 1,
+<       "items" : 
+<       { "$ref" : "#/definitions/oscal-complete-oscal-metadata:property" } },
+<      "links" : 
+<      { "type" : "array",
+<       "minItems" : 1,
+<       "items" : 
+<       { "$ref" : "#/definitions/oscal-complete-oscal-metadata:link" } },
+<      "parts" : 
+<      { "type" : "array",
+<       "minItems" : 1,
+<       "items" : 
+<       { "$ref" : "#/definitions/oscal-complete-oscal-control-common:part" } },
+<      "groups" : 
+<      { "type" : "array",
+<       "minItems" : 1,
+<       "items" : 
+<       { "$ref" : "#/definitions/oscal-complete-oscal-catalog:group" } },
+<      "controls" : 
+<      { "type" : "array",
+<       "minItems" : 1,
+<       "items" : 
+<       { "$ref" : "#/definitions/oscal-complete-oscal-catalog:control" } } },
+<     "required" : 
+<     [ "title" ],
+<     "additionalProperties" : false },
+---
+>     "anyOf" : 
+>     [ 
+>      { "properties" : 
+>       { "id" : 
+>        { "title" : "Group Identifier",
+>         "description" : "Identifies the group for the purpose of cross-linking within the defining instance or from other instances that reference the catalog.",
+>         "$ref" : "#/definitions/TokenDatatype" },
+>        "class" : 
+>        { "title" : "Group Class",
+>         "description" : "A textual label that provides a sub-type or characterization of the group.",
+>         "$ref" : "#/definitions/TokenDatatype" },
+>        "title" : 
+>        { "title" : "Group Title",
+>         "description" : "A name given to the group, which may be used by a tool for display and navigation.",
+>         "$ref" : "#/definitions/MarkupLineDatatype" },
+>        "params" : 
+>        { "type" : "array",
+>         "minItems" : 1,
+>         "items" : 
+>         { "$ref" : "#/definitions/oscal-complete-oscal-control-common:parameter" } },
+>        "props" : 
+>        { "type" : "array",
+>         "minItems" : 1,
+>         "items" : 
+>         { "$ref" : "#/definitions/oscal-complete-oscal-metadata:property" } },
+>        "links" : 
+>        { "type" : "array",
+>         "minItems" : 1,
+>         "items" : 
+>         { "$ref" : "#/definitions/oscal-complete-oscal-metadata:link" } },
+>        "parts" : 
+>        { "type" : "array",
+>         "minItems" : 1,
+>         "items" : 
+>         { "$ref" : "#/definitions/oscal-complete-oscal-control-common:part" } },
+>        "groups" : 
+>        { "type" : "array",
+>         "minItems" : 1,
+>         "items" : 
+>         { "$ref" : "#/definitions/oscal-complete-oscal-catalog:group" } } },
+>       "required" : 
+>       [ "title" ],
+>       "additionalProperties" : false },
+>      
+>      { "properties" : 
+>       { "id" : 
+>        { "title" : "Group Identifier",
+>         "description" : "Identifies the group for the purpose of cross-linking within the defining instance or from other instances that reference the catalog.",
+>         "$ref" : "#/definitions/TokenDatatype" },
+>        "class" : 
+>        { "title" : "Group Class",
+>         "description" : "A textual label that provides a sub-type or characterization of the group.",
+>         "$ref" : "#/definitions/TokenDatatype" },
+>        "title" : 
+>        { "title" : "Group Title",
+>         "description" : "A name given to the group, which may be used by a tool for display and navigation.",
+>         "$ref" : "#/definitions/MarkupLineDatatype" },
+>        "params" : 
+>        { "type" : "array",
+>         "minItems" : 1,
+>         "items" : 
+>         { "$ref" : "#/definitions/oscal-complete-oscal-control-common:parameter" } },
+>        "props" : 
+>        { "type" : "array",
+>         "minItems" : 1,
+>         "items" : 
+>         { "$ref" : "#/definitions/oscal-complete-oscal-metadata:property" } },
+>        "links" : 
+>        { "type" : "array",
+>         "minItems" : 1,
+>         "items" : 
+>         { "$ref" : "#/definitions/oscal-complete-oscal-metadata:link" } },
+>        "parts" : 
+>        { "type" : "array",
+>         "minItems" : 1,
+>         "items" : 
+>         { "$ref" : "#/definitions/oscal-complete-oscal-control-common:part" } },
+>        "controls" : 
+>        { "type" : "array",
+>         "minItems" : 1,
+>         "items" : 
+>         { "$ref" : "#/definitions/oscal-complete-oscal-catalog:control" } } },
+>       "required" : 
+>       [ "title" ],
+>       "additionalProperties" : false } ] },
+113c152
+<       "type" : "string" },
+---
+>       "$ref" : "#/definitions/MarkupLineDatatype" },
+168c207
+<       "type" : "string" },
+---
+>       "$ref" : "#/definitions/MarkupLineDatatype" },
+177c216
+<       "type" : "string" },
+---
+>       "$ref" : "#/definitions/MarkupMultilineDatatype" },
+196,248c235,332
+<     "properties" : 
+<     { "id" : 
+<      { "title" : "Parameter Identifier",
+<       "description" : "A unique identifier for the parameter.",
+<       "$ref" : "#/definitions/TokenDatatype" },
+<      "class" : 
+<      { "title" : "Parameter Class",
+<       "description" : "A textual label that provides a characterization of the type, purpose, use or scope of the parameter.",
+<       "$ref" : "#/definitions/TokenDatatype" },
+<      "depends-on" : 
+<      { "title" : "Depends on",
+<       "description" : "(deprecated) Another parameter invoking this one. This construct has been deprecated and should not be used.",
+<       "$ref" : "#/definitions/TokenDatatype" },
+<      "props" : 
+<      { "type" : "array",
+<       "minItems" : 1,
+<       "items" : 
+<       { "$ref" : "#/definitions/oscal-complete-oscal-metadata:property" } },
+<      "links" : 
+<      { "type" : "array",
+<       "minItems" : 1,
+<       "items" : 
+<       { "$ref" : "#/definitions/oscal-complete-oscal-metadata:link" } },
+<      "label" : 
+<      { "title" : "Parameter Label",
+<       "description" : "A short, placeholder name for the parameter, which can be used as a substitute for a value if no value is assigned.",
+<       "type" : "string" },
+<      "usage" : 
+<      { "title" : "Parameter Usage Description",
+<       "description" : "Describes the purpose and use of a parameter.",
+<       "type" : "string" },
+<      "constraints" : 
+<      { "type" : "array",
+<       "minItems" : 1,
+<       "items" : 
+<       { "$ref" : "#/definitions/oscal-complete-oscal-control-common:parameter-constraint" } },
+<      "guidelines" : 
+<      { "type" : "array",
+<       "minItems" : 1,
+<       "items" : 
+<       { "$ref" : "#/definitions/oscal-complete-oscal-control-common:parameter-guideline" } },
+<      "values" : 
+<      { "type" : "array",
+<       "minItems" : 1,
+<       "items" : 
+<       { "$ref" : "#/definitions/oscal-complete-oscal-control-common:parameter-value" } },
+<      "select" : 
+<      { "$ref" : "#/definitions/oscal-complete-oscal-control-common:parameter-selection" },
+<      "remarks" : 
+<      { "$ref" : "#/definitions/oscal-complete-oscal-metadata:remarks" } },
+<     "required" : 
+<     [ "id" ],
+<     "additionalProperties" : false },
+---
+>     "anyOf" : 
+>     [ 
+>      { "properties" : 
+>       { "id" : 
+>        { "title" : "Parameter Identifier",
+>         "description" : "A unique identifier for the parameter.",
+>         "$ref" : "#/definitions/TokenDatatype" },
+>        "class" : 
+>        { "title" : "Parameter Class",
+>         "description" : "A textual label that provides a characterization of the type, purpose, use or scope of the parameter.",
+>         "$ref" : "#/definitions/TokenDatatype" },
+>        "depends-on" : 
+>        { "title" : "Depends on",
+>         "description" : "(deprecated) Another parameter invoking this one. This construct has been deprecated and should not be used.",
+>         "$ref" : "#/definitions/TokenDatatype" },
+>        "props" : 
+>        { "type" : "array",
+>         "minItems" : 1,
+>         "items" : 
+>         { "$ref" : "#/definitions/oscal-complete-oscal-metadata:property" } },
+>        "links" : 
+>        { "type" : "array",
+>         "minItems" : 1,
+>         "items" : 
+>         { "$ref" : "#/definitions/oscal-complete-oscal-metadata:link" } },
+>        "label" : 
+>        { "title" : "Parameter Label",
+>         "description" : "A short, placeholder name for the parameter, which can be used as a substitute for a value if no value is assigned.",
+>         "$ref" : "#/definitions/MarkupLineDatatype" },
+>        "usage" : 
+>        { "title" : "Parameter Usage Description",
+>         "description" : "Describes the purpose and use of a parameter.",
+>         "$ref" : "#/definitions/MarkupMultilineDatatype" },
+>        "constraints" : 
+>        { "type" : "array",
+>         "minItems" : 1,
+>         "items" : 
+>         { "$ref" : "#/definitions/oscal-complete-oscal-control-common:parameter-constraint" } },
+>        "guidelines" : 
+>        { "type" : "array",
+>         "minItems" : 1,
+>         "items" : 
+>         { "$ref" : "#/definitions/oscal-complete-oscal-control-common:parameter-guideline" } },
+>        "values" : 
+>        { "type" : "array",
+>         "minItems" : 1,
+>         "items" : 
+>         { "$ref" : "#/definitions/oscal-complete-oscal-control-common:parameter-value" } },
+>        "remarks" : 
+>        { "$ref" : "#/definitions/oscal-complete-oscal-metadata:remarks" } },
+>       "additionalProperties" : false },
+>      
+>      { "properties" : 
+>       { "id" : 
+>        { "title" : "Parameter Identifier",
+>         "description" : "A unique identifier for the parameter.",
+>         "$ref" : "#/definitions/TokenDatatype" },
+>        "class" : 
+>        { "title" : "Parameter Class",
+>         "description" : "A textual label that provides a characterization of the type, purpose, use or scope of the parameter.",
+>         "$ref" : "#/definitions/TokenDatatype" },
+>        "depends-on" : 
+>        { "title" : "Depends on",
+>         "description" : "(deprecated) Another parameter invoking this one. This construct has been deprecated and should not be used.",
+>         "$ref" : "#/definitions/TokenDatatype" },
+>        "props" : 
+>        { "type" : "array",
+>         "minItems" : 1,
+>         "items" : 
+>         { "$ref" : "#/definitions/oscal-complete-oscal-metadata:property" } },
+>        "links" : 
+>        { "type" : "array",
+>         "minItems" : 1,
+>         "items" : 
+>         { "$ref" : "#/definitions/oscal-complete-oscal-metadata:link" } },
+>        "label" : 
+>        { "title" : "Parameter Label",
+>         "description" : "A short, placeholder name for the parameter, which can be used as a substitute for a value if no value is assigned.",
+>         "$ref" : "#/definitions/MarkupLineDatatype" },
+>        "usage" : 
+>        { "title" : "Parameter Usage Description",
+>         "description" : "Describes the purpose and use of a parameter.",
+>         "$ref" : "#/definitions/MarkupMultilineDatatype" },
+>        "constraints" : 
+>        { "type" : "array",
+>         "minItems" : 1,
+>         "items" : 
+>         { "$ref" : "#/definitions/oscal-complete-oscal-control-common:parameter-constraint" } },
+>        "guidelines" : 
+>        { "type" : "array",
+>         "minItems" : 1,
+>         "items" : 
+>         { "$ref" : "#/definitions/oscal-complete-oscal-control-common:parameter-guideline" } },
+>        "select" : 
+>        { "$ref" : "#/definitions/oscal-complete-oscal-control-common:parameter-selection" },
+>        "remarks" : 
+>        { "$ref" : "#/definitions/oscal-complete-oscal-metadata:remarks" } },
+>       "additionalProperties" : false } ] },
+258c342
+<       "type" : "string" },
+---
+>       "$ref" : "#/definitions/MarkupMultilineDatatype" },
+286c370
+<       "type" : "string" } },
+---
+>       "$ref" : "#/definitions/MarkupMultilineDatatype" } },
+317c401
+<        "type" : "string" } } },
+---
+>        "$ref" : "#/definitions/MarkupLineDatatype" } } },
+324a409,453
+>    "oscal-complete-oscal-control-common:with-id" : 
+>    { "title" : "Match Controls by Identifier",
+>     "description" : "Selecting a control by its ID given as a literal.",
+>     "$id" : "#/definitions/oscal-complete-oscal-control-common:with-id",
+>     "$ref" : "#/definitions/TokenDatatype" },
+>    "oscal-complete-oscal-control-common:matching" : 
+>    { "title" : "Match Controls by Pattern",
+>     "description" : "Selecting a set of controls by matching their IDs with a wildcard pattern.",
+>     "$id" : "#/definitions/oscal-complete-oscal-control-common:matching",
+>     "type" : "object",
+>     "properties" : 
+>     { "pattern" : 
+>      { "title" : "Pattern",
+>       "description" : "A glob expression matching the IDs of one or more controls to be selected.",
+>       "$ref" : "#/definitions/StringDatatype" },
+>      "remarks" : 
+>      { "$ref" : "#/definitions/oscal-complete-oscal-metadata:remarks" } },
+>     "additionalProperties" : false },
+>    "oscal-complete-oscal-control-common:select-control-by-id" : 
+>    { "title" : "Select Control",
+>     "description" : "Select a control or controls from an imported control set.",
+>     "$id" : "#/definitions/oscal-complete-oscal-control-common:select-control-by-id",
+>     "type" : "object",
+>     "properties" : 
+>     { "with-child-controls" : 
+>      { "title" : "Include Contained Controls with Control",
+>       "description" : "When a control is included, whether its child (dependent) controls are also included.",
+>       "allOf" : 
+>       [ 
+>        { "$ref" : "#/definitions/TokenDatatype" },
+>        
+>        { "enum" : 
+>         [ "yes",
+>          "no" ] } ] },
+>      "with-ids" : 
+>      { "type" : "array",
+>       "minItems" : 1,
+>       "items" : 
+>       { "$ref" : "#/definitions/oscal-complete-oscal-control-common:with-id" } },
+>      "matching" : 
+>      { "type" : "array",
+>       "minItems" : 1,
+>       "items" : 
+>       { "$ref" : "#/definitions/oscal-complete-oscal-control-common:matching" } } },
+>     "additionalProperties" : false },
+334c463
+<       "type" : "string" },
+---
+>       "$ref" : "#/definitions/MarkupLineDatatype" },
+354c483
+<          "type" : "string" },
+---
+>          "$ref" : "#/definitions/MarkupLineDatatype" },
+408c537
+<          "type" : "string" },
+---
+>          "$ref" : "#/definitions/MarkupLineDatatype" },
+416c545
+<          "type" : "string" },
+---
+>          "$ref" : "#/definitions/MarkupMultilineDatatype" },
+448c577
+<          "type" : "string" },
+---
+>          "$ref" : "#/definitions/MarkupLineDatatype" },
+490,578c619,783
+<        "properties" : 
+<        { "uuid" : 
+<         { "title" : "Party Universally Unique Identifier",
+<          "description" : "A unique identifier for the party.",
+<          "$ref" : "#/definitions/UUIDDatatype" },
+<         "type" : 
+<         { "title" : "Party Type",
+<          "description" : "A category describing the kind of party the object describes.",
+<          "allOf" : 
+<          [ 
+<           { "$ref" : "#/definitions/StringDatatype" },
+<           
+<           { "enum" : 
+<            [ "person",
+<             "organization" ] } ] },
+<         "name" : 
+<         { "title" : "Party Name",
+<          "description" : "The full name of the party. This is typically the legal name associated with the party.",
+<          "$ref" : "#/definitions/StringDatatype" },
+<         "short-name" : 
+<         { "title" : "Party Short Name",
+<          "description" : "A short common name, abbreviation, or acronym for the party.",
+<          "$ref" : "#/definitions/StringDatatype" },
+<         "external-ids" : 
+<         { "type" : "array",
+<          "minItems" : 1,
+<          "items" : 
+<          { "title" : "Party External Identifier",
+<           "description" : "An identifier for a person or organization using a designated scheme. e.g. an Open Researcher and Contributor ID (ORCID).",
+<           "type" : "object",
+<           "properties" : 
+<           { "scheme" : 
+<            { "title" : "External Identifier Schema",
+<             "description" : "Indicates the type of external identifier.",
+<             "anyOf" : 
+<             [ 
+<              { "$ref" : "#/definitions/URIDatatype" },
+<              
+<              { "enum" : 
+<               [ "http://orcid.org/" ] } ] },
+<            "id" : 
+<            { "$ref" : "#/definitions/StringDatatype" } },
+<           "required" : 
+<           [ "id",
+<            "scheme" ],
+<           "additionalProperties" : false } },
+<         "props" : 
+<         { "type" : "array",
+<          "minItems" : 1,
+<          "items" : 
+<          { "$ref" : "#/definitions/oscal-complete-oscal-metadata:property" } },
+<         "links" : 
+<         { "type" : "array",
+<          "minItems" : 1,
+<          "items" : 
+<          { "$ref" : "#/definitions/oscal-complete-oscal-metadata:link" } },
+<         "email-addresses" : 
+<         { "type" : "array",
+<          "minItems" : 1,
+<          "items" : 
+<          { "$ref" : "#/definitions/oscal-complete-oscal-metadata:email-address" } },
+<         "telephone-numbers" : 
+<         { "type" : "array",
+<          "minItems" : 1,
+<          "items" : 
+<          { "$ref" : "#/definitions/oscal-complete-oscal-metadata:telephone-number" } },
+<         "addresses" : 
+<         { "type" : "array",
+<          "minItems" : 1,
+<          "items" : 
+<          { "$ref" : "#/definitions/oscal-complete-oscal-metadata:address" } },
+<         "location-uuids" : 
+<         { "type" : "array",
+<          "minItems" : 1,
+<          "items" : 
+<          { "$ref" : "#/definitions/oscal-complete-oscal-metadata:location-uuid" } },
+<         "member-of-organizations" : 
+<         { "type" : "array",
+<          "minItems" : 1,
+<          "items" : 
+<          { "title" : "Organizational Affiliation",
+<           "description" : "A reference to another party by UUID, typically an organization, that this subject is associated with.",
+<           "$ref" : "#/definitions/UUIDDatatype" } },
+<         "remarks" : 
+<         { "$ref" : "#/definitions/oscal-complete-oscal-metadata:remarks" } },
+<        "required" : 
+<        [ "uuid",
+<         "type" ],
+<        "additionalProperties" : false } },
+---
+>        "anyOf" : 
+>        [ 
+>         { "properties" : 
+>          { "uuid" : 
+>           { "title" : "Party Universally Unique Identifier",
+>            "description" : "A unique identifier for the party.",
+>            "$ref" : "#/definitions/UUIDDatatype" },
+>           "type" : 
+>           { "title" : "Party Type",
+>            "description" : "A category describing the kind of party the object describes.",
+>            "allOf" : 
+>            [ 
+>             { "$ref" : "#/definitions/StringDatatype" },
+>             
+>             { "enum" : 
+>              [ "person",
+>               "organization" ] } ] },
+>           "name" : 
+>           { "title" : "Party Name",
+>            "description" : "The full name of the party. This is typically the legal name associated with the party.",
+>            "$ref" : "#/definitions/StringDatatype" },
+>           "short-name" : 
+>           { "title" : "Party Short Name",
+>            "description" : "A short common name, abbreviation, or acronym for the party.",
+>            "$ref" : "#/definitions/StringDatatype" },
+>           "external-ids" : 
+>           { "type" : "array",
+>            "minItems" : 1,
+>            "items" : 
+>            { "title" : "Party External Identifier",
+>             "description" : "An identifier for a person or organization using a designated scheme. e.g. an Open Researcher and Contributor ID (ORCID).",
+>             "type" : "object",
+>             "properties" : 
+>             { "scheme" : 
+>              { "title" : "External Identifier Schema",
+>               "description" : "Indicates the type of external identifier.",
+>               "anyOf" : 
+>               [ 
+>                { "$ref" : "#/definitions/URIDatatype" },
+>                
+>                { "enum" : 
+>                 [ "http://orcid.org/" ] } ] },
+>              "id" : 
+>              { "$ref" : "#/definitions/StringDatatype" } },
+>             "required" : 
+>             [ "id",
+>              "scheme" ],
+>             "additionalProperties" : false } },
+>           "props" : 
+>           { "type" : "array",
+>            "minItems" : 1,
+>            "items" : 
+>            { "$ref" : "#/definitions/oscal-complete-oscal-metadata:property" } },
+>           "links" : 
+>           { "type" : "array",
+>            "minItems" : 1,
+>            "items" : 
+>            { "$ref" : "#/definitions/oscal-complete-oscal-metadata:link" } },
+>           "email-addresses" : 
+>           { "type" : "array",
+>            "minItems" : 1,
+>            "items" : 
+>            { "$ref" : "#/definitions/oscal-complete-oscal-metadata:email-address" } },
+>           "telephone-numbers" : 
+>           { "type" : "array",
+>            "minItems" : 1,
+>            "items" : 
+>            { "$ref" : "#/definitions/oscal-complete-oscal-metadata:telephone-number" } },
+>           "addresses" : 
+>           { "type" : "array",
+>            "minItems" : 1,
+>            "items" : 
+>            { "$ref" : "#/definitions/oscal-complete-oscal-metadata:address" } },
+>           "member-of-organizations" : 
+>           { "type" : "array",
+>            "minItems" : 1,
+>            "items" : 
+>            { "title" : "Organizational Affiliation",
+>             "description" : "A reference to another party by UUID, typically an organization, that this subject is associated with.",
+>             "$ref" : "#/definitions/UUIDDatatype" } },
+>           "remarks" : 
+>           { "$ref" : "#/definitions/oscal-complete-oscal-metadata:remarks" } },
+>          "additionalProperties" : false },
+>         
+>         { "properties" : 
+>          { "uuid" : 
+>           { "title" : "Party Universally Unique Identifier",
+>            "description" : "A unique identifier for the party.",
+>            "$ref" : "#/definitions/UUIDDatatype" },
+>           "type" : 
+>           { "title" : "Party Type",
+>            "description" : "A category describing the kind of party the object describes.",
+>            "allOf" : 
+>            [ 
+>             { "$ref" : "#/definitions/StringDatatype" },
+>             
+>             { "enum" : 
+>              [ "person",
+>               "organization" ] } ] },
+>           "name" : 
+>           { "title" : "Party Name",
+>            "description" : "The full name of the party. This is typically the legal name associated with the party.",
+>            "$ref" : "#/definitions/StringDatatype" },
+>           "short-name" : 
+>           { "title" : "Party Short Name",
+>            "description" : "A short common name, abbreviation, or acronym for the party.",
+>            "$ref" : "#/definitions/StringDatatype" },
+>           "external-ids" : 
+>           { "type" : "array",
+>            "minItems" : 1,
+>            "items" : 
+>            { "title" : "Party External Identifier",
+>             "description" : "An identifier for a person or organization using a designated scheme. e.g. an Open Researcher and Contributor ID (ORCID).",
+>             "type" : "object",
+>             "properties" : 
+>             { "scheme" : 
+>              { "title" : "External Identifier Schema",
+>               "description" : "Indicates the type of external identifier.",
+>               "anyOf" : 
+>               [ 
+>                { "$ref" : "#/definitions/URIDatatype" },
+>                
+>                { "enum" : 
+>                 [ "http://orcid.org/" ] } ] },
+>              "id" : 
+>              { "$ref" : "#/definitions/StringDatatype" } },
+>             "required" : 
+>             [ "id",
+>              "scheme" ],
+>             "additionalProperties" : false } },
+>           "props" : 
+>           { "type" : "array",
+>            "minItems" : 1,
+>            "items" : 
+>            { "$ref" : "#/definitions/oscal-complete-oscal-metadata:property" } },
+>           "links" : 
+>           { "type" : "array",
+>            "minItems" : 1,
+>            "items" : 
+>            { "$ref" : "#/definitions/oscal-complete-oscal-metadata:link" } },
+>           "email-addresses" : 
+>           { "type" : "array",
+>            "minItems" : 1,
+>            "items" : 
+>            { "$ref" : "#/definitions/oscal-complete-oscal-metadata:email-address" } },
+>           "telephone-numbers" : 
+>           { "type" : "array",
+>            "minItems" : 1,
+>            "items" : 
+>            { "$ref" : "#/definitions/oscal-complete-oscal-metadata:telephone-number" } },
+>           "location-uuids" : 
+>           { "type" : "array",
+>            "minItems" : 1,
+>            "items" : 
+>            { "$ref" : "#/definitions/oscal-complete-oscal-metadata:location-uuid" } },
+>           "member-of-organizations" : 
+>           { "type" : "array",
+>            "minItems" : 1,
+>            "items" : 
+>            { "title" : "Organizational Affiliation",
+>             "description" : "A reference to another party by UUID, typically an organization, that this subject is associated with.",
+>             "$ref" : "#/definitions/UUIDDatatype" } },
+>           "remarks" : 
+>           { "$ref" : "#/definitions/oscal-complete-oscal-metadata:remarks" } },
+>          "additionalProperties" : false } ] } },
+633c838
+<          "type" : "string" },
+---
+>          "$ref" : "#/definitions/MarkupLineDatatype" },
+637c842
+<          "type" : "string" },
+---
+>          "$ref" : "#/definitions/MarkupMultilineDatatype" },
+656c861
+<            "type" : "string" },
+---
+>            "$ref" : "#/definitions/MarkupLineDatatype" },
+784c989
+<       "type" : "string" } },
+---
+>       "$ref" : "#/definitions/MarkupLineDatatype" } },
+925c1130
+<     "type" : "string" },
+---
+>     "$ref" : "#/definitions/MarkupMultilineDatatype" },
+1036,1039c1241,1244
+<    "oscal-complete-oscal-profile:profile" : 
+<    { "title" : "Profile",
+<     "description" : "Each OSCAL profile is defined by a profile element.",
+<     "$id" : "#/definitions/oscal-complete-oscal-profile:profile",
+---
+>    "oscal-complete-oscal-mapping:mapping-collection" : 
+>    { "title" : "Mapping Collection",
+>     "description" : "A collection of relationship-based control and/or control statement mappings.",
+>     "$id" : "#/definitions/oscal-complete-oscal-mapping:mapping-collection",
+1043,1044c1248,1249
+<      { "title" : "Profile Universally Unique Identifier",
+<       "description" : "Provides a globally unique means to identify a given profile instance.",
+---
+>      { "title" : "Mapping Collection Universally Unique Identifier",
+>       "description" : "A globally unique identifier with cross-instance scope for this catalog instance. This UUID should be changed when this document is revised.",
+1048,1056c1253,1263
+<      "imports" : 
+<      { "type" : "array",
+<       "minItems" : 1,
+<       "items" : 
+<       { "$ref" : "#/definitions/oscal-complete-oscal-profile:import" } },
+<      "merge" : 
+<      { "$ref" : "#/definitions/oscal-complete-oscal-profile:merge" },
+<      "modify" : 
+<      { "$ref" : "#/definitions/oscal-complete-oscal-profile:modify" },
+---
+>      "provenance" : 
+>      { "$ref" : "#/definitions/oscal-complete-oscal-mapping-common:mapping-provenance" },
+>      "mappings" : 
+>      { "anyOf" : 
+>       [ 
+>        { "$ref" : "#/definitions/oscal-complete-oscal-mapping-common:mapping" },
+>        
+>        { "type" : "array",
+>         "minItems" : 1,
+>         "items" : 
+>         { "$ref" : "#/definitions/oscal-complete-oscal-mapping-common:mapping" } } ] },
+1062c1269,1270
+<      "imports" ],
+---
+>      "provenance",
+>      "mappings" ],
+1064,1067c1272,1275
+<    "oscal-complete-oscal-profile:import" : 
+<    { "title" : "Import Resource",
+<     "description" : "Designates a referenced source catalog or profile that provides a source of control information for use in creating a new overlay or baseline.",
+<     "$id" : "#/definitions/oscal-complete-oscal-profile:import",
+---
+>    "oscal-complete-oscal-mapping-common:mapping" : 
+>    { "title" : "Control Mapping",
+>     "description" : "A mapping between two target resources.",
+>     "$id" : "#/definitions/oscal-complete-oscal-mapping-common:mapping",
+1070c1278,1476
+<     { "href" : 
+---
+>     { "uuid" : 
+>      { "title" : "Mapping Universally Unique Identifier",
+>       "description" : "A machine-oriented, globally unique identifier with cross-instance scope that can be used to reference this mapping definition elsewhere in this or other OSCAL instances. The locally defined UUID of the mapping can be used to reference the data item locally or globally (e.g., in an imported OSCAL instance). This UUID should be assigned per-subject, which means it should be consistently used to identify the same mapping across revisions of the document.",
+>       "$ref" : "#/definitions/UUIDDatatype" },
+>      "method" : 
+>      { "title" : "Method",
+>       "description" : "The method used to complete the overall mapping.",
+>       "allOf" : 
+>       [ 
+>        { "$ref" : "#/definitions/StringDatatype" },
+>        
+>        { "enum" : 
+>         [ "human",
+>          "automation",
+>          "hybrid" ] } ] },
+>      "matching-rationale" : 
+>      { "title" : "Matching",
+>       "description" : "The method used for relating controls within the mapping. The supported methods are aligned with the NIST Interagency Report (IR) 8477, Section 4.3 Set Theory Relationship Mapping.",
+>       "allOf" : 
+>       [ 
+>        { "$ref" : "#/definitions/StringDatatype" },
+>        
+>        { "enum" : 
+>         [ "syntactic",
+>          "semantic",
+>          "functional" ] } ] },
+>      "status" : 
+>      { "title" : "Status",
+>       "description" : "The current status of this mapping document.",
+>       "allOf" : 
+>       [ 
+>        { "$ref" : "#/definitions/StringDatatype" },
+>        
+>        { "enum" : 
+>         [ "complete",
+>          "not-complete",
+>          "draft",
+>          "deprecated",
+>          "superseded" ] } ] },
+>      "source-resource" : 
+>      { "$ref" : "#/definitions/oscal-complete-oscal-mapping-common:mapping-resource-reference" },
+>      "target-resource" : 
+>      { "$ref" : "#/definitions/oscal-complete-oscal-mapping-common:mapping-resource-reference" },
+>      "maps" : 
+>      { "type" : "array",
+>       "minItems" : 1,
+>       "items" : 
+>       { "$ref" : "#/definitions/oscal-complete-oscal-mapping-common:map" } },
+>      "props" : 
+>      { "type" : "array",
+>       "minItems" : 1,
+>       "items" : 
+>       { "$ref" : "#/definitions/oscal-complete-oscal-metadata:property" } },
+>      "links" : 
+>      { "type" : "array",
+>       "minItems" : 1,
+>       "items" : 
+>       { "$ref" : "#/definitions/oscal-complete-oscal-metadata:link" } },
+>      "remarks" : 
+>      { "$ref" : "#/definitions/oscal-complete-oscal-metadata:remarks" },
+>      "mapping-description" : 
+>      { "$ref" : "#/definitions/oscal-complete-oscal-mapping-common:mapping-description" },
+>      "source-gap-summary" : 
+>      { "$ref" : "#/definitions/oscal-complete-oscal-mapping-common:gap-summary" },
+>      "target-gap-summary" : 
+>      { "$ref" : "#/definitions/oscal-complete-oscal-mapping-common:gap-summary" },
+>      "confidence-score" : 
+>      { "$ref" : "#/definitions/oscal-complete-oscal-mapping-common:confidence-score" },
+>      "coverage" : 
+>      { "$ref" : "#/definitions/oscal-complete-oscal-mapping-common:coverage" } },
+>     "required" : 
+>     [ "uuid",
+>      "source-resource",
+>      "target-resource",
+>      "maps" ],
+>     "additionalProperties" : false },
+>    "oscal-complete-oscal-mapping-common:map" : 
+>    { "title" : "Mapping Entry",
+>     "description" : "A relationship-based mapping between a source and target set consisting of members (i.e., controls, control statements) from the respective source and target.",
+>     "$id" : "#/definitions/oscal-complete-oscal-mapping-common:map",
+>     "type" : "object",
+>     "properties" : 
+>     { "uuid" : 
+>      { "title" : "Mapping Entry Identifier",
+>       "description" : "The unique identifier for the mapping entry.",
+>       "$ref" : "#/definitions/UUIDDatatype" },
+>      "ns" : 
+>      { "title" : "Relationship Value Namespace",
+>       "description" : "A namespace qualifying the relationship's value. This allows different organizations to associate distinct semantics for relationships with the same name.",
+>       "$ref" : "#/definitions/URIDatatype" },
+>      "matching-rationale" : 
+>      { "title" : "Matching",
+>       "description" : "The method used for relating controls within the mapping. The supported methods are aligned with the NIST Interagency Report (IR) 8477, Section 4.3 Set Theory Relationship Mapping.",
+>       "allOf" : 
+>       [ 
+>        { "$ref" : "#/definitions/StringDatatype" },
+>        
+>        { "enum" : 
+>         [ "syntactic",
+>          "semantic",
+>          "functional" ] } ] },
+>      "relationship" : 
+>      { "title" : "Mapping Entry Relationship",
+>       "description" : "The relationship type for the mapping entry, which describes the relationship between the effective requirements of the specified source and target sets in the context of the matching-rationale method globaly defined in the provenance unless overwritten locally in the map. The relationship type and the matching-rationale must be used together. However, more than one matching-rationale method may apply to a source and target pair.",
+>       "$ref" : "#/definitions/TokenDatatype" },
+>      "sources" : 
+>      { "type" : "array",
+>       "minItems" : 1,
+>       "items" : 
+>       { "$ref" : "#/definitions/oscal-complete-oscal-mapping-common:mapping-item" } },
+>      "targets" : 
+>      { "type" : "array",
+>       "minItems" : 1,
+>       "items" : 
+>       { "$ref" : "#/definitions/oscal-complete-oscal-mapping-common:mapping-item" } },
+>      "qualifiers" : 
+>      { "type" : "array",
+>       "minItems" : 1,
+>       "items" : 
+>       { "$ref" : "#/definitions/oscal-complete-oscal-mapping-common:qualifier-item" } },
+>      "confidence-score" : 
+>      { "$ref" : "#/definitions/oscal-complete-oscal-mapping-common:confidence-score" },
+>      "coverage" : 
+>      { "$ref" : "#/definitions/oscal-complete-oscal-mapping-common:coverage" },
+>      "props" : 
+>      { "type" : "array",
+>       "minItems" : 1,
+>       "items" : 
+>       { "$ref" : "#/definitions/oscal-complete-oscal-metadata:property" } },
+>      "links" : 
+>      { "type" : "array",
+>       "minItems" : 1,
+>       "items" : 
+>       { "$ref" : "#/definitions/oscal-complete-oscal-metadata:link" } },
+>      "remarks" : 
+>      { "$ref" : "#/definitions/oscal-complete-oscal-metadata:remarks" } },
+>     "required" : 
+>     [ "uuid",
+>      "relationship",
+>      "sources",
+>      "targets" ],
+>     "additionalProperties" : false },
+>    "oscal-complete-oscal-mapping-common:mapping-item" : 
+>    { "title" : "Mapping Entry Item (source or target)",
+>     "description" : "A specific edge within a source or target that is the subject of a mapping.",
+>     "$id" : "#/definitions/oscal-complete-oscal-mapping-common:mapping-item",
+>     "type" : "object",
+>     "properties" : 
+>     { "type" : 
+>      { "title" : "Subject Type",
+>       "description" : "The semantic type of the subject.",
+>       "allOf" : 
+>       [ 
+>        { "$ref" : "#/definitions/TokenDatatype" },
+>        
+>        { "enum" : 
+>         [ "control",
+>          "statement" ] } ] },
+>      "id-ref" : 
+>      { "title" : "Subject Identifier Reference",
+>       "description" : "A reference to an identified subject that is of the specified type .",
+>       "$ref" : "#/definitions/StringDatatype" },
+>      "props" : 
+>      { "type" : "array",
+>       "minItems" : 1,
+>       "items" : 
+>       { "$ref" : "#/definitions/oscal-complete-oscal-metadata:property" } },
+>      "links" : 
+>      { "type" : "array",
+>       "minItems" : 1,
+>       "items" : 
+>       { "$ref" : "#/definitions/oscal-complete-oscal-metadata:link" } },
+>      "remarks" : 
+>      { "$ref" : "#/definitions/oscal-complete-oscal-metadata:remarks" } },
+>     "required" : 
+>     [ "type",
+>      "id-ref" ],
+>     "additionalProperties" : false },
+>    "oscal-complete-oscal-mapping-common:mapping-resource-reference" : 
+>    { "title" : "Mapped Resource Reference",
+>     "description" : "A reference to a resource that is either the source or the target of a mapping.",
+>     "$id" : "#/definitions/oscal-complete-oscal-mapping-common:mapping-resource-reference",
+>     "type" : "object",
+>     "properties" : 
+>     { "ns" : 
+>      { "title" : "Resource Type Namespace",
+>       "description" : "An optional namespace qualifying the resource's type.",
+>       "$ref" : "#/definitions/URIDatatype" },
+>      "type" : 
+>      { "title" : "Resource Type",
+>       "description" : "The semantic type of the resource.",
+>       "anyOf" : 
+>       [ 
+>        { "$ref" : "#/definitions/TokenDatatype" },
+>        
+>        { "enum" : 
+>         [ "catalog",
+>          "profile" ] } ] },
+>      "href" : 
+1074,1076c1480
+<      "include-all" : 
+<      { "$ref" : "#/definitions/oscal-complete-oscal-control-common:include-all" },
+<      "include-controls" : 
+---
+>      "props" : 
+1080,1081c1484,1485
+<       { "$ref" : "#/definitions/oscal-complete-oscal-profile:select-control-by-id" } },
+<      "exclude-controls" : 
+---
+>       { "$ref" : "#/definitions/oscal-complete-oscal-metadata:property" } },
+>      "links" : 
+1085c1489,1491
+<       { "$ref" : "#/definitions/oscal-complete-oscal-profile:select-control-by-id" } } },
+---
+>       { "$ref" : "#/definitions/oscal-complete-oscal-metadata:link" } },
+>      "remarks" : 
+>      { "$ref" : "#/definitions/oscal-complete-oscal-metadata:remarks" } },
+1087c1493,1494
+<     [ "href" ],
+---
+>     [ "type",
+>      "href" ],
+1089,1092c1496,1499
+<    "oscal-complete-oscal-profile:merge" : 
+<    { "title" : "Merge Controls",
+<     "description" : "Provides structuring directives that instruct how controls are organized after profile resolution.",
+<     "$id" : "#/definitions/oscal-complete-oscal-profile:merge",
+---
+>    "oscal-complete-oscal-mapping-common:qualifier-item" : 
+>    { "title" : "Relationship Qualifier",
+>     "description" : "Describes requirements, incompatibilities and gaps that are identified between a target and source in a mapping item.",
+>     "$id" : "#/definitions/oscal-complete-oscal-mapping-common:qualifier-item",
+1095,1136c1502,1544
+<     { "combine" : 
+<      { "title" : "Combination Rule",
+<       "description" : "A Combine element defines how to resolve duplicate instances of the same control (e.g., controls with the same ID).",
+<       "type" : "object",
+<       "properties" : 
+<       { "method" : 
+<        { "title" : "Combination Method",
+<         "description" : "Declare how clashing controls should be handled.",
+<         "allOf" : 
+<         [ 
+<          { "$ref" : "#/definitions/StringDatatype" },
+<          
+<          { "enum" : 
+<           [ "use-first",
+<            "merge",
+<            "keep" ] } ] } },
+<       "additionalProperties" : false },
+<      "flat" : 
+<      { "title" : "Flat Without Grouping",
+<       "description" : "Directs that controls appear without any grouping structure.",
+<       "type" : "object",
+<       "additionalProperties" : false },
+<      "as-is" : 
+<      { "title" : "Group As-Is",
+<       "description" : "Indicates that the controls selected should retain their original grouping as defined in the import source.",
+<       "$ref" : "#/definitions/BooleanDatatype" },
+<      "custom" : 
+<      { "title" : "Custom Grouping",
+<       "description" : "Provides an alternate grouping structure that selected controls will be placed in.",
+<       "type" : "object",
+<       "properties" : 
+<       { "groups" : 
+<        { "type" : "array",
+<         "minItems" : 1,
+<         "items" : 
+<         { "$ref" : "#/definitions/oscal-complete-oscal-profile:group" } },
+<        "insert-controls" : 
+<        { "type" : "array",
+<         "minItems" : 1,
+<         "items" : 
+<         { "$ref" : "#/definitions/oscal-complete-oscal-profile:insert-controls" } } },
+<       "additionalProperties" : false } },
+---
+>     { "subject" : 
+>      { "title" : "Subject",
+>       "description" : "The focus of the qualifier.",
+>       "allOf" : 
+>       [ 
+>        { "$ref" : "#/definitions/StringDatatype" },
+>        
+>        { "enum" : 
+>         [ "source",
+>          "target",
+>          "both" ] } ] },
+>      "predicate" : 
+>      { "title" : "Predicate",
+>       "description" : "The predicate describes how the qualifer applies to the subject.",
+>       "allOf" : 
+>       [ 
+>        { "$ref" : "#/definitions/StringDatatype" },
+>        
+>        { "enum" : 
+>         [ "has-requirement",
+>          "has-incompatibility" ] } ] },
+>      "category" : 
+>      { "title" : "Category",
+>       "description" : "The category expresses the resolvable nature of the predicate.",
+>       "allOf" : 
+>       [ 
+>        { "$ref" : "#/definitions/StringDatatype" },
+>        
+>        { "enum" : 
+>         [ "restricted",
+>          "addressable",
+>          "blocked" ] } ] },
+>      "description" : 
+>      { "title" : "Description of the qualifier",
+>       "description" : "Details that outline what requirements must be met, or cannot be met. If the qualifier identifies a gap, this should idenfity the gap, and any incompatibilities.",
+>       "$ref" : "#/definitions/MarkupMultilineDatatype" },
+>      "remarks" : 
+>      { "$ref" : "#/definitions/oscal-complete-oscal-metadata:remarks" } },
+>     "required" : 
+>     [ "subject",
+>      "predicate",
+>      "category",
+>      "description" ],
+1138,1141c1546,1549
+<    "oscal-complete-oscal-profile:group" : 
+<    { "title" : "Control Group",
+<     "description" : "A group of (selected) controls or of groups of controls.",
+<     "$id" : "#/definitions/oscal-complete-oscal-profile:group",
+---
+>    "oscal-complete-oscal-mapping-common:mapping-provenance" : 
+>    { "title" : "Mapping Provenance",
+>     "description" : "Describes requirements, incompatibilities and gaps that are identified between a target and source in a mapping item.",
+>     "$id" : "#/definitions/oscal-complete-oscal-mapping-common:mapping-provenance",
+1144,1156c1552,1593
+<     { "id" : 
+<      { "title" : "Group Identifier",
+<       "description" : "Identifies the group.",
+<       "$ref" : "#/definitions/TokenDatatype" },
+<      "class" : 
+<      { "title" : "Group Class",
+<       "description" : "A textual label that provides a sub-type or characterization of the group.",
+<       "$ref" : "#/definitions/TokenDatatype" },
+<      "title" : 
+<      { "title" : "Group Title",
+<       "description" : "A name to be given to the group for use in display.",
+<       "type" : "string" },
+<      "params" : 
+---
+>     { "method" : 
+>      { "title" : "Method",
+>       "description" : "The method used to complete the overall mapping.",
+>       "allOf" : 
+>       [ 
+>        { "$ref" : "#/definitions/StringDatatype" },
+>        
+>        { "enum" : 
+>         [ "human",
+>          "automation",
+>          "hybrid" ] } ] },
+>      "matching-rationale" : 
+>      { "title" : "Matching",
+>       "description" : "The method used for relating controls within the mapping. The supported methods are aligned with the NIST Interagency Report (IR) 8477, Section 4.3 Set Theory Relationship Mapping.",
+>       "allOf" : 
+>       [ 
+>        { "$ref" : "#/definitions/StringDatatype" },
+>        
+>        { "enum" : 
+>         [ "syntactic",
+>          "semantic",
+>          "functional" ] } ] },
+>      "status" : 
+>      { "title" : "Status",
+>       "description" : "The current status of this mapping document.",
+>       "allOf" : 
+>       [ 
+>        { "$ref" : "#/definitions/StringDatatype" },
+>        
+>        { "enum" : 
+>         [ "complete",
+>          "not-complete",
+>          "draft",
+>          "deprecated",
+>          "superseded" ] } ] },
+>      "confidence-score" : 
+>      { "$ref" : "#/definitions/oscal-complete-oscal-mapping-common:confidence-score" },
+>      "coverage" : 
+>      { "$ref" : "#/definitions/oscal-complete-oscal-mapping-common:coverage" },
+>      "mapping-description" : 
+>      { "$ref" : "#/definitions/oscal-complete-oscal-mapping-common:mapping-description" },
+>      "responsible-parties" : 
+1160c1597
+<       { "$ref" : "#/definitions/oscal-complete-oscal-control-common:parameter" } },
+---
+>       { "$ref" : "#/definitions/oscal-complete-oscal-metadata:responsible-party" } },
+1171,1176c1608,1626
+<      "parts" : 
+<      { "type" : "array",
+<       "minItems" : 1,
+<       "items" : 
+<       { "$ref" : "#/definitions/oscal-complete-oscal-control-common:part" } },
+<      "groups" : 
+---
+>      "remarks" : 
+>      { "$ref" : "#/definitions/oscal-complete-oscal-metadata:remarks" } },
+>     "required" : 
+>     [ "method",
+>      "matching-rationale",
+>      "status",
+>      "mapping-description" ],
+>     "additionalProperties" : false },
+>    "oscal-complete-oscal-mapping-common:gap-summary" : 
+>    { "title" : "Gap Summary",
+>     "description" : "A by-id collection of all controls that were not mapped at all in this mapping-collection. If a control is partially mapped, the parts of the control are not mappable, the gap and discrepancies should be documented in the relationship-gal.",
+>     "$id" : "#/definitions/oscal-complete-oscal-mapping-common:gap-summary",
+>     "type" : "object",
+>     "properties" : 
+>     { "uuid" : 
+>      { "title" : "Gap Summary Universally Unique Identifier",
+>       "description" : "A machine-oriented, globally unique identifier with cross-instance scope that can be used to reference this mapping gap summary elsewhere in this or other OSCAL instances. The locally defined UUID of the SSP can be used to reference the data item locally or globally (e.g., in an imported OSCAL instance).This UUID should be assigned per-subject, which means it should be consistently used to identify the same subject across revisions of the document.",
+>       "$ref" : "#/definitions/UUIDDatatype" },
+>      "unmapped-controls" : 
+1180,1181c1630,1693
+<       { "$ref" : "#/definitions/oscal-complete-oscal-profile:group" } },
+<      "insert-controls" : 
+---
+>       { "$ref" : "#/definitions/oscal-complete-oscal-control-common:select-control-by-id" } } },
+>     "required" : 
+>     [ "uuid",
+>      "unmapped-controls" ],
+>     "additionalProperties" : false },
+>    "oscal-complete-oscal-mapping-common:confidence-score" : 
+>    { "title" : "Confidence Score",
+>     "description" : "This records either a string category or a decimal value from 0-1 representing a percentage. Both of these values describe an estimation of the author's confidence that this mapping is correct and accurate.",
+>     "$id" : "#/definitions/oscal-complete-oscal-mapping-common:confidence-score",
+>     "type" : "object",
+>     "anyOf" : 
+>     [ 
+>      { "properties" : 
+>       { "category" : 
+>        { "$ref" : "#/definitions/StringDatatype" } },
+>       "additionalProperties" : false },
+>      
+>      { "properties" : 
+>       { "percentage" : 
+>        { "$ref" : "#/definitions/oscal-complete-oscal-mapping-common:percentage" } },
+>       "additionalProperties" : false } ] },
+>    "oscal-complete-oscal-mapping-common:coverage" : 
+>    { "title" : "Coverage",
+>     "description" : "A decimal value from 0-1, representing the percentage coverage of the targets by the sources.",
+>     "$id" : "#/definitions/oscal-complete-oscal-mapping-common:coverage",
+>     "type" : "object",
+>     "properties" : 
+>     { "generation-method" : 
+>      { "title" : "Coverage Generation Method",
+>       "description" : "The method used to determine the coverage value.",
+>       "anyOf" : 
+>       [ 
+>        { "$ref" : "#/definitions/StringDatatype" },
+>        
+>        { "enum" : 
+>         [ "arbitrary" ] } ] },
+>      "target-coverage" : 
+>      { "$ref" : "#/definitions/DecimalDatatype" } },
+>     "required" : 
+>     [ "target-coverage" ],
+>     "additionalProperties" : false },
+>    "oscal-complete-oscal-mapping-common:percentage" : 
+>    { "title" : "Percentage",
+>     "description" : "A decimal value from 0-1, representing a percentage.",
+>     "$id" : "#/definitions/oscal-complete-oscal-mapping-common:percentage",
+>     "$ref" : "#/definitions/DecimalDatatype" },
+>    "oscal-complete-oscal-mapping-common:mapping-description" : 
+>    { "title" : "Mapping Description",
+>     "description" : "Description of the context and intended use of the mapping set.",
+>     "$id" : "#/definitions/oscal-complete-oscal-mapping-common:mapping-description",
+>     "$ref" : "#/definitions/MarkupMultilineDatatype" },
+>    "oscal-complete-oscal-profile:profile" : 
+>    { "title" : "Profile",
+>     "description" : "Each OSCAL profile is defined by a profile element.",
+>     "$id" : "#/definitions/oscal-complete-oscal-profile:profile",
+>     "type" : "object",
+>     "properties" : 
+>     { "uuid" : 
+>      { "title" : "Profile Universally Unique Identifier",
+>       "description" : "Provides a globally unique means to identify a given profile instance.",
+>       "$ref" : "#/definitions/UUIDDatatype" },
+>      "metadata" : 
+>      { "$ref" : "#/definitions/oscal-complete-oscal-metadata:metadata" },
+>      "imports" : 
+1185c1697,1703
+<       { "$ref" : "#/definitions/oscal-complete-oscal-profile:insert-controls" } } },
+---
+>       { "$ref" : "#/definitions/oscal-complete-oscal-profile:import" } },
+>      "merge" : 
+>      { "$ref" : "#/definitions/oscal-complete-oscal-profile:merge" },
+>      "modify" : 
+>      { "$ref" : "#/definitions/oscal-complete-oscal-profile:modify" },
+>      "back-matter" : 
+>      { "$ref" : "#/definitions/oscal-complete-oscal-metadata:back-matter" } },
+1187c1705,1707
+<     [ "title" ],
+---
+>     [ "uuid",
+>      "metadata",
+>      "imports" ],
+1188a1709,1900
+>    "oscal-complete-oscal-profile:import" : 
+>    { "title" : "Import Resource",
+>     "description" : "Designates a referenced source catalog or profile that provides a source of control information for use in creating a new overlay or baseline.",
+>     "$id" : "#/definitions/oscal-complete-oscal-profile:import",
+>     "type" : "object",
+>     "anyOf" : 
+>     [ 
+>      { "properties" : 
+>       { "href" : 
+>        { "title" : "Catalog or Profile Reference",
+>         "description" : "A resolvable URL reference to the base catalog or profile that this profile is tailoring.",
+>         "$ref" : "#/definitions/URIReferenceDatatype" },
+>        "include-all" : 
+>        { "$ref" : "#/definitions/oscal-complete-oscal-control-common:include-all" },
+>        "exclude-controls" : 
+>        { "type" : "array",
+>         "minItems" : 1,
+>         "items" : 
+>         { "$ref" : "#/definitions/oscal-complete-oscal-control-common:select-control-by-id" } } },
+>       "required" : 
+>       [ "include-all" ],
+>       "additionalProperties" : false },
+>      
+>      { "properties" : 
+>       { "href" : 
+>        { "title" : "Catalog or Profile Reference",
+>         "description" : "A resolvable URL reference to the base catalog or profile that this profile is tailoring.",
+>         "$ref" : "#/definitions/URIReferenceDatatype" },
+>        "include-controls" : 
+>        { "type" : "array",
+>         "minItems" : 1,
+>         "items" : 
+>         { "$ref" : "#/definitions/oscal-complete-oscal-control-common:select-control-by-id" } },
+>        "exclude-controls" : 
+>        { "type" : "array",
+>         "minItems" : 1,
+>         "items" : 
+>         { "$ref" : "#/definitions/oscal-complete-oscal-control-common:select-control-by-id" } } },
+>       "required" : 
+>       [ "include-controls" ],
+>       "additionalProperties" : false } ] },
+>    "oscal-complete-oscal-profile:merge" : 
+>    { "title" : "Merge Controls",
+>     "description" : "Provides structuring directives that instruct how controls are organized after profile resolution.",
+>     "$id" : "#/definitions/oscal-complete-oscal-profile:merge",
+>     "type" : "object",
+>     "anyOf" : 
+>     [ 
+>      { "properties" : 
+>       { "combine" : 
+>        { "title" : "Combination Rule",
+>         "description" : "A Combine element defines how to resolve duplicate instances of the same control (e.g., controls with the same ID).",
+>         "type" : "object",
+>         "additionalProperties" : false },
+>        "flat" : 
+>        { "title" : "Flat Without Grouping",
+>         "description" : "Directs that controls appear without any grouping structure.",
+>         "type" : "object",
+>         "additionalProperties" : false } },
+>       "required" : 
+>       [ "flat" ],
+>       "additionalProperties" : false },
+>      
+>      { "properties" : 
+>       { "combine" : 
+>        { "title" : "Combination Rule",
+>         "description" : "A Combine element defines how to resolve duplicate instances of the same control (e.g., controls with the same ID).",
+>         "type" : "object",
+>         "additionalProperties" : false },
+>        "as-is" : 
+>        { "title" : "Group As-Is",
+>         "description" : "Indicates that the controls selected should retain their original grouping as defined in the import source.",
+>         "$ref" : "#/definitions/BooleanDatatype" } },
+>       "required" : 
+>       [ "as-is" ],
+>       "additionalProperties" : false },
+>      
+>      { "properties" : 
+>       { "combine" : 
+>        { "title" : "Combination Rule",
+>         "description" : "A Combine element defines how to resolve duplicate instances of the same control (e.g., controls with the same ID).",
+>         "type" : "object",
+>         "additionalProperties" : false },
+>        "custom" : 
+>        { "title" : "Custom Grouping",
+>         "description" : "Provides an alternate grouping structure that selected controls will be placed in.",
+>         "type" : "object",
+>         "properties" : 
+>         { "groups" : 
+>          { "type" : "array",
+>           "minItems" : 1,
+>           "items" : 
+>           { "$ref" : "#/definitions/oscal-complete-oscal-profile:group" } },
+>          "insert-controls" : 
+>          { "type" : "array",
+>           "minItems" : 1,
+>           "items" : 
+>           { "$ref" : "#/definitions/oscal-complete-oscal-profile:insert-controls" } } },
+>         "additionalProperties" : false } },
+>       "required" : 
+>       [ "custom" ],
+>       "additionalProperties" : false } ] },
+>    "oscal-complete-oscal-profile:group" : 
+>    { "title" : "Control Group",
+>     "description" : "A group of (selected) controls or of groups of controls.",
+>     "$id" : "#/definitions/oscal-complete-oscal-profile:group",
+>     "type" : "object",
+>     "anyOf" : 
+>     [ 
+>      { "properties" : 
+>       { "id" : 
+>        { "title" : "Group Identifier",
+>         "description" : "Identifies the group.",
+>         "$ref" : "#/definitions/TokenDatatype" },
+>        "class" : 
+>        { "title" : "Group Class",
+>         "description" : "A textual label that provides a sub-type or characterization of the group.",
+>         "$ref" : "#/definitions/TokenDatatype" },
+>        "title" : 
+>        { "title" : "Group Title",
+>         "description" : "A name to be given to the group for use in display.",
+>         "$ref" : "#/definitions/MarkupLineDatatype" },
+>        "params" : 
+>        { "type" : "array",
+>         "minItems" : 1,
+>         "items" : 
+>         { "$ref" : "#/definitions/oscal-complete-oscal-control-common:parameter" } },
+>        "props" : 
+>        { "type" : "array",
+>         "minItems" : 1,
+>         "items" : 
+>         { "$ref" : "#/definitions/oscal-complete-oscal-metadata:property" } },
+>        "links" : 
+>        { "type" : "array",
+>         "minItems" : 1,
+>         "items" : 
+>         { "$ref" : "#/definitions/oscal-complete-oscal-metadata:link" } },
+>        "parts" : 
+>        { "type" : "array",
+>         "minItems" : 1,
+>         "items" : 
+>         { "$ref" : "#/definitions/oscal-complete-oscal-control-common:part" } },
+>        "groups" : 
+>        { "type" : "array",
+>         "minItems" : 1,
+>         "items" : 
+>         { "$ref" : "#/definitions/oscal-complete-oscal-profile:group" } } },
+>       "required" : 
+>       [ "title" ],
+>       "additionalProperties" : false },
+>      
+>      { "properties" : 
+>       { "id" : 
+>        { "title" : "Group Identifier",
+>         "description" : "Identifies the group.",
+>         "$ref" : "#/definitions/TokenDatatype" },
+>        "class" : 
+>        { "title" : "Group Class",
+>         "description" : "A textual label that provides a sub-type or characterization of the group.",
+>         "$ref" : "#/definitions/TokenDatatype" },
+>        "title" : 
+>        { "title" : "Group Title",
+>         "description" : "A name to be given to the group for use in display.",
+>         "$ref" : "#/definitions/MarkupLineDatatype" },
+>        "params" : 
+>        { "type" : "array",
+>         "minItems" : 1,
+>         "items" : 
+>         { "$ref" : "#/definitions/oscal-complete-oscal-control-common:parameter" } },
+>        "props" : 
+>        { "type" : "array",
+>         "minItems" : 1,
+>         "items" : 
+>         { "$ref" : "#/definitions/oscal-complete-oscal-metadata:property" } },
+>        "links" : 
+>        { "type" : "array",
+>         "minItems" : 1,
+>         "items" : 
+>         { "$ref" : "#/definitions/oscal-complete-oscal-metadata:link" } },
+>        "parts" : 
+>        { "type" : "array",
+>         "minItems" : 1,
+>         "items" : 
+>         { "$ref" : "#/definitions/oscal-complete-oscal-control-common:part" } },
+>        "insert-controls" : 
+>        { "type" : "array",
+>         "minItems" : 1,
+>         "items" : 
+>         { "$ref" : "#/definitions/oscal-complete-oscal-profile:insert-controls" } } },
+>       "required" : 
+>       [ "title" ],
+>       "additionalProperties" : false } ] },
+1202,1252c1914,2007
+<        "properties" : 
+<        { "param-id" : 
+<         { "title" : "Parameter ID",
+<          "description" : "An identifier for the parameter.",
+<          "$ref" : "#/definitions/TokenDatatype" },
+<         "class" : 
+<         { "title" : "Parameter Class",
+<          "description" : "A textual label that provides a characterization of the parameter.",
+<          "$ref" : "#/definitions/TokenDatatype" },
+<         "depends-on" : 
+<         { "title" : "Depends On",
+<          "description" : "**(deprecated)** Another parameter invoking this one. This construct has been deprecated and should not be used.",
+<          "$ref" : "#/definitions/TokenDatatype" },
+<         "props" : 
+<         { "type" : "array",
+<          "minItems" : 1,
+<          "items" : 
+<          { "$ref" : "#/definitions/oscal-complete-oscal-metadata:property" } },
+<         "links" : 
+<         { "type" : "array",
+<          "minItems" : 1,
+<          "items" : 
+<          { "$ref" : "#/definitions/oscal-complete-oscal-metadata:link" } },
+<         "label" : 
+<         { "title" : "Parameter Label",
+<          "description" : "A short, placeholder name for the parameter, which can be used as a substitute for a value if no value is assigned.",
+<          "type" : "string" },
+<         "usage" : 
+<         { "title" : "Parameter Usage Description",
+<          "description" : "Describes the purpose and use of a parameter.",
+<          "type" : "string" },
+<         "constraints" : 
+<         { "type" : "array",
+<          "minItems" : 1,
+<          "items" : 
+<          { "$ref" : "#/definitions/oscal-complete-oscal-control-common:parameter-constraint" } },
+<         "guidelines" : 
+<         { "type" : "array",
+<          "minItems" : 1,
+<          "items" : 
+<          { "$ref" : "#/definitions/oscal-complete-oscal-control-common:parameter-guideline" } },
+<         "values" : 
+<         { "type" : "array",
+<          "minItems" : 1,
+<          "items" : 
+<          { "$ref" : "#/definitions/oscal-complete-oscal-control-common:parameter-value" } },
+<         "select" : 
+<         { "$ref" : "#/definitions/oscal-complete-oscal-control-common:parameter-selection" } },
+<        "required" : 
+<        [ "param-id" ],
+<        "additionalProperties" : false } },
+---
+>        "anyOf" : 
+>        [ 
+>         { "properties" : 
+>          { "param-id" : 
+>           { "title" : "Parameter ID",
+>            "description" : "An identifier for the parameter.",
+>            "$ref" : "#/definitions/TokenDatatype" },
+>           "class" : 
+>           { "title" : "Parameter Class",
+>            "description" : "A textual label that provides a characterization of the parameter.",
+>            "$ref" : "#/definitions/TokenDatatype" },
+>           "depends-on" : 
+>           { "title" : "Depends On",
+>            "description" : "**(deprecated)** Another parameter invoking this one. This construct has been deprecated and should not be used.",
+>            "$ref" : "#/definitions/TokenDatatype" },
+>           "props" : 
+>           { "type" : "array",
+>            "minItems" : 1,
+>            "items" : 
+>            { "$ref" : "#/definitions/oscal-complete-oscal-metadata:property" } },
+>           "links" : 
+>           { "type" : "array",
+>            "minItems" : 1,
+>            "items" : 
+>            { "$ref" : "#/definitions/oscal-complete-oscal-metadata:link" } },
+>           "label" : 
+>           { "title" : "Parameter Label",
+>            "description" : "A short, placeholder name for the parameter, which can be used as a substitute for a value if no value is assigned.",
+>            "$ref" : "#/definitions/MarkupLineDatatype" },
+>           "usage" : 
+>           { "title" : "Parameter Usage Description",
+>            "description" : "Describes the purpose and use of a parameter.",
+>            "$ref" : "#/definitions/MarkupMultilineDatatype" },
+>           "constraints" : 
+>           { "type" : "array",
+>            "minItems" : 1,
+>            "items" : 
+>            { "$ref" : "#/definitions/oscal-complete-oscal-control-common:parameter-constraint" } },
+>           "guidelines" : 
+>           { "type" : "array",
+>            "minItems" : 1,
+>            "items" : 
+>            { "$ref" : "#/definitions/oscal-complete-oscal-control-common:parameter-guideline" } },
+>           "values" : 
+>           { "type" : "array",
+>            "minItems" : 1,
+>            "items" : 
+>            { "$ref" : "#/definitions/oscal-complete-oscal-control-common:parameter-value" } } },
+>          "additionalProperties" : false },
+>         
+>         { "properties" : 
+>          { "param-id" : 
+>           { "title" : "Parameter ID",
+>            "description" : "An identifier for the parameter.",
+>            "$ref" : "#/definitions/TokenDatatype" },
+>           "class" : 
+>           { "title" : "Parameter Class",
+>            "description" : "A textual label that provides a characterization of the parameter.",
+>            "$ref" : "#/definitions/TokenDatatype" },
+>           "depends-on" : 
+>           { "title" : "Depends On",
+>            "description" : "**(deprecated)** Another parameter invoking this one. This construct has been deprecated and should not be used.",
+>            "$ref" : "#/definitions/TokenDatatype" },
+>           "props" : 
+>           { "type" : "array",
+>            "minItems" : 1,
+>            "items" : 
+>            { "$ref" : "#/definitions/oscal-complete-oscal-metadata:property" } },
+>           "links" : 
+>           { "type" : "array",
+>            "minItems" : 1,
+>            "items" : 
+>            { "$ref" : "#/definitions/oscal-complete-oscal-metadata:link" } },
+>           "label" : 
+>           { "title" : "Parameter Label",
+>            "description" : "A short, placeholder name for the parameter, which can be used as a substitute for a value if no value is assigned.",
+>            "$ref" : "#/definitions/MarkupLineDatatype" },
+>           "usage" : 
+>           { "title" : "Parameter Usage Description",
+>            "description" : "Describes the purpose and use of a parameter.",
+>            "$ref" : "#/definitions/MarkupMultilineDatatype" },
+>           "constraints" : 
+>           { "type" : "array",
+>            "minItems" : 1,
+>            "items" : 
+>            { "$ref" : "#/definitions/oscal-complete-oscal-control-common:parameter-constraint" } },
+>           "guidelines" : 
+>           { "type" : "array",
+>            "minItems" : 1,
+>            "items" : 
+>            { "$ref" : "#/definitions/oscal-complete-oscal-control-common:parameter-guideline" } },
+>           "select" : 
+>           { "$ref" : "#/definitions/oscal-complete-oscal-control-common:parameter-selection" } },
+>          "additionalProperties" : false } ] } },
+1302c2057,2059
+<             "$ref" : "#/definitions/TokenDatatype" } },
+---
+>             "$ref" : "#/definitions/URIDatatype" },
+>            "remarks" : 
+>            { "$ref" : "#/definitions/oscal-complete-oscal-metadata:remarks" } },
+1331c2088
+<             "type" : "string" },
+---
+>             "$ref" : "#/definitions/MarkupLineDatatype" },
+1362,1429c2119,2168
+<     "properties" : 
+<     { "order" : 
+<      { "title" : "Order",
+<       "description" : "A designation of how a selection of controls in a profile is to be ordered.",
+<       "allOf" : 
+<       [ 
+<        { "$ref" : "#/definitions/TokenDatatype" },
+<        
+<        { "enum" : 
+<         [ "keep",
+<          "ascending",
+<          "descending" ] } ] },
+<      "include-all" : 
+<      { "$ref" : "#/definitions/oscal-complete-oscal-control-common:include-all" },
+<      "include-controls" : 
+<      { "type" : "array",
+<       "minItems" : 1,
+<       "items" : 
+<       { "$ref" : "#/definitions/oscal-complete-oscal-profile:select-control-by-id" } },
+<      "exclude-controls" : 
+<      { "type" : "array",
+<       "minItems" : 1,
+<       "items" : 
+<       { "$ref" : "#/definitions/oscal-complete-oscal-profile:select-control-by-id" } } },
+<     "additionalProperties" : false },
+<    "oscal-complete-oscal-profile:select-control-by-id" : 
+<    { "title" : "Select Control",
+<     "description" : "Select a control or controls from an imported control set.",
+<     "$id" : "#/definitions/oscal-complete-oscal-profile:select-control-by-id",
+<     "type" : "object",
+<     "properties" : 
+<     { "with-child-controls" : 
+<      { "title" : "Include Contained Controls with Control",
+<       "description" : "When a control is included, whether its child (dependent) controls are also included.",
+<       "allOf" : 
+<       [ 
+<        { "$ref" : "#/definitions/TokenDatatype" },
+<        
+<        { "enum" : 
+<         [ "yes",
+<          "no" ] } ] },
+<      "with-ids" : 
+<      { "type" : "array",
+<       "minItems" : 1,
+<       "items" : 
+<       { "$ref" : "#/definitions/oscal-complete-oscal-profile:with-id" } },
+<      "matching" : 
+<      { "type" : "array",
+<       "minItems" : 1,
+<       "items" : 
+<       { "$ref" : "#/definitions/oscal-complete-oscal-profile:matching" } } },
+<     "additionalProperties" : false },
+<    "oscal-complete-oscal-profile:with-id" : 
+<    { "title" : "Match Controls by Identifier",
+<     "description" : "Selecting a control by its ID given as a literal.",
+<     "$id" : "#/definitions/oscal-complete-oscal-profile:with-id",
+<     "$ref" : "#/definitions/TokenDatatype" },
+<    "oscal-complete-oscal-profile:matching" : 
+<    { "title" : "Match Controls by Pattern",
+<     "description" : "Selecting a set of controls by matching their IDs with a wildcard pattern.",
+<     "$id" : "#/definitions/oscal-complete-oscal-profile:matching",
+<     "type" : "object",
+<     "properties" : 
+<     { "pattern" : 
+<      { "title" : "Pattern",
+<       "description" : "A glob expression matching the IDs of one or more controls to be selected.",
+<       "$ref" : "#/definitions/StringDatatype" } },
+<     "additionalProperties" : false },
+---
+>     "anyOf" : 
+>     [ 
+>      { "properties" : 
+>       { "order" : 
+>        { "title" : "Order",
+>         "description" : "A designation of how a selection of controls in a profile is to be ordered.",
+>         "allOf" : 
+>         [ 
+>          { "$ref" : "#/definitions/TokenDatatype" },
+>          
+>          { "enum" : 
+>           [ "keep",
+>            "ascending",
+>            "descending" ] } ] },
+>        "include-all" : 
+>        { "$ref" : "#/definitions/oscal-complete-oscal-control-common:include-all" },
+>        "exclude-controls" : 
+>        { "type" : "array",
+>         "minItems" : 1,
+>         "items" : 
+>         { "$ref" : "#/definitions/oscal-complete-oscal-control-common:select-control-by-id" } } },
+>       "required" : 
+>       [ "include-all" ],
+>       "additionalProperties" : false },
+>      
+>      { "properties" : 
+>       { "order" : 
+>        { "title" : "Order",
+>         "description" : "A designation of how a selection of controls in a profile is to be ordered.",
+>         "allOf" : 
+>         [ 
+>          { "$ref" : "#/definitions/TokenDatatype" },
+>          
+>          { "enum" : 
+>           [ "keep",
+>            "ascending",
+>            "descending" ] } ] },
+>        "include-controls" : 
+>        { "type" : "array",
+>         "minItems" : 1,
+>         "items" : 
+>         { "$ref" : "#/definitions/oscal-complete-oscal-control-common:select-control-by-id" } },
+>        "exclude-controls" : 
+>        { "type" : "array",
+>         "minItems" : 1,
+>         "items" : 
+>         { "$ref" : "#/definitions/oscal-complete-oscal-control-common:select-control-by-id" } } },
+>       "required" : 
+>       [ "include-controls" ],
+>       "additionalProperties" : false } ] },
+1472c2211,2213
+<       "$ref" : "#/definitions/URIReferenceDatatype" } },
+---
+>       "$ref" : "#/definitions/URIReferenceDatatype" },
+>      "remarks" : 
+>      { "$ref" : "#/definitions/oscal-complete-oscal-metadata:remarks" } },
+1508c2249
+<       "type" : "string" },
+---
+>       "$ref" : "#/definitions/MarkupLineDatatype" },
+1512c2253
+<       "type" : "string" },
+---
+>       "$ref" : "#/definitions/MarkupMultilineDatatype" },
+1516c2257
+<       "type" : "string" },
+---
+>       "$ref" : "#/definitions/MarkupLineDatatype" },
+1567c2308
+<       "type" : "string" },
+---
+>       "$ref" : "#/definitions/MarkupMultilineDatatype" },
+1608c2349
+<       "type" : "string" } },
+---
+>       "$ref" : "#/definitions/MarkupMultilineDatatype" } },
+1630c2371
+<       "type" : "string" },
+---
+>       "$ref" : "#/definitions/MarkupMultilineDatatype" },
+1674c2415
+<       "type" : "string" },
+---
+>       "$ref" : "#/definitions/MarkupMultilineDatatype" },
+1724c2465
+<       "type" : "string" },
+---
+>       "$ref" : "#/definitions/MarkupMultilineDatatype" },
+1782c2523
+<       "type" : "string" },
+---
+>       "$ref" : "#/definitions/MarkupLineDatatype" },
+1786c2527
+<       "type" : "string" },
+---
+>       "$ref" : "#/definitions/MarkupMultilineDatatype" },
+1790c2531
+<       "type" : "string" },
+---
+>       "$ref" : "#/definitions/MarkupLineDatatype" },
+1859c2600
+<       "type" : "string" },
+---
+>       "$ref" : "#/definitions/MarkupLineDatatype" },
+1889c2630,2632
+<          "UDP" ] } ] } },
+---
+>          "UDP" ] } ] },
+>      "remarks" : 
+>      { "$ref" : "#/definitions/oscal-complete-oscal-metadata:remarks" } },
+1928c2671
+<       "type" : "string" },
+---
+>       "$ref" : "#/definitions/MarkupLineDatatype" },
+1936c2679
+<       "type" : "string" },
+---
+>       "$ref" : "#/definitions/MarkupMultilineDatatype" },
+1971c2714
+<       "type" : "string" },
+---
+>       "$ref" : "#/definitions/MarkupLineDatatype" },
+1975c2718
+<       "type" : "string" },
+---
+>       "$ref" : "#/definitions/MarkupMultilineDatatype" },
+2003c2746
+<       "type" : "string" },
+---
+>       "$ref" : "#/definitions/MarkupMultilineDatatype" },
+2094c2837
+<         [ "https://fedramp.gov",
+---
+>         [ "http://fedramp.gov",
+2097c2840,2841
+<          "http://ietf.org/rfc/rfc4122" ] } ] },
+---
+>          "http://ietf.org/rfc/rfc4122",
+>          "http://datatracker.ietf.org/doc/html/rfc4122" ] } ] },
+2170c2914
+<       "type" : "string" },
+---
+>       "$ref" : "#/definitions/MarkupMultilineDatatype" },
+2245c2989
+<          "type" : "string" },
+---
+>          "$ref" : "#/definitions/MarkupLineDatatype" },
+2249c2993
+<          "type" : "string" },
+---
+>          "$ref" : "#/definitions/MarkupMultilineDatatype" },
+2339c3083
+<     "type" : "string" },
+---
+>     "$ref" : "#/definitions/MarkupMultilineDatatype" },
+2401c3145
+<       "type" : "string" },
+---
+>       "$ref" : "#/definitions/MarkupMultilineDatatype" },
+2435c3179
+<       "type" : "string" },
+---
+>       "$ref" : "#/definitions/MarkupMultilineDatatype" },
+2449c3193
+<       "type" : "string" },
+---
+>       "$ref" : "#/definitions/MarkupLineDatatype" },
+2464c3208
+<       "type" : "string" },
+---
+>       "$ref" : "#/definitions/MarkupMultilineDatatype" },
+2494c3238
+<       "type" : "string" },
+---
+>       "$ref" : "#/definitions/MarkupMultilineDatatype" },
+2546c3290
+<          "type" : "string" },
+---
+>          "$ref" : "#/definitions/MarkupLineDatatype" },
+2589,2590c3333
+<     [ "users",
+<      "components" ],
+---
+>     [ "components" ],
+2601c3344
+<       "type" : "string" },
+---
+>       "$ref" : "#/definitions/MarkupMultilineDatatype" },
+2714c3457
+<       "description" : "A machine-oriented identifier reference to the component that is implemeting a given control.",
+---
+>       "description" : "A machine-oriented identifier reference to the component that is implementing a given control.",
+2723c3466
+<       "type" : "string" },
+---
+>       "$ref" : "#/definitions/MarkupMultilineDatatype" },
+2749c3492
+<         "type" : "string" },
+---
+>         "$ref" : "#/definitions/MarkupMultilineDatatype" },
+2775c3518
+<            "type" : "string" },
+---
+>            "$ref" : "#/definitions/MarkupMultilineDatatype" },
+2816c3559
+<            "type" : "string" },
+---
+>            "$ref" : "#/definitions/MarkupMultilineDatatype" },
+2860c3603
+<          "type" : "string" },
+---
+>          "$ref" : "#/definitions/MarkupMultilineDatatype" },
+2899c3642
+<          "type" : "string" },
+---
+>          "$ref" : "#/definitions/MarkupMultilineDatatype" },
+3041c3784
+<       "type" : "string" },
+---
+>       "$ref" : "#/definitions/MarkupMultilineDatatype" },
+3076c3819
+<       "type" : "string" },
+---
+>       "$ref" : "#/definitions/MarkupMultilineDatatype" },
+3108c3851
+<       "type" : "string" },
+---
+>       "$ref" : "#/definitions/MarkupLineDatatype" },
+3112c3855
+<       "type" : "string" },
+---
+>       "$ref" : "#/definitions/MarkupMultilineDatatype" },
+3138c3881
+<          "type" : "string" },
+---
+>          "$ref" : "#/definitions/MarkupLineDatatype" },
+3142c3885
+<          "type" : "string" },
+---
+>          "$ref" : "#/definitions/MarkupMultilineDatatype" },
+3202c3945
+<       "type" : "string" },
+---
+>       "$ref" : "#/definitions/MarkupLineDatatype" },
+3206c3949
+<       "type" : "string" },
+---
+>       "$ref" : "#/definitions/MarkupMultilineDatatype" },
+3221,3227c3964,3967
+<       "properties" : 
+<       { "on-date" : 
+<        { "title" : "On Date Condition",
+<         "description" : "The task is intended to occur on the specified date.",
+<         "type" : "object",
+<         "properties" : 
+<         { "date" : 
+---
+>       "anyOf" : 
+>       [ 
+>        { "properties" : 
+>         { "on-date" : 
+3229,3230c3969,3980
+<           "description" : "The task must occur on the specified date.",
+<           "$ref" : "#/definitions/DateTimeWithTimezoneDatatype" } },
+---
+>           "description" : "The task is intended to occur on the specified date.",
+>           "type" : "object",
+>           "properties" : 
+>           { "date" : 
+>            { "title" : "On Date Condition",
+>             "description" : "The task must occur on the specified date.",
+>             "$ref" : "#/definitions/DateTimeWithTimezoneDatatype" },
+>            "remarks" : 
+>            { "$ref" : "#/definitions/oscal-complete-oscal-metadata:remarks" } },
+>           "required" : 
+>           [ "date" ],
+>           "additionalProperties" : false } },
+3232c3982
+<         [ "date" ],
+---
+>         [ "on-date" ],
+3234,3246c3984,4004
+<        "within-date-range" : 
+<        { "title" : "On Date Range Condition",
+<         "description" : "The task is intended to occur within the specified date range.",
+<         "type" : "object",
+<         "properties" : 
+<         { "start" : 
+<          { "title" : "Start Date Condition",
+<           "description" : "The task must occur on or after the specified date.",
+<           "$ref" : "#/definitions/DateTimeWithTimezoneDatatype" },
+<          "end" : 
+<          { "title" : "End Date Condition",
+<           "description" : "The task must occur on or before the specified date.",
+<           "$ref" : "#/definitions/DateTimeWithTimezoneDatatype" } },
+---
+>        
+>        { "properties" : 
+>         { "within-date-range" : 
+>          { "title" : "On Date Range Condition",
+>           "description" : "The task is intended to occur within the specified date range.",
+>           "type" : "object",
+>           "properties" : 
+>           { "start" : 
+>            { "title" : "Start Date Condition",
+>             "description" : "The task must occur on or after the specified date.",
+>             "$ref" : "#/definitions/DateTimeWithTimezoneDatatype" },
+>            "end" : 
+>            { "title" : "End Date Condition",
+>             "description" : "The task must occur on or before the specified date.",
+>             "$ref" : "#/definitions/DateTimeWithTimezoneDatatype" },
+>            "remarks" : 
+>            { "$ref" : "#/definitions/oscal-complete-oscal-metadata:remarks" } },
+>           "required" : 
+>           [ "start",
+>            "end" ],
+>           "additionalProperties" : false } },
+3248,3249c4006
+<         [ "start",
+<          "end" ],
+---
+>         [ "within-date-range" ],
+3251,3273c4008,4038
+<        "at-frequency" : 
+<        { "title" : "Frequency Condition",
+<         "description" : "The task is intended to occur at the specified frequency.",
+<         "type" : "object",
+<         "properties" : 
+<         { "period" : 
+<          { "title" : "Period",
+<           "description" : "The task must occur after the specified period has elapsed.",
+<           "$ref" : "#/definitions/PositiveIntegerDatatype" },
+<          "unit" : 
+<          { "title" : "Time Unit",
+<           "description" : "The unit of time for the period.",
+<           "allOf" : 
+<           [ 
+<            { "$ref" : "#/definitions/StringDatatype" },
+<            
+<            { "enum" : 
+<             [ "seconds",
+<              "minutes",
+<              "hours",
+<              "days",
+<              "months",
+<              "years" ] } ] } },
+---
+>        
+>        { "properties" : 
+>         { "at-frequency" : 
+>          { "title" : "Frequency Condition",
+>           "description" : "The task is intended to occur at the specified frequency.",
+>           "type" : "object",
+>           "properties" : 
+>           { "period" : 
+>            { "title" : "Period",
+>             "description" : "The task must occur after the specified period has elapsed.",
+>             "$ref" : "#/definitions/PositiveIntegerDatatype" },
+>            "unit" : 
+>            { "title" : "Time Unit",
+>             "description" : "The unit of time for the period.",
+>             "allOf" : 
+>             [ 
+>              { "$ref" : "#/definitions/StringDatatype" },
+>              
+>              { "enum" : 
+>               [ "seconds",
+>                "minutes",
+>                "hours",
+>                "days",
+>                "months",
+>                "years" ] } ] },
+>            "remarks" : 
+>            { "$ref" : "#/definitions/oscal-complete-oscal-metadata:remarks" } },
+>           "required" : 
+>           [ "period",
+>            "unit" ],
+>           "additionalProperties" : false } },
+3275,3278c4040,4041
+<         [ "period",
+<          "unit" ],
+<         "additionalProperties" : false } },
+<       "additionalProperties" : false },
+---
+>         [ "at-frequency" ],
+>         "additionalProperties" : false } ] },
+3365c4128
+<       "type" : "string" },
+---
+>       "$ref" : "#/definitions/MarkupMultilineDatatype" },
+3383,3412c4146,4205
+<        "properties" : 
+<        { "description" : 
+<         { "title" : "Assessed Controls Description",
+<          "description" : "A human-readable description of in-scope controls specified for assessment.",
+<          "type" : "string" },
+<         "props" : 
+<         { "type" : "array",
+<          "minItems" : 1,
+<          "items" : 
+<          { "$ref" : "#/definitions/oscal-complete-oscal-metadata:property" } },
+<         "links" : 
+<         { "type" : "array",
+<          "minItems" : 1,
+<          "items" : 
+<          { "$ref" : "#/definitions/oscal-complete-oscal-metadata:link" } },
+<         "include-all" : 
+<         { "$ref" : "#/definitions/oscal-complete-oscal-control-common:include-all" },
+<         "include-controls" : 
+<         { "type" : "array",
+<          "minItems" : 1,
+<          "items" : 
+<          { "$ref" : "#/definitions/oscal-complete-oscal-assessment-common:select-control-by-id" } },
+<         "exclude-controls" : 
+<         { "type" : "array",
+<          "minItems" : 1,
+<          "items" : 
+<          { "$ref" : "#/definitions/oscal-complete-oscal-assessment-common:select-control-by-id" } },
+<         "remarks" : 
+<         { "$ref" : "#/definitions/oscal-complete-oscal-metadata:remarks" } },
+<        "additionalProperties" : false } },
+---
+>        "anyOf" : 
+>        [ 
+>         { "properties" : 
+>          { "description" : 
+>           { "title" : "Assessed Controls Description",
+>            "description" : "A human-readable description of in-scope controls specified for assessment.",
+>            "$ref" : "#/definitions/MarkupMultilineDatatype" },
+>           "props" : 
+>           { "type" : "array",
+>            "minItems" : 1,
+>            "items" : 
+>            { "$ref" : "#/definitions/oscal-complete-oscal-metadata:property" } },
+>           "links" : 
+>           { "type" : "array",
+>            "minItems" : 1,
+>            "items" : 
+>            { "$ref" : "#/definitions/oscal-complete-oscal-metadata:link" } },
+>           "include-all" : 
+>           { "$ref" : "#/definitions/oscal-complete-oscal-control-common:include-all" },
+>           "exclude-controls" : 
+>           { "type" : "array",
+>            "minItems" : 1,
+>            "items" : 
+>            { "$ref" : "#/definitions/oscal-complete-oscal-assessment-common:select-control-by-id" } },
+>           "remarks" : 
+>           { "$ref" : "#/definitions/oscal-complete-oscal-metadata:remarks" } },
+>          "required" : 
+>          [ "include-all" ],
+>          "additionalProperties" : false },
+>         
+>         { "properties" : 
+>          { "description" : 
+>           { "title" : "Assessed Controls Description",
+>            "description" : "A human-readable description of in-scope controls specified for assessment.",
+>            "$ref" : "#/definitions/MarkupMultilineDatatype" },
+>           "props" : 
+>           { "type" : "array",
+>            "minItems" : 1,
+>            "items" : 
+>            { "$ref" : "#/definitions/oscal-complete-oscal-metadata:property" } },
+>           "links" : 
+>           { "type" : "array",
+>            "minItems" : 1,
+>            "items" : 
+>            { "$ref" : "#/definitions/oscal-complete-oscal-metadata:link" } },
+>           "include-controls" : 
+>           { "type" : "array",
+>            "minItems" : 1,
+>            "items" : 
+>            { "$ref" : "#/definitions/oscal-complete-oscal-assessment-common:select-control-by-id" } },
+>           "exclude-controls" : 
+>           { "type" : "array",
+>            "minItems" : 1,
+>            "items" : 
+>            { "$ref" : "#/definitions/oscal-complete-oscal-assessment-common:select-control-by-id" } },
+>           "remarks" : 
+>           { "$ref" : "#/definitions/oscal-complete-oscal-metadata:remarks" } },
+>          "required" : 
+>          [ "include-controls" ],
+>          "additionalProperties" : false } ] } },
+3420,3449c4213,4272
+<        "properties" : 
+<        { "description" : 
+<         { "title" : "Control Objectives Description",
+<          "description" : "A human-readable description of this collection of control objectives.",
+<          "type" : "string" },
+<         "props" : 
+<         { "type" : "array",
+<          "minItems" : 1,
+<          "items" : 
+<          { "$ref" : "#/definitions/oscal-complete-oscal-metadata:property" } },
+<         "links" : 
+<         { "type" : "array",
+<          "minItems" : 1,
+<          "items" : 
+<          { "$ref" : "#/definitions/oscal-complete-oscal-metadata:link" } },
+<         "include-all" : 
+<         { "$ref" : "#/definitions/oscal-complete-oscal-control-common:include-all" },
+<         "include-objectives" : 
+<         { "type" : "array",
+<          "minItems" : 1,
+<          "items" : 
+<          { "$ref" : "#/definitions/oscal-complete-oscal-assessment-common:select-objective-by-id" } },
+<         "exclude-objectives" : 
+<         { "type" : "array",
+<          "minItems" : 1,
+<          "items" : 
+<          { "$ref" : "#/definitions/oscal-complete-oscal-assessment-common:select-objective-by-id" } },
+<         "remarks" : 
+<         { "$ref" : "#/definitions/oscal-complete-oscal-metadata:remarks" } },
+<        "additionalProperties" : false } },
+---
+>        "anyOf" : 
+>        [ 
+>         { "properties" : 
+>          { "description" : 
+>           { "title" : "Control Objectives Description",
+>            "description" : "A human-readable description of this collection of control objectives.",
+>            "$ref" : "#/definitions/MarkupMultilineDatatype" },
+>           "props" : 
+>           { "type" : "array",
+>            "minItems" : 1,
+>            "items" : 
+>            { "$ref" : "#/definitions/oscal-complete-oscal-metadata:property" } },
+>           "links" : 
+>           { "type" : "array",
+>            "minItems" : 1,
+>            "items" : 
+>            { "$ref" : "#/definitions/oscal-complete-oscal-metadata:link" } },
+>           "include-all" : 
+>           { "$ref" : "#/definitions/oscal-complete-oscal-control-common:include-all" },
+>           "exclude-objectives" : 
+>           { "type" : "array",
+>            "minItems" : 1,
+>            "items" : 
+>            { "$ref" : "#/definitions/oscal-complete-oscal-assessment-common:select-objective-by-id" } },
+>           "remarks" : 
+>           { "$ref" : "#/definitions/oscal-complete-oscal-metadata:remarks" } },
+>          "required" : 
+>          [ "include-all" ],
+>          "additionalProperties" : false },
+>         
+>         { "properties" : 
+>          { "description" : 
+>           { "title" : "Control Objectives Description",
+>            "description" : "A human-readable description of this collection of control objectives.",
+>            "$ref" : "#/definitions/MarkupMultilineDatatype" },
+>           "props" : 
+>           { "type" : "array",
+>            "minItems" : 1,
+>            "items" : 
+>            { "$ref" : "#/definitions/oscal-complete-oscal-metadata:property" } },
+>           "links" : 
+>           { "type" : "array",
+>            "minItems" : 1,
+>            "items" : 
+>            { "$ref" : "#/definitions/oscal-complete-oscal-metadata:link" } },
+>           "include-objectives" : 
+>           { "type" : "array",
+>            "minItems" : 1,
+>            "items" : 
+>            { "$ref" : "#/definitions/oscal-complete-oscal-assessment-common:select-objective-by-id" } },
+>           "exclude-objectives" : 
+>           { "type" : "array",
+>            "minItems" : 1,
+>            "items" : 
+>            { "$ref" : "#/definitions/oscal-complete-oscal-assessment-common:select-objective-by-id" } },
+>           "remarks" : 
+>           { "$ref" : "#/definitions/oscal-complete-oscal-metadata:remarks" } },
+>          "required" : 
+>          [ "include-objectives" ],
+>          "additionalProperties" : false } ] } },
+3457c4280
+<     "description" : "Used to select a control for inclusion/exclusion based on one or more control identifiers. A set of statement identifiers can be used to target the inclusion/exclusion to only specific control statements providing more granularity over the specific statements that are within the asessment scope.",
+---
+>     "description" : "Used to select a control for inclusion/exclusion based on one or more control identifiers. A set of statement identifiers can be used to target the inclusion/exclusion to only specific control statements providing more granularity over the specific statements that are within the assessment scope.",
+3484c4307,4309
+<       "$ref" : "#/definitions/TokenDatatype" } },
+---
+>       "$ref" : "#/definitions/TokenDatatype" },
+>      "remarks" : 
+>      { "$ref" : "#/definitions/oscal-complete-oscal-metadata:remarks" } },
+3501c4326
+<       "type" : "string" },
+---
+>       "$ref" : "#/definitions/MarkupMultilineDatatype" },
+3513c4338,4340
+<          "$ref" : "#/definitions/UUIDDatatype" } },
+---
+>          "$ref" : "#/definitions/UUIDDatatype" },
+>         "remarks" : 
+>         { "$ref" : "#/definitions/oscal-complete-oscal-metadata:remarks" } },
+3538,3582c4365,4450
+<     "properties" : 
+<     { "type" : 
+<      { "title" : "Subject Type",
+<       "description" : "Indicates the type of assessment subject, such as a component, inventory, item, location, or party represented by this selection statement.",
+<       "anyOf" : 
+<       [ 
+<        { "$ref" : "#/definitions/TokenDatatype" },
+<        
+<        { "enum" : 
+<         [ "component",
+<          "inventory-item",
+<          "location",
+<          "party",
+<          "user" ] } ] },
+<      "description" : 
+<      { "title" : "Include Subjects Description",
+<       "description" : "A human-readable description of the collection of subjects being included in this assessment.",
+<       "type" : "string" },
+<      "props" : 
+<      { "type" : "array",
+<       "minItems" : 1,
+<       "items" : 
+<       { "$ref" : "#/definitions/oscal-complete-oscal-metadata:property" } },
+<      "links" : 
+<      { "type" : "array",
+<       "minItems" : 1,
+<       "items" : 
+<       { "$ref" : "#/definitions/oscal-complete-oscal-metadata:link" } },
+<      "include-all" : 
+<      { "$ref" : "#/definitions/oscal-complete-oscal-control-common:include-all" },
+<      "include-subjects" : 
+<      { "type" : "array",
+<       "minItems" : 1,
+<       "items" : 
+<       { "$ref" : "#/definitions/oscal-complete-oscal-assessment-common:select-subject-by-id" } },
+<      "exclude-subjects" : 
+<      { "type" : "array",
+<       "minItems" : 1,
+<       "items" : 
+<       { "$ref" : "#/definitions/oscal-complete-oscal-assessment-common:select-subject-by-id" } },
+<      "remarks" : 
+<      { "$ref" : "#/definitions/oscal-complete-oscal-metadata:remarks" } },
+<     "required" : 
+<     [ "type" ],
+<     "additionalProperties" : false },
+---
+>     "anyOf" : 
+>     [ 
+>      { "properties" : 
+>       { "type" : 
+>        { "title" : "Subject Type",
+>         "description" : "Indicates the type of assessment subject, such as a component, inventory, item, location, or party represented by this selection statement.",
+>         "anyOf" : 
+>         [ 
+>          { "$ref" : "#/definitions/TokenDatatype" },
+>          
+>          { "enum" : 
+>           [ "component",
+>            "inventory-item",
+>            "location",
+>            "party",
+>            "user" ] } ] },
+>        "description" : 
+>        { "title" : "Include Subjects Description",
+>         "description" : "A human-readable description of the collection of subjects being included in this assessment.",
+>         "$ref" : "#/definitions/MarkupMultilineDatatype" },
+>        "props" : 
+>        { "type" : "array",
+>         "minItems" : 1,
+>         "items" : 
+>         { "$ref" : "#/definitions/oscal-complete-oscal-metadata:property" } },
+>        "links" : 
+>        { "type" : "array",
+>         "minItems" : 1,
+>         "items" : 
+>         { "$ref" : "#/definitions/oscal-complete-oscal-metadata:link" } },
+>        "include-all" : 
+>        { "$ref" : "#/definitions/oscal-complete-oscal-control-common:include-all" },
+>        "exclude-subjects" : 
+>        { "type" : "array",
+>         "minItems" : 1,
+>         "items" : 
+>         { "$ref" : "#/definitions/oscal-complete-oscal-assessment-common:select-subject-by-id" } },
+>        "remarks" : 
+>        { "$ref" : "#/definitions/oscal-complete-oscal-metadata:remarks" } },
+>       "required" : 
+>       [ "include-all" ],
+>       "additionalProperties" : false },
+>      
+>      { "properties" : 
+>       { "type" : 
+>        { "title" : "Subject Type",
+>         "description" : "Indicates the type of assessment subject, such as a component, inventory, item, location, or party represented by this selection statement.",
+>         "anyOf" : 
+>         [ 
+>          { "$ref" : "#/definitions/TokenDatatype" },
+>          
+>          { "enum" : 
+>           [ "component",
+>            "inventory-item",
+>            "location",
+>            "party",
+>            "user" ] } ] },
+>        "description" : 
+>        { "title" : "Include Subjects Description",
+>         "description" : "A human-readable description of the collection of subjects being included in this assessment.",
+>         "$ref" : "#/definitions/MarkupMultilineDatatype" },
+>        "props" : 
+>        { "type" : "array",
+>         "minItems" : 1,
+>         "items" : 
+>         { "$ref" : "#/definitions/oscal-complete-oscal-metadata:property" } },
+>        "links" : 
+>        { "type" : "array",
+>         "minItems" : 1,
+>         "items" : 
+>         { "$ref" : "#/definitions/oscal-complete-oscal-metadata:link" } },
+>        "include-subjects" : 
+>        { "type" : "array",
+>         "minItems" : 1,
+>         "items" : 
+>         { "$ref" : "#/definitions/oscal-complete-oscal-assessment-common:select-subject-by-id" } },
+>        "exclude-subjects" : 
+>        { "type" : "array",
+>         "minItems" : 1,
+>         "items" : 
+>         { "$ref" : "#/definitions/oscal-complete-oscal-assessment-common:select-subject-by-id" } },
+>        "remarks" : 
+>        { "$ref" : "#/definitions/oscal-complete-oscal-metadata:remarks" } },
+>       "required" : 
+>       [ "include-subjects" ],
+>       "additionalProperties" : false } ] },
+3650c4518
+<       "type" : "string" },
+---
+>       "$ref" : "#/definitions/MarkupLineDatatype" },
+3693c4561
+<          "type" : "string" },
+---
+>          "$ref" : "#/definitions/MarkupLineDatatype" },
+3767c4635
+<       "type" : "string" },
+---
+>       "$ref" : "#/definitions/MarkupLineDatatype" },
+3771c4639
+<       "type" : "string" },
+---
+>       "$ref" : "#/definitions/MarkupMultilineDatatype" },
+3835c4703
+<       "type" : "string" },
+---
+>       "$ref" : "#/definitions/MarkupLineDatatype" },
+3839c4707
+<       "type" : "string" },
+---
+>       "$ref" : "#/definitions/MarkupMultilineDatatype" },
+3865,3875c4733
+<       { "title" : "Related Observation",
+<        "description" : "Relates the finding to a set of referenced observations that were used to determine the finding.",
+<        "type" : "object",
+<        "properties" : 
+<        { "observation-uuid" : 
+<         { "title" : "Observation Universally Unique Identifier Reference",
+<          "description" : "A machine-oriented identifier reference to an observation defined in the list of observations.",
+<          "$ref" : "#/definitions/UUIDDatatype" } },
+<        "required" : 
+<        [ "observation-uuid" ],
+<        "additionalProperties" : false } },
+---
+>       { "$ref" : "#/definitions/oscal-complete-oscal-assessment-common:related-observation" } },
+3880,3890c4738
+<       { "title" : "Associated Risk",
+<        "description" : "Relates the finding to a set of referenced risks that were used to determine the finding.",
+<        "type" : "object",
+<        "properties" : 
+<        { "risk-uuid" : 
+<         { "title" : "Risk Universally Unique Identifier Reference",
+<          "description" : "A machine-oriented identifier reference to a risk defined in the list of risks.",
+<          "$ref" : "#/definitions/UUIDDatatype" } },
+<        "required" : 
+<        [ "risk-uuid" ],
+<        "additionalProperties" : false } },
+---
+>       { "$ref" : "#/definitions/oscal-complete-oscal-assessment-common:associated-risk" } },
+3898a4747,4776
+>    "oscal-complete-oscal-assessment-common:related-observation" : 
+>    { "title" : "Related Observation",
+>     "description" : "Relates the identified element to a set of referenced observations that were used to support its determination.",
+>     "$id" : "#/definitions/oscal-complete-oscal-assessment-common:related-observation",
+>     "type" : "object",
+>     "properties" : 
+>     { "observation-uuid" : 
+>      { "title" : "Observation Universally Unique Identifier Reference",
+>       "description" : "A machine-oriented identifier reference to an observation defined in the list of observations.",
+>       "$ref" : "#/definitions/UUIDDatatype" },
+>      "remarks" : 
+>      { "$ref" : "#/definitions/oscal-complete-oscal-metadata:remarks" } },
+>     "required" : 
+>     [ "observation-uuid" ],
+>     "additionalProperties" : false },
+>    "oscal-complete-oscal-assessment-common:associated-risk" : 
+>    { "title" : "Associated Risk",
+>     "description" : "Relates the finding to a set of referenced risks that were used to determine the finding.",
+>     "$id" : "#/definitions/oscal-complete-oscal-assessment-common:associated-risk",
+>     "type" : "object",
+>     "properties" : 
+>     { "risk-uuid" : 
+>      { "title" : "Risk Universally Unique Identifier Reference",
+>       "description" : "A machine-oriented identifier reference to a risk defined in the list of risks.",
+>       "$ref" : "#/definitions/UUIDDatatype" },
+>      "remarks" : 
+>      { "$ref" : "#/definitions/oscal-complete-oscal-metadata:remarks" } },
+>     "required" : 
+>     [ "risk-uuid" ],
+>     "additionalProperties" : false },
+3907c4785
+<       "description" : "A machine-oriented, globally unique identifier with cross-instance scope that can be used to reference this observation elsewhere in this or other OSCAL instances. The locally defined UUID of the observation can be used to reference the data item locally or globally (e.g., in an imorted OSCAL instance). This UUID should be assigned per-subject, which means it should be consistently used to identify the same subject across revisions of the document.",
+---
+>       "description" : "A machine-oriented, globally unique identifier with cross-instance scope that can be used to reference this observation elsewhere in this or other OSCAL instances. The locally defined UUID of the observation can be used to reference the data item locally or globally (e.g., in an imported OSCAL instance). This UUID should be assigned per-subject, which means it should be consistently used to identify the same subject across revisions of the document.",
+3912c4790
+<       "type" : "string" },
+---
+>       "$ref" : "#/definitions/MarkupLineDatatype" },
+3916c4794
+<       "type" : "string" },
+---
+>       "$ref" : "#/definitions/MarkupMultilineDatatype" },
+3956a4835
+>           "discovery",
+3983c4862
+<          "type" : "string" },
+---
+>          "$ref" : "#/definitions/MarkupMultilineDatatype" },
+4105c4984
+<       "description" : "Used to detail assessment subjects that were identfied by this task.",
+---
+>       "description" : "Used to detail assessment subjects that were identified by this task.",
+4165c5044
+<       "type" : "string" },
+---
+>       "$ref" : "#/definitions/MarkupLineDatatype" },
+4169c5048
+<       "type" : "string" },
+---
+>       "$ref" : "#/definitions/MarkupMultilineDatatype" },
+4173c5052
+<       "type" : "string" },
+---
+>       "$ref" : "#/definitions/MarkupMultilineDatatype" },
+4220c5099
+<          "type" : "string" },
+---
+>          "$ref" : "#/definitions/MarkupMultilineDatatype" },
+4269c5148
+<            "type" : "string" },
+---
+>            "$ref" : "#/definitions/MarkupLineDatatype" },
+4273c5152
+<            "type" : "string" },
+---
+>            "$ref" : "#/definitions/MarkupMultilineDatatype" },
+4344,4354c5223
+<       { "title" : "Related Observation",
+<        "description" : "Relates the finding to a set of referenced observations that were used to determine the finding.",
+<        "type" : "object",
+<        "properties" : 
+<        { "observation-uuid" : 
+<         { "title" : "Observation Universally Unique Identifier Reference",
+<          "description" : "A machine-oriented identifier reference to an observation defined in the list of observations.",
+<          "$ref" : "#/definitions/UUIDDatatype" } },
+<        "required" : 
+<        [ "observation-uuid" ],
+<        "additionalProperties" : false } } },
+---
+>       { "$ref" : "#/definitions/oscal-complete-oscal-assessment-common:related-observation" } } },
+4375c5244,5246
+<       "$ref" : "#/definitions/TokenDatatype" } },
+---
+>       "$ref" : "#/definitions/TokenDatatype" },
+>      "remarks" : 
+>      { "$ref" : "#/definitions/oscal-complete-oscal-metadata:remarks" } },
+4490c5361
+<       "type" : "string" },
+---
+>       "$ref" : "#/definitions/MarkupLineDatatype" },
+4494c5365
+<       "type" : "string" },
+---
+>       "$ref" : "#/definitions/MarkupMultilineDatatype" },
+4530c5401
+<          "type" : "string" },
+---
+>          "$ref" : "#/definitions/MarkupLineDatatype" },
+4534c5405
+<          "type" : "string" },
+---
+>          "$ref" : "#/definitions/MarkupMultilineDatatype" },
+4596c5467
+<       "type" : "string" },
+---
+>       "$ref" : "#/definitions/MarkupLineDatatype" },
+4605c5476
+<       "type" : "string" },
+---
+>       "$ref" : "#/definitions/MarkupMultilineDatatype" },
+4677c5548
+<       "type" : "string" },
+---
+>       "$ref" : "#/definitions/MarkupLineDatatype" },
+4681c5552
+<       "type" : "string" },
+---
+>       "$ref" : "#/definitions/MarkupMultilineDatatype" },
+4771c5642
+<            "type" : "string" },
+---
+>            "$ref" : "#/definitions/MarkupLineDatatype" },
+4775c5646
+<            "type" : "string" },
+---
+>            "$ref" : "#/definitions/MarkupMultilineDatatype" },
+4931c5802
+<       "type" : "string" },
+---
+>       "$ref" : "#/definitions/MarkupLineDatatype" },
+4935c5806
+<       "type" : "string" },
+---
+>       "$ref" : "#/definitions/MarkupMultilineDatatype" },
+4973c5844,5846
+<          "$ref" : "#/definitions/UUIDDatatype" } },
+---
+>          "$ref" : "#/definitions/UUIDDatatype" },
+>         "remarks" : 
+>         { "$ref" : "#/definitions/oscal-complete-oscal-metadata:remarks" } },
+4981,4991c5854
+<       { "title" : "Related Observation",
+<        "description" : "Relates the poam-item to a set of referenced observations that were used to determine the finding.",
+<        "type" : "object",
+<        "properties" : 
+<        { "observation-uuid" : 
+<         { "title" : "Observation Universally Unique Identifier Reference",
+<          "description" : "A machine-oriented identifier reference to an observation defined in the list of observations.",
+<          "$ref" : "#/definitions/UUIDDatatype" } },
+<        "required" : 
+<        [ "observation-uuid" ],
+<        "additionalProperties" : false } },
+---
+>       { "$ref" : "#/definitions/oscal-complete-oscal-assessment-common:related-observation" } },
+4996,5006c5859
+<       { "title" : "Associated Risk",
+<        "description" : "Relates the finding to a set of referenced risks that were used to determine the finding.",
+<        "type" : "object",
+<        "properties" : 
+<        { "risk-uuid" : 
+<         { "title" : "Risk Universally Unique Identifier Reference",
+<          "description" : "A machine-oriented identifier reference to a risk defined in the list of risks.",
+<          "$ref" : "#/definitions/UUIDDatatype" } },
+<        "required" : 
+<        [ "risk-uuid" ],
+<        "additionalProperties" : false } },
+---
+>       { "$ref" : "#/definitions/oscal-complete-oscal-assessment-common:associated-risk" } },
+5029a5883,5886
+>    "DecimalDatatype" : 
+>    { "description" : "A real number expressed using a whole and optional fractional part separated by a period.",
+>     "type" : "number",
+>     "pattern" : "^(\\+|-)?([0-9]+(\\.[0-9]*)?|\\.[0-9]+)$" },
+5041a5899,5905
+>    "MarkupLineDatatype" : 
+>    { "description" : "A single line of Markdown content conformant to the Commonmark specification.",
+>     "type" : "string",
+>     "pattern" : "^[^\n]+$" },
+>    "MarkupMultilineDatatype" : 
+>    { "description" : "A multiple lines of Markdown content conformant to the Commonmark specification.",
+>     "type" : "string" },
+5087a5952,5960
+>     "additionalProperties" : false },
+>    
+>    { "properties" : 
+>     { "$schema" : 
+>      { "$ref" : "#/definitions/json-schema-directive" },
+>      "mapping-collection" : 
+>      { "$ref" : "#/definitions/oscal-complete-oscal-mapping:mapping-collection" } },
+>     "required" : 
+>     [ "mapping-collection" ],

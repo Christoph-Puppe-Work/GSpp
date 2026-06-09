@@ -1,0 +1,1014 @@
+{
+  "profile": {
+    "uuid": "61c3a774-d269-56a9-8a7b-6d49356d6ae4",
+    "metadata": {
+      "title": "Entwicklung Prozess Profil",
+      "last-modified": "2026-06-04T14:33:53.623053+00:00",
+      "version": "0.0.1",
+      "oscal-version": "1.2.2"
+    },
+    "imports": [
+      {
+        "href": "https://raw.githubusercontent.com/BSI-Bund/Stand-der-Technik-Bibliothek/refs/heads/main/Anwenderkataloge/Grundschutz%2B%2B/Grundschutz%2B%2B-catalog.json",
+        "include-controls": [
+          {
+            "with-ids": [
+              "DEV.2.1",
+              "DEV.2.4",
+              "DEV.6.1",
+              "DEV.7.1"
+            ]
+          }
+        ]
+      }
+    ],
+    "modify": {
+      "alters": [
+        {
+          "control-id": "DEV.2.1",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "DEV.2.1_stm",
+              "parts": [
+                {
+                  "id": "DEV.2.1-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Risk Treatment",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    }
+                  ],
+                  "prose": "Sicherheitsaspekte werden vereinzelt in der Architekturplanung ber&uuml;cksichtigt.",
+                  "parts": [
+                    {
+                      "id": "DEV.2.1-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Sicherheit wird h&auml;ufig erst nach Abschluss des Designs betrachtet."
+                    },
+                    {
+                      "id": "DEV.2.1-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Pr&uuml;fung von Projektdokumenten auf sporadische Sicherheitsvorgaben."
+                    }
+                  ]
+                },
+                {
+                  "id": "DEV.2.1-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Risk Treatment",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    }
+                  ],
+                  "prose": "Es existieren grundlegende, manuell angewandte Sicherheitsvorgaben f&uuml;r Architekturen.",
+                  "parts": [
+                    {
+                      "id": "DEV.2.1-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Checklisten werden zur manuellen Pr&uuml;fung von Standardkomponenten genutzt."
+                    },
+                    {
+                      "id": "DEV.2.1-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Einsichtnahme in Architektur-Checklisten und deren Anwendungsprotokolle."
+                    }
+                  ]
+                },
+                {
+                  "id": "DEV.2.1-m3_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Risk Treatment",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m3"
+                    }
+                  ],
+                  "prose": "Entwicklung SOLLTE die Architektur nach dem Prinzip \"Security by Design\" verankern.",
+                  "parts": [
+                    {
+                      "id": "DEV.2.1-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Die Architekturvorgaben m&uuml;ssen sicherstellen, dass Sicherheitsanforderungen von Beginn an integriert sind."
+                    },
+                    {
+                      "id": "DEV.2.1-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Pr&uuml;fen Sie die Design-Dokumente auf die Integration von Security-by-Design-Prinzipien."
+                    }
+                  ]
+                },
+                {
+                  "id": "DEV.2.1-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Risk Treatment",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    }
+                  ],
+                  "prose": "Ein systematisches Threat Modeling ist fester Bestandteil jeder Architekturphase.",
+                  "parts": [
+                    {
+                      "id": "DEV.2.1-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Gefahrenmodelle (z.B. STRIDE) werden proaktiv f&uuml;r neue Features erstellt."
+                    },
+                    {
+                      "id": "DEV.2.1-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Review von Threat-Modeling-Reports; Toolcheck: Vorhandensein von OPA-Regeln."
+                    }
+                  ]
+                },
+                {
+                  "id": "DEV.2.1-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Risk Treatment",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    }
+                  ],
+                  "prose": "Automatisierte Validierung der Architektur gegen Compliance-as-Code-Vorgaben.",
+                  "parts": [
+                    {
+                      "id": "DEV.2.1-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Check: `terraform plan` gegen Sentinel oder OPA-Policies f&uuml;r automatische Compliance-Pr&uuml;fung."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "control-id": "DEV.2.4",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "DEV.2.4_stm",
+              "parts": [
+                {
+                  "id": "DEV.2.4-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Technical",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    }
+                  ],
+                  "prose": "Schreibzugriff auf Quellcode ist nur bei einzelnen kritischen Repositories eingeschr&auml;nkt.",
+                  "parts": [
+                    {
+                      "id": "DEV.2.4-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Die Verwaltung erfolgt ad-hoc ohne zentrales Rollenkonzept."
+                    },
+                    {
+                      "id": "DEV.2.4-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Stichprobenartige Pr&uuml;fung der Repository-Berechtigungen."
+                    }
+                  ]
+                },
+                {
+                  "id": "DEV.2.4-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Technical",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    }
+                  ],
+                  "prose": "Schreibzugriffe werden auf Gruppenebene manuell in der Versionsverwaltung verwaltet.",
+                  "parts": [
+                    {
+                      "id": "DEV.2.4-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Nutzung von Standard-Berechtigungsstufen innerhalb der Plattform."
+                    },
+                    {
+                      "id": "DEV.2.4-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Pr&uuml;fung der Gruppenmitgliedschaften in der Quellcodeverwaltung (z.B. Git)."
+                    }
+                  ]
+                },
+                {
+                  "id": "DEV.2.4-m3_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Technical",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m3"
+                    }
+                  ],
+                  "prose": "Entwicklung SOLLTE den schreibenden Zugriff auf Quellcode einschränken.",
+                  "parts": [
+                    {
+                      "id": "DEV.2.4-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Zugriffsberechtigungen m&uuml;ssen so konfiguriert sein, dass nur berechtigte Personen Code &auml;ndern k&ouml;nnen."
+                    },
+                    {
+                      "id": "DEV.2.4-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Verifizieren Sie die Benutzerberechtigungen im Repository-Management-System."
+                    }
+                  ]
+                },
+                {
+                  "id": "DEV.2.4-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Technical",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    }
+                  ],
+                  "prose": "Erzwungene Branch-Protection-Rules und obligatorische Code-Reviews f&uuml;r alle Commits.",
+                  "parts": [
+                    {
+                      "id": "DEV.2.4-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Pull-Requests erfordern mindestens zwei unabh&auml;ngige Freigaben."
+                    },
+                    {
+                      "id": "DEV.2.4-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Check: `gh repo view --json branchProtectionRules` f&uuml;r aktivierte Schutzregeln."
+                    }
+                  ]
+                },
+                {
+                  "id": "DEV.2.4-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Technical",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    }
+                  ],
+                  "prose": "Just-in-Time-Zugriffskontrolle und Hardware-Token-Pflicht f&uuml;r Schreibzugriffe.",
+                  "parts": [
+                    {
+                      "id": "DEV.2.4-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Pr&uuml;fung der MFA-Logs und JIT-Berechtigungsanfragen im IdP-Audit-Log."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "control-id": "DEV.6.1",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "DEV.6.1_stm",
+              "parts": [
+                {
+                  "id": "DEV.6.1-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    }
+                  ],
+                  "prose": "Freigaben erfolgen m&uuml;ndlich oder informell ohne strukturierte Dokumentation.",
+                  "parts": [
+                    {
+                      "id": "DEV.6.1-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Release-Entscheidungen basieren auf individueller Einsch&auml;tzung."
+                    },
+                    {
+                      "id": "DEV.6.1-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Abfrage von Release-Best&auml;tigungen in Kommunikationskan&auml;len."
+                    }
+                  ]
+                },
+                {
+                  "id": "DEV.6.1-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    }
+                  ],
+                  "prose": "Es existiert ein dokumentierter, manueller Freigabeprozess f&uuml;r Software&auml;nderungen.",
+                  "parts": [
+                    {
+                      "id": "DEV.6.1-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Freigaben werden in einem Change-Management-Ticket festgehalten."
+                    },
+                    {
+                      "id": "DEV.6.1-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Pr&uuml;fung der Release-Tickets auf Vollst&auml;ndigkeit und Unterschriften."
+                    }
+                  ]
+                },
+                {
+                  "id": "DEV.6.1-m3_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m3"
+                    }
+                  ],
+                  "prose": "Entwicklung SOLLTE die Freigabe zur Nutzung im Einklang mit den entsprechenden Verfahren und Regelungen für Änderungen und Tests autorisieren.",
+                  "parts": [
+                    {
+                      "id": "DEV.6.1-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Jede Freigabe muss den definierten Test- und &Auml;nderungsprozessen entsprechen."
+                    },
+                    {
+                      "id": "DEV.6.1-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Review der Freigabeprotokolle und Abgleich mit den Testberichten."
+                    }
+                  ]
+                },
+                {
+                  "id": "DEV.6.1-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    }
+                  ],
+                  "prose": "Automatisierte CI/CD-Gates blockieren Releases bei unzureichenden Testergebnissen.",
+                  "parts": [
+                    {
+                      "id": "DEV.6.1-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Unit- und Integrationstests m&uuml;ssen Mindest-Coverage-Werte erreichen."
+                    },
+                    {
+                      "id": "DEV.6.1-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Check der Pipeline-Konfiguration auf \"Fail on Test Failure\" und Coverage-Schwellenwerte."
+                    }
+                  ]
+                },
+                {
+                  "id": "DEV.6.1-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Operational",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Operation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    }
+                  ],
+                  "prose": "Binary Authorization und automatische Compliance-Attestierungen vor dem Deployment.",
+                  "parts": [
+                    {
+                      "id": "DEV.6.1-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Pr&uuml;fung der Kritis-Signaturen (z.B. Sigstore/Cosign) auf den freigegebenen Artefakten."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "control-id": "DEV.7.1",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "DEV.7.1_stm",
+              "parts": [
+                {
+                  "id": "DEV.7.1-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Technical",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    }
+                  ],
+                  "prose": "Bereitstellung erfolgt manuell ohne standardisierte Skripte.",
+                  "parts": [
+                    {
+                      "id": "DEV.7.1-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Deployment-Schritte werden ad-hoc durch Administratoren ausgef&uuml;hrt."
+                    },
+                    {
+                      "id": "DEV.7.1-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Pr&uuml;fung der manuellen Deployment-Anweisungen (Readmes)."
+                    }
+                  ]
+                },
+                {
+                  "id": "DEV.7.1-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Technical",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    }
+                  ],
+                  "prose": "Skriptbasierte Bereitstellung (z.B. Bash) f&uuml;r standardisierte Umgebungen.",
+                  "parts": [
+                    {
+                      "id": "DEV.7.1-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Grundlegende Automatisierung der Kopier- und Konfigurationsvorg&auml;nge."
+                    },
+                    {
+                      "id": "DEV.7.1-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Durchsicht der Deployment-Skripte auf Fehlerbehandlung und Logausgabe."
+                    }
+                  ]
+                },
+                {
+                  "id": "DEV.7.1-m3_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Technical",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m3"
+                    }
+                  ],
+                  "prose": "Entwicklung SOLLTE die Bereitstellung im Einklang mit den entsprechenden Verfahren und Regelungen für Änderungen und Tests verankern.",
+                  "parts": [
+                    {
+                      "id": "DEV.7.1-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Der Deployment-Prozess muss die Integrit&auml;t der Software w&auml;hrend der Auslieferung sicherstellen."
+                    },
+                    {
+                      "id": "DEV.7.1-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Pr&uuml;fung der Dokumentation des Deployment-Prozesses auf Einhaltung der Testvorgaben."
+                    }
+                  ]
+                },
+                {
+                  "id": "DEV.7.1-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Technical",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    }
+                  ],
+                  "prose": "Vollst&auml;ndig automatisierte CI/CD-Pipelines mit integrierten Sicherheitschecks.",
+                  "parts": [
+                    {
+                      "id": "DEV.7.1-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "SAST und DAST sind integraler Bestandteil des Deployment-Workflow."
+                    },
+                    {
+                      "id": "DEV.7.1-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Check der Jenkinsfile/YAML-Konfiguration auf integrierte Security-Scanner."
+                    }
+                  ]
+                },
+                {
+                  "id": "DEV.7.1-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Technical",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Implementation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    }
+                  ],
+                  "prose": "Immutable Infrastructure mit automatisiertem Drift-Detection und Self-Healing.",
+                  "parts": [
+                    {
+                      "id": "DEV.7.1-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Abfrage von Kubernetes/Flux-Status auf Reconciliation-Errors und Drift-Metriken."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

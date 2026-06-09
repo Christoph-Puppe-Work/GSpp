@@ -210,6 +210,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     });
     loadAICfg();
     loadCatalog();
+    loadED23Map();
     tryAutoRestore();
 });
 
@@ -721,6 +722,7 @@ function renderControls(){
                 </div>
                 <div class="ctrl-detail px-3 border-t border-slate-700/50" id="cbd-${rk}">
                     ${ci.prose?`<div class="text-xs text-slate-400 mb-2 leading-relaxed bg-slate-800/60 p-2 rounded border-l-2 border-slate-600">${esc(ci.prose).substring(0,600)}${ci.prose.length>600?'…':''}</div>`:''}
+                    <div class="mb-2"><button onclick="event.stopPropagation();showED23('${cid}','${rk}')" class="text-xs font-semibold text-cyan-300 bg-slate-800 border border-slate-600 rounded px-2 py-1 hover:bg-slate-700">📑 Zeige BSI ED23 Anforderungen</button><div id="ed23-${rk}" class="hidden mt-2 bg-slate-800/60 p-2 rounded border-l-2 border-cyan-700"></div></div>
                     ${sspBlock}
                     ${info.defDesc?`<div class="text-xs text-cyan-200/70 mb-2 leading-relaxed bg-cyan-950/30 p-2 rounded border-l-2 border-cyan-800"><span class="text-[10px] text-cyan-500 font-bold uppercase">Komp.-Def.:</span> ${esc(info.defDesc).substring(0,500)}${(info.defDesc||'').length>500?'…':''}</div>`:''}
                     ${(info.defProps||[]).length?`<div class="mb-2 flex flex-wrap gap-1">${(info.defProps||[]).map(p=>`<span class="text-[10px] bg-indigo-950 text-indigo-300 px-2 py-0.5 rounded-full border border-indigo-800">${esc(p.name)}: ${esc(p.value)}</span>`).join('')}</div>`:''}
@@ -822,7 +824,7 @@ function exportAP(){
     const ts=new Date().toISOString(),au=crypto.randomUUID();const cids=[...S.allCids].filter(c=>!S.excluded.has(c)).sort();
     const byM={};cids.forEach(c=>{(S.methods.get(c)||new Set(['EXAMINE'])).forEach(m=>{if(!byM[m])byM[m]={uuid:crypto.randomUUID(),cids:[]};byM[m].cids.push(c)})});
     const acts=Object.entries(byM).map(([m,a])=>({uuid:a.uuid,title:`${m}-Prüfung`,description:`${m} für ${a.cids.length} Controls.`,props:[{name:"method",ns:"http://csrc.nist.gov/ns/oscal",value:m}],"related-controls":{"control-selections":[{"include-controls":a.cids.map(c=>({"control-id":c}))}]}}));
-    const ap={"assessment-plan":{uuid:crypto.randomUUID(),metadata:{title:S.meta.title||'AP',version:S.meta.version||'1.0.0',"last-modified":ts,"oscal-version":"1.1.3",roles:[{id:"assessor",title:"Assessor"},{id:"system-owner",title:"System Owner"}]},"import-ssp":{href:S.sspFilename},"reviewed-controls":{"control-selections":[{"include-controls":cids.map(c=>({"control-id":c}))}]}}};
+    const ap={"assessment-plan":{uuid:crypto.randomUUID(),metadata:{title:S.meta.title||'AP',version:S.meta.version||'1.0.0',"last-modified":ts,"oscal-version":"1.2.2",roles:[{id:"assessor",title:"Assessor"},{id:"system-owner",title:"System Owner"}]},"import-ssp":{href:S.sspFilename},"reviewed-controls":{"control-selections":[{"include-controls":cids.map(c=>({"control-id":c}))}]}}};
     if(S.meta.desc)ap["assessment-plan"].metadata.remarks=S.meta.desc;
     if(S.assessor.name){ap["assessment-plan"].metadata.parties=[{uuid:au,type:S.assessor.type,name:S.assessor.name}];if(S.assessor.email)ap["assessment-plan"].metadata.parties[0]["email-addresses"]=[S.assessor.email];ap["assessment-plan"].metadata["responsible-parties"]=[{"role-id":"assessor","party-uuids":[au]}]}
     if(acts.length)ap["assessment-plan"]["local-definitions"]={activities:acts};
@@ -916,11 +918,23 @@ function exportAR(){
     });
 
     if(!fin.length)return alert('Keine bewerteten Controls.');
-    const ar={"assessment-results":{uuid:crypto.randomUUID(),metadata:{title:`${sn().replace(/_/g,' ')} - Assessment Results`,version:S.meta.version||'1.0.0',"last-modified":ts,"oscal-version":"1.1.3"},"import-ap":{href:`${sn()}_AP.json`},results:[{uuid:crypto.randomUUID(),title:"Assessment-Ergebnis",description:'Ergebnisse',start:S.dateStart?`${S.dateStart}T00:00:00Z`:ts,end:S.dateEnd?`${S.dateEnd}T23:59:59Z`:ts,"reviewed-controls":{"control-selections":[{"include-controls":cids.map(c=>({"control-id":c}))}]},...(obs.length?{observations:obs}:{}),findings:fin,...(rsk.length?{risks:rsk}:{})}]}};
+    const ar={"assessment-results":{uuid:crypto.randomUUID(),metadata:{title:`${sn().replace(/_/g,' ')} - Assessment Results`,version:S.meta.version||'1.0.0',"last-modified":ts,"oscal-version":"1.2.2"},"import-ap":{href:`${sn()}_AP.json`},results:[{uuid:crypto.randomUUID(),title:"Assessment-Ergebnis",description:'Ergebnisse',start:S.dateStart?`${S.dateStart}T00:00:00Z`:ts,end:S.dateEnd?`${S.dateEnd}T23:59:59Z`:ts,"reviewed-controls":{"control-selections":[{"include-controls":cids.map(c=>({"control-id":c}))}]},...(obs.length?{observations:obs}:{}),findings:fin,...(rsk.length?{risks:rsk}:{})}]}};
     dl(ar,`${sn()}_AR.json`);autoSave();
 }
 
 function esc(s){return(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+
+// --- BSI ED2023 Anforderungen (vorberechnet von Gpp-ai-tool, ohne Laufzeit-KI) ---
+let ED23_MAP={};
+const ED23_MAP_URL="https://raw.githubusercontent.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/main/hilfsdateien/gpp_ed23_anforderungen.json";
+function buildEd23MapFromOscal(doc){if(doc&&doc.gpp_ed23_anforderungen_map)return doc.gpp_ed23_anforderungen_map;const out={},mc=doc&&doc["mapping-collection"];if(!mc)return out;(mc.mappings||[]).forEach(mp=>(mp.maps||[]).forEach(m=>{const src=(m.sources||[])[0];if(!src)return;const cid=src["id-ref"];(m.targets||[]).forEach(t=>{const label=(t.props||[]).find(p=>p.name==="label"||p.name==="title");(out[cid]=out[cid]||[]).push({id:t["id-ref"],name:(label&&label.value)||"",begruendung:m.remarks||""})})}));return out}
+async function loadED23Map(){try{const r=await fetch(ED23_MAP_URL);if(!r.ok)throw new Error('HTTP '+r.status);const d=await r.json();ED23_MAP=buildEd23MapFromOscal(d)}catch(e){console.warn('BSI ED23-Anforderungen nicht geladen:',e);ED23_MAP={}}}
+function renderED23Table(list){
+    if(!list||!list.length)return '<p class="text-xs text-slate-500 italic">Keine passenden BSI ED23-Anforderungen hinterlegt.</p>';
+    const rows=list.map(a=>`<tr class="border-b border-slate-700/50 align-top"><td class="py-1 pr-2 font-mono font-bold text-cyan-300 whitespace-nowrap">${esc(a.id)}</td><td class="py-1 pr-2 text-slate-200">${esc(a.name)}</td><td class="py-1 text-slate-400">${esc(a.begruendung||'')}</td></tr>`).join('');
+    return `<table class="w-full text-xs border-collapse"><thead><tr class="text-left text-slate-500"><th class="py-1 pr-2">ID</th><th class="py-1 pr-2">Name der Anforderung</th><th class="py-1">Begründung</th></tr></thead><tbody>${rows}</tbody></table>`;
+}
+function showED23(cid,rk){const box=document.getElementById('ed23-'+rk);if(!box)return;if(!box.classList.contains('hidden')){box.classList.add('hidden');return}box.innerHTML=renderED23Table(ED23_MAP[cid]);box.classList.remove('hidden')}
 function sn(){return(S.meta.title||'System').replace(/[^a-zA-Z0-9äöüÄÖÜß\-]/g,'_').replace(/_+/g,'_')}
 function dl(o,n){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(o,null,2)],{type:'application/json;charset=utf-8'}));a.download=n;document.body.appendChild(a);a.click();document.body.removeChild(a)}
 function setSt(id,ok,txt){const e=document.getElementById(id);e.className=`px-3 py-1 rounded-lg text-xs font-semibold ${ok?'bg-emerald-900/50 text-emerald-400 border border-emerald-700':'bg-slate-700 text-slate-400 border border-slate-600'} flex items-center`;e.innerHTML=`<span class="w-2 h-2 rounded-full ${ok?'bg-emerald-500':'bg-amber-500 animate-pulse'} mr-2"></span>${txt}`}

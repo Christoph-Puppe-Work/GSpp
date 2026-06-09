@@ -1,11 +1,11 @@
 {
   "profile": {
-    "uuid": "54c288ca-890b-4f34-90d2-3fc0aea912a7",
+    "uuid": "93fe4b55-b90d-593c-817c-828ad676849b",
     "metadata": {
-      "title": "NOT_prozesse NOT_prozesse - Enhanced (ED2023)",
-      "last-modified": "2026-05-31T20:20:04.730742+00:00",
+      "title": "Notfallplanung Prozess Profil - Enhanced (ED2023)",
+      "last-modified": "2026-06-04T14:36:03.742850+00:00",
       "version": "0.0.1",
-      "oscal-version": "1.1.3"
+      "oscal-version": "1.2.2"
     },
     "imports": [
       {
@@ -58,7 +58,7 @@
                     },
                     {
                       "name": "phase",
-                      "value": "Implementation",
+                      "value": "Initiation",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -81,17 +81,17 @@
                       "value": "m1"
                     }
                   ],
-                  "prose": "Vereinzelte Notfallkontakte ohne formales BCMS.",
+                  "prose": "Es existieren nur vereinzelte, informelle Ansätze zur Notfallbewältigung ohne übergreifendes Managementsystem.",
                   "parts": [
                     {
                       "id": "NOT.1.1.4-m1_custom_gdn",
                       "name": "guidance",
-                      "prose": "Kontakte ad-hoc pflegen."
+                      "prose": "Dokumentieren Sie erste kritische Prozesse und Ansprechpartner in einer einfachen Liste."
                     },
                     {
                       "id": "NOT.1.1.4-m1_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung der Kontaktliste: `grep -E '^[0-9]+' contacts.txt`."
+                      "prose": "Sichtung vorhandener Listen kritischer Prozesse. Prüfung der Aktualität per Stichprobe."
                     }
                   ]
                 },
@@ -106,7 +106,7 @@
                     },
                     {
                       "name": "phase",
-                      "value": "Implementation",
+                      "value": "Initiation",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -129,17 +129,17 @@
                       "value": "m2"
                     }
                   ],
-                  "prose": "Basis-Richtlinie zur Notfallplanung vorhanden.",
+                  "prose": "Grundlegende Elemente eines BCMS sind vorhanden, jedoch nicht formal nach einem Standard verankert.",
                   "parts": [
                     {
                       "id": "NOT.1.1.4-m2_custom_gdn",
                       "name": "guidance",
-                      "prose": "Leitlinie dokumentieren und verteilen."
+                      "prose": "Erstellen Sie eine Leitlinie zur Notfallvorsorge und legen Sie Verantwortlichkeiten fest."
                     },
                     {
                       "id": "NOT.1.1.4-m2_custom_asm",
                       "name": "assessment",
-                      "prose": "Sichtprüfung der Leitlinie: `ls -l /docs/policy_emergency.pdf`."
+                      "prose": "Prüfung der Notfall-Leitlinie. Interview mit dem benannten Notfallbeauftragten."
                     }
                   ]
                 },
@@ -154,7 +154,7 @@
                     },
                     {
                       "name": "phase",
-                      "value": "Implementation",
+                      "value": "Initiation",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -182,12 +182,12 @@
                     {
                       "id": "NOT.1.1.4-m3_custom_gdn",
                       "name": "guidance",
-                      "prose": "Implementieren Sie ein BCMS basierend auf dem definierten Parameter und Standard."
+                      "prose": "Verankern Sie das BCMS fest in der Organisationsstruktur gemäß den genannten Parametern."
                     },
                     {
                       "id": "NOT.1.1.4-m3_custom_asm",
                       "name": "assessment",
-                      "prose": "Vollständigkeitsprüfung der BCMS-Dokumentation gemäß den Parametern."
+                      "prose": "Prüfen Sie das BCMS-Handbuch auf Konformität mit {{ insert: param, not.1.1.4-prm2 }}. Audit der Rollendefinition."
                     }
                   ]
                 },
@@ -202,7 +202,7 @@
                     },
                     {
                       "name": "phase",
-                      "value": "Implementation",
+                      "value": "Initiation",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -225,22 +225,81 @@
                       "value": "m4"
                     }
                   ],
-                  "prose": "BCMS ist in das Risikomanagement integriert.",
+                  "prose": "Das BCMS ist proaktiv in alle Geschäftsprozesse integriert und wird regelmäßig durch Kennzahlen überwacht.",
                   "parts": [
                     {
                       "id": "NOT.1.1.4-m4_custom_gdn",
                       "name": "guidance",
-                      "prose": "Verknüpfung mit ISMS-Prozessen herstellen."
+                      "prose": "Nutzen Sie Dashboards zur Überwachung der BCMS-Leistungskennzahlen (KPIs)."
                     },
                     {
                       "id": "NOT.1.1.4-m4_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung der Schnittstellenbeschreibung ISMS/BCMS."
+                      "prose": "Prüfung der KPI-Berichte. Automatisierter Check der Aktualisierungsintervalle in der BCMS-Software."
                     }
                   ]
                 },
                 {
                   "id": "NOT.1.1.4-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Initiation",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    }
+                  ],
+                  "prose": "Das BCMS ist hochgradig automatisiert und nutzt KI-gestützte Analysen zur kontinuierlichen Verbesserung.",
+                  "parts": [
+                    {
+                      "id": "NOT.1.1.4-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Integrieren Sie Bedrohungsinformationen in Echtzeit in die Risikoanalyse des BCMS."
+                    },
+                    {
+                      "id": "NOT.1.1.4-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Audit der Integrationsschnittstellen. Prüfung der automatisierten Korrekturmaßnahmen bei Zielabweichungen."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "control-id": "NOT.2.1",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "NOT.2.1_stm",
+              "parts": [
+                {
+                  "id": "NOT.2.1-m1_custom",
                   "name": "statement",
                   "props": [
                     {
@@ -270,79 +329,20 @@
                     },
                     {
                       "name": "label",
-                      "value": "m5"
-                    }
-                  ],
-                  "prose": "Vollautomatisiertes BCMS-Monitoring.",
-                  "parts": [
-                    {
-                      "id": "NOT.1.1.4-m5_custom_gdn",
-                      "name": "guidance",
-                      "prose": "Echtzeit-Analyse der Betriebsfähigkeit nutzen."
-                    },
-                    {
-                      "id": "NOT.1.1.4-m5_custom_asm",
-                      "name": "assessment",
-                      "prose": "Validierung des Dashboards via API-Abfrage der Status-Endpunkte."
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "control-id": "NOT.2.1",
-          "adds": [
-            {
-              "position": "ending",
-              "by-id": "NOT.2.1_stm",
-              "parts": [
-                {
-                  "id": "NOT.2.1-m1_custom",
-                  "name": "statement",
-                  "props": [
-                    {
-                      "name": "control_class",
-                      "value": "Operational",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "phase",
-                      "value": "Operation",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_c",
-                      "value": "low",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_i",
-                      "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_a",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "label",
                       "value": "m1"
                     }
                   ],
-                  "prose": "Informelle Krisenteams ohne schriftliche Regelung.",
+                  "prose": "Regelungen zur Krisenbewältigung sind nur in Grundzügen und unsystematisch vorhanden.",
                   "parts": [
                     {
                       "id": "NOT.2.1-m1_custom_gdn",
                       "name": "guidance",
-                      "prose": "Teams bei Bedarf benennen."
+                      "prose": "Identifizieren Sie die wichtigsten Entscheidungsträger für den Krisenfall."
                     },
                     {
                       "id": "NOT.2.1-m1_custom_asm",
                       "name": "assessment",
-                      "prose": "Befragung der Leitung zu Notfallstrukturen."
+                      "prose": "Prüfung auf Vorhandensein einer einfachen Telefonliste für Notfälle."
                     }
                   ]
                 },
@@ -352,12 +352,12 @@
                   "props": [
                     {
                       "name": "control_class",
-                      "value": "Operational",
+                      "value": "Management",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "phase",
-                      "value": "Operation",
+                      "value": "Implementation",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -380,17 +380,17 @@
                       "value": "m2"
                     }
                   ],
-                  "prose": "Grobe Definition der BAO in einem Merkblatt.",
+                  "prose": "Es gibt erste schriftliche Verfahren für eine BAO, die jedoch noch nicht vollständig etabliert sind.",
                   "parts": [
                     {
                       "id": "NOT.2.1-m2_custom_gdn",
                       "name": "guidance",
-                      "prose": "Zuständigkeiten grundlegend festhalten."
+                      "prose": "Dokumentieren Sie die Struktur der BAO und die Eskalationswege in einem Entwurf."
                     },
                     {
                       "id": "NOT.2.1-m2_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung des Merkblatts auf Aktualität."
+                      "prose": "Sichtung des BAO-Entwurfs und Abgleich mit der aktuellen Organisationsstruktur."
                     }
                   ]
                 },
@@ -400,12 +400,12 @@
                   "props": [
                     {
                       "name": "control_class",
-                      "value": "Operational",
+                      "value": "Management",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "phase",
-                      "value": "Operation",
+                      "value": "Implementation",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -433,12 +433,12 @@
                     {
                       "id": "NOT.2.1-m3_custom_gdn",
                       "name": "guidance",
-                      "prose": "Erstellen Sie detaillierte Verfahren und Regelungen für die BAO zur Krisenbewältigung."
+                      "prose": "Implementieren Sie die BAO-Regelungen offiziell und kommunizieren Sie diese an alle Beteiligten."
                     },
                     {
                       "id": "NOT.2.1-m3_custom_asm",
                       "name": "assessment",
-                      "prose": "Review der BAO-Verfahrensbeschreibungen und Krisenregelungen."
+                      "prose": "Prüfung der verabschiedeten BAO-Richtlinie. Einsichtnahme in die Verteilungsliste der Dokumente."
                     }
                   ]
                 },
@@ -448,12 +448,12 @@
                   "props": [
                     {
                       "name": "control_class",
-                      "value": "Operational",
+                      "value": "Management",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "phase",
-                      "value": "Operation",
+                      "value": "Implementation",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -476,17 +476,17 @@
                       "value": "m4"
                     }
                   ],
-                  "prose": "Detaillierte Eskalationsprozesse und regelmäßige Schulungen.",
+                  "prose": "Verfahren der BAO sind durch regelmäßige Validierung optimiert und proaktiv in die IT-Systeme integriert.",
                   "parts": [
                     {
                       "id": "NOT.2.1-m4_custom_gdn",
                       "name": "guidance",
-                      "prose": "Prozesse verfeinern und Übungsintervalle festlegen."
+                      "prose": "Nutzen Sie ein digitales Krisenmanagement-Tool zur Unterstützung der BAO-Prozesse."
                     },
                     {
                       "id": "NOT.2.1-m4_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung der Schulungsnachweise für die BAO-Mitglieder."
+                      "prose": "Prüfung der Logs im Krisentool. Audit der Anpassungshistorie nach Übungen."
                     }
                   ]
                 },
@@ -496,12 +496,12 @@
                   "props": [
                     {
                       "name": "control_class",
-                      "value": "Operational",
+                      "value": "Management",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "phase",
-                      "value": "Operation",
+                      "value": "Implementation",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -524,17 +524,17 @@
                       "value": "m5"
                     }
                   ],
-                  "prose": "Digitale Kollaborationsplattform zur dynamischen Steuerung.",
+                  "prose": "Die BAO-Regelungen sind dynamisch und passen sich automatisch an veränderte Bedrohungslagen an.",
                   "parts": [
                     {
                       "id": "NOT.2.1-m5_custom_gdn",
                       "name": "guidance",
-                      "prose": "Open-Source-Tools zur Lagebilderstellung nutzen."
+                      "prose": "Implementieren Sie automatisierte Eskalations-Workflows basierend auf SIEM-Ereignissen."
                     },
                     {
                       "id": "NOT.2.1-m5_custom_asm",
                       "name": "assessment",
-                      "prose": "Test der digitalen Plattform auf Verfügbarkeit und Integrität."
+                      "prose": "Simulation einer Krise und Audit der automatischen BAO-Aktivierung via API-Logs."
                     }
                   ]
                 }
@@ -555,12 +555,12 @@
                   "props": [
                     {
                       "name": "control_class",
-                      "value": "Operational",
+                      "value": "Management",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "phase",
-                      "value": "Operation",
+                      "value": "Implementation",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -583,17 +583,17 @@
                       "value": "m1"
                     }
                   ],
-                  "prose": "Rollenbesetzung erfolgt ad-hoc im Ereignisfall.",
+                  "prose": "Rollen in der BAO sind nur vage bekannt und nicht schriftlich fixiert.",
                   "parts": [
                     {
                       "id": "NOT.2.1.1-m1_custom_gdn",
                       "name": "guidance",
-                      "prose": "Personal nach Verfügbarkeit einteilen."
+                      "prose": "Nennen Sie mündlich Verantwortliche für die Leitung im Notfall."
                     },
                     {
                       "id": "NOT.2.1.1-m1_custom_asm",
                       "name": "assessment",
-                      "prose": "Abgleich der im Notfall agierenden Personen mit Listen."
+                      "prose": "Interviews mit Personal zur Kenntnis ihrer (informellen) Rollen im Notfall."
                     }
                   ]
                 },
@@ -603,12 +603,12 @@
                   "props": [
                     {
                       "name": "control_class",
-                      "value": "Operational",
+                      "value": "Management",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "phase",
-                      "value": "Operation",
+                      "value": "Implementation",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -631,17 +631,17 @@
                       "value": "m2"
                     }
                   ],
-                  "prose": "Statische Rollenliste ohne Vertretungsregelung.",
+                  "prose": "Rollenbeschreibungen liegen vor, sind aber lückenhaft oder nicht aktuell.",
                   "parts": [
                     {
                       "id": "NOT.2.1.1-m2_custom_gdn",
                       "name": "guidance",
-                      "prose": "Rollen namentlich zuordnen."
+                      "prose": "Erstellen Sie einfache Funktionsbeschreibungen für den Stab und die Teams."
                     },
                     {
                       "id": "NOT.2.1.1-m2_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung der Rollenmatrix: `grep 'Verantwortlich' roles.csv`."
+                      "prose": "Prüfung der schriftlichen Rollendefinitionen auf Vollständigkeit."
                     }
                   ]
                 },
@@ -651,12 +651,12 @@
                   "props": [
                     {
                       "name": "control_class",
-                      "value": "Operational",
+                      "value": "Management",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "phase",
-                      "value": "Operation",
+                      "value": "Implementation",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -684,12 +684,12 @@
                     {
                       "id": "NOT.2.1.1-m3_custom_gdn",
                       "name": "guidance",
-                      "prose": "Weisen Sie die Aufgaben für Stab und Teams gemäß dem Parameter zu."
+                      "prose": "Weisen Sie alle Aufgaben explizit den Rollen gemäß den Parametern zu."
                     },
                     {
                       "id": "NOT.2.1.1-m3_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung der Aufgabenzuweisung im BAO-Konzept."
+                      "prose": "Abgleich der Zuweisungsmatrix mit der Personalakte oder Ernennungsurkunden."
                     }
                   ]
                 },
@@ -699,12 +699,12 @@
                   "props": [
                     {
                       "name": "control_class",
-                      "value": "Operational",
+                      "value": "Management",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "phase",
-                      "value": "Operation",
+                      "value": "Implementation",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -727,17 +727,17 @@
                       "value": "m4"
                     }
                   ],
-                  "prose": "Strukturierte Rollenzuweisung mit Vertretungsplan.",
+                  "prose": "Die Rollenzuweisungen sind mit klaren Kompetenzen und Vertretungsregelungen hinterlegt.",
                   "parts": [
                     {
                       "id": "NOT.2.1.1-m4_custom_gdn",
                       "name": "guidance",
-                      "prose": "Redundanzen für alle Schlüsselfunktionen sichern."
+                      "prose": "Hinterlegen Sie die Rollenprofile in einem zentralen Identity-Management-System."
                     },
                     {
                       "id": "NOT.2.1.1-m4_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung der Vertretungsmatrix in der Personalplanung."
+                      "prose": "Audit der Vertretungsmatrix. Check: `id [Nutzername]` zur Prüfung der Gruppenmitgliedschaften."
                     }
                   ]
                 },
@@ -747,12 +747,12 @@
                   "props": [
                     {
                       "name": "control_class",
-                      "value": "Operational",
+                      "value": "Management",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "phase",
-                      "value": "Operation",
+                      "value": "Implementation",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -775,17 +775,17 @@
                       "value": "m5"
                     }
                   ],
-                  "prose": "Dynamische Rollenzuweisung via Identity Management.",
+                  "prose": "Rollenzuweisungen erfolgen dynamisch basierend auf Verfügbarkeit und Qualifikation in Echtzeit.",
                   "parts": [
                     {
                       "id": "NOT.2.1.1-m5_custom_gdn",
                       "name": "guidance",
-                      "prose": "Automatisierte Zuweisung basierend auf Qualifikation."
+                      "prose": "Nutzen Sie ein automatisiertes Skill-Tracking zur optimalen Besetzung der Teams."
                     },
                     {
                       "id": "NOT.2.1.1-m5_custom_asm",
                       "name": "assessment",
-                      "prose": "Abfrage der Rollenzuweisung im LDAP/Verzeichnisdienst."
+                      "prose": "Prüfung der Automatisierungsschnittstelle zum HR-System auf Korrektheit der Zuweisung."
                     }
                   ]
                 }
@@ -811,7 +811,7 @@
                     },
                     {
                       "name": "phase",
-                      "value": "Operation",
+                      "value": "Implementation",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -834,17 +834,17 @@
                       "value": "m1"
                     }
                   ],
-                  "prose": "Manuelle Telefonkette zur Alarmierung.",
+                  "prose": "Alarmierung erfolgt informell, z.B. durch Zuruf oder einfache E-Mails.",
                   "parts": [
                     {
                       "id": "NOT.2.1.2-m1_custom_gdn",
                       "name": "guidance",
-                      "prose": "Listen aktuell halten."
+                      "prose": "Stellen Sie sicher, dass wichtige Personen telefonisch erreichbar sind."
                     },
                     {
                       "id": "NOT.2.1.2-m1_custom_asm",
                       "name": "assessment",
-                      "prose": "Stichprobe der Telefonnummern auf Erreichbarkeit."
+                      "prose": "Stichprobenartige Prüfung von Telefonnummern in Kontaktlisten."
                     }
                   ]
                 },
@@ -859,7 +859,7 @@
                     },
                     {
                       "name": "phase",
-                      "value": "Operation",
+                      "value": "Implementation",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -882,17 +882,17 @@
                       "value": "m2"
                     }
                   ],
-                  "prose": "Zentraler E-Mail-Verteiler für Notrufe.",
+                  "prose": "Es existiert ein einfacher Alarmierungsplan, der manuell abgearbeitet wird.",
                   "parts": [
                     {
                       "id": "NOT.2.1.2-m2_custom_gdn",
                       "name": "guidance",
-                      "prose": "E-Mail-Benachrichtigung einrichten."
+                      "prose": "Erstellen Sie eine Telefonkaskade zur Benachrichtigung der BAO."
                     },
                     {
                       "id": "NOT.2.1.2-m2_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung der Gruppenmitgliedschaft im Mailserver."
+                      "prose": "Prüfung des schriftlichen Alarmierungsplans auf Plausibilität."
                     }
                   ]
                 },
@@ -907,7 +907,7 @@
                     },
                     {
                       "name": "phase",
-                      "value": "Operation",
+                      "value": "Implementation",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -935,12 +935,12 @@
                     {
                       "id": "NOT.2.1.2-m3_custom_gdn",
                       "name": "guidance",
-                      "prose": "Legen Sie feste Alarmierungswege für die BAO fest."
+                      "prose": "Etablieren Sie einen verbindlichen Prozess zur Alarmierung der BAO-Mitglieder."
                     },
                     {
                       "id": "NOT.2.1.2-m3_custom_asm",
                       "name": "assessment",
-                      "prose": "Test der Alarmierungskette auf Funktionsfähigkeit."
+                      "prose": "Nachweis einer durchgeführten Alarmierungsübung. Sichtung des Alarmierungsprotokolls."
                     }
                   ]
                 },
@@ -955,7 +955,7 @@
                     },
                     {
                       "name": "phase",
-                      "value": "Operation",
+                      "value": "Implementation",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -978,65 +978,12 @@
                       "value": "m4"
                     }
                   ],
-                  "prose": "Automatisierte App-Alarmierung mit Quittierung.",
+                  "prose": "Die Alarmierung erfolgt über automatisierte Systeme mit Quittierungsfunktion.",
                   "parts": [
                     {
                       "id": "NOT.2.1.2-m4_custom_gdn",
                       "name": "guidance",
-                      "prose": "Rückmeldesystem für Alarmierungen einführen."
-                    },
-                    {
-                      "id": "NOT.2.1.2-m4_custom_asm",
-                      "name": "assessment",
-                      "prose": "Review der Alarmprotokolle auf Antwortzeiten."
-                    }
-                  ]
-                },
-                {
-                  "id": "NOT.2.1.2-m5_custom",
-                  "name": "statement",
-                  "props": [
-                    {
-                      "name": "control_class",
-                      "value": "Operational",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "phase",
-                      "value": "Operation",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_c",
-                      "value": "low",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_i",
-                      "value": "low",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_a",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "label",
-                      "value": "m5"
-                    }
-                  ],
-                  "prose": "Redundante Multi-Channel-Alarmierung (SMS, Call, App).",
-                  "parts": [
-                    {
-                      "id": "NOT.2.1.2-m5_custom_gdn",
-                      "name": "guidance",
-                      "prose": "Integrierte Lösungen für hohe Ausfallsicherheit nutzen."
-                    },
-                    {
-                      "id": "NOT.2.1.2-m5_custom_asm",
-                      "name": "assessment",
-                      "prose": "Simulation eines Systemausfalls und Prüfung der Backup-Kanäle."
+                      "prose": "Setzen Sie spezialisierte Benachrichtigungs-Apps oder SMS-Gateways ein."
                     }
                   ]
                 }
@@ -1062,7 +1009,7 @@
                     },
                     {
                       "name": "phase",
-                      "value": "Operation",
+                      "value": "Implementation",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -1077,7 +1024,7 @@
                     },
                     {
                       "name": "effective_on_a",
-                      "value": "medium",
+                      "value": "high",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -1085,17 +1032,17 @@
                       "value": "m1"
                     }
                   ],
-                  "prose": "Nutzung freier Besprechungsräume im Notfall.",
+                  "prose": "Im Krisenfall wird ad-hoc ein freier Besprechungsraum als Stabsraum genutzt.",
                   "parts": [
                     {
                       "id": "NOT.2.1.3-m1_custom_gdn",
                       "name": "guidance",
-                      "prose": "Keine festen Reservierungen vorhanden."
+                      "prose": "Suchen Sie im Notfall den nächstbesten verfügbaren Raum auf."
                     },
                     {
                       "id": "NOT.2.1.3-m1_custom_asm",
                       "name": "assessment",
-                      "prose": "Begehung möglicher Räumlichkeiten."
+                      "prose": "Begehung potenzieller Räumlichkeiten auf Eignung (Strom, Platz)."
                     }
                   ]
                 },
@@ -1110,7 +1057,7 @@
                     },
                     {
                       "name": "phase",
-                      "value": "Operation",
+                      "value": "Implementation",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -1125,7 +1072,7 @@
                     },
                     {
                       "name": "effective_on_a",
-                      "value": "medium",
+                      "value": "high",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -1133,17 +1080,17 @@
                       "value": "m2"
                     }
                   ],
-                  "prose": "Reservierter Raum mit Basis-IT-Anschluss.",
+                  "prose": "Ein Raum ist als Stabsraum reserviert, aber die Ausstattung ist lückenhaft.",
                   "parts": [
                     {
                       "id": "NOT.2.1.3-m2_custom_gdn",
                       "name": "guidance",
-                      "prose": "Zuweisung eines festen Standorts."
+                      "prose": "Kennzeichnen Sie einen festen Raum und lagern Sie Basismaterial ein."
                     },
                     {
                       "id": "NOT.2.1.3-m2_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung der Raumreservierung im Kalendersystem."
+                      "prose": "Besichtigung des Raums und Prüfung der Inventarliste."
                     }
                   ]
                 },
@@ -1158,7 +1105,7 @@
                     },
                     {
                       "name": "phase",
-                      "value": "Operation",
+                      "value": "Implementation",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -1173,7 +1120,7 @@
                     },
                     {
                       "name": "effective_on_a",
-                      "value": "medium",
+                      "value": "high",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -1186,12 +1133,12 @@
                     {
                       "id": "NOT.2.1.3-m3_custom_gdn",
                       "name": "guidance",
-                      "prose": "Richten Sie bei Bedarf einen dedizierten Stabsraum ein."
+                      "prose": "Statten Sie den Stabsraum mit notwendiger Technik und Kommunikation aus."
                     },
                     {
                       "id": "NOT.2.1.3-m3_custom_asm",
                       "name": "assessment",
-                      "prose": "Besichtigung des Stabsraums und Prüfung der Ausstattung."
+                      "prose": "Funktionstest der Kommunikationsmittel im Stabsraum. Prüfung der Zugangsberechtigung."
                     }
                   ]
                 },
@@ -1206,7 +1153,7 @@
                     },
                     {
                       "name": "phase",
-                      "value": "Operation",
+                      "value": "Implementation",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -1221,7 +1168,7 @@
                     },
                     {
                       "name": "effective_on_a",
-                      "value": "medium",
+                      "value": "high",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -1229,17 +1176,17 @@
                       "value": "m4"
                     }
                   ],
-                  "prose": "Gehärteter Stabsraum mit USV und Backup-Netz.",
+                  "prose": "Der Stabsraum ist voll redundant ausgestattet und sofort einsatzbereit (Warm-Site).",
                   "parts": [
                     {
                       "id": "NOT.2.1.3-m4_custom_gdn",
                       "name": "guidance",
-                      "prose": "Physische Sicherheit und Autarkie erhöhen."
+                      "prose": "Gewährleisten Sie eine unterbrechungsfreie Stromversorgung und autarke IT."
                     },
                     {
                       "id": "NOT.2.1.3-m4_custom_asm",
                       "name": "assessment",
-                      "prose": "Test der USV-Überbrückungszeit im Stabsraum."
+                      "prose": "Prüfung der Wartungsprotokolle für USV und IT-Equipment im Raum."
                     }
                   ]
                 },
@@ -1254,7 +1201,7 @@
                     },
                     {
                       "name": "phase",
-                      "value": "Operation",
+                      "value": "Implementation",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -1269,7 +1216,7 @@
                     },
                     {
                       "name": "effective_on_a",
-                      "value": "medium",
+                      "value": "high",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -1277,17 +1224,17 @@
                       "value": "m5"
                     }
                   ],
-                  "prose": "Autarkes Krisenzentrum mit eigener Infrastruktur.",
+                  "prose": "Ein virtueller und physischer Stabsraum sind synchronisiert und hochverfügbar.",
                   "parts": [
                     {
                       "id": "NOT.2.1.3-m5_custom_gdn",
                       "name": "guidance",
-                      "prose": "Volle Unabhängigkeit von der Hauptinfrastruktur."
+                      "prose": "Nutzen Sie verschlüsselte Collaboration-Plattformen als virtuellen Stabsraum."
                     },
                     {
                       "id": "NOT.2.1.3-m5_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung der Wartungsprotokolle für autarke Systeme."
+                      "prose": "Audit der Verfügbarkeit des virtuellen Raums. Test der sicheren Datenreplikation."
                     }
                   ]
                 }
@@ -1313,7 +1260,7 @@
                     },
                     {
                       "name": "phase",
-                      "value": "Audit",
+                      "value": "Operation",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -1323,7 +1270,7 @@
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "medium",
+                      "value": "low",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -1336,17 +1283,17 @@
                       "value": "m1"
                     }
                   ],
-                  "prose": "Gelegentliche Gespräche über Notfallszenarien.",
+                  "prose": "Stabsübungen finden nicht oder nur rein theoretisch ohne Szenario statt.",
                   "parts": [
                     {
                       "id": "NOT.2.1.4-m1_custom_gdn",
                       "name": "guidance",
-                      "prose": "Informeller Austausch in Teamsitzungen."
+                      "prose": "Besprechen Sie im Team einmalig mögliche Krisenszenarien."
                     },
                     {
                       "id": "NOT.2.1.4-m1_custom_asm",
                       "name": "assessment",
-                      "prose": "Befragung der Teammitglieder zu Inhalten."
+                      "prose": "Sichtung von Meeting-Protokollen zu Krisenthemen."
                     }
                   ]
                 },
@@ -1361,7 +1308,7 @@
                     },
                     {
                       "name": "phase",
-                      "value": "Audit",
+                      "value": "Operation",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -1371,7 +1318,7 @@
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "medium",
+                      "value": "low",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -1384,17 +1331,17 @@
                       "value": "m2"
                     }
                   ],
-                  "prose": "Jährliche Schreibtischübung der BAO.",
+                  "prose": "Einfache Table-Top-Übungen werden unregelmäßig durchgeführt.",
                   "parts": [
                     {
                       "id": "NOT.2.1.4-m2_custom_gdn",
                       "name": "guidance",
-                      "prose": "Szenarien theoretisch durchspielen."
+                      "prose": "Führen Sie eine jährliche Schreibtischübung für die Stabsleitung durch."
                     },
                     {
                       "id": "NOT.2.1.4-m2_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung der Protokolle vergangener Schreibtischübungen."
+                      "prose": "Prüfung der Teilnahmeberichte vergangener Übungen."
                     }
                   ]
                 },
@@ -1409,7 +1356,7 @@
                     },
                     {
                       "name": "phase",
-                      "value": "Audit",
+                      "value": "Operation",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -1419,7 +1366,7 @@
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "medium",
+                      "value": "low",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -1437,12 +1384,12 @@
                     {
                       "id": "NOT.2.1.4-m3_custom_gdn",
                       "name": "guidance",
-                      "prose": "Führen Sie Stabsübungen gemäß dem festgelegten Parameter durch."
+                      "prose": "Planen und dokumentieren Sie regelmäßige Übungen gemäß den Intervallen."
                     },
                     {
                       "id": "NOT.2.1.4-m3_custom_asm",
                       "name": "assessment",
-                      "prose": "Review der Übungsberichte und abgeleiteten Maßnahmen."
+                      "prose": "Einsicht in Übungskonzept und Nachbereitungsprotokolle der Stabsübung."
                     }
                   ]
                 },
@@ -1457,7 +1404,7 @@
                     },
                     {
                       "name": "phase",
-                      "value": "Audit",
+                      "value": "Operation",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -1467,7 +1414,7 @@
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "medium",
+                      "value": "low",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -1480,17 +1427,17 @@
                       "value": "m4"
                     }
                   ],
-                  "prose": "Realitätsnahe Simulationen mit Zeitdruck.",
+                  "prose": "Komplexe Szenarien werden unter realitätsnahen Bedingungen geübt (Full-Scale).",
                   "parts": [
                     {
                       "id": "NOT.2.1.4-m4_custom_gdn",
                       "name": "guidance",
-                      "prose": "Interaktive Übungen mit externen Partnern."
+                      "prose": "Involvieren Sie externe Partner und Dienstleister in die Stabsübungen."
                     },
                     {
                       "id": "NOT.2.1.4-m4_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung der Auswertungsberichte auf Schwachstellen."
+                      "prose": "Auswertung der Maßnahmenverfolgung aus dem letzten Übungsbericht."
                     }
                   ]
                 },
@@ -1505,7 +1452,7 @@
                     },
                     {
                       "name": "phase",
-                      "value": "Audit",
+                      "value": "Operation",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -1515,7 +1462,7 @@
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "medium",
+                      "value": "low",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -1528,17 +1475,17 @@
                       "value": "m5"
                     }
                   ],
-                  "prose": "Gamifizierte Simulationen und Red-Team-Drills.",
+                  "prose": "Continuous Exercising: Kontinuierliche Validierung durch unangekündigte Teilsimulationen.",
                   "parts": [
                     {
                       "id": "NOT.2.1.4-m5_custom_gdn",
                       "name": "guidance",
-                      "prose": "Kontinuierliche Übung durch unangekündigte Tests."
+                      "prose": "Nutzen Sie Gamification und automatisierte Injekt-Systeme zur Stresssimulation."
                     },
                     {
                       "id": "NOT.2.1.4-m5_custom_asm",
                       "name": "assessment",
-                      "prose": "Analyse der Metriken zur Reaktionsgeschwindigkeit."
+                      "prose": "Audit der Lernkurve über mehrere Übungszyklen mittels Benchmarking-Tool."
                     }
                   ]
                 }
@@ -1574,7 +1521,7 @@
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "high",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -1587,17 +1534,17 @@
                       "value": "m1"
                     }
                   ],
-                  "prose": "Unvollständige Notizen zum Systemstart.",
+                  "prose": "Wiederanlauf erfolgt ad-hoc ohne formal dokumentierte Pläne.",
                   "parts": [
                     {
                       "id": "NOT.3.1-m1_custom_gdn",
                       "name": "guidance",
-                      "prose": "Ad-hoc Dokumentation durch Admins."
+                      "prose": "Verlassen Sie sich auf das Wissen der Fachadministratoren."
                     },
                     {
                       "id": "NOT.3.1-m1_custom_asm",
                       "name": "assessment",
-                      "prose": "Sichtung vorhandener Textdateien auf Recovery-Infos."
+                      "prose": "Interviews mit Administratoren zur Vorgehensweise bei Systemausfall."
                     }
                   ]
                 },
@@ -1622,7 +1569,7 @@
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "high",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -1635,17 +1582,17 @@
                       "value": "m2"
                     }
                   ],
-                  "prose": "Einfache statische Checkliste für Kernserver.",
+                  "prose": "Einfache Checklisten für den Wiederanlauf einzelner Systeme sind vorhanden.",
                   "parts": [
                     {
                       "id": "NOT.3.1-m2_custom_gdn",
                       "name": "guidance",
-                      "prose": "Startreihenfolge manuell dokumentieren."
+                      "prose": "Dokumentieren Sie die wichtigsten Schritte der Wiederherstellung grob."
                     },
                     {
                       "id": "NOT.3.1-m2_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung der Vollständigkeit der Serverliste."
+                      "prose": "Stichprobenartige Prüfung der vorhandenen Wiederanlauf-Checklisten."
                     }
                   ]
                 },
@@ -1670,7 +1617,7 @@
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "high",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -1688,12 +1635,12 @@
                     {
                       "id": "NOT.3.1-m3_custom_gdn",
                       "name": "guidance",
-                      "prose": "Erstellen Sie detaillierte Wiederanlaufpläne für alle kritischen Systeme."
+                      "prose": "Erstellen Sie detaillierte Pläne inklusive Abhängigkeiten und RTO/RPO."
                     },
                     {
                       "id": "NOT.3.1-m3_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung der Dokumentation: `grep -i 'Recovery' /docs/plans/*.md`."
+                      "prose": "Vollständigkeitsprüfung der Pläne gegen die Liste zeitkritischer Systeme."
                     }
                   ]
                 },
@@ -1718,7 +1665,7 @@
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "high",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -1731,17 +1678,17 @@
                       "value": "m4"
                     }
                   ],
-                  "prose": "Automatisierte Recovery-Skripte (z.B. Ansible).",
+                  "prose": "Wiederanlaufpläne sind automatisiert und als Skripte (IaC) hinterlegt.",
                   "parts": [
                     {
                       "id": "NOT.3.1-m4_custom_gdn",
                       "name": "guidance",
-                      "prose": "Infrastructure as Code für Wiederherstellung nutzen."
+                      "prose": "Nutzen Sie Tools wie Ansible oder Terraform zur Automatisierung der Wiederherstellung."
                     },
                     {
                       "id": "NOT.3.1-m4_custom_asm",
                       "name": "assessment",
-                      "prose": "Testlauf der Skripte in einer Testumgebung."
+                      "prose": "Prüfung der Skripte in Git. Technisch: `ansible-playbook --syntax-check restore.yml` zur Validierung."
                     }
                   ]
                 },
@@ -1766,7 +1713,7 @@
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "high",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -1779,17 +1726,17 @@
                       "value": "m5"
                     }
                   ],
-                  "prose": "Vollautomatisierte Self-Healing Infrastructure.",
+                  "prose": "Vollautomatisches Self-Healing und Disaster Recovery Orchestrierung sind implementiert.",
                   "parts": [
                     {
                       "id": "NOT.3.1-m5_custom_gdn",
                       "name": "guidance",
-                      "prose": "Automatisierte Verifikation der Integrität nach Start."
+                      "prose": "Integrieren Sie automatisierte Integritätstests nach jedem Wiederanlauf."
                     },
                     {
                       "id": "NOT.3.1-m5_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung der CI/CD-Pipelines auf DR-Automatisierung."
+                      "prose": "Audit der Orchestrierungs-Logs. Simulation eines Site-Failovers via Skript."
                     }
                   ]
                 }
@@ -1810,7 +1757,7 @@
                   "props": [
                     {
                       "name": "control_class",
-                      "value": "Management",
+                      "value": "Operational",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -1825,7 +1772,7 @@
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "low",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -1838,17 +1785,17 @@
                       "value": "m1"
                     }
                   ],
-                  "prose": "Informelle Kenntnis über Ersatzprozesse.",
+                  "prose": "Geschäftsfortführung basiert auf dem Improvisationstalent der Mitarbeiter.",
                   "parts": [
                     {
                       "id": "NOT.3.2-m1_custom_gdn",
                       "name": "guidance",
-                      "prose": "Wissen der Mitarbeiter nutzen."
+                      "prose": "Ermutigen Sie Mitarbeiter zur Entwicklung eigener Workarounds."
                     },
                     {
                       "id": "NOT.3.2-m1_custom_asm",
                       "name": "assessment",
-                      "prose": "Interviews zur Vorgehensweise bei Ausfall."
+                      "prose": "Befragung der Fachbereiche nach bekannten manuellen Notlösungen."
                     }
                   ]
                 },
@@ -1858,7 +1805,7 @@
                   "props": [
                     {
                       "name": "control_class",
-                      "value": "Management",
+                      "value": "Operational",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -1873,7 +1820,7 @@
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "low",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -1886,17 +1833,17 @@
                       "value": "m2"
                     }
                   ],
-                  "prose": "Dokumentierte manuelle Workarounds.",
+                  "prose": "Grobe Beschreibungen für manuelle Notbetriebe sind in Ansätzen vorhanden.",
                   "parts": [
                     {
                       "id": "NOT.3.2-m2_custom_gdn",
                       "name": "guidance",
-                      "prose": "Alternative Abläufe schriftlich fixieren."
+                      "prose": "Skizzieren Sie alternative Arbeitsweisen bei IT-Ausfall."
                     },
                     {
                       "id": "NOT.3.2-m2_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung der Dokumente auf Verfügbarkeit."
+                      "prose": "Sichtung von Entwürfen für Geschäftsfortführungsmaßnahmen."
                     }
                   ]
                 },
@@ -1906,7 +1853,7 @@
                   "props": [
                     {
                       "name": "control_class",
-                      "value": "Management",
+                      "value": "Operational",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -1921,7 +1868,7 @@
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "low",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -1939,12 +1886,12 @@
                     {
                       "id": "NOT.3.2-m3_custom_gdn",
                       "name": "guidance",
-                      "prose": "Dokumentieren Sie Pläne zur Fortführung der kritischen Geschäftsprozesse."
+                      "prose": "Erstellen Sie formale Pläne für die Fortführung der Prozesse ohne IT."
                     },
                     {
                       "id": "NOT.3.2-m3_custom_asm",
                       "name": "assessment",
-                      "prose": "Review der Geschäftsfortführungspläne auf Plausibilität."
+                      "prose": "Prüfung der dokumentierten Fortführungspläne auf Aktualität und Realismus."
                     }
                   ]
                 },
@@ -1954,7 +1901,7 @@
                   "props": [
                     {
                       "name": "control_class",
-                      "value": "Management",
+                      "value": "Operational",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -1969,7 +1916,7 @@
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "low",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -1982,17 +1929,17 @@
                       "value": "m4"
                     }
                   ],
-                  "prose": "Digitale Ausweichlösungen für alle Prozesse.",
+                  "prose": "Pläne enthalten detaillierte Ressourcenanforderungen und Stand-by-Lösungen.",
                   "parts": [
                     {
                       "id": "NOT.3.2-m4_custom_gdn",
                       "name": "guidance",
-                      "prose": "Redundante digitale Prozessführung implementieren."
+                      "prose": "Sichern Sie die Verfügbarkeit von Ersatzarbeitsplätzen und Papierformularen ab."
                     },
                     {
                       "id": "NOT.3.2-m4_custom_asm",
                       "name": "assessment",
-                      "prose": "Funktionstest der Ausweichportale/Systeme."
+                      "prose": "Vor-Ort-Prüfung der bereitgehaltenen Notfallressourcen (z.B. Notfallkoffer)."
                     }
                   ]
                 },
@@ -2002,7 +1949,7 @@
                   "props": [
                     {
                       "name": "control_class",
-                      "value": "Management",
+                      "value": "Operational",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -2017,7 +1964,7 @@
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "low",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -2030,17 +1977,17 @@
                       "value": "m5"
                     }
                   ],
-                  "prose": "KI-gestützte dynamische Prozesssteuerung.",
+                  "prose": "Geschäftsfortführungspläne sind in die Prozesssteuerung integriert und digital abrufbar.",
                   "parts": [
                     {
                       "id": "NOT.3.2-m5_custom_gdn",
                       "name": "guidance",
-                      "prose": "Echtzeit-Optimierung der Ressourcenallokation."
+                      "prose": "Stellen Sie sicher, dass Pläne offline auf gesicherten Endgeräten verfügbar sind."
                     },
                     {
                       "id": "NOT.3.2-m5_custom_asm",
                       "name": "assessment",
-                      "prose": "Analyse der Logging-Daten bei Prozessumschaltung."
+                      "prose": "Test des Offline-Zugriffs auf die Pläne. Audit der Prozess-Redundanz-Metriken."
                     }
                   ]
                 }
@@ -2061,12 +2008,12 @@
                   "props": [
                     {
                       "name": "control_class",
-                      "value": "Operational",
+                      "value": "Technical",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "phase",
-                      "value": "Audit",
+                      "value": "Operation",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -2076,7 +2023,7 @@
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "medium",
+                      "value": "high",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -2089,17 +2036,17 @@
                       "value": "m1"
                     }
                   ],
-                  "prose": "Sporadische Sichtprüfung der Pläne.",
+                  "prose": "Funktionstests finden nur sporadisch nach größeren Änderungen statt.",
                   "parts": [
                     {
                       "id": "NOT.3.4-m1_custom_gdn",
                       "name": "guidance",
-                      "prose": "Gelegentliches Lesen der Dokumente."
+                      "prose": "Prüfen Sie nach Updates manuell, ob die Systeme wieder starten."
                     },
                     {
                       "id": "NOT.3.4-m1_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung des Änderungsdatums der Pläne."
+                      "prose": "Sichtung von Change-Logs auf Vermerke zu erfolgreichen Tests."
                     }
                   ]
                 },
@@ -2109,12 +2056,12 @@
                   "props": [
                     {
                       "name": "control_class",
-                      "value": "Operational",
+                      "value": "Technical",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "phase",
-                      "value": "Audit",
+                      "value": "Operation",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -2124,7 +2071,7 @@
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "medium",
+                      "value": "high",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -2137,17 +2084,17 @@
                       "value": "m2"
                     }
                   ],
-                  "prose": "Punktuelle Tests einzelner Notfallschritte.",
+                  "prose": "Es gibt einfache, manuelle Testprotokolle für Kernkomponenten.",
                   "parts": [
                     {
                       "id": "NOT.3.4-m2_custom_gdn",
                       "name": "guidance",
-                      "prose": "Teilaspekte manuell verifizieren."
+                      "prose": "Führen Sie stichprobenartig Wiederherstellungstests von Backups durch."
                     },
                     {
                       "id": "NOT.3.4-m2_custom_asm",
                       "name": "assessment",
-                      "prose": "Einsicht in Testprotokolle von Einzelkomponenten."
+                      "prose": "Prüfung der letzten Backup-Wiederherstellungsprotokolle."
                     }
                   ]
                 },
@@ -2157,12 +2104,12 @@
                   "props": [
                     {
                       "name": "control_class",
-                      "value": "Operational",
+                      "value": "Technical",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "phase",
-                      "value": "Audit",
+                      "value": "Operation",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -2172,7 +2119,7 @@
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "medium",
+                      "value": "high",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -2190,12 +2137,12 @@
                     {
                       "id": "NOT.3.4-m3_custom_gdn",
                       "name": "guidance",
-                      "prose": "Testen Sie die Funktionstüchtigkeit der Pläne gemäß dem Parameter."
+                      "prose": "Führen Sie strukturierte Funktionstests gemäß den Parametern durch."
                     },
                     {
                       "id": "NOT.3.4-m3_custom_asm",
                       "name": "assessment",
-                      "prose": "Bewertung der Testberichte und Fehlerbehebungen."
+                      "prose": "Einsicht in die Testberichte und Abgleich mit den Notfallplänen."
                     }
                   ]
                 },
@@ -2205,12 +2152,12 @@
                   "props": [
                     {
                       "name": "control_class",
-                      "value": "Operational",
+                      "value": "Technical",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "phase",
-                      "value": "Audit",
+                      "value": "Operation",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -2220,7 +2167,7 @@
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "medium",
+                      "value": "high",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -2233,17 +2180,17 @@
                       "value": "m4"
                     }
                   ],
-                  "prose": "Systematische Volllasttests der Pläne.",
+                  "prose": "Funktionstests sind weitgehend automatisiert und in CI/CD-Pipelines integriert.",
                   "parts": [
                     {
                       "id": "NOT.3.4-m4_custom_gdn",
                       "name": "guidance",
-                      "prose": "Gesamtsystem unter Last testen."
+                      "prose": "Nutzen Sie automatisierte Recovery-Tests in isolierten Umgebungen."
                     },
                     {
                       "id": "NOT.3.4-m4_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung der Performance-Daten während des Tests."
+                      "prose": "Prüfung der Test-Automatisierung. Technisch: Check der Exit-Codes automatischer Testläufe via `grep 'SUCCESS' test.log`."
                     }
                   ]
                 },
@@ -2253,12 +2200,12 @@
                   "props": [
                     {
                       "name": "control_class",
-                      "value": "Operational",
+                      "value": "Technical",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "phase",
-                      "value": "Audit",
+                      "value": "Operation",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -2268,7 +2215,7 @@
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "medium",
+                      "value": "high",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -2281,17 +2228,17 @@
                       "value": "m5"
                     }
                   ],
-                  "prose": "Continuous Verification der Notfallfähigkeit.",
+                  "prose": "Kontinuierliche Validierung durch Chaos-Engineering-Praktiken (z.B. Injection von Fehlern).",
                   "parts": [
                     {
                       "id": "NOT.3.4-m5_custom_gdn",
                       "name": "guidance",
-                      "prose": "Automatisierte Tests in die Pipeline integrieren."
+                      "prose": "Setzen Sie Open-Source Tools ein, um Ausfälle im laufenden Betrieb kontrolliert zu simulieren."
                     },
                     {
                       "id": "NOT.3.4-m5_custom_asm",
                       "name": "assessment",
-                      "prose": "Check der automatisierten Test-Logs in der Build-Historie."
+                      "prose": "Audit der Ergebnisse aus den Chaos-Experimenten und der System-Resilienz."
                     }
                   ]
                 }
@@ -2306,102 +2253,6 @@
               "position": "ending",
               "by-id": "NOT.3.5_stm",
               "parts": [
-                {
-                  "id": "NOT.3.5-m1_custom",
-                  "name": "statement",
-                  "props": [
-                    {
-                      "name": "control_class",
-                      "value": "Technical",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "phase",
-                      "value": "Implementation",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_c",
-                      "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_i",
-                      "value": "low",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_a",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "label",
-                      "value": "m1"
-                    }
-                  ],
-                  "prose": "Einfache Redundanz durch Zweithandy.",
-                  "parts": [
-                    {
-                      "id": "NOT.3.5-m1_custom_gdn",
-                      "name": "guidance",
-                      "prose": "Private Geräte als Backup vorsehen."
-                    },
-                    {
-                      "id": "NOT.3.5-m1_custom_asm",
-                      "name": "assessment",
-                      "prose": "Prüfung der Verfügbarkeit von Zweitgeräten."
-                    }
-                  ]
-                },
-                {
-                  "id": "NOT.3.5-m2_custom",
-                  "name": "statement",
-                  "props": [
-                    {
-                      "name": "control_class",
-                      "value": "Technical",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "phase",
-                      "value": "Implementation",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_c",
-                      "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_i",
-                      "value": "low",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_a",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "label",
-                      "value": "m2"
-                    }
-                  ],
-                  "prose": "Zweiter Mobilfunkanbieter für Schlüsselkräfte.",
-                  "parts": [
-                    {
-                      "id": "NOT.3.5-m2_custom_gdn",
-                      "name": "guidance",
-                      "prose": "Verträge bei verschiedenen Providern nutzen."
-                    },
-                    {
-                      "id": "NOT.3.5-m2_custom_asm",
-                      "name": "assessment",
-                      "prose": "Prüfung der Rechnungen auf Provider-Diversität."
-                    }
-                  ]
-                },
                 {
                   "id": "NOT.3.5-m3_custom",
                   "name": "statement",
@@ -2436,67 +2287,7 @@
                       "value": "m3"
                     }
                   ],
-                  "prose": "Notfallplanung SOLLTE Ausweich-Telekommunikationsdienste verankern.",
-                  "parts": [
-                    {
-                      "id": "NOT.3.5-m3_custom_gdn",
-                      "name": "guidance",
-                      "prose": "Stellen Sie alternative Kommunikationswege für Notfälle sicher."
-                    },
-                    {
-                      "id": "NOT.3.5-m3_custom_asm",
-                      "name": "assessment",
-                      "prose": "Funktionsprüfung der alternativen Kommunikationsmittel."
-                    }
-                  ]
-                },
-                {
-                  "id": "NOT.3.5-m4_custom",
-                  "name": "statement",
-                  "props": [
-                    {
-                      "name": "control_class",
-                      "value": "Technical",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "phase",
-                      "value": "Implementation",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_c",
-                      "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_i",
-                      "value": "low",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_a",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "label",
-                      "value": "m4"
-                    }
-                  ],
-                  "prose": "Integrierte Satellitenkommunikation als Backup.",
-                  "parts": [
-                    {
-                      "id": "NOT.3.5-m4_custom_gdn",
-                      "name": "guidance",
-                      "prose": "Hardware für Satellitenlinks vorhalten."
-                    },
-                    {
-                      "id": "NOT.3.5-m4_custom_asm",
-                      "name": "assessment",
-                      "prose": "Testanruf über Satellitenverbindung durchführen."
-                    }
-                  ]
+                  "prose": "Notfallplanung SOLLTE Ausweich-Telekommunikationsdienste verankern."
                 },
                 {
                   "id": "NOT.3.5-m5_custom",
@@ -2532,17 +2323,17 @@
                       "value": "m5"
                     }
                   ],
-                  "prose": "Dezentrale Mesh-Netzwerke zur Kommunikation.",
+                  "prose": "Die Ausweichkommunikation ist vollredundant, autark von öffentlicher Infrastruktur und hochverfügbar.",
                   "parts": [
                     {
                       "id": "NOT.3.5-m5_custom_gdn",
                       "name": "guidance",
-                      "prose": "Peer-to-Peer Infrastruktur für Autonomie nutzen."
+                      "prose": "Implementieren Sie eigene Mesh-Netzwerke oder dedizierte Satellitenverbindungen."
                     },
                     {
                       "id": "NOT.3.5-m5_custom_asm",
                       "name": "assessment",
-                      "prose": "Statusprüfung der Mesh-Nodes via Management-Konsole."
+                      "prose": "Audit der Netzwerk-Topologie. Test der Kommunikation bei simuliertem Totalausfall des Internet-Providers."
                     }
                   ]
                 }
@@ -2583,7 +2374,7 @@
                     },
                     {
                       "name": "effective_on_a",
-                      "value": "high",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -2591,17 +2382,17 @@
                       "value": "m1"
                     }
                   ],
-                  "prose": "Behelfsmäßige Sicherheitsvorkehrungen existieren für Notfälle.",
+                  "prose": "Es erfolgt eine sporadische Festlegung von Ersatzmechanismen ohne formale Planung.",
                   "parts": [
                     {
                       "id": "NOT.3.6-m1_custom_gdn",
                       "name": "guidance",
-                      "prose": "Identifizieren Sie ad-hoc Schutzmaßnahmen bei Systemausfällen."
+                      "prose": "Identifizieren Sie ad-hoc kritische Prozesse, die im Notfall alternative Sicherheitsvorkehrungen benötigen."
                     },
                     {
                       "id": "NOT.3.6-m1_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfen Sie Notizen zu improvisierten Sicherheitsmaßnahmen."
+                      "prose": "Befragen Sie Mitarbeiter nach informellen Absprachen für den Ausfall von Sicherheitssystemen."
                     }
                   ]
                 },
@@ -2631,7 +2422,7 @@
                     },
                     {
                       "name": "effective_on_a",
-                      "value": "high",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -2639,17 +2430,17 @@
                       "value": "m2"
                     }
                   ],
-                  "prose": "Einfache Ersatzmechanismen sind manuell dokumentiert.",
+                  "prose": "Grundlegende manuelle Sicherheitsmechanismen sind für einzelne kritische Systeme identifiziert.",
                   "parts": [
                     {
                       "id": "NOT.3.6-m2_custom_gdn",
                       "name": "guidance",
-                      "prose": "Nutzen Sie manuelle Listen für alternative Sicherheitskontrollen."
+                      "prose": "Erstellen Sie eine Liste von manuellen Workarounds für den Ausfall technischer Schutzeinrichtungen."
                     },
                     {
                       "id": "NOT.3.6-m2_custom_asm",
                       "name": "assessment",
-                      "prose": "Sichtung des Handbuchs für manuelle Notfallprozesse."
+                      "prose": "Prüfen Sie, ob Listen mit manuellen Ersatzmaßnahmen für Kernsysteme existieren."
                     }
                   ]
                 },
@@ -2679,7 +2470,7 @@
                     },
                     {
                       "name": "effective_on_a",
-                      "value": "high",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -2692,12 +2483,12 @@
                     {
                       "id": "NOT.3.6-m3_custom_gdn",
                       "name": "guidance",
-                      "prose": "Die Notfallplanung muss konkrete alternative Sicherheitsmechanismen für den Notbetrieb definieren."
+                      "prose": "Integrieren Sie spezifische alternative Sicherheitskontrollen direkt in die Notfallpläne der Assets."
                     },
                     {
                       "id": "NOT.3.6-m3_custom_asm",
                       "name": "assessment",
-                      "prose": "Audit der Notfallpläne auf definierte alternative Sicherheitsmechanismen."
+                      "prose": "Validieren Sie die Existenz dokumentierter Notfall-Sicherheitsmechanismen in den Betriebshandbüchern."
                     }
                   ]
                 },
@@ -2727,7 +2518,7 @@
                     },
                     {
                       "name": "effective_on_a",
-                      "value": "high",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -2735,17 +2526,17 @@
                       "value": "m4"
                     }
                   ],
-                  "prose": "Ersatzmechanismen sind in Übungen regelmäßig validiert.",
+                  "prose": "Alternative Sicherheitsmechanismen werden proaktiv überwacht und regelmäßig auf Wirksamkeit geprüft.",
                   "parts": [
                     {
                       "id": "NOT.3.6-m4_custom_gdn",
                       "name": "guidance",
-                      "prose": "Führen Sie jährliche Simulationen zur Wirksamkeit der Mechanismen durch."
+                      "prose": "Nutzen Sie automatisierte Benachrichtigungen, wenn Primärsysteme fallen und Ersatzmechanismen greifen."
                     },
                     {
                       "id": "NOT.3.6-m4_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung der Übungsprotokolle auf Funktionsfähigkeit der Alternativen."
+                      "prose": "Führen Sie einen Testlauf durch, bei dem ein Sicherheitsmechanismus manuell deaktiviert wird."
                     }
                   ]
                 },
@@ -2775,7 +2566,7 @@
                     },
                     {
                       "name": "effective_on_a",
-                      "value": "high",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -2783,17 +2574,12 @@
                       "value": "m5"
                     }
                   ],
-                  "prose": "Dynamische Umschaltung auf Notfallmechanismen ist automatisiert.",
+                  "prose": "Die Aktivierung alternativer Sicherheitsmechanismen erfolgt vollautomatisiert und integriert.",
                   "parts": [
-                    {
-                      "id": "NOT.3.6-m5_custom_gdn",
-                      "name": "guidance",
-                      "prose": "Integrieren Sie automatisierte Failover-Prozesse für Sicherheitsdienste."
-                    },
                     {
                       "id": "NOT.3.6-m5_custom_asm",
                       "name": "assessment",
-                      "prose": "Test des automatisierten Failovers per Skript oder Monitor-Log."
+                      "prose": "Prüfen Sie via API-Log-Analyse die automatisierte Umschaltung auf Redundanzsysteme im simulierten Notfall."
                     }
                   ]
                 }
@@ -2829,7 +2615,7 @@
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "high",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -2842,17 +2628,17 @@
                       "value": "m1"
                     }
                   ],
-                  "prose": "Wichtige Datenquellen sind teilweise bekannt.",
+                  "prose": "Wichtige Datenquellen werden teilweise und unsystematisch erfasst.",
                   "parts": [
                     {
                       "id": "NOT.4.1-m1_custom_gdn",
                       "name": "guidance",
-                      "prose": "Erfassen Sie grob die wichtigsten zu sichernden Datensätze."
+                      "prose": "Erstellen Sie einfache Notizen über den Speicherort der wichtigsten Firmendokumente."
                     },
                     {
                       "id": "NOT.4.1-m1_custom_asm",
                       "name": "assessment",
-                      "prose": "Befragung der Administratoren zu bekannten Backup-Quellen."
+                      "prose": "Sichten Sie vorhandene Dateilisten auf Vollständigkeit bezüglich kritischer Geschäftsdaten."
                     }
                   ]
                 },
@@ -2877,7 +2663,7 @@
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "high",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -2890,17 +2676,17 @@
                       "value": "m2"
                     }
                   ],
-                  "prose": "Datenquellen sind in einer einfachen Liste erfasst.",
+                  "prose": "Eine statische Liste der zu sichernden Datenquellen liegt für die IT-Abteilung vor.",
                   "parts": [
                     {
                       "id": "NOT.4.1-m2_custom_gdn",
                       "name": "guidance",
-                      "prose": "Führen Sie eine Excel-Liste aller zu sichernden Systeme."
+                      "prose": "Führen Sie eine Bestandsaufnahme aller Server und ihrer primären Datenverzeichnisse durch."
                     },
                     {
                       "id": "NOT.4.1-m2_custom_asm",
                       "name": "assessment",
-                      "prose": "Abgleich der Liste mit den tatsächlich konfigurierten Jobs."
+                      "prose": "Prüfen Sie die Übereinstimmung der Backup-Konfiguration mit der manuell gepflegten Inventarliste."
                     }
                   ]
                 },
@@ -2925,7 +2711,7 @@
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "high",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -2943,12 +2729,12 @@
                     {
                       "id": "NOT.4.1-m3_custom_gdn",
                       "name": "guidance",
-                      "prose": "Die Notfallplanung muss eine vollständige Dokumentation aller zu sichernden Datenquellen enthalten."
+                      "prose": "Stellen Sie sicher, dass alle im Geltungsbereich befindlichen Datenquellen im Notfallkonzept gelistet sind."
                     },
                     {
                       "id": "NOT.4.1-m3_custom_asm",
                       "name": "assessment",
-                      "prose": "Vergleich der Dokumentation mit dem aktuellen Backup-Inventar."
+                      "prose": "Gleichen Sie das Notfallkonzept mit dem aktuellen IT-Strukturplan ab."
                     }
                   ]
                 },
@@ -2973,7 +2759,7 @@
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "high",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -2986,17 +2772,17 @@
                       "value": "m4"
                     }
                   ],
-                  "prose": "Datenquellen-Inventar wird quartalsweise automatisiert abgeglichen.",
+                  "prose": "Die Dokumentation der Datenquellen erfolgt automatisiert über ein Discovery-Tool.",
                   "parts": [
                     {
                       "id": "NOT.4.1-m4_custom_gdn",
                       "name": "guidance",
-                      "prose": "Nutzen Sie Skripte zum Abgleich von Inventar und Backup-Jobs."
+                      "prose": "Implementieren Sie Scans, die neue Datenbestände automatisch identifizieren und dem Backup zuordnen."
                     },
                     {
                       "id": "NOT.4.1-m4_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung der Abgleichsprotokolle auf Diskrepanzen."
+                      "prose": "Führen Sie `lsblk` oder `df -h` auf Zielsystemen aus und prüfen Sie den Abgleich im Discovery-System."
                     }
                   ]
                 },
@@ -3021,7 +2807,7 @@
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "high",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -3034,17 +2820,12 @@
                       "value": "m5"
                     }
                   ],
-                  "prose": "Echtzeit-Inventarisierung steuert die Backup-Abdeckung.",
+                  "prose": "Datenquellen werden dynamisch via Policy-as-Code klassifiziert und für die Sicherung registriert.",
                   "parts": [
-                    {
-                      "id": "NOT.4.1-m5_custom_gdn",
-                      "name": "guidance",
-                      "prose": "Integrieren Sie CMDB und Backup-System für automatische Erfassung."
-                    },
                     {
                       "id": "NOT.4.1-m5_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfen Sie via API, ob neue Instanzen sofort gesichert werden."
+                      "prose": "Validieren Sie die automatische Backup-Aufnahme neuer Cloud-Ressourcen über Terraform- oder Ansible-Logs."
                     }
                   ]
                 }
@@ -3065,22 +2846,22 @@
                   "props": [
                     {
                       "name": "control_class",
-                      "value": "Operational",
+                      "value": "Technical",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "phase",
-                      "value": "Implementation",
+                      "value": "Operation",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_c",
-                      "value": "medium",
+                      "value": "low",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "medium",
+                      "value": "low",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -3093,17 +2874,17 @@
                       "value": "m1"
                     }
                   ],
-                  "prose": "Backups lagern teilweise in anderen Serverräumen.",
+                  "prose": "Datensicherungen lagern vereinzelt räumlich getrennt von den Quellsystemen.",
                   "parts": [
                     {
                       "id": "NOT.4.10-m1_custom_gdn",
                       "name": "guidance",
-                      "prose": "Verteilen Sie Sicherungen räumlich nach Möglichkeit."
+                      "prose": "Stellen Sie sicher, dass externe Festplatten nicht direkt neben dem Server liegen."
                     },
                     {
                       "id": "NOT.4.10-m1_custom_asm",
                       "name": "assessment",
-                      "prose": "Stichprobe der Standorte von Backup-Medien."
+                      "prose": "Begehung der Räumlichkeiten zur Prüfung der physischen Distanz zwischen Server und Backup-Medien."
                     }
                   ]
                 },
@@ -3113,22 +2894,22 @@
                   "props": [
                     {
                       "name": "control_class",
-                      "value": "Operational",
+                      "value": "Technical",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "phase",
-                      "value": "Implementation",
+                      "value": "Operation",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_c",
-                      "value": "medium",
+                      "value": "low",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "medium",
+                      "value": "low",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -3141,17 +2922,17 @@
                       "value": "m2"
                     }
                   ],
-                  "prose": "Backups sind physisch vom Primärsystem getrennt.",
+                  "prose": "Backups werden in einem separaten Brandabschnitt innerhalb des Gebäudes aufbewahrt.",
                   "parts": [
                     {
                       "id": "NOT.4.10-m2_custom_gdn",
                       "name": "guidance",
-                      "prose": "Lagern Sie Datenträger in einem separaten Brandabschnitt."
+                      "prose": "Nutzen Sie feuergeschützte Safes in unterschiedlichen Gebäudeteilen für die Medienlagerung."
                     },
                     {
                       "id": "NOT.4.10-m2_custom_asm",
                       "name": "assessment",
-                      "prose": "Begehung des Lagerorts und Prüfung des Brandschutzes."
+                      "prose": "Prüfen Sie die Zugangsprotokolle des separaten Lagerraums."
                     }
                   ]
                 },
@@ -3161,22 +2942,22 @@
                   "props": [
                     {
                       "name": "control_class",
-                      "value": "Operational",
+                      "value": "Technical",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "phase",
-                      "value": "Implementation",
+                      "value": "Operation",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_c",
-                      "value": "medium",
+                      "value": "low",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "medium",
+                      "value": "low",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -3194,12 +2975,12 @@
                     {
                       "id": "NOT.4.10-m3_custom_gdn",
                       "name": "guidance",
-                      "prose": "Die Notfallplanung muss sicherstellen, dass Sicherungen räumlich getrennt von Originaldaten gelagert werden."
+                      "prose": "Definieren Sie klare Zonen für die Aufbewahrung, die physische und logische Trennung gewährleisten."
                     },
                     {
                       "id": "NOT.4.10-m3_custom_asm",
                       "name": "assessment",
-                      "prose": "Dokumentenprüfung zur räumlichen Trennung der Backup-Infrastruktur."
+                      "prose": "Verifizieren Sie die Einhaltung der Trennungsvorgaben durch Stichproben vor Ort oder im Netzplan."
                     }
                   ]
                 },
@@ -3209,22 +2990,22 @@
                   "props": [
                     {
                       "name": "control_class",
-                      "value": "Operational",
+                      "value": "Technical",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "phase",
-                      "value": "Implementation",
+                      "value": "Operation",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_c",
-                      "value": "medium",
+                      "value": "low",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "medium",
+                      "value": "low",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -3237,17 +3018,17 @@
                       "value": "m4"
                     }
                   ],
-                  "prose": "Getrennte Aufbewahrung erfolgt in spezialisierten Tresoren.",
+                  "prose": "Die Trennung erfolgt durch strikte logische Segmentierung und physische Auslagerung.",
                   "parts": [
                     {
                       "id": "NOT.4.10-m4_custom_gdn",
                       "name": "guidance",
-                      "prose": "Nutzen Sie Datensicherungsschränke mit hoher Feuerwiderstandsklasse."
+                      "prose": "Etablieren Sie dedizierte VLANs und Storage-Netze für Backup-Traffic ohne Routing zum Produktivnetz."
                     },
                     {
                       "id": "NOT.4.10-m4_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung der Zertifikate der genutzten Sicherheitsbehälter."
+                      "prose": "Führen Sie einen `traceroute` vom Backup-Server zum Produktivsystem durch, um die Segmentierung zu prüfen."
                     }
                   ]
                 },
@@ -3257,22 +3038,22 @@
                   "props": [
                     {
                       "name": "control_class",
-                      "value": "Operational",
+                      "value": "Technical",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "phase",
-                      "value": "Implementation",
+                      "value": "Operation",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_c",
-                      "value": "medium",
+                      "value": "low",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "medium",
+                      "value": "low",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -3285,17 +3066,12 @@
                       "value": "m5"
                     }
                   ],
-                  "prose": "Trennung wird durch Air-Gapping und Off-Site-Lagerung maximiert.",
+                  "prose": "Sicherungen werden vollautomatisch in geografisch dislozierte, luftgebrückte Tresorsysteme repliziert.",
                   "parts": [
-                    {
-                      "id": "NOT.4.10-m5_custom_gdn",
-                      "name": "guidance",
-                      "prose": "Implementieren Sie Air-Gapped Backups an entfernten Standorten."
-                    },
                     {
                       "id": "NOT.4.10-m5_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung der Netzwerkkonfiguration auf physische/logische Trennung."
+                      "prose": "Prüfen Sie die Replikationslogs auf erfolgreiche Offsite-Übertragung an den Remote-Standort."
                     }
                   ]
                 }
@@ -3326,17 +3102,17 @@
                     },
                     {
                       "name": "effective_on_c",
-                      "value": "high",
+                      "value": "low",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "medium",
+                      "value": "low",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_a",
-                      "value": "medium",
+                      "value": "high",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -3344,17 +3120,17 @@
                       "value": "m1"
                     }
                   ],
-                  "prose": "Ein ungeordnetes Lager für Datenträger existiert.",
+                  "prose": "Es existiert eine informelle Sammlung von Backup-Medien ohne Struktur.",
                   "parts": [
                     {
                       "id": "NOT.4.11-m1_custom_gdn",
                       "name": "guidance",
-                      "prose": "Sammeln Sie Datenträger an einem zentralen Ort."
+                      "prose": "Markieren Sie Backup-Medien zumindest mit dem Datum der Erstellung."
                     },
                     {
                       "id": "NOT.4.11-m1_custom_asm",
                       "name": "assessment",
-                      "prose": "Besichtigung des Ablageorts für Datenträger."
+                      "prose": "Prüfen Sie, ob Datenträger ohne Beschriftung oder Zuordnung im Umlauf sind."
                     }
                   ]
                 },
@@ -3374,17 +3150,17 @@
                     },
                     {
                       "name": "effective_on_c",
-                      "value": "high",
+                      "value": "low",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "medium",
+                      "value": "low",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_a",
-                      "value": "medium",
+                      "value": "high",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -3392,17 +3168,17 @@
                       "value": "m2"
                     }
                   ],
-                  "prose": "Strukturiertes Datenträgerarchiv mit Verzeichnis ist vorhanden.",
+                  "prose": "Ein einfaches Verzeichnis führt die vorhandenen physischen Datenträger auf.",
                   "parts": [
                     {
                       "id": "NOT.4.11-m2_custom_gdn",
                       "name": "guidance",
-                      "prose": "Führen Sie ein einfaches Bestandsverzeichnis der Medien."
+                      "prose": "Führen Sie eine Liste (z. B. Tabelle), in der Medien-IDs und Lagerorte vermerkt sind."
                     },
                     {
                       "id": "NOT.4.11-m2_custom_asm",
                       "name": "assessment",
-                      "prose": "Stichprobenartige Prüfung des Bestandsverzeichnisses."
+                      "prose": "Gleichen Sie eine Stichprobe von Datenträgern mit den Einträgen im Verzeichnis ab."
                     }
                   ]
                 },
@@ -3422,17 +3198,17 @@
                     },
                     {
                       "name": "effective_on_c",
-                      "value": "high",
+                      "value": "low",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "medium",
+                      "value": "low",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_a",
-                      "value": "medium",
+                      "value": "high",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -3445,12 +3221,12 @@
                     {
                       "id": "NOT.4.11-m3_custom_gdn",
                       "name": "guidance",
-                      "prose": "Die Notfallplanung muss die Einrichtung und den Betrieb eines Datenträgerarchivs vorsehen."
+                      "prose": "Richten Sie ein systematisches Archiv ein, das Lebenszyklen und Standorte der Medien dokumentiert."
                     },
                     {
                       "id": "NOT.4.11-m3_custom_asm",
                       "name": "assessment",
-                      "prose": "Audit des Datenträgerarchivs und der zugehörigen Prozesse."
+                      "prose": "Prüfen Sie das Archivhandbuch und die Vollständigkeit der Bestandsliste."
                     }
                   ]
                 },
@@ -3470,17 +3246,17 @@
                     },
                     {
                       "name": "effective_on_c",
-                      "value": "high",
+                      "value": "low",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "medium",
+                      "value": "low",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_a",
-                      "value": "medium",
+                      "value": "high",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -3488,17 +3264,17 @@
                       "value": "m4"
                     }
                   ],
-                  "prose": "Das Archiv wird klimatisiert und zugangsgeschützt betrieben.",
+                  "prose": "Das Archiv wird digital verwaltet und beinhaltet automatisierte Aufbewahrungsfristen.",
                   "parts": [
                     {
                       "id": "NOT.4.11-m4_custom_gdn",
                       "name": "guidance",
-                      "prose": "Überwachen Sie Umgebungsbedingungen im Archiv kontinuierlich."
+                      "prose": "Nutzen Sie Barcode-Scanner oder RFID zur Erfassung und Überwachung der Medienbewegung."
                     },
                     {
                       "id": "NOT.4.11-m4_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung der Temperaturlogs und Zutrittsprotokolle."
+                      "prose": "Testen Sie die Suchfunktion der Archiv-Software nach einem bestimmten Backup-Satz."
                     }
                   ]
                 },
@@ -3518,17 +3294,17 @@
                     },
                     {
                       "name": "effective_on_c",
-                      "value": "high",
+                      "value": "low",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "medium",
+                      "value": "low",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_a",
-                      "value": "medium",
+                      "value": "high",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -3536,17 +3312,12 @@
                       "value": "m5"
                     }
                   ],
-                  "prose": "Vollautomatisiertes Tape-Library-System mit Lebenszyklus-Management.",
+                  "prose": "Das Archiv ist ein robotikgestütztes System mit integrierter Integritätsprüfung der Medien.",
                   "parts": [
-                    {
-                      "id": "NOT.4.11-m5_custom_gdn",
-                      "name": "guidance",
-                      "prose": "Automatisieren Sie die Medienrotation und Integritätsprüfung."
-                    },
                     {
                       "id": "NOT.4.11-m5_custom_asm",
                       "name": "assessment",
-                      "prose": "Auswertung der Systemberichte zur automatischen Medienprüfung."
+                      "prose": "Verifizieren Sie die automatisierten Berichte über die Lesbarkeit der archivierten Medien."
                     }
                   ]
                 }
@@ -3595,17 +3366,17 @@
                       "value": "m1"
                     }
                   ],
-                  "prose": "Datenkopien liegen an einem zweiten Firmenstandort.",
+                  "prose": "Kopien werden unregelmäßig an weit entfernte Standorte gebracht.",
                   "parts": [
                     {
                       "id": "NOT.4.12-m1_custom_gdn",
                       "name": "guidance",
-                      "prose": "Kopieren Sie Backups sporadisch an einen anderen Ort."
+                      "prose": "Versuchen Sie, einmal im Quartal eine Kopie der Daten an einem anderen Ort zu deponieren."
                     },
                     {
                       "id": "NOT.4.12-m1_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung auf Vorhandensein von Kopien an Standort B."
+                      "prose": "Fragen Sie nach Belegen für den manuellen Transport von Medien an Remote-Standorte."
                     }
                   ]
                 },
@@ -3643,17 +3414,17 @@
                       "value": "m2"
                     }
                   ],
-                  "prose": "Wöchentlicher Transport von Backups zu einem Depot.",
+                  "prose": "Es findet ein regelmäßiger manueller Abgleich mit einem Außenstandort statt.",
                   "parts": [
                     {
                       "id": "NOT.4.12-m2_custom_gdn",
                       "name": "guidance",
-                      "prose": "Richten Sie einen festen Turnus für die externe Lagerung ein."
+                      "prose": "Legen Sie feste Termine für die Auslagerung von Bändern oder Festplatten fest (> 5 km Distanz)."
                     },
                     {
                       "id": "NOT.4.12-m2_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung der Transportbelege für die Backup-Medien."
+                      "prose": "Kontrollieren Sie das Übergabeprotokoll der Datenträger für den Außenstandort."
                     }
                   ]
                 },
@@ -3696,12 +3467,12 @@
                     {
                       "id": "NOT.4.12-m3_custom_gdn",
                       "name": "guidance",
-                      "prose": "Die Notfallplanung sieht optional eine georedundante Speicherung von Backup-Kopien vor."
+                      "prose": "Planen Sie die Speicherung einer Sicherungskopie in ausreichender Entfernung zum Primärstandort."
                     },
                     {
                       "id": "NOT.4.12-m3_custom_asm",
                       "name": "assessment",
-                      "prose": "Überprüfung, ob Georedundanz gemäß Planung umgesetzt wurde."
+                      "prose": "Überprüfen Sie den Standort der Georedundanz auf Einhaltung der Mindestentfernung."
                     }
                   ]
                 },
@@ -3739,17 +3510,17 @@
                       "value": "m4"
                     }
                   ],
-                  "prose": "Kontinuierliche georedundante Replikation über Standorte.",
+                  "prose": "Georedundanz wird durch automatisierte asynchrone Replikation sichergestellt.",
                   "parts": [
                     {
                       "id": "NOT.4.12-m4_custom_gdn",
                       "name": "guidance",
-                      "prose": "Nutzen Sie synchrone oder asynchrone Replikation zwischen RZs."
+                      "prose": "Konfigurieren Sie Speicherreplikation über WAN-Strecken zu einem dedizierten Backup-Standort."
                     },
                     {
                       "id": "NOT.4.12-m4_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung der Replikationslatenz und Statusberichte."
+                      "prose": "Prüfen Sie via `ping` oder `mtr` die Latenz zum Remote-Standort und validieren Sie die Synchronität."
                     }
                   ]
                 },
@@ -3787,17 +3558,12 @@
                       "value": "m5"
                     }
                   ],
-                  "prose": "Multi-Cloud- oder Multi-Site-Strategie mit automatischer Konsistenz.",
+                  "prose": "Echtzeit-Georedundanz über mehrere Cloud-Regionen mit automatischer Lastverteilung.",
                   "parts": [
-                    {
-                      "id": "NOT.4.12-m5_custom_gdn",
-                      "name": "guidance",
-                      "prose": "Verteilen Sie Fragmente über mehrere geografische Zonen."
-                    },
                     {
                       "id": "NOT.4.12-m5_custom_asm",
                       "name": "assessment",
-                      "prose": "Check der Standortverteilung via Cloud-Management-Konsole."
+                      "prose": "Führen Sie ein Site-Failover-Szenario durch, um die Verfügbarkeit der georedundanten Daten zu bestätigen."
                     }
                   ]
                 }
@@ -3823,7 +3589,7 @@
                     },
                     {
                       "name": "phase",
-                      "value": "Implementation",
+                      "value": "Operation",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -3833,7 +3599,7 @@
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "high",
+                      "value": "low",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -3846,17 +3612,17 @@
                       "value": "m1"
                     }
                   ],
-                  "prose": "Grobe Schritte zur Wiederherstellung sind notiert.",
+                  "prose": "Wiederherstellungsschritte sind nur im Kopf einzelner Administratoren vorhanden.",
                   "parts": [
                     {
                       "id": "NOT.4.15-m1_custom_gdn",
                       "name": "guidance",
-                      "prose": "Skizzieren Sie den Wiederherstellungsprozess für Hauptsysteme."
+                      "prose": "Notieren Sie die wichtigsten Befehle zum Einspielen eines Backups in einem Textdokument."
                     },
                     {
                       "id": "NOT.4.15-m1_custom_asm",
                       "name": "assessment",
-                      "prose": "Sichtung von Notizzetteln oder Kurzanleitungen."
+                      "prose": "Lassen Sie sich von einem Administrator spontan die Wiederherstellung eines Files erklären."
                     }
                   ]
                 },
@@ -3871,7 +3637,7 @@
                     },
                     {
                       "name": "phase",
-                      "value": "Implementation",
+                      "value": "Operation",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -3881,7 +3647,7 @@
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "high",
+                      "value": "low",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -3894,17 +3660,17 @@
                       "value": "m2"
                     }
                   ],
-                  "prose": "Standard-Wiederherstellungsschritte sind dokumentiert.",
+                  "prose": "Es existieren einfache Schritt-für-Schritt-Anleitungen für die Core-Systeme.",
                   "parts": [
                     {
                       "id": "NOT.4.15-m2_custom_gdn",
                       "name": "guidance",
-                      "prose": "Erstellen Sie Handbücher für die manuelle Rücksicherung."
+                      "prose": "Erstellen Sie PDF-Anleitungen für die Wiederherstellung von Datenbanken und Fileservern."
                     },
                     {
                       "id": "NOT.4.15-m2_custom_asm",
                       "name": "assessment",
-                      "prose": "Überprüfung der Dokumentation auf Verständlichkeit."
+                      "prose": "Sichten Sie die Wiederherstellungsdokumentation auf Aktualität und Verständlichkeit."
                     }
                   ]
                 },
@@ -3919,7 +3685,7 @@
                     },
                     {
                       "name": "phase",
-                      "value": "Implementation",
+                      "value": "Operation",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -3929,7 +3695,7 @@
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "high",
+                      "value": "low",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -3947,12 +3713,12 @@
                     {
                       "id": "NOT.4.15-m3_custom_gdn",
                       "name": "guidance",
-                      "prose": "Die Notfallplanung muss detaillierte Anleitungen für den Wiederherstellungsprozess bereitstellen."
+                      "prose": "Dokumentieren Sie detaillierte Wiederherstellungsprozesse inklusive Priorisierung und Abhängigkeiten."
                     },
                     {
                       "id": "NOT.4.15-m3_custom_asm",
                       "name": "assessment",
-                      "prose": "Audit der Wiederherstellungsdokumentation auf Vollständigkeit."
+                      "prose": "Prüfen Sie die Vollständigkeit der Wiederherstellungspläne für alle kritischen Applikationen."
                     }
                   ]
                 },
@@ -3967,7 +3733,7 @@
                     },
                     {
                       "name": "phase",
-                      "value": "Implementation",
+                      "value": "Operation",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -3977,7 +3743,7 @@
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "high",
+                      "value": "low",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -3990,17 +3756,17 @@
                       "value": "m4"
                     }
                   ],
-                  "prose": "Getestete Wiederherstellungsskripte liegen dokumentiert vor.",
+                  "prose": "Interaktive Playbooks unterstützen den Wiederherstellungsprozess aktiv.",
                   "parts": [
                     {
                       "id": "NOT.4.15-m4_custom_gdn",
                       "name": "guidance",
-                      "prose": "Verwenden Sie Skripte zur Beschleunigung der Wiederherstellung."
+                      "prose": "Nutzen Sie Tools, die den Wiederherstellungsfortschritt visualisieren und nächste Schritte vorschlagen."
                     },
                     {
                       "id": "NOT.4.15-m4_custom_asm",
                       "name": "assessment",
-                      "prose": "Testlauf der Skripte in einer Testumgebung durchführen."
+                      "prose": "Führen Sie eine Wiederherstellungsübung anhand des Playbooks durch und messen Sie die Zeit."
                     }
                   ]
                 },
@@ -4015,7 +3781,7 @@
                     },
                     {
                       "name": "phase",
-                      "value": "Implementation",
+                      "value": "Operation",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -4025,7 +3791,7 @@
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "high",
+                      "value": "low",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -4038,17 +3804,12 @@
                       "value": "m5"
                     }
                   ],
-                  "prose": "Automatisierte Restore-Orchestrierung (Infrastructure as Code).",
+                  "prose": "Wiederherstellungsprozeduren sind als Code (Recovery-as-Code) automatisiert hinterlegt.",
                   "parts": [
-                    {
-                      "id": "NOT.4.15-m5_custom_gdn",
-                      "name": "guidance",
-                      "prose": "Integrieren Sie automatisierte Recovery-Workflows in CI/CD-Tools."
-                    },
                     {
                       "id": "NOT.4.15-m5_custom_asm",
                       "name": "assessment",
-                      "prose": "Audit des 'One-Click' Recovery-Prozesses im Testsystem."
+                      "prose": "Starten Sie ein automatisiertes Restore-Skript in einer Sandbox und prüfen Sie das Ergebnis via `diff`."
                     }
                   ]
                 }
@@ -4069,12 +3830,12 @@
                   "props": [
                     {
                       "name": "control_class",
-                      "value": "Operational",
+                      "value": "Technical",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "phase",
-                      "value": "Implementation",
+                      "value": "Operation",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -4084,12 +3845,12 @@
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "high",
+                      "value": "low",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_a",
-                      "value": "medium",
+                      "value": "high",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -4097,17 +3858,17 @@
                       "value": "m1"
                     }
                   ],
-                  "prose": "Sicherungen lagern in einem abschließbaren Schrank.",
+                  "prose": "Datenträger werden in herkömmlichen, abschließbaren Büroschränken aufbewahrt.",
                   "parts": [
                     {
                       "id": "NOT.4.6-m1_custom_gdn",
                       "name": "guidance",
-                      "prose": "Verschließen Sie Backup-Medien bei Nichtgebrauch."
+                      "prose": "Verschließen Sie den Schrank mit den Sicherungsmedien stets bei Verlassen des Raumes."
                     },
                     {
                       "id": "NOT.4.6-m1_custom_asm",
                       "name": "assessment",
-                      "prose": "Physische Kontrolle des Schranks auf Verschluss."
+                      "prose": "Prüfen Sie physisch, ob Sicherungsmedien offen oder ungesichert herumliegen."
                     }
                   ]
                 },
@@ -4117,12 +3878,12 @@
                   "props": [
                     {
                       "name": "control_class",
-                      "value": "Operational",
+                      "value": "Technical",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "phase",
-                      "value": "Implementation",
+                      "value": "Operation",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -4132,12 +3893,12 @@
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "high",
+                      "value": "low",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_a",
-                      "value": "medium",
+                      "value": "high",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -4145,17 +3906,17 @@
                       "value": "m2"
                     }
                   ],
-                  "prose": "Zutritt zum Backup-Lager ist auf IT-Personal beschränkt.",
+                  "prose": "Ein feuerfester Tresor mit Basisschutz dient der Lagerung der Medien.",
                   "parts": [
                     {
                       "id": "NOT.4.6-m2_custom_gdn",
                       "name": "guidance",
-                      "prose": "Regeln Sie den physischen Zugang zum Backup-Bereich."
+                      "prose": "Nutzen Sie Tresore der Sicherheitsstufe S1 oder höher für die Aufbewahrung."
                     },
                     {
                       "id": "NOT.4.6-m2_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung der Zutrittsberechtigungsliste für den Lagerraum."
+                      "prose": "Prüfen Sie die Zertifizierung des Tresors und die Liste der zutrittsberechtigten Personen."
                     }
                   ]
                 },
@@ -4165,12 +3926,12 @@
                   "props": [
                     {
                       "name": "control_class",
-                      "value": "Operational",
+                      "value": "Technical",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "phase",
-                      "value": "Implementation",
+                      "value": "Operation",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -4180,12 +3941,12 @@
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "high",
+                      "value": "low",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_a",
-                      "value": "medium",
+                      "value": "high",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -4198,12 +3959,12 @@
                     {
                       "id": "NOT.4.6-m3_custom_gdn",
                       "name": "guidance",
-                      "prose": "Die Notfallplanung muss Schutzmaßnahmen für die physische Aufbewahrung von Backups festlegen."
+                      "prose": "Legen Sie Schutzklassen für Backups fest und definieren Sie entsprechende Aufbewahrungsorte."
                     },
                     {
                       "id": "NOT.4.6-m3_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung der Umsetzung physischer Schutzmaßnahmen für Backups."
+                      "prose": "Validieren Sie die baulichen und organisatorischen Schutzmaßnahmen des Backup-Lagers."
                     }
                   ]
                 },
@@ -4213,12 +3974,12 @@
                   "props": [
                     {
                       "name": "control_class",
-                      "value": "Operational",
+                      "value": "Technical",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "phase",
-                      "value": "Implementation",
+                      "value": "Operation",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -4228,12 +3989,12 @@
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "high",
+                      "value": "low",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_a",
-                      "value": "medium",
+                      "value": "high",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -4241,17 +4002,17 @@
                       "value": "m4"
                     }
                   ],
-                  "prose": "Zwei-Faktor-Zutrittskontrolle zum Backup-Archiv ist aktiv.",
+                  "prose": "Zutrittskontrolle und Umgebungsüberwachung im Backup-Lager sind automatisiert.",
                   "parts": [
                     {
                       "id": "NOT.4.6-m4_custom_gdn",
                       "name": "guidance",
-                      "prose": "Erhöhen Sie den Schutz durch biometrische oder Token-Verfahren."
+                      "prose": "Implementieren Sie Sensorik für Temperatur, Feuchtigkeit und unbefugten Zutritt mit Alarmierung."
                     },
                     {
                       "id": "NOT.4.6-m4_custom_asm",
                       "name": "assessment",
-                      "prose": "Funktionstest der Zutrittskontrollsysteme am Lagerort."
+                      "prose": "Testen Sie die Alarmkette durch provoziertes Öffnen der Tresortür ohne Autorisierung."
                     }
                   ]
                 },
@@ -4261,12 +4022,12 @@
                   "props": [
                     {
                       "name": "control_class",
-                      "value": "Operational",
+                      "value": "Technical",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "phase",
-                      "value": "Implementation",
+                      "value": "Operation",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -4276,12 +4037,12 @@
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "high",
+                      "value": "low",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_a",
-                      "value": "medium",
+                      "value": "high",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -4289,17 +4050,12 @@
                       "value": "m5"
                     }
                   ],
-                  "prose": "Videoüberwachte Hochsicherheitslagerung mit Alarmierung.",
+                  "prose": "Hochsicherheits-Storage mit logischem WORM-Schutz und biometrischer Zwei-Faktor-Authentisierung.",
                   "parts": [
-                    {
-                      "id": "NOT.4.6-m5_custom_gdn",
-                      "name": "guidance",
-                      "prose": "Integrieren Sie Einbruchmeldeanlagen und Videoüberwachung."
-                    },
                     {
                       "id": "NOT.4.6-m5_custom_asm",
                       "name": "assessment",
-                      "prose": "Auswertung der Alarmprotokolle und Kameraufzeichnungen."
+                      "prose": "Prüfen Sie die Manipulationssicherheit der Logs des Zutrittskontrollsystems."
                     }
                   ]
                 }
@@ -4325,7 +4081,7 @@
                     },
                     {
                       "name": "phase",
-                      "value": "Implementation",
+                      "value": "Operation",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -4348,17 +4104,17 @@
                       "value": "m1"
                     }
                   ],
-                  "prose": "Letzte Sicherung wird jeweils überschrieben.",
+                  "prose": "Es erfolgt eine einfache Rotation, bei der ältere Sicherungen überschrieben werden.",
                   "parts": [
                     {
                       "id": "NOT.4.7-m1_custom_gdn",
                       "name": "guidance",
-                      "prose": "Behalten Sie zumindest die letzte funktionierende Version."
+                      "prose": "Achten Sie darauf, zumindest die Sicherung des Vortages vorzuhalten."
                     },
                     {
                       "id": "NOT.4.7-m1_custom_asm",
                       "name": "assessment",
-                      "prose": "Check des Backup-Ziels auf Vorversionen (`ls -al`)."
+                      "prose": "Prüfen Sie das Dateidatum der Sicherung auf dem Backup-Medium."
                     }
                   ]
                 },
@@ -4373,7 +4129,7 @@
                     },
                     {
                       "name": "phase",
-                      "value": "Implementation",
+                      "value": "Operation",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -4396,17 +4152,17 @@
                       "value": "m2"
                     }
                   ],
-                  "prose": "Ein einfaches Generationsprinzip (Großvater-Vater-Sohn) besteht.",
+                  "prose": "Eine manuelle Versionierung nach Wochentagen wird durchgeführt.",
                   "parts": [
                     {
                       "id": "NOT.4.7-m2_custom_gdn",
                       "name": "guidance",
-                      "prose": "Implementieren Sie eine manuelle Rotation der Backups."
+                      "prose": "Beschriften Sie Medien mit Wochentagen und bewahren Sie diese für einen Zyklus auf."
                     },
                     {
                       "id": "NOT.4.7-m2_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung der Backup-Historie im Dateisystem."
+                      "prose": "Stichprobenartige Prüfung der Vorhandenseins von Backups der letzten 5 Werktage."
                     }
                   ]
                 },
@@ -4421,7 +4177,7 @@
                     },
                     {
                       "name": "phase",
-                      "value": "Implementation",
+                      "value": "Operation",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -4449,12 +4205,12 @@
                     {
                       "id": "NOT.4.7-m3_custom_gdn",
                       "name": "guidance",
-                      "prose": "Die Notfallplanung muss die Versionierung der Sicherungen zur Revisionssicherheit definieren."
+                      "prose": "Legen Sie ein Schema für die Aufbewahrung verschiedener Stände (z. B. GFS) fest."
                     },
                     {
                       "id": "NOT.4.7-m3_custom_asm",
                       "name": "assessment",
-                      "prose": "Audit der Backup-Konfiguration auf aktive Versionierung."
+                      "prose": "Überprüfen Sie die Konfiguration der Backup-Software auf definierte Vorhaltezeiten."
                     }
                   ]
                 },
@@ -4469,7 +4225,7 @@
                     },
                     {
                       "name": "phase",
-                      "value": "Implementation",
+                      "value": "Operation",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -4492,17 +4248,17 @@
                       "value": "m4"
                     }
                   ],
-                  "prose": "Unveränderbare Snapshots (Immutable) sichern Versionen ab.",
+                  "prose": "Die Versionierung erfolgt über unveränderbare Snapshots mit automatisierter Bereinigung.",
                   "parts": [
                     {
                       "id": "NOT.4.7-m4_custom_gdn",
                       "name": "guidance",
-                      "prose": "Nutzen Sie WORM-Speicher oder Object-Locking für Versionen."
+                      "prose": "Konfigurieren Sie Snapshot-Schedules auf dem Storage-System mit Read-Only-Berechtigungen."
                     },
                     {
                       "id": "NOT.4.7-m4_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung der Unveränderbarkeitseinstellungen (z.B. S3 Object Lock)."
+                      "prose": "Führen Sie `zfs list -t snapshot` oder ähnliche Befehle aus, um die Versionshistorie zu prüfen."
                     }
                   ]
                 },
@@ -4517,7 +4273,7 @@
                     },
                     {
                       "name": "phase",
-                      "value": "Implementation",
+                      "value": "Operation",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -4540,17 +4296,12 @@
                       "value": "m5"
                     }
                   ],
-                  "prose": "Deduplizierte Langzeitarchivierung mit Integritätsketten.",
+                  "prose": "Vollständige Immutable-Backup-Ketten schützen vor Ransomware durch kryptografische Sperren.",
                   "parts": [
-                    {
-                      "id": "NOT.4.7-m5_custom_gdn",
-                      "name": "guidance",
-                      "prose": "Automatisieren Sie die Integritätsprüfung jeder Version."
-                    },
                     {
                       "id": "NOT.4.7-m5_custom_asm",
                       "name": "assessment",
-                      "prose": "Check der Hash-Werte über Versionen via CLI-Tool."
+                      "prose": "Versuchen Sie, eine geschützte Backup-Version vor Ablauf der Frist zu löschen (Soll-Ergebnis: Fehlgeschlagen)."
                     }
                   ]
                 }
@@ -4586,7 +4337,7 @@
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "low",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -4599,17 +4350,17 @@
                       "value": "m1"
                     }
                   ],
-                  "prose": "Einzelne vertrauliche Backups sind passwortgeschützt.",
+                  "prose": "Sicherungen werden nur bei besonders sensiblen Daten manuell verschlüsselt.",
                   "parts": [
                     {
                       "id": "NOT.4.8-m1_custom_gdn",
                       "name": "guidance",
-                      "prose": "Nutzen Sie Archiv-Passwörter für kritische Sicherungen."
+                      "prose": "Nutzen Sie Packprogramme mit Passwortschutz für einzelne wichtige Datei-Backups."
                     },
                     {
                       "id": "NOT.4.8-m1_custom_asm",
                       "name": "assessment",
-                      "prose": "Stichprobe von ZIP/TAR Archiven auf Passwortschutz."
+                      "prose": "Prüfen Sie Stichproben von Backup-Dateien auf Lesbarkeit ohne Schlüssel."
                     }
                   ]
                 },
@@ -4634,7 +4385,7 @@
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "low",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -4647,17 +4398,17 @@
                       "value": "m2"
                     }
                   ],
-                  "prose": "Verschlüsselung erfolgt mit Standard-Tools auf Dateiebene.",
+                  "prose": "Die Verschlüsselung erfolgt softwareseitig mit Standardmechanismen der Backup-Lösung.",
                   "parts": [
                     {
                       "id": "NOT.4.8-m2_custom_gdn",
                       "name": "guidance",
-                      "prose": "Verwenden Sie Tools wie GnuPG für manuelle Verschlüsselung."
+                      "prose": "Aktivieren Sie die integrierte AES-Verschlüsselung in Ihrer Backup-Software."
                     },
                     {
                       "id": "NOT.4.8-m2_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung der verschlüsselten Dateien via `file` Kommando."
+                      "prose": "Kontrollieren Sie die Checkbox für Verschlüsselung in den Backup-Job-Einstellungen."
                     }
                   ]
                 },
@@ -4682,7 +4433,7 @@
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "low",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -4700,12 +4451,12 @@
                     {
                       "id": "NOT.4.8-m3_custom_gdn",
                       "name": "guidance",
-                      "prose": "Die Notfallplanung muss die Verschlüsselung der Backups gemäß den Vorgaben {{ insert: param, not.4.8-prm1 }} regeln."
+                      "prose": "Stellen Sie sicher, dass der gewählte Verschlüsselungsalgorithmus dem Stand der Technik entspricht."
                     },
                     {
                       "id": "NOT.4.8-m3_custom_asm",
                       "name": "assessment",
-                      "prose": "Audit der Verschlüsselungsparameter in der Backup-Software."
+                      "prose": "Verifizieren Sie den verwendeten Algorithmus in den Systemeinstellungen gegen die Vorgabe."
                     }
                   ]
                 },
@@ -4730,7 +4481,7 @@
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "low",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -4743,17 +4494,17 @@
                       "value": "m4"
                     }
                   ],
-                  "prose": "Zentrales Schlüsselmanagement sichert die Backup-Keys.",
+                  "prose": "Ein zentrales Schlüsselmanagement (KMS) verwaltet die Backup-Verschlüsselung.",
                   "parts": [
                     {
                       "id": "NOT.4.8-m4_custom_gdn",
                       "name": "guidance",
-                      "prose": "Nutzen Sie ein KMS zur Verwaltung der Backup-Geheimnisse."
+                      "prose": "Trennen Sie die Schlüsselverwaltung physisch oder logisch von den Backup-Daten."
                     },
                     {
                       "id": "NOT.4.8-m4_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung der Schlüsselrotations-Logs im KMS."
+                      "prose": "Prüfen Sie die KMIP-Logs auf erfolgreiche Schlüsselanforderungen während der Backup-Laufzeit."
                     }
                   ]
                 },
@@ -4778,7 +4529,7 @@
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "low",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -4791,17 +4542,12 @@
                       "value": "m5"
                     }
                   ],
-                  "prose": "Ende-zu-Ende Verschlüsselung mit Hardware-Sicherheitsmodulen.",
+                  "prose": "Hardware-basierte Verschlüsselung (SED) mit automatischer Schlüsselrotation und Audit-Trail.",
                   "parts": [
-                    {
-                      "id": "NOT.4.8-m5_custom_gdn",
-                      "name": "guidance",
-                      "prose": "Binden Sie HSMs für die Root-of-Trust der Verschlüsselung ein."
-                    },
                     {
                       "id": "NOT.4.8-m5_custom_asm",
                       "name": "assessment",
-                      "prose": "Verifizierung der HSM-Integration via API-Logs."
+                      "prose": "Validieren Sie die Hardware-Verschlüsselung via `smartctl` oder herstellerspezifischen CLI-Tools."
                     }
                   ]
                 }
@@ -4850,17 +4596,17 @@
                       "value": "m1"
                     }
                   ],
-                  "prose": "Backups erfolgen auf verfügbare externe Festplatten.",
+                  "prose": "Sicherungen erfolgen auf beliebigen, gerade verfügbaren Datenträgern.",
                   "parts": [
                     {
                       "id": "NOT.4.9-m1_custom_gdn",
                       "name": "guidance",
-                      "prose": "Nutzen Sie vorhandene Datenträger für gelegentliche Sicherungen."
+                      "prose": "Nutzen Sie vorhandene USB-Sticks oder freie Partitionen für temporäre Sicherungen."
                     },
                     {
                       "id": "NOT.4.9-m1_custom_asm",
                       "name": "assessment",
-                      "prose": "Sichtung der genutzten USB-Platten oder NAS-Freigaben."
+                      "prose": "Prüfen Sie, ob Sicherungen auf privaten oder nicht zertifizierten Medien liegen."
                     }
                   ]
                 },
@@ -4898,17 +4644,17 @@
                       "value": "m2"
                     }
                   ],
-                  "prose": "Standardisierte Festplatten werden dediziert genutzt.",
+                  "prose": "Standard-Serverfestplatten oder einfache NAS-Systeme werden für Backups genutzt.",
                   "parts": [
                     {
                       "id": "NOT.4.9-m2_custom_gdn",
                       "name": "guidance",
-                      "prose": "Beschaffen Sie spezifische Medien nur für Backup-Zwecke."
+                      "prose": "Beschaffen Sie dedizierte Festplatten, die ausschließlich für Backups reserviert sind."
                     },
                     {
                       "id": "NOT.4.9-m2_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung der Inventarnummern der Backup-Medien."
+                      "prose": "Sichten Sie die Hardware-Inventarliste auf dedizierte Backup-Systeme."
                     }
                   ]
                 },
@@ -4951,12 +4697,12 @@
                     {
                       "id": "NOT.4.9-m3_custom_gdn",
                       "name": "guidance",
-                      "prose": "Die Notfallplanung muss geeignete, dedizierte Speichermedien für die Backups festlegen."
+                      "prose": "Wählen Sie Medien, die für Langzeitstabilität (z. B. LTO-Bänder) ausgelegt sind."
                     },
                     {
                       "id": "NOT.4.9-m3_custom_asm",
                       "name": "assessment",
-                      "prose": "Audit der Speichermedien auf Eignung für Aufbewahrungsfristen."
+                      "prose": "Vergleichen Sie die Spezifikationen der genutzten Medien mit den Anforderungen der Aufbewahrungsfrist."
                     }
                   ]
                 },
@@ -4994,17 +4740,17 @@
                       "value": "m4"
                     }
                   ],
-                  "prose": "Einsatz von Enterprise-Storage mit Fehlerkorrektur (ECC).",
+                  "prose": "Der Medieneinsatz wird durch automatisierte Health-Checks überwacht.",
                   "parts": [
                     {
                       "id": "NOT.4.9-m4_custom_gdn",
                       "name": "guidance",
-                      "prose": "Wählen Sie Medien mit hoher Lebensdauer und Fehlerkorrektur."
+                      "prose": "Implementieren Sie Monitoring, das Abnutzungserscheinungen (Wear-Leveling) frühzeitig meldet."
                     },
                     {
                       "id": "NOT.4.9-m4_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung der technischen Datenblätter der Speichersysteme."
+                      "prose": "Prüfen Sie die Monitoring-Dashboards auf SMART-Werte oder Band-Fehlerraten."
                     }
                   ]
                 },
@@ -5042,17 +4788,12 @@
                       "value": "m5"
                     }
                   ],
-                  "prose": "Automatisierte Medienüberwachung und prädiktiver Austausch.",
+                  "prose": "Ein intelligentes Speichersystem führt vollautomatisch Medien-Migrationen bei Alterung durch.",
                   "parts": [
-                    {
-                      "id": "NOT.4.9-m5_custom_gdn",
-                      "name": "guidance",
-                      "prose": "Nutzen Sie SMART-Werte zur Vorhersage von Medienausfällen."
-                    },
                     {
                       "id": "NOT.4.9-m5_custom_asm",
                       "name": "assessment",
-                      "prose": "Check der Monitoring-Dashboard-Warnungen für Datenträger."
+                      "prose": "Validieren Sie die automatisierten Daten-Integritätsberichte (Bit-Rot-Erkennung) des Speichersystems."
                     }
                   ]
                 }

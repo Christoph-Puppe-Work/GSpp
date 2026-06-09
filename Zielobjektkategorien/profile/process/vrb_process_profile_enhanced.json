@@ -1,11 +1,11 @@
 {
   "profile": {
-    "uuid": "bcd1e375-6dee-43cc-a021-074cffbcf0ef",
+    "uuid": "38131ac8-398a-5a96-a9bd-30daf3f87b3d",
     "metadata": {
-      "title": "VRB_prozesse VRB_prozesse - Enhanced (ED2023)",
-      "last-modified": "2026-05-31T20:20:49.334733+00:00",
+      "title": "Verbesserung Prozess Profil - Enhanced (ED2023)",
+      "last-modified": "2026-06-04T14:36:40.796865+00:00",
       "version": "0.0.1",
-      "oscal-version": "1.1.3"
+      "oscal-version": "1.2.2"
     },
     "imports": [
       {
@@ -47,17 +47,17 @@
                     },
                     {
                       "name": "effective_on_c",
-                      "value": "low",
+                      "value": "high",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "medium",
+                      "value": "high",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_a",
-                      "value": "low",
+                      "value": "high",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -65,17 +65,17 @@
                       "value": "m1"
                     }
                   ],
-                  "prose": "Ad-hoc Anpassung des ISMS nach schweren Sicherheitsvorfällen.",
+                  "prose": "Die Notwendigkeit zur Anpassung des ISMS wird nur sporadisch und anlassbezogen bei kritischen Sicherheitsvorfällen geprüft.",
                   "parts": [
                     {
                       "id": "VRB.2.2-m1_custom_gdn",
                       "name": "guidance",
-                      "prose": "Änderungen am ISMS erfolgen nur reaktiv, wenn kritische Fehler oder Sicherheitsvorfälle den Betrieb unmittelbar gefährden. Es gibt keinen proaktiven Revisionszyklus."
+                      "prose": "Prüfen Sie ad-hoc, ob das ISMS nach einem Vorfall noch aktuell ist. Dokumentieren Sie die Entscheidung formlos."
                     },
                     {
                       "id": "VRB.2.2-m1_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung der Historie von ISMS-Dokumenten auf Korrelation mit vergangenen Vorfällen."
+                      "prose": "Einsichtnahme in Protokolle vergangener Sicherheitsvorfälle und Prüfung auf Vermerke zur ISMS-Anpassung."
                     }
                   ]
                 },
@@ -95,17 +95,17 @@
                     },
                     {
                       "name": "effective_on_c",
-                      "value": "low",
+                      "value": "high",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "medium",
+                      "value": "high",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_a",
-                      "value": "low",
+                      "value": "high",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -113,17 +113,17 @@
                       "value": "m2"
                     }
                   ],
-                  "prose": "Manuelle Erfassung von Nicht-Konformitäten zur sporadischen ISMS-Anpassung.",
+                  "prose": "Es existiert eine Liste von Nicht-Konformitäten, die gelegentlich manuell auf ISMS-Relevanz geprüft wird.",
                   "parts": [
                     {
                       "id": "VRB.2.2-m2_custom_gdn",
                       "name": "guidance",
-                      "prose": "Nicht-Konformitäten werden in einer Liste gesammelt. Die Anpassung des ISMS erfolgt in unregelmäßigen Abständen ohne striktes Framework."
+                      "prose": "Führen Sie eine einfache Tabelle mit Abweichungen und prüfen Sie diese jährlich auf notwendige Änderungen am ISMS-Rahmenwerk."
                     },
                     {
                       "id": "VRB.2.2-m2_custom_asm",
                       "name": "assessment",
-                      "prose": "Einsichtnahme in die Liste der Nicht-Konformitäten und Abgleich mit durchgeführten Dokumentenänderungen."
+                      "prose": "Stichprobenartige Prüfung der Abweichungsliste und Abgleich mit durchgeführten ISMS-Updates."
                     }
                   ]
                 },
@@ -143,17 +143,17 @@
                     },
                     {
                       "name": "effective_on_c",
-                      "value": "low",
+                      "value": "high",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "medium",
+                      "value": "high",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_a",
-                      "value": "low",
+                      "value": "high",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -166,12 +166,12 @@
                     {
                       "id": "VRB.2.2-m3_custom_gdn",
                       "name": "guidance",
-                      "prose": "Die Institution muss sicherstellen, dass festgestellte Abweichungen systematisch analysiert werden, um den Bedarf für eine Aktualisierung oder Anpassung der ISMS-Prozesse und -Dokumentation zu ermitteln."
+                      "prose": "Integrieren Sie die Prüfung von Nicht-Konformitäten fest in den Review-Prozess des ISMS. Dokumentieren Sie die Ergebnisse der Überprüfung systematisch, um den PDCA-Zyklus zu unterstützen."
                     },
                     {
                       "id": "VRB.2.2-m3_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung der Audit-Berichte und Nachweise über die daraus abgeleiteten Anpassungsentscheidungen im ISMS-Management-Review."
+                      "prose": "Prüfung der Protokolle des ISMS-Management-Reviews. Abgleich der identifizierten Nicht-Konformitäten mit den daraus resultierenden ISMS-Änderungen."
                     }
                   ]
                 },
@@ -191,17 +191,17 @@
                     },
                     {
                       "name": "effective_on_c",
-                      "value": "low",
+                      "value": "high",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "medium",
+                      "value": "high",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_a",
-                      "value": "low",
+                      "value": "high",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -209,17 +209,17 @@
                       "value": "m4"
                     }
                   ],
-                  "prose": "Strukturierter Review-Prozess basierend auf KPI-Abweichungen.",
+                  "prose": "Ein strukturierter Workflow zur Ursachenanalyse (Root Cause Analysis) leitet automatisch Anpassungsbedarfe für das ISMS ab.",
                   "parts": [
                     {
                       "id": "VRB.2.2-m4_custom_gdn",
                       "name": "guidance",
-                      "prose": "Nach jedem Audit oder bei Abweichung definierter Leistungskennzahlen wird ein formaler Prozess zur ISMS-Anpassung gestartet. Proaktive Identifikation von Schwachstellen in Prozessen."
+                      "prose": "Nutzen Sie standardisierte Methoden wie 5-Why oder Ishikawa für jede Nicht-Konformität, um tiefere ISMS-Mängel zu identifizieren."
                     },
                     {
                       "id": "VRB.2.2-m4_custom_asm",
                       "name": "assessment",
-                      "prose": "Validierung der Prozessbeschreibungen für das Management-Review. Prüfung der Verknüpfung zwischen KPI-Reports und Änderungsanträgen im ISMS."
+                      "prose": "Audit des Ursachenanalyse-Prozesses. Prüfung, ob Korrekturmaßnahmen systematisch in ISMS-Dokumente einfließen."
                     }
                   ]
                 },
@@ -239,17 +239,17 @@
                     },
                     {
                       "name": "effective_on_c",
-                      "value": "low",
+                      "value": "high",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "medium",
+                      "value": "high",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_a",
-                      "value": "low",
+                      "value": "high",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -257,17 +257,17 @@
                       "value": "m5"
                     }
                   ],
-                  "prose": "Datengetriebene, automatisierte ISMS-Evolution.",
+                  "prose": "Ein integriertes GRC-Tool überwacht Konformitätsmetriken in Echtzeit und löst automatisierte Reviews des ISMS aus.",
                   "parts": [
                     {
                       "id": "VRB.2.2-m5_custom_gdn",
                       "name": "guidance",
-                      "prose": "Automatisierte Workflows in GRC-Systemen triggern bei Erreichung von Schwellenwerten (z.B. Fehlerquoten) sofortige Revisionsprozesse unter Nutzung von Policy-as-Code Ansätzen."
+                      "prose": "Implementieren Sie automatisierte Dashboards zur Überwachung der Compliance-Rate. Bei Unterschreitung von Schwellenwerten wird ein Review-Task initiiert."
                     },
                     {
                       "id": "VRB.2.2-m5_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung der GRC-Automatisierungstools. Abfrage der Trigger-Logik via API oder DB-Query: `SELECT * FROM isms_triggers WHERE status = 'active';`"
+                      "prose": "Demonstration des GRC-Dashboards und Verifizierung des automatisierten Trigger-Mechanismus bei Grenzwertunterschreitung."
                     }
                   ]
                 }
@@ -303,12 +303,12 @@
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "low",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_a",
-                      "value": "low",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -316,17 +316,17 @@
                       "value": "m1"
                     }
                   ],
-                  "prose": "Sporadische Sammlung von Verbesserungsvorschlägen.",
+                  "prose": "Verbesserungspotenziale werden unstrukturiert und ohne formale Risikoanalyse gesammelt.",
                   "parts": [
                     {
                       "id": "VRB.3.1-m1_custom_gdn",
                       "name": "guidance",
-                      "prose": "Verbesserungen werden informell und ohne systematisches Risiko-Framework gesammelt. Es findet keine strukturierte Bewertung statt."
+                      "prose": "Sammeln Sie Verbesserungsideen aus Mitarbeitergesprächen oder Mailverkehr ohne festes Bewertungsschema."
                     },
                     {
                       "id": "VRB.3.1-m1_custom_asm",
                       "name": "assessment",
-                      "prose": "Befragung der Mitarbeiter zu informellen Kommunikationswegen für Verbesserungsvorschläge."
+                      "prose": "Prüfung vorhandener Notizen oder E-Mails zu Verbesserungsvorschlägen."
                     }
                   ]
                 },
@@ -351,12 +351,12 @@
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "low",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_a",
-                      "value": "low",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -364,17 +364,17 @@
                       "value": "m2"
                     }
                   ],
-                  "prose": "Regelmäßige Meetings zur Identifikation von Potenzialen.",
+                  "prose": "Verbesserungspotenziale werden in einer zentralen Liste erfasst, jedoch nur oberflächlich bewertet.",
                   "parts": [
                     {
                       "id": "VRB.3.1-m2_custom_gdn",
                       "name": "guidance",
-                      "prose": "Es finden regelmäßige Termine statt, um Potenziale zu diskutieren. Eine einfache qualitative Risikobewertung wird durchgeführt, aber nicht formalisiert dokumentiert."
+                      "prose": "Nutzen Sie eine einfache Tabelle zur Erfassung von Vorschlägen und ordnen Sie diese grob nach Priorität ein."
                     },
                     {
                       "id": "VRB.3.1-m2_custom_asm",
                       "name": "assessment",
-                      "prose": "Durchsicht von Besprechungsprotokollen auf enthaltene Verbesserungsvorschläge und deren Bewertung."
+                      "prose": "Durchsicht der Liste der Verbesserungsvorschläge auf Vollständigkeit und grundlegende Priorisierung."
                     }
                   ]
                 },
@@ -399,12 +399,12 @@
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "low",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_a",
-                      "value": "low",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -417,12 +417,12 @@
                     {
                       "id": "VRB.3.1-m3_custom_gdn",
                       "name": "guidance",
-                      "prose": "Die Methode muss definieren, wie neue Potenziale erkannt, hinsichtlich ihrer Risiken bewertet und priorisiert werden, um eine fundierte Entscheidungsgrundlage für die Umsetzung zu schaffen."
+                      "prose": "Etablieren Sie eine schriftlich fixierte Methode, die jedes Potenzial gegen bestehende Risiken abwiegt. Stellen Sie sicher, dass Aufwand und Nutzen im Verhältnis zum Restrisiko stehen."
                     },
                     {
                       "id": "VRB.3.1-m3_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung der schriftlich fixierten Methode zur Potenzialbewertung und Stichprobenprüfung dokumentierter Bewertungen."
+                      "prose": "Einsicht in die Methodikbeschreibung zur Bewertung von Potenzialen. Überprüfung der Dokumentation durchgeführter Bewertungen anhand von Beispielen."
                     }
                   ]
                 },
@@ -447,12 +447,12 @@
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "low",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_a",
-                      "value": "low",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -460,17 +460,17 @@
                       "value": "m4"
                     }
                   ],
-                  "prose": "Zentraler Verbesserungs-Backlog mit Risikoscoring.",
+                  "prose": "Die Bewertung von Verbesserungspotentialen erfolgt durch eine standardisierte Kosten-Nutzen-Risiko-Matrix mit Stakeholder-Beteiligung.",
                   "parts": [
                     {
                       "id": "VRB.3.1-m4_custom_gdn",
                       "name": "guidance",
-                      "prose": "Alle Potenziale fließen in ein zentrales System ein. Die Bewertung erfolgt über eine standardisierte Matrix, die Eintrittswahrscheinlichkeiten und Schadenshöhen für das ISMS berücksichtigt."
+                      "prose": "Integrieren Sie verschiedene Fachbereiche in die Bewertung, um operative Risiken und Synergien besser zu identifizieren."
                     },
                     {
                       "id": "VRB.3.1-m4_custom_asm",
                       "name": "assessment",
-                      "prose": "Analyse des Backlogs in der genutzten Projektmanagement-Software (z.B. OpenProject) auf vollständige Risikoscores."
+                      "prose": "Prüfung der Besetzung von Bewertungsgremien und Analyse der verwendeten Entscheidungsmatrizen."
                     }
                   ]
                 },
@@ -495,12 +495,12 @@
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "low",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
                       "name": "effective_on_a",
-                      "value": "low",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -508,17 +508,17 @@
                       "value": "m5"
                     }
                   ],
-                  "prose": "Prädiktive Identifikation von Verbesserungspotenzialen.",
+                  "prose": "Ein kontinuierlicher Feedback-Kanal nutzt Data Analytics, um aus Prozessdaten automatisch Optimierungspotenziale abzuleiten.",
                   "parts": [
                     {
                       "id": "VRB.3.1-m5_custom_gdn",
                       "name": "guidance",
-                      "prose": "Einsatz von Datenanalyse zur Vorhersage von Prozessoptimierungen. Automatisierte Korrelation von Incident-Daten mit potenziellen Systemverbesserungen."
+                      "prose": "Verwenden Sie Process Mining Tools (Open Source), um Engpässe und Ineffizienzen in Sicherheitsprozessen objektiv zu identifizieren."
                     },
                     {
                       "id": "VRB.3.1-m5_custom_asm",
                       "name": "assessment",
-                      "prose": "Demonstration der Analyse-Dashboards. Prüfung der Algorithmen zur Trend-Erkennung in Incident-Management-Daten."
+                      "prose": "Verifizierung der Datenquellen für das Process Mining und Prüfung der daraus abgeleiteten Optimierungsprojekte."
                     }
                   ]
                 }
@@ -559,7 +559,7 @@
                     },
                     {
                       "name": "effective_on_a",
-                      "value": "low",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -567,17 +567,17 @@
                       "value": "m1"
                     }
                   ],
-                  "prose": "Qualitative Einschätzung von Verbesserungen nach Abschluss.",
+                  "prose": "Erreichte Verbesserungen werden nur informell im Team besprochen.",
                   "parts": [
                     {
                       "id": "VRB.7.1-m1_custom_gdn",
                       "name": "guidance",
-                      "prose": "Nach Umsetzung einer Maßnahme erfolgt eine rein subjektive Einschätzung, ob diese erfolgreich war. Es fehlen messbare Kriterien."
+                      "prose": "Führen Sie kurze Gespräche nach Projektabschluss durch, um den Erfolg grob einzuschätzen."
                     },
                     {
                       "id": "VRB.7.1-m1_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung von Projektabschlussberichten auf Aussagen zur Wirksamkeit."
+                      "prose": "Befragung der Projektleiter zur subjektiven Einschätzung des Verbesserungserfolgs."
                     }
                   ]
                 },
@@ -607,7 +607,7 @@
                     },
                     {
                       "name": "effective_on_a",
-                      "value": "low",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -615,17 +615,17 @@
                       "value": "m2"
                     }
                   ],
-                  "prose": "Verwendung einfacher Checklisten zur Wirksamkeitsprüfung.",
+                  "prose": "Die Umsetzung von Verbesserungsmaßnahmen wird dokumentiert, eine Wirksamkeitsprüfung findet jedoch kaum statt.",
                   "parts": [
                     {
                       "id": "VRB.7.1-m2_custom_gdn",
                       "name": "guidance",
-                      "prose": "Die Bewertung erfolgt anhand binärer Checklisten (umgesetzt/nicht umgesetzt), wobei Risiken nur oberflächlich betrachtet werden."
+                      "prose": "Haken Sie erledigte Maßnahmen in einer Liste ab und vermerken Sie das Abschlussdatum."
                     },
                     {
                       "id": "VRB.7.1-m2_custom_asm",
                       "name": "assessment",
-                      "prose": "Einsichtnahme in ausgefüllte Checklisten zur Maßnahmenkontrolle."
+                      "prose": "Abgleich der Maßnahmenliste mit den tatsächlich umgesetzten Änderungen in der Infrastruktur."
                     }
                   ]
                 },
@@ -655,7 +655,7 @@
                     },
                     {
                       "name": "effective_on_a",
-                      "value": "low",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -668,12 +668,12 @@
                     {
                       "id": "VRB.7.1-m3_custom_gdn",
                       "name": "guidance",
-                      "prose": "Es muss ein formaler Prozess existieren, der nach der Umsetzung prüft, ob das Ziel erreicht wurde und wie sich die Risikolage dadurch verändert hat."
+                      "prose": "Entwickeln Sie ein Verfahren, das nach Abschluss einer Maßnahme prüft, ob das Ziel erreicht und das Risiko wie geplant reduziert wurde. Nutzen Sie dazu Vorher-Nachher-Vergleiche."
                     },
                     {
                       "id": "VRB.7.1-m3_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung des Verfahrensdokuments und stichprobenartige Kontrolle der Bewertungsberichte nach Maßnahmenumsetzung."
+                      "prose": "Prüfung der Dokumentation abgeschlossener Verbesserungsmaßnahmen auf enthaltene Wirksamkeitsprüfungen und Risiko-Re-Evaluierungen."
                     }
                   ]
                 },
@@ -703,7 +703,7 @@
                     },
                     {
                       "name": "effective_on_a",
-                      "value": "low",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -711,17 +711,17 @@
                       "value": "m4"
                     }
                   ],
-                  "prose": "KPI-basierte Bewertung der Wirksamkeit von Verbesserungen.",
+                  "prose": "Verbesserungen werden mittels Key Performance Indicators (KPIs) gemessen und gegen Zielwerte validiert.",
                   "parts": [
                     {
                       "id": "VRB.7.1-m4_custom_gdn",
                       "name": "guidance",
-                      "prose": "Die erreichte Verbesserung wird quantitativ gemessen (z.B. Reduktion der Durchlaufzeiten oder Fehlerquoten) und gegen die ursprüngliche Risikoanalyse validiert."
+                      "prose": "Definieren Sie für jede Maßnahme messbare Erfolgskriterien (z.B. Reduktion der Incident-Reaktionszeit um X%)."
                     },
                     {
                       "id": "VRB.7.1-m4_custom_asm",
                       "name": "assessment",
-                      "prose": "Abgleich von Ziel-KPIs aus der Planungsphase mit den tatsächlich gemessenen Werten nach der Implementierung."
+                      "prose": "Analyse der KPI-Berichte und Prüfung, ob bei Zielverfehlung Korrekturmaßnahmen eingeleitet wurden."
                     }
                   ]
                 },
@@ -751,7 +751,7 @@
                     },
                     {
                       "name": "effective_on_a",
-                      "value": "low",
+                      "value": "medium",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -759,17 +759,17 @@
                       "value": "m5"
                     }
                   ],
-                  "prose": "Continuous Controls Monitoring (CCM) zur Erfolgsmessung.",
+                  "prose": "Ein automatisiertes Monitoring-System überwacht die Langzeitstabilität der Verbesserungen und meldet Performance-Einbußen.",
                   "parts": [
                     {
                       "id": "VRB.7.1-m5_custom_gdn",
                       "name": "guidance",
-                      "prose": "Automatisierte Systeme überwachen kontinuierlich die Wirksamkeit der Verbesserungen und melden Abweichungen vom erwarteten Sicherheitsniveau in Echtzeit."
+                      "prose": "Implementieren Sie automatisierte Checks (z.B. mittels Prometheus/Grafana), die die Effektivität technischer Kontrollen dauerhaft visualisieren."
                     },
                     {
                       "id": "VRB.7.1-m5_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung der automatisierten Test-Suiten (z.B. Integrationstests für Security-Controls). Ausführung von: `pytest tests/security_effectiveness/`."
+                      "prose": "Prüfung der Dashboard-Konfiguration und der Alarmierungskriterien für die Wirksamkeitsüberwachung."
                     }
                   ]
                 }
@@ -790,7 +790,7 @@
                   "props": [
                     {
                       "name": "control_class",
-                      "value": "Management",
+                      "value": "Operational",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -800,7 +800,7 @@
                     },
                     {
                       "name": "effective_on_c",
-                      "value": "medium",
+                      "value": "high",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -818,17 +818,17 @@
                       "value": "m1"
                     }
                   ],
-                  "prose": "Ad-hoc Bearbeitung von Compliance-Verstößen.",
+                  "prose": "Compliance-Verstöße werden ad-hoc gemeldet und ohne festes Schema bearbeitet.",
                   "parts": [
                     {
                       "id": "VRB.8.1-m1_custom_gdn",
                       "name": "guidance",
-                      "prose": "Reaktion auf Verstöße erfolgt fallweise ohne dokumentiertes Verfahren. Betroffenenrechte werden nur bei expliziter Forderung berücksichtigt."
+                      "prose": "Reagieren Sie auf Verstöße, wenn sie auffallen. Nutzen Sie vorhandene Kommunikationswege wie E-Mail."
                     },
                     {
                       "id": "VRB.8.1-m1_custom_asm",
                       "name": "assessment",
-                      "prose": "Befragung der Rechtsabteilung zur Handhabung vergangener Einzelfälle."
+                      "prose": "Prüfung von E-Mail-Verläufen zu vergangenen Compliance-Vorfällen."
                     }
                   ]
                 },
@@ -838,7 +838,7 @@
                   "props": [
                     {
                       "name": "control_class",
-                      "value": "Management",
+                      "value": "Operational",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -848,7 +848,7 @@
                     },
                     {
                       "name": "effective_on_c",
-                      "value": "medium",
+                      "value": "high",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -866,17 +866,17 @@
                       "value": "m2"
                     }
                   ],
-                  "prose": "Dokumentierter Leitfaden zur Reaktion auf Verstöße.",
+                  "prose": "Es existiert eine zentrale Meldestelle (z.B. Sammel-E-Mail) für Verstöße, die Bearbeitung erfolgt manuell.",
                   "parts": [
                     {
                       "id": "VRB.8.1-m2_custom_gdn",
                       "name": "guidance",
-                      "prose": "Ein einfacher Leitfaden beschreibt die Meldewege und groben Schritte bei Verstößen. Betroffenenrechte sind erwähnt, aber nicht detailliert ausgearbeitet."
+                      "prose": "Richten Sie ein Postfach ein und dokumentieren Sie den Eingang von Meldungen in einer einfachen Liste."
                     },
                     {
                       "id": "VRB.8.1-m2_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung des Leitfadens auf Aktualität und Übereinstimmung mit gängigen Compliance-Anforderungen."
+                      "prose": "Prüfung der Eingangsliste der Meldestelle und der ersten Bearbeitungsschritte."
                     }
                   ]
                 },
@@ -886,7 +886,7 @@
                   "props": [
                     {
                       "name": "control_class",
-                      "value": "Management",
+                      "value": "Operational",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -896,7 +896,7 @@
                     },
                     {
                       "name": "effective_on_c",
-                      "value": "medium",
+                      "value": "high",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -919,12 +919,12 @@
                     {
                       "id": "VRB.8.1-m3_custom_gdn",
                       "name": "guidance",
-                      "prose": "Das Verfahren muss klare Verantwortlichkeiten, Eskalationspfade und Maßnahmen zur Wahrung der Rechte betroffener Personen (z.B. gemäß DSGVO) festlegen."
+                      "prose": "Legen Sie ein Verfahren fest, das Zuständigkeiten, Eskalationswege und insbesondere die Wahrung von Datenschutzrechten (z.B. Vertraulichkeit der Meldung) regelt."
                     },
                     {
                       "id": "VRB.8.1-m3_custom_asm",
                       "name": "assessment",
-                      "prose": "Einsicht in das Verfahrensdokument und Prüfung der Dokumentation bearbeiteter Verstöße auf Einhaltung der Betroffenenrechte."
+                      "prose": "Einsicht in die Verfahrensanweisung zur Behandlung von Compliance-Verstößen. Prüfung der Einhaltung von Löschfristen und Anonymisierungsgeboten."
                     }
                   ]
                 },
@@ -934,7 +934,7 @@
                   "props": [
                     {
                       "name": "control_class",
-                      "value": "Management",
+                      "value": "Operational",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -944,7 +944,7 @@
                     },
                     {
                       "name": "effective_on_c",
-                      "value": "medium",
+                      "value": "high",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -962,17 +962,17 @@
                       "value": "m4"
                     }
                   ],
-                  "prose": "Workflow-gestütztes Case-Management für Verstöße.",
+                  "prose": "Ein Ticketing-System unterstützt den Workflow zur Bearbeitung von Verstößen inklusive Fristenüberwachung.",
                   "parts": [
                     {
                       "id": "VRB.8.1-m4_custom_gdn",
                       "name": "guidance",
-                      "prose": "Einsatz eines Ticketsystems zur rechtssicheren Bearbeitung von Verstößen inklusive automatischer Fristenüberwachung für Meldungen an Behörden oder Betroffene."
+                      "prose": "Automatisieren Sie die Zuweisung von Fällen an die Compliance-Verantwortlichen und setzen Sie automatische Erinnerungen für Fristen."
                     },
                     {
                       "id": "VRB.8.1-m4_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung des Case-Management-Systems (z.B. Request Tracker) auf Audit-Logs und Einhaltung der Bearbeitungsfristen."
+                      "prose": "Funktionstest des Ticketing-Systems. Prüfung der Einhaltung von SLA-Zeiten für die initiale Bewertung von Meldungen."
                     }
                   ]
                 },
@@ -982,7 +982,7 @@
                   "props": [
                     {
                       "name": "control_class",
-                      "value": "Management",
+                      "value": "Operational",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -992,7 +992,7 @@
                     },
                     {
                       "name": "effective_on_c",
-                      "value": "medium",
+                      "value": "high",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -1010,17 +1010,17 @@
                       "value": "m5"
                     }
                   ],
-                  "prose": "Vollintegriertes, automatisiertes Compliance-Incident-Response.",
+                  "prose": "Ein anonymes Hinweisgebersystem mit Ende-zu-Ende-Verschlüsselung ist in das gesamte ISMS integriert.",
                   "parts": [
                     {
                       "id": "VRB.8.1-m5_custom_gdn",
                       "name": "guidance",
-                      "prose": "Automatisierte Erkennung von Verstößen durch SIEM/DLP-Systeme mit direktem Anstoß von vordefinierten, rechtskonformen Playbooks und digitalem Whistleblower-Schutz."
+                      "prose": "Nutzen Sie Open-Source-Lösungen wie GlobaLeaks, um eine sichere und rechtskonforme Kommunikation mit Hinweisgebern zu gewährleisten."
                     },
                     {
                       "id": "VRB.8.1-m5_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung der SOAR-Playbooks für Compliance-Fälle. Test der Anonymisierung im Meldesystem: `curl -X GET https://api.compliance/anonymize_check`. "
+                      "prose": "Technische Prüfung der Verschlüsselung und des Anonymisierungskonzepts des Hinweissystems."
                     }
                   ]
                 }

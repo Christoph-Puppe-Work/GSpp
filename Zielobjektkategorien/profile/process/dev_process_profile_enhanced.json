@@ -1,11 +1,11 @@
 {
   "profile": {
-    "uuid": "fd58c7be-8f46-4f0b-94f2-c4e1c505118f",
+    "uuid": "16e99563-1b78-5fff-b495-d96c40a8c56a",
     "metadata": {
-      "title": "DEV_prozesse DEV_prozesse - Enhanced (ED2023)",
-      "last-modified": "2026-05-31T20:20:34.324042+00:00",
+      "title": "Entwicklung Prozess Profil - Enhanced (ED2023)",
+      "last-modified": "2026-06-04T14:36:35.102785+00:00",
       "version": "0.0.1",
-      "oscal-version": "1.1.3"
+      "oscal-version": "1.2.2"
     },
     "imports": [
       {
@@ -65,17 +65,17 @@
                       "value": "m1"
                     }
                   ],
-                  "prose": "Sicherheitsaspekte werden in der Architektur nur vereinzelt und ad-hoc bei akuten Problemen berücksichtigt.",
+                  "prose": "Sicherheit wird in der Architektur nur sporadisch bei Bedarf betrachtet.",
                   "parts": [
                     {
                       "id": "DEV.2.1-m1_custom_gdn",
                       "name": "guidance",
-                      "prose": "Sicherheit wird nicht als integraler Bestandteil, sondern als nachträgliche Korrekturmaßnahme gesehen."
+                      "prose": "Sicherheitsrelevante Aspekte werden informell zwischen Entwicklern besprochen."
                     },
                     {
                       "id": "DEV.2.1-m1_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung von Architekturentwürfen auf das Fehlen systematischer Sicherheitsvorgaben."
+                      "prose": "Prüfe durch Stichproben in Dokumenten, ob Sicherheitsaspekte erwähnt wurden."
                     }
                   ]
                 },
@@ -113,17 +113,17 @@
                       "value": "m2"
                     }
                   ],
-                  "prose": "Grundlegende Sicherheitsprinzipien sind in den Architekturdokumenten für Kernkomponenten manuell hinterlegt.",
+                  "prose": "Grundlegende Sicherheitsvorgaben fließen in das Architekturdesign ein.",
                   "parts": [
                     {
                       "id": "DEV.2.1-m2_custom_gdn",
                       "name": "guidance",
-                      "prose": "Fokus liegt auf Standard-Sicherheitsmechanismen ohne tiefe Integration in den Designprozess."
+                      "prose": "Nutzung von Standard-Sicherheitspatterns für Authentisierung und Transportverschlüsselung."
                     },
                     {
                       "id": "DEV.2.1-m2_custom_asm",
                       "name": "assessment",
-                      "prose": "Stichprobenartige Überprüfung von Designdokumenten und Interviews mit Systemarchitekten."
+                      "prose": "Prüfung der Architekturdiagramme auf die Integration von Standard-Sicherheitskomponenten."
                     }
                   ]
                 },
@@ -166,12 +166,12 @@
                     {
                       "id": "DEV.2.1-m3_custom_gdn",
                       "name": "guidance",
-                      "prose": "Die Architekturplanung muss Sicherheitsanforderungen von Beginn an als funktionale Anforderungen behandeln."
+                      "prose": "Das Design muss Sicherheitsanforderungen von Beginn an als integrale Bestandteile behandeln."
                     },
                     {
                       "id": "DEV.2.1-m3_custom_asm",
                       "name": "assessment",
-                      "prose": "Abgleich der Architekturvorgaben mit den implementierten Sicherheitskontrollen in der Dokumentation."
+                      "prose": "Review der Designdokumente auf explizite Umsetzung der Sicherheitsanforderungen."
                     }
                   ]
                 },
@@ -209,17 +209,17 @@
                       "value": "m4"
                     }
                   ],
-                  "prose": "Sicherheitsarchitektur wird durch proaktive Bedrohungsmodellierung (z. B. STRIDE) in jedem Sprint validiert.",
+                  "prose": "Sicherheitsarchitektur wird durch automatisierte Bedrohungsmodellierung unterstützt.",
                   "parts": [
                     {
                       "id": "DEV.2.1-m4_custom_gdn",
                       "name": "guidance",
-                      "prose": "Automatisierte Prüfung der Einhaltung von Architekturvorgaben in der Modellierungsphase."
+                      "prose": "Integration von Tools wie OWASP Threat Dragon zur Identifikation von Angriffsvektoren."
                     },
                     {
                       "id": "DEV.2.1-m4_custom_asm",
                       "name": "assessment",
-                      "prose": "Nachweis durch automatisierte Reports aus Threat-Modeling-Werkzeugen in der Pipeline."
+                      "prose": "Prüfung der exportierten Bedrohungsmodelle (JSON/YAML) auf Vollständigkeit im Repository."
                     }
                   ]
                 },
@@ -257,17 +257,17 @@
                       "value": "m5"
                     }
                   ],
-                  "prose": "Security-as-Code validiert Architekturvorgaben kontinuierlich und verhindert unsichere Designs automatisch.",
+                  "prose": "Kontinuierliche und formale Verifikation der Sicherheitsarchitektur.",
                   "parts": [
                     {
                       "id": "DEV.2.1-m5_custom_gdn",
                       "name": "guidance",
-                      "prose": "Integration von Policy-Engines zur Prüfung von Infrastructure-as-Code gegen Architektur-Blueprints."
+                      "prose": "Einsatz formaler Methoden oder Policy-as-Code zur Sicherstellung der Designvorgaben."
                     },
                     {
                       "id": "DEV.2.1-m5_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung der OPA-Regelsätze (Open Policy Agent) auf Abdeckung der Sicherheitsarchitektur."
+                      "prose": "Prüfung der Policy-as-Code Berichte auf Konformität der Infrastruktur-Definitionen."
                     }
                   ]
                 }
@@ -298,7 +298,7 @@
                     },
                     {
                       "name": "effective_on_c",
-                      "value": "medium",
+                      "value": "high",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -316,17 +316,17 @@
                       "value": "m1"
                     }
                   ],
-                  "prose": "Schreibzugriffe auf den Quellcode sind nur rudimentär über Dateisystemrechte geregelt.",
+                  "prose": "Schreibzugriff auf den Quellcode ist informell oder über geteilte Konten möglich.",
                   "parts": [
                     {
                       "id": "DEV.2.4-m1_custom_gdn",
                       "name": "guidance",
-                      "prose": "Es erfolgt keine feingranulare Trennung nach Rollen oder Verantwortlichkeiten im Repository."
+                      "prose": "Es existieren keine klaren Regeln für die Vergabe von Schreibberechtigungen."
                     },
                     {
                       "id": "DEV.2.4-m1_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung der Dateiberechtigungen auf dem zentralen Fileserver mittels 'ls -l'."
+                      "prose": "Stichprobenartige Prüfung der Benutzerliste auf unnötige Schreibrechte."
                     }
                   ]
                 },
@@ -346,7 +346,7 @@
                     },
                     {
                       "name": "effective_on_c",
-                      "value": "medium",
+                      "value": "high",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -364,17 +364,17 @@
                       "value": "m2"
                     }
                   ],
-                  "prose": "Nutzung eines Versionsverwaltungssystems mit grundlegender Rollentrennung für Entwickler.",
+                  "prose": "Schreibzugriff ist an zentrale Benutzerkonten gebunden.",
                   "parts": [
                     {
                       "id": "DEV.2.4-m2_custom_gdn",
                       "name": "guidance",
-                      "prose": "Standardberechtigungen im Git-Server steuern den Zugriff auf Repository-Ebene."
+                      "prose": "Einführung von RBAC auf Repository-Ebene für alle Entwickler."
                     },
                     {
                       "id": "DEV.2.4-m2_custom_asm",
                       "name": "assessment",
-                      "prose": "Einsicht in die Benutzerliste und Rollenzuweisungen des Git-Managementsystems."
+                      "prose": "Abgleich der aktiven Entwicklerliste mit der Berechtigungsmatrix im Versionskontrollsystem."
                     }
                   ]
                 },
@@ -394,7 +394,7 @@
                     },
                     {
                       "name": "effective_on_c",
-                      "value": "medium",
+                      "value": "high",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -417,12 +417,12 @@
                     {
                       "id": "DEV.2.4-m3_custom_gdn",
                       "name": "guidance",
-                      "prose": "Der Zugriff muss auf das für die Aufgabenerfüllung notwendige Maß (Need-to-Know) begrenzt werden."
+                      "prose": "Zugriffsberechtigungen müssen restriktiv vergeben und regelmäßig überprüft werden."
                     },
                     {
                       "id": "DEV.2.4-m3_custom_asm",
                       "name": "assessment",
-                      "prose": "Vergleich der aktuellen Zugriffsliste mit der Liste der autorisierten Entwickler."
+                      "prose": "Prüfung der Zugriffskontrolllisten (ACL) auf Einhaltung des Minimalprinzip-Grundsatzes."
                     }
                   ]
                 },
@@ -442,7 +442,7 @@
                     },
                     {
                       "name": "effective_on_c",
-                      "value": "medium",
+                      "value": "high",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -460,17 +460,17 @@
                       "value": "m4"
                     }
                   ],
-                  "prose": "Einsatz von Branch-Protection-Rules, die Schreibzugriffe auf geschützte Zweige strikt reglementieren.",
+                  "prose": "Erzwungener Schreibschutz für Haupt-Branches durch Code-Reviews.",
                   "parts": [
                     {
                       "id": "DEV.2.4-m4_custom_gdn",
                       "name": "guidance",
-                      "prose": "Direkte Commits in Master/Main sind unterbunden; Änderungen erfordern Review-Freigaben."
+                      "prose": "Einsatz von Branch Protection Rules in Git (z.B. Gitolite oder Gitea)."
                     },
                     {
                       "id": "DEV.2.4-m4_custom_asm",
                       "name": "assessment",
-                      "prose": "Abfrage der Repository-Einstellungen über die API des Git-Servers (z.B. per curl)."
+                      "prose": "Check via API: gh api repos/:owner/:repo/branches/main/protection auf Status 'required_reviews'."
                     }
                   ]
                 },
@@ -490,7 +490,7 @@
                     },
                     {
                       "name": "effective_on_c",
-                      "value": "medium",
+                      "value": "high",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -508,17 +508,17 @@
                       "value": "m5"
                     }
                   ],
-                  "prose": "Dynamische, zeitlich begrenzte Zugriffsberechtigungen (Just-in-Time) für spezifische Code-Bereiche.",
+                  "prose": "Zero-Trust Zugriff mit Just-in-Time (JIT) Berechtigungsvergabe.",
                   "parts": [
                     {
                       "id": "DEV.2.4-m5_custom_gdn",
                       "name": "guidance",
-                      "prose": "Automatisierte Entziehung von Schreibrechten nach Abschluss eines Pull-Requests."
+                      "prose": "Schreibzugriff wird nur temporär für spezifische Aufgaben (Tickets) automatisiert freigeschaltet."
                     },
                     {
                       "id": "DEV.2.4-m5_custom_asm",
                       "name": "assessment",
-                      "prose": "Audit-Log-Analyse der IAM-Integration des Quellcode-Management-Systems."
+                      "prose": "Review der Audit-Logs der JIT-Plattform auf korrekte zeitliche Begrenzung der Zugriffe."
                     }
                   ]
                 }
@@ -549,7 +549,7 @@
                     },
                     {
                       "name": "effective_on_c",
-                      "value": "medium",
+                      "value": "low",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -567,17 +567,17 @@
                       "value": "m1"
                     }
                   ],
-                  "prose": "Freigaben erfolgen informell durch mündliche Absprache oder über Messenger-Dienste.",
+                  "prose": "Freigaben erfolgen ad-hoc ohne formalen Prüfprozess.",
                   "parts": [
                     {
                       "id": "DEV.6.1-m1_custom_gdn",
                       "name": "guidance",
-                      "prose": "Es existiert kein formalisierter Prozess für die Autorisierung von Softwareänderungen."
+                      "prose": "Entwickler entscheiden eigenständig über die Nutzung neuer Versionen."
                     },
                     {
                       "id": "DEV.6.1-m1_custom_asm",
                       "name": "assessment",
-                      "prose": "Fehlen jeglicher Dokumentation oder Tickets für erfolgte Software-Releases."
+                      "prose": "Befragung der Entwickler zu ihrem Vorgehen bei Code-Änderungen."
                     }
                   ]
                 },
@@ -597,7 +597,7 @@
                     },
                     {
                       "name": "effective_on_c",
-                      "value": "medium",
+                      "value": "low",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -615,17 +615,17 @@
                       "value": "m2"
                     }
                   ],
-                  "prose": "Manuelle Freigabe mittels einfacher Checklisten und E-Mail-Bestätigung durch Verantwortliche.",
+                  "prose": "Freigaben werden manuell dokumentiert und basieren auf Basistests.",
                   "parts": [
                     {
                       "id": "DEV.6.1-m2_custom_gdn",
                       "name": "guidance",
-                      "prose": "Grundlegende Tests werden durchgeführt, aber die Dokumentation der Ergebnisse ist lückenhaft."
+                      "prose": "Erstellung eines einfachen Freigabeprotokolls nach erfolgreichen Funktionstests."
                     },
                     {
                       "id": "DEV.6.1-m2_custom_asm",
                       "name": "assessment",
-                      "prose": "Stichprobenartige Prüfung der E-Mail-Korrespondenz zu den letzten drei Releases."
+                      "prose": "Prüfung der vorhandenen Freigabedokumente auf Vollständigkeit und Datum."
                     }
                   ]
                 },
@@ -645,7 +645,7 @@
                     },
                     {
                       "name": "effective_on_c",
-                      "value": "medium",
+                      "value": "low",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -668,12 +668,12 @@
                     {
                       "id": "DEV.6.1-m3_custom_gdn",
                       "name": "guidance",
-                      "prose": "Die Autorisierung muss auf Basis erfolgreicher Tests und dokumentierter Verfahren erfolgen."
+                      "prose": "Jede Freigabe muss einem definierten Prozess folgen, der Tests und Autorisierung umfasst."
                     },
                     {
                       "id": "DEV.6.1-m3_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung der Vollständigkeit der Freigabeprotokolle gemäß dem definierten Prozess."
+                      "prose": "Stichprobenartige Prüfung der Change-Requests auf Vorliegen der Testbestätigung."
                     }
                   ]
                 },
@@ -693,7 +693,7 @@
                     },
                     {
                       "name": "effective_on_c",
-                      "value": "medium",
+                      "value": "low",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -711,17 +711,17 @@
                       "value": "m4"
                     }
                   ],
-                  "prose": "Automatisierte Quality-Gates in der CI-Pipeline steuern die Freigabe basierend auf Testmetriken.",
+                  "prose": "Automatisierte Freigabe-Entscheidungen durch Quality-Gates in der CI-Pipeline.",
                   "parts": [
                     {
                       "id": "DEV.6.1-m4_custom_gdn",
                       "name": "guidance",
-                      "prose": "Freigaben erfolgen nur, wenn definierte Schwellenwerte für Unit- und Integrationstests erreicht sind."
+                      "prose": "Integration von statischer Code-Analyse (z.B. SonarQube OSS) als Hard-Gate."
                     },
                     {
                       "id": "DEV.6.1-m4_custom_asm",
                       "name": "assessment",
-                      "prose": "Validierung der Pipeline-Konfiguration auf aktive Blocking-Gates bei Testfehlern."
+                      "prose": "Verifikation der Pipeline-Konfiguration auf Abbruchkriterien bei fehlgeschlagenen Scans."
                     }
                   ]
                 },
@@ -741,7 +741,7 @@
                     },
                     {
                       "name": "effective_on_c",
-                      "value": "medium",
+                      "value": "low",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -759,12 +759,17 @@
                       "value": "m5"
                     }
                   ],
-                  "prose": "Durchgehende, kryptografisch signierte Freigabekette mit automatisierter Prüfung aller Compliance-Vorgaben.",
+                  "prose": "Vollautomatisierte Governance-Prüfung mittels Policy-as-Code.",
                   "parts": [
+                    {
+                      "id": "DEV.6.1-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Einsatz von Open Policy Agent (OPA) zur Prüfung komplexer Compliance-Regeln vor Freigabe."
+                    },
                     {
                       "id": "DEV.6.1-m5_custom_asm",
                       "name": "assessment",
-                      "prose": "Verifikation der digitalen Signaturen der Release-Artefakte und Abgleich mit Audit-Logs."
+                      "prose": "Prüfung der OPA-Regelsätze und der zugehörigen Audit-Logs auf abgelehnte Freigaben."
                     }
                   ]
                 }
@@ -790,7 +795,7 @@
                     },
                     {
                       "name": "phase",
-                      "value": "Implementation",
+                      "value": "Operation",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -813,17 +818,17 @@
                       "value": "m1"
                     }
                   ],
-                  "prose": "Die Bereitstellung von Software erfolgt sporadisch und manuell durch Kopieren von Dateien.",
+                  "prose": "Die Bereitstellung erfolgt manuell durch Kopieren von Dateien.",
                   "parts": [
                     {
                       "id": "DEV.7.1-m1_custom_gdn",
                       "name": "guidance",
-                      "prose": "Keine standardisierten Verfahren; hohes Fehlerrisiko bei der manuellen Übertragung."
+                      "prose": "Es gibt keine standardisierten Abläufe für den Deployment-Prozess."
                     },
                     {
                       "id": "DEV.7.1-m1_custom_asm",
                       "name": "assessment",
-                      "prose": "Untersuchung der Server-Historie auf manuelle Dateioperationen ohne Deployment-Tools."
+                      "prose": "Prüfung der Server-Logs auf manuelle Dateioperationen (z.B. via SCP oder FTP)."
                     }
                   ]
                 },
@@ -838,7 +843,7 @@
                     },
                     {
                       "name": "phase",
-                      "value": "Implementation",
+                      "value": "Operation",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -861,17 +866,17 @@
                       "value": "m2"
                     }
                   ],
-                  "prose": "Skriptbasierte Bereitstellung (z. B. Shell-Skripte) für einzelne Zielumgebungen vorhanden.",
+                  "prose": "Die Bereitstellung erfolgt über zentral verwaltete Skripte.",
                   "parts": [
                     {
                       "id": "DEV.7.1-m2_custom_gdn",
                       "name": "guidance",
-                      "prose": "Grundlegende Automatisierung ist vorhanden, jedoch ohne integrierte Integritätsprüfung."
+                      "prose": "Nutzung von Shell-Skripten oder einfachen Tools zur Automatisierung der Abläufe."
                     },
                     {
                       "id": "DEV.7.1-m2_custom_asm",
                       "name": "assessment",
-                      "prose": "Review der Deployment-Skripte auf Konsistenz und Fehlerbehandlung."
+                      "prose": "Prüfung der Skript-Repositories auf Versionierung und Dokumentation."
                     }
                   ]
                 },
@@ -886,7 +891,7 @@
                     },
                     {
                       "name": "phase",
-                      "value": "Implementation",
+                      "value": "Operation",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -914,12 +919,12 @@
                     {
                       "id": "DEV.7.1-m3_custom_gdn",
                       "name": "guidance",
-                      "prose": "Der Bereitstellungsprozess muss als definierter Teil des Release-Zyklus etabliert sein."
+                      "prose": "Der Deployment-Prozess muss formal definiert und an Testergebnisse gekoppelt sein."
                     },
                     {
                       "id": "DEV.7.1-m3_custom_asm",
                       "name": "assessment",
-                      "prose": "Abgleich des gelebten Bereitstellungsprozesses mit dem schriftlich fixierten Verfahren."
+                      "prose": "Prüfung der Verknüpfung zwischen Testberichten und Bereitstellungs-Logs."
                     }
                   ]
                 },
@@ -934,7 +939,7 @@
                     },
                     {
                       "name": "phase",
-                      "value": "Implementation",
+                      "value": "Operation",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -957,17 +962,17 @@
                       "value": "m4"
                     }
                   ],
-                  "prose": "Einsatz einer vollautomatisierten CD-Pipeline mit integriertem Rollback-Mechanismus.",
+                  "prose": "Integritätssicherung der Bereitstellung durch digitale Signaturen.",
                   "parts": [
                     {
                       "id": "DEV.7.1-m4_custom_gdn",
                       "name": "guidance",
-                      "prose": "Automatisierte Integritätsprüfungen (Checksummen) während des gesamten Transportwegs."
+                      "prose": "Einsatz von Cosign zur Signierung von Containern oder Artefakten in der CI-Pipeline."
                     },
                     {
                       "id": "DEV.7.1-m4_custom_asm",
                       "name": "assessment",
-                      "prose": "Simulierter Deployment-Abbruch zur Verifikation des automatischen Rollbacks."
+                      "prose": "Automatisierte Prüfung: cosign verify <image> zur Validierung der Herkunft."
                     }
                   ]
                 },
@@ -982,7 +987,7 @@
                     },
                     {
                       "name": "phase",
-                      "value": "Implementation",
+                      "value": "Operation",
                       "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
                     },
                     {
@@ -1005,17 +1010,17 @@
                       "value": "m5"
                     }
                   ],
-                  "prose": "GitOps-basierte Bereitstellung mit kontinuierlichem Abgleich des Soll-Zustands (Drift Detection).",
+                  "prose": "Immutable Infrastructure und GitOps zur kontinuierlichen Bereitstellung.",
                   "parts": [
                     {
                       "id": "DEV.7.1-m5_custom_gdn",
                       "name": "guidance",
-                      "prose": "Infrastruktur und Applikation werden rein deklarativ über Versionsverwaltung gesteuert."
+                      "prose": "Verwendung von ArgoCD zur Synchronisation des Zielzustands aus dem Git-Repository."
                     },
                     {
                       "id": "DEV.7.1-m5_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung der Synchronität zwischen Git-Repository und Cluster-Zustand (z.B. 'flux get all')."
+                      "prose": "Abgleich des IST-Zustands im Cluster mit dem SOLL-Zustand im Git-Repository via ArgoCD CLI."
                     }
                   ]
                 }

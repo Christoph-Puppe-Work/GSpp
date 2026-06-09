@@ -1,11 +1,11 @@
 {
   "profile": {
-    "uuid": "fc5d9248-935b-42bc-a647-c646f665fcb8",
+    "uuid": "bdfd5e0a-c9ed-5a40-a1f1-24650c2b7b1f",
     "metadata": {
-      "title": "DLS_prozesse DLS_prozesse - Enhanced (ED2023)",
-      "last-modified": "2026-05-31T20:20:23.939304+00:00",
+      "title": "Dienstleistersteuerung Prozess Profil - Enhanced (ED2023)",
+      "last-modified": "2026-06-04T14:36:18.878835+00:00",
       "version": "0.0.1",
-      "oscal-version": "1.1.3"
+      "oscal-version": "1.2.2"
     },
     "imports": [
       {
@@ -62,17 +62,17 @@
                       "value": "m1"
                     }
                   ],
-                  "prose": "Informelle Meidung auffälliger Dienstleister ohne festen Prozess.",
+                  "prose": "Die Blockierung unzuverlässiger Dienstleister erfolgt nur sporadisch und ad-hoc bei schwerwiegenden Vorfällen ohne formale Grundlage.",
                   "parts": [
                     {
                       "id": "DLS.3.5-m1_custom_gdn",
                       "name": "guidance",
-                      "prose": "Entscheidungen zur Nicht-Beauftragung erfolgen ad-hoc durch Einzelpersonen ohne zentrale Steuerung oder Dokumentation."
+                      "prose": "Es gibt keine festen Kriterien; Entscheidungen werden individuell getroffen."
                     },
                     {
                       "id": "DLS.3.5-m1_custom_asm",
                       "name": "assessment",
-                      "prose": "Interviews mit Projektleitern zur Auswahl und Ablehnung von Dienstleistern sowie Prüfung informeller Notizen."
+                      "prose": "Befragung der Verantwortlichen zu vergangenen Fällen von Dienstleister-Ausschlüssen."
                     }
                   ]
                 },
@@ -110,17 +110,17 @@
                       "value": "m2"
                     }
                   ],
-                  "prose": "Manuelle Sperrung von Dienstleistern nach schwerwiegenden Sicherheitsvorfällen oder massiven Performanceproblemen.",
+                  "prose": "Es existiert eine informelle Liste unzuverlässiger Anbieter, die manuell bei neuen Ausschreibungen konsultiert wird.",
                   "parts": [
                     {
                       "id": "DLS.3.5-m2_custom_gdn",
                       "name": "guidance",
-                      "prose": "Reaktive Blockierung erfolgt auf Basis von Einzelentscheidungen der IT-Leitung, sobald Vorfälle gemeldet werden."
+                      "prose": "Grundlegende Kriterien für Unzuverlässigkeit sind innerhalb der Fachabteilung bekannt."
                     },
                     {
                       "id": "DLS.3.5-m2_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung von Protokollen oder E-Mails über die Beendigung von Dienstleisterverhältnissen nach Vorfällen."
+                      "prose": "Einsichtnahme in manuell geführte Listen oder Notizen über unzuverlässige Partner."
                     }
                   ]
                 },
@@ -163,12 +163,12 @@
                     {
                       "id": "DLS.3.5-m3_custom_gdn",
                       "name": "guidance",
-                      "prose": "Ein dokumentierter Prozess regelt die Kriterien und den Ablauf für die Blockierung unzuverlässiger Partner im Rahmen der Governance."
+                      "prose": "Ein definierter Prozess regelt die Kriterien für Unzuverlässigkeit und stellt sicher, dass betroffene Firmen nicht beauftragt werden."
                     },
                     {
                       "id": "DLS.3.5-m3_custom_asm",
                       "name": "assessment",
-                      "prose": "Abgleich der Sperrliste mit aktuellen Vertragsdaten. Technischer Check: cat /etc/compliance/blocked_vendors.conf."
+                      "prose": "Prüfung des schriftlich fixierten Prozesses zur Dienstleistersteuerung und Abgleich mit der Sperrliste."
                     }
                   ]
                 },
@@ -206,17 +206,17 @@
                       "value": "m4"
                     }
                   ],
-                  "prose": "Systemgestützte Überwachung und proaktive Sperrung bei Unterschreitung definierter Sicherheits-KPIs.",
+                  "prose": "Die Sperrung unzuverlässiger Dienstleister ist technisch in das ERP- oder Beschaffungssystem integriert und erfolgt proaktiv.",
                   "parts": [
                     {
                       "id": "DLS.3.5-m4_custom_gdn",
                       "name": "guidance",
-                      "prose": "Automatisierte Alerts bei Compliance-Verletzungen in Management-Systemen unterstützen die frühzeitige Entscheidung zur Blockierung."
+                      "prose": "Monitoring-KPIs lösen bei Zielverfehlung automatisch eine Überprüfung des Status aus."
                     },
                     {
                       "id": "DLS.3.5-m4_custom_asm",
                       "name": "assessment",
-                      "prose": "Review der Alert-Konfiguration im GRC-System und Prüfung der dokumentierten Reaktionszeiten auf Warnmeldungen."
+                      "prose": "Systemprüfung: Kontrolle der automatisierten Sperrkennzeichen im zentralen Einkaufssystem."
                     }
                   ]
                 },
@@ -254,17 +254,17 @@
                       "value": "m5"
                     }
                   ],
-                  "prose": "Vollautomatisierte Echtzeit-Blockierung basierend auf integrierten Risk-Intelligence-Feeds und Policy-as-Code.",
+                  "prose": "Ein automatisiertes Risk-Intelligence-System blockiert Dienstleister präventiv basierend auf Echtzeit-Compliance-Daten.",
                   "parts": [
                     {
                       "id": "DLS.3.5-m5_custom_gdn",
                       "name": "guidance",
-                      "prose": "Integration von Threat Intelligence verhindert Buchungen bei riskanten Dienstleistern automatisch durch systemische Schnittstellen."
+                      "prose": "Integration externer Datenquellen ermöglicht die Sperrung, bevor eigene Schäden entstehen."
                     },
                     {
                       "id": "DLS.3.5-m5_custom_asm",
                       "name": "assessment",
-                      "prose": "Simulierter Versuch der Anlage eines als hochriskant eingestuften Dienstleisters via API-Request zur Validierung der Sperre."
+                      "prose": "API-Audit: `curl -s https://api.internal/v1/vendors/risk-check` auf Integration externer Blacklists prüfen."
                     }
                   ]
                 }

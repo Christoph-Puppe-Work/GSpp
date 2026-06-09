@@ -6,7 +6,7 @@ from start to finish, executing each stage in the correct sequence.
 """
 
 import logging
-from pipeline import stage_gpp, stage_match_bausteine, stage_profiles, stage_ED23_profiles_enhanced, stage_base_process_enhanced
+from pipeline import stage_gpp, stage_match_bausteine, stage_profiles, stage_ED23_profiles_enhanced, stage_base_process_enhanced, stage_ed23_anforderungen
 
 logger = logging.getLogger(__name__)
 
@@ -47,6 +47,11 @@ async def run_full_pipeline() -> None:
         logger.info("Starting: Generating base process enhanced profiles.")
         await stage_base_process_enhanced.run_stage_base_process_enhanced()
         logger.info("--- STAGE: BASE_PROCESS_ENHANCED - COMPLETE ---")
+
+        # Stage 6: Map each G++ control to its matching BSI ED2023 Anforderungen.
+        logger.info("--- STAGE: ED23_ANFORDERUNGEN ---")
+        await stage_ed23_anforderungen.run_stage_ed23_anforderungen()
+        logger.info("--- STAGE: ED23_ANFORDERUNGEN - COMPLETE ---")
 
 
 

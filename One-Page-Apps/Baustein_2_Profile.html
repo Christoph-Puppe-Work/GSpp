@@ -2021,7 +2021,7 @@ function buildCustomCatalog(reqs) {
         published: now,
         "last-modified": now,
         version: "0.1.0",
-        "oscal-version": "1.1.3",
+        "oscal-version": "1.2.2",
         remarks: `Erzeugt aus BSI IT-Grundschutz Edition 2023 Baustein ${bId}. C.2-Pfad: kein passendes Profil im Stand-der-Technik-Kernel gefunden.`,
         roles: [{ id: "generator", title: "Generator" }],
         parties: [{
@@ -2233,7 +2233,7 @@ function assembleProfile() {
         "title": profileTitle,
         "last-modified": now,
         "version": "0.1.0",
-        "oscal-version": "1.1.3",
+        "oscal-version": "1.2.2",
         "props": [
           { "name": "source-baustein", "ns": NS, "value": bId },
           { "name": "mapping-mode", "ns": NS, "value": state.pipelineMode || "?" },

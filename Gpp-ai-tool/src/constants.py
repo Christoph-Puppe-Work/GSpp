@@ -92,7 +92,9 @@ LOG_FORMAT = "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
 
 # --- OSCAL Metadata ---
 # Default values and namespaces for OSCAL artifact generation.
-OSCAL_VERSION = "1.1.3"
+OSCAL_VERSION = "1.2.2"
+# The OSCAL namespace is pinned at /1.0 across all model versions (it identifies the
+# OSCAL naming system, not the model version) — do not bump it with OSCAL_VERSION.
 OSCAL_NAMESPACE = "http://csrc.nist.gov/ns/oscal/1.0"
 
 # --- Praktiken (Practices) ---

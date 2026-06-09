@@ -2,9 +2,11 @@
 Pipeline Stage: G++ control → BSI Edition-2023 Anforderungen mapping.
 
 For every G++ control this stage asks the AI which BSI ED2023 Anforderungen match it, and
-writes a deterministic lookup (`hilfsdateien/gpp_ed23_anforderungen.json`) consumed by the
+writes the result as an OSCAL 1.2.2 Control Mapping document
+(`hilfsdateien/gpp_ed23_anforderungen.json`, root `mapping-collection`) consumed by the
 One-Page-Apps to show a "Zeige BSI ED23 Anforderungen" panel per control — replacing the old
-runtime, web-search-grounded AI call in GSpp-Viewer that frequently hallucinated IDs.
+runtime, web-search-grounded AI call in GSpp-Viewer that frequently hallucinated IDs. The
+internal per-control match map is serialized via `utils.oscal_mapping`.
 
 Grounding: the full ED2023 OSCAL catalog (BSI_2023_JSON) is stripped to a compact
 `id | name | prose` corpus of every Anforderung and supplied as the model's context. Because
@@ -25,6 +27,7 @@ from config import app_config
 from clients.ai_client import AiClient
 from utils.data_loader import load_json_file, save_json_file
 from utils.oscal_utils import extract_all_gpp_controls, normalize_id
+from utils.oscal_mapping import to_oscal_mapping_collection
 from constants import (
     GPP_KOMPENDIUM_JSON_PATH,
     BSI_2023_JSON_PATH,
@@ -289,7 +292,9 @@ async def run_stage_ed23_anforderungen() -> None:
         ai_client.delete_context_cache(cached_content)
         logger.info("All G++ controls already present in checkpoint; nothing to query.")
 
-    output_data = {"gpp_ed23_anforderungen_map": final_map}
+    # The .partial checkpoint stays in the internal {control_id: [matches]} shape (simple to
+    # resume); only the final, published artifact is serialized as OSCAL.
+    output_data = to_oscal_mapping_collection(final_map)
     save_json_file(output_data, GPP_ED23_ANFORDERUNGEN_JSON_PATH)
     # Final output is committed; the checkpoint is now redundant.
     if os.path.exists(CHECKPOINT_PATH):

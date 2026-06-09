@@ -8,7 +8,7 @@ structure is an **implicit contract**: a rename on either side silently breaks c
 
 ## Where the data lives
 
-An enhanced profile is a normal OSCAL 1.1.3 **profile**:
+An enhanced profile is a normal OSCAL 1.2.2 **profile**:
 
 - `profile.imports[].include-controls[].with-ids[]` — the G++ control IDs in scope. The
   actual control title/prose/baseline live in the imported **G++ catalog**

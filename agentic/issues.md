@@ -6,6 +6,38 @@ Updated 2026-06-09 (evening): P0-1 resolved; new findings from the first real pl
 
 ---
 
+## Work status (end of session 2026-06-12)
+
+**All next steps 1–11 from the 2026-06-09 plan are DONE and E2E-verified.**
+PR: https://github.com/Christoph-Puppe-Work/GSpp/pull/48 (branch
+`feature/agentic-code-review`, commits `b641e3c`…`012d491`+).
+
+- Code: P1-4 (inspector/judge ×5), P0-4 (Phase 1 SSP bootstrap with embedded
+  schema-valid skeleton), P1-5 + tenant node (P0-3 agent half), P1-9
+  (`app/models.py`), P1-7/P1-20 (stateless MCP + fast container start),
+  P2-10/11/12/13/14/16/17/18/23, P1-22 guard, docs (P2-15, `.env.example`).
+- **Three new bugs found by E2E and fixed:** (1) OSCAL schemas use `\p{L}`
+  regexes Python `re` can't compile → schemas sanitized at load;
+  (2) create/update used enum value `"ssp"` as document root key →
+  `OSCAL_ROOT_KEYS` mapping + schema-contract tests; (3) jsonschema reported
+  only the first error → all errors per call (LLM converges in 2 attempts
+  instead of 28).
+- Deployed & verified live (`gpp-agentic-3`): terraform applied (MCP
+  min-instances=1, dev-IV fallback, model env vars on engine), both MCPs
+  rolled (backend rev 00006+), agent redeployed. **E2E green:** clean tenant
+  → streamQuery "lege ein SSP an" → classifier routes `govern` → inspector
+  `create_oscal_model` success (`save_v1`) → judge `phase1_result` → HITL
+  gate pauses. `ivs/iv-dev-playground/ssp/save_v1.json` exists in the bucket.
+- Tests: gpp-agent 18 passed/2 env-skipped; MCP suites 29 passed (previously
+  not collectable).
+
+**Still open (unchanged decisions):** P0-2 frontend transport (+P1-6 HITL
+wiring, P1-22 final form), full P0-3 end-user identity (frontend half +
+removal of the dev-IV fallback), P2-15 architecture.md rewrite (banner added),
+P2-19 catalog dedup, P3 eval build-out.
+
+---
+
 ## Work status (end of session 2026-06-09)
 
 **Decisions taken:**

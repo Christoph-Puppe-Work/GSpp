@@ -95,6 +95,35 @@ load_schemas()
 # The enum values are file-name shorthands ("ssp", "poam", …) — wrapping a
 # payload under those instead of the real root key makes every create/update
 # fail validation with "'system-security-plan' is a required property".
+def validate_against_schema(model_enum: "OscalModel", draft_doc: Dict[str, Any]) -> None:
+    """Validate a draft against the cached schema, reporting ALL errors.
+
+    jsonschema.validate() raises on the FIRST error only — for an LLM caller
+    that means one fix-and-retry round trip per missing property. Collecting
+    every error (capped) lets the agent converge in one or two attempts.
+    """
+    schema = SCHEMA_CACHE.get(model_enum)
+    if not schema:
+        raise RuntimeError(f"Schema for {model_enum.value} not loaded.")
+
+    validator = jsonschema.Draft7Validator(schema)
+    errors = sorted(validator.iter_errors(draft_doc), key=lambda e: list(e.absolute_path))
+    if errors:
+        cap = 20
+        lines = [
+            f"- {e.json_path}: {e.message[:300]}"
+            for e in errors[:cap]
+        ]
+        if len(errors) > cap:
+            lines.append(f"... and {len(errors) - cap} more errors")
+        summary = "\n".join(lines)
+        logger.error(f"Validation failed for {model_enum.value}: {len(errors)} error(s)")
+        raise RuntimeError(
+            f"Maker-Checker Validation Failed for {model_enum.value} "
+            f"({len(errors)} error(s)):\n{summary}"
+        )
+
+
 OSCAL_ROOT_KEYS = {
     OscalModel.ASSESSMENT_PLAN: "assessment-plan",
     OscalModel.ASSESSMENT_RESULTS: "assessment-results",
@@ -143,16 +172,8 @@ def create_oscal_model(model_enum: OscalModel, initial_payload: Dict[str, Any], 
     if "oscal-version" not in model_data["metadata"]:
         model_data["metadata"]["oscal-version"] = "1.2.2" # Correct supported version
 
-    # 2. Validation
-    schema = SCHEMA_CACHE.get(model_enum)
-    if not schema:
-        raise RuntimeError(f"Schema for {model_enum.value} not loaded.")
-
-    try:
-        jsonschema.validate(instance=draft_doc, schema=schema)
-    except jsonschema.ValidationError as e:
-        logger.error(f"Validation failed for {model_enum.value}: {e.message}")
-        raise RuntimeError(f"Maker-Checker Validation Failed for {model_enum.value}: {e.message} at path {e.json_path}")
+    # 2. Validation (all errors at once)
+    validate_against_schema(model_enum, draft_doc)
 
     # 3. Commit
     version_name = storage.write_oscal_model(iv_id, model_enum, draft_doc)
@@ -205,16 +226,8 @@ def update_oscal_model(model_enum: OscalModel, patch_payload: Dict[str, Any], ct
         model_data["metadata"] = {}
     model_data["metadata"]["last-modified"] = datetime.now(timezone.utc).isoformat()
 
-    # 3. Local Air-Gapped Validation
-    schema = SCHEMA_CACHE.get(model_enum)
-    if not schema:
-        raise RuntimeError(f"Schema for {model_enum.value} not loaded.")
-
-    try:
-        jsonschema.validate(instance=draft_doc, schema=schema)
-    except jsonschema.ValidationError as e:
-        logger.error(f"Validation failed for {model_enum.value}: {e.message}")
-        raise RuntimeError(f"Maker-Checker Validation Failed for {model_enum.value}: {e.message} at path {e.json_path}")
+    # 3. Local Air-Gapped Validation (all errors at once)
+    validate_against_schema(model_enum, draft_doc)
 
     # 4. Commit to GCP
     version_name = storage.write_oscal_model(iv_id, model_enum, draft_doc)

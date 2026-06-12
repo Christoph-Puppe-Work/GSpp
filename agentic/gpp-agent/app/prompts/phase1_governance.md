@@ -34,16 +34,42 @@ with the information already in the user's message; for anything missing,
 use sensible placeholders and list them in your notes as items the user
 should refine later.
 
-1. Build a minimal, schema-valid OSCAL 1.2.2 SSP skeleton. The schema
-   requires at least: `uuid`, `metadata` (title, version, oscal-version,
-   last-modified), `import-profile`, `system-characteristics`,
-   `system-implementation`, and `control-implementation`. Take the system
-   name / description from the user's message (placeholders if absent);
-   generate fresh UUIDs.
-2. Persist it with `create_oscal_model` (model type `ssp`).
-3. The backend validates against the OSCAL schema and returns validation
-   errors verbatim — if the call fails, fix the reported errors and retry
-   (at most 3 attempts), then report the remaining errors in your notes.
+1. Start from this **known schema-valid skeleton** (OSCAL 1.2.2). Replace the
+   `<...>` placeholders with the user's information, generate fresh UUIDv4
+   values for every `uuid`, and set `last-modified` to now — change nothing
+   else unless the user supplied richer data:
+
+   ```json
+   {"system-security-plan": {
+     "uuid": "<uuid4>",
+     "metadata": {"title": "SSP — <Systemname>", "last-modified": "<now-ISO8601>",
+                  "version": "0.1.0", "oscal-version": "1.2.2"},
+     "import-profile": {"href": "https://raw.githubusercontent.com/BSI-Bund/Stand-der-Technik-Bibliothek/refs/heads/main/Anwenderkataloge/Grundschutz%2B%2B/Grundschutz%2B%2B-profile.json"},
+     "system-characteristics": {
+       "system-ids": [{"id": "<kebab-case-system-id>"}],
+       "system-name": "<Systemname>",
+       "description": "<Beschreibung>",
+       "system-information": {"information-types": [{"uuid": "<uuid4>",
+         "title": "Allgemeine Geschäftsdaten",
+         "description": "Platzhalter — vom Anwender zu verfeinern."}]},
+       "status": {"state": "under-development"},
+       "authorization-boundary": {"description": "Platzhalter — Systemgrenze ist vom Anwender zu beschreiben."}},
+     "system-implementation": {
+       "users": [{"uuid": "<uuid4>", "title": "Systemverantwortlicher"}],
+       "components": [{"uuid": "<uuid4>", "type": "this-system",
+         "title": "<Systemname>", "description": "Gesamtsystem (Platzhalter).",
+         "status": {"state": "under-development"}}]},
+     "control-implementation": {
+       "description": "Initiale, noch leere Umsetzungsbeschreibung.",
+       "implemented-requirements": [{"uuid": "<uuid4>", "control-id": "ISMS.1.A1",
+         "remarks": "Platzhalter — Umsetzung noch nicht erfasst."}]}}}
+   ```
+
+2. Persist it with `create_oscal_model` (model type `ssp`, the JSON above as
+   `initial_payload`).
+3. The backend validates against the OSCAL schema and returns ALL validation
+   errors at once — if the call fails, fix exactly the reported paths and
+   retry (at most 3 attempts), then report the remaining errors in your notes.
 4. After a successful save, continue with the governance checks below on the
    newly created SSP.
 

@@ -44,6 +44,37 @@ PORT = int(os.getenv("PORT", "8080"))
 # --- Schema Pre-Loading (Performance) -------------------------------------
 SCHEMA_CACHE = {}
 
+# The OSCAL schemas use XML-Schema regex classes (\p{L}, \p{N}) in their
+# token patterns. Python's `re` cannot compile those, so jsonschema's
+# metaschema check rejects the whole schema ("... is not a 'regex'") and
+# every create/update call fails before the payload is even looked at.
+# Translate them to Python-compatible Unicode-aware classes at load time:
+#   \p{L} -> [^\W\d_]  (any Unicode letter)
+#   \p{N} -> \d        (Unicode digits; close enough for token validation)
+_PCRE_TRANSLATIONS = {
+    r"\p{L}": r"[^\W\d_]",
+    r"\p{N}": r"\d",
+}
+
+def _pythonize_patterns(node):
+    if isinstance(node, dict):
+        return {
+            k: (
+                _pythonize_regex(v)
+                if k == "pattern" and isinstance(v, str)
+                else _pythonize_patterns(v)
+            )
+            for k, v in node.items()
+        }
+    if isinstance(node, list):
+        return [_pythonize_patterns(item) for item in node]
+    return node
+
+def _pythonize_regex(pattern: str) -> str:
+    for xsd, py in _PCRE_TRANSLATIONS.items():
+        pattern = pattern.replace(xsd, py)
+    return pattern
+
 def load_schemas():
     schema_dir = os.path.join(os.path.dirname(__file__), "..", "schemas")
     for model in OscalModel:
@@ -52,7 +83,7 @@ def load_schemas():
         path = os.path.join(schema_dir, filename)
         if os.path.exists(path):
             with open(path, 'r') as f:
-                SCHEMA_CACHE[model] = json.load(f)
+                SCHEMA_CACHE[model] = _pythonize_patterns(json.load(f))
             logger.info(f"Loaded schema for {model.value}")
         else:
             logger.warning(f"Schema file not found: {path}")

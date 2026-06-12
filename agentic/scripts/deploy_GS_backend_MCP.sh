@@ -1,11 +1,14 @@
 #!/bin/bash
 set -e
 
+# Resolve paths BEFORE cd — $0 is relative and breaks after chdir.
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+TF_DIR="$SCRIPT_DIR/../terraform"
+
 # Navigate to the GS_backend_MCP directory
-cd "$(dirname "$0")/../GS_backend_MCP"
+cd "$SCRIPT_DIR/../GS_backend_MCP"
 
 echo "Fetching variables from Terraform..."
-TF_DIR="$(dirname "$0")/../terraform"
 PROJECT_ID=$(terraform -chdir="$TF_DIR" output -raw project_id)
 REGION=$(terraform -chdir="$TF_DIR" output -raw region)
 BUCKET_NAME=$(terraform -chdir="$TF_DIR" output -raw oscal_storage_bucket)

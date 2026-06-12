@@ -11,11 +11,14 @@ set -e
 echo "ERROR: frontend deployment is deferred pending the P0-2 transport decision (see agentic/issues.md)." >&2
 exit 1
 
+# Resolve paths BEFORE cd — $0 is relative and breaks after chdir.
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+TF_DIR="$SCRIPT_DIR/../terraform"
+
 # Navigate to the frontend directory
-cd "$(dirname "$0")/../frontend"
+cd "$SCRIPT_DIR/../frontend"
 
 echo "Fetching variables from Terraform..."
-TF_DIR="$(dirname "$0")/../terraform"
 PROJECT_ID=$(terraform -chdir="$TF_DIR" output -raw project_id)
 REGION=$(terraform -chdir="$TF_DIR" output -raw region)
 AGENT_URL=$(terraform -chdir="$TF_DIR" output -raw gpp_agent_url)

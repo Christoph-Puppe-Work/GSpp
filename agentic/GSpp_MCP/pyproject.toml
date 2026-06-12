@@ -20,8 +20,16 @@ dev = [
     "pytest",
 ]
 
+# Relative to this project root the importable package directory is
+# `server/` (the canonical import path `GSpp_MCP.server.*` works via
+# PYTHONPATH on the parent directory, in Docker and pytest alike).
 [tool.hatch.build.targets.wheel]
-packages = ["GSpp_MCP"]
+packages = ["server"]
+
+# Allows running pytest from inside this directory; from the workspace root
+# the root pyproject's pythonpath applies instead.
+[tool.pytest.ini_options]
+pythonpath = [".."]
 
 [build-system]
 requires = ["hatchling"]

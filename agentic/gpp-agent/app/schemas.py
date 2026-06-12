@@ -243,6 +243,15 @@ class WorkflowState(BaseModel):
         description="Informationsverbund (system boundary) identifier under work.",
     )
 
+    # Free-text inspector notes (inspector/judge split, architecture.md §4):
+    # each tool-using phase inspector writes its findings here; the
+    # schema-bound judge reads them and emits the structured phaseN_result.
+    phase1_notes: Optional[str] = None
+    phase2_notes: Optional[str] = None
+    phase3_notes: Optional[str] = None
+    phase4_notes: Optional[str] = None
+    phase5_notes: Optional[str] = None
+
     phase1_result: Optional[GovernanceFindings] = None
     phase2_result: Optional[TailoringReport] = None
     phase3_result: Optional[ImplementationReport] = None

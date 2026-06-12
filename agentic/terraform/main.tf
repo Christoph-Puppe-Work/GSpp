@@ -64,6 +64,13 @@ resource "google_cloud_run_v2_service" "backend_mcp_service" {
 
   template {
     service_account = google_service_account.backend_mcp_sa.email
+
+    # P1-20: keep one instance warm — cold starts lose the race against the
+    # agent's MCP tool discovery and look like "backend tools unavailable".
+    scaling {
+      min_instance_count = 1
+    }
+
     containers {
       image = "${var.region}-docker.pkg.dev/${var.project_id}/${google_artifact_registry_repository.agentic_repo.repository_id}/gpp-backend-mcp:latest"
 
@@ -85,6 +92,19 @@ resource "google_cloud_run_v2_service" "backend_mcp_service" {
       env {
         name  = "PROJECT_ID"
         value = var.project_id
+      }
+
+      # DEV ONLY (P1-21): the Agent Engine playground sends userId=user with
+      # no `::iv::` suffix, so without this fallback every backend tool call
+      # is rejected by tenant isolation. REMOVE before any non-dev exposure —
+      # the real fix is end-user identity propagation (P0-3).
+      env {
+        name  = "GPP_BACKEND_ALLOW_DEV_IV_FALLBACK"
+        value = "1"
+      }
+      env {
+        name  = "GPP_BACKEND_DEV_IV_ID"
+        value = "iv-dev-playground"
       }
     }
   }
@@ -137,6 +157,12 @@ resource "google_cloud_run_v2_service" "gspp_mcp_service" {
 
   template {
     service_account = google_service_account.gspp_mcp_sa.email
+
+    # P1-20: keep one instance warm (see backend_mcp_service).
+    scaling {
+      min_instance_count = 1
+    }
+
     containers {
       image = "${var.region}-docker.pkg.dev/${var.project_id}/${google_artifact_registry_repository.agentic_repo.repository_id}/gs-plus-plus-mcp:latest"
 

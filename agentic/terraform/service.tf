@@ -63,6 +63,24 @@ resource "google_vertex_ai_reasoning_engine" "app" {
         name  = "BACKEND_MCP_URL"
         value = google_cloud_run_v2_service.backend_mcp_service.uri
       }
+
+      # P1-9: role-based model selection (architecture.md §8) — Flash for the
+      # classifier and the schema-bound judges, 3.1 Pro for the tool-using
+      # phase inspectors (producers). Mirrors the defaults in app/models.py.
+      env {
+        name  = "CLASSIFIER_MODEL"
+        value = "gemini-3-flash-preview"
+      }
+
+      env {
+        name  = "REVIEWER_MODEL"
+        value = "gemini-3-flash-preview"
+      }
+
+      env {
+        name  = "PRODUCER_MODEL"
+        value = "gemini-3.1-pro-preview"
+      }
     }
 
     source_code_spec {

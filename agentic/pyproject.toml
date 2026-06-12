@@ -7,3 +7,9 @@ dependencies = []
 
 [tool.uv.workspace]
 members = ["gpp-agent", "GSpp_MCP", "GS_backend_MCP"]
+
+# Makes `GSpp_MCP.*` and `GS_backend_MCP.*` importable when running
+# `uv run pytest GSpp_MCP/tests GS_backend_MCP/tests` from the workspace root
+# (both repo directories double as Python packages via their __init__.py).
+[tool.pytest.ini_options]
+pythonpath = ["."]

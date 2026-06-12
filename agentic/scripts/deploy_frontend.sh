@@ -1,6 +1,16 @@
 #!/bin/bash
 set -e
 
+# ─── DEFERRED (P0-2) ──────────────────────────────────────────────────────────
+# The frontend↔agent transport is not decided yet: Terraform wires the Agent
+# Engine :query URL into the frontend, while this script assumes a Cloud Run
+# FastAPI agent exposing /copilotkit (and reads a Terraform output
+# `gpp_agent_url` that does not exist). Until the P0-2 architecture decision
+# (Option A: Cloud Run + ag-ui-adk vs. Option B: Agent Engine bridge) lands,
+# deploying the frontend is pointless — the playground is the UI.
+echo "ERROR: frontend deployment is deferred pending the P0-2 transport decision (see agentic/issues.md)." >&2
+exit 1
+
 # Navigate to the frontend directory
 cd "$(dirname "$0")/../frontend"
 

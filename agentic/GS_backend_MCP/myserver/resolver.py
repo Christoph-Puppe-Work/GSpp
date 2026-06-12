@@ -9,10 +9,11 @@ from GS_backend_MCP.myserver.gcp.storage import OscalModel
 
 logger = logging.getLogger("GppContextMCP.resolver")
 
-# In-Memory Cache for Resolved Catalogs
+# In-Memory Cache for Resolved Catalogs (per instance, FIFO-capped — P2-16)
 # Key: SHA-256 hash of the Profile content
 # Value: Resolved Catalog JSON
-RESOLVED_CATALOG_CACHE = {}
+RESOLVED_CATALOG_CACHE: Dict[str, Dict[str, Any]] = {}
+_CACHE_MAX_ENTRIES = int(os.getenv("RESOLVED_CATALOG_CACHE_MAX", "32"))
 
 def get_profile_hash(profile_data: Dict[str, Any]) -> str:
     """Generates a stable SHA-256 hash for the profile content."""
@@ -23,6 +24,11 @@ def resolve_profile(iv_id: str, profile_id: str) -> Dict[str, Any]:
     """
     Resolves an OSCAL Profile into a tailored Catalog.
     Implements RAM caching with invalidation.
+
+    NOTE: the tenant currently stores exactly one PROFILE model, so
+    `profile_id` is informational only (used in logs/remarks) — the stored
+    profile is always resolved. Multi-profile storage would need a keyed
+    read in `storage.read_oscal_model`.
     """
     # 1. Fetch Profile
     profile_data = storage.read_oscal_model(iv_id, OscalModel.PROFILE)
@@ -99,6 +105,10 @@ def resolve_profile(iv_id: str, profile_id: str) -> Dict[str, Any]:
 
     resolved_catalog = base_catalog
 
-    # 4. Update Cache
+    # 4. Update Cache (FIFO eviction keeps the per-instance footprint bounded)
+    while len(RESOLVED_CATALOG_CACHE) >= _CACHE_MAX_ENTRIES:
+        oldest = next(iter(RESOLVED_CATALOG_CACHE))
+        RESOLVED_CATALOG_CACHE.pop(oldest)
+        logger.info(f"Evicted resolved catalog {oldest[:8]} from cache (cap {_CACHE_MAX_ENTRIES})")
     RESOLVED_CATALOG_CACHE[profile_hash] = resolved_catalog
     return resolved_catalog

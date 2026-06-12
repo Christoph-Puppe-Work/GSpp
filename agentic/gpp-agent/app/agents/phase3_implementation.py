@@ -1,14 +1,15 @@
-"""Phase 3 — Implementation Validator (LlmAgent factory)."""
+"""Phase 3 — Implementation Inspector (LlmAgent factory).
 
-import os
+Inspector half of the inspector/judge split (architecture.md §4): keeps the
+MCP tools, writes free-text notes to ``state["phase3_notes"]``; the judge
+converts them into ``ImplementationReport``.
+"""
 
 from google.adk.agents import LlmAgent
 
 from app.mcp_clients import McpClientService
+from app.models import producer_model
 from app.prompts import load_prompt
-from app.schemas import ImplementationReport
-
-_DEFAULT_MODEL = os.environ.get("ORCHESTRATOR_MODEL", "gemini-3.1-pro-preview")
 
 _BACKEND_TOOLS = [
     "get_ssp_implementation",
@@ -17,10 +18,10 @@ _BACKEND_TOOLS = [
 
 
 def get_implementation_agent(mcp: McpClientService | None = None) -> LlmAgent:
-    """Return the Phase 3 (Implementation Status) LlmAgent.
+    """Return the Phase 3 (Implementation Status) inspector LlmAgent.
 
     Tools: backend MCP only — the SSP `implemented-requirement` block and
-    raw OSCAL access. Output is written to `state["phase3_result"]`.
+    raw OSCAL access. Notes are written to `state["phase3_notes"]`.
     """
     mcp = mcp or McpClientService()
     backend = mcp.get_backend_toolset(allow=_BACKEND_TOOLS)
@@ -30,14 +31,14 @@ def get_implementation_agent(mcp: McpClientService | None = None) -> LlmAgent:
 
     return LlmAgent(
         name="phase3_implementation",
-        model=os.environ.get("PHASE3_MODEL", _DEFAULT_MODEL),
+        model=producer_model(3),
         mode="single_turn",
         instruction=f"{identity}\n\n---\n\n{phase_prompt}",
         tools=[backend],
-        output_schema=ImplementationReport,
-        output_key="phase3_result",
+        output_key="phase3_notes",
         description=(
-            "Phase 3 — semantic validation of SSP implementation statuses; "
-            "flags unjustified `alternative` and `planned`-without-date entries."
+            "Phase 3 inspector — semantic validation of SSP implementation "
+            "statuses; flags unjustified `alternative` and "
+            "`planned`-without-date entries."
         ),
     )

@@ -1,9 +1,9 @@
 import pytest
 from unittest.mock import MagicMock, patch
-from myserver.gcp import storage
-from myserver.gcp.storage import OscalModel
+from GS_backend_MCP.myserver.gcp import storage
+from GS_backend_MCP.myserver.gcp.storage import OscalModel
 
-@patch("myserver.gcp.storage.get_storage_client")
+@patch("GS_backend_MCP.myserver.gcp.storage.get_storage_client")
 def test_list_models(mock_get_client):
     iv_id = "test-iv"
     mock_client = MagicMock()

@@ -20,4 +20,4 @@ fi
 # ─── Start ──────────────────────────────────────────────────────────────────────
 echo "Starting GS_backend_MCP server locally on port $PORT..."
 cd "$AGENTIC_DIR"
-exec python -m GS_backend_MCP.myserver.main --transport sse --port "$PORT"
+exec python -m GS_backend_MCP.myserver.main

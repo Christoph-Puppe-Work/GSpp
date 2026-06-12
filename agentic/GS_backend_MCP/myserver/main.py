@@ -61,7 +61,9 @@ logger.info("Pre-loading 8 OSCAL schemas...")
 load_schemas()
 
 # --- FastMCP setup --------------------------------------------------------
-mcp = FastMCP("GppContextMCP", host="0.0.0.0", port=PORT)
+# P1-7: stateless — per-call GCS state only; autoscaling Cloud Run has no
+# session affinity, so session-based Streamable-HTTP would intermittently 404.
+mcp = FastMCP("GppContextMCP", host="0.0.0.0", port=PORT, stateless_http=True)
 
 # --- Tool Registration ----------------------------------------------------
 

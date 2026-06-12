@@ -2,7 +2,8 @@
 id: phase4_gatekeeper
 phase: 4
 title: Auditing & Gatekeeper Verification
-output_schema: GatekeeperVerdict
+output_key: phase4_notes
+judge_schema: GatekeeperVerdict
 mcp_filters:
   anwender: [verify_oscal_json, get_control, get_oscal_profile]
   backend: [create_oscal_model, update_oscal_model, get_oscal_model_raw, get_assessment_controls, get_assessment_subjects, get_resolved_profile_catalog]
@@ -22,7 +23,7 @@ Before you create the Assessment Plan (AP), validate the SSP:
    risk acceptance, refuse clearance for the audit
    (`cleared_for_audit = false`).
 
-Set `phase = "pre_check"` and leave `findings_suggestion = []`.
+State clearly in your notes that this was a **pre-check**.
 
 ## Phase B — Audit Assistance
 
@@ -31,9 +32,9 @@ maturity level and the specifications from `get_control` (anwender), provide a
 concrete suggestion for the Assessment Result (status `satisfied` or
 `not-satisfied`) **including observation text**.
 
-Set `phase = "audit_assist"` and populate `findings_suggestion` with one
-`FindingSuggestion` per evaluated control. Schema errors should be empty in
-this sub-phase (the SSP has already passed pre-check).
+State clearly in your notes that this was **audit assistance**, and record
+one suggestion per evaluated control. Schema errors should be empty in this
+sub-phase (the SSP has already passed pre-check).
 
 ## How to choose Phase A vs. Phase B
 
@@ -45,14 +46,15 @@ this sub-phase (the SSP has already passed pre-check).
 
 ## Hard rule
 
-`cleared_for_audit` MAY be `true` **only** when:
+Audit clearance MAY be granted **only** when:
 
-1. `schema_errors` is empty AND
+1. `verify_oscal_json` reported no schema errors AND
 2. no MUSS requirement is `planned` or `partial` without authorised risk
    acceptance.
 
-If either condition fails, `cleared_for_audit = false` is mandatory. Phase 5
-(Remediation) is gated on this exact flag.
+If either condition fails, your notes MUST state explicitly that the SSP is
+**not cleared for audit**, and why. Phase 5 (Remediation) is gated on exactly
+this verdict.
 
 ## Tool-call rules
 
@@ -64,17 +66,22 @@ If either condition fails, `cleared_for_audit = false` is mandatory. Phase 5
   not invoke them** in this phase unless the user explicitly asks you to
   persist an Assessment Plan / Result.
 
-## Output (strict)
+## Output — inspector notes (free text)
 
-Return JSON validating `GatekeeperVerdict`:
+You are the *inspector*: write thorough free-text notes. A separate judge
+agent converts your notes into the structured `GatekeeperVerdict` JSON, so
+your notes MUST explicitly state:
 
-- `phase` — `"pre_check"` or `"audit_assist"`.
-- `cleared_for_audit` — bool (see hard rule above).
-- `schema_errors` — output of `verify_oscal_json` (empty list when SSP is
-  schema-valid).
-- `findings_suggestion` — list of `FindingSuggestion`
-  (`control_id`, `suggested_status`, `observation`); only populated in
-  Phase B.
-- `summary` — concise user-facing summary (≤ 3 sentences).
+- whether this was a **pre-check** or **audit assistance**;
+- the exact `verify_oscal_json` result — list every schema error verbatim, or
+  state that the SSP is schema-valid;
+- whether any MUSS requirement is `planned`/`partial` without authorised risk
+  acceptance;
+- your verdict: **cleared for audit** or **not cleared for audit**, with the
+  reason (apply the hard rule above);
+- in audit-assist mode: one suggestion per evaluated control, each with the
+  control ID, suggested status (`satisfied` / `not-satisfied` / `other`) and
+  a concrete observation text;
+- a short closing summary (≤ 3 sentences).
 
-No prose outside the JSON.
+Base every statement on actual tool results — never invent validation output.

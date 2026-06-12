@@ -4,18 +4,12 @@ This LLM node sits at the top of the workflow graph and writes its routing
 decision into workflow state via the `route_to_phase` tool.
 """
 
-import os
-
 from google.adk.agents import LlmAgent
 from google.adk.tools import FunctionTool
 from google.adk.tools.tool_context import ToolContext
 
+from app.models import classifier_model
 from app.prompts import load_prompt
-from app.schemas import ClassifierOutput
-
-# All agents default to the same model as the legacy orchestrator. Override
-# per-agent via env var if needed.
-_DEFAULT_MODEL = os.environ.get("ORCHESTRATOR_MODEL", "gemini-3.1-pro-preview")
 
 
 def route_to_phase(route: str, rationale: str, tool_context: ToolContext) -> str:
@@ -44,7 +38,7 @@ def get_classifier_agent() -> LlmAgent:
 
     return LlmAgent(
         name="classifier",
-        model=os.environ.get("CLASSIFIER_MODEL", _DEFAULT_MODEL),
+        model=classifier_model(),
         mode="single_turn",
         instruction=f"{identity}\n\n---\n\n{classifier_prompt}\n\n",
         tools=[tool],

@@ -16,9 +16,11 @@ IMAGE_TAG="${REGION}-docker.pkg.dev/${PROJECT_ID}/${REPO}/${SERVICE_NAME}:latest
 echo "=== Building $SERVICE_NAME ==="
 gcloud builds submit --project $PROJECT_ID --config cloudbuild.yaml --substitutions=_TAG=$IMAGE_TAG .
 
-echo "=== Deploying $SERVICE_NAME to Cloud Run ==="
-gcloud run deploy $SERVICE_NAME \
+echo "=== Rolling new revision of $SERVICE_NAME ==="
+# Terraform owns service config (env vars, scaling, IAM) — P2-23. This script
+# only builds/pushes the image and rolls a new revision; never pass
+# --set-env-vars here or the next `terraform apply` will fight the change.
+gcloud run services update $SERVICE_NAME \
   --image $IMAGE_TAG \
   --region $REGION \
-  --project $PROJECT_ID \
-  --set-env-vars "BUCKET_NAME=${BUCKET_NAME},PROJECT_ID=${PROJECT_ID}"
+  --project $PROJECT_ID

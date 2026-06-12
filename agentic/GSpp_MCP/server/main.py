@@ -35,7 +35,11 @@ mcp = FastMCP(
     host="0.0.0.0",
     port=port,
     # streamable_http_path defaults to "/mcp" — matches test script and Cloud Run
-    # stateless_http=True,   # uncomment if you want stateless mode
+    # P1-7: the server is stateless (read-only catalog) and runs on
+    # autoscaling Cloud Run without session affinity — session-based
+    # Streamable-HTTP would 404 as soon as a follow-up request lands on a
+    # different instance.
+    stateless_http=True,
 )
 @mcp.tool()
 def get_control(control_id: str) -> Optional[Dict[str, Any]]:

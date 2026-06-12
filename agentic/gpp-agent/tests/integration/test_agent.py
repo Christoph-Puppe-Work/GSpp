@@ -17,8 +17,8 @@
 These tests exercise the *structure* of the Workflow graph without a live
 Gemini call or live MCP servers — they pin the planning.md guarantees:
 
-- 19 nodes (1 START + classifier + classifier_router + 5 phase agents
-  + 12 gate function nodes).
+- 25 nodes (1 START + tenant_context + classifier + classifier_router
+  + 5 phase inspectors + 5 judges + 12 gate function nodes).
 - Phase 5 (Remediation) is reachable from Phase 4 (Gatekeeper) **only** via
   the `gate_phase4_decision` node on `route="cleared"`.
 - The classifier_router emits exactly the five phase route values.
@@ -52,23 +52,30 @@ os.environ.setdefault("BACKEND_MCP_URL", "http://localhost:9002")
 
 
 def test_workflow_has_expected_nodes() -> None:
-    """The Workflow graph contains START + classifier + 5 phase agents +
-    12 gate function nodes (= 19 nodes total)."""
+    """The Workflow graph contains START + tenant_context + classifier +
+    5 phase inspectors + 5 judges + 12 gate function nodes (= 25 total)."""
     from app.agent import root_agent
 
     node_names = {n.name for n in root_agent.graph.nodes}
 
     expected = {
         "__START__",
-        # Classifier + router
+        # Tenant context + classifier + router
+        "tenant_context",
         "classifier",
         "classify_router",
-        # Five phase LlmAgents
+        # Five phase inspector LlmAgents
         "phase1_governance",
         "phase2_mapper",
         "phase3_implementation",
         "phase4_gatekeeper",
         "phase5_remediation",
+        # Five schema-bound judges
+        "phase1_judge",
+        "phase2_judge",
+        "phase3_judge",
+        "phase4_judge",
+        "phase5_judge",
         # Five HITL gates
         "gate_phase1_request",
         "gate_phase1_ack",
@@ -85,7 +92,7 @@ def test_workflow_has_expected_nodes() -> None:
     assert expected.issubset(node_names), (
         f"Missing nodes: {expected - node_names}; extra nodes: {node_names - expected}"
     )
-    assert len(node_names) == 19, f"Expected 19 nodes, got {len(node_names)}"
+    assert len(node_names) == 25, f"Expected 25 nodes, got {len(node_names)}"
 
 
 def test_classifier_router_maps_five_routes() -> None:
@@ -145,6 +152,32 @@ def test_phase4_decision_routes_split_cleared_blocked() -> None:
         "cleared": "phase5_remediation",
         "blocked": "gate_phase4_blocked",
     }
+
+
+def test_each_inspector_feeds_its_judge_then_gate() -> None:
+    """Inspector/judge split (P1-4): every phase inspector's only successor is
+    its judge, and the judge feeds the phase's HITL gate request node."""
+    from app.agent import root_agent
+
+    succ = {}
+    for e in root_agent.graph.edges:
+        succ.setdefault(e.from_node.name, set()).add(e.to_node.name)
+
+    for n in range(1, 6):
+        inspector = {
+            1: "phase1_governance",
+            2: "phase2_mapper",
+            3: "phase3_implementation",
+            4: "phase4_gatekeeper",
+            5: "phase5_remediation",
+        }[n]
+        assert succ[inspector] == {f"phase{n}_judge"}, (
+            f"{inspector} must feed only its judge, got {succ[inspector]}"
+        )
+        assert succ[f"phase{n}_judge"] == {f"gate_phase{n}_request"}, (
+            f"phase{n}_judge must feed only gate_phase{n}_request, "
+            f"got {succ[f'phase{n}_judge']}"
+        )
 
 
 def test_workflow_state_schema_attached() -> None:
@@ -208,7 +241,48 @@ def test_classify_router_routes_from_session_state() -> None:
     event = classify_router(ctx, None)
 
     assert event.actions.route == "audit"
-    assert event.actions.state_delta == {"current_phase": "audit"}
+    # P1-5: the consumed route must be cleared so the next turn in the same
+    # session cannot re-dispatch the stale phase.
+    assert event.actions.state_delta == {
+        "classifier_route": None,
+        "current_phase": "audit",
+    }
+
+
+def test_tenant_context_extracts_valid_iv_id() -> None:
+    """P0-3 (agent half): a `{caller}::iv::{iv_id}` user id yields
+    `state["iv_id"]`."""
+    from app.agents.orchestrator import tenant_context
+
+    ctx = SimpleNamespace(
+        session=SimpleNamespace(state={}, user_id="alice::iv::iv-test-001")
+    )
+    event = tenant_context(ctx, "passthrough")
+
+    assert event.actions.state_delta == {"iv_id": "iv-test-001"}
+
+
+def test_tenant_context_is_lenient_without_iv_suffix() -> None:
+    """Playground sessions (`userId=user`) must pass through without an
+    iv_id — the backend dev-IV fallback covers them (P1-21)."""
+    from app.agents.orchestrator import tenant_context
+
+    ctx = SimpleNamespace(session=SimpleNamespace(state={}, user_id="user"))
+    event = tenant_context(ctx, "passthrough")
+
+    assert not event.actions.state_delta
+
+
+def test_tenant_context_rejects_malformed_iv_id() -> None:
+    """A malformed iv_id must NOT be written to state."""
+    from app.agents.orchestrator import tenant_context
+
+    ctx = SimpleNamespace(
+        session=SimpleNamespace(state={}, user_id="alice::iv::IV_BAD!")
+    )
+    event = tenant_context(ctx, "passthrough")
+
+    assert not event.actions.state_delta
 
 
 def test_classify_router_ends_without_route() -> None:

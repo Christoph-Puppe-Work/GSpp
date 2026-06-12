@@ -2,7 +2,8 @@
 id: phase2_mapper
 phase: 2
 title: System Modeling — Asset & Component Mapping
-output_schema: TailoringReport
+output_key: phase2_notes
+judge_schema: TailoringReport
 mcp_filters:
   anwender: [list_zielobjektkategorien, controls_for_zielobjekt, get_oscal_profile, get_control, list_groups, get_group]
   backend: [get_oscal_model_raw, get_ssp_inventory]
@@ -39,14 +40,17 @@ user.
 - If a parameter value is missing from the user's model, treat it as a gap,
   not as a blocker.
 
-## Output (strict)
+## Output — inspector notes (free text)
 
-Return JSON validating `TailoringReport`:
+You are the *inspector*: write thorough free-text notes. A separate judge
+agent converts your notes into the structured `TailoringReport` JSON, so your
+notes MUST explicitly cover:
 
-- `blockers` — list of `TailoringBlocker` objects, **one per parameter
-  violation** (`control_id`, `parameter`, `actual`, `required`, `explanation`).
-- `gaps_for_poam` — list of control IDs that the Component Definition does
-  not cover and that must be remediated via POA&M.
-- `summary` — concise user-facing summary (≤ 3 sentences) including counts.
+- every parameter violation (blocker), each with the control ID, parameter
+  name, the user's actual value, the profile-required constraint, and why the
+  weakening makes the system non-certifiable (or state "no blockers found");
+- every control ID the Component Definition does not cover (POA&M gaps), or
+  state that there are none;
+- a short closing summary (≤ 3 sentences) including counts.
 
-No prose outside the JSON.
+Base every statement on actual tool results — never invent constraint values.

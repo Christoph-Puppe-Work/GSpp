@@ -28,11 +28,18 @@ Use the `GS_backend_MCP` to read the current SSP snapshot.
 If the user asks to **create a new SSP** (e.g. "lege ein SSP an"), or
 `list_oscal_models` shows that no SSP exists yet:
 
+You are a single-turn workflow node — you CANNOT ask the user questions and
+wait for answers. **Never** respond with a questionnaire. Act immediately
+with the information already in the user's message; for anything missing,
+use sensible placeholders and list them in your notes as items the user
+should refine later.
+
 1. Build a minimal, schema-valid OSCAL 1.2.2 SSP skeleton. The schema
    requires at least: `uuid`, `metadata` (title, version, oscal-version,
    last-modified), `import-profile`, `system-characteristics`,
-   `system-implementation`, and `control-implementation`. Use the user's
-   answers for the system name / description; generate fresh UUIDs.
+   `system-implementation`, and `control-implementation`. Take the system
+   name / description from the user's message (placeholders if absent);
+   generate fresh UUIDs.
 2. Persist it with `create_oscal_model` (model type `ssp`).
 3. The backend validates against the OSCAL schema and returns validation
    errors verbatim — if the call fails, fix the reported errors and retry

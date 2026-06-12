@@ -91,6 +91,21 @@ def load_schemas():
 logger.info("Pre-loading 8 OSCAL schemas...")
 load_schemas()
 
+# Maps the storage enum to the OSCAL document root key the schema requires.
+# The enum values are file-name shorthands ("ssp", "poam", …) — wrapping a
+# payload under those instead of the real root key makes every create/update
+# fail validation with "'system-security-plan' is a required property".
+OSCAL_ROOT_KEYS = {
+    OscalModel.ASSESSMENT_PLAN: "assessment-plan",
+    OscalModel.ASSESSMENT_RESULTS: "assessment-results",
+    OscalModel.CATALOG: "catalog",
+    OscalModel.COMPONENT: "component-definition",
+    OscalModel.MAPPING: "mapping-collection",
+    OscalModel.POAM: "plan-of-action-and-milestones",
+    OscalModel.PROFILE: "profile",
+    OscalModel.SSP: "system-security-plan",
+}
+
 # --- FastMCP setup --------------------------------------------------------
 # P1-7: stateless — per-call GCS state only; autoscaling Cloud Run has no
 # session affinity, so session-based Streamable-HTTP would intermittently 404.
@@ -110,8 +125,8 @@ def create_oscal_model(model_enum: OscalModel, initial_payload: Dict[str, Any], 
     # 1. Draft with Metadata
     draft_doc = initial_payload.copy()
 
-    # OSCAL models have a top-level key matching their name
-    root_key = model_enum.value
+    # OSCAL models have a top-level key matching their schema root
+    root_key = OSCAL_ROOT_KEYS[model_enum]
     if root_key not in draft_doc:
         logger.warning(f"Payload missing root key '{root_key}'. Attempting to wrap.")
         draft_doc = {root_key: draft_doc}
@@ -176,7 +191,7 @@ def update_oscal_model(model_enum: OscalModel, patch_payload: Dict[str, Any], ct
     else:
         # JSON Merge Patch (RFC 7396) or Full Replacement
         # If the patch_payload has the root_key, we treat it as a potential merge or replacement
-        root_key = model_enum.value
+        root_key = OSCAL_ROOT_KEYS[model_enum]
         draft_doc = copy.deepcopy(master_doc)
         if root_key in patch_payload:
             deep_update(draft_doc[root_key], patch_payload[root_key])
@@ -185,7 +200,7 @@ def update_oscal_model(model_enum: OscalModel, patch_payload: Dict[str, Any], ct
             deep_update(draft_doc[root_key], patch_payload)
 
     # Inject/Update Metadata in draft
-    model_data = draft_doc[model_enum.value]
+    model_data = draft_doc[OSCAL_ROOT_KEYS[model_enum]]
     if "metadata" not in model_data:
         model_data["metadata"] = {}
     model_data["metadata"]["last-modified"] = datetime.now(timezone.utc).isoformat()

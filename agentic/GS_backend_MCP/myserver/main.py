@@ -44,6 +44,37 @@ PORT = int(os.getenv("PORT", "8080"))
 # --- Schema Pre-Loading (Performance) -------------------------------------
 SCHEMA_CACHE = {}
 
+# The OSCAL schemas use XML-Schema regex classes (\p{L}, \p{N}) in their
+# token patterns. Python's `re` cannot compile those, so jsonschema's
+# metaschema check rejects the whole schema ("... is not a 'regex'") and
+# every create/update call fails before the payload is even looked at.
+# Translate them to Python-compatible Unicode-aware classes at load time:
+#   \p{L} -> [^\W\d_]  (any Unicode letter)
+#   \p{N} -> \d        (Unicode digits; close enough for token validation)
+_PCRE_TRANSLATIONS = {
+    r"\p{L}": r"[^\W\d_]",
+    r"\p{N}": r"\d",
+}
+
+def _pythonize_patterns(node):
+    if isinstance(node, dict):
+        return {
+            k: (
+                _pythonize_regex(v)
+                if k == "pattern" and isinstance(v, str)
+                else _pythonize_patterns(v)
+            )
+            for k, v in node.items()
+        }
+    if isinstance(node, list):
+        return [_pythonize_patterns(item) for item in node]
+    return node
+
+def _pythonize_regex(pattern: str) -> str:
+    for xsd, py in _PCRE_TRANSLATIONS.items():
+        pattern = pattern.replace(xsd, py)
+    return pattern
+
 def load_schemas():
     schema_dir = os.path.join(os.path.dirname(__file__), "..", "schemas")
     for model in OscalModel:
@@ -52,7 +83,7 @@ def load_schemas():
         path = os.path.join(schema_dir, filename)
         if os.path.exists(path):
             with open(path, 'r') as f:
-                SCHEMA_CACHE[model] = json.load(f)
+                SCHEMA_CACHE[model] = _pythonize_patterns(json.load(f))
             logger.info(f"Loaded schema for {model.value}")
         else:
             logger.warning(f"Schema file not found: {path}")
@@ -60,8 +91,54 @@ def load_schemas():
 logger.info("Pre-loading 8 OSCAL schemas...")
 load_schemas()
 
+# Maps the storage enum to the OSCAL document root key the schema requires.
+# The enum values are file-name shorthands ("ssp", "poam", …) — wrapping a
+# payload under those instead of the real root key makes every create/update
+# fail validation with "'system-security-plan' is a required property".
+def validate_against_schema(model_enum: "OscalModel", draft_doc: Dict[str, Any]) -> None:
+    """Validate a draft against the cached schema, reporting ALL errors.
+
+    jsonschema.validate() raises on the FIRST error only — for an LLM caller
+    that means one fix-and-retry round trip per missing property. Collecting
+    every error (capped) lets the agent converge in one or two attempts.
+    """
+    schema = SCHEMA_CACHE.get(model_enum)
+    if not schema:
+        raise RuntimeError(f"Schema for {model_enum.value} not loaded.")
+
+    validator = jsonschema.Draft7Validator(schema)
+    errors = sorted(validator.iter_errors(draft_doc), key=lambda e: list(e.absolute_path))
+    if errors:
+        cap = 20
+        lines = [
+            f"- {e.json_path}: {e.message[:300]}"
+            for e in errors[:cap]
+        ]
+        if len(errors) > cap:
+            lines.append(f"... and {len(errors) - cap} more errors")
+        summary = "\n".join(lines)
+        logger.error(f"Validation failed for {model_enum.value}: {len(errors)} error(s)")
+        raise RuntimeError(
+            f"Maker-Checker Validation Failed for {model_enum.value} "
+            f"({len(errors)} error(s)):\n{summary}"
+        )
+
+
+OSCAL_ROOT_KEYS = {
+    OscalModel.ASSESSMENT_PLAN: "assessment-plan",
+    OscalModel.ASSESSMENT_RESULTS: "assessment-results",
+    OscalModel.CATALOG: "catalog",
+    OscalModel.COMPONENT: "component-definition",
+    OscalModel.MAPPING: "mapping-collection",
+    OscalModel.POAM: "plan-of-action-and-milestones",
+    OscalModel.PROFILE: "profile",
+    OscalModel.SSP: "system-security-plan",
+}
+
 # --- FastMCP setup --------------------------------------------------------
-mcp = FastMCP("GppContextMCP", host="0.0.0.0", port=PORT)
+# P1-7: stateless — per-call GCS state only; autoscaling Cloud Run has no
+# session affinity, so session-based Streamable-HTTP would intermittently 404.
+mcp = FastMCP("GppContextMCP", host="0.0.0.0", port=PORT, stateless_http=True)
 
 # --- Tool Registration ----------------------------------------------------
 
@@ -77,8 +154,8 @@ def create_oscal_model(model_enum: OscalModel, initial_payload: Dict[str, Any], 
     # 1. Draft with Metadata
     draft_doc = initial_payload.copy()
 
-    # OSCAL models have a top-level key matching their name
-    root_key = model_enum.value
+    # OSCAL models have a top-level key matching their schema root
+    root_key = OSCAL_ROOT_KEYS[model_enum]
     if root_key not in draft_doc:
         logger.warning(f"Payload missing root key '{root_key}'. Attempting to wrap.")
         draft_doc = {root_key: draft_doc}
@@ -95,16 +172,8 @@ def create_oscal_model(model_enum: OscalModel, initial_payload: Dict[str, Any], 
     if "oscal-version" not in model_data["metadata"]:
         model_data["metadata"]["oscal-version"] = "1.2.2" # Correct supported version
 
-    # 2. Validation
-    schema = SCHEMA_CACHE.get(model_enum)
-    if not schema:
-        raise RuntimeError(f"Schema for {model_enum.value} not loaded.")
-
-    try:
-        jsonschema.validate(instance=draft_doc, schema=schema)
-    except jsonschema.ValidationError as e:
-        logger.error(f"Validation failed for {model_enum.value}: {e.message}")
-        raise RuntimeError(f"Maker-Checker Validation Failed for {model_enum.value}: {e.message} at path {e.json_path}")
+    # 2. Validation (all errors at once)
+    validate_against_schema(model_enum, draft_doc)
 
     # 3. Commit
     version_name = storage.write_oscal_model(iv_id, model_enum, draft_doc)
@@ -143,7 +212,7 @@ def update_oscal_model(model_enum: OscalModel, patch_payload: Dict[str, Any], ct
     else:
         # JSON Merge Patch (RFC 7396) or Full Replacement
         # If the patch_payload has the root_key, we treat it as a potential merge or replacement
-        root_key = model_enum.value
+        root_key = OSCAL_ROOT_KEYS[model_enum]
         draft_doc = copy.deepcopy(master_doc)
         if root_key in patch_payload:
             deep_update(draft_doc[root_key], patch_payload[root_key])
@@ -152,21 +221,13 @@ def update_oscal_model(model_enum: OscalModel, patch_payload: Dict[str, Any], ct
             deep_update(draft_doc[root_key], patch_payload)
 
     # Inject/Update Metadata in draft
-    model_data = draft_doc[model_enum.value]
+    model_data = draft_doc[OSCAL_ROOT_KEYS[model_enum]]
     if "metadata" not in model_data:
         model_data["metadata"] = {}
     model_data["metadata"]["last-modified"] = datetime.now(timezone.utc).isoformat()
 
-    # 3. Local Air-Gapped Validation
-    schema = SCHEMA_CACHE.get(model_enum)
-    if not schema:
-        raise RuntimeError(f"Schema for {model_enum.value} not loaded.")
-
-    try:
-        jsonschema.validate(instance=draft_doc, schema=schema)
-    except jsonschema.ValidationError as e:
-        logger.error(f"Validation failed for {model_enum.value}: {e.message}")
-        raise RuntimeError(f"Maker-Checker Validation Failed for {model_enum.value}: {e.message} at path {e.json_path}")
+    # 3. Local Air-Gapped Validation (all errors at once)
+    validate_against_schema(model_enum, draft_doc)
 
     # 4. Commit to GCP
     version_name = storage.write_oscal_model(iv_id, model_enum, draft_doc)

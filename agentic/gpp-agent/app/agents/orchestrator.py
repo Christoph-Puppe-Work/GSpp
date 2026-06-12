@@ -5,23 +5,31 @@ Architecture (see [`planning.md`](../../planning.md:1) and
 
 ```
 START
-  └─ classifier (LlmAgent, output_schema=ClassifierOutput)
-       └─ classify_router  (FunctionNode → Event.route)
-            ├─ "govern"     → phase1_governance     → gate_phase1   (HITL)
-            ├─ "model"      → phase2_mapper         → gate_phase2   (HITL)
-            ├─ "track"      → phase3_implementation → gate_phase3   (HITL)
-            ├─ "audit"      → phase4_gatekeeper     → gate_phase4_request (HITL)
+  └─ tenant_context (FunctionNode — extracts/validates iv_id from user_id)
+   └─ classifier (LlmAgent → route_to_phase tool)
+       └─ classify_router  (FunctionNode → Event.route, clears the route)
+            ├─ "govern"     → phase1_governance     → phase1_judge → gate_phase1 (HITL)
+            ├─ "model"      → phase2_mapper         → phase2_judge → gate_phase2 (HITL)
+            ├─ "track"      → phase3_implementation → phase3_judge → gate_phase3 (HITL)
+            ├─ "audit"      → phase4_gatekeeper     → phase4_judge
+            │                                         → gate_phase4_request (HITL)
             │                                         → gate_phase4_decision
-            │                                              ├─ "cleared" → phase5_remediation → gate_phase5
+            │                                              ├─ "cleared" → phase5_remediation → …
             │                                              └─ "blocked" → gate_phase4_blocked (terminal)
-            └─ "remediate"  → phase5_remediation    → gate_phase5   (HITL)
+            └─ "remediate"  → phase5_remediation    → phase5_judge → gate_phase5 (HITL)
 ```
+
+Each phase is split into a tool-using **inspector** (free-text notes →
+`state["phaseN_notes"]`) and a schema-bound **judge** (no tools,
+`output_schema`, → `state["phaseN_result"]`) — architecture.md §4.
 
 The graph guarantees that the only path **into** Phase 5 from Phase 4 is the
 `cleared` route on `gate_phase4_decision`, and the decision node forces
 `blocked` whenever the underlying `phase4_result.cleared_for_audit` is `False`.
 """
 
+import logging
+import re
 from typing import Any
 
 from google.adk import Event, Workflow
@@ -29,6 +37,7 @@ from google.adk.events import RequestInput
 from google.adk.agents.invocation_context import InvocationContext
 
 from app.agents.classifier import get_classifier_agent
+from app.agents.judges import get_judge_agent
 from app.agents.phase1_governance import get_governance_agent
 from app.agents.phase2_mapper import get_mapper_agent
 from app.agents.phase3_implementation import get_implementation_agent
@@ -45,6 +54,11 @@ from app.schemas import (
     TailoringReport,
     WorkflowState,
 )
+
+logger = logging.getLogger("gpp_agent.orchestrator")
+
+# architecture.md §3 — Informationsverbund identifier format.
+_IV_ID_RE = re.compile(r"^iv-[a-z0-9-]{3,40}$")
 
 
 # ---------------------------------------------------------------------------
@@ -91,6 +105,44 @@ def _render_gate_message(template_id: str, **fields: Any) -> str:
 
 
 # ---------------------------------------------------------------------------
+# Tenant context — P0-3 (agent half)
+# ---------------------------------------------------------------------------
+
+
+def tenant_context(ctx: InvocationContext, node_input: Any) -> Event:
+    """Extract and validate the Informationsverbund id from the session user id.
+
+    architecture.md §3: the caller sets ``user_id = {caller}::iv::{iv_id}``;
+    `app/mcp_clients.py` forwards the full user id as ``X-Gpp-User-Id`` and
+    the backend MCP enforces isolation server-side. This node mirrors the
+    backend's parsing so the agents can reference ``state["iv_id"]``.
+
+    Lenient by design: the Agent Engine playground runs with a plain
+    ``userId=user`` (no ``::iv::`` suffix). In that case we log a warning and
+    continue — the backend MCP's dev-IV fallback (P1-21) covers playground
+    testing, and real enforcement stays server-side.
+    """
+    user_id = getattr(ctx.session, "user_id", None) or ""
+
+    if "::iv::" in user_id:
+        iv_id = user_id.rsplit("::iv::", 1)[1]
+        if _IV_ID_RE.match(iv_id):
+            return Event(output=node_input, state={"iv_id": iv_id})
+        logger.warning(
+            "tenant_context: user_id carries a malformed iv_id %r — backend "
+            "MCP will reject tool calls for this session.",
+            iv_id,
+        )
+    else:
+        logger.warning(
+            "tenant_context: user_id %r carries no '::iv::' suffix — backend "
+            "tool calls rely on the dev-IV fallback (playground only).",
+            user_id,
+        )
+    return Event(output=node_input)
+
+
+# ---------------------------------------------------------------------------
 # Classifier router
 # ---------------------------------------------------------------------------
 
@@ -100,6 +152,10 @@ def classify_router(ctx: InvocationContext, node_input: Any) -> Event:
     `Event(route=...)` so the next graph edge dispatches to the right phase
     agent. If no route is set, end the invocation after the classifier's
     natural-language response.
+
+    The consumed route is cleared from state (P1-5) so a later turn in the
+    same session cannot accidentally re-dispatch the previous phase when the
+    classifier only asked a clarifying question.
     """
     raw = ctx.session.state.get("classifier_route")
 
@@ -110,7 +166,7 @@ def classify_router(ctx: InvocationContext, node_input: Any) -> Event:
 
     return Event(
         route=decision.route,
-        state={"current_phase": decision.route},
+        state={"classifier_route": None, "current_phase": decision.route},
     )
 
 
@@ -326,13 +382,14 @@ def get_workflow(mcp: McpClientService | None = None) -> Workflow:
     p3 = get_implementation_agent(mcp)
     p4 = get_gatekeeper_agent(mcp)
     p5 = get_remediation_agent(mcp)
+    j1, j2, j3, j4, j5 = (get_judge_agent(n) for n in range(1, 6))
 
     edges = [
-        # 1. Entry: classifier picks the route
-        ("START", classifier, classify_router),
+        # 1. Entry: tenant context, then the classifier picks the route
+        ("START", tenant_context, classifier, classify_router),
 
-        # 2. Dispatch to one of five phase agents. If classify_router emits
-        # no route, the invocation ends after the classifier response.
+        # 2. Dispatch to one of five phase inspectors. If classify_router
+        # emits no route, the invocation ends after the classifier response.
         (
             classify_router,
             {
@@ -344,13 +401,13 @@ def get_workflow(mcp: McpClientService | None = None) -> Workflow:
             },
         ),
 
-        # 3. Phase 1 / 2 / 3 / 5 → simple HITL gate (request + ack), then end
-        (p1, gate_phase1_request, gate_phase1_ack),
-        (p2, gate_phase2_request, gate_phase2_ack),
-        (p3, gate_phase3_request, gate_phase3_ack),
+        # 3. Phase 1 / 2 / 3 / 5: inspector → judge → HITL gate, then end
+        (p1, j1, gate_phase1_request, gate_phase1_ack),
+        (p2, j2, gate_phase2_request, gate_phase2_ack),
+        (p3, j3, gate_phase3_request, gate_phase3_ack),
 
-        # 4. Phase 4 → request → decision → conditional routing
-        (p4, gate_phase4_request, gate_phase4_decision),
+        # 4. Phase 4: inspector → judge → request → decision → routing
+        (p4, j4, gate_phase4_request, gate_phase4_decision),
         (
             gate_phase4_decision,
             {
@@ -359,8 +416,8 @@ def get_workflow(mcp: McpClientService | None = None) -> Workflow:
             },
         ),
 
-        # 5. Phase 5 → simple HITL gate, then end
-        (p5, gate_phase5_request, gate_phase5_ack),
+        # 5. Phase 5: inspector → judge → HITL gate, then end
+        (p5, j5, gate_phase5_request, gate_phase5_ack),
     ]
 
     return Workflow(

@@ -2,7 +2,8 @@
 id: phase3_implementation
 phase: 3
 title: Implementation & Status Tracking
-output_schema: ImplementationReport
+output_key: phase3_notes
+judge_schema: ImplementationReport
 mcp_filters:
   backend: [get_ssp_implementation, get_oscal_model_raw]
 ---
@@ -34,16 +35,19 @@ of controls in the SSP. Mandatorily use `get_ssp_implementation` via
   status is authoritative — your job is only to flag missing accompanying
   data.
 
-## Output (strict)
+## Output — inspector notes (free text)
 
-Return JSON validating `ImplementationReport`:
+You are the *inspector*: write thorough free-text notes. A separate judge
+agent converts your notes into the structured `ImplementationReport` JSON, so
+your notes MUST explicitly cover:
 
-- `unjustified_alternatives` — control IDs whose status is `alternative` but
-  whose justification is empty or generic.
-- `planned_without_date` — control IDs whose status is `planned` but
-  `date-expected` is missing.
-- `not_certifiable` — `true` iff at least one MUSS requirement is `planned`
-  without an authorised residual-risk acceptance.
-- `summary` — concise user-facing summary (≤ 3 sentences) including counts.
+- every control whose status is `alternative` with an empty or generic
+  justification (or state that there are none);
+- every control whose status is `planned` without a `date-expected` (or state
+  that there are none);
+- whether any MUSS requirement is `planned` without an authorised
+  residual-risk acceptance — i.e. whether the SSP is ready for initial
+  certification;
+- a short closing summary (≤ 3 sentences) including counts.
 
-No prose outside the JSON.
+Base every statement on actual tool results — never invent statuses.

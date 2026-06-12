@@ -2,7 +2,7 @@ from types import SimpleNamespace
 
 import pytest
 
-from myserver.utils import get_iv_id
+from GS_backend_MCP.myserver.utils import get_iv_id
 
 
 def _ctx_with_user_id(user_id: str | None):

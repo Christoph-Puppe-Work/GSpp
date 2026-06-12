@@ -1,14 +1,15 @@
-"""Phase 2 — Component Mapping Agent (LlmAgent factory)."""
+"""Phase 2 — Component Mapping Inspector (LlmAgent factory).
 
-import os
+Inspector half of the inspector/judge split (architecture.md §4): keeps the
+MCP tools, writes free-text notes to ``state["phase2_notes"]``; the judge
+converts them into ``TailoringReport``.
+"""
 
 from google.adk.agents import LlmAgent
 
 from app.mcp_clients import McpClientService
+from app.models import producer_model
 from app.prompts import load_prompt
-from app.schemas import TailoringReport
-
-_DEFAULT_MODEL = os.environ.get("ORCHESTRATOR_MODEL", "gemini-3.1-pro-preview")
 
 _ANWENDER_TOOLS = [
     "list_zielobjektkategorien",
@@ -25,11 +26,11 @@ _BACKEND_TOOLS = [
 
 
 def get_mapper_agent(mcp: McpClientService | None = None) -> LlmAgent:
-    """Return the Phase 2 (Component-Mapping) LlmAgent.
+    """Return the Phase 2 (Component-Mapping) inspector LlmAgent.
 
     Tools: anwender (GSpp catalogue / profile / controls) + backend
-    (read-only OSCAL inspection). Output is written to
-    `state["phase2_result"]`.
+    (read-only OSCAL inspection). Notes are written to
+    `state["phase2_notes"]`.
     """
     mcp = mcp or McpClientService()
     anwender = mcp.get_anwender_toolset(allow=_ANWENDER_TOOLS)
@@ -40,14 +41,13 @@ def get_mapper_agent(mcp: McpClientService | None = None) -> LlmAgent:
 
     return LlmAgent(
         name="phase2_mapper",
-        model=os.environ.get("PHASE2_MODEL", _DEFAULT_MODEL),
+        model=producer_model(2),
         mode="single_turn",
         instruction=f"{identity}\n\n---\n\n{phase_prompt}",
         tools=[anwender, backend],
-        output_schema=TailoringReport,
-        output_key="phase2_result",
+        output_key="phase2_notes",
         description=(
-            "Phase 2 — aligns the user's Component Definition with the BSI "
-            "profile, detects tailoring blockers and POA&M gaps."
+            "Phase 2 inspector — aligns the user's Component Definition with "
+            "the BSI profile, detects tailoring blockers and POA&M gaps."
         ),
     )

@@ -13,11 +13,22 @@
 # limitations under the License.
 
 import logging
+import os
 
 import pytest
 from google.adk.events.event import Event
 
-from app.agent_runtime_app import AgentEngineApp
+# `app.agent_runtime_app` initialises Vertex AI at import time, which needs a
+# resolvable GCP project. Skip the whole module (instead of erroring at
+# collection) when the environment is not configured — same opt-in spirit as
+# the live-LLM test in test_agent.py.
+if not os.environ.get("GOOGLE_CLOUD_PROJECT"):
+    pytest.skip(
+        "Requires GOOGLE_CLOUD_PROJECT (Vertex AI init at import time).",
+        allow_module_level=True,
+    )
+
+from app.agent_runtime_app import AgentEngineApp  # noqa: E402
 
 
 @pytest.fixture

@@ -2,7 +2,8 @@
 id: phase5_remediation
 phase: 5
 title: Remediation (POA&M)
-output_schema: RemediationPlan
+output_key: phase5_notes
+judge_schema: RemediationPlan
 mcp_filters:
   backend: [get_assessment_findings, get_poam_items, update_oscal_model, create_oscal_model]
 ---
@@ -23,28 +24,30 @@ with the status `not-satisfied` from the Assessment Result (AR).
 ## Tool-call rules
 
 - Begin every run with `get_assessment_findings` (backend). If no
-  `not-satisfied` finding is present, return an empty
-  `created_poam_items` list and explain so in `summary` — do not invent
-  findings.
+  `not-satisfied` finding is present, state that clearly in your notes — do
+  not invent findings.
 - Use `get_poam_items` to detect already-tracked POA&Ms before creating
   duplicates. Re-use an existing `poam_id` if it already maps to the same
   finding UUID; otherwise create a new entry with `update_oscal_model` (or
   `create_oscal_model` when the POA&M file does not yet exist).
-- Every `PoamItem` you emit MUST carry a non-empty `finding_uuid`,
+- Every POA&M entry you create MUST carry a non-empty `finding_uuid`,
   `requirement_uuid` and `asset_uuid`. If any of these is missing in the
-  source AR, list the gap in `pending_user_input` rather than inventing a
-  UUID.
+  source AR, record the gap as an open question for the user rather than
+  inventing a UUID.
 - Do **not** assign final responsibilities or deadlines on your own — those
   are user inputs.
 
-## Output (strict)
+## Output — inspector notes (free text)
 
-Return JSON validating `RemediationPlan`:
+You are the *inspector*: write thorough free-text notes. A separate judge
+agent converts your notes into the structured `RemediationPlan` JSON, so your
+notes MUST explicitly cover:
 
-- `created_poam_items` — list of `PoamItem` (one per `not-satisfied`
-  finding).
-- `pending_user_input` — free-text questions you need answered to finalise
-  responsibilities / deadlines / missing UUIDs.
-- `summary` — concise user-facing summary (≤ 3 sentences) including counts.
+- every POA&M entry you created or re-used, each with its `poam_id`,
+  `finding_uuid`, `requirement_uuid`, `asset_uuid`, a short description and
+  the draft milestones (or state that no `not-satisfied` findings exist);
+- every open question the user must answer to finalise responsibilities,
+  deadlines or missing UUIDs;
+- a short closing summary (≤ 3 sentences) including counts.
 
-No prose outside the JSON.
+Base every statement on actual tool results — never invent findings or UUIDs.

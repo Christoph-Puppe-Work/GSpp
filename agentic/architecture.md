@@ -1,5 +1,23 @@
 # gpp_agent — Architecture Rules
 
+> **STATUS (2026-06-12, P2-15):** the implementation has moved to an
+> **ADK 2.0 Workflow graph** (`gpp-agent/app/agents/orchestrator.py`) and
+> several sections below describe the older LoopAgent/sub-agent design that
+> was **never built**. Until this document is rewritten:
+>
+> - **Still binding:** §2 (protocols — Streamable-HTTP only), §3 (tenant
+>   isolation / `{caller}::iv::{iv_id}`), §4 (inspector/judge split — now
+>   implemented as per-phase inspector + judge nodes), §7 (least-privilege
+>   tool allow-lists), §8 (model rules — implemented in `app/models.py`),
+>   §10 (DoD tests — treat as open checklist).
+> - **Aspirational / superseded:** maker-checker `LoopAgent` +
+>   `EscalationBarrier`, `services/mcp_client_service.py`, the
+>   `shared/` + `agents/<domain>/` layout, `tools/observability.py`,
+>   `TOOL_AGENT_MODEL`, `AGUIToolset` wiring (deferred with the P0-2
+>   frontend-transport decision).
+>
+> See `agentic/issues.md` for the live finding list.
+
 This document outlines the **binding** architecture decisions for
 `agentic/gpp_agent/`. It is the source of truth for code reviewers
 and code-generating tools (models). Not a tutorial, no code snippets —

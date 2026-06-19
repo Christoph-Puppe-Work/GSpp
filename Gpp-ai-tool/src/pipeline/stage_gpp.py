@@ -10,6 +10,7 @@ from typing import Dict, Any, List, Optional, Tuple
 from config import app_config
 from constants import GPP_KOMPENDIUM_JSON_PATH, ZIELOBJEKTKATEGORIEN_CSV_PATH, ZIELOBJEKT_CONTROLS_JSON_PATH
 from utils.data_loader import load_json_file, save_json_file, load_zielobjekte_csv
+from utils.file_utils import json_mapping_is_populated
 
 logger = logging.getLogger(__name__)
 
@@ -189,8 +190,12 @@ def run_stage_gpp():
     """Main function for the stage_gpp."""
     logger.info("Starting stage_gpp...")
 
-    # Idempotency: skip if the output already exists and overwriting is disabled.
-    if os.path.exists(ZIELOBJEKT_CONTROLS_JSON_PATH) and not app_config.overwrite_temp_files:
+    # Idempotency: skip only if a VALID, non-empty map already exists. An empty/corrupt file
+    # must be regenerated (same failure mode as the ED23 per-Baustein regression).
+    if (
+        json_mapping_is_populated(ZIELOBJEKT_CONTROLS_JSON_PATH, "zielobjekt_controls_map")
+        and not app_config.overwrite_temp_files
+    ):
         logger.info(
             f"Output file already exists at {ZIELOBJEKT_CONTROLS_JSON_PATH} and "
             "OVERWRITE_TEMP_FILES is false. Skipping stage_gpp."

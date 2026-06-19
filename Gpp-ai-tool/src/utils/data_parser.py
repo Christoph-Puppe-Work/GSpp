@@ -20,11 +20,20 @@ def find_bausteine_with_prose(bsi_data: Dict[str, Any]) -> List[Dict[str, Any]]:
     for group in catalog.get("groups", []):
         for sub_group in group.get("groups", []):
             if sub_group.get("class") == "baustein":
-                # Find the 'usage' description for the Baustein
+                # Extract the Baustein's purpose/usage prose. Older catalog revisions labelled
+                # this part name "usage"; the current BSI ED2023 catalog labels it "Zielsetzung"
+                # (the Baustein's objective). Part names vary across Bausteine ("Zielsetzung",
+                # "1.2 Zielsetzung", "1.2. Zielsetzung", ...), so match by substring on name/title
+                # and fall back to "Einleitung" (introduction) if no objective part exists.
                 baustein_description = ""
-                for part in sub_group.get("parts", []):
-                    if part.get("name") == "usage":
-                        baustein_description = part.get("prose", "")
+                for keyword in ("usage", "zielsetzung", "einleitung"):
+                    for part in sub_group.get("parts", []):
+                        name = (part.get("name") or "").lower()
+                        title = str(part.get("title") or "").lower()
+                        if (keyword in name or keyword in title) and part.get("prose"):
+                            baustein_description = part["prose"]
+                            break
+                    if baustein_description:
                         break
 
                 group_id = group.get("id", "").upper()

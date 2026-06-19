@@ -8,7 +8,11 @@ classifications (NIST class, ISMS phase, CIA), emitted as OSCAL `alter` blocks.
 
 The enrichment is driven by best practices (the prompt) and the description of the BSI
 Baustein the profile is based on — it does NOT depend on any per-Anforderung mapping.
-One enhanced profile is written per Baustein to ED23_PROFILES_DIR.
+
+For each BSI Baustein TWO profiles are written to ED23_PROFILES_DIR: a plain one (the base
+profile, no `modify`) and an enhanced one (the base + maturity `alter` blocks). Process
+Zielobjekte (Methodik / *_prozesse) are NOT written here — they are handled by
+stage_base_process_enhanced in the process dir.
 """
 
 import os
@@ -27,10 +31,9 @@ from constants import (
     SDT_PROFILES_REGULAR_DIR,
     SDT_PROFILES_PROCESS_DIR,
     ED23_PROFILES_DIR,
-    ZIELOBJEKT_CONTROLS_JSON_PATH,
     PROMPT_CONFIG_PATH,
     ENHANCED_CONTROL_RESPONSE_SCHEMA_PATH,
-    PRACTICE_ABBREVIATIONS,
+    GPP_ENHANCEMENT_PROPS_NS,
 )
 from utils.file_utils import create_dir_if_not_exists, read_json_file, write_json_file, read_csv_file
 from utils.text_utils import sanitize_filename
@@ -52,9 +55,9 @@ ED23_PROFILE_UUID_NAMESPACE = uuid.uuid5(
 )
 
 
-def deterministic_profile_uuid(baustein_id: str, zielobjekt_name: str) -> str:
-    """Derives a stable UUIDv5 for an enhanced profile from its Baustein + Kategorie."""
-    return str(uuid.uuid5(ED23_PROFILE_UUID_NAMESPACE, f"{baustein_id}|{zielobjekt_name}"))
+def deterministic_profile_uuid(baustein_id: str, zielobjekt_name: str, variant: str = "enhanced") -> str:
+    """Derives a stable UUIDv5 for a profile from its Baustein + Kategorie + variant (plain/enhanced)."""
+    return str(uuid.uuid5(ED23_PROFILE_UUID_NAMESPACE, f"{baustein_id}|{zielobjekt_name}|{variant}"))
 
 
 def build_oscal_maturity_statements(control_id: str, generated_data: dict, original_description: str, baustein_id: str) -> list:
@@ -68,7 +71,7 @@ def build_oscal_maturity_statements(control_id: str, generated_data: dict, origi
     parts = []
     levels = ["1", "2", "3", "4", "5"]
 
-    props_ns = "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+    props_ns = GPP_ENHANCEMENT_PROPS_NS
 
     # Classification properties shared across all levels for this control.
     base_props = [
@@ -249,6 +252,34 @@ async def generate_enhanced_profile_data(
     return alters
 
 
+def write_plain_profile(
+    input_profile_path: str,
+    output_path: str,
+    baustein_id: str,
+    zielobjekt_name: str,
+    profile_title: str,
+):
+    """Writes the plain (un-enhanced) per-Baustein profile: the base profile with a stable
+    deterministic UUID and a readable title, and no `modify` block. Independent of the AI
+    enhancement, so it is produced even when the enhanced variant cannot be generated."""
+    if os.path.exists(output_path) and not app_config.overwrite_temp_files:
+        logger.info(f"Plain profile already exists at {output_path} and OVERWRITE_TEMP_FILES is false. Skipping.")
+        return
+    profile = read_json_file(input_profile_path)
+    if not profile or "profile" not in profile:
+        logger.warning(
+            f"Base profile '{input_profile_path}' missing/empty for Baustein {baustein_id}; "
+            "no plain profile written."
+        )
+        return
+    profile["profile"].pop("modify", None)  # ensure it is plain (no maturity alters)
+    profile["profile"]["uuid"] = deterministic_profile_uuid(baustein_id, zielobjekt_name, "plain")
+    profile["profile"]["metadata"]["title"] = profile_title
+    profile["profile"]["metadata"]["last-modified"] = datetime.now(timezone.utc).isoformat()
+    write_json_file(output_path, profile)
+    logger.info(f"Successfully generated plain profile at {output_path}")
+
+
 async def generate_enhanced_profile(
     baustein_id: str,
     baustein_title: str,
@@ -279,7 +310,7 @@ async def generate_enhanced_profile(
         # "Personal Prozess Profil") instead of inheriting the base profile's
         # "<uuid> <Kategorie>" string, and give the profile a stable deterministic UUID so
         # re-runs don't churn.
-        profile["profile"]["uuid"] = deterministic_profile_uuid(baustein_id, zielobjekt_name)
+        profile["profile"]["uuid"] = deterministic_profile_uuid(baustein_id, zielobjekt_name, "enhanced")
         profile["profile"]["metadata"]["title"] = profile_title
         profile["profile"]["metadata"]["last-modified"] = datetime.now(timezone.utc).isoformat()
 
@@ -332,7 +363,6 @@ async def run_stage_ED23_profiles_enhanced():
         baustein_zielobjekt_map = read_json_file(BAUSTEIN_ZIELOBJEKT_JSON_PATH)
         bsi_catalog = read_json_file(BSI_2023_JSON_PATH)
         gpp_catalog = read_json_file(GPP_KOMPENDIUM_JSON_PATH)
-        zielobjekt_controls = read_json_file(ZIELOBJEKT_CONTROLS_JSON_PATH)
         prompt_config = read_json_file(PROMPT_CONFIG_PATH)
         enhanced_schema = read_json_file(ENHANCED_CONTROL_RESPONSE_SCHEMA_PATH)
 
@@ -340,7 +370,6 @@ async def run_stage_ED23_profiles_enhanced():
             BAUSTEIN_ZIELOBJEKT_JSON_PATH: baustein_zielobjekt_map,
             BSI_2023_JSON_PATH: bsi_catalog,
             GPP_KOMPENDIUM_JSON_PATH: gpp_catalog,
-            ZIELOBJEKT_CONTROLS_JSON_PATH: zielobjekt_controls,
             PROMPT_CONFIG_PATH: prompt_config,
             ENHANCED_CONTROL_RESPONSE_SCHEMA_PATH: enhanced_schema,
         }
@@ -372,64 +401,45 @@ async def run_stage_ED23_profiles_enhanced():
         async with sem:
             logger.info(f"Processing Baustein: {baustein_id}")
 
-            zielobjekt_name = zielobjekt_name_map.get(zielobjekt_uuid)
-
-            is_process = False
+            # Process "Bausteine" (Methodik / *_prozesse) are NOT BSI ED2023 Bausteine — they are
+            # handled by stage_base_process_enhanced in the process dir, so they are skipped here.
             if zielobjekt_uuid == "Methodik" or str(zielobjekt_uuid).endswith("_prozesse"):
-                zielobjekt_name = zielobjekt_uuid
-                is_process = True
+                return
 
+            zielobjekt_name = zielobjekt_name_map.get(zielobjekt_uuid)
             if not zielobjekt_name:
                 logger.warning(f"No name found for Zielobjekt UUID {zielobjekt_uuid} (Baustein {baustein_id}). Skipping.")
                 return
 
             baustein_title = bsi_baustein_title_lookup.get(baustein_id) or zielobjekt_name
             baustein_description = baustein_desc_lookup.get(baustein_id, "")
-
             sanitized_name = sanitize_filename(zielobjekt_name)
+            input_path = os.path.join(SDT_PROFILES_REGULAR_DIR, f"{sanitized_name}_profile.json")
 
-            display_name = sanitized_name
-            if is_process and display_name.endswith("_prozesse"):
-                display_name = display_name[:-9]
+            # Two OSCAL profiles per BSI Baustein. The filename combines the Zielobjektkategorie,
+            # the readable Baustein ID (e.g. INF.8) and the Baustein name; the enhanced variant
+            # gets an "_enhanced" suffix.
+            base_name = f"{sanitized_name}_{baustein_id}_{sanitize_filename(baustein_title)}"
+            plain_path = os.path.join(ED23_PROFILES_DIR, f"{base_name}.json")
+            enhanced_path = os.path.join(ED23_PROFILES_DIR, f"{base_name}_enhanced.json")
+            profile_title = f"{baustein_id} - {zielobjekt_name}"
 
-            if is_process:
-                input_path = os.path.join(SDT_PROFILES_PROCESS_DIR, f"{display_name}_process_profile.json")
-            else:
-                input_path = os.path.join(SDT_PROFILES_REGULAR_DIR, f"{sanitized_name}_profile.json")
+            # Plain profile: the base profile as-is (no AI); written even if enhancement fails.
+            write_plain_profile(input_path, plain_path, baustein_id, zielobjekt_name, profile_title)
 
-            # ED23 profiles are per-Baustein. For process profiles the Baustein ID, name
-            # and Zielobjektkategorie are all the same "<KÜRZEL>_prozesse" string, so the
-            # filename is just that ID (e.g. "PERS_prozesse.json"). For regular profiles the
-            # filename combines the Zielobjektkategorie, the readable Baustein ID (e.g. INF.8)
-            # and the Baustein name.
-            if is_process:
-                output_filename = f"{baustein_id}.json"
-                # e.g. "PERS_prozesse" -> "Personal Prozess Profil"
-                practice_key = baustein_id[:-9] if baustein_id.endswith("_prozesse") else baustein_id
-                profile_title = f"{PRACTICE_ABBREVIATIONS.get(practice_key.upper(), practice_key)} Prozess Profil"
-            else:
-                output_filename = f"{display_name}_{baustein_id}_{sanitize_filename(baustein_title)}.json"
-                profile_title = f"{baustein_id} - {zielobjekt_name}"
-            output_path = os.path.join(ED23_PROFILES_DIR, output_filename)
-
+            # Enhanced profile: the base profile + AI maturity alter blocks.
             await generate_enhanced_profile(
-                baustein_id, baustein_title, baustein_description, zielobjekt_name, profile_title,
-                input_path, output_path,
+                baustein_id, baustein_title, baustein_description, zielobjekt_name,
+                f"{profile_title} - Enhanced (ED2023)", input_path, enhanced_path,
                 gpp_controls_lookup, prompt_instruction, enhanced_schema, ai_client,
             )
 
     tasks = []
 
-    # Run through the Baustein -> Zielobjekt mappings from stage_match_bausteine.
+    # One task per BSI Baustein -> Zielobjekt mapping from stage_match_bausteine. Process
+    # "Bausteine" (Methodik / *_prozesse) are intentionally excluded from this per-Baustein dir.
     for baustein_id, zielobjekt_uuid in baustein_zielobjekt_map.get("baustein_zielobjekt_map", {}).items():
         tasks.append(process_single_baustein(baustein_id, zielobjekt_uuid))
-
-    # Also process standard/process Zielobjekte that are not directly in the map.
-    processed_uuids = set(baustein_zielobjekt_map.get("baustein_zielobjekt_map", {}).values())
-    for zielobjekt_uuid in zielobjekt_controls.get("zielobjekt_controls_map", {}):
-        if zielobjekt_uuid not in processed_uuids:
-            if zielobjekt_uuid == "Methodik" or zielobjekt_uuid.endswith("_prozesse"):
-                tasks.append(process_single_baustein(zielobjekt_uuid, zielobjekt_uuid))
 
     await asyncio.gather(*tasks)
 

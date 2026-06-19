@@ -10,6 +10,7 @@ from config import app_config
 from clients.ai_client import AiClient
 from utils.data_loader import load_json_file, save_json_file, load_zielobjekte_csv
 from utils.data_parser import find_bausteine_with_prose
+from utils.file_utils import json_mapping_is_populated
 from constants import *
 
 logger = logging.getLogger(__name__)
@@ -94,13 +95,15 @@ async def run_stage_match_bausteine() -> None:
     """
     logger.info("Starting stage_match_bausteine...")
 
-    # Idempotency Check (Rule 5.2.7)
+    # Idempotency Check (Rule 5.2.7): skip only if a VALID, non-empty map already exists.
+    # An empty/corrupt file (e.g. left behind by a manual "clear") must be regenerated — otherwise
+    # the downstream ED23 stage silently produces no per-Baustein profiles (the regression this fixes).
     if (
-        os.path.exists(BAUSTEIN_ZIELOBJEKT_JSON_PATH)
+        json_mapping_is_populated(BAUSTEIN_ZIELOBJEKT_JSON_PATH, "baustein_zielobjekt_map")
         and not app_config.overwrite_temp_files
     ):
         logger.info(
-            "Output file already exists and OVERWRITE_TEMP_FILES is false. "
+            "Output file already exists with a non-empty map and OVERWRITE_TEMP_FILES is false. "
             "Skipping Baustein-to-Zielobjekt matching stage."
         )
         return

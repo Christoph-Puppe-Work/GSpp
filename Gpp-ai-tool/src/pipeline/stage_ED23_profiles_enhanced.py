@@ -33,6 +33,7 @@ from constants import (
     ED23_PROFILES_DIR,
     PROMPT_CONFIG_PATH,
     ENHANCED_CONTROL_RESPONSE_SCHEMA_PATH,
+    GPP_ENHANCEMENT_PROPS_NS,
 )
 from utils.file_utils import create_dir_if_not_exists, read_json_file, write_json_file, read_csv_file
 from utils.text_utils import sanitize_filename
@@ -70,7 +71,7 @@ def build_oscal_maturity_statements(control_id: str, generated_data: dict, origi
     parts = []
     levels = ["1", "2", "3", "4", "5"]
 
-    props_ns = "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+    props_ns = GPP_ENHANCEMENT_PROPS_NS
 
     # Classification properties shared across all levels for this control.
     base_props = [

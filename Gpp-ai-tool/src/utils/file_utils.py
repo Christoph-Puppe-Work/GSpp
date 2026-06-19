@@ -120,6 +120,22 @@ def read_json_file(file_path):
         logger.error(f"Error reading JSON source {file_path}: {e}")
         return None
 
+def json_mapping_is_populated(file_path, key):
+    """Return True only if `file_path` exists and holds a non-empty `data[key]`.
+
+    Pipeline idempotency guards use this so an empty or corrupt output file (e.g. one left
+    behind by a manual "clear") is regenerated instead of being treated as already complete.
+    A simply-missing file returns False quietly (no error log).
+    """
+    if not os.path.exists(file_path):
+        return False
+    try:
+        with open(file_path, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+    except (OSError, json.JSONDecodeError):
+        return False
+    return bool(isinstance(data, dict) and data.get(key))
+
 def write_json_file(file_path, data):
     """
     Writes data to a JSON file.

@@ -10,12 +10,13 @@
 # verbose logging.
 #
 # Usage:
-# ./scripts/run_local.sh [stage_name]
+# ./scripts/run_local.sh [--stage <stage_name>] [--clear-all]
 #
 # Example:
-# ./scripts/run_local.sh             # Runs the full pipeline
-# ./scripts/run_local.sh stage_0
-# ./scripts/run_local.sh stage_strip
+# ./scripts/run_local.sh                                       # Runs the full pipeline
+# ./scripts/run_local.sh --stage stage_match_bausteine
+# ./scripts/run_local.sh --stage stage_ED23_profiles_enhanced
+# GCP_PROJECT_ID can be overridden via the environment (defaults to gpp-agentic-3).
 #
 
 # Change to the application's root directory (the parent of the scripts directory)
@@ -63,7 +64,7 @@ echo "Working Directory: $(pwd)"
 
 # --- Environment Setup ---
 # Set environment variables for local run.
-export GCP_PROJECT_ID="privates-476309"
+export GCP_PROJECT_ID="${GCP_PROJECT_ID:-gpp-agentic-3}"
 export BUCKET_NAME="local-dev-bucket"
 export AI_ENDPOINT_ID="local-dev-endpoint"
 export SOURCE_PREFIX="input"
@@ -93,7 +94,6 @@ for arg in "$@"; do
     if [ "$arg" != "--clear-all" ]; then
         PYTHON_ARGS+=("$arg")
     fi
-    exit
 done
 python3 src/main.py "${PYTHON_ARGS[@]}"
 

@@ -310,7 +310,7 @@
 
         const METHODIK_URLS = {
             standard: 'https://raw.githubusercontent.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/refs/heads/main/Zielobjektkategorien/profile/process/methodik_process_profile.json',
-            enhanced: 'https://raw.githubusercontent.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/refs/heads/main/ED23-Baustein-profile/DE/Methodik.json'
+            enhanced: 'https://raw.githubusercontent.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/refs/heads/main/Zielobjektkategorien/profile/process/methodik_process_profile_enhanced.json'
         };
 
         const PRESET_ADDITIONAL_CATALOGS = [
@@ -828,6 +828,9 @@
                 // und die passende Prozess-Liste neu laden.
                 bpState.praktiken = new Map();
                 await fetchPraktikenProfiles();
+                // The ED23-Baustein (Nutzergen) dropdown also has standard/enhanced variants,
+                // so refresh it to match the chosen Methodik.
+                await fetchGitHubComponents();
                 renderTailoredList();
                 if (typeof refreshRiskUI === 'function') refreshRiskUI();
             } catch (e) {
@@ -937,7 +940,16 @@
                 const ddG = document.getElementById('dd-gplus');
 
                 ddN.innerHTML = '<option value="" disabled selected>Asset wählen...</option>';
-                d1.filter(i => i.name.endsWith('.json') && !i.name.toLowerCase().includes('methodik')).forEach(f => ddN.appendChild(new Option(f.name.replace('.json', ''), f.download_url)));
+                // The ED23-Baustein dir holds two profiles per Baustein: "<name>.json" (plain) and
+                // "<name>_enhanced.json" (with Reifegrade). Show only the variant matching the chosen
+                // Methodik so each Baustein appears once (mirrors the Praktiken/process toggle).
+                const ed23Enhanced = bpState.methodik?.type === 'enhanced';
+                d1.filter(i => i.name.endsWith('.json')
+                        && !i.name.toLowerCase().includes('methodik')
+                        && (ed23Enhanced ? i.name.endsWith('_enhanced.json') : !i.name.endsWith('_enhanced.json')))
+                  .forEach(f => ddN.appendChild(new Option(
+                        f.name.replace(/_enhanced\.json$/, '').replace(/\.json$/, '') + (ed23Enhanced ? '  ★ erweitert' : ''),
+                        f.download_url)));
 
                 ddG.innerHTML = '<option value="" disabled selected>Asset wählen...</option>';
                 d2.filter(i => i.name.endsWith('.json') && !i.name.endsWith(PRAKTIKEN_FILE_SUFFIX)).forEach(f => ddG.appendChild(new Option(f.name.replace('.json', ''), f.download_url)));

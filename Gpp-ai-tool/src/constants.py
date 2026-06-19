@@ -96,6 +96,11 @@ OSCAL_VERSION = "1.2.2"
 # The OSCAL namespace is pinned at /1.0 across all model versions (it identifies the
 # OSCAL naming system, not the model version) — do not bump it with OSCAL_VERSION.
 OSCAL_NAMESPACE = "http://csrc.nist.gov/ns/oscal/1.0"
+# Naming-system identifier (OSCAL prop `ns`) for the custom enhancement props
+# (control_class, phase, effective_on_c/i/a) added by stage_ED23_profiles_enhanced. These are
+# neither OSCAL- nor BSI-defined, so they carry this dedicated, documented namespace; the URI
+# resolves to the file describing the allowed values.
+GPP_ENHANCEMENT_PROPS_NS = "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
 
 # --- Praktiken (Practices) ---
 # Maps a practice abbreviation (Kürzel, e.g. "ARCH") to its full German term (Begriff,

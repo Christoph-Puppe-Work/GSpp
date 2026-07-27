@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OSCAL Blaupausen & Risk Generator with multi catalog option V5.4</title>
+    <title>OSCAL Blaupausen & Risk Generator with multi catalog option V5.5</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.8.0/mammoth.browser.min.js"></script>
@@ -159,7 +159,7 @@
                 <button onclick="clearAIChunkCacheUI()" class="w-full text-left px-2 py-2 rounded text-xs font-semibold text-slate-400 hover:text-slate-200 hover:bg-slate-700 transition-colors">🗑 Chunk-Cache leeren</button>
             </div>
             <div class="flex-1"></div>
-            <div class="text-[10px] text-slate-600 border-t border-slate-700 pt-2">Build V5.4</div>
+            <div class="text-[10px] text-slate-600 border-t border-slate-700 pt-2">Build V5.5</div>
         </aside>
 
         <!-- Fixe Log-Konsole (unten) mit Token-Statistik -->
@@ -566,6 +566,38 @@
             },
             required: ['controls']
         };
+        const AI_DESCRIPTION_SCHEMA = {
+            type: 'object',
+            additionalProperties: false,
+            properties: {
+                description: { type: 'string' }
+            },
+            required: ['description']
+        };
+        const AI_RISK_SCHEMA = {
+            type: 'object',
+            additionalProperties: false,
+            properties: {
+                risks: {
+                    type: 'array',
+                    items: {
+                        type: 'object',
+                        additionalProperties: false,
+                        properties: {
+                            title: { type: 'string' },
+                            description: { type: 'string' },
+                            threat: { type: 'string' },
+                            likelihood: { type: 'string', enum: ['low', 'medium', 'high', 'very-high'] },
+                            impact: { type: 'string', enum: ['low', 'medium', 'high', 'very-high'] },
+                            targetAsset: { type: 'string' },
+                            mitigatingControlIds: { type: 'array', items: { type: 'string' } }
+                        },
+                        required: ['title', 'description', 'threat', 'likelihood', 'impact', 'targetAsset', 'mitigatingControlIds']
+                    }
+                }
+            },
+            required: ['risks']
+        };
 
         const bpState = {
             metadata: { title: "", version: "1.0.0", description: "" },
@@ -717,8 +749,11 @@
                         <input type="text" id="bp-version" onchange="bpState.metadata.version=this.value" class="w-full px-4 py-2 bg-slate-900 border border-slate-600 rounded-lg text-white focus:ring-2 focus:ring-emerald-500 outline-none" value="1.0.0">
                     </div>
                     <div class="md:col-span-2">
-                        <label class="block text-sm font-semibold text-slate-300 mb-1">Zweck & Geltungsbereich (Rationale)</label>
-                        <textarea id="bp-description" onchange="bpState.metadata.description=this.value" rows="3" class="w-full px-4 py-2 bg-slate-900 border border-slate-600 rounded-lg text-white focus:ring-2 focus:ring-emerald-500 outline-none" placeholder="Dokumentation fachlicher Entscheidungen..."></textarea>
+                        <div class="flex items-center justify-between mb-1 gap-3">
+                            <label class="block text-sm font-semibold text-slate-300">Zweck & Geltungsbereich (Rationale)</label>
+                            <button type="button" id="ai-desc-generate" onclick="generateSSPDescriptionUI()" class="flex-shrink-0 text-xs font-bold text-cyan-300 border border-cyan-800 rounded px-2.5 py-1 hover:bg-cyan-950/40 disabled:opacity-40 disabled:cursor-not-allowed transition-colors">✨ Aus Dokumenten generieren</button>
+                        </div>
+                        <textarea id="bp-description" onchange="bpState.metadata.description=this.value" rows="3" class="w-full px-4 py-2 bg-slate-900 border border-slate-600 rounded-lg text-white focus:ring-2 focus:ring-emerald-500 outline-none" placeholder="Dokumentation fachlicher Entscheidungen... (bleibt das Feld leer, wird es beim Übernehmen der KI-Dokumentanalyse automatisch befüllt)"></textarea>
                     </div>
                 </div>
             `;
@@ -1351,10 +1386,10 @@
         }
 
         function setAIDocumentBusy(busy) {
-            const classify = document.getElementById('ai-doc-classify-button');
-            const extract = document.getElementById('ai-doc-extract-button');
-            if (classify) classify.disabled = busy;
-            if (extract) extract.disabled = busy;
+            ['ai-doc-classify-button', 'ai-doc-extract-button', 'ai-desc-generate', 'ai-risk-generate'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.disabled = busy;
+            });
         }
 
         function getDocumentClassificationSample(text) {
@@ -2002,17 +2037,27 @@ ${JSON.stringify(open.map(control => ({ controlId: control.controlId, title: con
                 const normalized = normalizeAIDocumentAnalysis(parsed);
                 setAIDocumentBusy(true);
                 removeAppliedAIArtifacts();
-                setAIDocumentProgress(0, 3, 'Ordne Assets & Prozesse den Zielobjektkategorien/Praktiken zu...');
+                setAIDocumentProgress(0, 4, 'Ordne Assets & Prozesse den Zielobjektkategorien/Praktiken zu...');
                 await mapAIDocumentAnalysis(normalized);
-                setAIDocumentProgress(1, 3, 'Lade zugeordnete Profile...');
+                setAIDocumentProgress(1, 4, 'Lade zugeordnete Profile...');
                 await applyAIMappingsToWorkspace(normalized);
-                setAIDocumentProgress(2, 3, 'Prüfe Abdeckung der extrahierten Maßnahmen...');
+                setAIDocumentProgress(2, 4, 'Prüfe Abdeckung der extrahierten Maßnahmen...');
                 await checkAIControlCoverage(normalized);
                 activateAIDocumentAnalysis(normalized);
+                let descriptionGenerated = false;
+                if (!cleanAIString(bpState.metadata.description)) {
+                    setAIDocumentProgress(3, 4, 'Generiere SSP-Beschreibung aus den Dokumenten...');
+                    try {
+                        await generateSSPDescription(true);
+                        descriptionGenerated = true;
+                    } catch (descError) {
+                        aiLog('warn', `SSP-Beschreibung nicht generiert: ${descError.message}`);
+                    }
+                }
                 renderAIDocumentResult(normalized);
                 renderTailoredList(document.getElementById('tailoring-search-input')?.value || '');
                 try { await cacheAIAnalysis({ id: 'current', analysis: normalized, applied: true }); } catch (cacheError) { console.warn(cacheError); }
-                setAIDocumentProgress(3, 3, 'Analyse übernommen');
+                setAIDocumentProgress(4, 4, 'Analyse übernommen');
                 const mappedAssets = normalized.assets.filter(a => a.zielobjektkategorie).length;
                 const mappedProcesses = normalized.processes.filter(p => p.praktik).length;
                 const coveredControls = normalized.controls.filter(c => c.coveredBy).length;
@@ -2021,7 +2066,8 @@ ${JSON.stringify(open.map(control => ({ controlId: control.controlId, title: con
                     'Die Dokumentanalyse wurde übernommen und wird beim nächsten Export in Profil und SSP geschrieben.',
                     `• Assets: ${normalized.assets.length} erkannt, davon ${mappedAssets} einer Zielobjektkategorie zugeordnet (im Tailoring sichtbar).`,
                     `• Prozesse: ${normalized.processes.length} erkannt, davon ${mappedProcesses} einer Praktik zugeordnet.`,
-                    `• Maßnahmen: ${coveredControls} von ${normalized.controls.length} bereits durch Assets/Profile abgedeckt, ${normalized.controls.length - coveredControls} als manuelle Controls ergänzt.`
+                    `• Maßnahmen: ${coveredControls} von ${normalized.controls.length} bereits durch Assets/Profile abgedeckt, ${normalized.controls.length - coveredControls} als manuelle Controls ergänzt.`,
+                    ...(descriptionGenerated ? ['• SSP-Beschreibung (Zweck & Geltungsbereich) automatisch aus den Dokumenten generiert.'] : [])
                 ].join('\n'));
             } catch (e) {
                 console.error(e);
@@ -2043,6 +2089,176 @@ ${JSON.stringify(open.map(control => ({ controlId: control.controlId, title: con
             renderAssetsList();
             renderTailoredList(document.getElementById('tailoring-search-input')?.value || '');
             if (typeof refreshRiskUI === 'function') refreshRiskUI();
+        };
+
+        // --- KI: SSP-BESCHREIBUNG & RISIKOANALYSE ---
+
+        // Kompakter deutschsprachiger Workspace-Kontext für KI-Aufrufe, die das Gesamtsystem
+        // kennen müssen (Beschreibung generieren, Risikoanalyse).
+        function buildWorkspaceAIContext() {
+            const lines = [];
+            const title = cleanAIString(bpState.metadata.title);
+            if (title) lines.push(`Titel der Blaupause: ${title}`);
+            const description = cleanAIString(bpState.metadata.description);
+            if (description) lines.push(`Zweck & Geltungsbereich (SSP-Beschreibung):\n${description}`);
+            const documents = Array.from(bpState.aiDocuments.values()).filter(d => d.classification);
+            if (documents.length > 0) {
+                lines.push('Analysierte Dokumente:');
+                documents.forEach(d => lines.push(`- ${d.name} (${cleanAIString(d.classification.documentType)}): ${cleanAIString(d.classification.summary)}`));
+            }
+            const analysisSummary = cleanAIString(bpState.aiAnalysis?.summary);
+            if (analysisSummary) lines.push(`Zusammenfassung der Dokumentanalyse: ${analysisSummary}`);
+            if (bpState.components.length > 0) {
+                const analysisAssetByName = new Map((bpState.aiAnalysis?.assets || []).map(a => [a.name.toLowerCase(), a]));
+                lines.push('Assets/Komponenten:');
+                bpState.components.forEach(c => {
+                    const kategorie = decodeURIComponent((c.source || '').split('/').pop() || '')
+                        .replace(/_profile.*$/i, '').replace(/_/g, ' ');
+                    const detail = cleanAIString(analysisAssetByName.get(c.name.toLowerCase())?.description);
+                    lines.push(`- ${c.name} (Zielobjektkategorie: ${kategorie || 'unbekannt'}, Schutzbedarf: ${c.schutzbedarf || 'normal-SdT'}, ${c.controls.size} Controls)${detail ? `: ${detail}` : ''}`);
+                });
+            }
+            if (bpState.praktiken.size > 0) {
+                lines.push(`Prozesse/Praktiken: ${Array.from(bpState.praktiken.values()).map(p => p.name).join(', ')}`);
+            }
+            lines.push(`Methodik: GS++ ${bpState.methodik.type === 'enhanced' ? 'Enhanced' : 'Standard'} (${bpState.methodik.controls.size} Basis-Controls)`);
+            if (bpState.riskData.length > 0) {
+                lines.push('Bereits definierte Risiken (keine Duplikate hierzu erzeugen):');
+                bpState.riskData.forEach(r => {
+                    const scope = r.targetComponent === 'global' ? 'global' : (bpState.components.find(c => c.id === r.targetComponent)?.name || 'Asset');
+                    lines.push(`- ${r.title} (Scope: ${scope}, Wahrscheinlichkeit: ${r.likelihood}, Schaden: ${r.impact})`);
+                });
+            }
+            return lines.join('\n');
+        }
+
+        // Generiert die SSP-Beschreibung (Zweck & Geltungsbereich) aus Dokumenten, Analyse und
+        // Workspace. auto=true: nur wenn das Feld leer ist (z.B. beim Übernehmen der Analyse).
+        window.generateSSPDescription = async function (auto = false) {
+            const current = cleanAIString(bpState.metadata.description);
+            if (auto && current) return current;
+            if (!auto && current && !confirm('Es existiert bereits eine Beschreibung. Durch eine neu generierte ersetzen?')) return current;
+            ensureAIMappingConsent();
+            if (bpState.aiDocuments.size === 0 && !bpState.aiAnalysis && bpState.components.length === 0) {
+                throw new Error('Keine Datenbasis: bitte zuerst Dokumente analysieren oder Assets hinzufügen.');
+            }
+            const systemPrompt = [
+                'Du formulierst für einen OSCAL-System-Security-Plan (IT-Grundschutz++/GS++-Blaupause) den Abschnitt "Zweck & Geltungsbereich".',
+                'Beschreibe auf Deutsch in 3 bis 6 Sätzen prägnant: Zweck des Informationsverbunds, Geltungsbereich (welche Assets und Prozesse), Schutzbedarf und methodischen Rahmen.',
+                'Nutze ausschließlich die gelieferten Informationen, erfinde keine Fakten.',
+                'Kein Markdown, keine Aufzählungen — Fließtext.',
+                'Antworte ausschließlich im vorgegebenen JSON-Schema.'
+            ].join(' ');
+            const result = await callAIDocumentModel(systemPrompt, buildWorkspaceAIContext(), AI_DESCRIPTION_SCHEMA, 'SSP-Beschreibung');
+            const generated = cleanAIString(result.description);
+            if (!generated) throw new Error('Die KI hat keine Beschreibung geliefert.');
+            bpState.metadata.description = generated;
+            const field = document.getElementById('bp-description');
+            if (field) field.value = generated;
+            aiLog('ok', `SSP-Beschreibung generiert (${generated.length} Zeichen)`);
+            return generated;
+        };
+
+        window.generateSSPDescriptionUI = async function () {
+            const button = document.getElementById('ai-desc-generate');
+            const originalLabel = button ? button.textContent : '';
+            try {
+                setAIDocumentBusy(true);
+                if (button) button.textContent = '⏳ Generiere...';
+                await generateSSPDescription(false);
+            } catch (e) {
+                console.error(e);
+                alert('Beschreibung konnte nicht generiert werden: ' + e.message);
+            } finally {
+                setAIDocumentBusy(false);
+                if (button) button.textContent = originalLabel;
+            }
+        };
+
+        // KI-Risikoanalyse: erhält SSP-Beschreibung (wird bei Bedarf zuerst generiert), Assets,
+        // Prozesse und die Katalog-Controls als Kandidaten und legt Risiken inkl. mitigierender
+        // Controls in Abschnitt 5 an — gleiche Buchhaltung wie das manuelle Control-Suchmodal.
+        window.generateAIRiskAnalysis = async function () {
+            const button = document.getElementById('ai-risk-generate');
+            const originalLabel = button ? button.textContent : '';
+            try {
+                ensureAIMappingConsent();
+                if (bpState.components.length === 0 && !cleanAIString(bpState.metadata.description) && !bpState.aiAnalysis) {
+                    throw new Error('Keine Datenbasis: bitte zuerst Assets hinzufügen, Dokumente analysieren oder eine SSP-Beschreibung erstellen.');
+                }
+                setAIDocumentBusy(true);
+                if (button) button.textContent = '⏳ KI-Risikoanalyse läuft...';
+                if (!cleanAIString(bpState.metadata.description)) {
+                    aiLog('info', 'SSP-Beschreibung fehlt — wird als Kontext für die Risikoanalyse zuerst generiert');
+                    try { await generateSSPDescription(true); } catch (e) { aiLog('warn', `SSP-Beschreibung nicht generierbar: ${e.message}`); }
+                }
+                const candidates = Array.from(bpState.controlsIndex.entries())
+                    .map(([id, info]) => `${id}: ${cleanAIString(info?.title).slice(0, 100)}`)
+                    .sort();
+                const systemPrompt = [
+                    'Du führst eine Risikoanalyse nach BSI-Standard 200-3 im Rahmen der GS++-Methodik (IT-Grundschutz++) für den beschriebenen Informationsverbund durch.',
+                    'Identifiziere die wichtigsten Risiken (typischerweise 3 bis 8), priorisiere dabei Assets mit erhöhtem Schutzbedarf — für diese ist eine Risikoanalyse mit mitigierenden Controls Pflicht.',
+                    'Setze targetAsset exakt auf einen Asset-Namen aus der Liste oder auf "global" für systemweite Risiken.',
+                    'Wähle mitigatingControlIds ausschließlich aus der Kandidatenliste (exakte IDs, 1 bis 5 pro Risiko, inhaltlich passend zur Bedrohung).',
+                    'Erzeuge keine Duplikate zu bereits definierten Risiken.',
+                    'Formuliere title, description und threat auf Deutsch und knapp.',
+                    'Antworte ausschließlich im vorgegebenen JSON-Schema.'
+                ].join(' ');
+                const prompt = `${buildWorkspaceAIContext()}
+
+Verfügbare Controls als Kandidaten für mitigatingControlIds (ID: Titel):
+${candidates.join('\n')}`;
+                const result = await callAIDocumentModel(systemPrompt, prompt, AI_RISK_SCHEMA, 'KI-Risikoanalyse');
+                const existingTitles = new Set(bpState.riskData.map(r => r.title.toLowerCase()));
+                const componentByName = new Map(bpState.components.map(c => [c.name.toLowerCase(), c]));
+                const controlIdLookup = new Map(Array.from(bpState.controlsIndex.keys()).map(id => [id.toUpperCase(), id]));
+                let added = 0, controlsAdded = 0, skipped = 0;
+                (result.risks || []).forEach(entry => {
+                    const title = cleanAIString(entry.title);
+                    if (!title || existingTitles.has(title.toLowerCase())) { skipped++; return; }
+                    existingTitles.add(title.toLowerCase());
+                    const component = componentByName.get(cleanAIString(entry.targetAsset).toLowerCase());
+                    const targetComponent = component ? component.id : 'global';
+                    const mitigatingControls = stringArray(entry.mitigatingControlIds)
+                        .map(id => controlIdLookup.get(id.toUpperCase()))
+                        .filter(Boolean)
+                        .map(id => ({ id, source: 'catalog' }));
+                    mitigatingControls.forEach(c => {
+                        if (targetComponent === 'global') bpState.manualControls.add(c.id);
+                        else component.controls.add(c.id);
+                    });
+                    controlsAdded += mitigatingControls.length;
+                    bpState.riskData.push({
+                        uuid: crypto.randomUUID(),
+                        title,
+                        description: cleanAIString(entry.description),
+                        threat: cleanAIString(entry.threat),
+                        likelihood: normalizeRiskLevel(entry.likelihood),
+                        impact: normalizeRiskLevel(entry.impact),
+                        targetComponent,
+                        mitigatingControls,
+                        aiGenerated: true
+                    });
+                    added++;
+                });
+                refreshRiskUI();
+                renderTailoredList(document.getElementById('tailoring-search-input')?.value || '');
+                aiLog('ok', `KI-Risikoanalyse: ${added} Risiken übernommen, ${controlsAdded} mitigierende Controls zugeordnet${skipped ? `, ${skipped} Duplikate übersprungen` : ''}`);
+                alert([
+                    'KI-Risikoanalyse abgeschlossen:',
+                    `• ${added} neue Risiken in Abschnitt 5 angelegt (mit 🤖 markiert).`,
+                    `• ${controlsAdded} mitigierende Controls zugeordnet (im Tailoring sichtbar).`,
+                    ...(skipped ? [`• ${skipped} Vorschläge als Duplikate übersprungen.`] : []),
+                    '',
+                    'Bitte die Risiken fachlich prüfen und bei Bedarf anpassen.'
+                ].join('\n'));
+            } catch (e) {
+                console.error(e);
+                alert('KI-Risikoanalyse fehlgeschlagen: ' + e.message);
+            } finally {
+                setAIDocumentBusy(false);
+                if (button) button.textContent = originalLabel;
+            }
         };
 
         // --- CATALOG LOADING ---
@@ -2943,12 +3159,18 @@ ${JSON.stringify(open.map(control => ({ controlId: control.controlId, title: con
         // --- SECTION 4: RISK ANALYSIS ---
         function renderRiskAnalysisHTML() {
             return `
-                <div class="mb-4 flex justify-between items-center">
+                <div class="mb-3 flex flex-col md:flex-row md:justify-between md:items-center gap-3">
                     <p class="text-sm text-slate-400">Ordne Risiken global oder spezifischen Assets zu.</p>
-                    <button onclick="addNewRisk()" class="bg-indigo-600 text-white font-medium py-2 px-4 rounded-lg shadow-md hover:bg-indigo-500 transition duration-150 text-sm">
-                        + Neues Risiko
-                    </button>
+                    <div class="flex gap-2 flex-shrink-0">
+                        <button id="ai-risk-generate" type="button" onclick="generateAIRiskAnalysis()" class="bg-violet-700 text-white font-medium py-2 px-4 rounded-lg shadow-md hover:bg-violet-600 disabled:opacity-40 disabled:cursor-not-allowed transition duration-150 text-sm">
+                            ✨ KI-Risikoanalyse
+                        </button>
+                        <button onclick="addNewRisk()" class="bg-indigo-600 text-white font-medium py-2 px-4 rounded-lg shadow-md hover:bg-indigo-500 transition duration-150 text-sm">
+                            + Neues Risiko
+                        </button>
+                    </div>
                 </div>
+                <p class="text-[11px] text-slate-500 mb-4 leading-relaxed">Die KI-Risikoanalyse nutzt die SSP-Beschreibung (fehlt sie, wird sie zuerst generiert) sowie Assets, Prozesse und den Katalog als Kontext und schlägt Risiken mit mitigierenden Controls vor — Schwerpunkt sind Assets mit erhöhtem Schutzbedarf. Voraussetzung: KI-Provider, API-Key und Einwilligung in Abschnitt 2.</p>
                 <div id="risk-list-container" class="space-y-4"></div>
             `;
         }
@@ -3002,11 +3224,15 @@ ${JSON.stringify(open.map(control => ({ controlId: control.controlId, title: con
 			}
 
 			container.innerHTML = warningHtml + bpState.riskData.map(r =>
-				createCollapsibleSection(`risk-${r.uuid}`, `${r.title} (${r.mitigatingControls.length} Controls)`, renderRiskEditor(r), openSections.has(`risk-${r.uuid}-content`))
+				createCollapsibleSection(`risk-${r.uuid}`, riskSectionTitle(r), renderRiskEditor(r), openSections.has(`risk-${r.uuid}-content`))
 			).join('');
 
 			attachCollapsibleListeners();
 		}
+
+        function riskSectionTitle(risk) {
+            return `${risk.title}${risk.aiGenerated ? ' 🤖' : ''} (${risk.mitigatingControls.length} Controls)`;
+        }
 
         function renderRiskEditor(risk) {
             const lOpts = ['low', 'medium', 'high', 'very-high'];
@@ -3107,7 +3333,7 @@ ${JSON.stringify(open.map(control => ({ controlId: control.controlId, title: con
             risk.impact = el.querySelector('[name="impact"]').value;
 
             const section = document.querySelector(`[data-section-id="risk-${uuid}"]`);
-            if (section) section.querySelector('h2').textContent = `${risk.title} (${risk.mitigatingControls.length} Controls)`;
+            if (section) section.querySelector('h2').textContent = riskSectionTitle(risk);
         }
 
         function cleanupCustomControls() {

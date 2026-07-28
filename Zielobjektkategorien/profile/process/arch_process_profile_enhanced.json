@@ -3,13 +3,13 @@
     "uuid": "3d3490d6-5357-52ec-be9e-0a15082deb6b",
     "metadata": {
       "title": "Architektur Prozess Profil - Enhanced (ED2023)",
-      "last-modified": "2026-06-04T14:35:40.078949+00:00",
+      "last-modified": "2026-07-28T12:33:23.116822+00:00",
       "version": "0.0.1",
       "oscal-version": "1.2.2"
     },
     "imports": [
       {
-        "href": "https://raw.githubusercontent.com/BSI-Bund/Stand-der-Technik-Bibliothek/refs/heads/main/Anwenderkataloge/Grundschutz%2B%2B/Grundschutz%2B%2B-catalog.json",
+        "href": "https://raw.githubusercontent.com/BSI-Bund/Stand-der-Technik-Bibliothek/refs/heads/main/control_layer/Grundschutz%2B%2B/Grundschutz%2B%2B-resolved_catalog.json",
         "include-controls": [
           {
             "with-ids": [
@@ -36,44 +36,44 @@
                     {
                       "name": "control_class",
                       "value": "Technical",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces"
                     },
                     {
                       "name": "phase",
                       "value": "Implementation",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces"
                     },
                     {
                       "name": "effective_on_c",
                       "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces"
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces"
                     },
                     {
                       "name": "effective_on_a",
                       "value": "low",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces"
                     },
                     {
                       "name": "label",
                       "value": "m1"
                     }
                   ],
-                  "prose": "Administrativer Zugriff erfolgt ad-hoc von beliebigen Clients ohne dedizierte Zwischenstation.",
+                  "prose": "Ad-hoc Fernwartungszugänge werden vereinzelt ohne zentrale Architekturvorgaben genutzt.",
                   "parts": [
                     {
                       "id": "ARCH.2.2.12-m1_custom_gdn",
                       "name": "guidance",
-                      "prose": "Identifikation von direktem administrativen Zugriff auf Server im Netzwerk."
+                      "prose": "In diesem Stadium existieren keine dedizierten Sprungserver; Administratoren greifen direkt auf Zielsysteme zu."
                     },
                     {
                       "id": "ARCH.2.2.12-m1_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung der Firewall-Regeln auf direkte SSH- oder RDP-Verbindungen aus dem Benutzer-Segment."
+                      "prose": "Stichprobenartige Prüfung von Systemlogs auf direkte SSH- oder RDP-Verbindungen von Arbeitsplatzrechnern."
                     }
                   ]
                 },
@@ -84,44 +84,44 @@
                     {
                       "name": "control_class",
                       "value": "Technical",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces"
                     },
                     {
                       "name": "phase",
                       "value": "Implementation",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces"
                     },
                     {
                       "name": "effective_on_c",
                       "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces"
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces"
                     },
                     {
                       "name": "effective_on_a",
                       "value": "low",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces"
                     },
                     {
                       "name": "label",
                       "value": "m2"
                     }
                   ],
-                  "prose": "Nutzung eines zentralen Administrations-PCs ohne spezielle Härtung als primärer Einstiegspunkt.",
+                  "prose": "Dedizierte Wartungshosts sind für kritische Systeme manuell eingerichtet worden.",
                   "parts": [
                     {
                       "id": "ARCH.2.2.12-m2_custom_gdn",
                       "name": "guidance",
-                      "prose": "Festlegung eines spezifischen Systems für alle administrativen Tätigkeiten."
+                      "prose": "Es existieren statische Jump-Hosts, die jedoch nicht zentral verwaltet oder einheitlich gehärtet sind."
                     },
                     {
                       "id": "ARCH.2.2.12-m2_custom_asm",
                       "name": "assessment",
-                      "prose": "Sichtung der Systemliste und Abgleich der Zugriffsrechte für administrative Benutzer."
+                      "prose": "Abgleich der Zugriffslisten auf Firewalls, ob administrative Zugriffe nur über bestimmte Quell-IPs erfolgen."
                     }
                   ]
                 },
@@ -132,27 +132,27 @@
                     {
                       "name": "control_class",
                       "value": "Technical",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces"
                     },
                     {
                       "name": "phase",
                       "value": "Implementation",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces"
                     },
                     {
                       "name": "effective_on_c",
                       "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces"
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces"
                     },
                     {
                       "name": "effective_on_a",
                       "value": "low",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces"
                     },
                     {
                       "name": "label",
@@ -164,12 +164,12 @@
                     {
                       "id": "ARCH.2.2.12-m3_custom_gdn",
                       "name": "guidance",
-                      "prose": "Umsetzung dedizierter Sprungserver zur strikten Trennung von Administrations- und Produktivnetzen."
+                      "prose": "Die Architektur sieht die optionale Installation von Sprungservern zur Absicherung administrativer Zugriffe vor."
                     },
                     {
                       "id": "ARCH.2.2.12-m3_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung der Existenz konfigurierter Sprungserver und Verifikation der Netzwerktrennung."
+                      "prose": "Prüfung der Architekturvorgaben und Validierung installierter Sprungserver gegen den Netzplan."
                     }
                   ]
                 },
@@ -180,44 +180,44 @@
                     {
                       "name": "control_class",
                       "value": "Technical",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces"
                     },
                     {
                       "name": "phase",
                       "value": "Implementation",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces"
                     },
                     {
                       "name": "effective_on_c",
                       "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces"
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces"
                     },
                     {
                       "name": "effective_on_a",
                       "value": "low",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces"
                     },
                     {
                       "name": "label",
                       "value": "m4"
                     }
                   ],
-                  "prose": "Gehärtete Sprungserver mit erzwungener Multi-Faktor-Authentisierung und Session-Protokollierung.",
+                  "prose": "Gehärtete Sprungserver mit zentralem Logging und Mehr-Faktor-Authentisierung (MFA) sind implementiert.",
                   "parts": [
                     {
                       "id": "ARCH.2.2.12-m4_custom_gdn",
                       "name": "guidance",
-                      "prose": "Sicherheitsoptimierung der Sprungserver durch Härtungsprofile und MFA-Integration."
+                      "prose": "Sprungserver sind obligatorisch und nutzen MFA. Alle Sitzungen werden zentral protokolliert."
                     },
                     {
                       "id": "ARCH.2.2.12-m4_custom_asm",
                       "name": "assessment",
-                      "prose": "Auszug der MFA-Konfiguration und Prüfung der Integrität der zentralen Log-Dateien für Sessions."
+                      "prose": "Check: 'grep -i MFA /etc/ssh/sshd_config' auf Jump-Hosts ausführen und Log-Versand an Syslog-Server prüfen."
                     }
                   ]
                 },
@@ -228,44 +228,44 @@
                     {
                       "name": "control_class",
                       "value": "Technical",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces"
                     },
                     {
                       "name": "phase",
                       "value": "Implementation",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces"
                     },
                     {
                       "name": "effective_on_c",
                       "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces"
                     },
                     {
                       "name": "effective_on_i",
-                      "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces"
                     },
                     {
                       "name": "effective_on_a",
                       "value": "low",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces"
                     },
                     {
                       "name": "label",
                       "value": "m5"
                     }
                   ],
-                  "prose": "Einsatz ephemerer Bastion-Hosts, die vollautomatisiert via Infrastructure-as-Code bereitgestellt werden.",
+                  "prose": "Automatisierte Bereitstellung kurzlebiger Jump-Hosts mit Session-Recording und Just-in-Time-Berechtigungen.",
                   "parts": [
                     {
                       "id": "ARCH.2.2.12-m5_custom_gdn",
                       "name": "guidance",
-                      "prose": "Dynamische Bereitstellung von Sprungservern mit automatischer Löschung nach Sitzungsende."
+                      "prose": "Jump-Hosts werden bei Bedarf automatisiert erstellt (Ephemeral) und nach Gebrauch vernichtet."
                     },
                     {
                       "id": "ARCH.2.2.12-m5_custom_asm",
                       "name": "assessment",
-                      "prose": "Audit der Terraform- oder Ansible-Skripte auf automatisiertes Lifecycle-Management der Bastions."
+                      "prose": "Prüfung der CI/CD-Pipelines für Jump-Hosts; Test der API-gesteuerten Sitzungsaufzeichnung via OpenSource Tools."
                     }
                   ]
                 }
@@ -287,44 +287,44 @@
                     {
                       "name": "control_class",
                       "value": "Management",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces"
                     },
                     {
                       "name": "phase",
                       "value": "Risk Assessment",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces"
                     },
                     {
                       "name": "effective_on_c",
-                      "value": "low",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces"
                     },
                     {
                       "name": "effective_on_i",
                       "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces"
                     },
                     {
                       "name": "effective_on_a",
-                      "value": "low",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces"
                     },
                     {
                       "name": "label",
                       "value": "m1"
                     }
                   ],
-                  "prose": "Netzinventar liegt nur in Form ungepflegter Notizen oder fragmentierter Tabellen vor.",
+                  "prose": "Es existieren unvollständige Aufzeichnungen über genutzte IP-Bereiche und Netzsegmente.",
                   "parts": [
                     {
                       "id": "ARCH.2.4-m1_custom_gdn",
                       "name": "guidance",
-                      "prose": "Erfassung bekannter IP-Bereiche ohne systematische Struktur oder Aktualisierung."
+                      "prose": "Die Dokumentation ist lückenhaft und wird nur bei Bedarf oder bei Fehlern aktualisiert."
                     },
                     {
                       "id": "ARCH.2.4-m1_custom_asm",
                       "name": "assessment",
-                      "prose": "Befragung der Administratoren zur manuellen Vergabe von IP-Subnetzen."
+                      "prose": "Sichtung vorhandener Textdateien oder manueller Notizen zur Netzwerkkonfiguration."
                     }
                   ]
                 },
@@ -335,44 +335,44 @@
                     {
                       "name": "control_class",
                       "value": "Management",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces"
                     },
                     {
                       "name": "phase",
                       "value": "Risk Assessment",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces"
                     },
                     {
                       "name": "effective_on_c",
-                      "value": "low",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces"
                     },
                     {
                       "name": "effective_on_i",
                       "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces"
                     },
                     {
                       "name": "effective_on_a",
-                      "value": "low",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces"
                     },
                     {
                       "name": "label",
                       "value": "m2"
                     }
                   ],
-                  "prose": "Ein zentrales Verzeichnis der Hauptnetzsegmente wird manuell in einem Dokument gepflegt.",
+                  "prose": "Eine manuell gepflegte Liste der physischen und logischen Netzsegmente liegt vor.",
                   "parts": [
                     {
                       "id": "ARCH.2.4-m2_custom_gdn",
                       "name": "guidance",
-                      "prose": "Dokumentation der wichtigsten internen Netze und deren grobe Zuordnung."
+                      "prose": "Die Dokumentation erfolgt meist in Tabellenform (z. B. Excel) und umfasst die wichtigsten Segmente."
                     },
                     {
                       "id": "ARCH.2.4-m2_custom_asm",
                       "name": "assessment",
-                      "prose": "Sichtung des vorliegenden Netzwerkplans und Abgleich mit der Routing-Tabelle der Core-Switches."
+                      "prose": "Abgleich der Dokumentation mit Routing-Tabellen via 'ip route show' oder 'netstat -rn' auf Gateways."
                     }
                   ]
                 },
@@ -383,27 +383,27 @@
                     {
                       "name": "control_class",
                       "value": "Management",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces"
                     },
                     {
                       "name": "phase",
                       "value": "Risk Assessment",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces"
                     },
                     {
                       "name": "effective_on_c",
-                      "value": "low",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces"
                     },
                     {
                       "name": "effective_on_i",
                       "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces"
                     },
                     {
                       "name": "effective_on_a",
-                      "value": "low",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces"
                     },
                     {
                       "name": "label",
@@ -415,12 +415,12 @@
                     {
                       "id": "ARCH.2.4-m3_custom_gdn",
                       "name": "guidance",
-                      "prose": "Systematische Dokumentation aller Netzbereiche inklusive Zweckbestimmung und Außenanbindungen."
+                      "prose": "Es muss eine strukturierte Dokumentation aller Netzsegmente und deren Zweck vorhanden sein."
                     },
                     {
                       "id": "ARCH.2.4-m3_custom_asm",
                       "name": "assessment",
-                      "prose": "Stichprobenartige Prüfung des Netzinventars gegen die Konfiguration der Firewalls und Router."
+                      "prose": "Vollständigkeitsprüfung des Netzinventars gegen die aktuelle Netzwerktopologie und Firewall-Regelwerke."
                     }
                   ]
                 },
@@ -431,44 +431,44 @@
                     {
                       "name": "control_class",
                       "value": "Management",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces"
                     },
                     {
                       "name": "phase",
                       "value": "Risk Assessment",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces"
                     },
                     {
                       "name": "effective_on_c",
-                      "value": "low",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces"
                     },
                     {
                       "name": "effective_on_i",
                       "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces"
                     },
                     {
                       "name": "effective_on_a",
-                      "value": "low",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces"
                     },
                     {
                       "name": "label",
                       "value": "m4"
                     }
                   ],
-                  "prose": "Das Netzinventar wird regelmäßig durch automatisierte Netzwerk-Discovery-Scans validiert.",
+                  "prose": "Ein automatisiertes Inventarsystem erfasst regelmäßig alle aktiven Netzsegmente und Anschlüsse.",
                   "parts": [
                     {
                       "id": "ARCH.2.4-m4_custom_gdn",
                       "name": "guidance",
-                      "prose": "Einführung eines Abgleich-Prozesses zwischen Dokumentation und automatisiertem Scan-Ergebnis."
+                      "prose": "Discovery-Tools gleichen den Soll-Zustand des Inventars kontinuierlich mit dem Ist-Zustand ab."
                     },
                     {
                       "id": "ARCH.2.4-m4_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung der Scan-Berichte (z.B. von nmap oder arp-scan) auf Abweichungen zum Inventar."
+                      "prose": "Check: 'nmap -sP 10.0.0.0/8' ausführen und Ergebnis automatisiert gegen die Inventar-Datenbank prüfen."
                     }
                   ]
                 },
@@ -479,44 +479,44 @@
                     {
                       "name": "control_class",
                       "value": "Management",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces"
                     },
                     {
                       "name": "phase",
                       "value": "Risk Assessment",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces"
                     },
                     {
                       "name": "effective_on_c",
-                      "value": "low",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces"
                     },
                     {
                       "name": "effective_on_i",
                       "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces"
                     },
                     {
                       "name": "effective_on_a",
-                      "value": "low",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces"
                     },
                     {
                       "name": "label",
                       "value": "m5"
                     }
                   ],
-                  "prose": "Echtzeit-Netzinventarisierung durch direkte Kopplung von SDN-Controllern mit einer dynamischen CMDB.",
+                  "prose": "Echtzeit-Inventarisierung durch Integration in SDN-Controller mit automatischer Klassifizierung.",
                   "parts": [
                     {
                       "id": "ARCH.2.4-m5_custom_gdn",
                       "name": "guidance",
-                      "prose": "Automatisierte Aktualisierung der Netzwerkdokumentation bei jeder Änderung der Infrastruktur."
+                      "prose": "Neue Segmente werden sofort erkannt, dokumentiert und gemäß Policy-as-Code klassifiziert."
                     },
                     {
                       "id": "ARCH.2.4-m5_custom_asm",
                       "name": "assessment",
-                      "prose": "Verifikation der API-Synchronisation zwischen Netzwerk-Controller und Inventar-System."
+                      "prose": "Abfrage der API des SDN-Controllers (z.B. mittels curl) zur Verifizierung der Echtzeit-Dokumentation."
                     }
                   ]
                 }

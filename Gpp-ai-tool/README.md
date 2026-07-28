@@ -82,7 +82,7 @@ All input data is fetched from GitHub at runtime (see `src/constants.py`):
 
 ### Available Pipeline Stages
 
-You can run specific stages using the `--stage` argument. The full pipeline runs them in the order below. Stage 1 is deterministic prep/mapping, stage 2 is the AI-driven Baustein→Zielobjekt match, and stages 3–4 build and enrich the OSCAL output.
+You can run specific stages using the `--stage` argument. The full pipeline runs them in the order below. Stage 1 is deterministic prep/mapping, stage 2 is the AI-driven Baustein→Zielobjekt match, stages 3–5 build and enrich the OSCAL output, and stages 6–7 produce the ED2023 cross-mappings consumed by the One-Page-Apps.
 
 | # | Stage | AI? | What it does |
 |---|---|---|---|
@@ -90,6 +90,9 @@ You can run specific stages using the `--stage` argument. The full pipeline runs
 | 2 | `stage_match_bausteine` | **Yes** | For each BSI Baustein, asks the model which G++ Zielobjekt it corresponds to (title + description → best match). Writes the Baustein→Zielobjekt map (`hilfsdateien/baustein_zielobjekt.json`). |
 | 3 | `stage_profiles` | No | Generates the **base OSCAL profiles** — one per Zielobjekt — each importing the G++ catalog and including **all** of that Zielobjektkategorie's controls. Output is split into `Zielobjektkategorien/profile/regular/` and `…/process/` (Methodik and `*_prozesse`). |
 | 4 | `stage_ED23_profiles_enhanced` | **Yes** | For each matched Baustein, takes the base profile (all controls of the Zielobjektkategorie) and enriches every control with maturity-level statements (levels 1–5) plus classifications (NIST class, ISMS phase, CIA) as OSCAL `alter` blocks. The enrichment is driven by best practices and the **description of the BSI Baustein** the profile is based on. Writes per-Baustein profiles to `ED23-Baustein-profile/DE/` as `[Zielobjektkategorie]_[Baustein-ID]_[Baustein-Name].json`. |
+| 5 | `stage_base_process_enhanced` | **Yes** | Enriches the process profiles (`Zielobjektkategorien/profile/process/`) the same way — maturity sub-statements plus classifications as `alter` blocks — writing `*_enhanced.json` next to each base process profile. |
+| 6 | `stage_ed23_anforderungen` | **Yes** | For every G++ control, finds **all** matching BSI ED2023 Anforderungen (grounded on a cached, stripped ED2023 corpus; returned IDs are validated against the real catalog). Writes the OSCAL mapping collection `hilfsdateien/gpp_ed23_anforderungen.json`, which the One-Page-Apps use for the "Zeige BSI ED23 Anforderungen" panel. |
+| 7 | `stage_prozessbausteine` | **Yes** | The inverse direction, 1:1: maps **every** Anforderung of the process-oriented ED2023 layers (ISMS, ORP, CON, OPS, DER) to its single best G++ control (Gemini Pro with thinking, grounded on the cached full G++ catalog). Runs in rounds until every Anforderung is mapped — unmatched ones are re-queried with a stricter prompt — and only publishes on full coverage. Writes `hilfsdateien/prozessbausteine_mapping.json`. |
 
 #### Data flow
 
@@ -102,6 +105,10 @@ catalogs + CSV (GitHub)
   3 profiles ──► base profiles (import G++ catalog, all controls)   Zielobjektkategorien/profile/{regular,process}/
         │
   4 ED23_profiles_enhanced ──► enriched profiles (+ alter blocks)   ED23-Baustein-profile/DE/   [AI, per Baustein]
+  5 base_process_enhanced ──► enriched process profiles (*_enhanced.json)   …/profile/process/   [AI]
+        │
+  6 ed23_anforderungen ──► gpp_ed23_anforderungen.json   (G++ control → ED23 Anforderungen, 1:n)   [AI]
+  7 prozessbausteine  ──► prozessbausteine_mapping.json  (ED23 Anforderung → G++ control, 1:1)     [AI]
 ```
 
 ### Running a single stage locally
@@ -118,7 +125,7 @@ To then enrich them with the ED2023 maturity statements:
 ./scripts/run_local.sh --stage stage_ED23_profiles_enhanced
 ```
 
-The same pattern works for any stage name listed above (e.g. `--stage stage_match_bausteine`). `run_local.sh` sets `OVERWRITE_TEMP_FILES=true` so existing profiles are regenerated; pass `--clear-all` to first wipe the generated output directories.
+The same pattern works for any stage name listed above (e.g. `--stage stage_match_bausteine`). By default `OVERWRITE_TEMP_FILES` is `false`, so stages skip outputs that already exist — a re-run only fills the gaps. Set `OVERWRITE_TEMP_FILES=true ./scripts/run_local.sh …` to force regeneration, or pass `--clear-all` to first wipe the generated output directories.
 
 ## Deployment
 

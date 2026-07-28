@@ -8,7 +8,7 @@ from typing import Dict, Any, List, Optional, Tuple
 
 from config import app_config
 from clients.ai_client import AiClient
-from utils.data_loader import load_json_file, save_json_file, load_zielobjekte_csv
+from utils.data_loader import load_json_file, save_json_file, load_zielobjekte_csv, zielobjekt_row_name
 from utils.data_parser import find_bausteine_with_prose
 from utils.file_utils import json_mapping_is_populated
 from constants import *
@@ -118,11 +118,11 @@ async def run_stage_match_bausteine() -> None:
     bausteine_with_prose = find_bausteine_with_prose(bsi_data)
     zielobjekte_map = {
         z["UUID"]: {
-            "Zielobjekt": z["Zielobjektkategorie"],
+            "Zielobjekt": zielobjekt_row_name(z),
             "Definition": z.get("Definition", ""),
         }
         for z in zielobjekte_data
-        if "UUID" in z
+        if "UUID" in z and zielobjekt_row_name(z)
     }
     prompt_instruction = prompt_config["baustein_to_zielobjekt_prompt"]
     

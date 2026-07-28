@@ -1,0 +1,23 @@
+{
+  "profile": {
+    "uuid": "0cfa3d5f-8023-5ea7-8911-7e30ad190b49",
+    "metadata": {
+      "title": "Strukturmodellierung Prozess Profil",
+      "last-modified": "2026-07-28T12:32:56.743417+00:00",
+      "version": "0.0.1",
+      "oscal-version": "1.2.2"
+    },
+    "imports": [
+      {
+        "href": "https://raw.githubusercontent.com/BSI-Bund/Stand-der-Technik-Bibliothek/refs/heads/main/control_layer/Grundschutz%2B%2B/Grundschutz%2B%2B-resolved_catalog.json",
+        "include-controls": [
+          {
+            "with-ids": [
+              "STM.3.1"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

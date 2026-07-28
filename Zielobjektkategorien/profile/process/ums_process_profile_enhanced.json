@@ -3,17 +3,17 @@
     "uuid": "0609182a-710e-510d-9658-c6a8cbc3031f",
     "metadata": {
       "title": "Umsetzung Prozess Profil - Enhanced (ED2023)",
-      "last-modified": "2026-06-04T14:36:10.634004+00:00",
+      "last-modified": "2026-07-28T12:33:53.263379+00:00",
       "version": "0.0.1",
       "oscal-version": "1.2.2"
     },
     "imports": [
       {
-        "href": "https://raw.githubusercontent.com/BSI-Bund/Stand-der-Technik-Bibliothek/refs/heads/main/Anwenderkataloge/Grundschutz%2B%2B/Grundschutz%2B%2B-catalog.json",
+        "href": "https://raw.githubusercontent.com/BSI-Bund/Stand-der-Technik-Bibliothek/refs/heads/main/control_layer/Grundschutz%2B%2B/Grundschutz%2B%2B-resolved_catalog.json",
         "include-controls": [
           {
             "with-ids": [
-              "UMS.2.1"
+              "UMS.1.2"
             ]
           }
         ]
@@ -22,136 +22,136 @@
     "modify": {
       "alters": [
         {
-          "control-id": "UMS.2.1",
+          "control-id": "UMS.1.2",
           "adds": [
             {
               "position": "ending",
-              "by-id": "UMS.2.1_stm",
+              "by-id": "UMS.1.2_stm",
               "parts": [
                 {
-                  "id": "UMS.2.1-m1_custom",
+                  "id": "UMS.1.2-m1_custom",
                   "name": "statement",
                   "props": [
                     {
                       "name": "control_class",
                       "value": "Management",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces"
                     },
                     {
                       "name": "phase",
-                      "value": "Risk Assessment",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "value": "Risk Treatment",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces"
                     },
                     {
                       "name": "effective_on_c",
                       "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces"
                     },
                     {
                       "name": "effective_on_i",
                       "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces"
                     },
                     {
                       "name": "effective_on_a",
                       "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces"
                     },
                     {
                       "name": "label",
                       "value": "m1"
                     }
                   ],
-                  "prose": "Restrisiken werden nur sporadisch und informell bei kritischen Vorfällen betrachtet.",
+                  "prose": "Restrisiken werden sporadisch und informell wahrgenommen.",
                   "parts": [
                     {
-                      "id": "UMS.2.1-m1_custom_gdn",
+                      "id": "UMS.1.2-m1_custom_gdn",
                       "name": "guidance",
-                      "prose": "Identifizieren Sie offensichtliche Sicherheitslücken ad-hoc und dokumentieren Sie diese unsystematisch in Besprechungsprotokollen."
+                      "prose": "Es erfolgt keine systematische Erfassung, sondern lediglich eine ad-hoc Betrachtung bei kritischen Vorfällen ohne formale Dokumentation."
                     },
                     {
-                      "id": "UMS.2.1-m1_custom_asm",
+                      "id": "UMS.1.2-m1_custom_asm",
                       "name": "assessment",
-                      "prose": "Sichtung von informellen Aufzeichnungen oder E-Mails zu bekannten Sicherheitsmängeln und deren Akzeptanz."
+                      "prose": "Befragung der Verantwortlichen zu bekannten, aber nicht behobenen Schwachstellen ohne Prüfung schriftlicher Nachweise."
                     }
                   ]
                 },
                 {
-                  "id": "UMS.2.1-m2_custom",
+                  "id": "UMS.1.2-m2_custom",
                   "name": "statement",
                   "props": [
                     {
                       "name": "control_class",
                       "value": "Management",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces"
                     },
                     {
                       "name": "phase",
-                      "value": "Risk Assessment",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "value": "Risk Treatment",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces"
                     },
                     {
                       "name": "effective_on_c",
                       "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces"
                     },
                     {
                       "name": "effective_on_i",
                       "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces"
                     },
                     {
                       "name": "effective_on_a",
                       "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces"
                     },
                     {
                       "name": "label",
                       "value": "m2"
                     }
                   ],
-                  "prose": "Restrisiken aus wesentlichen nicht umgesetzten Anforderungen werden manuell in Listenform erfasst.",
+                  "prose": "Restrisiken werden für einzelne Kernsysteme manuell in Listen geführt.",
                   "parts": [
                     {
-                      "id": "UMS.2.1-m2_custom_gdn",
+                      "id": "UMS.1.2-m2_custom_gdn",
                       "name": "guidance",
-                      "prose": "Erstellen Sie eine einfache Übersicht (z. B. Tabelle) aller bekannten Abweichungen und bewerten Sie das Risiko oberflächlich."
+                      "prose": "Die Bewertung erfolgt unregelmäßig ohne festen Prozess, meist nach Abschluss von Teilprojekten in einfachen Tabellen."
                     },
                     {
-                      "id": "UMS.2.1-m2_custom_asm",
+                      "id": "UMS.1.2-m2_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung der manuell geführten Liste nicht umgesetzter Anforderungen auf Plausibilität der Risikoeinschätzung."
+                      "prose": "Einsichtnahme in vorhandene Listen oder einfache Dokumente (z. B. Markdown-Dateien), die bekannte Restrisiken führen."
                     }
                   ]
                 },
                 {
-                  "id": "UMS.2.1-m3_custom",
+                  "id": "UMS.1.2-m3_custom",
                   "name": "statement",
                   "props": [
                     {
                       "name": "control_class",
                       "value": "Management",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces"
                     },
                     {
                       "name": "phase",
-                      "value": "Risk Assessment",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "value": "Risk Treatment",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces"
                     },
                     {
                       "name": "effective_on_c",
                       "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces"
                     },
                     {
                       "name": "effective_on_i",
                       "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces"
                     },
                     {
                       "name": "effective_on_a",
                       "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces"
                     },
                     {
                       "name": "label",
@@ -161,110 +161,110 @@
                   "prose": "Umsetzung SOLLTE das bestehende Restrisiko durch die nicht umgesetzten Anforderungen festlegen.",
                   "parts": [
                     {
-                      "id": "UMS.2.1-m3_custom_gdn",
+                      "id": "UMS.1.2-m3_custom_gdn",
                       "name": "guidance",
-                      "prose": "Dokumentieren Sie alle Anforderungen, die nicht vollständig umgesetzt wurden, und bewerten Sie das daraus resultierende Restrisiko systematisch im Risikoregister."
+                      "prose": "Dokumentieren Sie alle nicht erfüllten Sicherheitsanforderungen und bewerten Sie die daraus resultierenden Gefährdungen für den Geschäftsbetrieb."
                     },
                     {
-                      "id": "UMS.2.1-m3_custom_asm",
+                      "id": "UMS.1.2-m3_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfen Sie die Dokumentation der Risikoakzeptanz. Audit: Abgleich der Liste nicht umgesetzter Maßnahmen mit dem formalen Risikobericht."
+                      "prose": "Prüfung des Risikoregisters auf Vollständigkeit. Automatisierter Check: Abgleich offener Maßnahmen-IDs mit dem Risikobericht via Script."
                     }
                   ]
                 },
                 {
-                  "id": "UMS.2.1-m4_custom",
+                  "id": "UMS.1.2-m4_custom",
                   "name": "statement",
                   "props": [
                     {
                       "name": "control_class",
                       "value": "Management",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces"
                     },
                     {
                       "name": "phase",
-                      "value": "Risk Assessment",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "value": "Risk Treatment",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces"
                     },
                     {
                       "name": "effective_on_c",
                       "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces"
                     },
                     {
                       "name": "effective_on_i",
                       "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces"
                     },
                     {
                       "name": "effective_on_a",
                       "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces"
                     },
                     {
                       "name": "label",
                       "value": "m4"
                     }
                   ],
-                  "prose": "Die Restrisikobewertung erfolgt toolgestützt und berücksichtigt proaktiv Prozessänderungen.",
+                  "prose": "Restrisiken werden kontinuierlich überwacht und proaktiv mit aktuellen Bedrohungsdaten abgeglichen.",
                   "parts": [
                     {
-                      "id": "UMS.2.1-m4_custom_gdn",
+                      "id": "UMS.1.2-m4_custom_gdn",
                       "name": "guidance",
-                      "prose": "Nutzen Sie GRC-Software zur Verknüpfung von Maßnahmenstatus und Risikobewertung mit automatisierten Wiedervorlagen."
+                      "prose": "Nutzung von Scoring-Modellen (z.B. CVSS), um das Restrisiko dynamisch an die aktuelle Bedrohungslage (z.B. via MISP) anzupassen."
                     },
                     {
-                      "id": "UMS.2.1-m4_custom_asm",
+                      "id": "UMS.1.2-m4_custom_asm",
                       "name": "assessment",
-                      "prose": "Validierung der automatisierten Benachrichtigungen bei Änderung des Umsetzungsstatus im GRC-Tool durch System-Logs."
+                      "prose": "Validierung der Anbindung an Open-Source Threat Intel Feeds. Test: 'curl -X GET https://misp-local/attributes/restSearch'."
                     }
                   ]
                 },
                 {
-                  "id": "UMS.2.1-m5_custom",
+                  "id": "UMS.1.2-m5_custom",
                   "name": "statement",
                   "props": [
                     {
                       "name": "control_class",
                       "value": "Management",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces"
                     },
                     {
                       "name": "phase",
-                      "value": "Risk Assessment",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "value": "Risk Treatment",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces"
                     },
                     {
                       "name": "effective_on_c",
                       "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces"
                     },
                     {
                       "name": "effective_on_i",
                       "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces"
                     },
                     {
                       "name": "effective_on_a",
                       "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces"
                     },
                     {
                       "name": "label",
                       "value": "m5"
                     }
                   ],
-                  "prose": "Dynamische Restrisikobewertung integriert Echtzeit-Daten aus dem Monitoring und Schwachstellenmanagement.",
+                  "prose": "Vollautomatisierte Restrisiko-Ermittlung durch Echtzeit-Scans und Integration in GRC-Prozesse.",
                   "parts": [
                     {
-                      "id": "UMS.2.1-m5_custom_gdn",
+                      "id": "UMS.1.2-m5_custom_gdn",
                       "name": "guidance",
-                      "prose": "Integrieren Sie SIEM- und Schwachstellen-Scanner-Daten, um das Restrisiko basierend auf der aktuellen Bedrohungslage automatisiert anzupassen."
+                      "prose": "Restrisiken werden als 'Risk-as-Code' definiert und bei jeder Infrastrukturänderung in der CI/CD-Pipeline automatisch neu bewertet."
                     },
                     {
-                      "id": "UMS.2.1-m5_custom_asm",
+                      "id": "UMS.1.2-m5_custom_asm",
                       "name": "assessment",
-                      "prose": "Automatisierter API-Check: Abfrage des Risikostatus via REST-API zur Verifikation der Echtzeit-Anpassung bei neuen Schwachstellen."
+                      "prose": "Audit der automatisierten Risk-Gates in der Pipeline. Prüfung der API-Integration zwischen Scannern und dem GRC-System."
                     }
                   ]
                 }

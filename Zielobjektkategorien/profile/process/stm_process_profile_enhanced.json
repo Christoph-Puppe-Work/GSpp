@@ -1,0 +1,278 @@
+{
+  "profile": {
+    "uuid": "4cfd9cc3-c846-5e14-820f-c957cc367fa7",
+    "metadata": {
+      "title": "Strukturmodellierung Prozess Profil - Enhanced (ED2023)",
+      "last-modified": "2026-07-28T12:33:31.988518+00:00",
+      "version": "0.0.1",
+      "oscal-version": "1.2.2"
+    },
+    "imports": [
+      {
+        "href": "https://raw.githubusercontent.com/BSI-Bund/Stand-der-Technik-Bibliothek/refs/heads/main/control_layer/Grundschutz%2B%2B/Grundschutz%2B%2B-resolved_catalog.json",
+        "include-controls": [
+          {
+            "with-ids": [
+              "STM.3.1"
+            ]
+          }
+        ]
+      }
+    ],
+    "modify": {
+      "alters": [
+        {
+          "control-id": "STM.3.1",
+          "adds": [
+            {
+              "position": "ending",
+              "by-id": "STM.3.1_stm",
+              "parts": [
+                {
+                  "id": "STM.3.1-m1_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Risk Treatment",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m1"
+                    }
+                  ],
+                  "prose": "Vereinzelte, ad-hoc durchgeführte Überprüfungen der Sicherheitsniveaus bei offensichtlichen Kontextänderungen.",
+                  "parts": [
+                    {
+                      "id": "STM.3.1-m1_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Sicherheitsniveaus werden nur stichprobenartig oder bei gravierenden Vorfällen ohne festen Prozess hinterfragt."
+                    },
+                    {
+                      "id": "STM.3.1-m1_custom_asm",
+                      "name": "assessment",
+                      "prose": "Prüfung vorhandener Dokumente auf manuelle Anpassungen. Check: 'grep -i \"Sicherheitsniveau\" dokumentation.txt'."
+                    }
+                  ]
+                },
+                {
+                  "id": "STM.3.1-m2_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Risk Treatment",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m2"
+                    }
+                  ],
+                  "prose": "Grundlegende manuelle Überprüfung der Einstufungen im Rahmen jährlicher oder bei größeren organisatorischen Änderungen.",
+                  "parts": [
+                    {
+                      "id": "STM.3.1-m2_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Verwendung einfacher Checklisten, um die Relevanz der Anforderungen grob gegen den Kontext zu validieren."
+                    },
+                    {
+                      "id": "STM.3.1-m2_custom_asm",
+                      "name": "assessment",
+                      "prose": "Einsicht in Protokolle der letzten Modellierungsanpassung. Check: 'git log --grep=\"Niveau\"'."
+                    }
+                  ]
+                },
+                {
+                  "id": "STM.3.1-m3_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Risk Treatment",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m3"
+                    }
+                  ],
+                  "prose": "Strukturmodellierung SOLLTE die initiale Einstufung der Sicherheitsniveaus der Anforderungen im Anforderungspaket bei Abweichungen des Kontextes der Institution überprüfen.",
+                  "parts": [
+                    {
+                      "id": "STM.3.1-m3_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Systematische Validierung der Einstufung basierend auf dem spezifischen Institutionskontext gemäß BSI-Standards."
+                    },
+                    {
+                      "id": "STM.3.1-m3_custom_asm",
+                      "name": "assessment",
+                      "prose": "Abgleich der Modellierung mit dem aktuellen IT-Verbund. Check: Abgleich von Inventarlisten mit der Modellierungssoftware."
+                    }
+                  ]
+                },
+                {
+                  "id": "STM.3.1-m4_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Risk Treatment",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m4"
+                    }
+                  ],
+                  "prose": "Proaktive und regelmäßige Überprüfung der Sicherheitsniveaus mit Tool-Unterstützung zur Erkennung von Abweichungen.",
+                  "parts": [
+                    {
+                      "id": "STM.3.1-m4_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Einführung eines Feedback-Loops zwischen Asset-Management und Modellierung zur zeitnahen Anpassung der Niveaus."
+                    },
+                    {
+                      "id": "STM.3.1-m4_custom_asm",
+                      "name": "assessment",
+                      "prose": "Review der automatisierten Benachrichtigungen bei Asset-Änderungen. Check: API-Abfrage der Asset-Datenbank gegen das ISMS-Tool."
+                    }
+                  ]
+                },
+                {
+                  "id": "STM.3.1-m5_custom",
+                  "name": "statement",
+                  "props": [
+                    {
+                      "name": "control_class",
+                      "value": "Management",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces"
+                    },
+                    {
+                      "name": "phase",
+                      "value": "Risk Treatment",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_c",
+                      "value": "medium",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_i",
+                      "value": "high",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces"
+                    },
+                    {
+                      "name": "effective_on_a",
+                      "value": "low",
+                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces"
+                    },
+                    {
+                      "name": "label",
+                      "value": "m5"
+                    }
+                  ],
+                  "prose": "Vollautomatisierte Validierung der Sicherheitsniveaus mittels Policy-as-Code und Integration in die CI/CD-Pipelines.",
+                  "parts": [
+                    {
+                      "id": "STM.3.1-m5_custom_gdn",
+                      "name": "guidance",
+                      "prose": "Einsatz von Open-Source-Frameworks wie OPA zur kontinuierlichen Prüfung der Konformität des Kontextes."
+                    },
+                    {
+                      "id": "STM.3.1-m5_custom_asm",
+                      "name": "assessment",
+                      "prose": "Verifizierung der automatisierten Ablehnung von Konfigurationsänderungen bei Regelbruch. Check: 'opa eval -d policy.rego'."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

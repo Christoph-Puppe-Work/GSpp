@@ -9,7 +9,7 @@ from typing import Dict, Any, List, Optional, Tuple
 
 from config import app_config
 from constants import GPP_KOMPENDIUM_JSON_PATH, ZIELOBJEKTKATEGORIEN_CSV_PATH, ZIELOBJEKT_CONTROLS_JSON_PATH
-from utils.data_loader import load_json_file, save_json_file, load_zielobjekte_csv
+from utils.data_loader import load_json_file, save_json_file, load_zielobjekte_csv, zielobjekt_row_name
 from utils.file_utils import json_mapping_is_populated
 
 logger = logging.getLogger(__name__)
@@ -163,13 +163,14 @@ def _create_zielobjekt_map() -> Dict[str, Any]:
         logger.error("No data loaded from Zielobjekte CSV.")
         return {}
 
-    # C.3: Create a raw map for easy lookup by UUID
+    # C.3: Create a raw map for easy lookup by UUID. Rows without a usable name are
+    # skipped (zielobjekt_row_name handles the BSI's column rename).
     zielobjekte_raw_map = {
         z["UUID"].strip(): {
-            "Zielobjekt": z["Zielobjektkategorie"],
+            "Zielobjekt": zielobjekt_row_name(z),
             "ChildOfUUID": z.get("ChildOfUUID")
         }
-        for z in zielobjekte_data if "UUID" in z
+        for z in zielobjekte_data if "UUID" in z and zielobjekt_row_name(z)
     }
 
     # C.4: Recursively get all parent names for each Zielobjekt

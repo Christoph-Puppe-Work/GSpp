@@ -50,7 +50,7 @@ def build_oscal_maturity_statements(control_id: str, generated_data: dict, origi
     parts = []
     levels = ["1", "2", "3", "4", "5"]
 
-    props_ns = "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+    props_ns = "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces"
 
     # Classification properties shared across all levels for this control.
     base_props = [

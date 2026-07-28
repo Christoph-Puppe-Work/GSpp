@@ -267,17 +267,17 @@
 
             <select id="quickSelect" class="filter-select" onchange="updateUrlFromSelect()" style="margin-bottom: 10px; border-color: var(--primary-color);">
                 <option value="">-- Schnellauswahl --</option>
-                <option value="https://raw.githubusercontent.com/BSI-Bund/Stand-der-Technik-Bibliothek/main/Anwenderkataloge/Grundschutz%2B%2B/Grundschutz%2B%2B-catalog.json">Anwenderkatalog (GS++)</option>
-                <option value="https://raw.githubusercontent.com/BSI-Bund/Stand-der-Technik-Bibliothek/refs/heads/main/Quellkataloge/Methodik-Grundschutz%2B%2B/BSI-Methodik-Grundschutz%2B%2B-catalog.json">Methodik (GS++)</option>
-                <option value="https://raw.githubusercontent.com/BSI-Bund/Stand-der-Technik-Bibliothek/refs/heads/main/Quellkataloge/Kernel/BSI-Stand-der-Technik-Kernel-catalog.json">Kernel (SdT)</option>
-				<option value="https://raw.githubusercontent.com/BSI-Bund/Stand-der-Technik-Bibliothek/refs/heads/main/Quellkataloge/Risikomanagement/BSI-Anforderungen-zum-Risikomanagement-catalog.json">Risikomanagement</option>
+                <option value="https://raw.githubusercontent.com/BSI-Bund/Stand-der-Technik-Bibliothek/refs/heads/main/control_layer/Grundschutz%2B%2B/Grundschutz%2B%2B-resolved_catalog.json">Anwenderkatalog (GS++)</option>
+                <option value="https://raw.githubusercontent.com/BSI-Bund/Stand-der-Technik-Bibliothek/refs/heads/main/control_layer/Grundschutz%2B%2B/sources/catalogs/Methodik-Grundschutz%2B%2B/BSI-Methodik-Grundschutz%2B%2B-catalog.json">Methodik (GS++)</option>
+                <option value="https://raw.githubusercontent.com/BSI-Bund/Stand-der-Technik-Bibliothek/refs/heads/main/control_layer/Grundschutz%2B%2B/sources/catalogs/Kernel/BSI-Stand-der-Technik-Kernel-catalog.json">Kernel (SdT)</option>
+				<option value="https://raw.githubusercontent.com/BSI-Bund/Stand-der-Technik-Bibliothek/refs/heads/main/control_layer/Risikomanagement/BSI-Anforderungen-zum-Risikomanagement-catalog.json">Risikomanagement</option>
 				<option value="https://raw.githubusercontent.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/refs/heads/main/kataloge/c5-2026-oscal-catalog.json">C5:2026</option>
 				<option value="https://raw.githubusercontent.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/refs/heads/main/kataloge/c3a_oscal_catalog.json">C3A - Criteria enabling Cloud Computing Autonomy</option>
 				<option value="https://raw.githubusercontent.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/refs/heads/main/beispiel-kataloge/kritis_oscal_catalog.json">KRITIS (Beispiel, Test-Katalog)</option>
 				<option value="https://raw.githubusercontent.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/refs/heads/main/beispiel-kataloge/dsgvo_oscal_catalog.json">DSGVO (Beispiel, Test-Katalog)</option>
             </select>
 
-            <input type="text" id="urlInput" class="filter-select" placeholder="URL zum OSCAL-Katalog..." value="https://raw.githubusercontent.com/BSI-Bund/Stand-der-Technik-Bibliothek/main/Anwenderkataloge/Grundschutz%2B%2B/Grundschutz%2B%2B-catalog.json">
+            <input type="text" id="urlInput" class="filter-select" placeholder="URL zum OSCAL-Katalog..." value="https://raw.githubusercontent.com/BSI-Bund/Stand-der-Technik-Bibliothek/refs/heads/main/control_layer/Grundschutz%2B%2B/Grundschutz%2B%2B-resolved_catalog.json">
 
             <button onclick="loadFromURL()" style="width:100%; padding: 10px; background: var(--primary-color); color:white; border:none; border-radius:6px; cursor:pointer; font-weight:bold;">Katalog hinzufügen</button>
 
@@ -533,7 +533,7 @@ eine KI. Dein Satzbau ist Abwechslungsreich, konkret, präßise und du nutzt kei
         }
 
         // Praktik-Kürzel → Begriff. Quelle (in sync halten):
-        // https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/blob/main/Dokumentation/namespaces/practices.csv
+        // https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/blob/main/documentation/namespaces/practices.csv
         const PRACTICE_ABBREVIATIONS = {
             GC: "Governance und Compliance", STM: "Strukturmodellierung", UMS: "Umsetzung",
             VRB: "Verbesserung", PERF: "Monitoring-Evaluation", RISK: "Risikomanagement",

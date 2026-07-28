@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "array",
+  "description": "Exactly one entry per BSI Edition-2023 Anforderung supplied in the request chunk, in the same order.",
+  "items": {
+    "type": "object",
+    "properties": {
+      "bsi_control_id": {
+        "type": "string",
+        "description": "The exact ID of the BSI ED2023 Anforderung from the request chunk, copied verbatim (e.g. 'ORP.1.A1')."
+      },
+      "matched_gpp_control_id": {
+        "type": "string",
+        "description": "The ID of the single best-matching G++ control, copied verbatim from the provided G++ list (e.g. 'GC.5.2'). Empty string if no G++ control is a reasonable match."
+      },
+      "begruendung": {
+        "type": "string",
+        "description": "Short justification (German) why this G++ control is the best match, or why none matches."
+      }
+    },
+    "required": [
+      "bsi_control_id",
+      "matched_gpp_control_id",
+      "begruendung"
+    ]
+  }
+}

@@ -6,7 +6,7 @@ from start to finish, executing each stage in the correct sequence.
 """
 
 import logging
-from pipeline import stage_gpp, stage_match_bausteine, stage_profiles, stage_ED23_profiles_enhanced, stage_base_process_enhanced, stage_ed23_anforderungen
+from pipeline import stage_gpp, stage_match_bausteine, stage_profiles, stage_ED23_profiles_enhanced, stage_base_process_enhanced, stage_ed23_anforderungen, stage_prozessbausteine
 
 logger = logging.getLogger(__name__)
 
@@ -52,6 +52,11 @@ async def run_full_pipeline() -> None:
         logger.info("--- STAGE: ED23_ANFORDERUNGEN ---")
         await stage_ed23_anforderungen.run_stage_ed23_anforderungen()
         logger.info("--- STAGE: ED23_ANFORDERUNGEN - COMPLETE ---")
+
+        # Stage 7: Map each ED2023 Prozessbaustein-Anforderung to its single best G++ control.
+        logger.info("--- STAGE: PROZESSBAUSTEINE ---")
+        await stage_prozessbausteine.run_stage_prozessbausteine()
+        logger.info("--- STAGE: PROZESSBAUSTEINE - COMPLETE ---")
 
 
 

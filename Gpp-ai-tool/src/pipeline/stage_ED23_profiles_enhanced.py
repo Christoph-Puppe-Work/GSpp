@@ -36,6 +36,7 @@ from constants import (
     GPP_ENHANCEMENT_PROPS_NS,
 )
 from utils.file_utils import create_dir_if_not_exists, read_json_file, write_json_file, read_csv_file
+from utils.data_loader import zielobjekt_row_name
 from utils.text_utils import sanitize_filename
 from utils.data_parser import find_bausteine_with_prose
 from utils.oscal_utils import extract_all_gpp_controls, normalize_id, validate_enhanced_profile_structure
@@ -354,7 +355,7 @@ async def run_stage_ED23_profiles_enhanced():
         zielobjekte_data = read_csv_file(ZIELOBJEKTKATEGORIEN_CSV_PATH)
         if not zielobjekte_data:
             raise FileNotFoundError(f"Zielobjekte data is empty or could not be loaded from {ZIELOBJEKTKATEGORIEN_CSV_PATH}")
-        zielobjekt_name_map = {row['UUID'].strip(): row['Zielobjektkategorie'].strip() for row in zielobjekte_data if 'UUID' in row and 'Zielobjektkategorie' in row}
+        zielobjekt_name_map = {row['UUID'].strip(): zielobjekt_row_name(row) for row in zielobjekte_data if 'UUID' in row and zielobjekt_row_name(row)}
     except (IOError, FileNotFoundError, TypeError, KeyError) as e:
         logger.critical(f"Failed to load or parse Zielobjekte CSV data: {e}", exc_info=True)
         raise

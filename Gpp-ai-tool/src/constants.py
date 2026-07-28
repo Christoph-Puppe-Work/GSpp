@@ -26,13 +26,19 @@ ANFORDERUNG_ID_PATTERN = re.compile(r"^.*$")
 # Input data is fetched directly from the upstream GitHub repositories (raw
 # content) rather than from local submodule checkouts. The loaders in
 # utils/data_loader.py and utils/file_utils.py transparently download these.
-ZIELOBJEKTKATEGORIEN_CSV_PATH = "https://raw.githubusercontent.com/BSI-Bund/Stand-der-Technik-Bibliothek/refs/heads/main/Dokumentation/namespaces/target_object_categories.csv"
-BSI_2023_JSON_PATH = "https://raw.githubusercontent.com/NTTDATA-DACH/BSI-GS-Benutzerdefinierte-Edition23-OSCAL/refs/heads/main/BS_GK_OSCAL_JSON_DATA/BSI_GS_OSCAL_current_2023.json"
-GPP_KOMPENDIUM_JSON_PATH = "https://raw.githubusercontent.com/BSI-Bund/Stand-der-Technik-Bibliothek/refs/heads/main/Anwenderkataloge/Grundschutz%2B%2B/Grundschutz%2B%2B-catalog.json"
+ZIELOBJEKTKATEGORIEN_CSV_PATH = "https://raw.githubusercontent.com/BSI-Bund/Stand-der-Technik-Bibliothek/refs/heads/main/documentation/namespaces/target_object_categories.csv"
+BSI_2023_JSON_PATH = "https://raw.githubusercontent.com/NTTDATA-DACH/BSI-GS-Benutzerdefinierte-Edition23-OSCAL/refs/heads/main/BS_GK_OSCAL_JSON_DATA/BSI_GS_OSCAL_current_2023_benutzerdefinierte.json"
+GPP_KOMPENDIUM_JSON_PATH = "https://raw.githubusercontent.com/BSI-Bund/Stand-der-Technik-Bibliothek/refs/heads/main/control_layer/Grundschutz%2B%2B/Grundschutz%2B%2B-resolved_catalog.json"
 
 # --- Filtering ---
 ALLOWED_MAIN_GROUPS = ["SYS", "INF", "IND", "APP", "NET"]
 ALLOWED_PROCESS_BAUSTEINE = ["OPS.2.2", "OPS.2.3", "OPS.3.2"]
+# The prozessorientierte layers of the BSI ED2023 Kompendium; every Anforderung below them
+# is mapped 1:1 to a G++ control by stage_prozessbausteine. Note: the OPS Bausteine listed
+# in ALLOWED_PROCESS_BAUSTEINE above are *also* routed through the per-Baustein profile flow
+# — the two mappings coexist deliberately (flat ED23→G++ lookup here vs. per-Zielobjekt
+# OSCAL profiles there) and may differ, as they are produced by independent AI runs.
+PROZESSBAUSTEINE_LAYERS = ["ISMS", "ORP", "CON", "OPS", "DER"]
 
 # --- Output File Paths ---
 # Output roots default to the repository's sibling-directory layout under OUTPUT_ROOT
@@ -68,6 +74,7 @@ PROMPT_CONFIG_PATH = os.path.join(SRC_ROOT, "assets/json/prompt_config.json")
 BAUSTEIN_TO_ZIELOBJEKT_SCHEMA_PATH = os.path.join(SRC_ROOT, "assets/schemas/baustein_to_zielobjekt_schema.json")
 ENHANCED_CONTROL_RESPONSE_SCHEMA_PATH = os.path.join(SRC_ROOT, "assets/schemas/enhanced_control_response_schema.json")
 ED23_ANFORDERUNGEN_RESPONSE_SCHEMA_PATH = os.path.join(SRC_ROOT, "assets/schemas/ed23_anforderungen_response_schema.json")
+PROZESSBAUSTEINE_RESPONSE_SCHEMA_PATH = os.path.join(SRC_ROOT, "assets/schemas/prozessbausteine_response_schema.json")
 
 # --- AI Model Configuration ---
 # These default to current Gemini preview identifiers. They are env-overridable so a stable,
@@ -75,6 +82,15 @@ ED23_ANFORDERUNGEN_RESPONSE_SCHEMA_PATH = os.path.join(SRC_ROOT, "assets/schemas
 # (issue 4.1).
 GROUND_TRUTH_MODEL = os.environ.get("GROUND_TRUTH_MODEL", "gemini-3-flash-preview")
 GROUND_TRUTH_MODEL_PRO = os.environ.get("GROUND_TRUTH_MODEL_PRO", "gemini-3.1-pro-preview")
+# How many ED2023 Anforderungen stage_prozessbausteine sends per request. The whole G++
+# catalog is the (cached) grounding corpus, so the chunk only bounds the *output* size and
+# keeps each 1:1 decision inside a context the model can still reason over reliably.
+PROZESSBAUSTEINE_CHUNK_SIZE = int(os.environ.get("PROZESSBAUSTEINE_CHUNK_SIZE", "15"))
+# The stage keeps re-querying Anforderungen that came back without a (valid) match until
+# every single one is mapped — this caps the number of query rounds so a systematic failure
+# (e.g. schema drift, model refusing an ID) cannot loop forever. On exhaustion the stage
+# fails loudly instead of publishing an incomplete mapping.
+PROZESSBAUSTEINE_MAX_ROUNDS = int(os.environ.get("PROZESSBAUSTEINE_MAX_ROUNDS", "10"))
 
 # --- API Configuration ---
 # Constants for external API interactions, such as retry logic parameters.
@@ -107,7 +123,7 @@ GPP_ENHANCEMENT_PROPS_NS = "https://github.com/NTT-Data-Deutschland-SE/Grundschu
 # e.g. "Architektur"). The process-Zielobjekt ids are these Kürzel suffixed with
 # "_prozesse" (e.g. "ARCH_prozesse"), so resolving them yields readable profile titles.
 # Source of truth (keep in sync):
-# https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/blob/main/Dokumentation/namespaces/practices.csv
+# https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/blob/main/documentation/namespaces/practices.csv
 PRACTICE_ABBREVIATIONS = {
     "GC": "Governance und Compliance",
     "STM": "Strukturmodellierung",

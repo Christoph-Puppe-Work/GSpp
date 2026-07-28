@@ -466,6 +466,86 @@
       "prose": "Diese Anforderung ist entfallen."
     },
     {
+      "id": "ORP.6.A1",
+      "name": "Planung des Cloud-Identitäts- und Zugriffsmanagements (B)",
+      "prose": "Vor der Nutzung von Cloud-Diensten MUSS ein spezifisches IAM-Konzept für die Cloud-Umgebung geplant werden. Darin MÜSSEN die Verwaltung von Identitäten, die Authentifizierungsmechanismen und die Struktur der Berechtigungsvergabe festgelegt werden."
+    },
+    {
+      "id": "ORP.6.A2",
+      "name": "Richtlinie zur Verwaltung von Cloud-Identitäten (B)",
+      "prose": "Es MUSS eine Richtlinie erstellt werden, die den gesamten Lebenszyklus von Cloud-Identitäten regelt. Diese MUSS verbindliche Vorgaben für die Erstellung, Änderung, Deaktivierung und Löschung von menschlichen und nicht-menschlichen Identitäten (Dienstkonten) enthalten."
+    },
+    {
+      "id": "ORP.6.A3",
+      "name": "Absicherung des Haupt-Administratorkontos (B)",
+      "prose": "Das initiale Haupt-Administratorkonto (Root-Account) der Cloud-Umgebung MUSS durch ein starkes Passwort und eine Multi-Faktor-Authentifizierung (MFA) geschützt werden. Das Konto DARF NICHT für alltägliche administrative Aufgaben oder den regulären Betrieb verwendet werden."
+    },
+    {
+      "id": "ORP.6.A4",
+      "name": "Einführung eines grundlegenden Rollenkonzepts (B)",
+      "prose": "Für die Cloud-Umgebung MUSS ein rollenbasiertes Zugriffskonzept (Role-Based Access Control, RBAC) umgesetzt werden. Dieses MUSS zumindest eine Trennung zwischen lesenden, bearbeitenden und verwaltenden Rechten auf Cloud-Ressourcen sicherstellen."
+    },
+    {
+      "id": "ORP.6.A5",
+      "name": "Erzwingung der Multi-Faktor-Authentifizierung (B)",
+      "prose": "Für alle Benutzer, die über Berechtigungen zur Änderung von Cloud-Konfigurationen, IAM-Richtlinien oder Daten verfügen, MUSS die Verwendung von Multi-Faktor-Authentifizierung (MFA) technisch erzwungen werden."
+    },
+    {
+      "id": "ORP.6.A6",
+      "name": "Protokollierung von IAM-Aktivitäten (B)",
+      "prose": "Alle sicherheitsrelevanten IAM-Ereignisse MÜSSEN lückenlos protokolliert werden. Dazu gehören insbesondere Anmeldeversuche, administrative API-Aufrufe sowie alle Änderungen an Identitäten und Berechtigungen. Die Protokolldaten MÜSSEN zentral gesammelt und vor Manipulation geschützt werden."
+    },
+    {
+      "id": "ORP.6.A7",
+      "name": "Konzeption von Berechtigungen nach dem Least-Privilege-Prinzip (S)",
+      "prose": "Es MUSS ein Prozess zur Vergabe von Berechtigungen definiert sein, der sicherstellt, dass Rechte nicht pauschal, sondern aufgabenbezogen vergeben werden."
+    },
+    {
+      "id": "ORP.6.A8",
+      "name": "Nutzung von Föderation statt nativer Cloud-Benutzer (S)",
+      "prose": "Die Authentifizierung menschlicher Benutzer MUSS zentral geregelt und verwaltet werden."
+    },
+    {
+      "id": "ORP.6.A9",
+      "name": "Einsatz temporärer Anmeldeinformationen für maschinellen Zugriff (S)",
+      "prose": "Der maschinelle Zugriff durch Anwendungen oder Skripte MUSS sicher authentifiziert werden, wobei statische Schlüssel sicher zu verwalten sind."
+    },
+    {
+      "id": "ORP.6.A10",
+      "name": "Regelmäßige Überprüfung der Berechtigungen (S)",
+      "prose": "Die zugewiesenen Berechtigungen für alle Identitäten MÜSSEN in regelmäßigen Abständen auf ihre Erforderlichkeit überprüft werden."
+    },
+    {
+      "id": "ORP.6.A11",
+      "name": "Nutzung von bedingtem Zugriff (S)",
+      "prose": "Der Zugriff auf Cloud-Ressourcen MUSS durch definierte Zugriffsrichtlinien geschützt werden."
+    },
+    {
+      "id": "ORP.6.A12",
+      "name": "Einsatz von Just-in-Time-Zugriff für administrative Rollen (H)",
+      "prose": "Hochprivilegierte administrative Berechtigungen MÜSSEN restriktiv vergeben und ihre Nutzung MUSS überwacht werden."
+    },
+    {
+      "id": "ORP.6.A13",
+      "name": "Kontinuierliche Überwachung der Berechtigungsstruktur (H)",
+      "prose": "Die IAM-Konfiguration MUSS regelmäßig auf Fehlkonfigurationen und weitreichende Berechtigungen geprüft werden."
+    },
+    {
+      "id": "ORP.6.A14",
+      "name": "Implementierung von Berechtigungsgrenzen (H)",
+      "prose": "Es MUSS sichergestellt werden, dass Identitäten ihre Rechte nicht unkontrolliert ausweiten können."
+    },
+    {
+      "id": "ORP.6.A15",
+      "name": "Zentrales IAM für Multi-Cloud-Umgebungen (H)",
+      "prose": "Bei der Nutzung mehrerer Cloud-Plattformen MÜSSEN die Berechtigungen in allen Umgebungen konsistent verwaltet werden."
+    },
+    {
+      "id": "ORP.6.A16",
+      "name": "Absicherung von Workload-Identitäten (H)",
+      "prose": "Die Authentifizierung zwischen externen Diensten und der Cloud-Umgebung MUSS sicher konfiguriert werden."
+    },
+    {
       "id": "CON.1.A1",
       "name": "Auswahl geeigneter kryptografischer Verfahren (B)",
       "prose": "Es MÜSSEN geeignete kryptografische Verfahren ausgewählt werden. Dabei MUSS sichergestellt sein, dass etablierte Algorithmen verwendet werden, von denen keine Sicherheitslücken bekannt sind. Ebenso MÜSSEN aktuell empfohlene Schlüssellängen verwendet werden."
@@ -1851,6 +1931,116 @@
       "prose": "Der administrative Zugriff auf die Systemmanagement-Lösung MUSS netztechnisch reglementiert werden."
     },
     {
+      "id": "OPS.1.1.8.A1",
+      "name": "Richtlinie für sichere DevOps-Prozesse (B)",
+      "prose": "Es MUSS eine Richtlinie für die sichere Gestaltung und den sicheren Betrieb von CI/CD-Pipelines, IaC und DevOps-Prozessen existieren. Diese MUSS grundlegende Sicherheitsvorgaben, Verantwortlichkeiten, zulässige Werkzeuge sowie Freigabeverfahren für Deployments festlegen."
+    },
+    {
+      "id": "OPS.1.1.8.A2",
+      "name": "Absicherung der Versionsverwaltung (B)",
+      "prose": "Das zentrale Versionsverwaltungssystem MUSS gegen unbefugten Zugriff abgesichert sein. Es MUSS ein striktes Berechtigungskonzept umgesetzt sein, das den Lese- und Schreibzugriff auf Code-Repositories regelt. Alle Änderungen am Code MÜSSEN nachvollziehbar einer individuellen Person zugeordnet werden können."
+    },
+    {
+      "id": "OPS.1.1.8.A3",
+      "name": "Grundlegender Schutz von Zugangsdaten (Secrets) (B)",
+      "prose": "Zugangsdaten (wie Passwörter, API-Schlüssel oder private Schlüssel) DÜRFEN NICHT unverschlüsselt im Quellcode oder in Repositories der Versionsverwaltung gespeichert werden. Entwickler MÜSSEN bezüglich des korrekten Umgangs mit kryptografischem Material und Zugangsdaten regelmäßig sensibilisiert werden."
+    },
+    {
+      "id": "OPS.1.1.8.A4",
+      "name": "Rudimentäre Zugriffskontrolle für CI/CD-Werkzeuge (B)",
+      "prose": "Der Zugriff auf die Administrations- und Konfigurationsoberflächen der CI/CD-Werkzeuge MUSS auf einen definierten, minimal erforderlichen Personenkreis beschränkt sein. Es MUSS restriktiv geregelt sein, wer Pipelines anlegen, ausführen und deren Konfiguration ändern darf."
+    },
+    {
+      "id": "OPS.1.1.8.A5",
+      "name": "Protokollierung der Pipeline-Aktivitäten (B)",
+      "prose": "Alle sicherheitsrelevanten Aktivitäten innerhalb der CI/CD-Pipeline MÜSSEN protokolliert werden. Dies MUSS mindestens das Starten und Fehlschlagen von Builds, Änderungen an der Pipeline-Konfiguration sowie durchgeführte Deployments umfassen."
+    },
+    {
+      "id": "OPS.1.1.8.A17",
+      "name": "Sichere Authentisierung an der Versionsverwaltung (B)",
+      "prose": "Für den administrativen und schreibenden Zugriff auf das Versionsverwaltungssystem sowie auf CI/CD-Steuerungskomponenten MUSS eine sichere Authentisierung eingesetzt werden."
+    },
+    {
+      "id": "OPS.1.1.8.A18",
+      "name": "Konzeption der Pipeline-Architektur (S)",
+      "prose": "Es MUSS eine grundlegende Konzeption der Architektur der CI/CD-Pipeline und der IaC-Umgebung existieren."
+    },
+    {
+      "id": "OPS.1.1.8.A6",
+      "name": "Einsatz eines zentralen Secrets Managements (S)",
+      "prose": "Zugangsdaten, die von der CI/CD-Pipeline oder von IaC-Skripten benötigt werden, MÜSSEN sicher verwaltet werden."
+    },
+    {
+      "id": "OPS.1.1.8.A7",
+      "name": "Sicherung von Code-Änderungen durch Branch-Protection und Reviews (S)",
+      "prose": "Für produktiv relevante Zweige (Branches) im Versionsverwaltungssystem MÜSSEN grundlegende Schutzmechanismen existieren."
+    },
+    {
+      "id": "OPS.1.1.8.A8",
+      "name": "Integration von automatisierten Sicherheitsprüfungen (SAST/SCA) (S)",
+      "prose": "In die CI/CD-Pipeline MÜSSEN grundlegende Sicherheitsprüfungen integriert werden."
+    },
+    {
+      "id": "OPS.1.1.8.A9",
+      "name": "Absicherung von Build-Artefakten und Container-Images (S)",
+      "prose": "Erzeugte Build-Artefakte und Container-Images MÜSSEN sicher gespeichert werden."
+    },
+    {
+      "id": "OPS.1.1.8.A10",
+      "name": "Statische Analyse von Infrastructure as Code (IaC) (S)",
+      "prose": "Infrastructure as Code MUSS vor der Ausführung auf grundlegende Fehler überprüft werden."
+    },
+    {
+      "id": "OPS.1.1.8.A11",
+      "name": "Detailliertes Rollen- und Rechtekonzept (S)",
+      "prose": "Es MUSS ein grundlegendes Rollen- und Rechtekonzept für die CI/CD-Pipeline umgesetzt werden."
+    },
+    {
+      "id": "OPS.1.1.8.A19",
+      "name": "Absicherung von IaC-Zustandsdateien (State Files) (S)",
+      "prose": "Werden IaC-Zustandsdateien verwendet, MÜSSEN diese vor unbefugtem Zugriff geschützt werden."
+    },
+    {
+      "id": "OPS.1.1.8.A20",
+      "name": "Trennung von Entwicklungs-, Test- und Produktionsumgebungen (S)",
+      "prose": "Die Umgebungen für Entwicklung, automatisierte Tests und den produktiven Betrieb MÜSSEN logisch voneinander getrennt werden."
+    },
+    {
+      "id": "OPS.1.1.8.A21",
+      "name": "Planung der Absicherung der Software-Lieferkette (H)",
+      "prose": "Bei erhöhtem Schutzbedarf MUSS ein grundlegendes Konzept zur Absicherung der Software-Lieferkette erstellt werden."
+    },
+    {
+      "id": "OPS.1.1.8.A12",
+      "name": "Härtung und Isolation der Pipeline-Umgebung (H)",
+      "prose": "Die Laufzeitumgebung der CI/CD-Pipeline MUSS grundlegend abgesichert sein."
+    },
+    {
+      "id": "OPS.1.1.8.A13",
+      "name": "Erstellung und Verifizierung von Software-Stücklisten (SBOM) (H)",
+      "prose": "Die in Build-Artefakten verwendeten Software-Komponenten MÜSSEN dokumentiert werden."
+    },
+    {
+      "id": "OPS.1.1.8.A14",
+      "name": "Integration fortgeschrittener Sicherheitsanalysen (DAST/IAST) (H)",
+      "prose": "Sicherheitsanalysen der Anwendung MÜSSEN regelmäßig durchgeführt werden."
+    },
+    {
+      "id": "OPS.1.1.8.A15",
+      "name": "Kryptografische Signierung von Code-Commits und Artefakten (H)",
+      "prose": "Die Herkunft von Code-Commits und Build-Artefakten MUSS nachvollziehbar sein."
+    },
+    {
+      "id": "OPS.1.1.8.A16",
+      "name": "Prinzip der unveränderlichen Infrastruktur (Immutable Infrastructure) (H)",
+      "prose": "Änderungen an der durch IaC bereitgestellten Infrastruktur MÜSSEN nachvollziehbar dokumentiert werden."
+    },
+    {
+      "id": "OPS.1.1.8.A22",
+      "name": "Kryptografische Fixierung von Abhängigkeiten (Hash-Pinning) (H)",
+      "prose": "Externe Bibliotheken und Pakete MÜSSEN auf definierte Versionen beschränkt werden."
+    },
+    {
       "id": "OPS.1.2.2.A1",
       "name": "Ermittlung von Einflussfaktoren für die elektronische Archivierung (B)",
       "prose": "Bevor entschieden wird, welche Verfahren und Produkte für die elektronische Archivierung eingesetzt werden, MÜSSEN die technischen, rechtlichen und organisatorischen Einflussfaktoren ermittelt und dokumentiert werden. Die Ergebnisse MÜSSEN in das Archivierungskonzept einfließen."
@@ -3176,6 +3366,76 @@
       "prose": "Das Notfallmanagement von Dienstleistern für ausgelagerte Komponenten MUSS in den Verträgen geprüft werden. Abläufe in Notfalltests MÜSSEN mit Dienstleistern abgestimmt werden."
     },
     {
+      "id": "DER.7.A1",
+      "name": "Festlegung einer Richtlinie für Schwachstellenmeldungen (B)",
+      "prose": "Es MUSS eine von der Institutionsleitung verabschiedete Richtlinie für den Umgang mit extern gemeldeten Schwachstellen existieren. Diese Richtlinie MUSS die grundlegenden Ziele, Verantwortlichkeiten und die Verpflichtung der Institution zur Zusammenarbeit mit Sicherheitsforschern verbindlich festlegen."
+    },
+    {
+      "id": "DER.7.A2",
+      "name": "Erstellung und Veröffentlichung einer Vulnerability Disclosure Policy (B)",
+      "prose": "Es MUSS eine klare und leicht auffindbare Vulnerability Disclosure Policy (VDP) erstellt und veröffentlicht werden. Die VDP MUSS eine Erklärung der Absicht, den präferierten Meldekanal, eine Beschreibung der im Geltungsbereich liegenden Systeme (Scope) sowie die Arten der ausdrücklich nicht gestatteten Tests enthalten."
+    },
+    {
+      "id": "DER.7.A3",
+      "name": "Einrichtung eines dedizierten und sicheren Meldekanals (B)",
+      "prose": "Es MUSS ein klar definierter und sicherer Kanal für die Entgegennahme von Schwachstellenmeldungen eingerichtet werden (z. B. über eine definierte E-Mail-Adresse mit veröffentlichtem kryptografischem Schlüssel). Dieser Kanal MUSS regelmäßig überwacht werden."
+    },
+    {
+      "id": "DER.7.A4",
+      "name": "Formulierung einer rechtlichen Schutzzusage (Safe Harbor) (B)",
+      "prose": "Die VDP MUSS eine rechtliche Schutzzusage (Safe Harbor) enthalten. Es MUSS zugesichert werden, dass die Institution keine rechtlichen Schritte gegen Personen einleitet, die Schwachstellen im Rahmen der in der VDP definierten Regeln und in gutem Glauben suchen und melden."
+    },
+    {
+      "id": "DER.7.A5",
+      "name": "Definition eines initialen Triage-Prozesses (B)",
+      "prose": "Es MUSS ein interner Prozess definiert werden, wie eingehende Meldungen bestätigt, auf ihre Validität geprüft und an die zuständigen Stellen weitergeleitet werden. Alle Meldenden MÜSSEN zeitnah eine Eingangsbestätigung erhalten."
+    },
+    {
+      "id": "DER.7.A6",
+      "name": "Detaillierte Definition von Scope und Testregeln (S)",
+      "prose": "Der Geltungsbereich (Scope) des Programms MUSS definieren, welche Anwendungen und Systeme abgedeckt sind. Es MÜSSEN Regeln für die Durchführung von Tests festgelegt werden."
+    },
+    {
+      "id": "DER.7.A7",
+      "name": "Etablierung eines transparenten Belohnungssystems (S)",
+      "prose": "Für ein Bug-Bounty-Programm MUSS ein Belohnungssystem etabliert werden."
+    },
+    {
+      "id": "DER.7.A8",
+      "name": "Etablierung eines Kommunikations- und Eskalationskonzepts (S)",
+      "prose": "Es MUSS ein Kommunikationskonzept für die Interaktion mit den Forschenden existieren."
+    },
+    {
+      "id": "DER.7.A9",
+      "name": "Integration in das Schwachstellen- und Incident-Management (S)",
+      "prose": "Verifizierte Schwachstellenmeldungen MÜSSEN in den internen Schwachstellenmanagementprozess überführt werden."
+    },
+    {
+      "id": "DER.7.A10",
+      "name": "Nutzung einer Bug-Bounty-Plattform (S)",
+      "prose": "Die effiziente Verwaltung des Programms MUSS sichergestellt sein."
+    },
+    {
+      "id": "DER.7.A11",
+      "name": "Durchführung von privaten oder zeitlich begrenzten Programmen (H)",
+      "prose": "Für besonders schützenswerte Systeme MÜSSEN erweiterte Prüfungen in Betracht gezogen werden."
+    },
+    {
+      "id": "DER.7.A12",
+      "name": "Proaktives Forscher-Management und Beziehungsaufbau (H)",
+      "prose": "Die Institution MUSS den Kontakt zu meldenden Sicherheitsforschern professionell pflegen."
+    },
+    {
+      "id": "DER.7.A13",
+      "name": "Analyse und Optimierung der Programm-Metriken (H)",
+      "prose": "Das Bug-Bounty-Programm MUSS regelmäßig auf seine Wirksamkeit überprüft werden."
+    },
+    {
+      "id": "DER.7.A14",
+      "name": "Verknüpfung von Erkenntnissen mit dem Secure SDLC (H)",
+      "prose": "Gewonnene Erkenntnisse über Schwachstellen MÜSSEN an die Entwicklungsteams kommuniziert werden."
+    },
+    {
       "id": "APP.1.1.A1",
       "name": "ENTFALLEN (B)",
       "prose": "Diese Anforderung ist entfallen."
@@ -4176,6 +4436,76 @@
       "prose": "Die Netzanbindung der extern erreichbaren DNS-Server MUSS definiert und dokumentiert sein."
     },
     {
+      "id": "APP.4.10.A1",
+      "name": "Planung des sicheren Einsatzes von KI (B) [ISB]",
+      "prose": "Es MUSS eine Richtlinie existieren, die die Ziele, Verantwortlichkeiten und grundlegenden Sicherheitsregeln für die Entwicklung, die Beschaffung und den Betrieb von KI-Systemen in der Institution festlegt."
+    },
+    {
+      "id": "APP.4.10.A2",
+      "name": "Inventarisierung und Klassifizierung von Trainingsdaten (B) [Fachverantwortliche]",
+      "prose": "Alle für das Training von KI-Modellen verwendeten Datensätze MÜSSEN inventarisiert und entsprechend ihrer Schutzbedürftigkeit klassifiziert werden. Der Zugriff auf diese Daten MUSS restriktiv geregelt sein."
+    },
+    {
+      "id": "APP.4.10.A3",
+      "name": "Grundlegende Absicherung der Modell-Schnittstellen (B)",
+      "prose": "Der Zugriff auf KI-Modelle, die über APIs bereitgestellt werden, MUSS authentifiziert und autorisiert werden. Die Schnittstellen MÜSSEN gegen gängige Web- und API-Angriffe geschützt werden."
+    },
+    {
+      "id": "APP.4.10.A4",
+      "name": "Protokollierung von Trainingsläufen und API-Anfragen (B)",
+      "prose": "Trainingsläufe MÜSSEN protokolliert werden, um nachvollziehen zu können, welches Modell mit welchen Daten und Parametern trainiert wurde. Sicherheitsrelevante Anfragen an die produktiven Modell-APIs MÜSSEN ebenfalls protokolliert werden."
+    },
+    {
+      "id": "APP.4.10.A5",
+      "name": "Nutzung vertrauenswürdiger Modellquellen (B)",
+      "prose": "Es DÜRFEN NICHT ungeprüfte externe KI-Modelle oder untrainierte Gewichte aus unzuverlässigen Quellen in produktive Systeme übernommen werden. Die Herkunft externer Modelle MUSS vor der Integration verifiziert werden."
+    },
+    {
+      "id": "APP.4.10.A6",
+      "name": "Sicherstellung der Integrität von Trainingsdaten (S)",
+      "prose": "Es MÜSSEN grundlegende technische und organisatorische Maßnahmen ergriffen werden, um die Integrität der Trainingsdaten zu schützen und Datenspeicher gegen unautorisierte Veränderungen abzusichern."
+    },
+    {
+      "id": "APP.4.10.A7",
+      "name": "Absicherung der ML-Pipeline (S)",
+      "prose": "Der Lebenszyklus eines Modells MUSS durch definierte Prozesse verwaltet werden, und Trainingsumgebungen MÜSSEN grundlegend abgesichert sein."
+    },
+    {
+      "id": "APP.4.10.A8",
+      "name": "Implementierung von Abwehrmaßnahmen gegen Adversarial Attacks (S) [Entwickler]",
+      "prose": "Es MÜSSEN grundlegende Techniken zur Validierung und Bereinigung von Eingabedaten eingesetzt werden, um fehlerhafte oder bösartige Eingaben abzufangen."
+    },
+    {
+      "id": "APP.4.10.A9",
+      "name": "Versionierung und Herkunftsverfolgung von Daten und Modellen (S)",
+      "prose": "Es MUSS eine grundlegende Versionierung von Modellen und den zugehörigen Trainingsdaten erfolgen, um Änderungen nachvollziehen zu können."
+    },
+    {
+      "id": "APP.4.10.A10",
+      "name": "Überwachung des Modellverhaltens im produktiven Betrieb (S)",
+      "prose": "Die Vorhersagen und Entscheidungen des KI-Modells im produktiven Betrieb MÜSSEN regelmäßig auf Korrektheit und Abweichungen geprüft werden."
+    },
+    {
+      "id": "APP.4.10.A11",
+      "name": "Schutzmaßnahmen gegen Modell-Extraktion (H)",
+      "prose": "Der Zugriff auf die Modell-API MUSS überwacht und durch grundlegende Ratenlimitierung (Rate-Limiting) geschützt werden, um massenhafte Abfragen zu erschweren."
+    },
+    {
+      "id": "APP.4.10.A12",
+      "name": "Durchführung von Adversarial-Robustness-Tests (H) [Entwickler]",
+      "prose": "KI-Modelle MÜSSEN vor dem produktiven Einsatz auf grundlegende funktionale Sicherheit und Robustheit gegenüber fehlerhaften Eingaben getestet werden."
+    },
+    {
+      "id": "APP.4.10.A13",
+      "name": "Einsatz von Techniken zur Erklärbarkeit und Interpretierbarkeit (XAI) (H)",
+      "prose": "Die Architektur und die grundlegenden Entscheidungskriterien des KI-Modells MÜSSEN dokumentiert sein, um eine Basis-Nachvollziehbarkeit zu gewährleisten."
+    },
+    {
+      "id": "APP.4.10.A14",
+      "name": "Nutzung von Privacy-Enhancing Technologies (PETs) (H)",
+      "prose": "Beim Training mit sensiblen Daten MÜSSEN etablierte Anonymisierungs- oder Pseudonymisierungsverfahren angewendet werden, um den Datenschutz zu wahren."
+    },
+    {
       "id": "APP.4.2.A1",
       "name": "Sichere Konfiguration des SAP-ABAP-Stacks (B)",
       "prose": "Der SAP-ABAP-Stack MUSS sicher konfiguriert werden. Dazu MÜSSEN die jeweiligen Profilparameter gesetzt werden, z. B. für die Passwortsicherheit, Authentisierung und Verschlüsselung. Auch MÜSSEN die Systemänderbarkeit und die Mandanten konfiguriert, das IMG-Customizing durchgeführt und die Betriebssystemkommandos abgesichert werden."
@@ -4566,6 +4896,66 @@
       "prose": "Bei einem erhöhten Risiko für Fremdeinwirkung und einem sehr hohen Schutzbedarf werden Pods regelmäßig gestoppt und neu gestartet. Dabei ist die Verfügbarkeit der Anwendungen im Pod sichergestellt."
     },
     {
+      "id": "APP.4.5.A1",
+      "name": "Absicherung des Netzwerkzugriffs (B)",
+      "prose": "Der Netzwerkzugriff auf die Key-Value-Datenbank ist auf das zwingend erforderliche Minimum beschränkt. Die Datenbank ist ausschließlich an vertrauenswürdige Schnittstellen gebunden und der Zugriff auf Port-Ebene ist durch Paketfilter strikt limitiert."
+    },
+    {
+      "id": "APP.4.5.A2",
+      "name": "Aktivierung einer grundlegenden Authentifizierung (B)",
+      "prose": "Ein Authentifizierungsmechanismus für eingehende Verbindungen ist aktiviert und mit einem sicheren Passwort konfiguriert, um anonyme Vollzugriffe zu verhindern."
+    },
+    {
+      "id": "APP.4.5.A3",
+      "name": "Härtung der Konfiguration (B)",
+      "prose": "Potenziell gefährliche Befehle sind deaktiviert oder umbenannt. Unsichere Standardeinstellungen wurden vor der Produktivsetzung korrigiert."
+    },
+    {
+      "id": "APP.4.5.A4",
+      "name": "Ausführung mit dediziertem Benutzerkonto (B)",
+      "prose": "Die Key-Value-Datenbank wird unter einem eigenen, dedizierten Benutzerkonto mit minimalen Rechten betrieben. Ein Betrieb als Administrator ist ausgeschlossen."
+    },
+    {
+      "id": "APP.4.5.A5",
+      "name": "Verschlüsselung der Datenübertragung (S)",
+      "prose": "Die gesamte Netzwerkkommunikation zwischen Anwendungen und der Datenbank sowie zwischen Cluster-Knoten ist mittels TLS verschlüsselt."
+    },
+    {
+      "id": "APP.4.5.A6",
+      "name": "Erstellung eines differenzierten Rechtekonzepts (S) [Entwickler]",
+      "prose": "Ein differenziertes Rechtekonzept ist umgesetzt, bei dem jede zugreifende Anwendung einen eigenen Benutzer mit minimal erforderlichen Berechtigungen und Key-Spaces erhält."
+    },
+    {
+      "id": "APP.4.5.A7",
+      "name": "Sichere Konfiguration der Datenpersistenz (S)",
+      "prose": "Persistierte Daten (Backups, Snapshots) sind mit restriktiven Dateiberechtigungen versehen und der Speicherort ist gegen unbefugte Zugriffe abgesichert."
+    },
+    {
+      "id": "APP.4.5.A8",
+      "name": "Regelmäßige Protokollierung und Überwachung (S)",
+      "prose": "Verbindungsversuche und kritische Befehle werden an ein zentrales Log-Management-System übergeben und regelmäßig auf verdächtige Aktivitäten ausgewertet."
+    },
+    {
+      "id": "APP.4.5.A9",
+      "name": "Absicherung der Cluster-Kommunikation mit mTLS (H)",
+      "prose": "In Cluster-Umgebungen ist die gesamte Kommunikation zwischen den Knoten durch gegenseitige TLS-Authentifizierung (mTLS) abgesichert, wobei Zertifikate zwingend überprüft werden."
+    },
+    {
+      "id": "APP.4.5.A10",
+      "name": "Einsatz in einer isolierten und gehärteten Laufzeitumgebung (H)",
+      "prose": "Die Key-Value-Datenbank wird in einer dedizierten, gehärteten Laufzeitumgebung betrieben, in der Netzwerkzugriffe und Systemaufrufe auf das Minimum beschränkt sind."
+    },
+    {
+      "id": "APP.4.5.A11",
+      "name": "Verschlüsselung von persistenten Daten (Encryption at Rest) (H)",
+      "prose": "Hochsensible persistente Daten werden auf dem Speichermedium verschlüsselt abgelegt (Encryption at Rest), entweder durch Betriebssystemfunktionen oder datenbankeigene Mechanismen."
+    },
+    {
+      "id": "APP.4.5.A12",
+      "name": "Regelmäßige Konfigurations- und Schwachstellen-Audits (H)",
+      "prose": "Die Konfiguration und die Softwareversion der Key-Value-Datenbank werden regelmäßig automatisiert auf bekannte Schwachstellen (CVEs) und Abweichungen von einer sicheren Basiskonfiguration überprüft."
+    },
+    {
       "id": "APP.4.6.A1",
       "name": "Absicherung von Reports mit Berechtigungsprüfungen (B)",
       "prose": "Es MUSS sichergestellt sein, dass nur berechtigte Personen selbst programmierte Auswertungen (Reports) starten können. Deswegen MUSS jeder Report explizite, zum Kontext passende Berechtigungsprüfungen durchführen."
@@ -4674,6 +5064,201 @@
       "id": "APP.4.6.A22",
       "name": "Einsatz von ABAP-Codeanalyse Werkzeugen (H)",
       "prose": "Code-Überprüfungen auf sicherheitsrelevante Programmierfehler MÜSSEN regelmäßig und systematisch durchgeführt werden."
+    },
+    {
+      "id": "APP.4.7.A1",
+      "name": "Planung des Einsatzes von Zeitreihen-Datenbanken (B)",
+      "prose": "Vor dem Einsatz einer Zeitreihen-Datenbank MUSS eine Anforderungsanalyse durchgeführt werden. Dabei MÜSSEN die benötigten Kapazitäten, das Mengengerüst für zu verarbeitende Metriken sowie die Sicherheitsanforderungen an die gespeicherten Daten ermittelt werden. Basierend darauf MUSS ein sicheres Architektur- und Betriebskonzept erstellt werden."
+    },
+    {
+      "id": "APP.4.7.A2",
+      "name": "Absicherung des Netzwerkzugriffs auf die Datenbank (B)",
+      "prose": "Der Netzwerkzugriff auf die Zeitreihen-Datenbank MUSS strikt auf die Systeme beschränkt werden, die Daten schreiben oder lesen müssen. Die Datenbank MUSS netzwerktechnisch durch eine Firewall geschützt werden. Dienste DÜRFEN NICHT an öffentliche oder ungeschützte Netzwerkschnittstellen gebunden werden."
+    },
+    {
+      "id": "APP.4.7.A3",
+      "name": "Aktivierung der Authentifizierung für Schreib- und Lesezugriffe (B)",
+      "prose": "Alle Schreib- und Lesezugriffe auf die Datenbank MÜSSEN authentifiziert werden. Es MÜSSEN sichere Passwörter oder kryptografisch starke Authentifizierungs-Token verwendet werden. Ein anonymer Zugriff auf produktive Daten MUSS deaktiviert werden."
+    },
+    {
+      "id": "APP.4.7.A4",
+      "name": "Absicherung der administrativen Schnittstellen (B)",
+      "prose": "Der Zugriff auf administrative Web-Oberflächen und Konfigurations-APIs MUSS durch starke, nicht standardisierte Anmeldedaten geschützt sein. Standard-Benutzerkonten MÜSSEN umbenannt oder serverseitig deaktiviert werden."
+    },
+    {
+      "id": "APP.4.7.A5",
+      "name": "Schutz von Metrik-Endpunkten (B)",
+      "prose": "Metrik-Endpunkte, die von pull-basierten Systemen abgefragt werden, MÜSSEN so konfiguriert sein, dass sie ausschließlich für das legitime Monitoring-System erreichbar sind. Dies MUSS durch Netzsegmentierung oder hostbasierte Firewall-Regeln sichergestellt werden."
+    },
+    {
+      "id": "APP.4.7.A6",
+      "name": "Verschlüsselung der gesamten Kommunikation (S)",
+      "prose": "Die Kommunikation von Administratoren und Dashboards mit der Zeitreihen-Datenbank MUSS mittels TLS verschlüsselt werden."
+    },
+    {
+      "id": "APP.4.7.A7",
+      "name": "Umsetzung eines differenzierten Berechtigungskonzepts (S)",
+      "prose": "Ein grundlegendes Berechtigungskonzept MUSS umgesetzt werden, das strikt zwischen schreibenden und lesenden Zugriffen trennt."
+    },
+    {
+      "id": "APP.4.7.A8",
+      "name": "Systematische Verwaltung von Datenaufbewahrungszeiten (S)",
+      "prose": "Richtlinien für die Aufbewahrung von Daten (Retention Policies) MÜSSEN definiert und grundlegend umgesetzt werden, um unkontrolliertes Speicherwachstum zu verhindern."
+    },
+    {
+      "id": "APP.4.7.A9",
+      "name": "Protokollierung und Überwachung sicherheitsrelevanter Ereignisse (S)",
+      "prose": "Administrative Änderungen, fehlgeschlagene Anmeldeversuche und kritische Systemereignisse der Datenbank MÜSSEN lokal protokolliert und regelmäßig geprüft werden."
+    },
+    {
+      "id": "APP.4.7.A10",
+      "name": "Erzwingung gegenseitiger Authentifizierung (mTLS) (H)",
+      "prose": "Für die Kommunikation zwischen hochsensiblen Datensammlern und der Zeitreihen-Datenbank MUSS eine starke Authentifizierung der Clients erfolgen."
+    },
+    {
+      "id": "APP.4.7.A11",
+      "name": "Verschlüsselung der gespeicherten Daten (Encryption at Rest) (H)",
+      "prose": "Werden besonders schützenswerte Informationen gespeichert, MÜSSEN die Daten auf dem Speichermedium grundlegend verschlüsselt werden (z.B. Full Disk Encryption)."
+    },
+    {
+      "id": "APP.4.7.A12",
+      "name": "Begrenzung von Ressourcen für Abfragen (H)",
+      "prose": "Grundlegende Ressourcenlimits (z.B. globale Timeouts) MÜSSEN konfiguriert werden, um Überlastungen der Datenbank zu vermeiden."
+    },
+    {
+      "id": "APP.4.7.A13",
+      "name": "Sicherstellung der Datenintegrität durch kryptografische Signaturen (H)",
+      "prose": "Die Integrität der Daten MUSS durch sichere Transportprotokolle (z.B. TLS) auf dem Weg zur Datenbank gewährleistet werden."
+    },
+    {
+      "id": "APP.4.8.A1",
+      "name": "Absicherung des Netzwerkzugriffs (B)",
+      "prose": "Der Netzwerkzugriff auf die Graphdatenbank und ihre administrativen Schnittstellen MUSS durch eine Firewall auf die zwingend erforderlichen Systeme beschränkt sein. Die Dienste MÜSSEN nur an vertrauenswürdige Netzwerkschnittstellen gebunden werden."
+    },
+    {
+      "id": "APP.4.8.A2",
+      "name": "Einrichtung einer verpflichtenden Authentifizierung (B)",
+      "prose": "Für jeden Zugriff auf die Graphdatenbank MUSS eine Authentifizierung erzwungen werden. Ein anonymer Zugriff MUSS deaktiviert und alle Standard-Benutzerkonten MÜSSEN mit sicheren, nicht standardisierten Passwörtern versehen oder deaktiviert werden."
+    },
+    {
+      "id": "APP.4.8.A3",
+      "name": "Zuweisung grundlegender Rollen (B)",
+      "prose": "Es MUSS ein grundlegendes Rollenkonzept umgesetzt werden, das mindestens zwischen administrativen Benutzern, Benutzern mit Schreibzugriff und Benutzern mit reinem Lesezugriff unterscheidet. Anwendungsbenutzer MÜSSEN mit den geringstmöglichen Rechten ausgestattet werden."
+    },
+    {
+      "id": "APP.4.8.A4",
+      "name": "Sicherer Umgang mit Erweiterungen (B)",
+      "prose": "Es MUSS eine Regelung geben, die festlegt, dass Erweiterungen (Plugins, Prozeduren) nur aus vertrauenswürdigen Quellen bezogen und installiert werden dürfen."
+    },
+    {
+      "id": "APP.4.8.A5",
+      "name": "Verschlüsselung der Datenübertragung (S)",
+      "prose": "Es MUSS ein dokumentierter Prozess existieren, der die Verschlüsselung der externen Client-Kommunikation mit der Graphdatenbank regelt."
+    },
+    {
+      "id": "APP.4.8.A6",
+      "name": "Umsetzung einer granularen Zugriffskontrolle (S)",
+      "prose": "Es MUSS ein dokumentiertes Berechtigungskonzept für die Graphdatenbank vorliegen, das die grundsätzlichen Zugriffsrechte auf die Daten regelt."
+    },
+    {
+      "id": "APP.4.8.A7",
+      "name": "Härtung der Abfragesprache (S)",
+      "prose": "Es MUSS ein dokumentierter Prozess zur Identifikation und Handhabung von ressourcenintensiven Abfragen in der Graphdatenbank existieren."
+    },
+    {
+      "id": "APP.4.8.A8",
+      "name": "Regelmäßige Protokollierung von Abfragen und Zugriffen (S)",
+      "prose": "Es MUSS ein Prozess definiert sein, der die lokale Protokollierung von administrativen Änderungen und fehlgeschlagenen Anmeldeversuchen an der Graphdatenbank sicherstellt."
+    },
+    {
+      "id": "APP.4.8.A9",
+      "name": "Implementierung von Zugriffskontrollen auf Subgraph-Ebene (H)",
+      "prose": "Es MUSS ein dokumentiertes Konzept zur logischen Datentrennung in der Graphdatenbank existieren, falls mandantenfähige Umgebungen betrieben werden."
+    },
+    {
+      "id": "APP.4.8.A10",
+      "name": "Verschlüsselung der gespeicherten Daten (Encryption at Rest) (H)",
+      "prose": "Es MUSS ein Prozess zur Identifikation schützenswerter Daten im Graphen existieren, um den Bedarf für eine Verschlüsselung ruhender Daten zu ermitteln."
+    },
+    {
+      "id": "APP.4.8.A11",
+      "name": "Einsatz von Schema-Constraints (H)",
+      "prose": "Es MUSS ein dokumentierter Prozess zur Modellierung und Pflege des Datenmodells der Graphdatenbank vorhanden sein."
+    },
+    {
+      "id": "APP.4.8.A12",
+      "name": "Automatische Analyse und Überwachung von Abfragen (H)",
+      "prose": "Es MÜSSEN Richtlinien für Entwickler existieren, die das Schreiben sicherer und performanter Graph-Abfragen vorgeben."
+    },
+    {
+      "id": "APP.4.9.A1",
+      "name": "Planung des Einsatzes von Objektspeichern (B) [Planer]",
+      "prose": "Vor der Einführung und Nutzung eines Objektspeichers MUSS ein Sicherheitskonzept erstellt werden. Darin MÜSSEN die zulässigen Einsatzszenarien, das Berechtigungsmodell (z. B. rollenbasierte Zugriffssteuerung) und die Anforderungen an die Verschlüsselung verbindlich geregelt werden."
+    },
+    {
+      "id": "APP.4.9.A2",
+      "name": "Blockieren des öffentlichen Zugriffs (B)",
+      "prose": "Es MUSS auf der obersten administrativen Ebene des Speichersystems (z. B. auf Tenant- oder Account-Ebene) eine technische Einstellung aktiviert sein, die jeglichen öffentlichen Zugriff auf Buckets standardmäßig blockiert. Ausnahmen MÜSSEN explizit, restriktiv und nach einem definierten Genehmigungsverfahren konfiguriert werden."
+    },
+    {
+      "id": "APP.4.9.A3",
+      "name": "Grundlegendes Berechtigungskonzept für Buckets (B)",
+      "prose": "Für jeden Bucket MUSS eine Zugriffsrichtlinie definiert sein, die den Zugriff auf einen explizit definierten und minimal erforderlichen Kreis von Benutzern oder Diensten beschränkt. Pauschale Freigaben DÜRFEN NICHT erteilt werden."
+    },
+    {
+      "id": "APP.4.9.A4",
+      "name": "Erzwingung der Transportverschlüsselung (B)",
+      "prose": "Es MUSS sichergestellt sein, dass alle Verbindungen zu den API-Endpunkten des Objektspeichers ausschließlich über TLS-verschlüsselte Verbindungen erfolgen. Unverschlüsselte Anfragen (z. B. unverschlüsseltes HTTP) MÜSSEN serverseitig zwingend abgewiesen werden."
+    },
+    {
+      "id": "APP.4.9.A5",
+      "name": "Schutz der administrativen Zugangsdaten (B)",
+      "prose": "Die primären Zugangsdaten (Root-Account, Global Administrator) des Objektspeichersystems MÜSSEN besonders geschützt aufbewahrt werden. Sie DÜRFEN NICHT für den regulären, automatisierten Zugriff durch Fachanwendungen oder zur alltäglichen Administration verwendet werden."
+    },
+    {
+      "id": "APP.4.9.A6",
+      "name": "Umsetzung des Prinzips der geringsten Rechte (S)",
+      "prose": "Für jede Anwendung und jeden Benutzer MUSS eine dedizierte technische Identität (z. B. ein spezifischer Dienst-Account) genutzt werden. Die Berechtigungen MÜSSEN auf die zwingend benötigten Aktionen und Ressourcen beschränkt werden."
+    },
+    {
+      "id": "APP.4.9.A7",
+      "name": "Aktivierung der serverseitigen Verschlüsselung (S)",
+      "prose": "Alle in einem Bucket gespeicherten Objekte MÜSSEN standardmäßig serverseitig verschlüsselt werden (Encryption at Rest)."
+    },
+    {
+      "id": "APP.4.9.A8",
+      "name": "Aktivierung der Zugriffs-Protokollierung (S)",
+      "prose": "Für alle Buckets, die schützenswerte oder geschäftskritische Daten enthalten, MUSS die Zugriffs-Protokollierung aktiviert werden."
+    },
+    {
+      "id": "APP.4.9.A9",
+      "name": "Nutzung der Objekt-Versionierung (S)",
+      "prose": "Für Buckets mit operativ wichtigen Daten MUSS die Objekt-Versionierung aktiviert werden, um Objekte vor unbeabsichtigtem Überschreiben oder Löschen zu schützen."
+    },
+    {
+      "id": "APP.4.9.A10",
+      "name": "Regelmäßige Überprüfung der Bucket-Berechtigungen (S)",
+      "prose": "Die Konfiguration aller Bucket-Richtlinien und Zugriffskontrolllisten MUSS regelmäßig daraufhin überprüft werden, ob sie unzulässige Zugriffe erlauben. Festgestellte Abweichungen MÜSSEN behoben werden."
+    },
+    {
+      "id": "APP.4.9.A11",
+      "name": "Einsatz von clientseitiger Verschlüsselung (H) [Entwickler]",
+      "prose": "Für Objekte mit hochsensiblen Daten MUSS eine clientseitige Verschlüsselung (Client-Side Encryption) eingesetzt werden."
+    },
+    {
+      "id": "APP.4.9.A12",
+      "name": "Durchsetzung von zentralen Sicherheitsrichtlinien (H)",
+      "prose": "Es MÜSSEN übergeordnete, technische Richtlinien etabliert werden, um unsichere Konfigurationen durch Administratoren und Entwickler zu verhindern."
+    },
+    {
+      "id": "APP.4.9.A13",
+      "name": "Absicherung des Zugriffs über private Endpunkte (H)",
+      "prose": "Der Netzwerkzugriff auf die API des Objektspeichers MUSS für kritische Systeme über private Netzwerkverbindungen erfolgen."
+    },
+    {
+      "id": "APP.4.9.A14",
+      "name": "Aktivierung der Objektsperre (Object Lock) (H)",
+      "prose": "Für Daten, die aus Nachweis- oder Revisionsgründen zwingend unveränderbar gespeichert werden müssen, MUSS sichergestellt werden, dass eine Löschung oder Änderung technisch ausgeschlossen ist."
     },
     {
       "id": "APP.5.2.A1",
@@ -5241,6 +5826,166 @@
       "prose": "Die Integrität des Host-Systems wird durch ein Read-Only-Dateisystem sichergestellt (Immutable OS)."
     },
     {
+      "id": "SYS.1.10.A1",
+      "name": "Planung des Servereinsatzes unter OpenBSD (B)",
+      "prose": "Vor der Installation MUSS eine Planung erfolgen, für welche konkreten Aufgaben der OpenBSD-Server eingesetzt werden soll. Es MUSS festgelegt werden, welche Dienste und Drittanbieter-Software für den Betrieb zwingend erforderlich sind."
+    },
+    {
+      "id": "SYS.1.10.A2",
+      "name": "Gesicherte und minimalistische Installation (B)",
+      "prose": "Die Installation des Betriebssystems MUSS von einem kryptografisch verifizierten Installationsmedium (z. B. via signify) erfolgen. Während der Installation DÜRFEN ausschließlich die für den Einsatzzweck zwingend benötigten Dateisets ausgewählt werden. Für das lokale Administrator-Konto (root) MUSS ein sicheres Passwort vergeben werden."
+    },
+    {
+      "id": "SYS.1.10.A3",
+      "name": "Regelmäßiges Einspielen von Sicherheitspatches (B)",
+      "prose": "Es MUSS ein Prozess etabliert werden, der sicherstellt, dass bereitgestellte Sicherheitspatches für das OpenBSD-Basissystem zeitnah und systematisch (z. B. unter Nutzung des Werkzeugs syspatch) eingespielt werden."
+    },
+    {
+      "id": "SYS.1.10.A4",
+      "name": "Aktivierung und Basiskonfiguration der Firewall (B)",
+      "prose": "Die systemeigene Paketfilter-Firewall MUSS aktiviert werden. In der zugehörigen Regelbasis MUSS eine \"Default Deny\"-Strategie umgesetzt sein, bei der jeglicher Netzwerkverkehr standardmäßig blockiert und nur explizit benötigter Datenverkehr erlaubt wird."
+    },
+    {
+      "id": "SYS.1.10.A5",
+      "name": "Absicherung des administrativen Fernzugriffs (B)",
+      "prose": "Der Secure-Shell-Dienst (SSH) MUSS so konfiguriert werden, dass eine direkte Anmeldung des root-Benutzers unterbunden ist. Die passwortbasierte Authentifizierung MUSS serverseitig deaktiviert sein; stattdessen MUSS für den administrativen Fernzugriff ein schlüsselbasiertes kryptografisches Verfahren erzwungen werden."
+    },
+    {
+      "id": "SYS.1.10.A6",
+      "name": "Kontrollierte Installation von Drittanbieter-Software (B)",
+      "prose": "Software, die nicht Teil des auditierten OpenBSD-Basissystems ist, DARF ausschließlich über die offiziellen Paketquellen (Packages/Ports) aus vertrauenswürdigen Repositories installiert werden. Es DARF nur Software installiert werden, die für den definierten Einsatzzweck des Servers zwingend erforderlich ist."
+    },
+    {
+      "id": "SYS.1.10.A7",
+      "name": "Systematische Release-Upgrades (S)",
+      "prose": "Es MUSS ein Prozess etabliert werden, um die halbjährlichen Release-Upgrades des OpenBSD-Projekts zeitnah durchzuführen. Es MUSS sichergestellt werden, dass ausschließlich Versionen betrieben werden, für die das Projekt noch offiziellen Support und Sicherheitsaktualisierungen anbietet."
+    },
+    {
+      "id": "SYS.1.10.A8",
+      "name": "Konsequente Deaktivierung nicht benötigter Dienste (S)",
+      "prose": "Alle im Basissystem enthaltenen, aber für den spezifischen Einsatzzweck des Servers nicht benötigten Hintergrunddienste und Daemons MÜSSEN dauerhaft deaktiviert werden."
+    },
+    {
+      "id": "SYS.1.10.A9",
+      "name": "Härtung der Dateisysteme (S)",
+      "prose": "Für die eingebundenen Dateisysteme MÜSSEN restriktive und sicherheitsrelevante Mount-Optionen konfiguriert werden. Insbesondere MÜSSEN Partitionen (z. B. /tmp, /var oder /home) mit den Optionen nodev, nosuid und noexec eingebunden werden, sofern dies technisch umsetzbar ist."
+    },
+    {
+      "id": "SYS.1.10.A10",
+      "name": "Konfiguration der Systemprotokollierung (S)",
+      "prose": "Der Systemprotokollierungsdienst MUSS so konfiguriert werden, dass sicherheitsrelevante Ereignisse, Authentifizierungsversuche und Firewall-Logs umfassend erfasst werden. Die Protokolldaten MÜSSEN an ein zentrales Log-Management-System weitergeleitet werden."
+    },
+    {
+      "id": "SYS.1.10.A11",
+      "name": "Einsatz von Festplattenverschlüsselung (H)",
+      "prose": "Datenträger mit sensiblen Informationen MÜSSEN mit der in das Betriebssystem integrierten Verschlüsselung (z. B. softraid) verschlüsselt werden."
+    },
+    {
+      "id": "SYS.1.10.A12",
+      "name": "Hochverfügbarkeit für sicherheitskritische Netzwerkkomponenten (H)",
+      "prose": "Für sicherheitskritische Netzwerkkomponenten MUSS ein hochverfügbarer Cluster (z. B. mittels CARP und pfsync) aufgebaut werden, um eine redundante und ausfallsichere Funktion sicherzustellen."
+    },
+    {
+      "id": "SYS.1.10.A13",
+      "name": "Nutzung erweiterter Sicherheitsmechanismen für eigene Anwendungen (H) [Entwickler]",
+      "prose": "Werden auf dem System eigene Anwendungen oder komplexe Skripte entwickelt und betrieben, MÜSSEN diese so konzipiert oder angepasst werden, dass sie die systemeigenen Sicherheitsmechanismen zur Einschränkung von Systemaufrufen (z. B. pledge) und zur Limitierung des sichtbaren Dateisystems (z. B. unveil) nutzen."
+    },
+    {
+      "id": "SYS.1.10.A14",
+      "name": "Erstellung eines gehärteten, angepassten Kernels (H)",
+      "prose": "Für Systeme mit maximalen Schutzanforderungen MUSS ein eigener, minimierter Kernel kompiliert werden. Dabei MÜSSEN alle nicht zwingend benötigten Treiber, Protokolle und Funktionalitäten entfernt werden."
+    },
+    {
+      "id": "SYS.1.10.A15",
+      "name": "Regelmäßige Überprüfung der Systemintegrität (H)",
+      "prose": "Die Integrität der Dateien des Basissystems MUSS regelmäßig überwacht werden, indem die kryptografischen Prüfsummen der installierten Dateien gegen die offiziellen Signaturen des jeweiligen Releases abgeglichen werden."
+    },
+    {
+      "id": "SYS.1.11.A1",
+      "name": "Planung des Server-Betriebs unter FreeBSD (B)",
+      "prose": "Vor der Installation wird geplant, wie der FreeBSD-Server in die bestehende Infrastruktur integriert werden soll. Es wird festgelegt, welche Systemdienste benötigt werden und wie das Dateisystem sowie die Netzwerkanbindung strukturiert sein müssen. Die Planung wird dokumentiert."
+    },
+    {
+      "id": "SYS.1.11.A2",
+      "name": "Gesicherte und minimalistische Installation (B)",
+      "prose": "Die Installation von FreeBSD erfolgt von einem kryptografisch verifizierten, offiziellen Installationsmedium. Es werden nur die für den Betrieb zwingend erforderlichen Komponenten (Distribution Sets) des Basissystems installiert. Für das Administrator-Konto (root) wird ein sicheres Passwort vergeben."
+    },
+    {
+      "id": "SYS.1.11.A3",
+      "name": "Deaktivierung nicht benötigter Dienste (B)",
+      "prose": "Das System wird so konfiguriert, dass keine ungenutzten Dienste gestartet werden. Alle Dienste, die standardmäßig aktiviert sind, aber für den spezifischen Betriebszweck nicht benötigt werden, werden in der Konfiguration (z. B. /etc/rc.conf) dauerhaft deaktiviert."
+    },
+    {
+      "id": "SYS.1.11.A4",
+      "name": "Konsequentes Patch-Management für Basissystem und Pakete (B)",
+      "prose": "Sowohl das Basissystem als auch alle installierten Drittanbieter-Pakete werden zeitnah aktualisiert. Hierfür werden die systemeigenen Werkzeuge (z. B. freebsd-update, pkg) verwendet. Zusätzlich wird das System regelmäßig und automatisiert auf bekannte Schwachstellen in installierten Paketen geprüft (z. B. mittels pkg audit)."
+    },
+    {
+      "id": "SYS.1.11.A5",
+      "name": "Konfiguration der systemeigenen Firewall (B)",
+      "prose": "Es wird eine in FreeBSD integrierte Firewall (z. B. PF oder IPFW) aktiviert. Diese wird mit einer restriktiven „Default Deny“-Regelbasis konfiguriert, die standardmäßig alle nicht explizit freigegebenen ein- und ausgehenden Verbindungen blockiert."
+    },
+    {
+      "id": "SYS.1.11.A6",
+      "name": "Absicherung des administrativen Zugriffs (B)",
+      "prose": "Der Remote-Zugriff für Administrationszwecke (z. B. über SSH) ist kryptografisch abgesichert. Es ist nicht möglich, sich remote direkt mit dem Konto root anzumelden."
+    },
+    {
+      "id": "SYS.1.11.A7",
+      "name": "Konzept für Jails und ZFS (S)",
+      "prose": "Es wird ein Konzept zur Nutzung der spezifischen FreeBSD-Funktionen erstellt. Es wird vorab geplant, welche Dienste zur Isolation in Jails ausgelagert werden und wie die Datasets im ZFS-Dateisystem strukturiert sein müssen, um Datensicherung und Berechtigungsmanagement optimal zu unterstützen."
+    },
+    {
+      "id": "SYS.1.11.A8",
+      "name": "Isolation von Diensten mittels Jails (S)",
+      "prose": "Netzwerkdienste werden voneinander sowie vom Basissystem isoliert betrieben. Hierfür werden die Dienste in dedizierte FreeBSD-Jails ausgelagert. Den Jails werden nur die Berechtigungen zugewiesen, die für den jeweiligen Dienst zwingend erforderlich sind."
+    },
+    {
+      "id": "SYS.1.11.A9",
+      "name": "Strukturierte Nutzung und Sicherung von ZFS-Dateisystemen (S)",
+      "prose": "Das ZFS-Dateisystem wird verwendet, um Daten logisch in separaten Datasets zu strukturieren (z. B. getrennt nach System, Jails, Logs und Benutzerdaten). Es werden regelmäßig automatisiert Snapshots der kritischen Datasets erstellt, um eine schnelle Wiederherstellung zu gewährleisten."
+    },
+    {
+      "id": "SYS.1.11.A10",
+      "name": "Härtung des Kernels über System-Parameter (S)",
+      "prose": "Sicherheitsrelevante Kernel-Parameter werden restriktiv konfiguriert (z. B. über sysctl.conf). Dies umfasst Maßnahmen, um das System vor gängigen Netzwerkangriffen zu schützen (z. B. Schutz vor SYN-Flooding) und den Informationsabfluss auf Systemebene einzuschränken."
+    },
+    {
+      "id": "SYS.1.11.A11",
+      "name": "Konfiguration von Ressourcenlimits (S)",
+      "prose": "Um Denial-of-Service-Angriffe durch Ressourcenerschöpfung zu erschweren, werden dedizierte Ressourcenlimits konfiguriert. Dies erfolgt auf Benutzerebene (z. B. über login.conf) sowie für isolierte Prozesse und Jails (z. B. über das Resource Control Framework rctl)."
+    },
+    {
+      "id": "SYS.1.11.A12",
+      "name": "Zentrale Protokollierung von Systemereignissen (S)",
+      "prose": "Der systemeigene Protokollierungsdienst wird so konfiguriert, dass sicherheitsrelevante Ereignisse des Hosts und der betriebenen Jails zentral erfasst werden. Die Logdaten werden zeitnah an ein separates Log-Management- oder SIEM-System weitergeleitet."
+    },
+    {
+      "id": "SYS.1.11.A13",
+      "name": "Einsatz von ZFS-Verschlüsselung (H)",
+      "prose": "Datasets auf ZFS, die sensible Daten enthalten, werden mit der nativen Verschlüsselungsfunktion von ZFS verschlüsselt. Die Schlüsselmaterialien werden sicher verwaltet."
+    },
+    {
+      "id": "SYS.1.11.A14",
+      "name": "Erweiterte Härtung von Jails (H)",
+      "prose": "Jails werden zusätzlich gehärtet. Hierbei werden Berechtigungen über restriktive Parameter (z. B. securelevel) minimiert und der Zugriff auf Gerätedateien über strikte Devfs-Rulesets streng limitiert."
+    },
+    {
+      "id": "SYS.1.11.A15",
+      "name": "Absicherung des Boot-Prozesses (H)",
+      "prose": "Sofern die zugrunde liegende Hardware dies unterstützt, wird der UEFI Secure Boot Mechanismus von FreeBSD genutzt, um sicherzustellen, dass beim Start ausschließlich ein kryptografisch signierter Bootloader und Kernel ausgeführt wird."
+    },
+    {
+      "id": "SYS.1.11.A16",
+      "name": "Einsatz des Mandatory Access Control (MAC) Frameworks (H)",
+      "prose": "Das in FreeBSD integrierte Mandatory Access Control (MAC) Framework wird aktiviert. Es wird ein geeignetes Sicherheitsrichtlinienmodul (z. B. mac_bsdextended) konfiguriert, um die Zugriffsrechte von Prozessen und Benutzern feingranular und jenseits klassischer Unix-Rechte zu steuern."
+    },
+    {
+      "id": "SYS.1.11.A17",
+      "name": "Erstellung eines gehärteten, angepassten Kernels (H)",
+      "prose": "Für hochkritische Systeme wird ein angepasster Kernel kompiliert, aus dem alle für den spezifischen Einsatzzweck nicht benötigten Treiber, Protokolle und Funktionen entfernt wurden, um die Angriffsfläche auf Kernel-Ebene auf ein Minimum zu reduzieren."
+    },
+    {
       "id": "SYS.1.2.2.A1",
       "name": "Planung von Windows Server 2012 (B)",
       "prose": "Der Einsatz von Windows Server 2012 MUSS vor der Installation sorgfältig geplant werden. Die Anforderungen an die Hardware MÜSSEN vor der Beschaffung geprüft werden. Es MUSS eine begründete und dokumentierte Entscheidung für eine geeignete Edition des Windows Server 2012 getroffen werden. Der Einsatzzweck des Servers sowie die Einbindung ins Active Directory MÜSSEN dabei spezifiziert werden. Die Nutzung von ins Betriebssystem integrierten Cloud-Diensten MUSS grundsätzlich abgewogen und geplant werden. Wenn nicht benötigt, MUSS die Einrichtung von Microsoft-Konten auf dem Server blockiert werden."
@@ -5349,6 +6094,86 @@
       "id": "SYS.1.2.3.A8",
       "name": "Nutzung des Virtual Secure Mode (VSM) (H)",
       "prose": "Vor der Aktivierung von Virtualisierungsbasierter Sicherheit (VBS/VSM) MÜSSEN die Auswirkungen auf den IT-Betrieb und die Sicherheitsprozesse (insbesondere Forensik) bewertet und dokumentiert werden."
+    },
+    {
+      "id": "SYS.1.2.4.A1",
+      "name": "Planung des Einsatzes von Windows Server 2022 (B)",
+      "prose": "Im Vorfeld der Installation MUSS geplant werden, welche Serverrollen und Features für den vorgesehenen Einsatzzweck zwingend benötigt werden. Es MUSS geprüft werden, ob die zugrundeliegende Hardware die spezifischen Sicherheitsfunktionen des Betriebssystems unterstützt."
+    },
+    {
+      "id": "SYS.1.2.4.A2",
+      "name": "Gesicherte Installation und initiale Konfiguration (B)",
+      "prose": "Die Installation von Windows Server 2022 MUSS von einem vertrauenswürdigen und auf Integrität geprüften Installationsmedium erfolgen. Nach der Installation MUSS das standardmäßige lokale Administratorkonto umbenannt und mit einem sicheren Passwort versehen werden."
+    },
+    {
+      "id": "SYS.1.2.4.A3",
+      "name": "Grundlegende Härtung des Betriebssystems (B)",
+      "prose": "Nicht benötigte Serverrollen, Features und Dienste MÜSSEN deinstalliert oder deaktiviert werden. Die systemeigene hostbasierte Firewall MUSS aktiviert sein und mit einer restriktiven, an den Einsatzzweck angepassten Regelbasis betrieben werden."
+    },
+    {
+      "id": "SYS.1.2.4.A4",
+      "name": "Absicherung der Benutzerkonten und Privilegien (B)",
+      "prose": "Die Benutzerkontensteuerung (User Account Control, UAC) MUSS aktiviert sein. Administrative Berechtigungen MÜSSEN nur an einen eng begrenzten und dokumentierten Kreis von Administratoren vergeben werden."
+    },
+    {
+      "id": "SYS.1.2.4.A5",
+      "name": "Aktivierung der grundlegenden Protokollierung (B)",
+      "prose": "Die Protokollierung sicherheitsrelevanter Ereignisse (wie An- und Abmeldungen, Änderungen an Konten und Gruppenrichtlinien) MUSS im Betriebssystem aktiviert sein. Es MUSS sichergestellt werden, dass die lokalen Ereignisprotokolle vor unbefugter Manipulation oder Löschung geschützt sind."
+    },
+    {
+      "id": "SYS.1.2.4.A6",
+      "name": "Regelmäßiges Patch-Management (B)",
+      "prose": "Es MUSS ein Prozess etabliert sein, der sicherstellt, dass bereitgestellte Sicherheitsupdates für das Betriebssystem und installierte Komponenten regelmäßig und zeitnah eingespielt werden."
+    },
+    {
+      "id": "SYS.1.2.4.A7",
+      "name": "Nutzung der Secured-core Server-Funktionen (S)",
+      "prose": "Auf unterstützter Hardware MÜSSEN die Secured-core-Funktionen aktiviert werden. Dies umfasst die Virtualisierungsbasierte Sicherheit (VBS), die Hypervisor-geschützte Codeintegrität (HVCI) und den Schutz vor DMA-Angriffen beim Startvorgang."
+    },
+    {
+      "id": "SYS.1.2.4.A8",
+      "name": "Konsequente Nutzung von Transportverschlüsselung (S)",
+      "prose": "Die systemweite Verwendung von TLS 1.3 MUSS konfiguriert werden. Ältere und als unsicher eingestufte Protokolle, insbesondere SSL sowie TLS 1.0 und TLS 1.1, MÜSSEN systemweit deaktiviert werden. Für den Zugriff auf Dateifreigaben MUSS die SMB-Verschlüsselung aktiviert werden."
+    },
+    {
+      "id": "SYS.1.2.4.A9",
+      "name": "Härtung der Remote-Verwaltung (S)",
+      "prose": "Der administrative Fernzugriff auf den Server MUSS ausschließlich über authentifizierte und verschlüsselte Protokolle erfolgen. RDP-Zugriffe MÜSSEN auf ein Minimum beschränkt und netzwerktechnisch abgesichert werden. Webbasierte Administrationswerkzeuge MÜSSEN gehärtet und stark authentisiert werden."
+    },
+    {
+      "id": "SYS.1.2.4.A10",
+      "name": "Implementierung von Credential Guard (S)",
+      "prose": "Auf Systemen, die die Hardware-Voraussetzungen erfüllen, MUSS der Schutz für zwischengespeicherte Anmeldeinformationen (Credential Guard) aktiviert werden."
+    },
+    {
+      "id": "SYS.1.2.4.A11",
+      "name": "Absicherung der DNS-Kommunikation (S)",
+      "prose": "Der lokale DNS-Client MUSS so konfiguriert werden, dass er für die Auflösung von Namen DNS-over-HTTPS (DoH) verwendet, sofern die Infrastruktur dies unterstützt."
+    },
+    {
+      "id": "SYS.1.2.4.A12",
+      "name": "Implementierung von Application Control (H)",
+      "prose": "Es MUSS eine Positivliste von zulässigen Anwendungen (Application Control) durchgesetzt werden. Es MUSS sichergestellt werden, dass nur signierter und explizit vertrauenswürdiger Code auf dem Server ausgeführt werden kann."
+    },
+    {
+      "id": "SYS.1.2.4.A13",
+      "name": "Sichere Anbindung an Hybrid-Dienste (H)",
+      "prose": "Wird der Server mittels cloudbasierter Management-Lösungen verwaltet, MUSS der Onboarding-Prozess kryptografisch abgesichert und der administrative Zugriff aus der Cloud streng kontrolliert und überwacht werden. Sicherheitsrichtlinien MÜSSEN zentral durchgesetzt werden."
+    },
+    {
+      "id": "SYS.1.2.4.A14",
+      "name": "Umfassende Protokollierung und Detektion (H)",
+      "prose": "Es MUSS eine erweiterte Systemprotokollierung aktiviert werden, die Skript-Ausführungen und die Erstellung von Prozessen detailliert erfasst. Diese Daten MÜSSEN an ein zentrales System weitergeleitet und durch eine EDR-Lösung kontinuierlich auf Anomalien überwacht werden."
+    },
+    {
+      "id": "SYS.1.2.4.A15",
+      "name": "Einsatz von Just-In-Time und Just-Enough-Administration (H)",
+      "prose": "Administrative Berechtigungen MÜSSEN nur bei Bedarf und zeitlich begrenzt vergeben werden (Just-In-Time). Für Routineaufgaben MÜSSEN administrative Endpunkte so konfiguriert werden, dass Administratoren nur die Ausführung fest definierter und zwingend benötigter Befehle erlaubt ist (Just-Enough-Administration)."
+    },
+    {
+      "id": "SYS.1.2.4.A16",
+      "name": "Härtung des SMB-Protokolls über nicht vertrauenswürdige Netze (H)",
+      "prose": "Für den Zugriff auf Dateifreigaben von außerhalb vertrauenswürdiger Netzwerksegmente MUSS der Einsatz von SMB over QUIC konfiguriert werden."
     },
     {
       "id": "SYS.1.3.A1",
@@ -7849,6 +8674,106 @@
       "id": "SYS.4.5.A16",
       "name": "Nutzung dedizierter IT-Systeme zur Datenprüfung (H)",
       "prose": "Ein Prozess zur isolierten Prüfung von Daten vor der Übertragung in das interne Netz ist definiert."
+    },
+    {
+      "id": "SYS.5.1.A1",
+      "name": "Festlegen einer Mindestknotenanzahl (B)",
+      "prose": "Vor dem Einsatz einer DLT MUSS eine Mindestanzahl an Knoten festgelegt werden, die den Herstellervorgaben entspricht. Ein Puffer (mindestens 50% bei <=10 Knoten) MUSS berücksichtigt werden. Für jeden Teilnehmenden MUSS eine Begrenzung der Knotenanzahl festgelegt werden."
+    },
+    {
+      "id": "SYS.5.1.A2",
+      "name": "Ausschluss der Speicherung von Daten mit dem Recht auf Vergessenheit (B) [Fachverantwortliche]",
+      "prose": "Es MUSS ein definierter Prozess existieren, der sicherstellt, dass in der Blockchain KEINE Daten gespeichert werden, die aus rechtlichen Gründen das Recht auf Vergessenheit bzw. Löschung erfordern."
+    },
+    {
+      "id": "SYS.5.1.A3",
+      "name": "Persistente Speicherung (B)",
+      "prose": "Die Blockchains MÜSSEN dezentral, konsistent, unveränderbar und dauerhaft gespeichert werden. Der verwendete Speicher MUSS skalierbar, ausfallsicher und performant sein."
+    },
+    {
+      "id": "SYS.5.1.A4",
+      "name": "Speicherung von Passwörtern und Schlüsseln (B)",
+      "prose": "Passwörter und Schlüssel für eine Blockchain MÜSSEN zwingend verschlüsselt gespeichert werden. Ein definierter Prozess zur sicheren Ablage MUSS existieren."
+    },
+    {
+      "id": "SYS.5.1.A5",
+      "name": "Verteilung der Knoten auf mehrere Standorte (S)",
+      "prose": "Die Knoten MÜSSEN über mehrere Standorte verteilt werden, um die Dezentralisierung und Verfügbarkeit zu erhöhen."
+    },
+    {
+      "id": "SYS.5.1.A6",
+      "name": "Erstellung von Vorgaben und Richtlinien für Smart Contracts (S) [ISB]",
+      "prose": "Für Smart Contracts MÜSSEN Vorgaben und Richtlinien vor der Inbetriebnahme festgelegt werden, die Sicherheit und Verifizierbarkeit gewährleisten."
+    },
+    {
+      "id": "SYS.5.1.A7",
+      "name": "Verwendung stabiler und aktueller Software-Versionen (S)",
+      "prose": "Es MÜSSEN stabile und aktuelle Software-Versionen verwendet werden. Softwareversionen aus Pre-Releases (Alpha/Beta) DÜRFEN NICHT für den Produktivbetrieb verwendet werden."
+    },
+    {
+      "id": "SYS.5.1.A8",
+      "name": "Einführung einer Zugriffskontrolle (S)",
+      "prose": "Es MUSS ein System der Zugriffskontrolle und Authentifizierung implementiert werden, um den Zugriff auf die Blockchain und DLT nur autorisierten Nutzenden zu gewähren."
+    },
+    {
+      "id": "SYS.5.1.A9",
+      "name": "Festlegen von Mindestanforderungen an kryptografische Hashfunktionen (S) [ISB]",
+      "prose": "Die verwendeten kryptografischen Hashfunktionen MÜSSEN dem Stand der Technik entsprechen und mindestens eine Schlüssellänge von 256 Bit aufweisen."
+    },
+    {
+      "id": "SYS.5.1.A10",
+      "name": "Erstellung eines Planes zur Erhaltung der Langlebigkeit (S)",
+      "prose": "Es MUSS ein Plan erstellt werden, der regelt, wie mit den Daten zu verfahren ist, wenn Vertraulichkeit und Integrität in Zukunft nicht mehr gewährleistet sind."
+    },
+    {
+      "id": "SYS.5.1.A11",
+      "name": "Festlegen von Policies (S) [Fachverantwortliche]",
+      "prose": "Für die Blockchain und DLT MÜSSEN Policies festgelegt werden, die den Betrieb, den Konsensalgorithmus und die Transaktionsvalidierung verbindlich regeln."
+    },
+    {
+      "id": "SYS.5.1.A12",
+      "name": "Vermeidung von Privileg-Escalation (S)",
+      "prose": "Zur Vermeidung von Rechteanreicherung (Privilege Escalation) MÜSSEN dedizierte Sicherheitsmaßnahmen implementiert werden."
+    },
+    {
+      "id": "SYS.5.1.A13",
+      "name": "Erhöhung des Passwortschutzes (S)",
+      "prose": "Zum Speichern von Passwörtern für private Schlüssel oder Wallets MÜSSEN kryptografisch starke Salted-Hashverfahren verwendet werden."
+    },
+    {
+      "id": "SYS.5.1.A14",
+      "name": "Erhaltung der Integrität (S)",
+      "prose": "Es MÜSSEN Maßnahmen zur Erhaltung der Integrität gegen Angriffe wie Double Spending getroffen werden, inklusive Wahl eines geeigneten Konsensalgorithmus und Festlegung der Finalität."
+    },
+    {
+      "id": "SYS.5.1.A15",
+      "name": "Sicherung der Blockchain Business Continuity (S)",
+      "prose": "Zur Erhaltung der Verfügbarkeit MUSS ein Notfallplan erstellt werden, der Anweisungen für Störungen enthält. Ein Monitoring MUSS implementiert sein."
+    },
+    {
+      "id": "SYS.5.1.A16",
+      "name": "Entwicklung einer Backup-Strategie (S)",
+      "prose": "Zur Erhöhung der Verfügbarkeit MUSS eine Backup-Strategie entwickelt werden, die Sicherungskopien auf mehrere Knoten verteilt."
+    },
+    {
+      "id": "SYS.5.1.A17",
+      "name": "Mehr-Faktor-Authentifizierung (S)",
+      "prose": "Authentifizierungen von unternehmenskritischen Anwendungen MÜSSEN über eine Mehr-Faktor-Authentifizierung abgesichert werden."
+    },
+    {
+      "id": "SYS.5.1.A18",
+      "name": "Multi-Signatur für administrative Tätigkeiten (H)",
+      "prose": "Die Ausführung von administrativen Tätigkeiten zur Verwaltung der Blockchain MUSS nach dem Mehr-Augen-Prinzip erfolgen und dokumentiert werden."
+    },
+    {
+      "id": "SYS.5.1.A19",
+      "name": "Verwendung von quantensicheren Algorithmen (H)",
+      "prose": "Die Notwendigkeit von quantensicheren Algorithmen MUSS für die eingesetzten kryptografischen Verfahren bewertet werden."
+    },
+    {
+      "id": "SYS.5.1.A20",
+      "name": "Trennung von Management- und Applikationsnetzwerk (H)",
+      "prose": "Es MUSS eine netzwerktechnische Trennung (physisch oder logisch) von Management- und Applikationsnetzwerk implementiert werden."
     },
     {
       "id": "IND.1.A1",

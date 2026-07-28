@@ -45,7 +45,7 @@ Each maturity level is one `statement` part:
 }
 ```
 
-- `ns` = `https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces`
+- `ns` = `https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces`
 - **`prose` is the statement** (so generic OSCAL renderers show the real content).
 - **Guidance and assessment are nested `parts`** (`name: "guidance"` / `"assessment"`), not
   props.

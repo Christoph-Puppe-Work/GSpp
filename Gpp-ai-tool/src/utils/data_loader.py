@@ -18,6 +18,17 @@ from utils.file_utils import read_source_text
 logger = logging.getLogger(__name__)
 
 
+def zielobjekt_row_name(row: Dict[str, str]) -> str:
+    """Returns the Zielobjekt name of one target_object_categories.csv row.
+
+    The BSI renamed the CSV's name column from "Zielobjektkategorie" to "Zielobjekt"
+    (documentation/namespaces update of 2026-06-30). This is the single place that knows
+    both spellings, so every consumer keeps working with old and new CSV states alike.
+    Returns "" when the row has no name under either column (callers should skip such rows).
+    """
+    return (row.get("Zielobjekt") or row.get("Zielobjektkategorie") or "").strip()
+
+
 @lru_cache(maxsize=None)
 def load_zielobjekte_csv(file_path: str) -> List[Dict[str, str]]:
     """

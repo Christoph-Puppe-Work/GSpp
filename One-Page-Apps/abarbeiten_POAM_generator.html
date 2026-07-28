@@ -147,7 +147,7 @@
 
 <script>
 const P={arFilename:'',sspHref:'',sysName:'',catalog:new Map(),findings:[],observations:[],risks:[],items:[],meta:{title:'',version:'1.0.0',desc:''},responsible:{name:'',role:'system-owner',email:''},aiCache:new Map()};
-const CATALOG_URL='https://raw.githubusercontent.com/BSI-Bund/Stand-der-Technik-Bibliothek/refs/heads/main/Anwenderkataloge/Grundschutz%2B%2B/Grundschutz%2B%2B-catalog.json';
+const CATALOG_URL='https://raw.githubusercontent.com/BSI-Bund/Stand-der-Technik-Bibliothek/refs/heads/main/control_layer/Grundschutz%2B%2B/Grundschutz%2B%2B-resolved_catalog.json';
 const MODELS={claude:[{id:'claude-opus-4-6-20250514',label:'Opus 4.6'},{id:'claude-sonnet-4-6-20250514',label:'Sonnet 4.6'}],gemini:[{id:'gemini-3.1-pro-preview',label:'3.1 Pro'},{id:'gemini-3.1-flash',label:'3.1 Flash'}]};
 const PM={high:{l:'Hoch',c:'bg-red-900 text-red-300 border-red-700'},medium:{l:'Mittel',c:'bg-amber-900 text-amber-300 border-amber-700'},low:{l:'Niedrig',c:'bg-blue-900 text-blue-300 border-blue-700'}};
 const SM={open:{l:'Offen',c:'bg-red-900/50 text-red-300 border-red-700'},'in-progress':{l:'In Arbeit',c:'bg-amber-900 text-amber-300 border-amber-700'},closed:{l:'Erledigt',c:'bg-emerald-900 text-emerald-300 border-emerald-700'},'deviation-requested':{l:'Abw. beantr.',c:'bg-purple-900 text-purple-300 border-purple-700'},'deviation-approved':{l:'Abw. genehm.',c:'bg-indigo-900 text-indigo-300 border-indigo-700'},'risk-accepted':{l:'Risiko akz.',c:'bg-slate-700 text-slate-300 border-slate-600'}};

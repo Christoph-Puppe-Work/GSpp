@@ -116,6 +116,8 @@
         /* BSI-Schutzziel-Props (security_targets.csv): Wert 1 = wirkt, Wert 2 = im Zentrum */
         .tag-sz { background: #eceff1; color: #455a64; border-color: #cfd8dc; }
         .tag-sz-strong { background: #455a64; color: #fff; border-color: #263238; }
+        /* Elementare Gefährdungen (threats-Prop, basethreats.csv) */
+        .tag-threat { background: #fff3e0; color: #b34700; border-color: #ffcc80; }
 
         /* Statement Box */
         .statement-box { background: #fff; border: 1px solid #eee; padding: 18px; border-radius: 8px; margin: 15px 0; }
@@ -244,6 +246,7 @@
                 <select id="filterModal" class="filter-select" onchange="applyFilters()"><option value="all">Jede Modalität</option></select>
                 <select id="filterHandlung" class="filter-select" onchange="applyFilters()"><option value="all">Alle Handlungen</option></select>
                 <select id="filterTag" class="filter-select" onchange="applyFilters()"><option value="all">Alle Tags</option></select>
+                <select id="filterThreat" class="filter-select" onchange="applyFilters()"><option value="all">Alle Gefährdungen</option></select>
                 <button class="reset-btn" onclick="resetFilters()">Filter zurücksetzen</button>
             </div>
         </div>
@@ -316,7 +319,10 @@
 
     <script>
         const apiKey = "";
-        let filterOptions = { class: new Set(), sec_level: new Set(), effort_level: new Set(), modalverb: new Set(), handlung: new Set(), tags: new Set() };
+        let filterOptions = { class: new Set(), sec_level: new Set(), effort_level: new Set(), modalverb: new Set(), handlung: new Set(), tags: new Set(), threat: new Set() };
+
+        // Elementare Gefährdungen (BSI basethreats.csv) — Namen für die threats-Prop-Badges.
+        const G0_THREATS = {'G 0.1':'Feuer','G 0.2':'Ungünstige klimatische Bedingungen','G 0.3':'Wasser','G 0.4':'Verschmutzung, Staub, Korrosion','G 0.5':'Naturkatastrophen','G 0.6':'Katastrophen im Umfeld','G 0.7':'Großereignisse im Umfeld','G 0.8':'Ausfall oder Störung der Stromversorgung','G 0.9':'Ausfall oder Störung von Kommunikationsnetzen','G 0.10':'Ausfall oder Störung von Versorgungsnetzen','G 0.11':'Ausfall oder Störung von Dienstleistern','G 0.12':'Elektromagnetische Störstrahlung','G 0.13':'Abfangen kompromittierender Strahlung','G 0.14':'Ausspähen von Informationen (Spionage)','G 0.15':'Abhören','G 0.16':'Diebstahl von Geräten, Datenträgern oder Dokumenten','G 0.17':'Verlust von Geräten, Datenträgern oder Dokumenten','G 0.18':'Fehlplanung oder fehlende Anpassung','G 0.19':'Offenlegung schützenswerter Informationen','G 0.20':'Informationen oder Produkte aus unzuverlässiger Quelle','G 0.21':'Manipulation von Hard- oder Software','G 0.22':'Manipulation von Informationen','G 0.23':'Unbefugtes Eindringen in IT-Systeme','G 0.24':'Zerstörung von Geräten oder Datenträgern','G 0.25':'Ausfall von Geräten oder Systemen','G 0.26':'Fehlfunktion von Geräten oder Systemen','G 0.27':'Ressourcenmangel','G 0.28':'Software-Schwachstellen oder -Fehler','G 0.29':'Verstoß gegen Gesetze oder Regelungen','G 0.30':'Unberechtigte Nutzung oder Administration von Geräten und Systemen','G 0.31':'Fehlerhafte Nutzung oder Administration von Geräten und Systemen','G 0.32':'Missbrauch von Berechtigungen','G 0.33':'Personalausfall','G 0.34':'Anschlag','G 0.35':'Nötigung, Erpressung oder Korruption','G 0.36':'Identitätsdiebstahl','G 0.37':'Abstreiten von Handlungen','G 0.38':'Missbrauch personenbezogener Daten','G 0.39':'Schadprogramme','G 0.40':'Verhinderung von Diensten (Denial of Service)','G 0.41':'Sabotage','G 0.42':'Social Engineering','G 0.43':'Einspielen von Nachrichten','G 0.44':'Unbefugtes Eindringen in Räumlichkeiten','G 0.45':'Datenverlust','G 0.46':'Integritätsverlust schützenswerter Informationen','G 0.47':'Schädliche Seiteneffekte IT-gestützter Angriffe'};
         let loadedCatalogs = [];
         let aiCache = {};
         // Vorberechnetes Mapping G++-Control -> passende BSI ED2023-Anforderungen
@@ -679,7 +685,7 @@ eine KI. Dein Satzbau ist Abwechslungsreich, konkret, präßise und du nutzt kei
             document.getElementById('clearAllBtn').style.display = 'none';
             document.getElementById('filterControls').style.display = 'none';
             loadedCatalogs = [];
-            filterOptions = { class: new Set(), sec_level: new Set(), effort_level: new Set(), modalverb: new Set(), handlung: new Set(), tags: new Set() };
+            filterOptions = { class: new Set(), sec_level: new Set(), effort_level: new Set(), modalverb: new Set(), handlung: new Set(), tags: new Set(), threat: new Set() };
             populateFilterUI();
         }
 
@@ -755,6 +761,11 @@ eine KI. Dein Satzbau ist Abwechslungsreich, konkret, präßise und du nutzt kei
             ].map(([name, label]) => ({ label, value: control.props?.find(p => p.name === name)?.value || '0' }))
              .filter(sz => sz.value !== '0');
 
+            // Elementare Gefährdungen (threats-Prop, kommaseparierte G 0.x-IDs aus basethreats.csv)
+            const threatsRaw = control.props?.find(p => p.name === 'threats')?.value || "";
+            const threatIds = threatsRaw ? threatsRaw.split(',').map(t => t.trim()).filter(t => t) : [];
+            threatIds.forEach(t => filterOptions.threat.add(t));
+
             if(cClass) filterOptions.class.add(cClass);
             if(sec) filterOptions.sec_level.add(sec);
             if(effort) filterOptions.effort_level.add(effort);
@@ -765,19 +776,20 @@ eine KI. Dein Satzbau ist Abwechslungsreich, konkret, präßise und du nutzt kei
             const modal = stmtPart?.props?.find(p => p.name === 'modal_verb')?.value || "";
 			const action = stmtPart?.props?.find(p => p.name === 'action_word')?.value || "";
 			const result = stmtPart?.props?.find(p => p.name === 'result')?.value || "";
-			const precision = stmtPart?.props?.find(p => p.name === 'precision')?.value || "";
+			const precision = stmtPart?.props?.find(p => p.name === 'result_specification' || p.name === 'precision')?.value || "";
 			const targetObj = stmtPart?.props?.find(p => p.name === 'target_object_categories')?.value || "";
 
             if(modal) filterOptions.modalverb.add(modal);
             if(action) filterOptions.handlung.add(action);
 
-            card.dataset.searchText = `${control.id} ${uuid} ${control.title} ${stmtPart?.prose || ""} ${modal} ${action} ${targetObj} ${tagsArray.join(' ')}`.toLowerCase();
+            card.dataset.searchText = `${control.id} ${uuid} ${control.title} ${stmtPart?.prose || ""} ${modal} ${action} ${targetObj} ${tagsArray.join(' ')} ${threatIds.map(t => `${t} ${G0_THREATS[t] || ''}`).join(' ')}`.toLowerCase();
             card.dataset.class = cClass;
             card.dataset.sec = sec;
             card.dataset.effort = effort;
             card.dataset.modal = modal;
             card.dataset.handlung = action;
             card.dataset.tags = JSON.stringify(tagsArray);
+            card.dataset.threats = JSON.stringify(threatIds);
 
             card.innerHTML = `
                 <div class="id-row"><span class="badge-id">${control.id}</span><span class="badge-class">${escapeHtml(cClass)}</span></div>
@@ -790,6 +802,7 @@ eine KI. Dein Satzbau ist Abwechslungsreich, konkret, präßise und du nutzt kei
                     ${action ? `<span class="tag tag-action">${escapeHtml(action)}</span>` : ''}
                     ${targetObj ? `<span class="tag tag-target">🎯 ${escapeHtml(targetObj)}</span>` : ''}
                     ${schutzziele.map(sz => `<span class="tag ${sz.value === '2' ? 'tag-sz-strong' : 'tag-sz'}" title="${sz.label}: ${sz.value === '2' ? 'steht im Zentrum der Anforderung' : 'Anforderung wirkt auf dieses Schutzziel'}">🛡 ${sz.label}${sz.value === '2' ? ' ●●' : ''}</span>`).join('')}
+                    ${threatIds.map(t => `<span class="tag tag-threat" title="${escapeHtml(G0_THREATS[t] || 'Elementare Gefährdung')}">⚠ ${escapeHtml(t)}</span>`).join('')}
                     ${tagsArray.map(t => `<span class="tag tag-tags">Tag: ${escapeHtml(t)}</span>`).join('')}
                 </div>
                 <div class="statement-box">
@@ -850,9 +863,10 @@ eine KI. Dein Satzbau ist Abwechslungsreich, konkret, präßise und du nutzt kei
             const fMod = document.getElementById('filterModal').value;
             const fHandlung = document.getElementById('filterHandlung').value;
             const fTag = document.getElementById('filterTag').value;
+            const fThreat = document.getElementById('filterThreat').value;
 
             // Prüfe, ob überhaupt ein Filter (inkl. Profil) aktiv ist
-            const anyFilterActive = (query !== "" || fClass !== "all" || fSec !== "all" || fEff !== "all" || fMod !== "all" || fHandlung !== "all" || fTag !== "all" || activeProfileIds !== null);
+            const anyFilterActive = (query !== "" || fClass !== "all" || fSec !== "all" || fEff !== "all" || fMod !== "all" || fHandlung !== "all" || fTag !== "all" || fThreat !== "all" || activeProfileIds !== null);
 
             document.querySelectorAll('.filterable-item, .filterable-container').forEach(el => {
                 el.classList.add('hidden');
@@ -872,6 +886,7 @@ eine KI. Dein Satzbau ist Abwechslungsreich, konkret, präßise und du nutzt kei
 
             document.querySelectorAll('.control-card').forEach(card => {
                 const cardTags = card.dataset.tags ? JSON.parse(card.dataset.tags) : [];
+                const cardThreats = card.dataset.threats ? JSON.parse(card.dataset.threats) : [];
 
                 // Beinhaltet jetzt die Prüfung gegen das Set activeProfileIds
                 const match = (!query || card.dataset.searchText.includes(query)) &&
@@ -881,6 +896,7 @@ eine KI. Dein Satzbau ist Abwechslungsreich, konkret, präßise und du nutzt kei
                               (fMod === 'all' || card.dataset.modal === fMod) &&
                               (fHandlung === 'all' || card.dataset.handlung === fHandlung) &&
                               (fTag === 'all' || cardTags.includes(fTag)) &&
+                              (fThreat === 'all' || cardThreats.includes(fThreat)) &&
                               (!activeProfileIds || activeProfileIds.has(card.id)); // NEU: Profil-Filter
 
                 if (match) {
@@ -923,16 +939,21 @@ eine KI. Dein Satzbau ist Abwechslungsreich, konkret, präßise und du nutzt kei
             fillSelect('filterModal', filterOptions.modalverb, "Modalität");
             fillSelect('filterHandlung', filterOptions.handlung, "Handlung");
             fillSelect('filterTag', filterOptions.tags, "Tag");
+            // Numerisch nach G 0.x sortieren, Anzeige mit Gefährdungsnamen
+            fillSelect('filterThreat', filterOptions.threat, "Gefährdung", {
+                sortFn: (a, b) => (parseFloat(a.replace('G 0.', '')) || 0) - (parseFloat(b.replace('G 0.', '')) || 0),
+                displayFn: t => `${t} — ${G0_THREATS[t] || 'Elementare Gefährdung'}`,
+            });
         }
 
-        function fillSelect(id, set, label) {
+        function fillSelect(id, set, label, opts = {}) {
             const sel = document.getElementById(id);
             if (!sel) return;
             const currentVal = sel.value;
-            Array.from(set).sort().forEach(v => {
+            Array.from(set).sort(opts.sortFn).forEach(v => {
                 if (!v) return;
                 const o = document.createElement('option');
-                o.value = v; o.textContent = v; sel.appendChild(o);
+                o.value = v; o.textContent = opts.displayFn ? opts.displayFn(v) : v; sel.appendChild(o);
             });
             if (set.has(currentVal)) sel.value = currentVal;
             else sel.value = 'all';
@@ -940,7 +961,7 @@ eine KI. Dein Satzbau ist Abwechslungsreich, konkret, präßise und du nutzt kei
 
         function resetFilters() {
             document.getElementById('searchInput').value = '';
-            ['filterClass', 'filterSec', 'filterEffort', 'filterModal', 'filterHandlung', 'filterTag'].forEach(id => document.getElementById(id).value = 'all');
+            ['filterClass', 'filterSec', 'filterEffort', 'filterModal', 'filterHandlung', 'filterTag', 'filterThreat'].forEach(id => document.getElementById(id).value = 'all');
 
             document.getElementById('profileSelect').value = '';
             document.getElementById('profileInfo').textContent = '';

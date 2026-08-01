@@ -285,7 +285,7 @@
         if (n.includes('authenticity')) return { icon: icons.shield, color: 'text-green-200 bg-green-900/50 border-green-800', strongColor: 'text-green-100 bg-green-700/80 border-green-400', label: 'Authenticity', schutzziel: true };
         if (n.includes('phase')) return { icon: icons.clock, color: 'text-purple-200 bg-purple-900/50 border-purple-800', label: 'Phase' };
         if (n.includes('class') || n.includes('technical')) return { icon: icons.cube, color: 'text-slate-200 bg-slate-700 border-slate-600', label: 'Class' };
-        if (n.includes('modalverb')) return { icon: icons.alert, color: 'text-fuchsia-200 bg-fuchsia-900/60 border-fuchsia-700', label: 'Modalverb' };
+        if (n.includes('modal_verb') || n.includes('modalverb')) return { icon: icons.alert, color: 'text-fuchsia-200 bg-fuchsia-900/60 border-fuchsia-700', label: 'Modalverb' };
         if (n.includes('effort_level') || n.includes('aufwand')) return { icon: icons.zap, color: 'text-orange-200 bg-orange-900/60 border-orange-700', label: 'Aufwand' };
         if (n.includes('documentation') || n.includes('dokumentation')) return { icon: icons.doc, color: 'text-cyan-200 bg-cyan-900/60 border-cyan-700', label: 'Doku' };
         if (n.includes('ergebnis') || n.includes('result')) return { icon: icons.check, color: 'text-emerald-200 bg-emerald-900/60 border-emerald-700', label: 'Ergebnis' };
@@ -998,7 +998,7 @@
 
         let navHtml = '';
         let filterOpts = { status: new Set(['open', 'implemented', 'partial', 'planned', 'alternative', 'not-applicable']) };
-        const allowedFilters = ['status', 'modalverb', 'sec_level', 'class', 'phase', 'tags', 'tag'];
+        const allowedFilters = ['status', 'modal_verb', 'modalverb', 'sec_level', 'class', 'phase', 'tags', 'tag'];
         const addFilter = (k, v) => {
             if(!k || !v) return;
             const kl = k.toLowerCase();

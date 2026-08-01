@@ -352,6 +352,8 @@
         const API_URL_NUTZERGEN = 'https://api.github.com/repos/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/contents/ED23-Baustein-profile/DE';
         const API_URL_GPLUS = 'https://api.github.com/repos/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/contents/Zielobjektkategorien/profile/regular';
         const API_URL_PRAKTIKEN = 'https://api.github.com/repos/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/contents/Zielobjektkategorien/profile/process';
+        // BSI implementation_layer: fertige Component-Definitions (Keycloak, Netzarchitektur, ...)
+        const API_URL_SDT_COMPONENTS = 'https://api.github.com/repos/BSI-Bund/Stand-der-Technik-Bibliothek/contents/implementation_layer';
         const PRAKTIKEN_FILE_SUFFIX = '_process_profile.json';
 
         // Praktik-Kürzel → Begriff. Fallback für die Anzeige, falls der Basis-Katalog (mit
@@ -609,6 +611,8 @@
             manualControls: new Set(),
             modifications: new Map(),
             components: [],
+            bsiComponents: [], // Importierte BSI-Component-Definitions (SdT implementation_layer)
+            altIdIndex: new Map(), // alt-identifier (UUID) -> G++ Control-ID, für das Mapping der SdT-Komponenten
             riskData: [],
             customControls: new Map(),
             aiDocuments: new Map(),
@@ -638,6 +642,7 @@
             await loadCachedAIDocuments();
             renderCatalogsList();
             fetchGitHubComponents();
+            fetchSdtComponents();
             // Prozess-Liste wird über switchMethodik('standard') unten passend zur Methodik geladen.
             setupSearchListeners();
             setupRiskTabListeners();
@@ -2275,6 +2280,8 @@ ${candidates.join('\n')}`;
                         if (i.props) {
                             const mv = i.props.find(isModalverbProp);
                             if (mv) modalverb = mv.value;
+                            const alt = i.props.find(p => p.name === 'alt-identifier');
+                            if (alt && alt.value) bpState.altIdIndex.set(String(alt.value).trim().toLowerCase(), i.id);
                         }
                         if (i.parts) {
                             const prosePart = i.parts.find(p => p.name === 'statement' || p.prose);
@@ -2531,6 +2538,16 @@ ${candidates.join('\n')}`;
                     </div>
                 </div>
 
+                <div class="mb-6 p-5 bg-slate-900/80 border border-amber-700/60 rounded-xl shadow-inner">
+                    <h3 class="text-sm font-bold text-amber-400 uppercase mb-2">3b. BSI-Komponenten (SdT implementation_layer, Optional)</h3>
+                    <p class="text-xs text-slate-400 mb-4">Fertige Component-Definitions aus der Stand-der-Technik-Bibliothek (z.B. Keycloak, Netzarchitektur, Passwortrichtlinie). Sie werden als SSP-Komponenten übernommen und liefern vorbefüllte Umsetzungsbeschreibungen für die abgedeckten G++-Anforderungen.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-3 mb-3">
+                        <select id="dd-sdt-comp" class="w-full px-3 py-2 bg-slate-900 border border-slate-600 rounded-lg text-sm text-white"><option value="">Lade BSI-Komponenten...</option></select>
+                        <button onclick="addBsiComponent()" class="px-5 py-2 bg-amber-600 text-white font-medium rounded-lg hover:bg-amber-500 transition-colors text-sm shadow-md">Komponente importieren</button>
+                    </div>
+                    <ul id="bsi-components-list" class="space-y-2"></ul>
+                </div>
+
                 <div class="pt-2">
                     <h3 class="text-sm font-bold text-slate-300 uppercase mb-2">4. Optionale Muster-Assets</h3>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
@@ -2721,6 +2738,78 @@ ${candidates.join('\n')}`;
                 bpState.praktiken.delete(url);
             }
             renderTailoredList();
+        }
+
+        // --- BSI-Komponenten (SdT implementation_layer) ---
+        async function fetchSdtComponents() {
+            const dd = document.getElementById('dd-sdt-comp');
+            if (!dd) return;
+            try {
+                const dirs = await (await fetch(API_URL_SDT_COMPONENTS)).json();
+                dd.innerHTML = '<option value="" disabled selected>BSI-Komponente wählen...</option>';
+                for (const d of (Array.isArray(dirs) ? dirs : []).filter(i => i.type === 'dir')) {
+                    try {
+                        const files = await (await fetch(d.url)).json();
+                        (Array.isArray(files) ? files : [])
+                            .filter(f => f.name.endsWith('-component_definition.json'))
+                            .forEach(f => dd.appendChild(new Option(f.name.replace('-component_definition.json', ''), f.download_url)));
+                    } catch (e) { console.warn('SdT-Komponenten-Ordner nicht lesbar:', d.name, e); }
+                }
+            } catch (e) {
+                console.warn('SdT implementation_layer nicht erreichbar', e);
+                dd.innerHTML = '<option value="">BSI-Komponenten nicht erreichbar</option>';
+            }
+        }
+
+        async function addBsiComponent() {
+            const dd = document.getElementById('dd-sdt-comp');
+            const url = dd?.value;
+            if (!url) return alert('Bitte zuerst eine BSI-Komponente auswählen.');
+            if (bpState.bsiComponents.some(bc => bc.source === url)) return alert('Diese BSI-Komponente ist bereits importiert.');
+            try {
+                const data = await (await fetch(url)).json();
+                const cd = data['component-definition'];
+                if (!cd) throw new Error('Keine component-definition im Dokument.');
+                const name = dd.options[dd.selectedIndex].text;
+                let mapped = 0, unmapped = 0;
+                const components = (cd.components || []).map(c => {
+                    const impls = [];
+                    (c['control-implementations'] || []).forEach(ci => {
+                        (ci['implemented-requirements'] || []).forEach(req => {
+                            // control-id ist "_<uuid>" aus dem Kernel-Katalog; Mapping auf die
+                            // G++-ID über das alt-identifier-Prop des Anwenderkatalogs.
+                            const key = String(req['control-id'] || '').replace(/^_/, '').trim().toLowerCase();
+                            const gppId = bpState.altIdIndex.get(key);
+                            if (gppId) { impls.push({ gppId, text: req.description || '' }); mapped++; }
+                            else unmapped++;
+                        });
+                    });
+                    return { uuid: c.uuid || crypto.randomUUID(), title: c.title || 'Komponente', type: c.type || 'software', description: c.description || '', impls };
+                });
+                bpState.bsiComponents.push({ uuid: cd.uuid || crypto.randomUUID(), name, source: url, components, mapped, unmapped });
+                renderBsiComponentsList();
+            } catch (e) {
+                alert('BSI-Komponente konnte nicht geladen werden: ' + e.message);
+            }
+        }
+
+        function removeBsiComponent(uuid) {
+            bpState.bsiComponents = bpState.bsiComponents.filter(bc => bc.uuid !== uuid);
+            renderBsiComponentsList();
+        }
+
+        function renderBsiComponentsList() {
+            const ul = document.getElementById('bsi-components-list');
+            if (!ul) return;
+            const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+            ul.innerHTML = bpState.bsiComponents.map(bc => `
+                <li class="flex items-center justify-between bg-slate-800 border border-amber-800/60 rounded-lg px-4 py-2 text-sm">
+                    <span class="text-white">
+                        <span class="font-semibold text-amber-300">${esc(bc.name)}</span>
+                        <span class="text-slate-400 ml-2">${bc.components.length} Komponente(n), ${bc.mapped} Anforderungen auf G++ gemappt${bc.unmapped ? `, ${bc.unmapped} ohne Mapping` : ''}</span>
+                    </span>
+                    <button onclick="removeBsiComponent('${esc(bc.uuid)}')" class="text-red-400 hover:text-red-300 font-bold ml-3" title="Entfernen">✕</button>
+                </li>`).join('');
         }
 
         async function fetchGitHubComponents() {
@@ -3996,6 +4085,18 @@ ${candidates.join('\n')}`;
                 });
             });
 
+            // BSI-Komponenten (SdT implementation_layer) als SSP-Komponenten übernehmen.
+            bpState.bsiComponents.forEach(bc => bc.components.forEach(c => {
+                sspComponents.push({
+                    uuid: c.uuid,
+                    type: c.type,
+                    title: `${bc.name}: ${c.title}`,
+                    description: c.description,
+                    status: { state: "operational" },
+                    links: [{ href: bc.source, rel: "component-definition" }]
+                });
+            }));
+
             bpState.components.forEach(c => {
                 sspComponents.push({
                     uuid: c.id,
@@ -4271,6 +4372,31 @@ ${candidates.join('\n')}`;
                 }
                 return requirement;
             }).filter(req => req["by-components"].length > 0);
+
+            // BSI-Komponenten: vorbefüllte Umsetzungsbeschreibungen aus dem implementation_layer
+            // in die implemented-requirements mergen (per G++-Control-ID, gemappt via alt-identifier).
+            if (bpState.bsiComponents.length > 0) {
+                const reqByControl = new Map(reqs.map(r => [r['control-id'], r]));
+                bpState.bsiComponents.forEach(bc => bc.components.forEach(c => (c.impls || []).forEach(impl => {
+                    let req = reqByControl.get(impl.gppId);
+                    if (!req) {
+                        req = {
+                            uuid: crypto.randomUUID(),
+                            'control-id': impl.gppId,
+                            description: 'Umsetzung durch BSI-Komponente aus der Stand-der-Technik-Bibliothek (implementation_layer).',
+                            'by-components': []
+                        };
+                        reqByControl.set(impl.gppId, req);
+                        reqs.push(req);
+                    }
+                    req['by-components'].push({
+                        'component-uuid': c.uuid,
+                        uuid: crypto.randomUUID(),
+                        description: impl.text,
+                        'implementation-status': { state: 'implemented' }
+                    });
+                })));
+            }
 
             const metadata = {
                 title: `${t} - Muster-SSP`,

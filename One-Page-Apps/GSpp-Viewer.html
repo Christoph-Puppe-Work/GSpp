@@ -113,6 +113,9 @@
         .tag-modal { background: #fce4ec; color: var(--modal-color); border-color: #f8bbd0; text-transform: uppercase; }
         .tag-action { background: #e3f2fd; color: var(--action-color); border-color: #9ec5fe; }
         .tag-target { background: #f3e5f5; color: #6a1b9a; border-color: #ce93d8; }
+        /* BSI-Schutzziel-Props (security_targets.csv): Wert 1 = wirkt, Wert 2 = im Zentrum */
+        .tag-sz { background: #eceff1; color: #455a64; border-color: #cfd8dc; }
+        .tag-sz-strong { background: #455a64; color: #fff; border-color: #263238; }
 
         /* Statement Box */
         .statement-box { background: #fff; border: 1px solid #eee; padding: 18px; border-radius: 8px; margin: 15px 0; }
@@ -743,6 +746,15 @@ eine KI. Dein Satzbau ist Abwechslungsreich, konkret, präßise und du nutzt kei
             const tagsRaw = control.props?.find(p => p.name === 'tags')?.value || "";
             const tagsArray = tagsRaw ? tagsRaw.split(',').map(t => t.trim()).filter(t => t.length > 0) : [];
 
+            // BSI-Schutzziel-Props (Werte 0/1/2); 0 = wirkt nicht -> kein Badge, 2 = im Zentrum -> hervorheben
+            const schutzziele = [
+                ['confidentiality', 'Vertraulichkeit'],
+                ['integrity', 'Integrität'],
+                ['availability', 'Verfügbarkeit'],
+                ['authenticity', 'Authentizität'],
+            ].map(([name, label]) => ({ label, value: control.props?.find(p => p.name === name)?.value || '0' }))
+             .filter(sz => sz.value !== '0');
+
             if(cClass) filterOptions.class.add(cClass);
             if(sec) filterOptions.sec_level.add(sec);
             if(effort) filterOptions.effort_level.add(effort);
@@ -777,6 +789,7 @@ eine KI. Dein Satzbau ist Abwechslungsreich, konkret, präßise und du nutzt kei
                     ${modal ? `<span class="tag tag-modal">${escapeHtml(modal)}</span>` : ''}
                     ${action ? `<span class="tag tag-action">${escapeHtml(action)}</span>` : ''}
                     ${targetObj ? `<span class="tag tag-target">🎯 ${escapeHtml(targetObj)}</span>` : ''}
+                    ${schutzziele.map(sz => `<span class="tag ${sz.value === '2' ? 'tag-sz-strong' : 'tag-sz'}" title="${sz.label}: ${sz.value === '2' ? 'steht im Zentrum der Anforderung' : 'Anforderung wirkt auf dieses Schutzziel'}">🛡 ${sz.label}${sz.value === '2' ? ' ●●' : ''}</span>`).join('')}
                     ${tagsArray.map(t => `<span class="tag tag-tags">Tag: ${escapeHtml(t)}</span>`).join('')}
                 </div>
                 <div class="statement-box">

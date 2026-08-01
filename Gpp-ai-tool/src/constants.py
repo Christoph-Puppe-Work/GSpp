@@ -113,7 +113,7 @@ OSCAL_VERSION = "1.2.2"
 # OSCAL naming system, not the model version) — do not bump it with OSCAL_VERSION.
 OSCAL_NAMESPACE = "http://csrc.nist.gov/ns/oscal/1.0"
 # Naming-system identifier (OSCAL prop `ns`) for the custom enhancement props
-# (control_class, phase, effective_on_c/i/a) added by stage_ED23_profiles_enhanced. These are
+# (control_class, phase) added by the enhanced-profile stages. These are
 # neither OSCAL- nor BSI-defined, so they carry this dedicated, documented namespace; the URI
 # resolves to the file describing the allowed values.
 GPP_ENHANCEMENT_PROPS_NS = "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"

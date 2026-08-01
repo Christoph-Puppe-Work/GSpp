@@ -4,7 +4,7 @@ Pipeline Stage: ED2023 Enhanced Profile Generation
 This stage takes the per-Zielobjekt base OSCAL profiles produced by `stage_profiles`
 (which import the G++ catalog and include *all* controls of the Zielobjektkategorie) and
 enriches every control with AI-generated maturity sub-statements (levels 1-5) plus
-classifications (NIST class, ISMS phase, CIA), emitted as OSCAL `alter` blocks.
+classifications (NIST class, ISMS phase), emitted as OSCAL `alter` blocks.
 
 The enrichment is driven by best practices (the prompt) and the description of the BSI
 Baustein the profile is based on — it does NOT depend on any per-Anforderung mapping.
@@ -66,8 +66,10 @@ def build_oscal_maturity_statements(control_id: str, generated_data: dict, origi
 
     Each maturity level becomes one `statement` part whose own per-level text lives in
     `prose` (the OSCAL-idiomatic place for it), with the guidance and assessment carried as
-    nested `guidance` / `assessment` parts. Classification (class, phase, CIA) and the
+    nested `guidance` / `assessment` parts. Classification (class, phase) and the
     level `label` stay as props — they are genuinely metadata, not prose (issue 3.1).
+    Schutzziel impact is NOT emitted here: the authoritative source are the BSI catalog
+    props confidentiality/integrity/availability/authenticity (security_targets.csv).
     """
     parts = []
     levels = ["1", "2", "3", "4", "5"]
@@ -78,9 +80,6 @@ def build_oscal_maturity_statements(control_id: str, generated_data: dict, origi
     base_props = [
         {"name": "control_class", "value": generated_data.get("class") or "Technical", "ns": props_ns},
         {"name": "phase", "value": generated_data.get('phase') or 'N/A', "ns": props_ns},
-        {"name": "effective_on_c", "value": str(generated_data.get("effective_on_c") or "").lower(), "ns": props_ns},
-        {"name": "effective_on_i", "value": str(generated_data.get("effective_on_i") or "").lower(), "ns": props_ns},
-        {"name": "effective_on_a", "value": str(generated_data.get("effective_on_a") or "").lower(), "ns": props_ns},
     ]
 
     for level_num in levels:

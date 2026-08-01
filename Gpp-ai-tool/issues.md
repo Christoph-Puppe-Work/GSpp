@@ -278,3 +278,21 @@ even though the apps now consume profiles.
 → `loadedProfiles` in `ssp_ausfuellen.html`, and updated the stale "Komponentendefinition"
 strings/comments in both apps to "Profil". The two remaining "Komponenten" references denote
 genuine OSCAL SSP components and are correct.
+
+### 4.7. `effective_on_*` Props Superseded by BSI Schutzziel Props — ✅ RESOLVED (2026-08-01)
+**Location:** both `stage_*_enhanced.py`, `enhanced_control_response_schema.json`,
+`prompt_config.json`, all 95 generated `*_enhanced.json`, `ssp_ausfuellen.html`
+**Was:** The enhancement stages asked the AI to estimate CIA impact per maturity statement
+(`effective_on_c/i/a`, high/medium/low). Since 2026-07-03 the BSI SdT catalog carries
+authoritative control-level Schutzziel props (`confidentiality`, `integrity`, `availability`,
+`authenticity`, values 0–2, ns `…/documentation/namespaces/security_targets.csv`) —
+our AI-estimated props duplicated (and could contradict) them. Decision: SdT is
+authoritative; redundant G++ props are removed.
+**Fix:** Removed `effective_on_*` from the response schema (`required` now `id`, `class`,
+`phase`), prompt Rule F, and both `build_oscal_maturity_statements` implementations;
+`stage_base_process_enhanced` now uses `GPP_ENHANCEMENT_PROPS_NS` (was: hardcoded stale BSI
+ns — closes the generator ns divergence). One-time idempotent migration
+`scripts/migrate_remove_effective_on_props.py` stripped the props from all 95 generated
+profiles (33,438 parts) and normalized `control_class`/`phase` ns. `ssp_ausfuellen.html`
+renders Schutzziel badges from the catalog props instead (value 0 hidden, value 2
+highlighted). Docs updated: `gpp_enhancement_props.md`, `profile-maturity-contract.md`.

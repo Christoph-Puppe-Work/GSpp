@@ -21,9 +21,13 @@ convention the BSI catalogs use for `modal_verbs.csv`, `security_level.csv`, etc
 |------------------|--------------------------------------------------------------|----------------|
 | `control_class`  | Functional class of the control (NIST-style)                 | `Technical`, `Operational`, `Management` |
 | `phase`          | ISMS lifecycle phase the control primarily applies to        | `Initiation`, `Risk Assessment`, `Risk Treatment`, `Implementation`, `Operation`, `Audit`, `Improvement` |
-| `effective_on_c` | Impact on **Confidentiality** when the control is effective  | `high`, `medium`, `low` |
-| `effective_on_i` | Impact on **Integrity** when the control is effective        | `high`, `medium`, `low` |
-| `effective_on_a` | Impact on **Availability** when the control is effective     | `high`, `medium`, `low` |
+
+**Removed (2026-08):** the former `effective_on_c` / `effective_on_i` / `effective_on_a` props
+(AI-estimated Schutzziel impact per maturity statement) were dropped. The authoritative source
+for Schutzziel impact are the BSI control-level props `confidentiality`, `integrity`,
+`availability`, `authenticity` (values `0`–`2`) carried by the imported G++ catalog itself, ns
+`https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces/security_targets.csv`
+(value semantics: `security_targets_levels.csv`). Consumers must read those instead.
 
 The maturity level itself is carried by the **standard OSCAL `label` property** (`m1` … `m5`, no
 custom `ns`) on the same `statement` part, and is therefore intentionally not listed here.

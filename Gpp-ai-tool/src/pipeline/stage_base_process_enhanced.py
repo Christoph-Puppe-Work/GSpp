@@ -3,7 +3,7 @@ Pipeline Stage: Base Process Enhanced Profile Generation
 
 This stage takes the process profiles from `SDT_PROFILES_PROCESS_DIR`
 and enriches every control with AI-generated maturity sub-statements (levels 1-5)
-plus classifications (NIST class, ISMS phase, CIA), emitted as OSCAL `alter` blocks.
+plus classifications (NIST class, ISMS phase), emitted as OSCAL `alter` blocks.
 The enhanced profile is written back to the same directory with `_enhanced.json` appended.
 """
 
@@ -26,6 +26,7 @@ from constants import (
     ZIELOBJEKT_CONTROLS_JSON_PATH,
     PROMPT_CONFIG_PATH,
     ENHANCED_CONTROL_RESPONSE_SCHEMA_PATH,
+    GPP_ENHANCEMENT_PROPS_NS,
 )
 from utils.file_utils import create_dir_if_not_exists, read_json_file, write_json_file, read_csv_file
 from utils.text_utils import sanitize_filename
@@ -44,21 +45,20 @@ def build_oscal_maturity_statements(control_id: str, generated_data: dict, origi
 
     Each maturity level becomes one `statement` part whose own per-level text lives in
     `prose` (the OSCAL-idiomatic place for it), with the guidance and assessment carried as
-    nested `guidance` / `assessment` parts. Classification (class, phase, CIA) and the
+    nested `guidance` / `assessment` parts. Classification (class, phase) and the
     level `label` stay as props — they are genuinely metadata, not prose (issue 3.1).
+    Schutzziel impact is NOT emitted here: the authoritative source are the BSI catalog
+    props confidentiality/integrity/availability/authenticity (security_targets.csv).
     """
     parts = []
     levels = ["1", "2", "3", "4", "5"]
 
-    props_ns = "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/documentation/namespaces"
+    props_ns = GPP_ENHANCEMENT_PROPS_NS
 
     # Classification properties shared across all levels for this control.
     base_props = [
         {"name": "control_class", "value": generated_data.get("class") or "Technical", "ns": props_ns},
         {"name": "phase", "value": generated_data.get('phase') or 'N/A', "ns": props_ns},
-        {"name": "effective_on_c", "value": str(generated_data.get("effective_on_c") or "").lower(), "ns": props_ns},
-        {"name": "effective_on_i", "value": str(generated_data.get("effective_on_i") or "").lower(), "ns": props_ns},
-        {"name": "effective_on_a", "value": str(generated_data.get("effective_on_a") or "").lower(), "ns": props_ns},
     ]
 
     for level_num in levels:

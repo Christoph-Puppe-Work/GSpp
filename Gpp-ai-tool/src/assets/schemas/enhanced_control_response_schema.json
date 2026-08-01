@@ -16,33 +16,6 @@
         ],
         "description": "NIST control class."
       },
-      "effective_on_c": {
-        "type": "string",
-        "description": "Impact on Confidentiality.",
-        "enum": [ 
-          "high",
-          "medium",
-          "low"
-        ]
-      },
-      "effective_on_i": {
-        "type": "string",
-        "description": "Impact on Integrity.",
-        "enum": [ 
-          "high",
-          "medium",
-          "low"
-        ]
-      },
-      "effective_on_a": {
-        "type": "string",
-        "description": "Impact on Availability.",
-        "enum": [ 
-          "high",
-          "medium",
-          "low"
-        ]
-      },
       "phase": {
         "type": "string",
         "enum": [
@@ -75,10 +48,7 @@
     "required": [
       "id",
       "class",
-      "phase",
-      "effective_on_c",
-      "effective_on_i",
-      "effective_on_a"
+      "phase"
     ]
   }
 }

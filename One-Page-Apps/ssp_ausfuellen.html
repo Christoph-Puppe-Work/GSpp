@@ -278,9 +278,11 @@
             cube: `<svg class="${iconClass}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg>`
         };
 
-        if (n.includes('effective_on_c')) return { icon: icons.shield, color: 'text-red-200 bg-red-900/50 border-red-800', label: 'Confidentiality' };
-        if (n.includes('effective_on_i')) return { icon: icons.shield, color: 'text-blue-200 bg-blue-900/50 border-blue-800', label: 'Integrity' };
-        if (n.includes('effective_on_a')) return { icon: icons.shield, color: 'text-yellow-200 bg-yellow-900/50 border-yellow-800', label: 'Availability' };
+        // BSI-Schutzziel-Props (security_targets.csv, Werte 0/1/2); Wert 0 wird nicht angezeigt.
+        if (n.includes('confidentiality')) return { icon: icons.shield, color: 'text-red-200 bg-red-900/50 border-red-800', strongColor: 'text-red-100 bg-red-700/80 border-red-400', label: 'Confidentiality', schutzziel: true };
+        if (n.includes('integrity')) return { icon: icons.shield, color: 'text-blue-200 bg-blue-900/50 border-blue-800', strongColor: 'text-blue-100 bg-blue-700/80 border-blue-400', label: 'Integrity', schutzziel: true };
+        if (n.includes('availability')) return { icon: icons.shield, color: 'text-yellow-200 bg-yellow-900/50 border-yellow-800', strongColor: 'text-yellow-100 bg-yellow-700/80 border-yellow-400', label: 'Availability', schutzziel: true };
+        if (n.includes('authenticity')) return { icon: icons.shield, color: 'text-green-200 bg-green-900/50 border-green-800', strongColor: 'text-green-100 bg-green-700/80 border-green-400', label: 'Authenticity', schutzziel: true };
         if (n.includes('phase')) return { icon: icons.clock, color: 'text-purple-200 bg-purple-900/50 border-purple-800', label: 'Phase' };
         if (n.includes('class') || n.includes('technical')) return { icon: icons.cube, color: 'text-slate-200 bg-slate-700 border-slate-600', label: 'Class' };
         if (n.includes('modalverb')) return { icon: icons.alert, color: 'text-fuchsia-200 bg-fuchsia-900/60 border-fuchsia-700', label: 'Modalverb' };
@@ -1218,10 +1220,14 @@
             catProps.forEach(p => {
                 if (!p) return;
                 const pName = p.name || ''; const pVal = p.value || '';
+                const conf = getPropConfig(pName);
+                // Schutzziel-Wert 0 = wirkt nicht auf dieses Schutzziel -> Badge unterdrücken
+                if (conf.schutzziel && pVal === '0') return;
                 fStr += `${pName.toLowerCase()}:${pVal.toLowerCase()}|`;
                 sStr += ` ${pVal.toLowerCase()}`;
-                const conf = getPropConfig(pName);
-                catPropsHtml += `<span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] uppercase tracking-wider font-semibold border ${conf.color}" title="${pName}: ${pVal}">
+                // Wert 2 = Schutzziel steht im Zentrum der Anforderung -> hervorheben
+                const color = (conf.schutzziel && pVal === '2' && conf.strongColor) ? conf.strongColor : conf.color;
+                catPropsHtml += `<span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] uppercase tracking-wider font-semibold border ${color}" title="${pName}: ${pVal}">
                     ${conf.icon}<span class="mr-1 opacity-70">${conf.label}:</span> ${pVal}
                 </span>`;
             });

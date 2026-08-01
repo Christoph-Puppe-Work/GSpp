@@ -765,7 +765,7 @@ eine KI. Dein Satzbau ist Abwechslungsreich, konkret, präßise und du nutzt kei
             const modal = stmtPart?.props?.find(p => p.name === 'modal_verb')?.value || "";
 			const action = stmtPart?.props?.find(p => p.name === 'action_word')?.value || "";
 			const result = stmtPart?.props?.find(p => p.name === 'result')?.value || "";
-			const precision = stmtPart?.props?.find(p => p.name === 'precision')?.value || "";
+			const precision = stmtPart?.props?.find(p => p.name === 'result_specification' || p.name === 'precision')?.value || "";
 			const targetObj = stmtPart?.props?.find(p => p.name === 'target_object_categories')?.value || "";
 
             if(modal) filterOptions.modalverb.add(modal);

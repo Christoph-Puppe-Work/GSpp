@@ -1,0 +1,51 @@
+# Anhang D: Offene Fragen und Katalogfunde (konsolidiert)
+
+**Handbuch zur Grundschutz++ Methodik · Version 0.12 (Entwurf)** · Stand: 2026-08-02 · Bezugsstand: Katalog-Build 2026-07-29, Schemata Version 2.5, Repo-Snapshot 2026-08-02
+
+Konsolidierung aller in den Kapiteln markierten offenen Fragen und Katalogfunde. Teil 1 sind inhaltliche Fragen, deren Antwort die Anwendung der Methodik verändert; Teil 2 sind redaktionelle Funde für die Katalogpflege. Jeder Eintrag nennt die Fundstelle im Handbuch. Die Liste ist zugleich der Rohstoff für eine Rückmeldung an das BSI über die Community-Kanäle des Repositories.
+
+## Teil 1: Inhaltliche offene Fragen
+
+| Nr. | Frage | Fundstelle |
+|---|---|---|
+| D1 | **Dokumentation der Verschachtelungs-Semantik:** Die Verschachtelung ist rein thematische Gruppierung zur besseren Lesbarkeit; jedes Control ist eigenständig prüfbar, ohne normative Abhängigkeit zwischen Eltern- und Kind-Controls. Diese Semantik ist im Katalog und Begleitmaterial bislang nirgends dokumentiert und sollte dort festgehalten werden. | 3.1, 4.0 |
+| D2 | **Kein GS++-Prüfschema:** Beide Schemata prüfen gegen 200-2/Kompendium (A.0–A.6, Bausteinstichprobe, „Standard- oder Kern-Absicherung" als Überwachungsbedingung). Acht konkrete Übertragungslücken konsolidiert in Kapitel 9.4. | 9.0–9.4 |
+| D3 | **Quelle der Abhängigkeiten für den Umsetzungsstatus:** UMS.1.1 verlangt Erfüllung „aller in Abhängigkeit stehenden Anforderungen", ohne dass der Methodik-Teil Abhängigkeiten definiert; VRB.5.1-Guidance (Plan weist Abhängigkeiten aus) liefert nur eine praktische Teilantwort. Die Control-Verschachtelung scheidet als Quelle aus (siehe D1). | 6.9, 7.5 |
+| D4 | **Restrisiko-Verbindlichkeit:** UMS.1.2 nur SOLLTE, Risikoeigentümer-Unterschrift nur Guidance (VRB.5.1), während das Auditierungsschema (AudS 4.5) die dokumentierte Risikoübernahme durch die Leitung verlangt. *Teilweise entschärft:* Der Anwenderkatalog importiert RISK.1.10 (Autorisierung der Umsetzungsplanung durch die Risikoeigentümer, MUSS) und RISK.1.3 (Rolle des Risikoeigentümers, MUSS); nicht importiert wurde RISK.1.9 (Bestätigung des Restrisikos, SOLLTE), die Restrisiko-Frage bleibt also offen. | 6.9, 7.9, 9.3, 4.12 |
+| D5 | **Compliance-Verbindlichkeitslücke:** Kette GC.3.1 MUSS → UMS.7.1 MUSS → PERF.2.1 nur SOLLTE; die Überwachung ist das weichste Glied. | 8.2, 8.8 |
+| D6 | **Zustellung eigener Anforderungen an das BSI:** In der Guidance zu STM.2.1.6 als Faktum formuliert; Verbindlichkeit, Verfahren und Adresse offen. | 5.7 |
+| D7 | **Verhältnis STM.4.1 zu GC.7.2:** Zwei Anforderungen an Risikobetrachtungen bei hohem Schutzbedarf; ein Nachweis oder zwei? | 5.7 |
+| D8 | **Begriffspaar „Nicht-Konformität" / „Fehler":** VRB.2 und VRB.4.1 verwenden unterschiedliche Begriffe für mutmaßlich denselben Gegenstand. | 7.9 |
+| D9 | **Begriffsumfang „Verpflichtungen" in UMS.5.1:** Ausnahmen nur von Compliance-Verpflichtungen oder von beliebigen Anforderungen? Handbuch-Lesart: beides. | 6.9 |
+| D10 | **Dokumentationspflichten ohne Dokumentzuordnung:** Statusliste (UMS.1.1, A.4-Gegenstück), Auditprogramm und Auditplan (PERF.3.1.x) sowie acht von zehn VRB-Controls verlangen Dokumentation ohne `documentation`-Prop. | 6.9, 7.9, 8.8 |
+| D11 | **RISK-Gruppe:** RISK stammt aus dem Katalog „BSI Anforderungen zum Risikomanagement" (10 Controls, RISK.1.1 bis RISK.1.10); der Anwenderkatalog importiert RISK.1.1, RISK.1.3, RISK.1.5 und RISK.1.10 als gültige Controls außerhalb der Methodik. Offen bleiben: die Doppelregelung RISK.1.1 vs. GC.12.1 (beide MUSS einheitliche Methoden/Methodik verankern, aber unterschiedliche Nachweisdokumente: „Richtlinie zur Risikoanalyse" vs. „Risikobewertung"); die Auswahllogik des Imports (vier von zehn, Prüfkriterien wie RISK.1.7/1.8 fehlen); die Einordnung als Methodik-Praktik Nr. 6 in `practices.csv`. | 3.12, 4.12, 10.5 |
+| D12 | **Versionsstand der Mapping-Sammlungen:** ISO-Mapping 15/23, ITGS-Mapping 13/33 Methodik-Ziel-IDs im Build 2026-07-29 nicht existent; Aktualisierungsweg (ID-Nachzug oder UUID-Referenzen) offen; ITGS-Mapping zudem im Status draft. | 10.3, 10.5 |
+| D13 | **Zertifizierungsfähige GS++-Konstellation:** Welche GS++-Umsetzung erfüllt die Zertifikatsbedingung, solange die Schemata 200-2-Vorgehensweisen voraussetzen? | 9.4, 10.5 |
+| D14 | **Guidance mit normativem Gehalt:** Mehrere faktisch bindende Festlegungen stehen nur in Guidance-Texten (Zyklus-Erfüllungskriterium GC.1.1, binäres Statusmodell UMS.1.1, Planfelder VRB.5.1); Hochstufung ins Statement wäre sauberer. | 3.10 |
+| D29 | **Prozess-Modellierung nicht geregelt:** 265 der 901 Kernel-Controls tragen keine Zielobjektkategorie, konzentriert in den prozessförmigen Praktiken (REA 23/23, TEST 35/36, NOT 25/37, BER 68/92, DET 43/82); inhaltlich überwiegend Verfahrens-, Zuständigkeits- und Bekanntgabe-Anforderungen. STM.2.1.5 erfasst sie nur über die Relevanzentscheidung, die Zuordnung an Geschäftsprozesse und Prozess-Owner steht allein in der Guidance, und der Kategorien-Namespace kennt keine Prozess-Wurzel. Dass Prozesse zu modellieren sind, ist nirgends ausdrücklich geregelt. | 3.5, 3.6, 5.2, 5.7 |
+| D30 | **Zielobjekthierarchie nicht normativ verankert:** Die MUSS-Vererbung (STM.2.1.4.1) beruht auf der Zielobjekthierarchie, die nur in `documentation/namespaces/target_object_categories.csv` (ChildOfUUID) definiert ist: außerhalb des Control Layer, ohne Versionsbindung an den Katalog-Build, per ns-URL auf den main-Branch referenziert. Die Guidance nennt die Vererbung deterministisch, „da die Zielobjekthierarchie fest definiert ist", behandelt ihre maschinenlesbare Verfügbarkeit aber als Bedingung („wenn die Hierarchie maschinenlesbar vorliegt"). Grundlage einer MUSS-Anforderung sollte versioniert und normativ verankert sein. | 3.7 |
+| D31 | **Zuweisungsregel „IT-Produkte" nicht normiert:** Beschaffte Zielobjekte brauchen zusätzlich zur funktionalen Kategorie die Kategorie „IT-Produkte" (bzw. „Dienstleistungen"/„Outsourcing" bei Fremdbezug), weil die BES-Anforderungen wörtlich daran gebunden sind (z. B. BES.2.1.1); die Regel steht aber weder in STM.2.1.3 noch im Namespace noch in einer Guidance. Ohne Kompendiums-Vorwissen (gemeinsame Modellierung mehrerer Bausteine) fehlen Beschaffungsanforderungen systematisch im Anforderungspaket. | 3.7 |
+| D32 | **Binärer OSCAL-Umsetzungsstatus nicht dokumentiert:** Das BSI hat festgelegt, von den OSCAL-Statuswerten für die Umsetzung nur „implemented" (umgesetzt) zu verwenden und Nicht-Umsetzung durch die leere Angabe auszudrücken, da OSCAL kein ausdrückliches „nicht umgesetzt" kennt; konsistent zum binären Statusmodell aus UMS.1.1. Die Festlegung ist verlustbehaftet: Die leere Angabe steht sowohl für „geprüft und nicht umgesetzt" als auch für „noch nicht bearbeitet" (die Werkzeuge zeigen sie als „Offen" an), und der Informationsgehalt von „teilweise" entfällt ersatzlos (6.1). Sie ist zudem in Katalog, Namespaces und Dokumentation bislang nirgends veröffentlicht und sollte dokumentiert werden. | 3.9, 6.1 |
+| D33 | **Vollzugsweg der Relevanz-Streichung ungeregelt:** STM.2.1.5 verlangt, nicht relevante Anforderungen mit dokumentierter Begründung aus dem Anforderungspaket zu streichen, benennt aber keinen OSCAL-Mechanismus (Control im SSP ausblenden oder eigenes Profil erstellen?). Die Quellen deuten auf den Profilweg: Die OSCAL-FAQ nennt das Entfernen nicht anwendbarer Anforderungen als Zweck von Profilen, und der SSP-Generator der Werkzeugsammlung erzeugt ein institutionsspezifisches Profil mit Positivliste (include-controls/with-ids), aus dem der SSP entsteht. Der SSP-Weg wäre über den Statuswert „not-applicable" technisch abbildbar; ob die binäre Statusfestlegung (D32) diesen Wert zulässt, ist offen. Normativ festgelegt ist der Weg nirgends, ebenso wenig der Ablageort der geforderten Begründung. | 6.1 |
+
+## Teil 2: Redaktionelle Katalog- und Namespace-Funde
+
+| Nr. | Fund | Fundstelle |
+|---|---|---|
+| D15 | GC.7: Gruppentitel und GC.7.1 „Infomationssicherheitseinstufung" [sic]; „Instution(-sleitung)" in der Guidance zu GC.7.1 | 4.7, 4.14 |
+| D16 | GC.4.2: Guidance beginnt mit den externen statt den internen Parteien (Übertragungsfehler aus GC.4.1) | 4.4 |
+| D17 | GC.3.1.1: „Data Markets Act" in der Guidance; vermutlich Digital Markets Act gemeint | 4.3, 4.14 |
+| D18 | STM.2.1.4.1: Statement grammatisch defekt (doppelter Relativsatz) | 5.2 |
+| D19 | STM.2.1.6 / STM.2.1.7: Titel sind Satzfragmente („Aufgrund …") | 5.2 |
+| D20 | STM.4.1: „festgeleger" statt „festgelegter"; STM.3.1-Guidance mit Steuerzeichen („Anforderungsanalyse´wird") und „initiale Einstellung" statt „Einstufung" | 5.4, 5.7 |
+| D22 | VRB.3.1 / VRB.4.2 / VRB.6.2: Wanderformel „unter Berücksichtigung der damit verbundenen Vor- und Nachteile", in VRB.6.2 semantisch unpassend | 7.4, 7.9 |
+| D23 | PERF.3.1.1: Titel „Auditsplans"; PERF.3.1.2-Guidance „ausgehölt"; PERF.1.2-Guidance „mitein"; PERF.1.2-Statement Kongruenzfehler „inhaltlicher Korrektheit" | 8.3, 8.8 |
+| D24 | PERF.4.1.7: Titel-Relikt „Realisierungsplan" neben „Umsetzungsplan" im Statement; PERF.4.1-Guidance mit großgeschriebenem „SOLL" außerhalb des Modalverb-Systems; achtfach wiederholter Formelsatz in den PERF.4.1.x-Guidances | 8.4, 8.8 |
+| D25 | Namespace `documentation_guidelines.csv`: Eintrag „???" als Platzhalter, „(todo)" bei „Sicherheitsorganisation"; das von GC.7.2 geforderte Dokument „Risikobetrachtung" fehlt ganz | 3.12, Anhang B |
+| D26 | Namespace `practices.csv`: Test-Artefakt „EXMP Beispielpraktik" im produktiven Namespace | 3.12 |
+| D27 | Anwenderkatalog: ASST.5.1 (Wartungsbedarf dokumentieren) trägt als einziges der 901 Kernel-Controls keine `authenticity`-Prop; die übrigen Schutzziel-Props sind vorhanden | 3.12 |
+| D28 | FAQ `documentation/OSCAL.md`: verlinkter Pfad „Kompendien/Grundschutz++-Kompendium" existiert nicht mehr (heute `control_layer/Grundschutz++/`); Metadaten-Beispiel „Grundschutz++ Kompendium 2026" nutzt den abgelösten Kompendiums-Begriff | 3.12 |
+
+---
+
+*Ende Anhang D. Bei jedem neuen Katalog-Build gegen diese Liste prüfen: Erledigtes streichen, Neues nachtragen.*

@@ -27,6 +27,10 @@ Eine serverlose, vollständig im Browser laufende Single-Page Application (SPA),
 3. Ein **BSI Baustein-PDF** (oder den reinen Text) per Drag & Drop in den Input-Bereich ziehen.
 4. Pipeline starten, Mappings überprüfen und als fertiges **OSCAL JSON** exportieren.
 ---
+## [OSCAL Schema Validator](./oscal-schema-validator.html)
+
+Ein vollständig im Browser laufender Validator für OSCAL-1.2.2-Dateien (Catalog, Profile, Component Definition, SSP, Assessment Plan/Results, POA&M) — alle sieben NIST-Schemas sind eingebettet, das Tool funktioniert daher auch offline und ohne Backend. Jeder Schema-Fehler wird mit exakter Zeilennummer und JSON-Pointer angezeigt, per Klick springt die Quelltextansicht zur Fehlerstelle; ein zweistufiger Fix-Workflow (erst Vorschau, dann Anwenden mit automatischer Revalidierung) behebt Standardfälle wie fehlende Pflichtfelder, ungültige UUIDs oder abgerissene Strings deterministisch lokal, komplexere Fälle per Gemini-Vorschlag. Der integrierte „Rules Check" prüft zusätzlich die Regeln, die das JSON Schema nicht ausdrücken kann: UUID-Eindeutigkeit, Auflösung von Fragment-, Rollen- und Party-Referenzen sowie — bei geladenem Quell-Katalog oder -Profile — ob referenzierte `control-id`s, `param-id`s und `statement-id`s dort tatsächlich existieren. Semantische Prüfungen (Beschreibungsqualität, Konventionen, Props-Konsistenz) übernimmt ein editierbarer KI-Prompt je Dateityp. Wie bei allen Tools dieser Sammlung gilt: KI-Vorschläge sind Entwürfe und vor produktiver Nutzung fachlich zu prüfen.
+---
 
 # Workflow-Übersicht: G++ Compliance Management
 

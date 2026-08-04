@@ -1,7 +1,8 @@
 # Kapitel 3: Den Katalog lesen – OSCAL-Lesart der Methodik
 
-**Handbuch zur Grundschutz++ Methodik · Kapitel-Version 0.12 (Entwurf)**
-Stand: 2026-08-02 · Quellen: `BSI-Methodik-Grundschutz++-catalog.json` (Build 2026-07-29) und die Namespace-CSVs unter `documentation/namespaces/` im Repository `BSI-Bund/Stand-der-Technik-Bibliothek` (Snapshot 2026-08-02) · Gliederungsbezug: Kapitel 3 gemäß `00_gliederung_v0.1.md`
+**Handbuch zur Grundschutz++ Methodik · Kapitel-Version 0.13 (Entwurf)**
+Stand: 2026-08-04 · Quellen: `BSI-Methodik-Grundschutz++-catalog.json` (Build 2026-07-29) und die Namespace-CSVs unter `documentation/namespaces/` im Repository `BSI-Bund/Stand-der-Technik-Bibliothek` (Snapshot 2026-08-02; für 3.13 und 3.14 zusätzlich die Profile und resolved Catalogs der Kataloge Grundschutz++ und Lieferkettensicherheit, Snapshot 2026-08-04) · Gliederungsbezug: Kapitel 3 gemäß `00_gliederung_v0.1.md`
+Änderung 0.13: neue Unterkapitel 3.13 (Referenzen, Back-Matter, Hashes) und 3.14 (Pinning und Provenienz) mit den Funden D34 bis D36; Querverweis in 3.8 ergänzt. Nummerierung 3.10 bis 3.12 unverändert, die neuen Abschnitte sind angehängt.
 
 Wer die Praktik-Kapitel 4 bis 8 mit Gewinn lesen will, braucht dieses Kapitel nicht zwingend; wer mit dem Katalog selbst arbeiten will, braucht es unbedingt. Es beschreibt, wie die Methodik im JSON kodiert ist und was jedes Feld bedeutet, belegt an den Zahlen des Builds 2026-07-29. Alle Aussagen über Feldbedeutungen stammen aus den Namespace-Dateien des Repositories, die der Katalog über `ns`-URLs an jeder Property referenziert; der Katalog trägt seine Lesart also selbst mit sich herum.
 
@@ -87,7 +88,7 @@ Der Anwenderkatalog fällt nicht vom Himmel, er wird gebaut, und der Bauplan lie
 
 Das Grundschutz++-Profil zeigt alle drei Mechanismen in Aktion. Es importiert erstens den Methodik-Katalog vollständig (`include-all`), zweitens aus dem Katalog „BSI Anforderungen zum Risikomanagement" gezielt vier Controls per `include-controls` (RISK.1.1, RISK.1.3, RISK.1.5, RISK.1.10; der in Kapitel 4.12 beschriebene RISK-Import ist also keine redaktionelle Fußnote, sondern eine im Profil nachlesbare Auswahlentscheidung), drittens den Kernel-Katalog vollständig. Dazu setzt es zwei Parameter: `gc.1.1-prm1` erhält den Wert „BSI Grundschutz++" (der anerkannte Standard aus GC.1.1 ist im Anwenderkatalog damit bereits belegt), und ein Parameter der Kernel-Notfallpraktik erhält „BSI-Standard 200-4". Die Zusammenführung erfolgt strukturerhaltend (`merge: as-is`); das Ergebnis ist der resolved catalog mit seinen 1000 Controls.
 
-Dasselbe Muster wiederholt sich in der Bibliothek: Auch Lieferkettensicherheit und WLAN bestehen aus Quellkatalogen, einem Profil und einem daraus aufgelösten Katalog. Und es ist das Muster für eigene Arbeit: Eine Blaupause im Sinne der Grundschutz++-Welt ist technisch nichts anderes als ein weiteres Profil, das aus dem Anwenderkatalog die für einen Verbund- oder Systemtyp passende Teilmenge zieht, Parameter setzt und eigene Anforderungen ergänzt. Wer das Anforderungspaket aus STM.2 maschinell führen will, führt es sinnvollerweise genau so: als Profil über dem Anwenderkatalog, mit dokumentierten Streichungen als ausgelassene Controls und Parameterwerten nach STM.5.1.
+Dasselbe Muster wiederholt sich in der Bibliothek: Auch Lieferkettensicherheit und WLAN bestehen aus Quellkatalogen, einem Profil und einem daraus aufgelösten Katalog. Und es ist das Muster für eigene Arbeit: Eine Blaupause im Sinne der Grundschutz++-Welt ist technisch nichts anderes als ein weiteres Profil, das aus dem Anwenderkatalog die für einen Verbund- oder Systemtyp passende Teilmenge zieht, Parameter setzt und eigene Anforderungen ergänzt. Wer das Anforderungspaket aus STM.2 maschinell führen will, führt es sinnvollerweise genau so: als Profil über dem Anwenderkatalog, mit dokumentierten Streichungen als ausgelassene Controls und Parameterwerten nach STM.5.1. Wie ein Profil seine Quellkataloge technisch referenziert und integritätsgesichert einfriert, beschreiben 3.13 und 3.14; wer eigene Profile baut, sollte beide Abschnitte vor dem ersten Import gelesen haben.
 
 ## 3.9 Die OSCAL-Dokumentfamilie und der Arbeitsfluss
 
@@ -122,6 +123,45 @@ Zusammengefasst, wie alle Kapitel dieses Handbuchs mit dem Katalog umgehen: Cont
 
 Für die Katalog-Rückmeldung, ergänzend zu den Praktik-Kapiteln: Der Namespace `practices.csv` führt neben den fünf Methodik-Praktiken eine sechste mit Schwerpunkt „Methodik": RISK (Risikomanagement, Nummerierung 6). RISK ist ein eigener Katalog im Control Layer („BSI Anforderungen zum Risikomanagement", 10 Controls), aus dem der Anwenderkatalog vier Controls importiert (RISK.1.1, RISK.1.3, RISK.1.5, RISK.1.10); sie sind kein Bestandteil des Methodik-Katalogs, gelten aber im Anwenderkatalog (Exkurs in Kapitel 4.12, offene Punkte in Anhang D, D11). Außerdem enthält `practices.csv` eine „Beispielpraktik" EXMP („Beispiel für Tests") als Test-Artefakt im produktiven Namespace, `documentation_guidelines.csv` einen Platzhalter-Eintrag „???" und beim Eintrag „Sicherheitsorganisation" ein „(todo)"; das von GC.7.2 geforderte Dokument „Risikobetrachtung" fehlt dort ganz (Details in Anhang B). Im Anwenderkatalog fällt ein einzelnes Kernel-Control aus dem Schutzziel-Raster: ASST.5.1 (Wartungsbedarf dokumentieren) trägt als einziges der 901 Kernel-Controls keine `authenticity`-Prop (Anhang D, D27). Und ein Blick in die FAQ `documentation/OSCAL.md` des Repositories zeigt zwei veraltete Verweise: Der dort verlinkte Pfad „Kompendien/Grundschutz++-Kompendium" existiert im Repository nicht mehr (heute `control_layer/Grundschutz++/`), und der Metadaten-Beispieltitel „Grundschutz++ Kompendium 2026" verwendet den inzwischen abgelösten Kompendiums-Begriff.
 
+## 3.13 Referenzen zwischen den Dateien: Fragmente, Back-Matter und Hashes
+
+Wer die Profile der Bibliothek öffnet, stolpert über eine Eigenart: Kein einziger Import zeigt direkt auf eine Katalogdatei. Das Grundschutz++-Profil importiert dreimal, und alle drei `href`-Werte sind dokumentinterne Fragmente der Form `#5fa04faf-…`. Die eigentlichen Pfade stehen woanders, im `back-matter` des Profils, wo je Import eine Resource mit genau dieser UUID liegt und ihrerseits einen `rlink` mit dem Dateipfad trägt. Der Umweg wirkt umständlich und ist eine bewusste Design-Entscheidung des OSCAL-Metaschemas: Ein Hash kann in OSCAL ausschließlich an einem `rlink` hängen, nicht am Import selbst. Wer eine Quelle integritätsgesichert referenzieren will, muss über die Back-Matter-Indirektion gehen.
+
+Die Auflösung läuft in drei Schritten. Das Fragment `#<uuid>` verweist auf die Back-Matter-Resource mit dieser UUID im selben Dokument. Die Resource bietet einen oder mehrere `rlinks` an; relative Pfade darin werden relativ zur URI des Profils aufgelöst. Der Resolver holt die Datei und prüft den hinterlegten Hash, bevor er sie verarbeitet; stimmt er nicht, bricht die Auflösung ab. Laut und deterministisch statt still und falsch, und genau das ist der Wert des Musters. Nebenbei kann eine Resource mehr als ein Werkzeug sein: Mehrere `rlinks` erlauben eine lokale Kopie neben einem Remote-Spiegel, eine `base64`-Einbettung macht das Profil offline auflösbar, und `title` und `description` dokumentieren die Abhängigkeit menschenlesbar.
+
+Konkret sieht der Kernbestand des Anwenderkatalog-Profils so aus (gekürzt):
+
+```json
+"imports": [
+  { "href": "#5fa04faf-937c-48e0-8764-9b2cd55e2170", "include-all": {} }
+],
+"back-matter": {
+  "resources": [
+    {
+      "uuid": "5fa04faf-937c-48e0-8764-9b2cd55e2170",
+      "rlinks": [
+        {
+          "href": "../catalogs/Methodik-Grundschutz++/BSI-Methodik-Grundschutz++-catalog.json",
+          "hashes": [ { "algorithm": "MD5", "value": "…" } ]
+        }
+      ]
+    }
+  ]
+}
+```
+
+Die drei Importe des Anwenderkatalog-Profils zeigen dabei auf den Methodik-Katalog (`include-all`), den Risikomanagement-Katalog (`include-controls` mit den vier RISK-IDs aus 3.8) und die G0-Variante des Kernels (`BSI-Stand-der-Technik-Kernel-G0-catalog.json`, `include-all`); das Lieferketten-Profil nutzt dasselbe Muster mit einem einzelnen Import über 146 `with-ids` auf die Kernel-Basisdatei. Alle lokalen Hashes beider Profile stimmen mit dem jeweiligen Repo-Stand überein (skriptgestützt geprüft, Snapshot 2026-08-04); die Build-Pipeline erzeugt Kataloge und Profile offenbar im selben Lauf, die Pins sind also frisch.
+
+Zwei Funde trübt das Bild. Erstens der Algorithmus: Sämtliche Hashes der Bibliothek sind MD5. Das OSCAL-Metaschema enumeriert für `hash/algorithm` ausschließlich SHA-2- und SHA-3-Varianten und lässt andere Werte nur zu, wenn sie aus dem W3C-Register für XML-Security-Digest-Methoden oder RFC 6931 stammen; der Literalwert „MD5" bewegt sich damit bestenfalls in einer Grauzone der Konformität. Fachlich ist der Fall klarer: Das BSI verweist MD5 in der eigenen TR-02102 seit Jahren ins Museum, und ausgerechnet die Stand-der-Technik-Bibliothek pinnt ihre Quellkataloge damit. Für reine Change-Detection funktioniert MD5, als Außenwirkung ist es unglücklich, und ein SHA-256 kostet in der Pipeline nichts (Anhang D, D34). Zweitens ein Hash, der nie stimmen kann: Die Resource „BSI IT-Grundschutz Edition 2023" im Anwenderkatalog-Profil trägt einen MD5-Wert über eine lebende Webseite auf bsi.bund.de. Eine CMS-Seite ändert ihr HTML mit jedem Redaktions- und Template-Stand; der Pin ist konstruktionsbedingt veraltet und suggeriert eine Prüfbarkeit, die es für dieses Ziel nicht gibt. Für Zitat-Resources ohne Verarbeitungsrelevanz ist der Hash schlicht wegzulassen (Anhang D, D35).
+
+## 3.14 Pinning und Provenienz: deterministische Auflösung
+
+Innerhalb des Repositories ist die Welt in Ordnung: relative Pfade, Hashes aus demselben Build-Lauf, ein konsistenter Snapshot. Spannend wird es, sobald jemand außerhalb des Repositories eigene Profile über den BSI-Katalogen baut, und genau das ist der in 3.8 empfohlene Weg für Blaupausen und Anforderungspakete. Wer dabei per URL auf einen Branch zeigt, etwa `refs/heads/main`, referenziert ein bewegliches Ziel. Bei jedem BSI-Build ändert sich der Katalog hinter der URL, und das Profil löst ab diesem Moment gegen anderen Inhalt auf als bei seiner Erstellung. Das Tückische daran ist die Lautlosigkeit: Eine `with-ids`-Auswahl, deren ID im neuen Build umbenannt wurde (die Instabilität sprechender IDs belegt Kapitel 10.3), fällt kommentarlos aus dem resolved Catalog heraus. Bei 146 Einträgen merkt man 145 nicht.
+
+Die Regel für eigene Profile lautet deshalb: Commit-SHA statt Branch in der URL, SHA-256 in der Back-Matter-Resource. Ein Katalog-Update wird damit vom schleichenden Drift zum bewussten Akt, ein Pin-Wechsel mit neuer URL und neuem Hash, sichtbar als Diff im eigenen Versionsstand, prüfbar im Review. Konzeptionell ist das nichts anderes als das, was die Lieferketten-Praktiken für Software-Artefakte fordern: pin by digest, not by tag. Ein Anforderungskatalog ist eine Abhängigkeit wie jede andere. Die browserbasierte Werkzeugsammlung aus 3.9 lieferte hierfür lange das Negativbeispiel, ihre Baustein-Profile importierten direkt per Branch-URL ohne Hash; die Umstellung auf das Pin-Muster läuft seit August 2026.
+
+Die zweite Hälfte der Rückverfolgbarkeit ist die Provenienz der aufgelösten Kataloge. Die OSCAL-Spezifikation zur Profilauflösung sieht dafür Marker in der Metadata des Ergebnisses vor: einen Link mit `rel="source-profile"` zurück auf das erzeugende Profil und eine `resolution-tool`-Prop mit dem verwendeten Werkzeug. Beide fehlen in den geprüften resolved Catalogs der Bibliothek; der Grundschutz++-Katalog trägt zwar Metadata-Links und Props, aber nur den Edition-2023-Verweis (`rel="reference"`) und die BSIG-Einordnung, keinen Auflösungsnachweis. Der Zusammenhang zwischen Profil und Produkt ist derzeit allein über Dateinamenskonventionen und die geteilte `document-id` rekonstruierbar: Profil und resolved Catalog tragen jeweils dieselbe RFC-9562-Kennung (beim Anwenderkatalog `ebe77c16-…`, bei der Lieferkette `4d2f44da-…`) bei unterschiedlichen Dokument-UUIDs. Das ist besser als nichts, aber die `document-id` bezeichnet eigentlich die Dokumentenserie über Versionen hinweg und übernimmt hier eine zweite Aufgabe, für die es das explizite Vokabular längst gibt. Für Werkzeuge, die automatisch neu auflösen oder veraltete Auflösungen erkennen sollen, ist der explizite Marker der belastbare Weg; die Ergänzung in der Build-Pipeline ist eine Zeile je Artefakt (Anhang D, D36). Für eigene Auflösungen gilt die Vorgabe unabhängig vom BSI: Wer resolved Catalogs erzeugt und weitergibt, setzt beide Marker, sonst kassiert er denselben Befund.
+
 ---
 
-*Ende Kapitel 3 (v0.12). Review-Anmerkungen bitte gegen Control-IDs und Namespace-Dateien.*
+*Ende Kapitel 3 (v0.13). Review-Anmerkungen bitte gegen Control-IDs und Namespace-Dateien.*

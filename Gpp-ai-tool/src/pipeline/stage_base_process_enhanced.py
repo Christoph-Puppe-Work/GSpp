@@ -19,6 +19,7 @@ from constants import (
     BAUSTEIN_ZIELOBJEKT_JSON_PATH,
     BSI_2023_JSON_PATH,
     GPP_KOMPENDIUM_JSON_PATH,
+    GPP_CATALOG_PIN_SHA256,
     ZIELOBJEKTKATEGORIEN_CSV_PATH,
     SDT_PROFILES_REGULAR_DIR,
     SDT_PROFILES_PROCESS_DIR,
@@ -295,7 +296,7 @@ async def run_stage_base_process_enhanced():
         raise
 
     try:
-        gpp_catalog = read_json_file(GPP_KOMPENDIUM_JSON_PATH)
+        gpp_catalog = read_json_file(GPP_KOMPENDIUM_JSON_PATH, expected_sha256=GPP_CATALOG_PIN_SHA256)
         prompt_config = read_json_file(PROMPT_CONFIG_PATH)
         enhanced_schema = read_json_file(ENHANCED_CONTROL_RESPONSE_SCHEMA_PATH)
 

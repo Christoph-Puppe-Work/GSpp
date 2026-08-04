@@ -6,11 +6,54 @@ for validating them against their corresponding JSON schemas.
 """
 
 import logging
+import uuid
+from urllib.parse import unquote
+
 from jsonschema import validate, ValidationError
 
+from constants import (
+    GPP_KOMPENDIUM_JSON_PATH,
+    GPP_CATALOG_PIN_COMMIT,
+    GPP_CATALOG_PIN_SHA256,
+)
 from utils.file_utils import read_json_file
 
 logger = logging.getLogger(__name__)
+
+
+def pinned_catalog_resource() -> dict:
+    """Back-matter resource for the pinned G++ catalog (Handbuch 3.14, Grundregel 8).
+
+    Field-for-field identical to what scripts/pin_profile_imports.py emits — same
+    uuid5-of-the-pinned-URL derivation, same title convention — so profiles generated
+    by the pipeline and profiles migrated by the script are indistinguishable and
+    re-runs don't churn in git.
+    """
+    return {
+        "uuid": pinned_catalog_resource_uuid(),
+        "title": (
+            f"{unquote(GPP_KOMPENDIUM_JSON_PATH.rsplit('/', 1)[-1])}"
+            f" @ {GPP_CATALOG_PIN_COMMIT[:12]}"
+        ),
+        "rlinks": [
+            {
+                "href": GPP_KOMPENDIUM_JSON_PATH,
+                "hashes": [
+                    {"algorithm": "SHA-256", "value": GPP_CATALOG_PIN_SHA256}
+                ],
+            }
+        ],
+    }
+
+
+def pinned_catalog_resource_uuid() -> str:
+    """Deterministic UUID of the pinned-catalog back-matter resource."""
+    return str(uuid.uuid5(uuid.NAMESPACE_URL, GPP_KOMPENDIUM_JSON_PATH))
+
+
+def pinned_catalog_import_href() -> str:
+    """Fragment href ("#<uuid>") a profile import uses to reference the pinned catalog."""
+    return f"#{pinned_catalog_resource_uuid()}"
 
 def validate_oscal(json_path: str, schema_path: str) -> bool:
     """

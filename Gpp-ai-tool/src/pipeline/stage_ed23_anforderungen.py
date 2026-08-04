@@ -30,6 +30,7 @@ from utils.oscal_utils import extract_all_gpp_controls, normalize_id
 from utils.oscal_mapping import to_oscal_mapping_collection
 from constants import (
     GPP_KOMPENDIUM_JSON_PATH,
+    GPP_CATALOG_PIN_SHA256,
     BSI_2023_JSON_PATH,
     GPP_ED23_ANFORDERUNGEN_JSON_PATH,
     ED23_ANFORDERUNGEN_STRIPPED_JSON_PATH,
@@ -222,7 +223,7 @@ async def run_stage_ed23_anforderungen() -> None:
         return
 
     # Load source catalogs (the loaders transparently download from GitHub).
-    gpp_catalog = load_json_file(GPP_KOMPENDIUM_JSON_PATH)
+    gpp_catalog = load_json_file(GPP_KOMPENDIUM_JSON_PATH, expected_sha256=GPP_CATALOG_PIN_SHA256)
     bsi_catalog = load_json_file(BSI_2023_JSON_PATH)
     if not gpp_catalog or not bsi_catalog:
         logger.error("Failed to load G++ Kompendium or BSI ED2023 catalog. Aborting stage.")

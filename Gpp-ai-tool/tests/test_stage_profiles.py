@@ -4,11 +4,16 @@ Unit tests for the stage_profiles pipeline stage.
 
 import os
 import json
+import uuid
 import unittest
 from unittest.mock import patch, mock_open, MagicMock
 
 from pipeline import stage_profiles
-from constants import SDT_PROFILES_REGULAR_DIR
+from constants import (
+    SDT_PROFILES_REGULAR_DIR,
+    GPP_CATALOG_PIN_COMMIT,
+    GPP_CATALOG_PIN_SHA256,
+)
 
 class TestStageProfiles(unittest.TestCase):
     """
@@ -66,6 +71,27 @@ class TestStageProfiles(unittest.TestCase):
         profile1_content = admin_profile_args[1]
         self.assertEqual(profile1_content['profile']['metadata']['title'], 'Administrierende Zielobjektkategorie Profil')
         self.assertEqual(profile1_content['profile']['imports'][0]['include-controls'][0]['with-ids'], ["ASST.3.1", "ASST.3.1.1"])
+
+        # The catalog import must use the pinned back-matter indirection (Handbuch 3.14,
+        # Grundregel 8): fragment href onto a resource whose rlink carries the
+        # commit-pinned URL plus a single SHA-256 hash — never a bare branch URL.
+        href = profile1_content['profile']['imports'][0]['href']
+        self.assertTrue(href.startswith('#'), f"import href is not a fragment: {href}")
+        resources = profile1_content['profile']['back-matter']['resources']
+        resource = next(r for r in resources if r['uuid'] == href[1:])
+        rlink = resource['rlinks'][0]
+        self.assertIn(GPP_CATALOG_PIN_COMMIT, rlink['href'])
+        self.assertNotIn('refs/heads/main', rlink['href'])
+        self.assertEqual(
+            rlink['hashes'],
+            [{"algorithm": "SHA-256", "value": GPP_CATALOG_PIN_SHA256}],
+        )
+        # uuid5 of the pinned URL — the same derivation scripts/pin_profile_imports.py
+        # uses, so pipeline output and script-migrated profiles carry identical UUIDs.
+        self.assertEqual(
+            resource['uuid'],
+            str(uuid.uuid5(uuid.NAMESPACE_URL, rlink['href'])),
+        )
 
         # Profile 2: Cloud-Dienste
         cloud_profile_args = next(args for args in call_args_list if "cloud-dienste_profile.json" in args[0])

@@ -8,7 +8,7 @@ import os
 from typing import Dict, Any, List, Optional, Tuple
 
 from config import app_config
-from constants import GPP_KOMPENDIUM_JSON_PATH, ZIELOBJEKTKATEGORIEN_CSV_PATH, ZIELOBJEKT_CONTROLS_JSON_PATH
+from constants import GPP_KOMPENDIUM_JSON_PATH, GPP_CATALOG_PIN_SHA256, ZIELOBJEKTKATEGORIEN_CSV_PATH, ZIELOBJEKT_CONTROLS_JSON_PATH
 from utils.data_loader import load_json_file, save_json_file, load_zielobjekte_csv, zielobjekt_row_name
 from utils.file_utils import json_mapping_is_populated
 
@@ -109,7 +109,7 @@ def _create_target_controls_map() -> Dict[str, Any]:
     Loads the G++ Kompendium and flattens it into a target-controls-map.
     """
     logger.info(f"Loading G++ Kompendium from {GPP_KOMPENDIUM_JSON_PATH}...")
-    data = load_json_file(GPP_KOMPENDIUM_JSON_PATH)
+    data = load_json_file(GPP_KOMPENDIUM_JSON_PATH, expected_sha256=GPP_CATALOG_PIN_SHA256)
     if not data or 'catalog' not in data:
         logger.error("G++ Kompendium is empty or missing 'catalog' key.")
         return {}

@@ -52,6 +52,7 @@ The tool is configured via environment variables. Create a `.env` file or export
 | `OVERWRITE_TEMP_FILES` | Regenerate existing output files (default: `false`) | No |
 | `URL_FETCH_TIMEOUT_SECONDS` | Timeout for remote source downloads (default: `30`) | No |
 | `URL_FETCH_RETRIES` | Retry attempts for remote source downloads (default: `3`) | No |
+| `GPP_CATALOG_PIN_COMMIT` / `GPP_CATALOG_PIN_SHA256` | Override the pinned G++ catalog commit and its SHA-256 (defaults in `src/constants.py`; always change both together) | No |
 | `OUTPUT_ROOT` | Root directory for generated artifacts (default: repository root) | No |
 | `SDT_HELPER_OUTPUT_DIR` / `SDT_PROFILES_REGULAR_DIR` / `SDT_PROFILES_PROCESS_DIR` / `ED23_PROFILES_DIR` | Override individual output directories (default: under `OUTPUT_ROOT`) | No |
 
@@ -76,7 +77,7 @@ To run the full pipeline, omit the stage argument:
 
 All input data is fetched from GitHub at runtime (see `src/constants.py`):
 
-- **G++ catalog** — the Grundschutz++ Kompendium (the target catalog of the migration).
+- **G++ catalog** — the Grundschutz++ Kompendium (the target catalog of the migration). Fetched at a **pinned commit** and verified against a pinned **SHA-256** (Handbuch 3.13/3.14, Katalogarbeit-Skill Grundregel 8); a hash mismatch aborts the stage. The generated OSCAL profiles carry the same pin in their back-matter (fragment import → resource with commit-pinned rlink + hash). A catalog update is a conscious pin change: update `GPP_CATALOG_PIN_COMMIT` and `GPP_CATALOG_PIN_SHA256` in `src/constants.py`, re-run `scripts/pin_profile_imports.py` over the profile directories, and commit both together.
 - **BSI Ed2023 catalog** — the source BSI IT-Grundschutz Edition 2023 requirements.
 - **`target_object_categories.csv`** — the Zielobjektkategorien (UUID, name, and hierarchy via `ChildOfUUID`).
 

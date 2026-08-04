@@ -44,6 +44,7 @@ from utils.oscal_utils import extract_all_gpp_controls, normalize_id
 from pipeline.stage_ed23_anforderungen import _statement_prose, _atomic_save_json
 from constants import (
     GPP_KOMPENDIUM_JSON_PATH,
+    GPP_CATALOG_PIN_SHA256,
     BSI_2023_JSON_PATH,
     PROZZESSBAUSTEINE_CONTROLS_JSON_PATH,
     PROZESSBAUSTEINE_RESPONSE_SCHEMA_PATH,
@@ -237,7 +238,7 @@ async def run_stage_prozessbausteine() -> None:
     """Main entry point for the ED2023 Prozessbaustein → G++ mapping stage."""
     logger.info("Starting stage_prozessbausteine...")
 
-    gpp_catalog = load_json_file(GPP_KOMPENDIUM_JSON_PATH)
+    gpp_catalog = load_json_file(GPP_KOMPENDIUM_JSON_PATH, expected_sha256=GPP_CATALOG_PIN_SHA256)
     bsi_catalog = load_json_file(BSI_2023_JSON_PATH)
     if not gpp_catalog or not bsi_catalog:
         logger.error("Failed to load G++ Kompendium or BSI ED2023 catalog. Aborting stage.")

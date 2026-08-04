@@ -22,6 +22,7 @@ from constants import (
 )
 from utils.file_utils import create_dir_if_not_exists, read_json_file, write_json_file, read_csv_file
 from utils.data_loader import zielobjekt_row_name
+from utils.oscal_utils import pinned_catalog_import_href, pinned_catalog_resource
 from utils.text_utils import sanitize_filename
 
 # Configure logging
@@ -57,8 +58,10 @@ def create_oscal_profile(profile_uuid, title, controls):
         dict: The OSCAL profile as a dictionary.
     """
     now_utc = datetime.now(timezone.utc).isoformat()
-    catalog_url = "https://raw.githubusercontent.com/BSI-Bund/Stand-der-Technik-Bibliothek/refs/heads/main/control_layer/Grundschutz%2B%2B/Grundschutz%2B%2B-resolved_catalog.json"
 
+    # The catalog is imported via the pinned back-matter indirection (Handbuch 3.14,
+    # Grundregel 8): fragment href onto a resource carrying the commit-pinned URL plus
+    # its SHA-256 — never a bare branch URL.
     profile = {
         "profile": {
             "uuid": profile_uuid,
@@ -70,14 +73,17 @@ def create_oscal_profile(profile_uuid, title, controls):
             },
             "imports": [
                 {
-                    "href": catalog_url,
+                    "href": pinned_catalog_import_href(),
                     "include-controls": [
                         {
                             "with-ids": controls
                         }
                     ]
                 }
-            ]
+            ],
+            "back-matter": {
+                "resources": [pinned_catalog_resource()]
+            }
         }
     }
     return profile

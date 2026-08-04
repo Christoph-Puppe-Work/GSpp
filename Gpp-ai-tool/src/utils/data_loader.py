@@ -13,7 +13,7 @@ import logging
 from functools import lru_cache
 from typing import Any, Dict, List
 
-from utils.file_utils import read_source_text
+from utils.file_utils import read_source_text, read_source_bytes, sha256_matches
 
 logger = logging.getLogger(__name__)
 
@@ -55,19 +55,25 @@ def load_zielobjekte_csv(file_path: str) -> List[Dict[str, str]]:
 
 
 @lru_cache(maxsize=None)
-def load_json_file(file_path: str) -> Dict[str, Any]:
+def load_json_file(file_path: str, expected_sha256: str = None) -> Dict[str, Any]:
     """
     Loads a JSON file into a dictionary.
 
     Args:
         file_path: The path to the JSON file.
+        expected_sha256: Optional pinned SHA-256 of the raw content. On mismatch a
+            ValueError is raised — a failed pin check must abort the stage, never
+            silently continue with changed content.
 
     Returns:
         A dictionary representing the JSON content.
     """
     logger.debug(f"Loading JSON data from {file_path}...")
     try:
-        data = json.loads(read_source_text(file_path))
+        raw = read_source_bytes(file_path)
+        if expected_sha256 and not sha256_matches(raw, expected_sha256, file_path):
+            raise ValueError(f"SHA-256 pin check failed for {file_path}")
+        data = json.loads(raw)
         logger.debug("Successfully loaded JSON data.")
         return data
     except FileNotFoundError:

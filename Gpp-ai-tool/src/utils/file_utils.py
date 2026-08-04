@@ -10,6 +10,7 @@ import io
 import json
 import csv
 import time
+import hashlib
 import logging
 import urllib.request
 
@@ -27,9 +28,9 @@ def is_url(path):
     return isinstance(path, str) and path.startswith(("http://", "https://"))
 
 
-def read_source_text(path):
+def read_source_bytes(path):
     """
-    Reads text content from either a local file path or an HTTP(S) URL.
+    Reads raw bytes from either a local file path or an HTTP(S) URL.
 
     URL downloads use an explicit timeout and a short retry-with-backoff so a slow or
     flaky upstream host cannot block the pipeline indefinitely.
@@ -38,7 +39,7 @@ def read_source_text(path):
         path (str): A local filesystem path or an http(s) URL.
 
     Returns:
-        str: The decoded UTF-8 content of the source.
+        bytes: The raw content of the source.
 
     Raises:
         Propagates the last urllib/OS error for URLs (after exhausting retries) and
@@ -51,7 +52,7 @@ def read_source_text(path):
         for attempt in range(1, URL_FETCH_RETRIES + 1):
             try:
                 with urllib.request.urlopen(path, timeout=URL_FETCH_TIMEOUT_SECONDS) as response:
-                    return response.read().decode("utf-8")
+                    return response.read()
             except Exception as e:  # noqa: BLE001 - retry on any transient network failure
                 last_error = e
                 logger.warning(
@@ -61,8 +62,29 @@ def read_source_text(path):
                     time.sleep(URL_FETCH_BACKOFF_SECONDS * attempt)
         logger.error(f"All {URL_FETCH_RETRIES} download attempts failed for {path}")
         raise last_error
-    with open(path, "r", encoding="utf-8") as f:
+    with open(path, "rb") as f:
         return f.read()
+
+
+def read_source_text(path):
+    """Reads text content (UTF-8) from a local file path or an HTTP(S) URL."""
+    return read_source_bytes(path).decode("utf-8")
+
+
+def sha256_matches(data: bytes, expected_sha256: str, source: str) -> bool:
+    """Checks raw content against a pinned SHA-256 (Grundregel 8 supply-chain gate).
+
+    Logs an error with both digests on mismatch so a failed pin check is diagnosable
+    from the pipeline log alone.
+    """
+    actual = hashlib.sha256(data).hexdigest()
+    if actual != expected_sha256:
+        logger.error(
+            f"SHA-256 mismatch for {source}: expected {expected_sha256}, got {actual}. "
+            "The pinned source has changed — refusing to use it."
+        )
+        return False
+    return True
 
 
 def create_dir_if_not_exists(directory_path):
@@ -98,18 +120,24 @@ def read_text_file(file_path):
         logger.error(f"Error reading text file {file_path}: {e}")
         return None
 
-def read_json_file(file_path):
+def read_json_file(file_path, expected_sha256=None):
     """
     Reads a JSON file and returns its content.
 
     Args:
         file_path (str): The path to the JSON file.
+        expected_sha256 (str): Optional pinned SHA-256 of the raw content. On mismatch
+            the content is discarded and None is returned, so callers treat a failed
+            pin check exactly like an unloadable source.
 
     Returns:
         dict: The content of the JSON file, or None if an error occurs.
     """
     try:
-        return json.loads(read_source_text(file_path))
+        data = read_source_bytes(file_path)
+        if expected_sha256 and not sha256_matches(data, expected_sha256, file_path):
+            return None
+        return json.loads(data)
     except FileNotFoundError:
         logger.error(f"File not found: {file_path}")
         return None
@@ -147,6 +175,9 @@ def write_json_file(file_path, data):
     try:
         with open(file_path, 'w', encoding='utf-8') as f:
             json.dump(data, f, indent=2, ensure_ascii=False)
+            # Trailing newline keeps pipeline output byte-identical with files
+            # normalized by scripts/pin_profile_imports.py.
+            f.write("\n")
         logger.debug(f"Successfully wrote to {file_path}")
     except IOError as e:
         logger.error(f"Error writing to file {file_path}: {e}")

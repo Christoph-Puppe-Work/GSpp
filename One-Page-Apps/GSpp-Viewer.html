@@ -273,7 +273,7 @@
 
             <select id="quickSelect" class="filter-select" onchange="updateUrlFromSelect()" style="margin-bottom: 10px; border-color: var(--primary-color);">
                 <option value="">-- Schnellauswahl --</option>
-                <option value="https://raw.githubusercontent.com/BSI-Bund/Stand-der-Technik-Bibliothek/refs/heads/main/control_layer/Grundschutz%2B%2B/Grundschutz%2B%2B-resolved_catalog.json">Anwenderkatalog (GS++)</option>
+                <option value="https://raw.githubusercontent.com/BSI-Bund/Stand-der-Technik-Bibliothek/47de2824a341812438ef3f044b3f65ce2cad6e32/control_layer/Grundschutz%2B%2B/Grundschutz%2B%2B-resolved_catalog.json">Anwenderkatalog (GS++, Pin 47de2824a341)</option>
                 <option value="https://raw.githubusercontent.com/BSI-Bund/Stand-der-Technik-Bibliothek/refs/heads/main/control_layer/Grundschutz%2B%2B/sources/catalogs/Methodik-Grundschutz%2B%2B/BSI-Methodik-Grundschutz%2B%2B-catalog.json">Methodik (GS++)</option>
                 <option value="https://raw.githubusercontent.com/BSI-Bund/Stand-der-Technik-Bibliothek/refs/heads/main/control_layer/Grundschutz%2B%2B/sources/catalogs/Kernel/BSI-Stand-der-Technik-Kernel-catalog.json">Kernel (SdT)</option>
 				<option value="https://raw.githubusercontent.com/BSI-Bund/Stand-der-Technik-Bibliothek/refs/heads/main/control_layer/Risikomanagement/BSI-Anforderungen-zum-Risikomanagement-catalog.json">Risikomanagement</option>
@@ -283,7 +283,7 @@
 				<option value="https://raw.githubusercontent.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/refs/heads/main/beispiel-kataloge/dsgvo_oscal_catalog.json">DSGVO (Beispiel, Test-Katalog)</option>
             </select>
 
-            <input type="text" id="urlInput" class="filter-select" placeholder="URL zum OSCAL-Katalog..." value="https://raw.githubusercontent.com/BSI-Bund/Stand-der-Technik-Bibliothek/refs/heads/main/control_layer/Grundschutz%2B%2B/Grundschutz%2B%2B-resolved_catalog.json">
+            <input type="text" id="urlInput" class="filter-select" placeholder="URL zum OSCAL-Katalog..." value="https://raw.githubusercontent.com/BSI-Bund/Stand-der-Technik-Bibliothek/47de2824a341812438ef3f044b3f65ce2cad6e32/control_layer/Grundschutz%2B%2B/Grundschutz%2B%2B-resolved_catalog.json">
 
             <button onclick="loadFromURL()" style="width:100%; padding: 10px; background: var(--primary-color); color:white; border:none; border-radius:6px; cursor:pointer; font-weight:bold;">Katalog hinzufügen</button>
 
@@ -324,7 +324,35 @@
         // Elementare Gefährdungen (BSI basethreats.csv) — Namen für die threats-Prop-Badges.
         const G0_THREATS = {'G 0.1':'Feuer','G 0.2':'Ungünstige klimatische Bedingungen','G 0.3':'Wasser','G 0.4':'Verschmutzung, Staub, Korrosion','G 0.5':'Naturkatastrophen','G 0.6':'Katastrophen im Umfeld','G 0.7':'Großereignisse im Umfeld','G 0.8':'Ausfall oder Störung der Stromversorgung','G 0.9':'Ausfall oder Störung von Kommunikationsnetzen','G 0.10':'Ausfall oder Störung von Versorgungsnetzen','G 0.11':'Ausfall oder Störung von Dienstleistern','G 0.12':'Elektromagnetische Störstrahlung','G 0.13':'Abfangen kompromittierender Strahlung','G 0.14':'Ausspähen von Informationen (Spionage)','G 0.15':'Abhören','G 0.16':'Diebstahl von Geräten, Datenträgern oder Dokumenten','G 0.17':'Verlust von Geräten, Datenträgern oder Dokumenten','G 0.18':'Fehlplanung oder fehlende Anpassung','G 0.19':'Offenlegung schützenswerter Informationen','G 0.20':'Informationen oder Produkte aus unzuverlässiger Quelle','G 0.21':'Manipulation von Hard- oder Software','G 0.22':'Manipulation von Informationen','G 0.23':'Unbefugtes Eindringen in IT-Systeme','G 0.24':'Zerstörung von Geräten oder Datenträgern','G 0.25':'Ausfall von Geräten oder Systemen','G 0.26':'Fehlfunktion von Geräten oder Systemen','G 0.27':'Ressourcenmangel','G 0.28':'Software-Schwachstellen oder -Fehler','G 0.29':'Verstoß gegen Gesetze oder Regelungen','G 0.30':'Unberechtigte Nutzung oder Administration von Geräten und Systemen','G 0.31':'Fehlerhafte Nutzung oder Administration von Geräten und Systemen','G 0.32':'Missbrauch von Berechtigungen','G 0.33':'Personalausfall','G 0.34':'Anschlag','G 0.35':'Nötigung, Erpressung oder Korruption','G 0.36':'Identitätsdiebstahl','G 0.37':'Abstreiten von Handlungen','G 0.38':'Missbrauch personenbezogener Daten','G 0.39':'Schadprogramme','G 0.40':'Verhinderung von Diensten (Denial of Service)','G 0.41':'Sabotage','G 0.42':'Social Engineering','G 0.43':'Einspielen von Nachrichten','G 0.44':'Unbefugtes Eindringen in Räumlichkeiten','G 0.45':'Datenverlust','G 0.46':'Integritätsverlust schützenswerter Informationen','G 0.47':'Schädliche Seiteneffekte IT-gestützter Angriffe'};
         let loadedCatalogs = [];
+        // Pro geladenem Katalog: Quelle und SHA-256 der Rohbytes (für den Pin-Abgleich).
+        let loadedCatalogSources = [];
+        // Alle Control-IDs der geladenen Kataloge (für den Profil-Drift-Check).
+        let loadedControlIds = new Set();
         let aiCache = {};
+
+        // --- G++-Katalog-Pin (Handbuch 3.13/3.14, Katalogarbeit-Skill Grundregel 8) ---
+        // Gleiche Werte wie Gpp-ai-tool/src/constants.py und die gepinnten Profile.
+        // Katalog-Update = bewusster Pin-Wechsel an allen Stellen zugleich.
+        const GPP_CATALOG_PIN_COMMIT = "47de2824a341812438ef3f044b3f65ce2cad6e32";
+        const GPP_CATALOG_PIN_SHA256 = "db3a1417d7e904315a0886f450129832e19c57324660358c830357349f552332";
+        const GPP_CATALOG_PINNED_URL = "https://raw.githubusercontent.com/BSI-Bund/Stand-der-Technik-Bibliothek/" + GPP_CATALOG_PIN_COMMIT + "/control_layer/Grundschutz%2B%2B/Grundschutz%2B%2B-resolved_catalog.json";
+
+        async function sha256Hex(buf) {
+            const d = await crypto.subtle.digest("SHA-256", buf);
+            return Array.from(new Uint8Array(d)).map(b => b.toString(16).padStart(2, "0")).join("");
+        }
+
+        // Löst einen Profil-Import-href auf: Fragment ("#uuid") → back-matter-Resource
+        // mit rlink-URL und Soll-SHA-256; direkte URL → Alt-Muster ohne Hash.
+        function resolveImportHref(profileObj, href) {
+            if (!href) return null;
+            if (!href.startsWith("#")) return { url: href, sha256: null, pinned: false };
+            const res = ((profileObj["back-matter"] || {}).resources || []).find(r => r.uuid === href.slice(1));
+            const rlink = res && (res.rlinks || [])[0];
+            if (!rlink || !rlink.href) return null;
+            const hash = (rlink.hashes || []).find(h => h.algorithm === "SHA-256");
+            return { url: rlink.href, sha256: hash ? hash.value : null, pinned: true };
+        }
         // Vorberechnetes Mapping G++-Control -> passende BSI ED2023-Anforderungen
         // (erzeugt von Gpp-ai-tool stage_ed23_anforderungen, statt zur Laufzeit per KI).
         let ED23_MAP = {};
@@ -647,8 +675,37 @@ eine KI. Dein Satzbau ist Abwechslungsreich, konkret, präßise und du nutzt kei
 
                 activeProfileIds = ids;
                 const matNote = activeProfileMaturity ? ` (inkl. Reifegrade für ${activeProfileMaturity.size} Controls)` : '';
-                infoSpan.textContent = `${ids.size} Maßnahmen im Profil aktiv${matNote}.`;
-                infoSpan.style.color = "#28a745";
+
+                // Pin-Prüfung: Fragment-Import → back-matter-Resource (Commit-URL + SHA-256).
+                // Abgleich gegen die Hashes der tatsächlich geladenen Kataloge, dazu der
+                // Drift-Check über die Control-ID-Schnittmenge.
+                const imp0 = (data.profile.imports || [])[0];
+                const pin = imp0 ? resolveImportHref(data.profile, imp0.href) : null;
+                const matched = loadedControlIds.size ? [...ids].filter(id => loadedControlIds.has(id)).length : null;
+                let msg = `${ids.size} Maßnahmen im Profil aktiv${matNote}.`;
+                let color = "#28a745";
+                if (matched !== null && matched < ids.size) {
+                    msg = `${matched} von ${ids.size} Profil-Maßnahmen im geladenen Katalog gefunden${matNote}.`;
+                    color = "#e67e22";
+                }
+                if (pin && pin.pinned && pin.sha256) {
+                    const hashMatch = loadedCatalogSources.some(s => s.sha256 === pin.sha256);
+                    if (hashMatch) {
+                        msg += " Katalog entspricht dem Pin des Profils (SHA-256 geprüft).";
+                    } else if (loadedCatalogSources.length) {
+                        msg += ` Achtung: Kein geladener Katalog entspricht der gepinnten Version (Commit ${pin.url.includes('/') ? (pin.url.split('/')[5] || '').slice(0, 12) : '?'}). Gepinnte Quelle wurde ins URL-Feld übernommen.`;
+                        color = "#e67e22";
+                        document.getElementById('urlInput').value = pin.url;
+                    } else {
+                        msg += " Profil ist gepinnt; gepinnte Katalog-Quelle wurde ins URL-Feld übernommen — per „Katalog hinzufügen“ laden.";
+                        document.getElementById('urlInput').value = pin.url;
+                    }
+                } else if (pin && !pin.pinned) {
+                    msg += " Hinweis: Profil nutzt noch den ungepinnten Branch-Import (kein SHA-256).";
+                    color = "#e67e22";
+                }
+                infoSpan.textContent = msg;
+                infoSpan.style.color = color;
                 refreshMaturityDisplay();
                 applyFilters();
             } catch (e) {
@@ -666,7 +723,14 @@ eine KI. Dein Satzbau ist Abwechslungsreich, konkret, präßise und du nutzt kei
                 const url = document.getElementById('urlInput').value;
                 const res = await fetch(url);
                 if (!res.ok) throw new Error("Netzwerkantwort war nicht ok");
-                processCatalog(await res.json());
+                const buf = await res.arrayBuffer();
+                const hash = await sha256Hex(buf);
+                // Pin-Prüfung: Die gepinnte Quelle muss exakt den bekannten Hash liefern.
+                if (url === GPP_CATALOG_PINNED_URL && hash !== GPP_CATALOG_PIN_SHA256) {
+                    alert("Pin-Verletzung: Der Katalog von der gepinnten URL hat nicht den erwarteten SHA-256.\nErwartet: " + GPP_CATALOG_PIN_SHA256 + "\nErhalten: " + hash + "\nDer Katalog wird NICHT geladen.");
+                    return;
+                }
+                processCatalog(JSON.parse(new TextDecoder().decode(buf)), { url, sha256: hash });
             } catch (e) { alert("Fehler beim Laden: " + e.message); }
         }
 
@@ -674,8 +738,12 @@ eine KI. Dein Satzbau ist Abwechslungsreich, konkret, präßise und du nutzt kei
             const file = document.getElementById('fileInput').files[0];
             if (!file) return;
             const r = new FileReader();
-            r.onload = e => processCatalog(JSON.parse(e.target.result));
-            r.readAsText(file);
+            r.onload = async e => {
+                const buf = e.target.result;
+                const hash = await sha256Hex(buf);
+                processCatalog(JSON.parse(new TextDecoder().decode(buf)), { url: "file://" + file.name, sha256: hash });
+            };
+            r.readAsArrayBuffer(file);
         }
 
         function clearAllCatalogs() {
@@ -685,11 +753,18 @@ eine KI. Dein Satzbau ist Abwechslungsreich, konkret, präßise und du nutzt kei
             document.getElementById('clearAllBtn').style.display = 'none';
             document.getElementById('filterControls').style.display = 'none';
             loadedCatalogs = [];
+            loadedCatalogSources = [];
+            loadedControlIds = new Set();
             filterOptions = { class: new Set(), sec_level: new Set(), effort_level: new Set(), modalverb: new Set(), handlung: new Set(), tags: new Set(), threat: new Set() };
             populateFilterUI();
         }
 
-        function processCatalog(data) {
+        function collectControlIds(node, ids) {
+            (node.controls || []).forEach(c => { if (c.id) ids.add(c.id); collectControlIds(c, ids); });
+            (node.groups || []).forEach(g => collectControlIds(g, ids));
+        }
+
+        function processCatalog(data, source) {
             const container = document.getElementById('catalog-container');
             const welcome = document.getElementById('welcome-msg');
             if (welcome) welcome.style.display = 'none';
@@ -697,6 +772,8 @@ eine KI. Dein Satzbau ist Abwechslungsreich, konkret, präßise und du nutzt kei
 
             const catMeta = data.catalog.metadata;
             loadedCatalogs.push(catMeta);
+            if (source) loadedCatalogSources.push(source);
+            collectControlIds(data.catalog, loadedControlIds);
             updateMetaDisplay();
 
             const fragment = document.createDocumentFragment();

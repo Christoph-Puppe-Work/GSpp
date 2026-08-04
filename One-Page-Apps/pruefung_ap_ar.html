@@ -184,7 +184,16 @@ const S={
     tasks:[],dateStart:'',dateEnd:'',setParams:[]
 };
 
-const CATALOG_URL='https://raw.githubusercontent.com/BSI-Bund/Stand-der-Technik-Bibliothek/refs/heads/main/control_layer/Grundschutz%2B%2B/Grundschutz%2B%2B-resolved_catalog.json';
+// --- G++-Katalog-Pin (Handbuch 3.13/3.14, Katalogarbeit-Skill Grundregel 8) ---
+// Gleiche Werte wie Gpp-ai-tool/src/constants.py und die gepinnten Repo-Profile.
+const GPP_CATALOG_PIN_COMMIT='47de2824a341812438ef3f044b3f65ce2cad6e32';
+const GPP_CATALOG_PIN_SHA256='db3a1417d7e904315a0886f450129832e19c57324660358c830357349f552332';
+const CATALOG_URL=`https://raw.githubusercontent.com/BSI-Bund/Stand-der-Technik-Bibliothek/${GPP_CATALOG_PIN_COMMIT}/control_layer/Grundschutz%2B%2B/Grundschutz%2B%2B-resolved_catalog.json`;
+// uuid5(NAMESPACE_URL, CATALOG_URL) — identisch zu den gepinnten Repo-Profilen.
+const GPP_CATALOG_RESOURCE_UUID='944d9eb5-aa84-5c12-86d3-94ed8e2569f5';
+async function sha256Hex(buf){const d=await crypto.subtle.digest('SHA-256',buf);return Array.from(new Uint8Array(d)).map(b=>b.toString(16).padStart(2,'0')).join('')}
+// Back-matter-Resource für den gepinnten Katalog — feldidentisch zur Ausgabe von scripts/pin_profile_imports.py.
+function pinnedCatalogResource(){return{uuid:GPP_CATALOG_RESOURCE_UUID,title:`Grundschutz++-resolved_catalog.json @ ${GPP_CATALOG_PIN_COMMIT.slice(0,12)}`,rlinks:[{href:CATALOG_URL,hashes:[{algorithm:'SHA-256',value:GPP_CATALOG_PIN_SHA256}]}]}}
 const MODELS={claude:[{id:'claude-opus-4-6-20250514',label:'Claude Opus 4.6 (Top)'},{id:'claude-sonnet-4-6-20250514',label:'Claude Sonnet 4.6 (Fast)'}],gemini:[{id:'gemini-3.1-pro-preview',label:'Gemini 3.1 Pro Preview'},{id:'gemini-3.1-flash',label:'Gemini 3.1 Flash (Prod)'}]};
 const STM={
     'implemented':{l:'Implementiert',c:'bg-emerald-900 text-emerald-300 border-emerald-700',b:'#10b981'},
@@ -220,7 +229,11 @@ document.addEventListener('DOMContentLoaded',()=>{
 async function loadCatalog(){
     const cs=document.getElementById('cat-status');
     try{
-        const r=await fetch(CATALOG_URL);const d=await r.json();
+        const r=await fetch(CATALOG_URL);const buf=await r.arrayBuffer();
+        // Pin-Prüfung (Grundregel 8): Die gepinnte Quelle muss exakt den bekannten SHA-256 liefern.
+        const hash=await sha256Hex(buf);
+        if(hash!==GPP_CATALOG_PIN_SHA256){cs.textContent='Katalog: Pin-Verletzung (SHA-256 weicht ab)';throw new Error(`Pin-Verletzung: ${hash.slice(0,12)}… statt ${GPP_CATALOG_PIN_SHA256.slice(0,12)}…`)}
+        const d=JSON.parse(new TextDecoder().decode(buf));
         function idx(items){if(!items)return;items.forEach(i=>{
             if(i.id){let prose='';if(i.parts){const p=i.parts.find(p=>p.name==='statement'||p.prose);if(p&&p.prose)prose=p.prose}
                 const secLvl=(i.props||[]).find(p=>p.name==='sec_level')?.value||'';
@@ -334,6 +347,25 @@ function localName(u){return /^local:\/\//i.test(u)?u.replace(/^local:\/\//i,'')
 // Liefert das geparste Profil zu einer defUrl: local:// → erst aus geladenen
 // Dateien (S.localDefs), sonst relativer Fetch (nur über http-Server); http(s) → CORS-Fetch.
 async function fetchDef(u){
+    // Fragment-href (Pin-Muster, Grundregel 8): "#uuid" über die back-matter des SSP
+    // auf die Resource auflösen; deren rlink-URL laden und — falls die Resource einen
+    // SHA-256 trägt — den Inhalt gegen den Pin verifizieren.
+    if(/^#/.test(u)){
+        const res=(S.ssp?.['back-matter']?.resources||[]).find(r=>r.uuid===u.slice(1));
+        if(!res)throw new Error(`Back-matter-Resource ${u} nicht im SSP gefunden`);
+        const rl=(res.rlinks||[])[0];
+        if(!rl?.href)throw new Error(`Resource ${u} hat keinen rlink`);
+        const expected=(rl.hashes||[]).find(h=>h.algorithm==='SHA-256')?.value;
+        if(expected&&/^https?:/i.test(rl.href)){
+            const r=await fetch(rl.href,{mode:'cors',cache:'no-cache'});
+            if(!r.ok)throw new Error(`HTTP ${r.status} ${r.statusText}`);
+            const buf=await r.arrayBuffer();
+            const hash=await sha256Hex(buf);
+            if(hash!==expected)throw new Error(`Pin-Verletzung für ${rl.href}: SHA-256 ${hash.slice(0,12)}… statt ${expected.slice(0,12)}…`);
+            return JSON.parse(new TextDecoder().decode(buf).replace(/^﻿/,''));
+        }
+        return fetchDef(rl.href);
+    }
     const ln=localName(u);
     if(ln!=null){
         if(S.localDefs.has(ln))return S.localDefs.get(ln);
@@ -824,7 +856,10 @@ function exportAP(){
     const ts=new Date().toISOString(),au=crypto.randomUUID();const cids=[...S.allCids].filter(c=>!S.excluded.has(c)).sort();
     const byM={};cids.forEach(c=>{(S.methods.get(c)||new Set(['EXAMINE'])).forEach(m=>{if(!byM[m])byM[m]={uuid:crypto.randomUUID(),cids:[]};byM[m].cids.push(c)})});
     const acts=Object.entries(byM).map(([m,a])=>({uuid:a.uuid,title:`${m}-Prüfung`,description:`${m} für ${a.cids.length} Controls.`,props:[{name:"method",ns:"http://csrc.nist.gov/ns/oscal",value:m}],"related-controls":{"control-selections":[{"include-controls":a.cids.map(c=>({"control-id":c}))}]}}));
-    const ap={"assessment-plan":{uuid:crypto.randomUUID(),metadata:{title:S.meta.title||'AP',version:S.meta.version||'1.0.0',"last-modified":ts,"oscal-version":"1.2.2",roles:[{id:"assessor",title:"Assessor"},{id:"system-owner",title:"System Owner"}]},"import-ssp":{href:S.sspFilename},"reviewed-controls":{"control-selections":[{"include-controls":cids.map(c=>({"control-id":c}))}]}}};
+    // Pin-Muster (Grundregel 8): import-ssp als Fragment auf eine back-matter-Resource;
+    // die Katalog-Resource dokumentiert, gegen welchen Katalogstand geprüft wird.
+    const sspResUuid=crypto.randomUUID();
+    const ap={"assessment-plan":{uuid:crypto.randomUUID(),metadata:{title:S.meta.title||'AP',version:S.meta.version||'1.0.0',"last-modified":ts,"oscal-version":"1.2.2",roles:[{id:"assessor",title:"Assessor"},{id:"system-owner",title:"System Owner"}]},"import-ssp":{href:`#${sspResUuid}`},"reviewed-controls":{"control-selections":[{"include-controls":cids.map(c=>({"control-id":c}))}]},"back-matter":{resources:[{uuid:sspResUuid,title:`System Security Plan (${S.sspFilename||'SSP'})`,rlinks:[{href:S.sspFilename||'SSP.json'}]},pinnedCatalogResource()]}}};
     if(S.meta.desc)ap["assessment-plan"].metadata.remarks=S.meta.desc;
     if(S.assessor.name){ap["assessment-plan"].metadata.parties=[{uuid:au,type:S.assessor.type,name:S.assessor.name}];if(S.assessor.email)ap["assessment-plan"].metadata.parties[0]["email-addresses"]=[S.assessor.email];ap["assessment-plan"].metadata["responsible-parties"]=[{"role-id":"assessor","party-uuids":[au]}]}
     if(acts.length)ap["assessment-plan"]["local-definitions"]={activities:acts};
@@ -918,7 +953,10 @@ function exportAR(){
     });
 
     if(!fin.length)return alert('Keine bewerteten Controls.');
-    const ar={"assessment-results":{uuid:crypto.randomUUID(),metadata:{title:`${sn().replace(/_/g,' ')} - Assessment Results`,version:S.meta.version||'1.0.0',"last-modified":ts,"oscal-version":"1.2.2"},"import-ap":{href:`${sn()}_AP.json`},results:[{uuid:crypto.randomUUID(),title:"Assessment-Ergebnis",description:'Ergebnisse',start:S.dateStart?`${S.dateStart}T00:00:00Z`:ts,end:S.dateEnd?`${S.dateEnd}T23:59:59Z`:ts,"reviewed-controls":{"control-selections":[{"include-controls":cids.map(c=>({"control-id":c}))}]},...(obs.length?{observations:obs}:{}),findings:fin,...(rsk.length?{risks:rsk}:{})}]}};
+    // Pin-Muster (Grundregel 8): import-ap als Fragment auf eine back-matter-Resource;
+    // die Katalog-Resource dokumentiert, gegen welchen Katalogstand geprüft wurde.
+    const apResUuid=crypto.randomUUID();
+    const ar={"assessment-results":{uuid:crypto.randomUUID(),metadata:{title:`${sn().replace(/_/g,' ')} - Assessment Results`,version:S.meta.version||'1.0.0',"last-modified":ts,"oscal-version":"1.2.2"},"import-ap":{href:`#${apResUuid}`},results:[{uuid:crypto.randomUUID(),title:"Assessment-Ergebnis",description:'Ergebnisse',start:S.dateStart?`${S.dateStart}T00:00:00Z`:ts,end:S.dateEnd?`${S.dateEnd}T23:59:59Z`:ts,"reviewed-controls":{"control-selections":[{"include-controls":cids.map(c=>({"control-id":c}))}]},...(obs.length?{observations:obs}:{}),findings:fin,...(rsk.length?{risks:rsk}:{})}],"back-matter":{resources:[{uuid:apResUuid,title:`Assessment Plan (${sn()}_AP.json)`,rlinks:[{href:`${sn()}_AP.json`}]},pinnedCatalogResource()]}}};
     dl(ar,`${sn()}_AR.json`);autoSave();
 }
 

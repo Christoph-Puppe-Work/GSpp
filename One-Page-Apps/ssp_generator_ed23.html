@@ -352,6 +352,15 @@
         // (1 = Basis, 3 = Standard, 5 = erhöhter Schutzbedarf) und Reifegrad-Beschreibungen.
         const CATALOG_URL_BASE = 'https://raw.githubusercontent.com/NTTDATA-DACH/BSI-GS-Benutzerdefinierte-Edition23-OSCAL/main/BS_GK_OSCAL_JSON_DATA/BSI_GS_OSCAL_current_2023_benutzerdefinierte.json';
 
+        // Pin-Unterstützung (Handbuch 3.13/3.14, Katalogarbeit-Skill Grundregel 8):
+        // Für den ED23-Basiskatalog gibt es keinen festgeschriebenen Commit-Pin, daher
+        // wird der SHA-256 jedes geladenen Katalogstands zur Ladezeit berechnet und beim
+        // Export als Content-Pin in die back-matter-Resource geschrieben.
+        async function sha256Hex(buf) {
+            const d = await crypto.subtle.digest('SHA-256', buf);
+            return Array.from(new Uint8Array(d)).map(b => b.toString(16).padStart(2, '0')).join('');
+        }
+
         // Schichten des Kompendiums: Prozess-Bausteine gelten einmal je Informationsverbund,
         // System-Bausteine werden Assets (Zielobjekten) zugeordnet.
         const ED23_PROCESS_LAYERS = ['ISMS', 'ORP', 'CON', 'OPS', 'DER'];
@@ -2359,8 +2368,11 @@ ${candidates.join('\n')}`;
             const statusEl = document.getElementById('catalog-status');
             try {
                 const res = await fetch(CATALOG_URL_BASE);
-                const data = await res.json();
+                const buf = await res.arrayBuffer();
+                const data = JSON.parse(new TextDecoder().decode(buf));
                 const baseCatalog = bpState.catalogs[0];
+                // Content-Pin: Hash des tatsächlich geladenen Katalogstands für den Export merken.
+                baseCatalog.sha256 = await sha256Hex(buf);
                 baseCatalog.name = data?.catalog?.metadata?.title || baseCatalog.name;
                 const controlEntries = extractCatalogControls(data, baseCatalog);
                 baseCatalog.controls = new Set(controlEntries.keys());
@@ -2414,7 +2426,11 @@ ${candidates.join('\n')}`;
             const normalizedUrl = normalizeGitHubCatalogUrl(url);
             const res = await fetch(normalizedUrl);
             if (!res.ok) throw new Error(`HTTP ${res.status}`);
-            const data = await res.json();
+            const buf = await res.arrayBuffer();
+            // SHA-256 des geladenen Katalogstands merken: wird beim Profil-Export als
+            // Pin in die back-matter-Resource geschrieben (Grundregel 8).
+            const sha256 = await sha256Hex(buf);
+            const data = JSON.parse(new TextDecoder().decode(buf).replace(/^\uFEFF/, ''));
             if (!data || !data.catalog) throw new Error('Datei ist kein OSCAL Catalog');
             const title = data.catalog?.metadata?.title || data.catalog?.uuid || inferCatalogNameFromUrl(normalizedUrl);
             const id = `catalog-${crypto.randomUUID()}`;
@@ -2428,7 +2444,8 @@ ${candidates.join('\n')}`;
                 imported: true,
                 uuid: data.catalog?.uuid || crypto.randomUUID(),
                 controls: new Set(controlEntries.keys()),
-                controlEntries
+                controlEntries,
+                sha256
             };
         }
 
@@ -3498,9 +3515,16 @@ ${candidates.join('\n')}`;
 
             // --- Additional catalogs ---
             // Preferred source: profile.imports (skip first = base). Fallback: SSP system-characteristics props.
+            // Fragment-hrefs (Pin-Muster) werden über die back-matter des Profils auf
+            // die reale Katalog-URL aufgelöst.
+            const resolveProfileHref = (h) => {
+                if (!h || !h.startsWith('#')) return h;
+                const res = (((profile || {})['back-matter'] || {}).resources || []).find(r => r.uuid === h.slice(1));
+                return res?.rlinks?.[0]?.href || null;
+            };
             let additionalHrefs = [];
             if (profile && Array.isArray(profile.imports)) {
-                additionalHrefs = profile.imports.slice(1).map(i => i.href).filter(Boolean);
+                additionalHrefs = profile.imports.slice(1).map(i => resolveProfileHref(i.href)).filter(Boolean);
             } else if (ssp) {
                 const chars = ssp['system-characteristics'] || {};
                 (chars.props || []).forEach(p => { if (p.name === 'referenced-catalog' && p.value) additionalHrefs.push(p.value); });
@@ -3769,7 +3793,7 @@ ${candidates.join('\n')}`;
         }
 
         // --- SECTION 5: EXPORTS (OSCAL GENERATION) ---
-        function generateBlueprintPackage() {
+        async function generateBlueprintPackage() {
             const t = bpState.metadata.title || "Blaupause";
             const profileData = generateProfile(t);
 
@@ -3778,7 +3802,11 @@ ${candidates.join('\n')}`;
 
             const generateSSPCheckbox = document.getElementById('generate-ssp-checkbox');
             if (generateSSPCheckbox && generateSSPCheckbox.checked) {
-                const sspData = generateSSP(t, profileData.profile.uuid);
+                // Pin des Schwester-Profils: SHA-256 über exakt die Bytes der eben
+                // heruntergeladenen Profildatei (inkl. BOM, identische Serialisierung).
+                const profileBytes = new TextEncoder().encode("\uFEFF" + JSON.stringify(profileData, null, 2));
+                const profileHash = await sha256Hex(profileBytes);
+                const sspData = generateSSP(t, profileData.profile.uuid, `${safeName}_Profile.json`, profileHash);
                 setTimeout(() => downloadJSON(sspData, `${safeName}_SSP.json`), 600);
             }
         }
@@ -3809,6 +3837,20 @@ ${candidates.join('\n')}`;
             const alters = [];
             altersMap.forEach((adds, cid) => alters.push({ "control-id": cid, adds: adds }));
 
+            // Pin-Muster (Grundregel 8): Jeder Import ist ein Fragment auf eine
+            // back-matter-Resource mit Katalog-URL und dem SHA-256 des tatsächlich
+            // geladenen Stands (Content-Pin).
+            const catalogResources = bpState.catalogs.map(catalog => {
+                if (!catalog.resourceUuid) catalog.resourceUuid = crypto.randomUUID();
+                return {
+                    uuid: catalog.resourceUuid,
+                    title: decodeURIComponent((catalog.href || '').split('/').pop() || '') || catalog.name || 'OSCAL Katalog',
+                    rlinks: [{
+                        href: catalog.href,
+                        ...(catalog.sha256 ? { hashes: [{ algorithm: 'SHA-256', value: catalog.sha256 }] } : {})
+                    }]
+                };
+            });
             const profile = {
                 profile: {
                     uuid: crypto.randomUUID(),
@@ -3817,8 +3859,8 @@ ${candidates.join('\n')}`;
                         version: bpState.metadata.version, "last-modified": ts, "oscal-version": "1.2.2",
                         remarks: bpState.metadata.description
                     },
-                    imports: bpState.catalogs.map(catalog => ({ href: catalog.href })),
-                    "back-matter": { resources: [] }
+                    imports: bpState.catalogs.map(catalog => ({ href: `#${catalog.resourceUuid}` })),
+                    "back-matter": { resources: [...catalogResources] }
                 }
             };
 
@@ -3885,7 +3927,7 @@ ${candidates.join('\n')}`;
             return profile;
         }
 
-        function generateSSP(t, profileUuid) {
+        function generateSSP(t, profileUuid, profileFileName, profileSha256) {
             const sysUuid = crypto.randomUUID();
             const riskCompUuid = crypto.randomUUID();
             const additionalCatalogs = bpState.catalogs.slice(1);
@@ -4273,11 +4315,15 @@ ${candidates.join('\n')}`;
             }));
             if (characteristicProps.length) systemCharacteristics.props = characteristicProps;
 
+            // Pin-Muster (Grundregel 8): import-profile als Fragment auf eine
+            // back-matter-Resource; deren SHA-256 nagelt die Schwester-Profildatei fest.
+            const profileResUuid = crypto.randomUUID();
+            const profileHref = profileFileName || `${t.replace(/\s+/g, '_')}_Profile.json`;
             const ssp = {
                 "system-security-plan": {
                     uuid: crypto.randomUUID(),
                     metadata,
-                    "import-profile": { href: `${t.replace(/\s+/g, '_')}_Profile.json` },
+                    "import-profile": { href: `#${profileResUuid}` },
                     "system-characteristics": systemCharacteristics,
                     "system-implementation": { components: sspComponents },
                     "control-implementation": { description: "Spezifische Risikomitigierung, manuelle Controls und Prozesse", "implemented-requirements": reqs.length > 0 ? reqs : [{ uuid: crypto.randomUUID(), "control-id": "PLACEHOLDER", description: "Empty" }] }
@@ -4285,6 +4331,14 @@ ${candidates.join('\n')}`;
             };
 
             const backMatterResources = [];
+            backMatterResources.push({
+                uuid: profileResUuid,
+                title: `OSCAL-Profil (${profileHref})`,
+                rlinks: [{
+                    href: profileHref,
+                    ...(profileSha256 ? { hashes: [{ algorithm: 'SHA-256', value: profileSha256 }] } : {})
+                }]
+            });
             if (bpState.riskData.length > 0) {
                 const riskUuid = crypto.randomUUID();
                 backMatterResources.push({

@@ -226,7 +226,16 @@
     // ============================================================
     // CONFIG & STATE
     // ============================================================
-    const GS_PLUS_CATALOG_URL = 'https://raw.githubusercontent.com/BSI-Bund/Stand-der-Technik-Bibliothek/refs/heads/main/control_layer/Grundschutz%2B%2B/Grundschutz%2B%2B-resolved_catalog.json';
+    // --- G++-Katalog-Pin (Handbuch 3.13/3.14, Katalogarbeit-Skill Grundregel 8) ---
+    // Gleiche Werte wie Gpp-ai-tool/src/constants.py und die gepinnten Repo-Profile.
+    const GPP_CATALOG_PIN_COMMIT = '47de2824a341812438ef3f044b3f65ce2cad6e32';
+    const GPP_CATALOG_PIN_SHA256 = 'db3a1417d7e904315a0886f450129832e19c57324660358c830357349f552332';
+    const GS_PLUS_CATALOG_URL = `https://raw.githubusercontent.com/BSI-Bund/Stand-der-Technik-Bibliothek/${GPP_CATALOG_PIN_COMMIT}/control_layer/Grundschutz%2B%2B/Grundschutz%2B%2B-resolved_catalog.json`;
+
+    async function sha256Hex(buf) {
+        const d = await crypto.subtle.digest('SHA-256', buf);
+        return Array.from(new Uint8Array(d)).map(b => b.toString(16).padStart(2, '0')).join('');
+    }
     const MODELS = {
         claude: [
             { id: 'claude-3-5-sonnet-20240620', label: 'Claude 3.5 Sonnet (Standard)' },
@@ -747,8 +756,29 @@
         }
     }
 
-    async function loadReferencedResource(href) {
+    async function loadReferencedResource(href, rootDoc, expectedSha256) {
         if (!href) return null;
+
+        // Fragment-href (Pin-Muster, Grundregel 8): "#uuid" über die back-matter des
+        // umgebenden Dokuments (rootDoc) auflösen — die Resource liefert die rlink-URL
+        // und den Soll-SHA-256, mit denen rekursiv weitergeladen wird. Alternativ kann
+        // die Resource den Inhalt als base64-Attachment einbetten.
+        if (href.startsWith('#')) {
+            const res = (((rootDoc || {})['back-matter'] || {}).resources || []).find(r => r.uuid === href.slice(1));
+            const rl = res?.rlinks?.[0];
+            if (rl?.href) {
+                const pinHash = (rl.hashes || []).find(h => h.algorithm === 'SHA-256')?.value || null;
+                return loadReferencedResource(rl.href, rootDoc, pinHash);
+            }
+            const b64 = res?.attachments?.[0]?.base64?.value;
+            if (b64) {
+                const txt = base64DecodeUnicode(b64);
+                if (txt) { try { return JSON.parse(txt); } catch (e) { /* fällt durch zu missing */ } }
+            }
+            resourceLoadStatus.push({ href, status: 'missing', source: 'back-matter', error: 'Resource nicht auflösbar (keine rlink-URL, kein Attachment)' });
+            return null;
+        }
+
         const filename = href.split('/').pop();
         const existingStatus = resourceLoadStatus.some(r => r.href === href);
 
@@ -765,8 +795,17 @@
             try {
                 const response = await fetch(href);
                 if (!response.ok) throw new Error(`Netzwerk-Status ${response.status}`);
-                const json = await response.json();
-                if (!existingStatus) resourceLoadStatus.push({ href, status: 'success', source: 'network' });
+                const buf = await response.arrayBuffer();
+                // Pin-Prüfung: Trägt die referenzierende Resource einen SHA-256, muss der
+                // geladene Inhalt exakt passen — sonst wird er verworfen.
+                if (expectedSha256) {
+                    const hash = await sha256Hex(buf);
+                    if (hash !== expectedSha256) {
+                        throw new Error(`Pin-Verletzung: SHA-256 ${hash.slice(0, 12)}… statt ${expectedSha256.slice(0, 12)}…`);
+                    }
+                }
+                const json = JSON.parse(new TextDecoder().decode(buf));
+                if (!existingStatus) resourceLoadStatus.push({ href, status: 'success', source: expectedSha256 ? 'network · SHA-256 geprüft' : 'network' });
                 return json;
             } catch (error) {
                 if (!existingStatus) resourceLoadStatus.push({ href, status: 'error', source: 'network', error: error.message });
@@ -784,14 +823,15 @@
     }
 
     async function loadFallbackCatalog() {
-        const d = await loadReferencedResource(GS_PLUS_CATALOG_URL);
+        // Fallback lädt die gepinnte Katalogversion und verifiziert den Pin-Hash.
+        const d = await loadReferencedResource(GS_PLUS_CATALOG_URL, null, GPP_CATALOG_PIN_SHA256);
         if (d?.catalog) processCatalogData(d.catalog);
     }
 
     async function processLinkedProfiles(ssp) {
         const links = (ssp.metadata?.links || []).filter(l => l.rel === 'profile' && l.href);
         await Promise.all(links.map(async (link) => {
-            const d = await loadReferencedResource(link.href);
+            const d = await loadReferencedResource(link.href, ssp);
             if (d?.profile) {
                 extractRiskData(d.profile, link.href);
                 extractEmbeddedCatalogs(d.profile);
@@ -808,7 +848,7 @@
 
         const catLinks = new Set();
         await Promise.all(Array.from(defLinks).map(async (href) => {
-            const d = await loadReferencedResource(href);
+            const d = await loadReferencedResource(href, ssp);
             if (d) {
                 loadedProfiles.set(href, d);
                 if (d['profile']) {
@@ -822,7 +862,7 @@
         }));
 
         await Promise.all(Array.from(catLinks).map(async (href) => {
-            const d = await loadReferencedResource(href);
+            const d = await loadReferencedResource(href, ssp);
             if (d?.catalog) processCatalogData(d.catalog);
         }));
     }
@@ -830,7 +870,7 @@
     async function processMainCatalog(ssp) {
         const pHref = ssp['import-profile']?.href;
         if (!pHref) return;
-        const d = await loadReferencedResource(pHref);
+        const d = await loadReferencedResource(pHref, ssp);
         if (d?.profile) {
             const m = d.profile.modify;
             if (m?.['set-parameters']) m['set-parameters'].forEach(p => { if (p['param-id'] && p.values?.length) profileModifications.setParams.set(p['param-id'], p.values[0]); });
@@ -842,7 +882,9 @@
             });
             if (d.profile.imports) {
                 for (const imp of d.profile.imports) {
-                    const r = await loadReferencedResource(imp.href);
+                    // Wurzeldokument für Fragment-Importe ist hier das PROFIL — dessen
+                    // back-matter trägt die gepinnte Katalog-URL samt SHA-256.
+                    const r = await loadReferencedResource(imp.href, d.profile);
                     if (r?.catalog) processCatalogData(r.catalog);
                 }
             }

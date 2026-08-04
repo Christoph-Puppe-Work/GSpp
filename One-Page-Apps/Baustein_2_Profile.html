@@ -425,7 +425,7 @@ body{
           <div style="margin-top:14px">
             <label style="display:block;font-size:11px;color:var(--text-tertiary);margin-bottom:4px;font-weight:500">G++ Anwenderkatalog (raw JSON-URL · Prose-Quelle für beide Pfade)</label>
             <div class="url-row">
-              <input id="cat-url" type="text" value="https://raw.githubusercontent.com/BSI-Bund/Stand-der-Technik-Bibliothek/refs/heads/main/control_layer/Grundschutz%2B%2B/Grundschutz%2B%2B-resolved_catalog.json">
+              <input id="cat-url" type="text" value="https://raw.githubusercontent.com/BSI-Bund/Stand-der-Technik-Bibliothek/47de2824a341812438ef3f044b3f65ce2cad6e32/control_layer/Grundschutz%2B%2B/Grundschutz%2B%2B-resolved_catalog.json">
               <button class="btn sm" id="btn-load-cat">⤓ laden</button>
               <button class="btn sm ghost" id="btn-upload-cat">⤴ upload</button>
               <input id="cat-file" type="file" accept="application/json" style="display:none">
@@ -754,11 +754,36 @@ const DEFAULTS = {
      `target_object_categories` prop govern processes/ISMS (see determinePool).
    ════════════════════════════════════════════════════════════════════════ */
 
-const GPP_CATALOG_URL = "https://raw.githubusercontent.com/BSI-Bund/Stand-der-Technik-Bibliothek/refs/heads/main/control_layer/Grundschutz%2B%2B/Grundschutz%2B%2B-resolved_catalog.json";
 const ZOK_CSV_URL     = "https://raw.githubusercontent.com/BSI-Bund/Stand-der-Technik-Bibliothek/refs/heads/main/documentation/namespaces/target_object_categories.csv";
 const ZO_CONTROLS_URL = "https://raw.githubusercontent.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/main/hilfsdateien/zielobjekt_controls.json";
-// href written into the assembled OSCAL profile's import (un-escaped form)
-const GPP_CATALOG_HREF = "https://raw.githubusercontent.com/BSI-Bund/Stand-der-Technik-Bibliothek/refs/heads/main/control_layer/Grundschutz%2B%2B/Grundschutz%2B%2B-resolved_catalog.json";
+
+// --- G++-Katalog-Pin (Handbuch 3.13/3.14, Katalogarbeit-Skill Grundregel 8) ---
+// Gleiche Werte wie Gpp-ai-tool/src/constants.py und die gepinnten Repo-Profile.
+// Katalog-Update = bewusster Pin-Wechsel an allen Stellen zugleich.
+const GPP_CATALOG_PIN_COMMIT = "47de2824a341812438ef3f044b3f65ce2cad6e32";
+const GPP_CATALOG_PIN_SHA256 = "db3a1417d7e904315a0886f450129832e19c57324660358c830357349f552332";
+const GPP_CATALOG_PINNED_URL = `https://raw.githubusercontent.com/BSI-Bund/Stand-der-Technik-Bibliothek/${GPP_CATALOG_PIN_COMMIT}/control_layer/Grundschutz%2B%2B/Grundschutz%2B%2B-resolved_catalog.json`;
+// uuid5(NAMESPACE_URL, GPP_CATALOG_PINNED_URL) — identisch zu den vom Pin-Skript
+// migrierten Profilen, damit Browser- und Pipeline-Artefakte ununterscheidbar sind.
+const GPP_CATALOG_RESOURCE_UUID = "944d9eb5-aa84-5c12-86d3-94ed8e2569f5";
+
+async function sha256Hex(buf) {
+  const d = await crypto.subtle.digest("SHA-256", buf);
+  return Array.from(new Uint8Array(d)).map(b => b.toString(16).padStart(2, "0")).join("");
+}
+
+// Back-matter-Resource für den gepinnten Katalog — feldidentisch zur Ausgabe von
+// scripts/pin_profile_imports.py.
+function pinnedCatalogResource() {
+  return {
+    "uuid": GPP_CATALOG_RESOURCE_UUID,
+    "title": `Grundschutz++-resolved_catalog.json @ ${GPP_CATALOG_PIN_COMMIT.slice(0, 12)}`,
+    "rlinks": [{
+      "href": GPP_CATALOG_PINNED_URL,
+      "hashes": [{ "algorithm": "SHA-256", "value": GPP_CATALOG_PIN_SHA256 }],
+    }],
+  };
+}
 
 /* ════════════════════════════════════════════════════════════════════════
    State
@@ -1240,7 +1265,17 @@ $("btn-load-cat").addEventListener("click", async () => {
     const t0 = performance.now();
     const r = await fetch(url);
     if (!r.ok) throw new Error(`HTTP ${r.status}`);
-    const json = await r.json();
+    const buf = await r.arrayBuffer();
+    // Pin-Prüfung (Grundregel 8): Die gepinnte Quelle muss exakt den bekannten
+    // SHA-256 liefern — sonst wird der Katalog abgelehnt.
+    if (url === GPP_CATALOG_PINNED_URL) {
+      const hash = await sha256Hex(buf);
+      if (hash !== GPP_CATALOG_PIN_SHA256) {
+        throw new Error(`Pin-Verletzung: SHA-256 ${hash.slice(0,12)}… statt ${GPP_CATALOG_PIN_SHA256.slice(0,12)}…`);
+      }
+      l.ok(`catalog pin verified · SHA-256 ${hash.slice(0,12)}…`);
+    }
+    const json = JSON.parse(new TextDecoder().decode(buf));
     setCatalog(json, url);
     l.ok(`catalog fetched in ${Math.round(performance.now()-t0)}ms`);
   } catch (e) {
@@ -2240,11 +2275,12 @@ function assembleProfile() {
       },
       "imports": [
         {
-          "href": GPP_CATALOG_HREF,
+          "href": `#${GPP_CATALOG_RESOURCE_UUID}`,
           "include-controls": [{ "with-ids": uniqueControls }],
         },
       ],
       ...(alters.length ? { "modify": { "alters": alters } } : {}),
+      "back-matter": { "resources": [pinnedCatalogResource()] },
     },
   };
 

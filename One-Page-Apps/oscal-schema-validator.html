@@ -1054,6 +1054,37 @@ function runDeterministicRules(doc, model, refIndex) {
       }
     }
   });
+  // D8 import pinning (Handbuch 3.13/3.14, Katalogarbeit-Skill Grundregel 8):
+  // Import-hrefs sollen als Fragment auf eine back-matter-Resource zeigen, deren
+  // rlink eine feste Quelle plus genau einen SHA-256-Hash trägt; direkte
+  // Branch-URLs (refs/heads/…, …/main/…) sind ungepinnt.
+  {
+    const resourcesById = new Map(((rootObj["back-matter"] || {}).resources || []).map(r => [r.uuid, r]));
+    const importRefs = [];
+    (Array.isArray(rootObj.imports) ? rootObj.imports : []).forEach((imp, i) => importRefs.push({ href: imp && imp.href, loc: `/${rootKey}/imports/${i}/href` }));
+    for (const key of ["import-profile", "import-ssp", "import-ap"]) {
+      if (rootObj[key] && typeof rootObj[key].href === "string") importRefs.push({ href: rootObj[key].href, loc: `/${rootKey}/${key}/href` });
+    }
+    (Array.isArray(rootObj["import-component-definitions"]) ? rootObj["import-component-definitions"] : []).forEach((imp, i) => importRefs.push({ href: imp && imp.href, loc: `/${rootKey}/import-component-definitions/${i}/href` }));
+    for (const ref of importRefs) {
+      if (typeof ref.href !== "string" || !ref.href) continue;
+      if (ref.href.startsWith("#")) {
+        const res = resourcesById.get(ref.href.slice(1));
+        if (!res) { add("D8-IMPORT-PIN", "error", ref.loc, `Import fragment "${ref.href}" does not resolve to a back-matter resource`, "Point the import at a back-matter resource carrying the pinned source (rlink href + SHA-256 hash)."); continue; }
+        const rlinks = res.rlinks || [];
+        const hasAttachment = !!(res.attachments && res.attachments.length);
+        if (!rlinks.length && !hasAttachment) { add("D8-IMPORT-PIN", "error", ref.loc, `Back-matter resource "${res.uuid}" for this import has neither rlinks nor attachments`, "Add an rlink with the pinned source URL and exactly one SHA-256 hash."); continue; }
+        if (rlinks.length) {
+          const hashes = rlinks[0].hashes || [];
+          const sha = hashes.filter(h => h && h.algorithm === "SHA-256");
+          if (hashes.length !== 1 || sha.length !== 1) add("D8-IMPORT-PIN", "warning", ref.loc, `Pinned import resource "${res.uuid}" should carry exactly one SHA-256 hash (found ${hashes.length})`, "Carry exactly one hash entry with algorithm \"SHA-256\" on the rlink (Grundregel 8).");
+          if (typeof rlinks[0].href === "string" && /\/refs\/heads\//.test(rlinks[0].href)) add("D8-IMPORT-PIN", "warning", ref.loc, `Pinned resource rlink still points at a moving branch URL (${rlinks[0].href})`, "Replace the branch reference with a commit-pinned URL.");
+        }
+      } else if (/^https?:/.test(ref.href) && /\/(refs\/heads\/[^/]+|main|master)\//.test(ref.href)) {
+        add("D8-IMPORT-PIN", "warning", ref.loc, `Import href is an unpinned branch URL (${ref.href})`, "Migrate to the pin pattern: fragment href onto a back-matter resource whose rlink carries a commit-pinned URL plus a SHA-256 hash (Handbuch 3.14 / Grundregel 8).");
+      }
+    }
+  }
   // D5/D6 cross-document reference targets
   const crossTargets = [];
   walkDoc(doc, "", (n, ptr) => {
@@ -2154,7 +2185,7 @@ $("btn-run-checker").addEventListener("click", runChecker);
 /* ================= rules check (beyond JSON Schema) ================= */
 const RULES_REPORT_BLOCK = `Report rules:
 - Only report findings you can verify from the provided text. Never invent control ids, uuids, parameters, or content.
-- The tool already runs deterministic checks for uuid uniqueness, fragment/role/party/uuid reference resolution, and (when a reference document is loaded) control-id/param-id/statement-id membership. Do NOT re-report those mechanical checks — focus on semantic judgment, conventions, and content quality.
+- The tool already runs deterministic checks for uuid uniqueness, fragment/role/party/uuid reference resolution, import pinning (fragment onto a back-matter resource with a commit-pinned rlink and exactly one SHA-256 hash), and (when a reference document is loaded) control-id/param-id/statement-id membership. Do NOT re-report those mechanical checks — focus on semantic judgment, conventions, and content quality.
 - If the reference document is "(not provided)", mark any cross-document observation as severity "info" and say the check was limited.
 - location must be a JSON Pointer (RFC 6901) into the document, as deep as possible (e.g. /component-definition/components/0/description).
 - severity: "error" = violates an OSCAL requirement; "warning" = likely defect or convention breach; "info" = advisory or limited check.

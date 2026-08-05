@@ -1,0 +1,326 @@
+import logging
+import os
+from google.cloud import error_reporting
+import json
+import uuid
+import copy
+from datetime import datetime, timezone
+from typing import Any, Dict, List
+
+import jsonschema
+import jsonpatch
+from mcp.server.fastmcp import FastMCP, Context
+
+from GS_backend_MCP.myserver.gcp import storage
+from GS_backend_MCP.myserver.gcp.storage import OscalModel
+from GS_backend_MCP.myserver.utils import get_iv_id
+from GS_backend_MCP.myserver.extractors import ssp_extractor, assessment_extractor, poam_extractor
+from GS_backend_MCP.myserver import resolver
+
+# --- Helpers --------------------------------------------------------------
+def deep_update(base: Dict[str, Any], patch: Dict[str, Any]):
+    """Recursively updates a dictionary (RFC 7396 compliance)."""
+    for k, v in patch.items():
+        if v is None:
+            if k in base:
+                del base[k]
+        elif isinstance(v, dict) and k in base and isinstance(base[k], dict):
+            deep_update(base[k], v)
+        else:
+            base[k] = v
+
+# --- Logging & Config -----------------------------------------------------
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger("GppContextMCP")
+
+# Initialize Google Cloud Error Reporting
+try:
+    error_reporting.Client()
+    logger.info("Google Cloud Error Reporting initialized.")
+except Exception as e:
+    logger.warning(f"Could not initialize Error Reporting: {e}")
+PORT = int(os.getenv("PORT", "8080"))
+
+# --- Schema Pre-Loading (Performance) -------------------------------------
+SCHEMA_CACHE = {}
+
+# The OSCAL schemas use XML-Schema regex classes (\p{L}, \p{N}) in their
+# token patterns. Python's `re` cannot compile those, so jsonschema's
+# metaschema check rejects the whole schema ("... is not a 'regex'") and
+# every create/update call fails before the payload is even looked at.
+# Translate them to Python-compatible Unicode-aware classes at load time:
+#   \p{L} -> [^\W\d_]  (any Unicode letter)
+#   \p{N} -> \d        (Unicode digits; close enough for token validation)
+_PCRE_TRANSLATIONS = {
+    r"\p{L}": r"[^\W\d_]",
+    r"\p{N}": r"\d",
+}
+
+def _pythonize_patterns(node):
+    if isinstance(node, dict):
+        return {
+            k: (
+                _pythonize_regex(v)
+                if k == "pattern" and isinstance(v, str)
+                else _pythonize_patterns(v)
+            )
+            for k, v in node.items()
+        }
+    if isinstance(node, list):
+        return [_pythonize_patterns(item) for item in node]
+    return node
+
+def _pythonize_regex(pattern: str) -> str:
+    for xsd, py in _PCRE_TRANSLATIONS.items():
+        pattern = pattern.replace(xsd, py)
+    return pattern
+
+def load_schemas():
+    schema_dir = os.path.join(os.path.dirname(__file__), "..", "schemas")
+    for model in OscalModel:
+        # Map enum to filename
+        filename = f"oscal_{model.value}_schema.json"
+        path = os.path.join(schema_dir, filename)
+        if os.path.exists(path):
+            with open(path, 'r') as f:
+                SCHEMA_CACHE[model] = _pythonize_patterns(json.load(f))
+            logger.info(f"Loaded schema for {model.value}")
+        else:
+            logger.warning(f"Schema file not found: {path}")
+
+logger.info("Pre-loading 8 OSCAL schemas...")
+load_schemas()
+
+# Maps the storage enum to the OSCAL document root key the schema requires.
+# The enum values are file-name shorthands ("ssp", "poam", …) — wrapping a
+# payload under those instead of the real root key makes every create/update
+# fail validation with "'system-security-plan' is a required property".
+def validate_against_schema(model_enum: "OscalModel", draft_doc: Dict[str, Any]) -> None:
+    """Validate a draft against the cached schema, reporting ALL errors.
+
+    jsonschema.validate() raises on the FIRST error only — for an LLM caller
+    that means one fix-and-retry round trip per missing property. Collecting
+    every error (capped) lets the agent converge in one or two attempts.
+    """
+    schema = SCHEMA_CACHE.get(model_enum)
+    if not schema:
+        raise RuntimeError(f"Schema for {model_enum.value} not loaded.")
+
+    validator = jsonschema.Draft7Validator(schema)
+    errors = sorted(validator.iter_errors(draft_doc), key=lambda e: list(e.absolute_path))
+    if errors:
+        cap = 20
+        lines = [
+            f"- {e.json_path}: {e.message[:300]}"
+            for e in errors[:cap]
+        ]
+        if len(errors) > cap:
+            lines.append(f"... and {len(errors) - cap} more errors")
+        summary = "\n".join(lines)
+        logger.error(f"Validation failed for {model_enum.value}: {len(errors)} error(s)")
+        raise RuntimeError(
+            f"Maker-Checker Validation Failed for {model_enum.value} "
+            f"({len(errors)} error(s)):\n{summary}"
+        )
+
+
+OSCAL_ROOT_KEYS = {
+    OscalModel.ASSESSMENT_PLAN: "assessment-plan",
+    OscalModel.ASSESSMENT_RESULTS: "assessment-results",
+    OscalModel.CATALOG: "catalog",
+    OscalModel.COMPONENT: "component-definition",
+    OscalModel.MAPPING: "mapping-collection",
+    OscalModel.POAM: "plan-of-action-and-milestones",
+    OscalModel.PROFILE: "profile",
+    OscalModel.SSP: "system-security-plan",
+}
+
+# --- FastMCP setup --------------------------------------------------------
+# P1-7: stateless — per-call GCS state only; autoscaling Cloud Run has no
+# session affinity, so session-based Streamable-HTTP would intermittently 404.
+mcp = FastMCP("GppContextMCP", host="0.0.0.0", port=PORT, stateless_http=True)
+
+# --- Tool Registration ----------------------------------------------------
+
+@mcp.tool()
+def create_oscal_model(model_enum: OscalModel, initial_payload: Dict[str, Any], ctx: Context) -> Dict[str, str]:
+    """
+    Initializes a new OSCAL model for a tenant.
+    Validates against schema and adds required metadata.
+    """
+    iv_id = get_iv_id(ctx)
+    logger.info(f"Creating {model_enum.value} for IV {iv_id}")
+
+    # 1. Draft with Metadata
+    draft_doc = initial_payload.copy()
+
+    # OSCAL models have a top-level key matching their schema root
+    root_key = OSCAL_ROOT_KEYS[model_enum]
+    if root_key not in draft_doc:
+        logger.warning(f"Payload missing root key '{root_key}'. Attempting to wrap.")
+        draft_doc = {root_key: draft_doc}
+
+    # Inject/Update Metadata
+    model_data = draft_doc[root_key]
+    if "uuid" not in model_data:
+        model_data["uuid"] = str(uuid.uuid4())
+
+    if "metadata" not in model_data:
+        model_data["metadata"] = {}
+
+    model_data["metadata"]["last-modified"] = datetime.now(timezone.utc).isoformat()
+    if "oscal-version" not in model_data["metadata"]:
+        model_data["metadata"]["oscal-version"] = "1.2.2" # Correct supported version
+
+    # 2. Validation (all errors at once)
+    validate_against_schema(model_enum, draft_doc)
+
+    # 3. Commit
+    version_name = storage.write_oscal_model(iv_id, model_enum, draft_doc)
+
+    return {
+        "status": "success",
+        "model": model_enum.value,
+        "iv_id": iv_id,
+        "version": version_name
+    }
+
+@mcp.tool()
+def update_oscal_model(model_enum: OscalModel, patch_payload: Dict[str, Any], ctx: Context) -> Dict[str, str]:
+    """
+    Maker-Checker Loop: Applies patch in RAM, validates locally, commits to GCP.
+    patch_payload can be a full document to replace or a JSON merge patch.
+    """
+    iv_id = get_iv_id(ctx)
+    logger.info(f"Updating {model_enum.value} for IV {iv_id}")
+
+    # 1. Read master document (latest snapshot)
+    try:
+        master_doc = storage.read_oscal_model(iv_id, model_enum)
+    except FileNotFoundError:
+        raise RuntimeError(f"Cannot update {model_enum.value}: Model does not exist for IV {iv_id}. Use create_oscal_model first.")
+
+    # 2. Patch in RAM (Draft)
+    draft_doc = None
+    if isinstance(patch_payload, list):
+        # JSON Patch (RFC 6902)
+        try:
+            patch = jsonpatch.JsonPatch(patch_payload)
+            draft_doc = patch.apply(master_doc)
+        except Exception as e:
+            raise RuntimeError(f"Failed to apply JSON Patch: {str(e)}")
+    else:
+        # JSON Merge Patch (RFC 7396) or Full Replacement
+        # If the patch_payload has the root_key, we treat it as a potential merge or replacement
+        root_key = OSCAL_ROOT_KEYS[model_enum]
+        draft_doc = copy.deepcopy(master_doc)
+        if root_key in patch_payload:
+            deep_update(draft_doc[root_key], patch_payload[root_key])
+        else:
+            # Assume it's a patch for the content inside the root key
+            deep_update(draft_doc[root_key], patch_payload)
+
+    # Inject/Update Metadata in draft
+    model_data = draft_doc[OSCAL_ROOT_KEYS[model_enum]]
+    if "metadata" not in model_data:
+        model_data["metadata"] = {}
+    model_data["metadata"]["last-modified"] = datetime.now(timezone.utc).isoformat()
+
+    # 3. Local Air-Gapped Validation (all errors at once)
+    validate_against_schema(model_enum, draft_doc)
+
+    # 4. Commit to GCP
+    version_name = storage.write_oscal_model(iv_id, model_enum, draft_doc)
+
+    return {
+        "status": "success",
+        "model": model_enum.value,
+        "iv_id": iv_id,
+        "version": version_name
+    }
+
+# --- SSP Tools -----------------------------------------------------------
+
+@mcp.tool()
+def get_ssp_inventory(ctx: Context, regex_filter: str | None = None) -> List[Dict]:
+    """Filters assets from SSP inventory based on a regex."""
+    iv_id = get_iv_id(ctx)
+    ssp_data = storage.read_oscal_model(iv_id, OscalModel.SSP)
+    return ssp_extractor.filter_inventory(ssp_data, regex_filter)
+
+@mcp.tool()
+def get_ssp_implementation(ctx: Context, status: str | None = None, role_id: str | None = None) -> List[Dict]:
+    """Extracts controls matching a specific implementation status or assigned to a role."""
+    iv_id = get_iv_id(ctx)
+    ssp_data = storage.read_oscal_model(iv_id, OscalModel.SSP)
+    return ssp_extractor.filter_implemented_requirements(ssp_data, status, role_id)
+
+# --- Assessment Tools ----------------------------------------------------
+
+@mcp.tool()
+def get_assessment_findings(ctx: Context, risk_level: str | None = None, state: str | None = None) -> List[Dict]:
+    """Extracts findings from Assessment Results."""
+    iv_id = get_iv_id(ctx)
+    ar_data = storage.read_oscal_model(iv_id, OscalModel.ASSESSMENT_RESULTS)
+    return assessment_extractor.get_findings(ar_data, risk_level, state)
+
+@mcp.tool()
+def get_assessment_controls(ctx: Context, regex_filter: str | None = None, selected_only: bool = False) -> List[Dict]:
+    """Filters controls examined in the assessment."""
+    iv_id = get_iv_id(ctx)
+    ar_data = storage.read_oscal_model(iv_id, OscalModel.ASSESSMENT_RESULTS)
+    return assessment_extractor.filter_assessment_controls(ar_data, regex_filter, selected_only)
+
+@mcp.tool()
+def get_assessment_subjects(ctx: Context) -> List[Dict]:
+    """Extracts assessment subjects from Assessment Results or Assessment Plan."""
+    iv_id = get_iv_id(ctx)
+    try:
+        data = storage.read_oscal_model(iv_id, OscalModel.ASSESSMENT_RESULTS)
+    except FileNotFoundError:
+        try:
+            data = storage.read_oscal_model(iv_id, OscalModel.ASSESSMENT_PLAN)
+        except FileNotFoundError:
+            return []
+    return assessment_extractor.get_subjects(data)
+
+# --- POA&M Tools ---------------------------------------------------------
+
+@mcp.tool()
+def get_poam_items(ctx: Context) -> List[Dict]:
+    """Extracts POA&M items from Plan of Action and Milestones."""
+    iv_id = get_iv_id(ctx)
+    poam_data = storage.read_oscal_model(iv_id, OscalModel.POAM)
+    return poam_extractor.get_poam_items(poam_data)
+
+# --- Artifact Management Tools -------------------------------------------
+
+@mcp.tool()
+def list_oscal_models(ctx: Context) -> List[str]:
+    """Lists all initialized OSCAL models for the current tenant (IV)."""
+    iv_id = get_iv_id(ctx)
+    return storage.list_models(iv_id)
+
+@mcp.tool()
+def get_oscal_model_raw(model_enum: OscalModel, ctx: Context, version: str | None = None) -> Dict[str, Any]:
+    """Retrieves the full original JSON content of an OSCAL model (with version support)."""
+    iv_id = get_iv_id(ctx)
+    return storage.read_oscal_model(iv_id, model_enum, version)
+
+@mcp.tool()
+def list_oscal_model_versions(model_enum: OscalModel, ctx: Context) -> List[str]:
+    """Lists all available snapshot versions for a specific model."""
+    iv_id = get_iv_id(ctx)
+    return storage.list_snapshots(iv_id, model_enum)
+
+# --- Profile Resolution Tools --------------------------------------------
+
+@mcp.tool()
+def get_resolved_profile_catalog(profile_id: str, ctx: Context) -> Dict:
+    """Resolves an OSCAL Profile into a tailored Catalog."""
+    iv_id = get_iv_id(ctx)
+    return resolver.resolve_profile(iv_id, profile_id)
+
+if __name__ == "__main__":
+    logger.info(f"Starting GppContextMCP on port {PORT}")
+    mcp.run(transport="streamable-http")

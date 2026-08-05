@@ -1,0 +1,36 @@
+[project]
+name = "GSpp-MCP"
+version = "0.1.0"
+description = "MCP server for Grundschutz++ catalog"
+authors = [
+    { name = "Christoph Puppe" }
+]
+dependencies = [
+    "mcp[cli]>=0.1.0",
+    "pydantic>=2.0.0",
+    "uvicorn>=0.20.0",
+    "starlette>=0.20.0",
+    "jsonschema>=4.0.0",
+    "google-cloud-error-reporting>=1.11.0",
+]
+requires-python = ">=3.12"
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+]
+
+# Relative to this project root the importable package directory is
+# `server/` (the canonical import path `GSpp_MCP.server.*` works via
+# PYTHONPATH on the parent directory, in Docker and pytest alike).
+[tool.hatch.build.targets.wheel]
+packages = ["server"]
+
+# Allows running pytest from inside this directory; from the workspace root
+# the root pyproject's pythonpath applies instead.
+[tool.pytest.ini_options]
+pythonpath = [".."]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

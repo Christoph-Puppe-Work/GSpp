@@ -1,0 +1,20 @@
+FROM python:3.13-slim
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
+WORKDIR /app
+
+# Dependency layer: resolve and install at BUILD time (P1-20). The container
+# must not run any uv resolution at startup — cold starts raced the agent's
+# MCP tool discovery (~7 s of "Building/Installing" before uvicorn was ready).
+COPY pyproject.toml ./
+RUN uv sync --no-dev --no-install-project
+
+# Source layer: canonical import path is GS_backend_MCP.myserver.* via
+# PYTHONPATH=/app (no project install needed).
+COPY . ./GS_backend_MCP/
+
+ENV PYTHONUNBUFFERED=1
+ENV PYTHONPATH=/app
+EXPOSE 8080
+
+# Exec the venv's python directly — no `uv run` at container start.
+CMD ["/app/.venv/bin/python", "-m", "GS_backend_MCP.myserver.main"]

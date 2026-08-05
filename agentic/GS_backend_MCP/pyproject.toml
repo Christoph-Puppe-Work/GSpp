@@ -1,0 +1,35 @@
+[project]
+name = "gpp-context-mcp"
+version = "1.0.0"
+description = "G++ OSCAL Context Management MCP Server"
+authors = [
+    { name = "Jules", email = "jules@example.com" }
+]
+requires-python = ">=3.11"
+dependencies = [
+    "mcp>=1.2.1",
+    "jsonschema>=4.21.0",
+    "google-cloud-storage>=2.16.0",
+    "jsonpatch>=1.33",
+    "google-cloud-error-reporting>=1.11.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+# Relative to this project root the importable package directory is
+# `myserver/` (the canonical import path `GS_backend_MCP.myserver.*` works
+# via PYTHONPATH on the parent directory, in Docker and pytest alike).
+[tool.hatch.build.targets.wheel]
+packages = ["myserver"]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3.4",
+]
+
+# Allows running pytest from inside this directory; from the workspace root
+# the root pyproject's pythonpath applies instead.
+[tool.pytest.ini_options]
+pythonpath = [".."]

@@ -1,0 +1,71 @@
+# Kapitel 9: Audit und Zertifizierung der Methodik
+
+**Handbuch zur Grundschutz++ Methodik · Kapitel-Version 0.2 (Entwurf)**
+Stand: 2026-08-02 · Quellen: Auditierungsschema Version 2.5 (2026-02-01) und Zertifizierungsschema für ISO 27001-Zertifizierungen auf der Basis von IT-Grundschutz; Katalog-Build 2026-07-29 · Gliederungsbezug: Kapitel 9 gemäß `00_gliederung_v0.1.md`
+
+## 9.0 Einordnung: ein Verfahren, das seinen Prüfgegenstand noch nicht kennt
+
+Die unbequeme Wahrheit zuerst: Es gibt kein Prüfschema für Grundschutz++. Beide Schemata regeln die ISO 27001-Zertifizierung auf der Basis von IT-Grundschutz (im Folgenden mit Abschnittsangabe als AudS x.y und ZertS x.y zitiert) und nennen als Prüfgrundlage DIN/IEC 27001, die BSI-Standards 200-1 bis 200-3 und das IT-Grundschutz-Kompendium; das Auditierungsschema wurde zuletzt im Februar 2026 überarbeitet, ohne dass Grundschutz++ darin vorkommt. Für ein Handbuch, das die Audit-Perspektive ernst nimmt, bedeutet das: Die Verfahrensmechanik (Rollen, Phasen, Fristen, Abweichungsklassen) ist stabil und wird sich für Grundschutz++ kaum neu erfinden; die Prüfinhalte (Referenzdokumente, Bausteinstichproben) hängen dagegen an der alten Welt und müssen übersetzt werden. Dieses Kapitel beschreibt beides: erst die belegbare Mechanik, dann die Übersetzung samt ihrer Lücken.
+
+Das Verfahren kennt drei Rollen (ZertS 2.2): den Antragsteller, der das Verfahren initiiert und das Auditteam beauftragt; den vom BSI zertifizierten Auditteamleiter, der prüft, den Auditbericht verantwortet und mit seinem Votum über das Ergebnis entscheidet; und die Zertifizierungsstelle im BSI, die den Bericht prüft, Nachforderungen stellt und das Zertifikat erteilt. Bemerkenswert für ISBs, die das Verfahren zum ersten Mal durchlaufen: Das Auditteam wird von der Institution selbst beauftragt und bezahlt, die Unabhängigkeit sichert das BSI über freizugebende Unabhängigkeitserklärungen jedes Teammitglieds (ZertS 2.4, AudS 4).
+
+## 9.1 Prüfsystematik: Phasen, Stichproben, Fristen
+
+**Das Audit in zwei Phasen.** Jedes Audit besteht aus der Dokumentenprüfung (Phase 1) und der Umsetzungsprüfung vor Ort (Phase 2) (ZertS 2.7, AudS 4). In Phase 1 prüft der Auditteamleiter die eingereichten Referenzdokumente auf Schlüssigkeit und grundsätzliche Zertifizierungsfähigkeit; festgestellte Abweichungen werden der Institution mit Frist zur Behebung mitgeteilt und erscheinen in jedem Fall im Auditbericht, auch wenn sie vor Phase 2 behoben wurden (AudS 4.1). Nach der Dokumentenprüfung kann der Auditteamleiter das Verfahren abbrechen, wenn ein positives Votum ausgeschlossen erscheint (AudS 4.2). In Phase 2 wird am realen Informationsverbund geprüft, ob die dokumentierte Sicherheit der gelebten entspricht: Demonstrationen am System statt Papierlage, Interviews, Abgleich der Strukturanalyse mit den tatsächlichen Gegebenheiten (AudS 4.4).
+
+**Die Stichprobenlogik.** Beim Zertifizierungsaudit werden mindestens sechs Bausteine auditiert, zwingend darunter ISMS.1 Sicherheitsmanagement; bei jedem der beiden Überwachungsaudits ISMS.1 plus mindestens zwei weitere; über die dreijährige Laufzeit werden alle modellierten Schichten mit mindestens einem Baustein und insgesamt mindestens zwölf Bausteine geprüft, dazu fünf Maßnahmen der Risikoanalyse, alles risikoorientiert ausgewählt und begründet (AudS 4.3). Die Standortstichprobe folgt einer Wurzelformel nach IAF MD 1: Quadratwurzel der Standortzahl aufgerundet beim Zertifizierungsaudit, Faktor 0,6 beim Überwachungsaudit, Faktor 0,8 bei der Re-Zertifizierung eines nachweislich effektiven ISMS (AudS 4.3.1). Remote ist begrenzt möglich: Erstzertifizierungen laufen bis auf Vor- und Nacharbeiten in Präsenz, und über die Laufzeit muss mindestens die Hälfte der berechneten Standorte physisch besucht werden (AudS 4.3.2).
+
+> **Übertragung auf Grundschutz++ (Auslegung):** Die Bausteinstichprobe hat kein direktes Gegenstück mehr, denn Grundschutz++ kennt keine Bausteine. Die strukturell nächstliegende Übersetzung: Die Rolle des zwingend zu prüfenden ISMS.1 übernehmen die 95 Methodik-Controls, die nach STM.2.1.1 ohnehin ohne Selektion als verbundweite Anforderungen modelliert sind; die Rolle der Baustein-Stichprobe übernimmt eine risikoorientierte Auswahl von Zielobjektkategorien beziehungsweise Assets samt ihrer Anforderungspakete, die Rolle der Schichtenabdeckung eine Abdeckung über die Praktiken des Kernels (ASST bis TEST). Die Wurzelformel für Standorte ist methodikneutral und überträgt sich unverändert. Verbindlich geregelt ist davon nichts; das ist die zentrale offene Flanke eines künftigen GS++-Prüfschemas (Abschnitt 9.4).
+
+**Voraudit.** Vor einer Erstzertifizierung (oder bei wesentlichen Veränderungen) kann ein Voraudit stattfinden: stichprobenartige Prüfung einzelner Aspekte, maximal ein Drittel der Gesamtzeit des Zertifizierungsaudits, keine Vorbereitung der Institution auf spätere Prüfinhalte, vollständige Dokumentation im Auditbericht; ein erneutes Voraudit nach empfohlener Verschiebung ist nicht möglich (AudS 5).
+
+**Bericht, Votum, Prüfbegleitung.** Der Auditbericht folgt zwingend dem jeweils gültigen Muster des BSI und enthält alle Prüfergebnisse beider Phasen; die Referenzdokumente sind Bestandteil des Berichts (AudS 4.7, ZertS 2.11). Grundlage der Zertifikatsentscheidung ist das Gesamtvotum des Auditteamleiters (AudS 4.8). Die Zertifizierungsstelle prüft den Bericht auf Vollständigkeit, Nachvollziehbarkeit und Vergleichbarkeit, kann mehrfach Nachforderungen stellen und entscheidet bei strittigen Abweichungen abschließend; die Institution kann sich zu Feststellungen schriftlich äußern (AudS 4.9).
+
+**Fristen und Laufzeit.** Der vollständige Antrag samt Unabhängigkeitserklärungen liegt mindestens zwei Monate vor Auditbeginn vor; der Auditbericht spätestens vier Monate nach Beginn der Dokumentensichtung; Nachforderungen sind binnen eines Monats zu erfüllen; drei Monate nach Abgabe des ersten Berichts prüft die Stelle, ob überhaupt noch erteilt werden kann (ZertS 3). Das Zertifikat gilt drei Jahre mit integrierten jährlichen Überwachungsaudits (AudS 4.10); deren Prüfung muss ein beziehungsweise zwei Jahre nach Ausstellung abgeschlossen sein, mit Beginn frühestens vier Monate und Berichtseingang spätestens zwei Monate vor dem Stichtag (ZertS 3). Die Re-Zertifizierung beginnt frühestens vier Monate vor Ablauf, der Bericht liegt spätestens zwei Monate vor Gültigkeitsende vor; ein laufendes Verfahren verlängert das alte Zertifikat nicht (ZertS 2.9.3). Nicht fristgerechte Berichte oder ein negatives Überwachungsaudit führen zur Aussetzung oder zum Entzug des Zertifikats (ZertS 2.9.2, 2.13); außerplanmäßige Audits sind bei vermuteten schwerwiegenden Abweichungen oder Verbundänderungen möglich (ZertS 2.9.2).
+
+Wer die Fristenkette einmal auf einem Zeitstrahl aufträgt, versteht, warum PERF und VRB keine Kür sind: Zwischen zwei Überwachungsaudits liegen im Ergebnis kaum acht ungestörte Monate, und wer Auditfeststellungen erst zum nächsten Termin bearbeitet, hat verloren.
+
+## 9.2 Nachweisführung: von A.0 bis A.6 zur GS++-Dokumentenlandschaft
+
+Die Schemata verlangen sieben Referenzdokumente als Prüf- und Nachweisgrundlage (AudS 2): Leitlinie und Richtlinien (A.0), Strukturanalyse (A.1), Schutzbedarfsfeststellung (A.2), Modellierung (A.3), Ergebnis des IT-Grundschutz-Checks (A.4), Risikoanalyse (A.5), Realisierungsplan (A.6). Grundschutz++ fordert seine Dokumente über `documentation`-Props direkt an den Controls. Die Übersetzung (Auslegung dieses Handbuchs, konsolidiert aus den Kapiteln 4 bis 8):
+
+| Referenzdokument | GS++-Gegenstück | Fordernde Controls |
+|---|---|---|
+| A.0 Leitlinie und Richtlinien | Informationssicherheitsleitlinie, ISMS-Regelwerk, Informationssicherheitsstrategie | GC.5.1.3, GC.5.1.4, GC.1.1, GC.5.1 |
+| A.1 Strukturanalyse | Informationsverbund | STM.1.1, STM.1.2 |
+| A.2 Schutzbedarfsfeststellung | Geschäftsprozesse, Schutzbedarfsfeststellung | GC.7.1.1, GC.7.1.2 |
+| A.3 Modellierung | Anforderungspaket | STM.2.1 mit allen Sub-Controls |
+| A.4 Ergebnis des IT-Grundschutz-Checks | Statusliste des Umsetzungsstatus (ohne Dokumentzuordnung im Katalog) | UMS.1.1 |
+| A.5 Risikoanalyse | Risikobewertung (Methodik), Risikobetrachtung (Durchführung) | GC.12.1, GC.7.2, STM.4.1 |
+| A.6 Realisierungsplan | Umsetzungsplan | UMS.2.1, UMS.2.2, UMS.3.1, UMS.4.1, UMS.6.1, UMS.6.2, VRB.5.1 |
+
+Drei Beobachtungen dazu. Erstens ist die GS++-Dokumentenlandschaft breiter als das A-Raster: Managementbericht (GC.1.2, PERF.4.1), Auditbericht (PERF.3.2), Compliance-Verpflichtungen (GC.3.1, UMS.7.1, VRB.7.1), Freigegebene Ausnahmegenehmigungen (UMS.5.2) und die Organisationsdokumente aus GC.9 haben keine A-Nummer, sind aber Auditevidenz erster Güte; ein GS++-Prüfschema müsste das Referenzdokumenten-Raster entsprechend erweitern. Zweitens klafft ausgerechnet bei A.4 eine Lücke: Die Statusliste, in der alten Welt ein eigenes Referenzdokument, hat im Katalog keine Dokumentzuordnung (Abschnitt 6.9). Drittens verlangt die Vor-Ort-Prüfung der alten Welt für jede als „entbehrlich" markierte Anforderung eine nachvollziehbare Begründung (AudS 4.4); das GS++-Gegenstück sind die dokumentierten Streichbegründungen aus STM.2.1.5, und sie werden im Audit dieselbe Aufmerksamkeit bekommen.
+
+## 9.3 MUSS, SOLLTE und die Abweichungsklassen
+
+Das Auditierungsschema kennt drei Eskalationsstufen für Feststellungen (AudS 4.6): **Empfehlungen** sind nicht bindend, tragen eine Prüffrist, und ihre unterlassene Prüfung kann zur geringfügigen Abweichung hochgestuft werden. **Geringfügige Abweichungen** liegen vor, wenn einzelne Aspekte einer Anforderung nicht ausreichend umgesetzt sind, das wesentliche Ziel aber erreicht wird und das ISMS insgesamt funktioniert; ein Zertifikat kann trotzdem erteilt werden, aber mehrere geringfügige Abweichungen können zusammen eine schwerwiegende ergeben, und ihre tragbare Anzahl wird im Einzelfall bewertet. **Schwerwiegende Abweichungen** gefährden die Wirksamkeit des ISMS oder die Sicherheit des Informationsverbundes erheblich, typischerweise wenn Anforderungen nicht oder in wesentlichen Teilen nicht umgesetzt sind; mit ihnen ist Ausstellung wie Aufrechterhaltung des Zertifikats ausgeschlossen. Die Einstufung trifft der Auditteamleiter, jede Feststellung wandert mit Frist in die fortgeschriebene Liste der Abweichungen und Empfehlungen, und Nachbesserungen während des Audits sind möglich und werden dokumentiert (AudS 4.6).
+
+Für nicht oder nicht vollständig umgesetzte Anforderungen gilt die Risikoübernahme-Regel (AudS 4.5): Sie gehören in den Realisierungsplan, die entstehenden Risiken werden bewertet und der Leitungsebene transparent dargestellt, und die Leitung bestätigt die Übernahme per Unterschrift oder elektronischer Freigabe.
+
+Auf Grundschutz++ übertragen (Auslegung) ergibt sich eine klare Arbeitslogik: Eine nicht umgesetzte MUSS-Anforderung der Methodik ohne autorisierte Ausnahme (UMS.5) und ohne Maßnahme im Umsetzungsplan ist der Kandidat für die schwerwiegende Abweichung; eine handwerklich unsaubere Umsetzung mit erreichtem Ziel bleibt geringfügig. Eine nicht umgesetzte SOLLTE-Anforderung ist auditfest, wenn die dokumentierte Auseinandersetzung samt Begründung vorliegt, und wird ohne Begründung zur Feststellung. Das binäre Statusmodell aus UMS.1.1 verschärft die Lage gegenüber der alten Welt: Das vertraute „teilweise umgesetzt", hinter dem sich geringfügige Abweichungen bequem verstecken ließen, existiert im Status nicht mehr; teilweise ist nicht umgesetzt, und damit zählt allein, ob Ausnahme, Risikoübernahme und Plan-Eintrag sauber vorliegen. Und die Risikoübernahme-Regel trifft auf einen Katalog, der die Restrisiko-Bewertung nur als SOLLTE führt (UMS.1.2); wie in Abschnitt 6.9 festgehalten, ist das SOLLTE für zertifizierungswillige Institutionen faktisch ein MUSS, und die Unterschrift des Risikoeigentümers aus der Guidance zu VRB.5.1 ist der Ort, an dem sie nachweisbar wird.
+
+## 9.4 Konsolidierte Abweichungen und Übertragungslücken
+
+Zusammengeführt aus den Kapiteln 4 bis 8 und diesem Kapitel; jede Zeile benennt, was ein künftiges GS++-Prüfschema klären müsste:
+
+| Nr. | Lücke / Abweichung | Fundstelle |
+|---|---|---|
+| 1 | Kein GS++-Prüfschema: beide Schemata prüfen gegen 200-2, Kompendium und A.0 bis A.6; alle Audit-Aussagen dieses Handbuchs sind Übertragungen | 4.0, 9.0 |
+| 2 | Bausteinstichprobe (mindestens 6/12, Schichtenabdeckung, ISMS.1-Pflicht) ohne GS++-Äquivalent; Übersetzungsvorschlag über Methodik-Controls plus Zielobjektkategorien ist Auslegung | 9.1 |
+| 3 | Referenzdokumenten-Raster A.0 bis A.6 deckt die GS++-Dokumentenlandschaft nur teilweise; Managementbericht, Auditbericht, Compliance-Verpflichtungen, Ausnahmegenehmigungen ohne A-Nummer | 9.2 |
+| 4 | Statusliste (A.4-Gegenstück) ohne `documentation`-Prop im Katalog | 6.9, 9.2 |
+| 5 | Umsetzungsstatus binär (UMS.1.1) vs. vierstufiges Statusmodell der Prüfwelt; „entbehrlich"-Prüfung (AudS 4.4) landet bei den Streichbegründungen aus STM.2.1.5 | 6.1, 9.3 |
+| 6 | Risikoübernahme durch die Leitung ist Schema-Pflicht (AudS 4.5), im Katalog nur als SOLLTE (UMS.1.2) und Guidance (VRB.5.1) abgebildet | 6.9, 7.9, 9.3 |
+| 7 | Überwachungsaudit-Bedingung „Einhaltung der Standard- oder Kern-Absicherung nach 200-2" (AudS 6) hat keine GS++-Entsprechung; welche GS++-Konstellation zertifizierungsfähig ist, ist ungeregelt | 9.1, 10.1 |
+| 8 | Schutzbedarf zweistufig (GC.7) vs. dreistufig in der 200-2-Prüfwelt; Auswirkungen auf Risikoanalyse-Stichprobe (fünf Maßnahmen, AudS 4.3) ungeklärt | 4.7, 9.1 |
+
+Bis ein GS++-Prüfschema existiert, ist die pragmatische Empfehlung für ISBs unverändert die aus den Praktik-Kapiteln: Bauen Sie die Nachweise entlang der `documentation`-Props und der Tabelle in 9.2 auf, führen Sie die Liste der Abweichungen und Empfehlungen selbst fort, und behandeln Sie jede MUSS-Lücke so, als würde morgen auditiert. Verfahren altern langsamer als Kataloge; die Mechanik dieses Kapitels wird auch die GS++-Zertifizierung tragen.
+
+---
+
+*Ende Kapitel 9 (v0.1). Review-Anmerkungen bitte gegen Control-IDs und Schema-Abschnitte (AudS/ZertS).*

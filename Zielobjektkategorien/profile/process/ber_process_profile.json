@@ -3,13 +3,13 @@
     "uuid": "4756c826-61a9-5bbf-b2b3-3bb144e565b1",
     "metadata": {
       "title": "Berechtigung Prozess Profil",
-      "last-modified": "2026-06-04T14:31:13.535344+00:00",
+      "last-modified": "2026-07-28T12:32:56.746523+00:00",
       "version": "0.0.1",
       "oscal-version": "1.2.2"
     },
     "imports": [
       {
-        "href": "https://raw.githubusercontent.com/BSI-Bund/Stand-der-Technik-Bibliothek/refs/heads/main/Anwenderkataloge/Grundschutz%2B%2B/Grundschutz%2B%2B-catalog.json",
+        "href": "#944d9eb5-aa84-5c12-86d3-94ed8e2569f5",
         "include-controls": [
           {
             "with-ids": [
@@ -22,32 +22,38 @@
               "BER.2.5",
               "BER.2.6",
               "BER.3.1",
-              "BER.3.13",
               "BER.3.14",
               "BER.3.15",
               "BER.3.16",
               "BER.3.17",
               "BER.3.18",
+              "BER.3.19",
               "BER.3.2",
-              "BER.3.21",
+              "BER.3.22",
               "BER.3.3",
               "BER.3.4",
-              "BER.3.8",
+              "BER.3.5",
+              "BER.3.9",
               "BER.4.1",
+              "BER.4.1.1",
+              "BER.4.1.2",
+              "BER.4.2",
+              "BER.4.3",
+              "BER.4.4",
+              "BER.4.4.1",
+              "BER.4.8",
               "BER.5.1",
               "BER.5.1.1",
-              "BER.5.1.2",
+              "BER.5.12",
+              "BER.5.13",
+              "BER.5.14",
               "BER.5.2",
               "BER.5.3",
-              "BER.5.3.1",
               "BER.5.4",
-              "BER.5.8",
-              "BER.6.10",
-              "BER.6.2",
-              "BER.6.3",
+              "BER.5.9",
+              "BER.6.4",
               "BER.6.5",
-              "BER.6.8",
-              "BER.6.9",
+              "BER.6.6",
               "BER.7.1",
               "BER.7.10",
               "BER.7.11",
@@ -74,6 +80,25 @@
           }
         ]
       }
-    ]
+    ],
+    "back-matter": {
+      "resources": [
+        {
+          "uuid": "944d9eb5-aa84-5c12-86d3-94ed8e2569f5",
+          "title": "Grundschutz++-resolved_catalog.json @ 47de2824a341",
+          "rlinks": [
+            {
+              "href": "https://raw.githubusercontent.com/BSI-Bund/Stand-der-Technik-Bibliothek/47de2824a341812438ef3f044b3f65ce2cad6e32/control_layer/Grundschutz%2B%2B/Grundschutz%2B%2B-resolved_catalog.json",
+              "hashes": [
+                {
+                  "algorithm": "SHA-256",
+                  "value": "db3a1417d7e904315a0886f450129832e19c57324660358c830357349f552332"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
   }
 }

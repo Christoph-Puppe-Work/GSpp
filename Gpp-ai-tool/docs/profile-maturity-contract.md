@@ -30,11 +30,8 @@ Each maturity level is one `statement` part:
   "id": "ARCH.7.1-m1_custom",      // "{control_id}-m{level}_custom", unique
   "name": "statement",
   "props": [
-    { "name": "control_class",  "value": "Technical",      "ns": "<BSI ns>" },
-    { "name": "phase",          "value": "Implementation", "ns": "<BSI ns>" },
-    { "name": "effective_on_c", "value": "medium",         "ns": "<BSI ns>" },
-    { "name": "effective_on_i", "value": "medium",         "ns": "<BSI ns>" },
-    { "name": "effective_on_a", "value": "high",           "ns": "<BSI ns>" },
+    { "name": "control_class",  "value": "Technical",      "ns": "<G++ ns>" },
+    { "name": "phase",          "value": "Implementation", "ns": "<G++ ns>" },
     { "name": "label",          "value": "m1" }
   ],
   "prose": "<the maturity-level statement text>",   // the real per-level statement
@@ -45,12 +42,18 @@ Each maturity level is one `statement` part:
 }
 ```
 
-- `ns` = `https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces`
+- `ns` = `GPP_ENHANCEMENT_PROPS_NS` (`src/constants.py`) =
+  `https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md`
+  — used by **both** enhancement stages.
 - **`prose` is the statement** (so generic OSCAL renderers show the real content).
 - **Guidance and assessment are nested `parts`** (`name: "guidance"` / `"assessment"`), not
   props.
-- **Props carry only metadata**: classification (`control_class`, `phase`,
-  `effective_on_{c,i,a}`) and the level `label` (`m1`…`m5`).
+- **Props carry only metadata**: classification (`control_class`, `phase`) and the level
+  `label` (`m1`…`m5`). Schutzziel impact is **not** part of this contract anymore: the
+  former `effective_on_{c,i,a}` props were removed (2026-08) in favor of the authoritative
+  BSI control-level props `confidentiality` / `integrity` / `availability` / `authenticity`
+  (values `0`–`2`, ns `…/documentation/namespaces/security_targets.csv`) in the imported
+  G++ catalog. Migration: `scripts/migrate_remove_effective_on_props.py`.
 - **Level 3 (`m3`)** `prose` is the original G++ control prose verbatim (injected
   deterministically, issue 2.2). Levels 1/2/4/5 are AI-generated and may be absent.
 
@@ -67,7 +70,8 @@ const statement  = pt.prose;               // per-level statement
 const guidance   = sub.guidance   || "";
 const assessment = sub.assessment || "";
 const cls        = props.control_class;
-const cia        = [props.effective_on_c, props.effective_on_i, props.effective_on_a];
+// Schutzziel impact: read confidentiality/integrity/availability/authenticity (0-2)
+// from the catalog control's own props, NOT from the maturity statement.
 ```
 
 Reference implementations: `parseProfileEntry` in `One-Page-Apps/pruefung_ap_ar.html` and the

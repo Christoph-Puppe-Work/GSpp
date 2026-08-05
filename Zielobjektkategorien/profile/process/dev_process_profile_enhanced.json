@@ -3,13 +3,13 @@
     "uuid": "16e99563-1b78-5fff-b495-d96c40a8c56a",
     "metadata": {
       "title": "Entwicklung Prozess Profil - Enhanced (ED2023)",
-      "last-modified": "2026-06-04T14:36:35.102785+00:00",
+      "last-modified": "2026-07-28T12:34:12.797779+00:00",
       "version": "0.0.1",
       "oscal-version": "1.2.2"
     },
     "imports": [
       {
-        "href": "https://raw.githubusercontent.com/BSI-Bund/Stand-der-Technik-Bibliothek/refs/heads/main/Anwenderkataloge/Grundschutz%2B%2B/Grundschutz%2B%2B-catalog.json",
+        "href": "#944d9eb5-aa84-5c12-86d3-94ed8e2569f5",
         "include-controls": [
           {
             "with-ids": [
@@ -38,44 +38,29 @@
                     {
                       "name": "control_class",
                       "value": "Technical",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "phase",
                       "value": "Implementation",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_c",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_i",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_a",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "label",
                       "value": "m1"
                     }
                   ],
-                  "prose": "Sicherheit wird in der Architektur nur sporadisch bei Bedarf betrachtet.",
+                  "prose": "Sicherheitsaspekte werden sporadisch bei der Architekturgestaltung berücksichtigt.",
                   "parts": [
                     {
                       "id": "DEV.2.1-m1_custom_gdn",
                       "name": "guidance",
-                      "prose": "Sicherheitsrelevante Aspekte werden informell zwischen Entwicklern besprochen."
+                      "prose": "Sicherheitsrelevante Merkmale werden fallweise und ohne standardisierten Prozess in die Softwarearchitektur integriert."
                     },
                     {
                       "id": "DEV.2.1-m1_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfe durch Stichproben in Dokumenten, ob Sicherheitsaspekte erwähnt wurden."
+                      "prose": "Prüfung von Architekturdokumenten auf Erwähnung von Sicherheitsfunktionen. Interview mit Entwicklern zur Berücksichtigung von Sicherheit."
                     }
                   ]
                 },
@@ -86,44 +71,29 @@
                     {
                       "name": "control_class",
                       "value": "Technical",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "phase",
                       "value": "Implementation",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_c",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_i",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_a",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "label",
                       "value": "m2"
                     }
                   ],
-                  "prose": "Grundlegende Sicherheitsvorgaben fließen in das Architekturdesign ein.",
+                  "prose": "Grundlegende Sicherheitsvorgaben werden manuell in der Architekturplanung geprüft.",
                   "parts": [
                     {
                       "id": "DEV.2.1-m2_custom_gdn",
                       "name": "guidance",
-                      "prose": "Nutzung von Standard-Sicherheitspatterns für Authentisierung und Transportverschlüsselung."
+                      "prose": "Es existieren initiale Checklisten für Sicherheitsanforderungen, die bei Entwurf neuer Komponenten manuell abgeglichen werden."
                     },
                     {
                       "id": "DEV.2.1-m2_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung der Architekturdiagramme auf die Integration von Standard-Sicherheitskomponenten."
+                      "prose": "Einsicht in ausgefüllte Sicherheitschecklisten für aktuelle Projekte. Stichprobenartige Prüfung der Umsetzung von Verschlüsselung."
                     }
                   ]
                 },
@@ -134,27 +104,12 @@
                     {
                       "name": "control_class",
                       "value": "Technical",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "phase",
                       "value": "Implementation",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_c",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_i",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_a",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "label",
@@ -166,12 +121,12 @@
                     {
                       "id": "DEV.2.1-m3_custom_gdn",
                       "name": "guidance",
-                      "prose": "Das Design muss Sicherheitsanforderungen von Beginn an als integrale Bestandteile behandeln."
+                      "prose": "Die Architekturplanung muss Sicherheitsprinzipien wie Least Privilege und Defense in Depth von Beginn an als integralen Bestandteil einbeziehen."
                     },
                     {
                       "id": "DEV.2.1-m3_custom_asm",
                       "name": "assessment",
-                      "prose": "Review der Designdokumente auf explizite Umsetzung der Sicherheitsanforderungen."
+                      "prose": "Review der Architekturvorgaben. Prüfung, ob Bedrohungsanalysen (Threat Modeling) für neue Architekturkomponenten vorliegen."
                     }
                   ]
                 },
@@ -182,44 +137,24 @@
                     {
                       "name": "control_class",
                       "value": "Technical",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "phase",
                       "value": "Implementation",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_c",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_i",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_a",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "label",
                       "value": "m4"
                     }
                   ],
-                  "prose": "Sicherheitsarchitektur wird durch automatisierte Bedrohungsmodellierung unterstützt.",
+                  "prose": "Automatisierte Prüfung von Architekturvorgaben und standardisiertes Threat Modeling.",
                   "parts": [
                     {
                       "id": "DEV.2.1-m4_custom_gdn",
                       "name": "guidance",
-                      "prose": "Integration von Tools wie OWASP Threat Dragon zur Identifikation von Angriffsvektoren."
-                    },
-                    {
-                      "id": "DEV.2.1-m4_custom_asm",
-                      "name": "assessment",
-                      "prose": "Prüfung der exportierten Bedrohungsmodelle (JSON/YAML) auf Vollständigkeit im Repository."
+                      "prose": "Verwendung von Standard-Sicherheitsmustern. Threat Modeling ist fest in den Sprint-Zyklus integriert und wird durch Tools unterstützt."
                     }
                   ]
                 },
@@ -230,44 +165,29 @@
                     {
                       "name": "control_class",
                       "value": "Technical",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "phase",
                       "value": "Implementation",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_c",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_i",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_a",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "label",
                       "value": "m5"
                     }
                   ],
-                  "prose": "Kontinuierliche und formale Verifikation der Sicherheitsarchitektur.",
+                  "prose": "Kontinuierliche Validierung der Architektur mittels Policy-as-Code.",
                   "parts": [
                     {
                       "id": "DEV.2.1-m5_custom_gdn",
                       "name": "guidance",
-                      "prose": "Einsatz formaler Methoden oder Policy-as-Code zur Sicherstellung der Designvorgaben."
+                      "prose": "Sicherheitsarchitektur wird als Code definiert und in Echtzeit gegen Verstöße in der Infrastruktur und im Code geprüft."
                     },
                     {
                       "id": "DEV.2.1-m5_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung der Policy-as-Code Berichte auf Konformität der Infrastruktur-Definitionen."
+                      "prose": "Prüfung der Policy-as-Code Repositorys (z.B. OPA Rego Files). Auswertung automatisierter Architektur-Compliance-Berichte."
                     }
                   ]
                 }
@@ -289,44 +209,29 @@
                     {
                       "name": "control_class",
                       "value": "Technical",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "phase",
-                      "value": "Implementation",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_c",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_i",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_a",
-                      "value": "low",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "value": "Operation",
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "label",
                       "value": "m1"
                     }
                   ],
-                  "prose": "Schreibzugriff auf den Quellcode ist informell oder über geteilte Konten möglich.",
+                  "prose": "Schreibzugriff auf Quellcode erfolgt ad-hoc ohne strikte Zuweisung.",
                   "parts": [
                     {
                       "id": "DEV.2.4-m1_custom_gdn",
                       "name": "guidance",
-                      "prose": "Es existieren keine klaren Regeln für die Vergabe von Schreibberechtigungen."
+                      "prose": "Zugriffsberechtigungen werden bei Bedarf manuell vergeben, ohne dass ein formaler Genehmigungsprozess etabliert ist."
                     },
                     {
                       "id": "DEV.2.4-m1_custom_asm",
                       "name": "assessment",
-                      "prose": "Stichprobenartige Prüfung der Benutzerliste auf unnötige Schreibrechte."
+                      "prose": "Stichprobenartige Prüfung der Schreibrechte in Git-Repositories. Abgleich mit der Liste der aktuellen Projektmitglieder."
                     }
                   ]
                 },
@@ -337,44 +242,29 @@
                     {
                       "name": "control_class",
                       "value": "Technical",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "phase",
-                      "value": "Implementation",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_c",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_i",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_a",
-                      "value": "low",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "value": "Operation",
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "label",
                       "value": "m2"
                     }
                   ],
-                  "prose": "Schreibzugriff ist an zentrale Benutzerkonten gebunden.",
+                  "prose": "Rollenbasierte Zugriffskontrolle (RBAC) für Quellcode-Repositories ist manuell definiert.",
                   "parts": [
                     {
                       "id": "DEV.2.4-m2_custom_gdn",
                       "name": "guidance",
-                      "prose": "Einführung von RBAC auf Repository-Ebene für alle Entwickler."
+                      "prose": "Für Repositories werden Rollen (z.B. Developer, Maintainer) vergeben, die den Schreibzugriff steuern."
                     },
                     {
                       "id": "DEV.2.4-m2_custom_asm",
                       "name": "assessment",
-                      "prose": "Abgleich der aktiven Entwicklerliste mit der Berechtigungsmatrix im Versionskontrollsystem."
+                      "prose": "Prüfung der Rollendefinitionen im Versionierungssystem. Abfrage der Berechtigungen via `git ls-remote` oder API."
                     }
                   ]
                 },
@@ -385,27 +275,12 @@
                     {
                       "name": "control_class",
                       "value": "Technical",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "phase",
-                      "value": "Implementation",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_c",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_i",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_a",
-                      "value": "low",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "value": "Operation",
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "label",
@@ -417,12 +292,12 @@
                     {
                       "id": "DEV.2.4-m3_custom_gdn",
                       "name": "guidance",
-                      "prose": "Zugriffsberechtigungen müssen restriktiv vergeben und regelmäßig überprüft werden."
+                      "prose": "Der Zugriff muss auf das für die Aufgabenerfüllung notwendige Maß reduziert werden (Need-to-know Prinzip)."
                     },
                     {
                       "id": "DEV.2.4-m3_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung der Zugriffskontrolllisten (ACL) auf Einhaltung des Minimalprinzip-Grundsatzes."
+                      "prose": "Audit der Zugriffsberechtigungen. Prüfung, ob nur autorisierte Personen Schreibrechte auf geschützte Branches besitzen."
                     }
                   ]
                 },
@@ -433,44 +308,29 @@
                     {
                       "name": "control_class",
                       "value": "Technical",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "phase",
-                      "value": "Implementation",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_c",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_i",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_a",
-                      "value": "low",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "value": "Operation",
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "label",
                       "value": "m4"
                     }
                   ],
-                  "prose": "Erzwungener Schreibschutz für Haupt-Branches durch Code-Reviews.",
+                  "prose": "Automatisierte Überwachung der Zugriffsberechtigungen und Branch-Protection.",
                   "parts": [
                     {
                       "id": "DEV.2.4-m4_custom_gdn",
                       "name": "guidance",
-                      "prose": "Einsatz von Branch Protection Rules in Git (z.B. Gitolite oder Gitea)."
+                      "prose": "Einsatz von Branch Protection Rules (z.B. verpflichtende Code-Reviews vor Merges) und Integration in zentrales IAM."
                     },
                     {
                       "id": "DEV.2.4-m4_custom_asm",
                       "name": "assessment",
-                      "prose": "Check via API: gh api repos/:owner/:repo/branches/main/protection auf Status 'required_reviews'."
+                      "prose": "Prüfung der Repository-Einstellungen auf aktive Branch-Protections. Check: `gh api repos/:owner/:repo/branches/main/protection`."
                     }
                   ]
                 },
@@ -481,44 +341,29 @@
                     {
                       "name": "control_class",
                       "value": "Technical",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "phase",
-                      "value": "Implementation",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_c",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_i",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_a",
-                      "value": "low",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "value": "Operation",
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "label",
                       "value": "m5"
                     }
                   ],
-                  "prose": "Zero-Trust Zugriff mit Just-in-Time (JIT) Berechtigungsvergabe.",
+                  "prose": "Just-In-Time Zugriff und kryptografische Signaturpflicht für alle Commits.",
                   "parts": [
                     {
                       "id": "DEV.2.4-m5_custom_gdn",
                       "name": "guidance",
-                      "prose": "Schreibzugriff wird nur temporär für spezifische Aufgaben (Tickets) automatisiert freigeschaltet."
+                      "prose": "Schreibrechte werden zeitlich begrenzt vergeben. Das System verweigert Commits ohne gültige kryptografische Signatur (GPG/SSH)."
                     },
                     {
                       "id": "DEV.2.4-m5_custom_asm",
                       "name": "assessment",
-                      "prose": "Review der Audit-Logs der JIT-Plattform auf korrekte zeitliche Begrenzung der Zugriffe."
+                      "prose": "Verifizierung der GPG-Signaturpflicht in den Repository-Settings. Prüfung der Zugriffshistorie im IAM-System."
                     }
                   ]
                 }
@@ -540,44 +385,29 @@
                     {
                       "name": "control_class",
                       "value": "Operational",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "phase",
-                      "value": "Operation",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_c",
-                      "value": "low",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_i",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_a",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "value": "Implementation",
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "label",
                       "value": "m1"
                     }
                   ],
-                  "prose": "Freigaben erfolgen ad-hoc ohne formalen Prüfprozess.",
+                  "prose": "Freigaben erfolgen mündlich oder informell nach Abschluss der Entwicklung.",
                   "parts": [
                     {
                       "id": "DEV.6.1-m1_custom_gdn",
                       "name": "guidance",
-                      "prose": "Entwickler entscheiden eigenständig über die Nutzung neuer Versionen."
+                      "prose": "Es gibt keinen dokumentierten Prozess für die Autorisierung von Softwareänderungen vor der Produktivsetzung."
                     },
                     {
                       "id": "DEV.6.1-m1_custom_asm",
                       "name": "assessment",
-                      "prose": "Befragung der Entwickler zu ihrem Vorgehen bei Code-Änderungen."
+                      "prose": "Befragung der Projektleiter zum Freigabeprozess. Stichprobe der letzten Releases auf informelle Freigabenachweise."
                     }
                   ]
                 },
@@ -588,44 +418,29 @@
                     {
                       "name": "control_class",
                       "value": "Operational",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "phase",
-                      "value": "Operation",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_c",
-                      "value": "low",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_i",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_a",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "value": "Implementation",
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "label",
                       "value": "m2"
                     }
                   ],
-                  "prose": "Freigaben werden manuell dokumentiert und basieren auf Basistests.",
+                  "prose": "Freigaben basieren auf manuellen Checklisten und Testprotokollen.",
                   "parts": [
                     {
                       "id": "DEV.6.1-m2_custom_gdn",
                       "name": "guidance",
-                      "prose": "Erstellung eines einfachen Freigabeprotokolls nach erfolgreichen Funktionstests."
+                      "prose": "Vor der Freigabe werden definierte Tests durchgeführt und deren Ergebnisse manuell in einem Protokoll bestätigt."
                     },
                     {
                       "id": "DEV.6.1-m2_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung der vorhandenen Freigabedokumente auf Vollständigkeit und Datum."
+                      "prose": "Prüfung vorliegender Testprotokolle und unterzeichneter Freigabeformulare für vergangene Releases."
                     }
                   ]
                 },
@@ -636,27 +451,12 @@
                     {
                       "name": "control_class",
                       "value": "Operational",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "phase",
-                      "value": "Operation",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_c",
-                      "value": "low",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_i",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_a",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "value": "Implementation",
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "label",
@@ -668,12 +468,12 @@
                     {
                       "id": "DEV.6.1-m3_custom_gdn",
                       "name": "guidance",
-                      "prose": "Jede Freigabe muss einem definierten Prozess folgen, der Tests und Autorisierung umfasst."
+                      "prose": "Ein formaler Freigabeprozess muss sicherstellen, dass alle Änderungen ausreichend getestet und durch befugte Stellen autorisiert sind."
                     },
                     {
                       "id": "DEV.6.1-m3_custom_asm",
                       "name": "assessment",
-                      "prose": "Stichprobenartige Prüfung der Change-Requests auf Vorliegen der Testbestätigung."
+                      "prose": "Einsicht in das Change Management System. Abgleich der Testabdeckung mit den Freigabekriterien."
                     }
                   ]
                 },
@@ -684,44 +484,29 @@
                     {
                       "name": "control_class",
                       "value": "Operational",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "phase",
-                      "value": "Operation",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_c",
-                      "value": "low",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_i",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_a",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "value": "Implementation",
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "label",
                       "value": "m4"
                     }
                   ],
-                  "prose": "Automatisierte Freigabe-Entscheidungen durch Quality-Gates in der CI-Pipeline.",
+                  "prose": "Automatisierte Release-Gates integriert in die CI/CD-Pipeline.",
                   "parts": [
                     {
                       "id": "DEV.6.1-m4_custom_gdn",
                       "name": "guidance",
-                      "prose": "Integration von statischer Code-Analyse (z.B. SonarQube OSS) als Hard-Gate."
+                      "prose": "Änderungen werden nur freigegeben, wenn automatisierte Tests (Unit, Integration, Sec) eine definierte Qualitätsschwelle erreichen."
                     },
                     {
                       "id": "DEV.6.1-m4_custom_asm",
                       "name": "assessment",
-                      "prose": "Verifikation der Pipeline-Konfiguration auf Abbruchkriterien bei fehlgeschlagenen Scans."
+                      "prose": "Analyse der Pipeline-Konfiguration (z.B. Jenkinsfile/YAML). Prüfung der 'Success'-Kriterien für den automatisierten Release-Stopp."
                     }
                   ]
                 },
@@ -732,44 +517,29 @@
                     {
                       "name": "control_class",
                       "value": "Operational",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "phase",
-                      "value": "Operation",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_c",
-                      "value": "low",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_i",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_a",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "value": "Implementation",
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "label",
                       "value": "m5"
                     }
                   ],
-                  "prose": "Vollautomatisierte Governance-Prüfung mittels Policy-as-Code.",
+                  "prose": "Vollautomatisierte Freigabe mit Continuous Verification und Audit-Trail.",
                   "parts": [
                     {
                       "id": "DEV.6.1-m5_custom_gdn",
                       "name": "guidance",
-                      "prose": "Einsatz von Open Policy Agent (OPA) zur Prüfung komplexer Compliance-Regeln vor Freigabe."
+                      "prose": "Software wird kontinuierlich evaluiert. Freigabeentscheidungen werden datenbasiert und revisionssicher automatisiert dokumentiert."
                     },
                     {
                       "id": "DEV.6.1-m5_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung der OPA-Regelsätze und der zugehörigen Audit-Logs auf abgelehnte Freigaben."
+                      "prose": "Prüfung der Unveränderbarkeit der Audit-Logs. Validierung der automatisierten Rollback-Mechanismen bei Fehlern nach Freigabe."
                     }
                   ]
                 }
@@ -791,44 +561,29 @@
                     {
                       "name": "control_class",
                       "value": "Technical",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "phase",
-                      "value": "Operation",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_c",
-                      "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_i",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_a",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "value": "Implementation",
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "label",
                       "value": "m1"
                     }
                   ],
-                  "prose": "Die Bereitstellung erfolgt manuell durch Kopieren von Dateien.",
+                  "prose": "Bereitstellung erfolgt manuell durch Kopieren von Dateien auf Zielsysteme.",
                   "parts": [
                     {
                       "id": "DEV.7.1-m1_custom_gdn",
                       "name": "guidance",
-                      "prose": "Es gibt keine standardisierten Abläufe für den Deployment-Prozess."
+                      "prose": "Der Deployment-Prozess ist nicht standardisiert und hängt von individuellen Kenntnissen der Administratoren ab."
                     },
                     {
                       "id": "DEV.7.1-m1_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung der Server-Logs auf manuelle Dateioperationen (z.B. via SCP oder FTP)."
+                      "prose": "Beobachtung eines Deployment-Vorgangs. Prüfung auf Dokumentation von manuellen Schritten."
                     }
                   ]
                 },
@@ -839,44 +594,29 @@
                     {
                       "name": "control_class",
                       "value": "Technical",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "phase",
-                      "value": "Operation",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_c",
-                      "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_i",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_a",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "value": "Implementation",
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "label",
                       "value": "m2"
                     }
                   ],
-                  "prose": "Die Bereitstellung erfolgt über zentral verwaltete Skripte.",
+                  "prose": "Einsatz von einfachen Skripten zur Unterstützung der Bereitstellung.",
                   "parts": [
                     {
                       "id": "DEV.7.1-m2_custom_gdn",
                       "name": "guidance",
-                      "prose": "Nutzung von Shell-Skripten oder einfachen Tools zur Automatisierung der Abläufe."
+                      "prose": "Bereitstellungen werden durch Shell-Skripte oder einfache Automatisierungswerkzeuge in Testumgebungen unterstützt."
                     },
                     {
                       "id": "DEV.7.1-m2_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung der Skript-Repositories auf Versionierung und Dokumentation."
+                      "prose": "Review der Deployment-Skripte. Prüfung, ob Skripte in einem Versionskontrollsystem abgelegt sind."
                     }
                   ]
                 },
@@ -887,27 +627,12 @@
                     {
                       "name": "control_class",
                       "value": "Technical",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "phase",
-                      "value": "Operation",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_c",
-                      "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_i",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_a",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "value": "Implementation",
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "label",
@@ -919,12 +644,12 @@
                     {
                       "id": "DEV.7.1-m3_custom_gdn",
                       "name": "guidance",
-                      "prose": "Der Deployment-Prozess muss formal definiert und an Testergebnisse gekoppelt sein."
+                      "prose": "Die Bereitstellung muss nach festgelegten Regeln erfolgen, die Konsistenz und Nachvollziehbarkeit zwischen Test- und Produktivsystem garantieren."
                     },
                     {
                       "id": "DEV.7.1-m3_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung der Verknüpfung zwischen Testberichten und Bereitstellungs-Logs."
+                      "prose": "Abgleich der Deployment-Dokumentation mit der tatsächlichen Durchführung. Prüfung der Trennung zwischen Test- und Prod-Deployment."
                     }
                   ]
                 },
@@ -935,44 +660,29 @@
                     {
                       "name": "control_class",
                       "value": "Technical",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "phase",
-                      "value": "Operation",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_c",
-                      "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_i",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_a",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "value": "Implementation",
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "label",
                       "value": "m4"
                     }
                   ],
-                  "prose": "Integritätssicherung der Bereitstellung durch digitale Signaturen.",
+                  "prose": "Bereitstellung über Infrastructure as Code (IaC) und CI/CD-Pipelines.",
                   "parts": [
                     {
                       "id": "DEV.7.1-m4_custom_gdn",
                       "name": "guidance",
-                      "prose": "Einsatz von Cosign zur Signierung von Containern oder Artefakten in der CI-Pipeline."
+                      "prose": "Umgebungen werden über IaC-Templates (z.B. Ansible, Terraform) provisioniert. Deployments sind vollständig automatisiert und reproduzierbar."
                     },
                     {
                       "id": "DEV.7.1-m4_custom_asm",
                       "name": "assessment",
-                      "prose": "Automatisierte Prüfung: cosign verify <image> zur Validierung der Herkunft."
+                      "prose": "Prüfung der IaC-Dateien. Validierung der Pipeline-Logs auf erfolgreiche automatisierte Deployments."
                     }
                   ]
                 },
@@ -983,46 +693,50 @@
                     {
                       "name": "control_class",
                       "value": "Technical",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "phase",
-                      "value": "Operation",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_c",
-                      "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_i",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_a",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "value": "Implementation",
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "label",
                       "value": "m5"
                     }
                   ],
-                  "prose": "Immutable Infrastructure und GitOps zur kontinuierlichen Bereitstellung.",
+                  "prose": "Immutable Infrastructure und automatisierte Artefakt-Integritätsprüfung.",
                   "parts": [
                     {
                       "id": "DEV.7.1-m5_custom_gdn",
                       "name": "guidance",
-                      "prose": "Verwendung von ArgoCD zur Synchronisation des Zielzustands aus dem Git-Repository."
+                      "prose": "Infrastruktur wird bei jedem Deployment neu erstellt. Artefakte werden vor dem Deployment kryptografisch verifiziert (z.B. Sigstore)."
                     },
                     {
                       "id": "DEV.7.1-m5_custom_asm",
                       "name": "assessment",
-                      "prose": "Abgleich des IST-Zustands im Cluster mit dem SOLL-Zustand im Git-Repository via ArgoCD CLI."
+                      "prose": "Prüfung der Signaturprüfungsschritte in der Pipeline. Check: `cosign verify <image-url>` im Deployment-Prozess."
                     }
                   ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "back-matter": {
+      "resources": [
+        {
+          "uuid": "944d9eb5-aa84-5c12-86d3-94ed8e2569f5",
+          "title": "Grundschutz++-resolved_catalog.json @ 47de2824a341",
+          "rlinks": [
+            {
+              "href": "https://raw.githubusercontent.com/BSI-Bund/Stand-der-Technik-Bibliothek/47de2824a341812438ef3f044b3f65ce2cad6e32/control_layer/Grundschutz%2B%2B/Grundschutz%2B%2B-resolved_catalog.json",
+              "hashes": [
+                {
+                  "algorithm": "SHA-256",
+                  "value": "db3a1417d7e904315a0886f450129832e19c57324660358c830357349f552332"
                 }
               ]
             }

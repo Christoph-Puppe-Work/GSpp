@@ -3,13 +3,13 @@
     "uuid": "ed0453b2-b340-54fd-9601-e55893a8c748",
     "metadata": {
       "title": "E-Mail Zielobjektkategorie Profil",
-      "last-modified": "2026-06-04T14:31:13.514865+00:00",
+      "last-modified": "2026-07-28T15:21:55.979416+00:00",
       "version": "0.0.1",
       "oscal-version": "1.2.2"
     },
     "imports": [
       {
-        "href": "https://raw.githubusercontent.com/BSI-Bund/Stand-der-Technik-Bibliothek/refs/heads/main/Anwenderkataloge/Grundschutz%2B%2B/Grundschutz%2B%2B-catalog.json",
+        "href": "#944d9eb5-aa84-5c12-86d3-94ed8e2569f5",
         "include-controls": [
           {
             "with-ids": [
@@ -20,12 +20,15 @@
               "ARCH.9.4",
               "ASST.2.3.2",
               "ASST.7.1",
-              "BER.3.10",
-              "BER.3.12",
-              "BER.3.6",
+              "BER.3.11",
+              "BER.3.13",
+              "BER.3.25",
               "BER.3.7",
-              "BER.5.6",
-              "BER.6.4",
+              "BER.3.8",
+              "BER.4.6",
+              "BER.5.11",
+              "BER.5.7",
+              "BER.5.8",
               "DET.3.1",
               "DET.3.1.10",
               "DET.3.1.11",
@@ -72,10 +75,9 @@
               "KONF.10.5.1",
               "KONF.11.1",
               "KONF.11.1.2",
-              "KONF.11.3",
+              "KONF.11.6",
               "KONF.11.7",
               "KONF.11.8",
-              "KONF.11.9",
               "KONF.12.1",
               "KONF.13.1",
               "KONF.13.1.1",
@@ -120,6 +122,25 @@
           }
         ]
       }
-    ]
+    ],
+    "back-matter": {
+      "resources": [
+        {
+          "uuid": "944d9eb5-aa84-5c12-86d3-94ed8e2569f5",
+          "title": "Grundschutz++-resolved_catalog.json @ 47de2824a341",
+          "rlinks": [
+            {
+              "href": "https://raw.githubusercontent.com/BSI-Bund/Stand-der-Technik-Bibliothek/47de2824a341812438ef3f044b3f65ce2cad6e32/control_layer/Grundschutz%2B%2B/Grundschutz%2B%2B-resolved_catalog.json",
+              "hashes": [
+                {
+                  "algorithm": "SHA-256",
+                  "value": "db3a1417d7e904315a0886f450129832e19c57324660358c830357349f552332"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
   }
 }

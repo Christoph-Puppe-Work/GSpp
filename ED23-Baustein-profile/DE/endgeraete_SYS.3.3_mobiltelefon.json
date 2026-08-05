@@ -1,15 +1,15 @@
 {
   "profile": {
-    "uuid": "3e7d5fa1-0e05-57c8-989a-9de0e66856ec",
+    "uuid": "0bdf9373-746a-565e-8add-59ffe2893e30",
     "metadata": {
-      "title": "INF.9 - Endgeräte",
-      "last-modified": "2026-06-19T18:56:19.816698+00:00",
+      "title": "SYS.3.3 - Endgeräte",
+      "last-modified": "2026-07-28T15:33:38.445360+00:00",
       "version": "0.0.1",
       "oscal-version": "1.2.2"
     },
     "imports": [
       {
-        "href": "https://raw.githubusercontent.com/BSI-Bund/Stand-der-Technik-Bibliothek/refs/heads/main/Anwenderkataloge/Grundschutz%2B%2B/Grundschutz%2B%2B-catalog.json",
+        "href": "#944d9eb5-aa84-5c12-86d3-94ed8e2569f5",
         "include-controls": [
           {
             "with-ids": [
@@ -25,11 +25,15 @@
               "ASST.5.7",
               "ASST.6.3",
               "ASST.6.4",
-              "BER.3.11",
-              "BER.3.19",
-              "BER.3.9",
+              "BER.3.10",
+              "BER.3.12",
+              "BER.3.20",
+              "BER.3.24",
+              "BER.4.5",
+              "BER.4.7",
+              "BER.5.10",
               "BER.5.5",
-              "BER.5.7",
+              "BER.5.6",
               "DET.3.1.1",
               "DET.3.1.2",
               "DET.3.1.3",
@@ -84,7 +88,6 @@
               "KONF.6.1.1",
               "KONF.6.1.2",
               "KONF.6.1.3",
-              "KONF.6.2",
               "KONF.6.3",
               "KONF.6.4",
               "KONF.6.4.1",
@@ -114,12 +117,33 @@
               "SENS.7.12",
               "SENS.7.13",
               "SENS.7.14",
+              "SENS.7.18",
+              "SENS.7.19",
               "SENS.7.23",
               "SENS.8.3"
             ]
           }
         ]
       }
-    ]
+    ],
+    "back-matter": {
+      "resources": [
+        {
+          "uuid": "944d9eb5-aa84-5c12-86d3-94ed8e2569f5",
+          "title": "Grundschutz++-resolved_catalog.json @ 47de2824a341",
+          "rlinks": [
+            {
+              "href": "https://raw.githubusercontent.com/BSI-Bund/Stand-der-Technik-Bibliothek/47de2824a341812438ef3f044b3f65ce2cad6e32/control_layer/Grundschutz%2B%2B/Grundschutz%2B%2B-resolved_catalog.json",
+              "hashes": [
+                {
+                  "algorithm": "SHA-256",
+                  "value": "db3a1417d7e904315a0886f450129832e19c57324660358c830357349f552332"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
   }
 }

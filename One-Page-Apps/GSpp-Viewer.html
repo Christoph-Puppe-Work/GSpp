@@ -113,6 +113,11 @@
         .tag-modal { background: #fce4ec; color: var(--modal-color); border-color: #f8bbd0; text-transform: uppercase; }
         .tag-action { background: #e3f2fd; color: var(--action-color); border-color: #9ec5fe; }
         .tag-target { background: #f3e5f5; color: #6a1b9a; border-color: #ce93d8; }
+        /* BSI-Schutzziel-Props (security_targets.csv): Wert 1 = wirkt, Wert 2 = im Zentrum */
+        .tag-sz { background: #eceff1; color: #455a64; border-color: #cfd8dc; }
+        .tag-sz-strong { background: #455a64; color: #fff; border-color: #263238; }
+        /* Elementare Gefährdungen (threats-Prop, basethreats.csv) */
+        .tag-threat { background: #fff3e0; color: #b34700; border-color: #ffcc80; }
 
         /* Statement Box */
         .statement-box { background: #fff; border: 1px solid #eee; padding: 18px; border-radius: 8px; margin: 15px 0; }
@@ -241,6 +246,7 @@
                 <select id="filterModal" class="filter-select" onchange="applyFilters()"><option value="all">Jede Modalität</option></select>
                 <select id="filterHandlung" class="filter-select" onchange="applyFilters()"><option value="all">Alle Handlungen</option></select>
                 <select id="filterTag" class="filter-select" onchange="applyFilters()"><option value="all">Alle Tags</option></select>
+                <select id="filterThreat" class="filter-select" onchange="applyFilters()"><option value="all">Alle Gefährdungen</option></select>
                 <button class="reset-btn" onclick="resetFilters()">Filter zurücksetzen</button>
             </div>
         </div>
@@ -267,17 +273,17 @@
 
             <select id="quickSelect" class="filter-select" onchange="updateUrlFromSelect()" style="margin-bottom: 10px; border-color: var(--primary-color);">
                 <option value="">-- Schnellauswahl --</option>
-                <option value="https://raw.githubusercontent.com/BSI-Bund/Stand-der-Technik-Bibliothek/main/Anwenderkataloge/Grundschutz%2B%2B/Grundschutz%2B%2B-catalog.json">Anwenderkatalog (GS++)</option>
-                <option value="https://raw.githubusercontent.com/BSI-Bund/Stand-der-Technik-Bibliothek/refs/heads/main/Quellkataloge/Methodik-Grundschutz%2B%2B/BSI-Methodik-Grundschutz%2B%2B-catalog.json">Methodik (GS++)</option>
-                <option value="https://raw.githubusercontent.com/BSI-Bund/Stand-der-Technik-Bibliothek/refs/heads/main/Quellkataloge/Kernel/BSI-Stand-der-Technik-Kernel-catalog.json">Kernel (SdT)</option>
-				<option value="https://raw.githubusercontent.com/BSI-Bund/Stand-der-Technik-Bibliothek/refs/heads/main/Quellkataloge/Risikomanagement/BSI-Anforderungen-zum-Risikomanagement-catalog.json">Risikomanagement</option>
+                <option value="https://raw.githubusercontent.com/BSI-Bund/Stand-der-Technik-Bibliothek/47de2824a341812438ef3f044b3f65ce2cad6e32/control_layer/Grundschutz%2B%2B/Grundschutz%2B%2B-resolved_catalog.json">Anwenderkatalog (GS++, Pin 47de2824a341)</option>
+                <option value="https://raw.githubusercontent.com/BSI-Bund/Stand-der-Technik-Bibliothek/refs/heads/main/control_layer/Grundschutz%2B%2B/sources/catalogs/Methodik-Grundschutz%2B%2B/BSI-Methodik-Grundschutz%2B%2B-catalog.json">Methodik (GS++)</option>
+                <option value="https://raw.githubusercontent.com/BSI-Bund/Stand-der-Technik-Bibliothek/refs/heads/main/control_layer/Grundschutz%2B%2B/sources/catalogs/Kernel/BSI-Stand-der-Technik-Kernel-catalog.json">Kernel (SdT)</option>
+				<option value="https://raw.githubusercontent.com/BSI-Bund/Stand-der-Technik-Bibliothek/refs/heads/main/control_layer/Risikomanagement/BSI-Anforderungen-zum-Risikomanagement-catalog.json">Risikomanagement</option>
 				<option value="https://raw.githubusercontent.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/refs/heads/main/kataloge/c5-2026-oscal-catalog.json">C5:2026</option>
 				<option value="https://raw.githubusercontent.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/refs/heads/main/kataloge/c3a_oscal_catalog.json">C3A - Criteria enabling Cloud Computing Autonomy</option>
 				<option value="https://raw.githubusercontent.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/refs/heads/main/beispiel-kataloge/kritis_oscal_catalog.json">KRITIS (Beispiel, Test-Katalog)</option>
 				<option value="https://raw.githubusercontent.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/refs/heads/main/beispiel-kataloge/dsgvo_oscal_catalog.json">DSGVO (Beispiel, Test-Katalog)</option>
             </select>
 
-            <input type="text" id="urlInput" class="filter-select" placeholder="URL zum OSCAL-Katalog..." value="https://raw.githubusercontent.com/BSI-Bund/Stand-der-Technik-Bibliothek/main/Anwenderkataloge/Grundschutz%2B%2B/Grundschutz%2B%2B-catalog.json">
+            <input type="text" id="urlInput" class="filter-select" placeholder="URL zum OSCAL-Katalog..." value="https://raw.githubusercontent.com/BSI-Bund/Stand-der-Technik-Bibliothek/47de2824a341812438ef3f044b3f65ce2cad6e32/control_layer/Grundschutz%2B%2B/Grundschutz%2B%2B-resolved_catalog.json">
 
             <button onclick="loadFromURL()" style="width:100%; padding: 10px; background: var(--primary-color); color:white; border:none; border-radius:6px; cursor:pointer; font-weight:bold;">Katalog hinzufügen</button>
 
@@ -313,9 +319,40 @@
 
     <script>
         const apiKey = "";
-        let filterOptions = { class: new Set(), sec_level: new Set(), effort_level: new Set(), modalverb: new Set(), handlung: new Set(), tags: new Set() };
+        let filterOptions = { class: new Set(), sec_level: new Set(), effort_level: new Set(), modalverb: new Set(), handlung: new Set(), tags: new Set(), threat: new Set() };
+
+        // Elementare Gefährdungen (BSI basethreats.csv) — Namen für die threats-Prop-Badges.
+        const G0_THREATS = {'G 0.1':'Feuer','G 0.2':'Ungünstige klimatische Bedingungen','G 0.3':'Wasser','G 0.4':'Verschmutzung, Staub, Korrosion','G 0.5':'Naturkatastrophen','G 0.6':'Katastrophen im Umfeld','G 0.7':'Großereignisse im Umfeld','G 0.8':'Ausfall oder Störung der Stromversorgung','G 0.9':'Ausfall oder Störung von Kommunikationsnetzen','G 0.10':'Ausfall oder Störung von Versorgungsnetzen','G 0.11':'Ausfall oder Störung von Dienstleistern','G 0.12':'Elektromagnetische Störstrahlung','G 0.13':'Abfangen kompromittierender Strahlung','G 0.14':'Ausspähen von Informationen (Spionage)','G 0.15':'Abhören','G 0.16':'Diebstahl von Geräten, Datenträgern oder Dokumenten','G 0.17':'Verlust von Geräten, Datenträgern oder Dokumenten','G 0.18':'Fehlplanung oder fehlende Anpassung','G 0.19':'Offenlegung schützenswerter Informationen','G 0.20':'Informationen oder Produkte aus unzuverlässiger Quelle','G 0.21':'Manipulation von Hard- oder Software','G 0.22':'Manipulation von Informationen','G 0.23':'Unbefugtes Eindringen in IT-Systeme','G 0.24':'Zerstörung von Geräten oder Datenträgern','G 0.25':'Ausfall von Geräten oder Systemen','G 0.26':'Fehlfunktion von Geräten oder Systemen','G 0.27':'Ressourcenmangel','G 0.28':'Software-Schwachstellen oder -Fehler','G 0.29':'Verstoß gegen Gesetze oder Regelungen','G 0.30':'Unberechtigte Nutzung oder Administration von Geräten und Systemen','G 0.31':'Fehlerhafte Nutzung oder Administration von Geräten und Systemen','G 0.32':'Missbrauch von Berechtigungen','G 0.33':'Personalausfall','G 0.34':'Anschlag','G 0.35':'Nötigung, Erpressung oder Korruption','G 0.36':'Identitätsdiebstahl','G 0.37':'Abstreiten von Handlungen','G 0.38':'Missbrauch personenbezogener Daten','G 0.39':'Schadprogramme','G 0.40':'Verhinderung von Diensten (Denial of Service)','G 0.41':'Sabotage','G 0.42':'Social Engineering','G 0.43':'Einspielen von Nachrichten','G 0.44':'Unbefugtes Eindringen in Räumlichkeiten','G 0.45':'Datenverlust','G 0.46':'Integritätsverlust schützenswerter Informationen','G 0.47':'Schädliche Seiteneffekte IT-gestützter Angriffe'};
         let loadedCatalogs = [];
+        // Pro geladenem Katalog: Quelle und SHA-256 der Rohbytes (für den Pin-Abgleich).
+        let loadedCatalogSources = [];
+        // Alle Control-IDs der geladenen Kataloge (für den Profil-Drift-Check).
+        let loadedControlIds = new Set();
         let aiCache = {};
+
+        // --- G++-Katalog-Pin (Handbuch 3.13/3.14, Katalogarbeit-Skill Grundregel 8) ---
+        // Gleiche Werte wie Gpp-ai-tool/src/constants.py und die gepinnten Profile.
+        // Katalog-Update = bewusster Pin-Wechsel an allen Stellen zugleich.
+        const GPP_CATALOG_PIN_COMMIT = "47de2824a341812438ef3f044b3f65ce2cad6e32";
+        const GPP_CATALOG_PIN_SHA256 = "db3a1417d7e904315a0886f450129832e19c57324660358c830357349f552332";
+        const GPP_CATALOG_PINNED_URL = "https://raw.githubusercontent.com/BSI-Bund/Stand-der-Technik-Bibliothek/" + GPP_CATALOG_PIN_COMMIT + "/control_layer/Grundschutz%2B%2B/Grundschutz%2B%2B-resolved_catalog.json";
+
+        async function sha256Hex(buf) {
+            const d = await crypto.subtle.digest("SHA-256", buf);
+            return Array.from(new Uint8Array(d)).map(b => b.toString(16).padStart(2, "0")).join("");
+        }
+
+        // Löst einen Profil-Import-href auf: Fragment ("#uuid") → back-matter-Resource
+        // mit rlink-URL und Soll-SHA-256; direkte URL → Alt-Muster ohne Hash.
+        function resolveImportHref(profileObj, href) {
+            if (!href) return null;
+            if (!href.startsWith("#")) return { url: href, sha256: null, pinned: false };
+            const res = ((profileObj["back-matter"] || {}).resources || []).find(r => r.uuid === href.slice(1));
+            const rlink = res && (res.rlinks || [])[0];
+            if (!rlink || !rlink.href) return null;
+            const hash = (rlink.hashes || []).find(h => h.algorithm === "SHA-256");
+            return { url: rlink.href, sha256: hash ? hash.value : null, pinned: true };
+        }
         // Vorberechnetes Mapping G++-Control -> passende BSI ED2023-Anforderungen
         // (erzeugt von Gpp-ai-tool stage_ed23_anforderungen, statt zur Laufzeit per KI).
         let ED23_MAP = {};
@@ -533,7 +570,7 @@ eine KI. Dein Satzbau ist Abwechslungsreich, konkret, präßise und du nutzt kei
         }
 
         // Praktik-Kürzel → Begriff. Quelle (in sync halten):
-        // https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/blob/main/Dokumentation/namespaces/practices.csv
+        // https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/blob/main/documentation/namespaces/practices.csv
         const PRACTICE_ABBREVIATIONS = {
             GC: "Governance und Compliance", STM: "Strukturmodellierung", UMS: "Umsetzung",
             VRB: "Verbesserung", PERF: "Monitoring-Evaluation", RISK: "Risikomanagement",
@@ -638,8 +675,37 @@ eine KI. Dein Satzbau ist Abwechslungsreich, konkret, präßise und du nutzt kei
 
                 activeProfileIds = ids;
                 const matNote = activeProfileMaturity ? ` (inkl. Reifegrade für ${activeProfileMaturity.size} Controls)` : '';
-                infoSpan.textContent = `${ids.size} Maßnahmen im Profil aktiv${matNote}.`;
-                infoSpan.style.color = "#28a745";
+
+                // Pin-Prüfung: Fragment-Import → back-matter-Resource (Commit-URL + SHA-256).
+                // Abgleich gegen die Hashes der tatsächlich geladenen Kataloge, dazu der
+                // Drift-Check über die Control-ID-Schnittmenge.
+                const imp0 = (data.profile.imports || [])[0];
+                const pin = imp0 ? resolveImportHref(data.profile, imp0.href) : null;
+                const matched = loadedControlIds.size ? [...ids].filter(id => loadedControlIds.has(id)).length : null;
+                let msg = `${ids.size} Maßnahmen im Profil aktiv${matNote}.`;
+                let color = "#28a745";
+                if (matched !== null && matched < ids.size) {
+                    msg = `${matched} von ${ids.size} Profil-Maßnahmen im geladenen Katalog gefunden${matNote}.`;
+                    color = "#e67e22";
+                }
+                if (pin && pin.pinned && pin.sha256) {
+                    const hashMatch = loadedCatalogSources.some(s => s.sha256 === pin.sha256);
+                    if (hashMatch) {
+                        msg += " Katalog entspricht dem Pin des Profils (SHA-256 geprüft).";
+                    } else if (loadedCatalogSources.length) {
+                        msg += ` Achtung: Kein geladener Katalog entspricht der gepinnten Version (Commit ${pin.url.includes('/') ? (pin.url.split('/')[5] || '').slice(0, 12) : '?'}). Gepinnte Quelle wurde ins URL-Feld übernommen.`;
+                        color = "#e67e22";
+                        document.getElementById('urlInput').value = pin.url;
+                    } else {
+                        msg += " Profil ist gepinnt; gepinnte Katalog-Quelle wurde ins URL-Feld übernommen — per „Katalog hinzufügen“ laden.";
+                        document.getElementById('urlInput').value = pin.url;
+                    }
+                } else if (pin && !pin.pinned) {
+                    msg += " Hinweis: Profil nutzt noch den ungepinnten Branch-Import (kein SHA-256).";
+                    color = "#e67e22";
+                }
+                infoSpan.textContent = msg;
+                infoSpan.style.color = color;
                 refreshMaturityDisplay();
                 applyFilters();
             } catch (e) {
@@ -657,7 +723,14 @@ eine KI. Dein Satzbau ist Abwechslungsreich, konkret, präßise und du nutzt kei
                 const url = document.getElementById('urlInput').value;
                 const res = await fetch(url);
                 if (!res.ok) throw new Error("Netzwerkantwort war nicht ok");
-                processCatalog(await res.json());
+                const buf = await res.arrayBuffer();
+                const hash = await sha256Hex(buf);
+                // Pin-Prüfung: Die gepinnte Quelle muss exakt den bekannten Hash liefern.
+                if (url === GPP_CATALOG_PINNED_URL && hash !== GPP_CATALOG_PIN_SHA256) {
+                    alert("Pin-Verletzung: Der Katalog von der gepinnten URL hat nicht den erwarteten SHA-256.\nErwartet: " + GPP_CATALOG_PIN_SHA256 + "\nErhalten: " + hash + "\nDer Katalog wird NICHT geladen.");
+                    return;
+                }
+                processCatalog(JSON.parse(new TextDecoder().decode(buf)), { url, sha256: hash });
             } catch (e) { alert("Fehler beim Laden: " + e.message); }
         }
 
@@ -665,8 +738,12 @@ eine KI. Dein Satzbau ist Abwechslungsreich, konkret, präßise und du nutzt kei
             const file = document.getElementById('fileInput').files[0];
             if (!file) return;
             const r = new FileReader();
-            r.onload = e => processCatalog(JSON.parse(e.target.result));
-            r.readAsText(file);
+            r.onload = async e => {
+                const buf = e.target.result;
+                const hash = await sha256Hex(buf);
+                processCatalog(JSON.parse(new TextDecoder().decode(buf)), { url: "file://" + file.name, sha256: hash });
+            };
+            r.readAsArrayBuffer(file);
         }
 
         function clearAllCatalogs() {
@@ -676,11 +753,18 @@ eine KI. Dein Satzbau ist Abwechslungsreich, konkret, präßise und du nutzt kei
             document.getElementById('clearAllBtn').style.display = 'none';
             document.getElementById('filterControls').style.display = 'none';
             loadedCatalogs = [];
-            filterOptions = { class: new Set(), sec_level: new Set(), effort_level: new Set(), modalverb: new Set(), handlung: new Set(), tags: new Set() };
+            loadedCatalogSources = [];
+            loadedControlIds = new Set();
+            filterOptions = { class: new Set(), sec_level: new Set(), effort_level: new Set(), modalverb: new Set(), handlung: new Set(), tags: new Set(), threat: new Set() };
             populateFilterUI();
         }
 
-        function processCatalog(data) {
+        function collectControlIds(node, ids) {
+            (node.controls || []).forEach(c => { if (c.id) ids.add(c.id); collectControlIds(c, ids); });
+            (node.groups || []).forEach(g => collectControlIds(g, ids));
+        }
+
+        function processCatalog(data, source) {
             const container = document.getElementById('catalog-container');
             const welcome = document.getElementById('welcome-msg');
             if (welcome) welcome.style.display = 'none';
@@ -688,6 +772,8 @@ eine KI. Dein Satzbau ist Abwechslungsreich, konkret, präßise und du nutzt kei
 
             const catMeta = data.catalog.metadata;
             loadedCatalogs.push(catMeta);
+            if (source) loadedCatalogSources.push(source);
+            collectControlIds(data.catalog, loadedControlIds);
             updateMetaDisplay();
 
             const fragment = document.createDocumentFragment();
@@ -743,6 +829,20 @@ eine KI. Dein Satzbau ist Abwechslungsreich, konkret, präßise und du nutzt kei
             const tagsRaw = control.props?.find(p => p.name === 'tags')?.value || "";
             const tagsArray = tagsRaw ? tagsRaw.split(',').map(t => t.trim()).filter(t => t.length > 0) : [];
 
+            // BSI-Schutzziel-Props (Werte 0/1/2); 0 = wirkt nicht -> kein Badge, 2 = im Zentrum -> hervorheben
+            const schutzziele = [
+                ['confidentiality', 'Vertraulichkeit'],
+                ['integrity', 'Integrität'],
+                ['availability', 'Verfügbarkeit'],
+                ['authenticity', 'Authentizität'],
+            ].map(([name, label]) => ({ label, value: control.props?.find(p => p.name === name)?.value || '0' }))
+             .filter(sz => sz.value !== '0');
+
+            // Elementare Gefährdungen (threats-Prop, kommaseparierte G 0.x-IDs aus basethreats.csv)
+            const threatsRaw = control.props?.find(p => p.name === 'threats')?.value || "";
+            const threatIds = threatsRaw ? threatsRaw.split(',').map(t => t.trim()).filter(t => t) : [];
+            threatIds.forEach(t => filterOptions.threat.add(t));
+
             if(cClass) filterOptions.class.add(cClass);
             if(sec) filterOptions.sec_level.add(sec);
             if(effort) filterOptions.effort_level.add(effort);
@@ -753,19 +853,20 @@ eine KI. Dein Satzbau ist Abwechslungsreich, konkret, präßise und du nutzt kei
             const modal = stmtPart?.props?.find(p => p.name === 'modal_verb')?.value || "";
 			const action = stmtPart?.props?.find(p => p.name === 'action_word')?.value || "";
 			const result = stmtPart?.props?.find(p => p.name === 'result')?.value || "";
-			const precision = stmtPart?.props?.find(p => p.name === 'precision')?.value || "";
+			const precision = stmtPart?.props?.find(p => p.name === 'result_specification' || p.name === 'precision')?.value || "";
 			const targetObj = stmtPart?.props?.find(p => p.name === 'target_object_categories')?.value || "";
 
             if(modal) filterOptions.modalverb.add(modal);
             if(action) filterOptions.handlung.add(action);
 
-            card.dataset.searchText = `${control.id} ${uuid} ${control.title} ${stmtPart?.prose || ""} ${modal} ${action} ${targetObj} ${tagsArray.join(' ')}`.toLowerCase();
+            card.dataset.searchText = `${control.id} ${uuid} ${control.title} ${stmtPart?.prose || ""} ${modal} ${action} ${targetObj} ${tagsArray.join(' ')} ${threatIds.map(t => `${t} ${G0_THREATS[t] || ''}`).join(' ')}`.toLowerCase();
             card.dataset.class = cClass;
             card.dataset.sec = sec;
             card.dataset.effort = effort;
             card.dataset.modal = modal;
             card.dataset.handlung = action;
             card.dataset.tags = JSON.stringify(tagsArray);
+            card.dataset.threats = JSON.stringify(threatIds);
 
             card.innerHTML = `
                 <div class="id-row"><span class="badge-id">${control.id}</span><span class="badge-class">${escapeHtml(cClass)}</span></div>
@@ -777,6 +878,8 @@ eine KI. Dein Satzbau ist Abwechslungsreich, konkret, präßise und du nutzt kei
                     ${modal ? `<span class="tag tag-modal">${escapeHtml(modal)}</span>` : ''}
                     ${action ? `<span class="tag tag-action">${escapeHtml(action)}</span>` : ''}
                     ${targetObj ? `<span class="tag tag-target">🎯 ${escapeHtml(targetObj)}</span>` : ''}
+                    ${schutzziele.map(sz => `<span class="tag ${sz.value === '2' ? 'tag-sz-strong' : 'tag-sz'}" title="${sz.label}: ${sz.value === '2' ? 'steht im Zentrum der Anforderung' : 'Anforderung wirkt auf dieses Schutzziel'}">🛡 ${sz.label}${sz.value === '2' ? ' ●●' : ''}</span>`).join('')}
+                    ${threatIds.map(t => `<span class="tag tag-threat" title="${escapeHtml(G0_THREATS[t] || 'Elementare Gefährdung')}">⚠ ${escapeHtml(t)}</span>`).join('')}
                     ${tagsArray.map(t => `<span class="tag tag-tags">Tag: ${escapeHtml(t)}</span>`).join('')}
                 </div>
                 <div class="statement-box">
@@ -837,9 +940,10 @@ eine KI. Dein Satzbau ist Abwechslungsreich, konkret, präßise und du nutzt kei
             const fMod = document.getElementById('filterModal').value;
             const fHandlung = document.getElementById('filterHandlung').value;
             const fTag = document.getElementById('filterTag').value;
+            const fThreat = document.getElementById('filterThreat').value;
 
             // Prüfe, ob überhaupt ein Filter (inkl. Profil) aktiv ist
-            const anyFilterActive = (query !== "" || fClass !== "all" || fSec !== "all" || fEff !== "all" || fMod !== "all" || fHandlung !== "all" || fTag !== "all" || activeProfileIds !== null);
+            const anyFilterActive = (query !== "" || fClass !== "all" || fSec !== "all" || fEff !== "all" || fMod !== "all" || fHandlung !== "all" || fTag !== "all" || fThreat !== "all" || activeProfileIds !== null);
 
             document.querySelectorAll('.filterable-item, .filterable-container').forEach(el => {
                 el.classList.add('hidden');
@@ -859,6 +963,7 @@ eine KI. Dein Satzbau ist Abwechslungsreich, konkret, präßise und du nutzt kei
 
             document.querySelectorAll('.control-card').forEach(card => {
                 const cardTags = card.dataset.tags ? JSON.parse(card.dataset.tags) : [];
+                const cardThreats = card.dataset.threats ? JSON.parse(card.dataset.threats) : [];
 
                 // Beinhaltet jetzt die Prüfung gegen das Set activeProfileIds
                 const match = (!query || card.dataset.searchText.includes(query)) &&
@@ -868,6 +973,7 @@ eine KI. Dein Satzbau ist Abwechslungsreich, konkret, präßise und du nutzt kei
                               (fMod === 'all' || card.dataset.modal === fMod) &&
                               (fHandlung === 'all' || card.dataset.handlung === fHandlung) &&
                               (fTag === 'all' || cardTags.includes(fTag)) &&
+                              (fThreat === 'all' || cardThreats.includes(fThreat)) &&
                               (!activeProfileIds || activeProfileIds.has(card.id)); // NEU: Profil-Filter
 
                 if (match) {
@@ -910,16 +1016,21 @@ eine KI. Dein Satzbau ist Abwechslungsreich, konkret, präßise und du nutzt kei
             fillSelect('filterModal', filterOptions.modalverb, "Modalität");
             fillSelect('filterHandlung', filterOptions.handlung, "Handlung");
             fillSelect('filterTag', filterOptions.tags, "Tag");
+            // Numerisch nach G 0.x sortieren, Anzeige mit Gefährdungsnamen
+            fillSelect('filterThreat', filterOptions.threat, "Gefährdung", {
+                sortFn: (a, b) => (parseFloat(a.replace('G 0.', '')) || 0) - (parseFloat(b.replace('G 0.', '')) || 0),
+                displayFn: t => `${t} — ${G0_THREATS[t] || 'Elementare Gefährdung'}`,
+            });
         }
 
-        function fillSelect(id, set, label) {
+        function fillSelect(id, set, label, opts = {}) {
             const sel = document.getElementById(id);
             if (!sel) return;
             const currentVal = sel.value;
-            Array.from(set).sort().forEach(v => {
+            Array.from(set).sort(opts.sortFn).forEach(v => {
                 if (!v) return;
                 const o = document.createElement('option');
-                o.value = v; o.textContent = v; sel.appendChild(o);
+                o.value = v; o.textContent = opts.displayFn ? opts.displayFn(v) : v; sel.appendChild(o);
             });
             if (set.has(currentVal)) sel.value = currentVal;
             else sel.value = 'all';
@@ -927,7 +1038,7 @@ eine KI. Dein Satzbau ist Abwechslungsreich, konkret, präßise und du nutzt kei
 
         function resetFilters() {
             document.getElementById('searchInput').value = '';
-            ['filterClass', 'filterSec', 'filterEffort', 'filterModal', 'filterHandlung', 'filterTag'].forEach(id => document.getElementById(id).value = 'all');
+            ['filterClass', 'filterSec', 'filterEffort', 'filterModal', 'filterHandlung', 'filterTag', 'filterThreat'].forEach(id => document.getElementById(id).value = 'all');
 
             document.getElementById('profileSelect').value = '';
             document.getElementById('profileInfo').textContent = '';

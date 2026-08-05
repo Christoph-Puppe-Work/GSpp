@@ -226,7 +226,16 @@
     // ============================================================
     // CONFIG & STATE
     // ============================================================
-    const GS_PLUS_CATALOG_URL = 'https://raw.githubusercontent.com/BSI-Bund/Stand-der-Technik-Bibliothek/refs/heads/main/Anwenderkataloge/Grundschutz%2B%2B/Grundschutz%2B%2B-catalog.json';
+    // --- G++-Katalog-Pin (Handbuch 3.13/3.14, Katalogarbeit-Skill Grundregel 8) ---
+    // Gleiche Werte wie Gpp-ai-tool/src/constants.py und die gepinnten Repo-Profile.
+    const GPP_CATALOG_PIN_COMMIT = '47de2824a341812438ef3f044b3f65ce2cad6e32';
+    const GPP_CATALOG_PIN_SHA256 = 'db3a1417d7e904315a0886f450129832e19c57324660358c830357349f552332';
+    const GS_PLUS_CATALOG_URL = `https://raw.githubusercontent.com/BSI-Bund/Stand-der-Technik-Bibliothek/${GPP_CATALOG_PIN_COMMIT}/control_layer/Grundschutz%2B%2B/Grundschutz%2B%2B-resolved_catalog.json`;
+
+    async function sha256Hex(buf) {
+        const d = await crypto.subtle.digest('SHA-256', buf);
+        return Array.from(new Uint8Array(d)).map(b => b.toString(16).padStart(2, '0')).join('');
+    }
     const MODELS = {
         claude: [
             { id: 'claude-3-5-sonnet-20240620', label: 'Claude 3.5 Sonnet (Standard)' },
@@ -278,12 +287,14 @@
             cube: `<svg class="${iconClass}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg>`
         };
 
-        if (n.includes('effective_on_c')) return { icon: icons.shield, color: 'text-red-200 bg-red-900/50 border-red-800', label: 'Confidentiality' };
-        if (n.includes('effective_on_i')) return { icon: icons.shield, color: 'text-blue-200 bg-blue-900/50 border-blue-800', label: 'Integrity' };
-        if (n.includes('effective_on_a')) return { icon: icons.shield, color: 'text-yellow-200 bg-yellow-900/50 border-yellow-800', label: 'Availability' };
+        // BSI-Schutzziel-Props (security_targets.csv, Werte 0/1/2); Wert 0 wird nicht angezeigt.
+        if (n.includes('confidentiality')) return { icon: icons.shield, color: 'text-red-200 bg-red-900/50 border-red-800', strongColor: 'text-red-100 bg-red-700/80 border-red-400', label: 'Confidentiality', schutzziel: true };
+        if (n.includes('integrity')) return { icon: icons.shield, color: 'text-blue-200 bg-blue-900/50 border-blue-800', strongColor: 'text-blue-100 bg-blue-700/80 border-blue-400', label: 'Integrity', schutzziel: true };
+        if (n.includes('availability')) return { icon: icons.shield, color: 'text-yellow-200 bg-yellow-900/50 border-yellow-800', strongColor: 'text-yellow-100 bg-yellow-700/80 border-yellow-400', label: 'Availability', schutzziel: true };
+        if (n.includes('authenticity')) return { icon: icons.shield, color: 'text-green-200 bg-green-900/50 border-green-800', strongColor: 'text-green-100 bg-green-700/80 border-green-400', label: 'Authenticity', schutzziel: true };
         if (n.includes('phase')) return { icon: icons.clock, color: 'text-purple-200 bg-purple-900/50 border-purple-800', label: 'Phase' };
         if (n.includes('class') || n.includes('technical')) return { icon: icons.cube, color: 'text-slate-200 bg-slate-700 border-slate-600', label: 'Class' };
-        if (n.includes('modalverb')) return { icon: icons.alert, color: 'text-fuchsia-200 bg-fuchsia-900/60 border-fuchsia-700', label: 'Modalverb' };
+        if (n.includes('modal_verb') || n.includes('modalverb')) return { icon: icons.alert, color: 'text-fuchsia-200 bg-fuchsia-900/60 border-fuchsia-700', label: 'Modalverb' };
         if (n.includes('effort_level') || n.includes('aufwand')) return { icon: icons.zap, color: 'text-orange-200 bg-orange-900/60 border-orange-700', label: 'Aufwand' };
         if (n.includes('documentation') || n.includes('dokumentation')) return { icon: icons.doc, color: 'text-cyan-200 bg-cyan-900/60 border-cyan-700', label: 'Doku' };
         if (n.includes('ergebnis') || n.includes('result')) return { icon: icons.check, color: 'text-emerald-200 bg-emerald-900/60 border-emerald-700', label: 'Ergebnis' };
@@ -745,8 +756,29 @@
         }
     }
 
-    async function loadReferencedResource(href) {
+    async function loadReferencedResource(href, rootDoc, expectedSha256) {
         if (!href) return null;
+
+        // Fragment-href (Pin-Muster, Grundregel 8): "#uuid" über die back-matter des
+        // umgebenden Dokuments (rootDoc) auflösen — die Resource liefert die rlink-URL
+        // und den Soll-SHA-256, mit denen rekursiv weitergeladen wird. Alternativ kann
+        // die Resource den Inhalt als base64-Attachment einbetten.
+        if (href.startsWith('#')) {
+            const res = (((rootDoc || {})['back-matter'] || {}).resources || []).find(r => r.uuid === href.slice(1));
+            const rl = res?.rlinks?.[0];
+            if (rl?.href) {
+                const pinHash = (rl.hashes || []).find(h => h.algorithm === 'SHA-256')?.value || null;
+                return loadReferencedResource(rl.href, rootDoc, pinHash);
+            }
+            const b64 = res?.attachments?.[0]?.base64?.value;
+            if (b64) {
+                const txt = base64DecodeUnicode(b64);
+                if (txt) { try { return JSON.parse(txt); } catch (e) { /* fällt durch zu missing */ } }
+            }
+            resourceLoadStatus.push({ href, status: 'missing', source: 'back-matter', error: 'Resource nicht auflösbar (keine rlink-URL, kein Attachment)' });
+            return null;
+        }
+
         const filename = href.split('/').pop();
         const existingStatus = resourceLoadStatus.some(r => r.href === href);
 
@@ -763,8 +795,17 @@
             try {
                 const response = await fetch(href);
                 if (!response.ok) throw new Error(`Netzwerk-Status ${response.status}`);
-                const json = await response.json();
-                if (!existingStatus) resourceLoadStatus.push({ href, status: 'success', source: 'network' });
+                const buf = await response.arrayBuffer();
+                // Pin-Prüfung: Trägt die referenzierende Resource einen SHA-256, muss der
+                // geladene Inhalt exakt passen — sonst wird er verworfen.
+                if (expectedSha256) {
+                    const hash = await sha256Hex(buf);
+                    if (hash !== expectedSha256) {
+                        throw new Error(`Pin-Verletzung: SHA-256 ${hash.slice(0, 12)}… statt ${expectedSha256.slice(0, 12)}…`);
+                    }
+                }
+                const json = JSON.parse(new TextDecoder().decode(buf));
+                if (!existingStatus) resourceLoadStatus.push({ href, status: 'success', source: expectedSha256 ? 'network · SHA-256 geprüft' : 'network' });
                 return json;
             } catch (error) {
                 if (!existingStatus) resourceLoadStatus.push({ href, status: 'error', source: 'network', error: error.message });
@@ -782,14 +823,15 @@
     }
 
     async function loadFallbackCatalog() {
-        const d = await loadReferencedResource(GS_PLUS_CATALOG_URL);
+        // Fallback lädt die gepinnte Katalogversion und verifiziert den Pin-Hash.
+        const d = await loadReferencedResource(GS_PLUS_CATALOG_URL, null, GPP_CATALOG_PIN_SHA256);
         if (d?.catalog) processCatalogData(d.catalog);
     }
 
     async function processLinkedProfiles(ssp) {
         const links = (ssp.metadata?.links || []).filter(l => l.rel === 'profile' && l.href);
         await Promise.all(links.map(async (link) => {
-            const d = await loadReferencedResource(link.href);
+            const d = await loadReferencedResource(link.href, ssp);
             if (d?.profile) {
                 extractRiskData(d.profile, link.href);
                 extractEmbeddedCatalogs(d.profile);
@@ -806,7 +848,7 @@
 
         const catLinks = new Set();
         await Promise.all(Array.from(defLinks).map(async (href) => {
-            const d = await loadReferencedResource(href);
+            const d = await loadReferencedResource(href, ssp);
             if (d) {
                 loadedProfiles.set(href, d);
                 if (d['profile']) {
@@ -820,7 +862,7 @@
         }));
 
         await Promise.all(Array.from(catLinks).map(async (href) => {
-            const d = await loadReferencedResource(href);
+            const d = await loadReferencedResource(href, ssp);
             if (d?.catalog) processCatalogData(d.catalog);
         }));
     }
@@ -828,7 +870,7 @@
     async function processMainCatalog(ssp) {
         const pHref = ssp['import-profile']?.href;
         if (!pHref) return;
-        const d = await loadReferencedResource(pHref);
+        const d = await loadReferencedResource(pHref, ssp);
         if (d?.profile) {
             const m = d.profile.modify;
             if (m?.['set-parameters']) m['set-parameters'].forEach(p => { if (p['param-id'] && p.values?.length) profileModifications.setParams.set(p['param-id'], p.values[0]); });
@@ -840,7 +882,9 @@
             });
             if (d.profile.imports) {
                 for (const imp of d.profile.imports) {
-                    const r = await loadReferencedResource(imp.href);
+                    // Wurzeldokument für Fragment-Importe ist hier das PROFIL — dessen
+                    // back-matter trägt die gepinnte Katalog-URL samt SHA-256.
+                    const r = await loadReferencedResource(imp.href, d.profile);
                     if (r?.catalog) processCatalogData(r.catalog);
                 }
             }
@@ -996,7 +1040,7 @@
 
         let navHtml = '';
         let filterOpts = { status: new Set(['open', 'implemented', 'partial', 'planned', 'alternative', 'not-applicable']) };
-        const allowedFilters = ['status', 'modalverb', 'sec_level', 'class', 'phase', 'tags', 'tag'];
+        const allowedFilters = ['status', 'modal_verb', 'modalverb', 'sec_level', 'class', 'phase', 'tags', 'tag'];
         const addFilter = (k, v) => {
             if(!k || !v) return;
             const kl = k.toLowerCase();
@@ -1218,10 +1262,14 @@
             catProps.forEach(p => {
                 if (!p) return;
                 const pName = p.name || ''; const pVal = p.value || '';
+                const conf = getPropConfig(pName);
+                // Schutzziel-Wert 0 = wirkt nicht auf dieses Schutzziel -> Badge unterdrücken
+                if (conf.schutzziel && pVal === '0') return;
                 fStr += `${pName.toLowerCase()}:${pVal.toLowerCase()}|`;
                 sStr += ` ${pVal.toLowerCase()}`;
-                const conf = getPropConfig(pName);
-                catPropsHtml += `<span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] uppercase tracking-wider font-semibold border ${conf.color}" title="${pName}: ${pVal}">
+                // Wert 2 = Schutzziel steht im Zentrum der Anforderung -> hervorheben
+                const color = (conf.schutzziel && pVal === '2' && conf.strongColor) ? conf.strongColor : conf.color;
+                catPropsHtml += `<span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] uppercase tracking-wider font-semibold border ${color}" title="${pName}: ${pVal}">
                     ${conf.icon}<span class="mr-1 opacity-70">${conf.label}:</span> ${pVal}
                 </span>`;
             });

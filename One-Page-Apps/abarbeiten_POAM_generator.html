@@ -147,7 +147,16 @@
 
 <script>
 const P={arFilename:'',sspHref:'',sysName:'',catalog:new Map(),findings:[],observations:[],risks:[],items:[],meta:{title:'',version:'1.0.0',desc:''},responsible:{name:'',role:'system-owner',email:''},aiCache:new Map()};
-const CATALOG_URL='https://raw.githubusercontent.com/BSI-Bund/Stand-der-Technik-Bibliothek/refs/heads/main/Anwenderkataloge/Grundschutz%2B%2B/Grundschutz%2B%2B-catalog.json';
+// --- G++-Katalog-Pin (Handbuch 3.13/3.14, Katalogarbeit-Skill Grundregel 8) ---
+// Gleiche Werte wie Gpp-ai-tool/src/constants.py und die gepinnten Repo-Profile.
+const GPP_CATALOG_PIN_COMMIT='47de2824a341812438ef3f044b3f65ce2cad6e32';
+const GPP_CATALOG_PIN_SHA256='db3a1417d7e904315a0886f450129832e19c57324660358c830357349f552332';
+const CATALOG_URL=`https://raw.githubusercontent.com/BSI-Bund/Stand-der-Technik-Bibliothek/${GPP_CATALOG_PIN_COMMIT}/control_layer/Grundschutz%2B%2B/Grundschutz%2B%2B-resolved_catalog.json`;
+// uuid5(NAMESPACE_URL, CATALOG_URL) — identisch zu den gepinnten Repo-Profilen.
+const GPP_CATALOG_RESOURCE_UUID='944d9eb5-aa84-5c12-86d3-94ed8e2569f5';
+async function sha256Hex(buf){const d=await crypto.subtle.digest('SHA-256',buf);return Array.from(new Uint8Array(d)).map(b=>b.toString(16).padStart(2,'0')).join('')}
+// Back-matter-Resource für den gepinnten Katalog — feldidentisch zur Ausgabe von scripts/pin_profile_imports.py.
+function pinnedCatalogResource(){return{uuid:GPP_CATALOG_RESOURCE_UUID,title:`Grundschutz++-resolved_catalog.json @ ${GPP_CATALOG_PIN_COMMIT.slice(0,12)}`,rlinks:[{href:CATALOG_URL,hashes:[{algorithm:'SHA-256',value:GPP_CATALOG_PIN_SHA256}]}]}}
 const MODELS={claude:[{id:'claude-opus-4-6-20250514',label:'Opus 4.6'},{id:'claude-sonnet-4-6-20250514',label:'Sonnet 4.6'}],gemini:[{id:'gemini-3.1-pro-preview',label:'3.1 Pro'},{id:'gemini-3.1-flash',label:'3.1 Flash'}]};
 const PM={high:{l:'Hoch',c:'bg-red-900 text-red-300 border-red-700'},medium:{l:'Mittel',c:'bg-amber-900 text-amber-300 border-amber-700'},low:{l:'Niedrig',c:'bg-blue-900 text-blue-300 border-blue-700'}};
 const SM={open:{l:'Offen',c:'bg-red-900/50 text-red-300 border-red-700'},'in-progress':{l:'In Arbeit',c:'bg-amber-900 text-amber-300 border-amber-700'},closed:{l:'Erledigt',c:'bg-emerald-900 text-emerald-300 border-emerald-700'},'deviation-requested':{l:'Abw. beantr.',c:'bg-purple-900 text-purple-300 border-purple-700'},'deviation-approved':{l:'Abw. genehm.',c:'bg-indigo-900 text-indigo-300 border-indigo-700'},'risk-accepted':{l:'Risiko akz.',c:'bg-slate-700 text-slate-300 border-slate-600'}};
@@ -175,7 +184,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     loadAICfg();loadCatalog();tryAR()});
 
 // CATALOG
-async function loadCatalog(){const cs=document.getElementById('cat-status');try{const r=await fetch(CATALOG_URL);const d=await r.json();function idx(it){if(!it)return;it.forEach(i=>{if(i.id){let pr='';if(i.parts){const p=i.parts.find(p=>p.name==='statement'||p.prose);if(p&&p.prose)pr=p.prose}P.catalog.set(i.id,{title:i.title||'',prose:pr})}if(i.controls)idx(i.controls);if(i.groups)idx(i.groups)})}idx(d.catalog.groups);cs.className="px-2 py-1 rounded text-[10px] font-semibold bg-emerald-900/50 text-emerald-400 border border-emerald-700 flex items-center";cs.innerHTML=`✓ ${P.catalog.size} Controls`}catch(e){cs.textContent='Katalog-Fehler'}}
+async function loadCatalog(){const cs=document.getElementById('cat-status');try{const r=await fetch(CATALOG_URL);const buf=await r.arrayBuffer();const hash=await sha256Hex(buf);if(hash!==GPP_CATALOG_PIN_SHA256){cs.textContent='Katalog-Fehler: Pin-Verletzung (SHA-256 weicht ab)';throw new Error(`Pin-Verletzung: ${hash.slice(0,12)}… statt ${GPP_CATALOG_PIN_SHA256.slice(0,12)}…`)}const d=JSON.parse(new TextDecoder().decode(buf));function idx(it){if(!it)return;it.forEach(i=>{if(i.id){let pr='';if(i.parts){const p=i.parts.find(p=>p.name==='statement'||p.prose);if(p&&p.prose)pr=p.prose}P.catalog.set(i.id,{title:i.title||'',prose:pr})}if(i.controls)idx(i.controls);if(i.groups)idx(i.groups)})}idx(d.catalog.groups);cs.className="px-2 py-1 rounded text-[10px] font-semibold bg-emerald-900/50 text-emerald-400 border border-emerald-700 flex items-center";cs.innerHTML=`✓ ${P.catalog.size} Controls`}catch(e){cs.textContent='Katalog-Fehler'}}
 function ct(cid){return P.catalog.get(cid)||{title:'',prose:''}}
 
 // FILES
@@ -184,7 +193,12 @@ function loadF(f,ty){if(!f.name.endsWith('.json'))return alert('JSON.');const r=
 // IMPORT AR
 function importAR(d,fn){
     const ar=d['assessment-results'];if(!ar)return alert('Kein assessment-results.');
-    P.arFilename=fn;P.sspHref=ar['import-ap']?.href||'';
+    P.arFilename=fn;
+    // Fragment-hrefs (Pin-Muster) über die back-matter des AR auf die reale Quelle
+    // auflösen, damit die Provenienz statt eines toten "#uuid" übernommen wird.
+    let refHref=ar['import-ap']?.href||'';
+    if(refHref.startsWith('#')){const res=(ar['back-matter']?.resources||[]).find(rr=>rr.uuid===refHref.slice(1));refHref=res?.rlinks?.[0]?.href||refHref}
+    P.sspHref=refHref;
     const res=ar.results?.[0];if(!res)return alert('Keine results.');
     
     P.sysName=(ar.metadata?.title||'').replace(/ - Assessment Results/,'');
@@ -398,10 +412,18 @@ function exportPOAM(){
         if(it.findingUuids?.length)item["related-findings"]=it.findingUuids.map(u=>({"finding-uuid":u}));
         if(it.riskUuids?.length)item["related-risks"]=it.riskUuids.map(u=>({"risk-uuid":u}));
         if(it.remarks)item.remarks=it.remarks;return item});
-    const poam={"plan-of-action-and-milestones":{uuid:crypto.randomUUID(),metadata:{title:P.meta.title||'POA&M',version:P.meta.version||'1.0.0',"last-modified":ts,"oscal-version":"1.2.2",roles:[{id:"system-owner",title:"System Owner"},{id:"isso",title:"ISSO"}]},"import-ssp":{href:P.sspHref||'SSP.json'},
+    // Pin-Muster (Grundregel 8): import-ssp als Fragment auf eine back-matter-Resource;
+    // dazu die Katalog-Resource als Provenienz, gegen welchen Katalogstand die
+    // Control-IDs/Titel dieses POA&M gelten.
+    const srcResUuid=crypto.randomUUID();
+    const poam={"plan-of-action-and-milestones":{uuid:crypto.randomUUID(),metadata:{title:P.meta.title||'POA&M',version:P.meta.version||'1.0.0',"last-modified":ts,"oscal-version":"1.2.2",roles:[{id:"system-owner",title:"System Owner"},{id:"isso",title:"ISSO"}]},"import-ssp":{href:`#${srcResUuid}`},
         ...(P.observations.length?{observations:P.observations.map(o=>({uuid:o.uuid,title:o.title,description:o.description,methods:o.methods,collected:o.collected}))}:{}),
         ...(P.findings.length?{findings:P.findings.map(f=>({uuid:f.uuid,title:f.title,description:f.description,target:{type:"objective-id","target-id":f.targetId,status:{state:f.status}}}))}:{}),
-        risks:oscalRisks,"poam-items":oscalItems}};
+        risks:oscalRisks,"poam-items":oscalItems,
+        "back-matter":{resources:[
+            {uuid:srcResUuid,title:`Quelldokument (übernommen aus ${P.arFilename||'Assessment Results'})`,rlinks:[{href:P.sspHref||'SSP.json'}]},
+            pinnedCatalogResource()
+        ]}}};
     if(P.responsible.name){poam["plan-of-action-and-milestones"].metadata.parties=[{uuid:ru,type:'person',name:P.responsible.name}];if(P.responsible.email)poam["plan-of-action-and-milestones"].metadata.parties[0]["email-addresses"]=[P.responsible.email];poam["plan-of-action-and-milestones"].metadata["responsible-parties"]=[{"role-id":P.responsible.role,"party-uuids":[ru]}]}
     dl(poam,`${sn()}_POAM.json`);autoSave()}
 

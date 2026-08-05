@@ -3,13 +3,13 @@
     "uuid": "09d37b57-8083-5685-a64c-35f3700f6e9d",
     "metadata": {
       "title": "Sicherheitsvorfallsbehandlung Prozess Profil",
-      "last-modified": "2026-06-04T14:31:13.536674+00:00",
+      "last-modified": "2026-07-28T12:32:56.747652+00:00",
       "version": "0.0.1",
       "oscal-version": "1.2.2"
     },
     "imports": [
       {
-        "href": "https://raw.githubusercontent.com/BSI-Bund/Stand-der-Technik-Bibliothek/refs/heads/main/Anwenderkataloge/Grundschutz%2B%2B/Grundschutz%2B%2B-catalog.json",
+        "href": "#944d9eb5-aa84-5c12-86d3-94ed8e2569f5",
         "include-controls": [
           {
             "with-ids": [
@@ -35,6 +35,25 @@
           }
         ]
       }
-    ]
+    ],
+    "back-matter": {
+      "resources": [
+        {
+          "uuid": "944d9eb5-aa84-5c12-86d3-94ed8e2569f5",
+          "title": "Grundschutz++-resolved_catalog.json @ 47de2824a341",
+          "rlinks": [
+            {
+              "href": "https://raw.githubusercontent.com/BSI-Bund/Stand-der-Technik-Bibliothek/47de2824a341812438ef3f044b3f65ce2cad6e32/control_layer/Grundschutz%2B%2B/Grundschutz%2B%2B-resolved_catalog.json",
+              "hashes": [
+                {
+                  "algorithm": "SHA-256",
+                  "value": "db3a1417d7e904315a0886f450129832e19c57324660358c830357349f552332"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
   }
 }

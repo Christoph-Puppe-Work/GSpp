@@ -4,7 +4,7 @@ Pipeline Stage: ED2023 Enhanced Profile Generation
 This stage takes the per-Zielobjekt base OSCAL profiles produced by `stage_profiles`
 (which import the G++ catalog and include *all* controls of the Zielobjektkategorie) and
 enriches every control with AI-generated maturity sub-statements (levels 1-5) plus
-classifications (NIST class, ISMS phase, CIA), emitted as OSCAL `alter` blocks.
+classifications (NIST class, ISMS phase), emitted as OSCAL `alter` blocks.
 
 The enrichment is driven by best practices (the prompt) and the description of the BSI
 Baustein the profile is based on — it does NOT depend on any per-Anforderung mapping.
@@ -27,6 +27,7 @@ from constants import (
     BAUSTEIN_ZIELOBJEKT_JSON_PATH,
     BSI_2023_JSON_PATH,
     GPP_KOMPENDIUM_JSON_PATH,
+    GPP_CATALOG_PIN_SHA256,
     ZIELOBJEKTKATEGORIEN_CSV_PATH,
     SDT_PROFILES_REGULAR_DIR,
     SDT_PROFILES_PROCESS_DIR,
@@ -36,6 +37,7 @@ from constants import (
     GPP_ENHANCEMENT_PROPS_NS,
 )
 from utils.file_utils import create_dir_if_not_exists, read_json_file, write_json_file, read_csv_file
+from utils.data_loader import zielobjekt_row_name
 from utils.text_utils import sanitize_filename
 from utils.data_parser import find_bausteine_with_prose
 from utils.oscal_utils import extract_all_gpp_controls, normalize_id, validate_enhanced_profile_structure
@@ -65,8 +67,10 @@ def build_oscal_maturity_statements(control_id: str, generated_data: dict, origi
 
     Each maturity level becomes one `statement` part whose own per-level text lives in
     `prose` (the OSCAL-idiomatic place for it), with the guidance and assessment carried as
-    nested `guidance` / `assessment` parts. Classification (class, phase, CIA) and the
+    nested `guidance` / `assessment` parts. Classification (class, phase) and the
     level `label` stay as props — they are genuinely metadata, not prose (issue 3.1).
+    Schutzziel impact is NOT emitted here: the authoritative source are the BSI catalog
+    props confidentiality/integrity/availability/authenticity (security_targets.csv).
     """
     parts = []
     levels = ["1", "2", "3", "4", "5"]
@@ -77,9 +81,6 @@ def build_oscal_maturity_statements(control_id: str, generated_data: dict, origi
     base_props = [
         {"name": "control_class", "value": generated_data.get("class") or "Technical", "ns": props_ns},
         {"name": "phase", "value": generated_data.get('phase') or 'N/A', "ns": props_ns},
-        {"name": "effective_on_c", "value": str(generated_data.get("effective_on_c") or "").lower(), "ns": props_ns},
-        {"name": "effective_on_i", "value": str(generated_data.get("effective_on_i") or "").lower(), "ns": props_ns},
-        {"name": "effective_on_a", "value": str(generated_data.get("effective_on_a") or "").lower(), "ns": props_ns},
     ]
 
     for level_num in levels:
@@ -354,7 +355,7 @@ async def run_stage_ED23_profiles_enhanced():
         zielobjekte_data = read_csv_file(ZIELOBJEKTKATEGORIEN_CSV_PATH)
         if not zielobjekte_data:
             raise FileNotFoundError(f"Zielobjekte data is empty or could not be loaded from {ZIELOBJEKTKATEGORIEN_CSV_PATH}")
-        zielobjekt_name_map = {row['UUID'].strip(): row['Zielobjektkategorie'].strip() for row in zielobjekte_data if 'UUID' in row and 'Zielobjektkategorie' in row}
+        zielobjekt_name_map = {row['UUID'].strip(): zielobjekt_row_name(row) for row in zielobjekte_data if 'UUID' in row and zielobjekt_row_name(row)}
     except (IOError, FileNotFoundError, TypeError, KeyError) as e:
         logger.critical(f"Failed to load or parse Zielobjekte CSV data: {e}", exc_info=True)
         raise
@@ -362,7 +363,7 @@ async def run_stage_ED23_profiles_enhanced():
     try:
         baustein_zielobjekt_map = read_json_file(BAUSTEIN_ZIELOBJEKT_JSON_PATH)
         bsi_catalog = read_json_file(BSI_2023_JSON_PATH)
-        gpp_catalog = read_json_file(GPP_KOMPENDIUM_JSON_PATH)
+        gpp_catalog = read_json_file(GPP_KOMPENDIUM_JSON_PATH, expected_sha256=GPP_CATALOG_PIN_SHA256)
         prompt_config = read_json_file(PROMPT_CONFIG_PATH)
         enhanced_schema = read_json_file(ENHANCED_CONTROL_RESPONSE_SCHEMA_PATH)
 

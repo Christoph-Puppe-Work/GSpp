@@ -26,13 +26,36 @@ ANFORDERUNG_ID_PATTERN = re.compile(r"^.*$")
 # Input data is fetched directly from the upstream GitHub repositories (raw
 # content) rather than from local submodule checkouts. The loaders in
 # utils/data_loader.py and utils/file_utils.py transparently download these.
-ZIELOBJEKTKATEGORIEN_CSV_PATH = "https://raw.githubusercontent.com/BSI-Bund/Stand-der-Technik-Bibliothek/refs/heads/main/Dokumentation/namespaces/target_object_categories.csv"
-BSI_2023_JSON_PATH = "https://raw.githubusercontent.com/NTTDATA-DACH/BSI-GS-Benutzerdefinierte-Edition23-OSCAL/refs/heads/main/BS_GK_OSCAL_JSON_DATA/BSI_GS_OSCAL_current_2023.json"
-GPP_KOMPENDIUM_JSON_PATH = "https://raw.githubusercontent.com/BSI-Bund/Stand-der-Technik-Bibliothek/refs/heads/main/Anwenderkataloge/Grundschutz%2B%2B/Grundschutz%2B%2B-catalog.json"
+ZIELOBJEKTKATEGORIEN_CSV_PATH = "https://raw.githubusercontent.com/BSI-Bund/Stand-der-Technik-Bibliothek/refs/heads/main/documentation/namespaces/target_object_categories.csv"
+BSI_2023_JSON_PATH = "https://raw.githubusercontent.com/NTTDATA-DACH/BSI-GS-Benutzerdefinierte-Edition23-OSCAL/refs/heads/main/BS_GK_OSCAL_JSON_DATA/BSI_GS_OSCAL_current_2023_benutzerdefinierte.json"
+
+# --- G++ Catalog Pin (Handbuch 3.13/3.14, Katalogarbeit-Skill Grundregel 8) ---
+# The G++ catalog is consumed at a pinned commit and verified against a known SHA-256 —
+# the same pin the generated OSCAL profiles carry in their back-matter (see
+# scripts/pin_profile_imports.py). A catalog update is a conscious pin change: update
+# these two values together (or override both via env), re-run the pin script over the
+# profile directories, and commit the result as one change.
+GPP_CATALOG_PIN_COMMIT = os.environ.get(
+    "GPP_CATALOG_PIN_COMMIT", "47de2824a341812438ef3f044b3f65ce2cad6e32"
+)
+GPP_CATALOG_PIN_SHA256 = os.environ.get(
+    "GPP_CATALOG_PIN_SHA256",
+    "db3a1417d7e904315a0886f450129832e19c57324660358c830357349f552332",
+)
+GPP_KOMPENDIUM_JSON_PATH = (
+    "https://raw.githubusercontent.com/BSI-Bund/Stand-der-Technik-Bibliothek/"
+    f"{GPP_CATALOG_PIN_COMMIT}/control_layer/Grundschutz%2B%2B/Grundschutz%2B%2B-resolved_catalog.json"
+)
 
 # --- Filtering ---
 ALLOWED_MAIN_GROUPS = ["SYS", "INF", "IND", "APP", "NET"]
 ALLOWED_PROCESS_BAUSTEINE = ["OPS.2.2", "OPS.2.3", "OPS.3.2"]
+# The prozessorientierte layers of the BSI ED2023 Kompendium; every Anforderung below them
+# is mapped 1:1 to a G++ control by stage_prozessbausteine. Note: the OPS Bausteine listed
+# in ALLOWED_PROCESS_BAUSTEINE above are *also* routed through the per-Baustein profile flow
+# — the two mappings coexist deliberately (flat ED23→G++ lookup here vs. per-Zielobjekt
+# OSCAL profiles there) and may differ, as they are produced by independent AI runs.
+PROZESSBAUSTEINE_LAYERS = ["ISMS", "ORP", "CON", "OPS", "DER"]
 
 # --- Output File Paths ---
 # Output roots default to the repository's sibling-directory layout under OUTPUT_ROOT
@@ -68,6 +91,7 @@ PROMPT_CONFIG_PATH = os.path.join(SRC_ROOT, "assets/json/prompt_config.json")
 BAUSTEIN_TO_ZIELOBJEKT_SCHEMA_PATH = os.path.join(SRC_ROOT, "assets/schemas/baustein_to_zielobjekt_schema.json")
 ENHANCED_CONTROL_RESPONSE_SCHEMA_PATH = os.path.join(SRC_ROOT, "assets/schemas/enhanced_control_response_schema.json")
 ED23_ANFORDERUNGEN_RESPONSE_SCHEMA_PATH = os.path.join(SRC_ROOT, "assets/schemas/ed23_anforderungen_response_schema.json")
+PROZESSBAUSTEINE_RESPONSE_SCHEMA_PATH = os.path.join(SRC_ROOT, "assets/schemas/prozessbausteine_response_schema.json")
 
 # --- AI Model Configuration ---
 # These default to current Gemini preview identifiers. They are env-overridable so a stable,
@@ -75,6 +99,15 @@ ED23_ANFORDERUNGEN_RESPONSE_SCHEMA_PATH = os.path.join(SRC_ROOT, "assets/schemas
 # (issue 4.1).
 GROUND_TRUTH_MODEL = os.environ.get("GROUND_TRUTH_MODEL", "gemini-3-flash-preview")
 GROUND_TRUTH_MODEL_PRO = os.environ.get("GROUND_TRUTH_MODEL_PRO", "gemini-3.1-pro-preview")
+# How many ED2023 Anforderungen stage_prozessbausteine sends per request. The whole G++
+# catalog is the (cached) grounding corpus, so the chunk only bounds the *output* size and
+# keeps each 1:1 decision inside a context the model can still reason over reliably.
+PROZESSBAUSTEINE_CHUNK_SIZE = int(os.environ.get("PROZESSBAUSTEINE_CHUNK_SIZE", "15"))
+# The stage keeps re-querying Anforderungen that came back without a (valid) match until
+# every single one is mapped — this caps the number of query rounds so a systematic failure
+# (e.g. schema drift, model refusing an ID) cannot loop forever. On exhaustion the stage
+# fails loudly instead of publishing an incomplete mapping.
+PROZESSBAUSTEINE_MAX_ROUNDS = int(os.environ.get("PROZESSBAUSTEINE_MAX_ROUNDS", "10"))
 
 # --- API Configuration ---
 # Constants for external API interactions, such as retry logic parameters.
@@ -97,7 +130,7 @@ OSCAL_VERSION = "1.2.2"
 # OSCAL naming system, not the model version) — do not bump it with OSCAL_VERSION.
 OSCAL_NAMESPACE = "http://csrc.nist.gov/ns/oscal/1.0"
 # Naming-system identifier (OSCAL prop `ns`) for the custom enhancement props
-# (control_class, phase, effective_on_c/i/a) added by stage_ED23_profiles_enhanced. These are
+# (control_class, phase) added by the enhanced-profile stages. These are
 # neither OSCAL- nor BSI-defined, so they carry this dedicated, documented namespace; the URI
 # resolves to the file describing the allowed values.
 GPP_ENHANCEMENT_PROPS_NS = "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
@@ -107,7 +140,7 @@ GPP_ENHANCEMENT_PROPS_NS = "https://github.com/NTT-Data-Deutschland-SE/Grundschu
 # e.g. "Architektur"). The process-Zielobjekt ids are these Kürzel suffixed with
 # "_prozesse" (e.g. "ARCH_prozesse"), so resolving them yields readable profile titles.
 # Source of truth (keep in sync):
-# https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/blob/main/Dokumentation/namespaces/practices.csv
+# https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/blob/main/documentation/namespaces/practices.csv
 PRACTICE_ABBREVIATIONS = {
     "GC": "Governance und Compliance",
     "STM": "Strukturmodellierung",

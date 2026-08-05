@@ -1,0 +1,9 @@
+# Internal resume checkpoints written next to pipeline outputs (e.g.
+# hilfsdateien/prozessbausteine_mapping.json.partial, gpp_ed23_anforderungen.json.partial).
+# They are crash-recovery state, not publishable artifacts.
+*.partial
+
+# Python
+__pycache__/
+*.pyc
+.venv/

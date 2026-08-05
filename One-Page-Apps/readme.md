@@ -4,6 +4,8 @@ Diese Sammlung enthält Werkzeuge zur Erstellung, Verwaltung und Dokumentation v
 
 Und es gibt auch eine Anwendung den Anwenderkatalog zu betrachten: [GSpp-Viewer.html](./GSpp-Viewer.html).
 
+**Katalog-Pinning (Handbuch 3.13/3.14, Katalogarbeit-Skill Grundregel 8):** Alle Tools laden den G++-Anwenderkatalog von einer Commit-gepinnten URL und verifizieren den Inhalt per SHA-256 gegen den im Repo hinterlegten Pin (gleiche Werte wie `Gpp-ai-tool/src/constants.py` und die Back-Matter-Resources der 229 gepinnten Profile). Fragment-Importe (`href: "#uuid"`) werden über die Back-Matter aufgelöst und — wo ein Hash hinterlegt ist — geprüft; erzeugte OSCAL-Artefakte (Profile, SSPs, AP/AR, POA&M) schreiben ihre Referenzen selbst im Pin-Muster. Ein Katalog-Update ist ein bewusster Pin-Wechsel: neue Werte in `Gpp-ai-tool/src/constants.py`, Skript-Neulauf über die Profile und Aktualisierung der Pin-Konstanten in den hier liegenden Apps — in einem Commit.
+
 [Dieses Video erklärt die Tools](https://www.youtube.com/watch?v=lY3wi6qHTRc)
 
 ## [BSI zu G++ OSCAL Generator](./Baustein_2_Profile.html)
@@ -26,6 +28,11 @@ Eine serverlose, vollständig im Browser laufende Single-Page Application (SPA),
 2. Einen gültigen **Google Gemini API Key** (z. B. via Google AI Studio) in den Einstellungen hinterlegen. Der Key bleibt lokal im Browser.
 3. Ein **BSI Baustein-PDF** (oder den reinen Text) per Drag & Drop in den Input-Bereich ziehen.
 4. Pipeline starten, Mappings überprüfen und als fertiges **OSCAL JSON** exportieren.
+---
+## [OSCAL Schema Validator](./oscal-schema-validator.html)
+
+Ein vollständig im Browser laufender Validator für OSCAL-1.2.2-Dateien (Catalog, Profile, Component Definition, SSP, Assessment Plan/Results, POA&M) — alle sieben NIST-Schemas sind eingebettet, das Tool funktioniert daher auch offline und ohne Backend. Jeder Schema-Fehler wird mit exakter Zeilennummer und JSON-Pointer angezeigt, per Klick springt die Quelltextansicht zur Fehlerstelle; ein zweistufiger Fix-Workflow (erst Vorschau, dann Anwenden mit automatischer Revalidierung) behebt Standardfälle wie fehlende Pflichtfelder, ungültige UUIDs oder abgerissene Strings deterministisch lokal, komplexere Fälle per Gemini-Vorschlag. Der integrierte „Rules Check" prüft zusätzlich die Regeln, die das JSON Schema nicht ausdrücken kann: UUID-Eindeutigkeit, Auflösung von Fragment-, Rollen- und Party-Referenzen, das Import-Pinning nach Grundregel 8 des Katalogarbeit-Skills (Import als Fragment auf eine Back-Matter-Resource mit Commit-gepinnter rlink-URL und genau einem SHA-256-Hash; ungepinnte Branch-URLs werden als Warnung gemeldet) sowie — bei geladenem Quell-Katalog oder -Profile — ob referenzierte `control-id`s, `param-id`s und `statement-id`s dort tatsächlich existieren. Semantische Prüfungen (Beschreibungsqualität, Konventionen, Props-Konsistenz) übernimmt ein editierbarer KI-Prompt je Dateityp. Wie bei allen Tools dieser Sammlung gilt: KI-Vorschläge sind Entwürfe und vor produktiver Nutzung fachlich zu prüfen.
+
 ---
 
 # Workflow-Übersicht: G++ Compliance Management

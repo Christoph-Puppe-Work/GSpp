@@ -4,11 +4,16 @@ Unit tests for the stage_profiles pipeline stage.
 
 import os
 import json
+import uuid
 import unittest
 from unittest.mock import patch, mock_open, MagicMock
 
 from pipeline import stage_profiles
-from constants import SDT_PROFILES_REGULAR_DIR
+from constants import (
+    SDT_PROFILES_REGULAR_DIR,
+    GPP_CATALOG_PIN_COMMIT,
+    GPP_CATALOG_PIN_SHA256,
+)
 
 class TestStageProfiles(unittest.TestCase):
     """
@@ -45,7 +50,11 @@ class TestStageProfiles(unittest.TestCase):
         mock_read_json.return_value = self.mock_zielobjekt_controls
         mock_read_csv.return_value = self.mock_zielobjekte_csv
 
-        stage_profiles.run_stage_profiles()
+        # Force overwrite so the test is hermetic: without this, profiles that happen to
+        # exist in the repo's data directories trigger the "already exists, skipping"
+        # branch and the expected write count depends on the repo's data state.
+        with patch.object(stage_profiles.app_config, "overwrite_temp_files", True):
+            stage_profiles.run_stage_profiles()
 
         # Verify that the output directory is created
         mock_create_dir.assert_any_call(self.output_dir)
@@ -60,21 +69,42 @@ class TestStageProfiles(unittest.TestCase):
         admin_profile_args = next(args for args in call_args_list if "administrierende_profile.json" in args[0])
         self.assertIsNotNone(admin_profile_args)
         profile1_content = admin_profile_args[1]
-        self.assertEqual(profile1_content['profile']['metadata']['title'], 'efd76832-f5a1-432a-836d-c8d5c6d212cc Administrierende')
+        self.assertEqual(profile1_content['profile']['metadata']['title'], 'Administrierende Zielobjektkategorie Profil')
         self.assertEqual(profile1_content['profile']['imports'][0]['include-controls'][0]['with-ids'], ["ASST.3.1", "ASST.3.1.1"])
+
+        # The catalog import must use the pinned back-matter indirection (Handbuch 3.14,
+        # Grundregel 8): fragment href onto a resource whose rlink carries the
+        # commit-pinned URL plus a single SHA-256 hash — never a bare branch URL.
+        href = profile1_content['profile']['imports'][0]['href']
+        self.assertTrue(href.startswith('#'), f"import href is not a fragment: {href}")
+        resources = profile1_content['profile']['back-matter']['resources']
+        resource = next(r for r in resources if r['uuid'] == href[1:])
+        rlink = resource['rlinks'][0]
+        self.assertIn(GPP_CATALOG_PIN_COMMIT, rlink['href'])
+        self.assertNotIn('refs/heads/main', rlink['href'])
+        self.assertEqual(
+            rlink['hashes'],
+            [{"algorithm": "SHA-256", "value": GPP_CATALOG_PIN_SHA256}],
+        )
+        # uuid5 of the pinned URL — the same derivation scripts/pin_profile_imports.py
+        # uses, so pipeline output and script-migrated profiles carry identical UUIDs.
+        self.assertEqual(
+            resource['uuid'],
+            str(uuid.uuid5(uuid.NAMESPACE_URL, rlink['href'])),
+        )
 
         # Profile 2: Cloud-Dienste
         cloud_profile_args = next(args for args in call_args_list if "cloud-dienste_profile.json" in args[0])
         self.assertIsNotNone(cloud_profile_args)
         profile2_content = cloud_profile_args[1]
-        self.assertEqual(profile2_content['profile']['metadata']['title'], 'd2a23b62-9c66-4f72-98e2-17518d5dbe0f Cloud-Dienste')
+        self.assertEqual(profile2_content['profile']['metadata']['title'], 'Cloud-Dienste Zielobjektkategorie Profil')
         self.assertEqual(profile2_content['profile']['imports'][0]['include-controls'][0]['with-ids'], ["ASST.3.12"])
 
         # Profile 3: Methodik
         methodik_profile_args = next(args for args in call_args_list if "methodik_process_profile.json" in args[0])
         self.assertIsNotNone(methodik_profile_args)
         profile3_content = methodik_profile_args[1]
-        self.assertEqual(profile3_content['profile']['metadata']['title'], 'Methodik Methodik')
+        self.assertEqual(profile3_content['profile']['metadata']['title'], 'Methodik Prozess Profil')
         self.assertEqual(profile3_content['profile']['imports'][0]['include-controls'][0]['with-ids'], ["ISMS.1", "ISMS.2"])
 
         # Verify that a warning is logged for the missing Zielobjekt

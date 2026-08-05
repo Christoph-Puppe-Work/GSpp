@@ -21,6 +21,8 @@ from constants import (
     PRACTICE_ABBREVIATIONS,
 )
 from utils.file_utils import create_dir_if_not_exists, read_json_file, write_json_file, read_csv_file
+from utils.data_loader import zielobjekt_row_name
+from utils.oscal_utils import pinned_catalog_import_href, pinned_catalog_resource
 from utils.text_utils import sanitize_filename
 
 # Configure logging
@@ -56,8 +58,10 @@ def create_oscal_profile(profile_uuid, title, controls):
         dict: The OSCAL profile as a dictionary.
     """
     now_utc = datetime.now(timezone.utc).isoformat()
-    catalog_url = "https://raw.githubusercontent.com/BSI-Bund/Stand-der-Technik-Bibliothek/refs/heads/main/Anwenderkataloge/Grundschutz%2B%2B/Grundschutz%2B%2B-catalog.json"
 
+    # The catalog is imported via the pinned back-matter indirection (Handbuch 3.14,
+    # Grundregel 8): fragment href onto a resource carrying the commit-pinned URL plus
+    # its SHA-256 — never a bare branch URL.
     profile = {
         "profile": {
             "uuid": profile_uuid,
@@ -69,14 +73,17 @@ def create_oscal_profile(profile_uuid, title, controls):
             },
             "imports": [
                 {
-                    "href": catalog_url,
+                    "href": pinned_catalog_import_href(),
                     "include-controls": [
                         {
                             "with-ids": controls
                         }
                     ]
                 }
-            ]
+            ],
+            "back-matter": {
+                "resources": [pinned_catalog_resource()]
+            }
         }
     }
     return profile
@@ -100,7 +107,7 @@ def run_stage_profiles():
         logger.error(f"Could not load Zielobjekte from {ZIELOBJEKTKATEGORIEN_CSV_PATH}")
         return
 
-    zielobjekt_name_map = {row['UUID']: row['Zielobjektkategorie'] for row in zielobjekte_data if 'UUID' in row and 'Zielobjektkategorie' in row}
+    zielobjekt_name_map = {row['UUID']: zielobjekt_row_name(row) for row in zielobjekte_data if 'UUID' in row and zielobjekt_row_name(row)}
 
     for zielobjekt_id, controls in zielobjekt_controls.get("zielobjekt_controls_map", {}).items():
         zielobjekt_name = ""

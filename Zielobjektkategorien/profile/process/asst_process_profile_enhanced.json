@@ -3,13 +3,13 @@
     "uuid": "a6ccf2c0-00f8-5e4f-80aa-4c4bfd8118d7",
     "metadata": {
       "title": "Informationen und Assets Prozess Profil - Enhanced (ED2023)",
-      "last-modified": "2026-06-04T14:35:53.626818+00:00",
+      "last-modified": "2026-07-28T12:33:42.730112+00:00",
       "version": "0.0.1",
       "oscal-version": "1.2.2"
     },
     "imports": [
       {
-        "href": "https://raw.githubusercontent.com/BSI-Bund/Stand-der-Technik-Bibliothek/refs/heads/main/Anwenderkataloge/Grundschutz%2B%2B/Grundschutz%2B%2B-catalog.json",
+        "href": "#944d9eb5-aa84-5c12-86d3-94ed8e2569f5",
         "include-controls": [
           {
             "with-ids": [
@@ -46,44 +46,29 @@
                     {
                       "name": "control_class",
                       "value": "Management",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "phase",
                       "value": "Implementation",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_c",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_i",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_a",
-                      "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "label",
                       "value": "m1"
                     }
                   ],
-                  "prose": "Informationen und Assets werden vereinzelt in dezentralen Listen ohne einheitliches Format erfasst.",
+                  "prose": "Informationen werden unsystematisch und meist erst im Schadensfall erfasst.",
                   "parts": [
                     {
                       "id": "ASST.2.1-m1_custom_gdn",
                       "name": "guidance",
-                      "prose": "Erfassen Sie die wichtigsten Informationen ad-hoc in Tabellen innerhalb der Fachbereiche."
+                      "prose": "Es gibt keine zentrale Koordination der Inventarisierung von Informationswerten."
                     },
                     {
                       "id": "ASST.2.1-m1_custom_asm",
                       "name": "assessment",
-                      "prose": "Sichtprüfung vorhandener informeller Listen in Stichproben. Manueller Abgleich mit bekannten Assets."
+                      "prose": "Stichprobenartige Befragung von Abteilungsleitern nach vorhandenen Datenlisten."
                     }
                   ]
                 },
@@ -94,44 +79,29 @@
                     {
                       "name": "control_class",
                       "value": "Management",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "phase",
                       "value": "Implementation",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_c",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_i",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_a",
-                      "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "label",
                       "value": "m2"
                     }
                   ],
-                  "prose": "Es existiert ein grundlegendes, manuell geführtes Inventar für die kritischsten Informationswerte.",
+                  "prose": "Informationen werden manuell in einfachen Listen oder Tabellen gepflegt.",
                   "parts": [
                     {
                       "id": "ASST.2.1-m2_custom_gdn",
                       "name": "guidance",
-                      "prose": "Nutzen Sie eine zentrale Tabelle zur Erfassung der Assets nach einem einfachen Schema."
+                      "prose": "Basisinventar ist vorhanden, wird aber unregelmäßig und ohne festen Prozess aktualisiert."
                     },
                     {
                       "id": "ASST.2.1-m2_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung der Aktualität der zentralen Liste durch Befragung der Asset-Owner."
+                      "prose": "Einsichtnahme in die zentral geführten Excel-Listen oder Dokumente."
                     }
                   ]
                 },
@@ -142,27 +112,12 @@
                     {
                       "name": "control_class",
                       "value": "Management",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "phase",
                       "value": "Implementation",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_c",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_i",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_a",
-                      "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "label",
@@ -174,12 +129,12 @@
                     {
                       "id": "ASST.2.1-m3_custom_gdn",
                       "name": "guidance",
-                      "prose": "Führen Sie ein vollständiges Asset-Inventar gemäß der internen Richtlinie und halten Sie dieses aktuell."
+                      "prose": "Erstellen Sie ein vollständiges Verzeichnis aller Informationswerte inklusive deren Abhängigkeiten."
                     },
                     {
                       "id": "ASST.2.1-m3_custom_asm",
                       "name": "assessment",
-                      "prose": "Audit des Asset-Registers auf Vollständigkeit. Check via CMDB-API: `curl -X GET https://cmdb.local/api/assets`."
+                      "prose": "Prüfung des Inventardokuments auf Vollständigkeit und Aktualität gemäß Richtlinie."
                     }
                   ]
                 },
@@ -190,44 +145,29 @@
                     {
                       "name": "control_class",
                       "value": "Management",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "phase",
                       "value": "Implementation",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_c",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_i",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_a",
-                      "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "label",
                       "value": "m4"
                     }
                   ],
-                  "prose": "Das Inventar ist in automatisierte Workflows integriert und wird regelmäßig proaktiv validiert.",
+                  "prose": "Das Inventar ist mit Rollen verknüpft und wird durch regelmäßige Reviews validiert.",
                   "parts": [
                     {
                       "id": "ASST.2.1-m4_custom_gdn",
                       "name": "guidance",
-                      "prose": "Verknüpfen Sie das Inventar mit dem Incident- und Change-Management für automatische Updates."
+                      "prose": "Asset-Owner validieren ihre Bestände proaktiv mindestens jährlich."
                     },
                     {
                       "id": "ASST.2.1-m4_custom_asm",
                       "name": "assessment",
-                      "prose": "Überprüfung der Prozessintegration und automatischer Reports über Bestandsänderungen."
+                      "prose": "Review der Revisionsprotokolle und Bestätigungen der Asset-Owner im System."
                     }
                   ]
                 },
@@ -238,44 +178,29 @@
                     {
                       "name": "control_class",
                       "value": "Management",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "phase",
                       "value": "Implementation",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_c",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_i",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_a",
-                      "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "label",
                       "value": "m5"
                     }
                   ],
-                  "prose": "Ein dynamisches Echtzeit-Inventar klassifiziert Assets automatisch und überwacht deren Lebenszyklus.",
+                  "prose": "Vollintegriertes CMDB-System mit automatischer Verknüpfung zu Geschäftsprozessen.",
                   "parts": [
                     {
                       "id": "ASST.2.1-m5_custom_gdn",
                       "name": "guidance",
-                      "prose": "Setzen Sie KI-gestützte Tools zur automatischen Erkennung und Klassifizierung neuer Informationen ein."
+                      "prose": "Änderungen an Prozessen lösen automatische Aktualisierungen im Informationsinventar aus."
                     },
                     {
                       "id": "ASST.2.1-m5_custom_asm",
                       "name": "assessment",
-                      "prose": "Validierung der automatischen Klassifizierung durch Abgleich mit Metadaten-Scans."
+                      "prose": "Test der automatischen Update-Trigger bei Prozessänderungen in der CMDB-API."
                     }
                   ]
                 }
@@ -296,45 +221,30 @@
                   "props": [
                     {
                       "name": "control_class",
-                      "value": "Management",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "value": "Technical",
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "phase",
-                      "value": "Implementation",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_c",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_i",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_a",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "value": "Operation",
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "label",
                       "value": "m1"
                     }
                   ],
-                  "prose": "IT-Systeme werden unsystematisch bei der Beschaffung erfasst, ohne den aktuellen Standort zu pflegen.",
+                  "prose": "IT-Systeme werden ad-hoc bei Beschaffung dokumentiert, oft unvollständig.",
                   "parts": [
                     {
                       "id": "ASST.2.2-m1_custom_gdn",
                       "name": "guidance",
-                      "prose": "Listen Sie Hardware bei Erhalt manuell auf, um einen groben Überblick zu behalten."
+                      "prose": "Dokumentation beschränkt sich oft auf Rechnungen oder grobe Gerätelisten."
                     },
                     {
                       "id": "ASST.2.2-m1_custom_asm",
                       "name": "assessment",
-                      "prose": "Stichprobenartige Prüfung von Lieferscheinen gegen vorhandene Hardware."
+                      "prose": "Abgleich von physisch vorhandener Hardware mit einer vorhandenen Einkaufsliste."
                     }
                   ]
                 },
@@ -344,45 +254,30 @@
                   "props": [
                     {
                       "name": "control_class",
-                      "value": "Management",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "value": "Technical",
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "phase",
-                      "value": "Implementation",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_c",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_i",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_a",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "value": "Operation",
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "label",
                       "value": "m2"
                     }
                   ],
-                  "prose": "Ein zentrales Hardware-Register erfasst Identifikationsmerkmale, wird jedoch nur sporadisch aktualisiert.",
+                  "prose": "Zentrale Führung einer Hardware-Liste mit Seriennummern und Standorten.",
                   "parts": [
                     {
                       "id": "ASST.2.2-m2_custom_gdn",
                       "name": "guidance",
-                      "prose": "Pflegen Sie Seriennummern und Standorte in einer zentralen Datenbank nach jedem Umzug ein."
+                      "prose": "Manuelle Pflege der Systemliste bei Standortwechsel oder Austausch."
                     },
                     {
                       "id": "ASST.2.2-m2_custom_asm",
                       "name": "assessment",
-                      "prose": "Manueller Abgleich von Inventarnummern an Geräten mit der Datenbank."
+                      "prose": "Prüfung der Bestandsliste gegen Stichproben vor Ort oder via `ssh hostname`."
                     }
                   ]
                 },
@@ -392,28 +287,13 @@
                   "props": [
                     {
                       "name": "control_class",
-                      "value": "Management",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "value": "Technical",
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "phase",
-                      "value": "Implementation",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_c",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_i",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_a",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "value": "Operation",
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "label",
@@ -425,12 +305,12 @@
                     {
                       "id": "ASST.2.2-m3_custom_gdn",
                       "name": "guidance",
-                      "prose": "Stellen Sie sicher, dass jedes IT-System eindeutig identifizierbar und sein Standort jederzeit bekannt ist."
+                      "prose": "Dokumentieren Sie jedes System mit eindeutiger ID und dem aktuellen Standort/Besitzer."
                     },
                     {
                       "id": "ASST.2.2-m3_custom_asm",
                       "name": "assessment",
-                      "prose": "Audit der Datenbankeinträge. Test via Netzwerk-Scan: `nmap -sP 192.168.1.0/24` zum Abgleich mit dem Inventar."
+                      "prose": "Vergleich der Inventardaten mit Netzwerkerkennungstools wie `nmap -sn <network>`."
                     }
                   ]
                 },
@@ -440,45 +320,30 @@
                   "props": [
                     {
                       "name": "control_class",
-                      "value": "Management",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "value": "Technical",
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "phase",
-                      "value": "Implementation",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_c",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_i",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_a",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "value": "Operation",
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "label",
                       "value": "m4"
                     }
                   ],
-                  "prose": "Automatisierte Network Access Control (NAC) Systeme validieren den Bestand und Standort der IT-Systeme.",
+                  "prose": "Automatisierte Erfassung der IT-Systeme durch Network Discovery Tools.",
                   "parts": [
                     {
                       "id": "ASST.2.2-m4_custom_gdn",
                       "name": "guidance",
-                      "prose": "Integrieren Sie einen automatischen Discovery-Prozess, der neue Systeme sofort im Inventar registriert."
+                      "prose": "Systeme werden automatisch erkannt und bei Abweichungen im Inventar gemeldet."
                     },
                     {
                       "id": "ASST.2.2-m4_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung der NAC-Logs auf Übereinstimmung mit dem Asset-Inventar."
+                      "prose": "Prüfung der Discovery-Logs und automatischen Abgleichsprotokolle im Inventory-Tool."
                     }
                   ]
                 },
@@ -488,45 +353,30 @@
                   "props": [
                     {
                       "name": "control_class",
-                      "value": "Management",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "value": "Technical",
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "phase",
-                      "value": "Implementation",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_c",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_i",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_a",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "value": "Operation",
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "label",
                       "value": "m5"
                     }
                   ],
-                  "prose": "Das Systeminventar ist vollständig automatisiert und erkennt Hardware-Änderungen in Echtzeit per Agent.",
+                  "prose": "Echtzeit-Tracking und Geofencing für mobile Assets integriert in das Inventar.",
                   "parts": [
                     {
                       "id": "ASST.2.2-m5_custom_gdn",
                       "name": "guidance",
-                      "prose": "Nutzen Sie hardwaregebundene Zertifikate und TPM-basierte Identitäten für die automatische Bestandsführung."
+                      "prose": "Bewegungen von Assets führen zu automatischen Status-Updates im Bestandsverzeichnis."
                     },
                     {
                       "id": "ASST.2.2-m5_custom_asm",
                       "name": "assessment",
-                      "prose": "Test der Echtzeit-Alarmierung bei Entfernen eines Systems aus dem Netzwerk."
+                      "prose": "Simulation eines Asset-Umzugs und Verifizierung der Live-Standortaktualisierung in der DB."
                     }
                   ]
                 }
@@ -547,45 +397,30 @@
                   "props": [
                     {
                       "name": "control_class",
-                      "value": "Management",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "value": "Technical",
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "phase",
-                      "value": "Implementation",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_c",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_i",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_a",
-                      "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "value": "Operation",
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "label",
                       "value": "m1"
                     }
                   ],
-                  "prose": "Software wird nur projektbezogen dokumentiert, Lizenzen liegen ungeordnet vor.",
+                  "prose": "Anwendungen werden unsystematisch und dezentral erfasst.",
                   "parts": [
                     {
                       "id": "ASST.2.3-m1_custom_gdn",
                       "name": "guidance",
-                      "prose": "Erstellen Sie einfache Übersichten über installierte Standardsoftware in den Abteilungen."
+                      "prose": "Es fehlt ein Überblick über installierte Softwareversionen und Lizenzen."
                     },
                     {
                       "id": "ASST.2.3-m1_custom_asm",
                       "name": "assessment",
-                      "prose": "Sichtung von Installationsmedien und Lizenzordnern."
+                      "prose": "Prüfung einzelner Rechner auf installierte Software via `dpkg -l` oder `rpm -qa`."
                     }
                   ]
                 },
@@ -595,45 +430,30 @@
                   "props": [
                     {
                       "name": "control_class",
-                      "value": "Management",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "value": "Technical",
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "phase",
-                      "value": "Implementation",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_c",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_i",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_a",
-                      "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "value": "Operation",
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "label",
                       "value": "m2"
                     }
                   ],
-                  "prose": "Ein zentrales Software-Verzeichnis wird manuell gepflegt, enthält aber nicht alle Versionsstände.",
+                  "prose": "Zentrale Liste installierter Standardsoftware wird manuell gepflegt.",
                   "parts": [
                     {
                       "id": "ASST.2.3-m2_custom_gdn",
                       "name": "guidance",
-                      "prose": "Erfassen Sie Versionen und Lizenzabläufe in einer Liste, um Compliance-Risiken zu minimieren."
+                      "prose": "Grobübersicht der genutzten Applikationen ohne detaillierte Patch-Stände."
                     },
                     {
                       "id": "ASST.2.3-m2_custom_asm",
                       "name": "assessment",
-                      "prose": "Abgleich der Liste mit Stichproben installierter Software auf Endgeräten."
+                      "prose": "Einsicht in die zentrale Softwareliste und Abgleich mit Stichproben-Hosts."
                     }
                   ]
                 },
@@ -643,28 +463,13 @@
                   "props": [
                     {
                       "name": "control_class",
-                      "value": "Management",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "value": "Technical",
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "phase",
-                      "value": "Implementation",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_c",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_i",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_a",
-                      "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "value": "Operation",
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "label",
@@ -676,12 +481,12 @@
                     {
                       "id": "ASST.2.3-m3_custom_gdn",
                       "name": "guidance",
-                      "prose": "Dokumentieren Sie alle Anwendungen systematisch, um Wartung und Lizenzmanagement zu ermöglichen."
+                      "prose": "Führen Sie ein detailliertes Software-Inventar mit Fokus auf Compliance und Security."
                     },
                     {
                       "id": "ASST.2.3-m3_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung des Software-Inventars. Command-Check: `dpkg -l` oder `rpm -qa` auf Servern zum Abgleich."
+                      "prose": "Vollständigkeitsprüfung des Software-Inventars gegen tatsächliche Installationen via Audit-Skript."
                     }
                   ]
                 },
@@ -691,45 +496,30 @@
                   "props": [
                     {
                       "name": "control_class",
-                      "value": "Management",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "value": "Technical",
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "phase",
-                      "value": "Implementation",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_c",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_i",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_a",
-                      "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "value": "Operation",
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "label",
                       "value": "m4"
                     }
                   ],
-                  "prose": "Ein Software-Asset-Management (SAM) Tool überwacht Versionen und Patch-Stände automatisiert.",
+                  "prose": "Zentrales Software-Management-System zur Versions- und Lizenzüberwachung.",
                   "parts": [
                     {
                       "id": "ASST.2.3-m4_custom_gdn",
                       "name": "guidance",
-                      "prose": "Automatisieren Sie den Abgleich zwischen installierter Software und Lizenzbestand."
+                      "prose": "Automatisierte Meldung bei veralteten Versionen oder Lizenzüberschreitungen."
                     },
                     {
                       "id": "ASST.2.3-m4_custom_asm",
                       "name": "assessment",
-                      "prose": "Auswertung der Compliance-Reports aus dem SAM-Tool."
+                      "prose": "Prüfung der Dashboard-Alerts im Software-Asset-Management Tool auf Aktualität."
                     }
                   ]
                 },
@@ -739,45 +529,30 @@
                   "props": [
                     {
                       "name": "control_class",
-                      "value": "Management",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "value": "Technical",
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "phase",
-                      "value": "Implementation",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_c",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_i",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_a",
-                      "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "value": "Operation",
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "label",
                       "value": "m5"
                     }
                   ],
-                  "prose": "Continuous Software Inventory ist in die CI/CD-Pipeline und Security-Scanning-Tools integriert.",
+                  "prose": "Continuous Compliance durch Policy-as-Code und automatisierte Software-Audits.",
                   "parts": [
                     {
                       "id": "ASST.2.3-m5_custom_gdn",
                       "name": "guidance",
-                      "prose": "Implementieren Sie 'Software Bill of Materials' (SBOM) zur lückenlosen Verfolgung aller Komponenten."
+                      "prose": "Software-Inventar ist direkt mit CVE-Datenbanken für automatische Risikobewertung gekoppelt."
                     },
                     {
                       "id": "ASST.2.3-m5_custom_asm",
                       "name": "assessment",
-                      "prose": "Validierung der SBOM-Integration in der Build-Pipeline."
+                      "prose": "Prüfung der Verknüpfung zwischen Inventardatenbank und aktueller Vulnerability-API."
                     }
                   ]
                 }
@@ -799,44 +574,29 @@
                     {
                       "name": "control_class",
                       "value": "Technical",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "phase",
                       "value": "Operation",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_c",
-                      "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_i",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_a",
-                      "value": "low",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "label",
                       "value": "m1"
                     }
                   ],
-                  "prose": "Software-Scans erfolgen unregelmäßig auf Einzelrechnern bei Verdacht auf Fehlkonfiguration.",
+                  "prose": "Software wird nur bei manuellen Wartungsintervallen stichprobenartig geprüft.",
                   "parts": [
                     {
                       "id": "ASST.2.3.2.1-m1_custom_gdn",
                       "name": "guidance",
-                      "prose": "Führen Sie bei Wartungsarbeiten stichprobenartig manuelle Software-Checks durch."
+                      "prose": "Es erfolgt keine systematische Suche nach unbekannter Software im Netz."
                     },
                     {
                       "id": "ASST.2.3.2.1-m1_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung von Wartungsprotokollen auf Software-Listen."
+                      "prose": "Befragung der Admins nach dem Vorgehen bei der Suche nach 'Shadow-IT'."
                     }
                   ]
                 },
@@ -847,44 +607,29 @@
                     {
                       "name": "control_class",
                       "value": "Technical",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "phase",
                       "value": "Operation",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_c",
-                      "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_i",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_a",
-                      "value": "low",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "label",
                       "value": "m2"
                     }
                   ],
-                  "prose": "Regelmäßige manuelle Abfragen der installierten Software über Skripte werden durchgeführt.",
+                  "prose": "Regelmäßige manuelle Scans mit Open-Source-Tools zur Softwareerkennung.",
                   "parts": [
                     {
                       "id": "ASST.2.3.2.1-m2_custom_gdn",
                       "name": "guidance",
-                      "prose": "Nutzen Sie einfache Skripte, um monatlich den Softwarestand der Server abzufragen."
+                      "prose": "Einsatz von Tools wie `nmap` oder `osquery` auf ausgewählten Zielsystemen."
                     },
                     {
                       "id": "ASST.2.3.2.1-m2_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung der monatlichen Skript-Outputs. Skript-Check: `ps -ef` Analyse."
+                      "prose": "Sichtung der Scan-Ergebnisse der letzten drei Monate."
                     }
                   ]
                 },
@@ -895,27 +640,12 @@
                     {
                       "name": "control_class",
                       "value": "Technical",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "phase",
                       "value": "Operation",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_c",
-                      "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_i",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_a",
-                      "value": "low",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "label",
@@ -927,12 +657,12 @@
                     {
                       "id": "ASST.2.3.2.1-m3_custom_gdn",
                       "name": "guidance",
-                      "prose": "Implementieren Sie das automatisierte Verfahren zur regelmäßigen Validierung des Softwarebestands."
+                      "prose": "Nutzen Sie automatisierte Discovery-Lösungen zur Validierung des Anwendungsbestands."
                     },
                     {
                       "id": "ASST.2.3.2.1-m3_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung der Konfiguration des Automatisierungstools. Test: Ausführung des Scan-Jobs."
+                      "prose": "Prüfung der Konfiguration des automatisierten Verfahrens {{ insert: param, asst.2.3.2.1-prm1 }}."
                     }
                   ]
                 },
@@ -943,44 +673,29 @@
                     {
                       "name": "control_class",
                       "value": "Technical",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "phase",
                       "value": "Operation",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_c",
-                      "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_i",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_a",
-                      "value": "low",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "label",
                       "value": "m4"
                     }
                   ],
-                  "prose": "Das automatisierte Discovery-Verfahren läuft täglich und meldet Abweichungen sofort an das SOC.",
+                  "prose": "Kontinuierliches Discovery-Verfahren mit sofortiger Alarmierung bei unbekannter Software.",
                   "parts": [
                     {
                       "id": "ASST.2.3.2.1-m4_custom_gdn",
                       "name": "guidance",
-                      "prose": "Konfigurieren Sie Alerts für unbekannte oder veraltete Softwareversionen im Überwachungsverfahren."
+                      "prose": "Abweichungen zum Soll-Bestand werden unmittelbar an das Security-Team gemeldet."
                     },
                     {
                       "id": "ASST.2.3.2.1-m4_custom_asm",
                       "name": "assessment",
-                      "prose": "Simulation einer Software-Installation und Prüfung der Alarmierungskette."
+                      "prose": "Test: Installation einer Test-Software und Prüfung der Alert-Reaktionszeit."
                     }
                   ]
                 },
@@ -991,44 +706,29 @@
                     {
                       "name": "control_class",
                       "value": "Technical",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "phase",
                       "value": "Operation",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_c",
-                      "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_i",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_a",
-                      "value": "low",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "label",
                       "value": "m5"
                     }
                   ],
-                  "prose": "Echtzeit-Discovery mit automatischer Quarantäne für nicht autorisierte Software ist aktiv.",
+                  "prose": "Vollautomatisierte Identifikation und Isolation nicht autorisierter Software.",
                   "parts": [
                     {
                       "id": "ASST.2.3.2.1-m5_custom_gdn",
                       "name": "guidance",
-                      "prose": "Koppeln Sie den Software-Discovery-Prozess mit einer Application-Whitelisting-Lösung."
+                      "prose": "Nicht im Inventar gelistete Software wird automatisch durch Agenten blockiert."
                     },
                     {
                       "id": "ASST.2.3.2.1-m5_custom_asm",
                       "name": "assessment",
-                      "prose": "Test der automatischen Blockierung einer nicht im Inventar befindlichen Anwendung."
+                      "prose": "Prüfung der Enforcement-Regeln im Endpoint-Protection System via CLI-Check."
                     }
                   ]
                 }
@@ -1050,44 +750,29 @@
                     {
                       "name": "control_class",
                       "value": "Operational",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "phase",
                       "value": "Operation",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_c",
-                      "value": "low",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_i",
-                      "value": "low",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_a",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "label",
                       "value": "m1"
                     }
                   ],
-                  "prose": "Einzelne Ersatzgeräte sind vorhanden, aber nicht zentral verwaltet oder geprüft.",
+                  "prose": "Ersatzgeräte werden sporadisch nach Verfügbarkeit im Lager vorgehalten.",
                   "parts": [
                     {
                       "id": "ASST.3.14-m1_custom_gdn",
                       "name": "guidance",
-                      "prose": "Halten Sie einige Standard-Laptops in einem Schrank für Notfälle bereit."
+                      "prose": "Es gibt keine definierte Mindestmenge für kritische Hardware-Komponenten."
                     },
                     {
                       "id": "ASST.3.14-m1_custom_asm",
                       "name": "assessment",
-                      "prose": "Sichtprüfung der physischen Verfügbarkeit von Ersatzhardware."
+                      "prose": "Visuelle Inspektion des Lagers auf Vorhandensein von Standard-Ersatzteilen."
                     }
                   ]
                 },
@@ -1098,44 +783,29 @@
                     {
                       "name": "control_class",
                       "value": "Operational",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "phase",
                       "value": "Operation",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_c",
-                      "value": "low",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_i",
-                      "value": "low",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_a",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "label",
                       "value": "m2"
                     }
                   ],
-                  "prose": "Ein kleiner Reservebestand ist definiert, wird jedoch nicht regelmäßig auf Funktion geprüft.",
+                  "prose": "Festlegung einer einfachen Liste notwendiger Reserve-Assets ohne formale Strategie.",
                   "parts": [
                     {
                       "id": "ASST.3.14-m2_custom_gdn",
                       "name": "guidance",
-                      "prose": "Legen Sie fest, wie viele Geräte pro Typ als Reserve vorgehalten werden müssen."
+                      "prose": "Kritische Teile (Netzteile, Switches) sind grundsätzlich einmalig vorhanden."
                     },
                     {
                       "id": "ASST.3.14-m2_custom_asm",
                       "name": "assessment",
-                      "prose": "Bestandsaufnahme der Reserve gegen die Soll-Vorgabe."
+                      "prose": "Abgleich der Lagerbestände mit der internen Mindestbestandsliste."
                     }
                   ]
                 },
@@ -1146,27 +816,12 @@
                     {
                       "name": "control_class",
                       "value": "Operational",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "phase",
                       "value": "Operation",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_c",
-                      "value": "low",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_i",
-                      "value": "low",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_a",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "label",
@@ -1178,12 +833,12 @@
                     {
                       "id": "ASST.3.14-m3_custom_gdn",
                       "name": "guidance",
-                      "prose": "Etablieren Sie einen Prozess zur Vorhaltung und Wartung einer angemessenen Asset-Reserve."
+                      "prose": "Stellen Sie sicher, dass für zeitkritische Funktionen ausreichend Ersatzhardware bereitsteht."
                     },
                     {
                       "id": "ASST.3.14-m3_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung des Reserve-Konzepts und Stichprobe der Funktionsfähigkeit der Reserve-Assets."
+                      "prose": "Prüfung des Notfallkonzepts auf definierte Hardware-Reserven und deren Verfügbarkeit."
                     }
                   ]
                 },
@@ -1194,44 +849,29 @@
                     {
                       "name": "control_class",
                       "value": "Operational",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "phase",
                       "value": "Operation",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_c",
-                      "value": "low",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_i",
-                      "value": "low",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_a",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "label",
                       "value": "m4"
                     }
                   ],
-                  "prose": "Die Asset-Reserve wird proaktiv überwacht und bei Entnahme automatisch nachbestellt.",
+                  "prose": "Vorkonfigurierte Reserve-Hardware zur schnellen Wiederherstellung des Betriebs.",
                   "parts": [
                     {
                       "id": "ASST.3.14-m4_custom_gdn",
                       "name": "guidance",
-                      "prose": "Integrieren Sie die Bestandsführung der Reserve in das ERP- oder Ticketsystem."
+                      "prose": "Reservegeräte werden regelmäßig auf Funktionsfähigkeit und Softwarestand geprüft."
                     },
                     {
                       "id": "ASST.3.14-m4_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung der automatischen Nachbestellschwellen im System."
+                      "prose": "Funktionstest eines Reservegeräts aus dem Lager (Kaltstart-Test)."
                     }
                   ]
                 },
@@ -1242,44 +882,29 @@
                     {
                       "name": "control_class",
                       "value": "Operational",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "phase",
                       "value": "Operation",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_c",
-                      "value": "low",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_i",
-                      "value": "low",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_a",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "label",
                       "value": "m5"
                     }
                   ],
-                  "prose": "Ein hochverfügbares 'Hot-Standby'-Lager garantiert den Austausch kritischer Assets innerhalb kürzester Zeit.",
+                  "prose": "Automatisierte Bedarfsplanung und Nachbestellung für den Reservebestand.",
                   "parts": [
                     {
                       "id": "ASST.3.14-m5_custom_gdn",
                       "name": "guidance",
-                      "prose": "Nutzen Sie ein automatisiertes Lagersystem mit kontinuierlicher Selbstprüfung der Hardware-Integrität."
+                      "prose": "Integration der Lagerhaltung in das Incident-Management für sofortigen Ersatz."
                     },
                     {
                       "id": "ASST.3.14-m5_custom_asm",
                       "name": "assessment",
-                      "prose": "Messung der Wiederherstellungszeit bei simuliertem Hardwareausfall (MTTR)."
+                      "prose": "Prüfung der Schnittstelle zwischen Ticket-System und Lagerverwaltungssystem."
                     }
                   ]
                 }
@@ -1301,44 +926,29 @@
                     {
                       "name": "control_class",
                       "value": "Operational",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "phase",
                       "value": "Operation",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_c",
-                      "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_i",
-                      "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_a",
-                      "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "label",
                       "value": "m1"
                     }
                   ],
-                  "prose": "Geräte werden informell und ohne Dokumentation zwischen Mitarbeitern verliehen.",
+                  "prose": "Ausleihe von Geräten erfolgt informell ohne Dokumentation.",
                   "parts": [
                     {
                       "id": "ASST.3.15-m1_custom_gdn",
                       "name": "guidance",
-                      "prose": "Notieren Sie Ausleihen kurz in einem Notizbuch oder einer E-Mail."
+                      "prose": "Rückgabe basiert auf Vertrauen, keine Übersicht über verliehene Assets."
                     },
                     {
                       "id": "ASST.3.15-m1_custom_asm",
                       "name": "assessment",
-                      "prose": "Befragung von Mitarbeitern zum Verbleib von Leihgeräten."
+                      "prose": "Stichprobe in der Belegschaft: Wer nutzt welche Leihgeräte ohne Eintrag?"
                     }
                   ]
                 },
@@ -1349,44 +959,29 @@
                     {
                       "name": "control_class",
                       "value": "Operational",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "phase",
                       "value": "Operation",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_c",
-                      "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_i",
-                      "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_a",
-                      "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "label",
                       "value": "m2"
                     }
                   ],
-                  "prose": "Es gibt eine einfache Liste für Leihgeräte, die bei Bedarf manuell befüllt wird.",
+                  "prose": "Manuelle Erfassung von Leihvorgängen in einem einfachen Ausleihbuch.",
                   "parts": [
                     {
                       "id": "ASST.3.15-m2_custom_gdn",
                       "name": "guidance",
-                      "prose": "Verwenden Sie ein Formular zur Quittierung der Herausgabe von Assets."
+                      "prose": "Führung einer Liste mit Name, Gerät und Datum der Ausgabe/Rückgabe."
                     },
                     {
                       "id": "ASST.3.15-m2_custom_asm",
                       "name": "assessment",
-                      "prose": "Abgleich der Quittungen mit dem physischen Bestand im Ausleihpool."
+                      "prose": "Einsichtnahme in das Ausleihbuch und Prüfung auf offene Rückgaben."
                     }
                   ]
                 },
@@ -1397,27 +992,12 @@
                     {
                       "name": "control_class",
                       "value": "Operational",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "phase",
                       "value": "Operation",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_c",
-                      "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_i",
-                      "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_a",
-                      "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "label",
@@ -1429,12 +1009,12 @@
                     {
                       "id": "ASST.3.15-m3_custom_gdn",
                       "name": "guidance",
-                      "prose": "Definieren Sie einen Pool an Leihgeräten und dokumentieren Sie deren Ausgabe und Rücknahme systematisch."
+                      "prose": "Definieren Sie einen Bestand an Geräten für kurzfristigen Bedarf (z.B. Dienstreisen)."
                     },
                     {
                       "id": "ASST.3.15-m3_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung des Ausleihjournals und des Bestandsniveaus. Check: `select * from loan_db where status='out'`."
+                      "prose": "Sichtung der Inventarliste für Leihgeräte und Prüfung der Verfügbarkeit."
                     }
                   ]
                 },
@@ -1445,44 +1025,29 @@
                     {
                       "name": "control_class",
                       "value": "Operational",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "phase",
                       "value": "Operation",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_c",
-                      "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_i",
-                      "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_a",
-                      "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "label",
                       "value": "m4"
                     }
                   ],
-                  "prose": "Die Ausleihe erfolgt über ein Self-Service-Portal mit automatischer Fristüberwachung.",
+                  "prose": "Digitales Ausleihportal mit automatischer Rückgabe-Erinnerung.",
                   "parts": [
                     {
                       "id": "ASST.3.15-m4_custom_gdn",
                       "name": "guidance",
-                      "prose": "Implementieren Sie automatische Erinnerungsmails bei Überschreitung der Leihfrist."
+                      "prose": "Nutzer können Geräte reservieren; Fristen werden systemseitig überwacht."
                     },
                     {
                       "id": "ASST.3.15-m4_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung der automatisierten Mahnprozesse bei überfälligen Geräten."
+                      "prose": "Prüfung der automatisierten Benachrichtigungen bei Fristüberschreitung."
                     }
                   ]
                 },
@@ -1493,44 +1058,29 @@
                     {
                       "name": "control_class",
                       "value": "Operational",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "phase",
                       "value": "Operation",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_c",
-                      "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_i",
-                      "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_a",
-                      "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "label",
                       "value": "m5"
                     }
                   ],
-                  "prose": "Vollautomatisierte Asset-Stationen regeln Ausgabe und Rücknahme mit biometrischer Authentifizierung.",
+                  "prose": "Self-Service-Stationen für Assets mit automatischer Nutzerzuordnung.",
                   "parts": [
                     {
                       "id": "ASST.3.15-m5_custom_gdn",
                       "name": "guidance",
-                      "prose": "Nutzen Sie RFID-Tags zur lückenlosen Verfolgung des Standorts der Leihgeräte im Gebäude."
+                      "prose": "Automatisierte Protokollierung der Entnahme und Rückgabe via Badge-Reader."
                     },
                     {
                       "id": "ASST.3.15-m5_custom_asm",
                       "name": "assessment",
-                      "prose": "Validierung der RFID-Tracking-Daten gegen das Buchungssystem."
+                      "prose": "Audit der Zugriffsprotokolle der automatisierten Ausgabestation."
                     }
                   ]
                 }
@@ -1552,44 +1102,29 @@
                     {
                       "name": "control_class",
                       "value": "Operational",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "phase",
                       "value": "Implementation",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_c",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_i",
-                      "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_a",
-                      "value": "low",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "label",
                       "value": "m1"
                     }
                   ],
-                  "prose": "Kennzeichnungen erfolgen nur bei besonders sensiblen Papierdokumenten handschriftlich.",
+                  "prose": "Kennzeichnung erfolgt nur sporadisch bei offensichtlich geheimen Unterlagen.",
                   "parts": [
                     {
                       "id": "ASST.3.3-m1_custom_gdn",
                       "name": "guidance",
-                      "prose": "Markieren Sie streng vertrauliche Unterlagen manuell mit einem entsprechenden Hinweis."
+                      "prose": "Keine einheitlichen Vorgaben für die Kennzeichnung von Informationen."
                     },
                     {
                       "id": "ASST.3.3-m1_custom_asm",
                       "name": "assessment",
-                      "prose": "Stichprobenartige Durchsicht von Dokumenten auf Klassifizierungshinweise."
+                      "prose": "Prüfung von Dokumenten im Abfall oder auf Schreibtischen auf Kennzeichnungen."
                     }
                   ]
                 },
@@ -1600,44 +1135,29 @@
                     {
                       "name": "control_class",
                       "value": "Operational",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "phase",
                       "value": "Implementation",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_c",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_i",
-                      "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_a",
-                      "value": "low",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "label",
                       "value": "m2"
                     }
                   ],
-                  "prose": "Es gibt einfache Vorgaben für die Kennzeichnung von E-Mails und Dokumenten per Stempel.",
+                  "prose": "Standard-Kennzeichnung (z.B. Stempel 'Vertraulich') ist in Grundzügen vorhanden.",
                   "parts": [
                     {
                       "id": "ASST.3.3-m2_custom_gdn",
                       "name": "guidance",
-                      "prose": "Nutzen Sie Standard-Kopfzeilen in Dokumentenvorlagen zur Kennzeichnung des Schutzbedarfs."
+                      "prose": "Mitarbeiter sind angewiesen, sensible Dokumente manuell zu markieren."
                     },
                     {
                       "id": "ASST.3.3-m2_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung von Vorlagen in der Textverarbeitung auf integrierte Labels."
+                      "prose": "Sichtung von Stichproben (Dokumente/E-Mails) auf vorhandene Markierungen."
                     }
                   ]
                 },
@@ -1648,27 +1168,12 @@
                     {
                       "name": "control_class",
                       "value": "Operational",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "phase",
                       "value": "Implementation",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_c",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_i",
-                      "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_a",
-                      "value": "low",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "label",
@@ -1680,12 +1185,12 @@
                     {
                       "id": "ASST.3.3-m3_custom_gdn",
                       "name": "guidance",
-                      "prose": "Setzen Sie die Richtlinie zur Kennzeichnung für alle Informationsträger konsequent um."
+                      "prose": "Legen Sie Regeln zur Kennzeichnung fest, damit Schutzbedarf für jeden erkennbar ist."
                     },
                     {
                       "id": "ASST.3.3-m3_custom_asm",
                       "name": "assessment",
-                      "prose": "Audit der Umsetzung der Kennzeichnungsvorgaben in verschiedenen Medien (Digital/Physisch)."
+                      "prose": "Prüfung der Richtlinie zur Informationsklassifizierung und deren Anwendung."
                     }
                   ]
                 },
@@ -1696,44 +1201,29 @@
                     {
                       "name": "control_class",
                       "value": "Operational",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "phase",
                       "value": "Implementation",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_c",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_i",
-                      "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_a",
-                      "value": "low",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "label",
                       "value": "m4"
                     }
                   ],
-                  "prose": "Digitale Kennzeichnung wird durch Tools erzwungen, die Metadaten automatisch setzen.",
+                  "prose": "Automatisierte Unterstützung bei der Kennzeichnung in Office-Anwendungen.",
                   "parts": [
                     {
                       "id": "ASST.3.3-m4_custom_gdn",
                       "name": "guidance",
-                      "prose": "Implementieren Sie Software-Erweiterungen, die vor dem Speichern zur Auswahl einer Schutzklasse zwingen."
+                      "prose": "Software zwingt Nutzer zur Auswahl einer Klassifizierung beim Speichern."
                     },
                     {
                       "id": "ASST.3.3-m4_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung der Metadaten in Dokumenten via `exiftool` auf korrekte Labels."
+                      "prose": "Test der Speichervorgabe in Standardanwendungen auf Klassifizierungszwang."
                     }
                   ]
                 },
@@ -1744,44 +1234,29 @@
                     {
                       "name": "control_class",
                       "value": "Operational",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "phase",
                       "value": "Implementation",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_c",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_i",
-                      "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_a",
-                      "value": "low",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "label",
                       "value": "m5"
                     }
                   ],
-                  "prose": "Automatisierte Data Loss Prevention (DLP) Systeme erkennen Inhalte und kennzeichnen diese in Echtzeit.",
+                  "prose": "Metadaten-basierte Kennzeichnung integriert in DLP- und Verschlüsselungssysteme.",
                   "parts": [
                     {
                       "id": "ASST.3.3-m5_custom_gdn",
                       "name": "guidance",
-                      "prose": "Nutzen Sie Machine Learning zur automatischen Analyse und Kennzeichnung unstrukturierter Daten."
+                      "prose": "Labels steuern automatisch Zugriffsrechte und Versandoptionen über das Netzwerk."
                     },
                     {
                       "id": "ASST.3.3-m5_custom_asm",
                       "name": "assessment",
-                      "prose": "Test des DLP-Systems auf korrekte Erkennung und automatische Label-Vergabe."
+                      "prose": "Prüfung der Metadaten via Script: `exiftool document.pdf | grep 'Classification'`."
                     }
                   ]
                 }
@@ -1803,44 +1278,29 @@
                     {
                       "name": "control_class",
                       "value": "Management",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "phase",
-                      "value": "Operation",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_c",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_i",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_a",
-                      "value": "low",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "value": "Implementation",
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "label",
                       "value": "m1"
                     }
                   ],
-                  "prose": "Veröffentlichungen werden ad-hoc durch Vorgesetzte mündlich freigegeben.",
+                  "prose": "Veröffentlichungen erfolgen ad-hoc durch die jeweilige Fachabteilung.",
                   "parts": [
                     {
                       "id": "ASST.4.3-m1_custom_gdn",
                       "name": "guidance",
-                      "prose": "Holen Sie vor einer Veröffentlichung eine kurze Bestätigung per E-Mail ein."
+                      "prose": "Es gibt keinen formalen Prüfprozess vor der Publikation."
                     },
                     {
                       "id": "ASST.4.3-m1_custom_asm",
                       "name": "assessment",
-                      "prose": "Sichtung von E-Mail-Korrespondenzen zu aktuellen Veröffentlichungen."
+                      "prose": "Befragung der Marketingabteilung zum Freigabeprozess von Web-Inhalten."
                     }
                   ]
                 },
@@ -1851,44 +1311,29 @@
                     {
                       "name": "control_class",
                       "value": "Management",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "phase",
-                      "value": "Operation",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_c",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_i",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_a",
-                      "value": "low",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "value": "Implementation",
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "label",
                       "value": "m2"
                     }
                   ],
-                  "prose": "Es existiert ein einfaches Formular zur Freigabe von Inhalten, das manuell archiviert wird.",
+                  "prose": "Mündliche oder formlose E-Mail-Freigabe durch den Vorgesetzten ist üblich.",
                   "parts": [
                     {
                       "id": "ASST.4.3-m2_custom_gdn",
                       "name": "guidance",
-                      "prose": "Dokumentieren Sie die Freigabe zentral, bevor Informationen extern publiziert werden."
+                      "prose": "Grundlegende Prüfung auf offensichtliche Fehler findet statt."
                     },
                     {
                       "id": "ASST.4.3-m2_custom_asm",
                       "name": "assessment",
-                      "prose": "Abgleich veröffentlichter Dokumente mit den zugehörigen Freigabeformularen."
+                      "prose": "Einsicht in E-Mail-Korrespondenzen zu den letzten drei Publikationen."
                     }
                   ]
                 },
@@ -1899,27 +1344,12 @@
                     {
                       "name": "control_class",
                       "value": "Management",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "phase",
-                      "value": "Operation",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_c",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_i",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_a",
-                      "value": "low",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "value": "Implementation",
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "label",
@@ -1931,12 +1361,12 @@
                     {
                       "id": "ASST.4.3-m3_custom_gdn",
                       "name": "guidance",
-                      "prose": "Stellen Sie sicher, dass jede Veröffentlichung den definierten Autorisierungsprozess durchläuft."
+                      "prose": "Etablieren Sie einen schriftlich fixierten Freigabeprozess durch die genannte Stelle."
                     },
                     {
                       "id": "ASST.4.3-m3_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung der Einhaltung des Autorisierungsprozesses anhand von Stichproben. Check: Freigabe-Logbuch."
+                      "prose": "Prüfung der Freigabeprotokolle für Veröffentlichungen gemäß {{ insert: param, asst.4.3-prm1 }}."
                     }
                   ]
                 },
@@ -1947,44 +1377,29 @@
                     {
                       "name": "control_class",
                       "value": "Management",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "phase",
-                      "value": "Operation",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_c",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_i",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_a",
-                      "value": "low",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "value": "Implementation",
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "label",
                       "value": "m4"
                     }
                   ],
-                  "prose": "Der Freigabeprozess ist digital in einem Workflow-System mit Vier-Augen-Prinzip abgebildet.",
+                  "prose": "Workflow-basiertes Freigabesystem mit Protokollierung aller Prüfungsschritte.",
                   "parts": [
                     {
                       "id": "ASST.4.3-m4_custom_gdn",
                       "name": "guidance",
-                      "prose": "Automatisieren Sie die Benachrichtigung der zuständigen Stellen bei neuen Freigabeanfragen."
+                      "prose": "Mehrstufige Freigabe (z.B. Fachlich, Rechtlich, Security) ist systemisch erzwungen."
                     },
                     {
                       "id": "ASST.4.3-m4_custom_asm",
                       "name": "assessment",
-                      "prose": "Audit der Workflow-Historie im Freigabesystem auf Vollständigkeit."
+                      "prose": "Audit des Workflow-History im Content-Management-System."
                     }
                   ]
                 },
@@ -1995,44 +1410,29 @@
                     {
                       "name": "control_class",
                       "value": "Management",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "phase",
-                      "value": "Operation",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_c",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_i",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_a",
-                      "value": "low",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "value": "Implementation",
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "label",
                       "value": "m5"
                     }
                   ],
-                  "prose": "Content Management Systeme verhindern technisch jede Publikation ohne digitale Signatur der Freigabestelle.",
+                  "prose": "Automatisierte Inhaltsanalyse auf Sensitivität vor der finalen Autorisierung.",
                   "parts": [
                     {
                       "id": "ASST.4.3-m5_custom_gdn",
                       "name": "guidance",
-                      "prose": "Integrieren Sie eine Policy-Engine, die Veröffentlichungen gegen Schutzbedarfs-Regeln prüft."
+                      "prose": "KI-gestützte Prüfung auf vertrauliche Datenmuster (DLP) im Freigabeprozess."
                     },
                     {
                       "id": "ASST.4.3-m5_custom_asm",
                       "name": "assessment",
-                      "prose": "Versuch einer unautorisierten Veröffentlichung zur Verifizierung der technischen Sperre."
+                      "prose": "Simulation einer Publikation mit Test-Sensitivdaten und Prüfung der Blockierung."
                     }
                   ]
                 }
@@ -2054,44 +1454,29 @@
                     {
                       "name": "control_class",
                       "value": "Operational",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "phase",
-                      "value": "Operation",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_c",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_i",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_a",
-                      "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "value": "Implementation",
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "label",
                       "value": "m1"
                     }
                   ],
-                  "prose": "Verluste werden informell an den IT-Support gemeldet, ohne standardisierten Ablauf.",
+                  "prose": "Meldung von Verlusten erfolgt rein informell und unsystematisch.",
                   "parts": [
                     {
                       "id": "ASST.6.1-m1_custom_gdn",
                       "name": "guidance",
-                      "prose": "Informieren Sie bei Verlust eines Geräts umgehend Ihren direkten Vorgesetzten."
+                      "prose": "Es gibt keine festen Ansprechpartner oder Formulare für Asset-Verluste."
                     },
                     {
                       "id": "ASST.6.1-m1_custom_asm",
                       "name": "assessment",
-                      "prose": "Befragung von Personal zu Vorfällen in der Vergangenheit."
+                      "prose": "Befragung von Mitarbeitern zum Verhalten bei Verlust eines Notebooks."
                     }
                   ]
                 },
@@ -2102,44 +1487,29 @@
                     {
                       "name": "control_class",
                       "value": "Operational",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "phase",
-                      "value": "Operation",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_c",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_i",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_a",
-                      "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "value": "Implementation",
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "label",
                       "value": "m2"
                     }
                   ],
-                  "prose": "Ein einfaches Meldeformular für verlorene Assets ist im Intranet verfügbar.",
+                  "prose": "Verlustmeldungen werden zentral gesammelt (z.B. beim Helpdesk).",
                   "parts": [
                     {
                       "id": "ASST.6.1-m2_custom_gdn",
                       "name": "guidance",
-                      "prose": "Nutzen Sie eine Checkliste, um bei Verlust sofort Sperrungen (z.B. SIM-Karte) einzuleiten."
+                      "prose": "Grundlegende Schritte wie Sperrung des Accounts werden manuell eingeleitet."
                     },
                     {
                       "id": "ASST.6.1-m2_custom_asm",
                       "name": "assessment",
-                      "prose": "Sichtung der Meldeliste und der eingeleiteten Sofortmaßnahmen."
+                      "prose": "Sichtung der letzten Incident-Tickets zum Thema 'Verlust/Diebstahl'."
                     }
                   ]
                 },
@@ -2150,27 +1520,12 @@
                     {
                       "name": "control_class",
                       "value": "Operational",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "phase",
-                      "value": "Operation",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_c",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_i",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_a",
-                      "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "value": "Implementation",
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "label",
@@ -2182,12 +1537,12 @@
                     {
                       "id": "ASST.6.1-m3_custom_gdn",
                       "name": "guidance",
-                      "prose": "Etablieren und kommunizieren Sie einen verbindlichen Prozess für den Umgang mit verlorenen Assets."
+                      "prose": "Erstellen Sie einen Prozess zur Meldung und Behandlung von verloren gegangenen Assets."
                     },
                     {
                       "id": "ASST.6.1-m3_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung der Prozessbeschreibung und Dokumentation bearbeiteter Verlustmeldungen."
+                      "prose": "Prüfung der schriftlichen Prozessbeschreibung und der Meldeketten."
                     }
                   ]
                 },
@@ -2198,44 +1553,29 @@
                     {
                       "name": "control_class",
                       "value": "Operational",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "phase",
-                      "value": "Operation",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_c",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_i",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_a",
-                      "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "value": "Implementation",
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "label",
                       "value": "m4"
                     }
                   ],
-                  "prose": "Der Verlustprozess ist Teil des Incident Managements und löst automatische Remote-Wipe Befehle aus.",
+                  "prose": "Automatisierte Incident-Workflows bei Verlustmeldung inkl. Remote-Wipe.",
                   "parts": [
                     {
                       "id": "ASST.6.1-m4_custom_gdn",
                       "name": "guidance",
-                      "prose": "Verknüpfen Sie Verlustmeldungen mit dem MDM-System zur sofortigen Datenlöschung."
+                      "prose": "MDM-Anbindung ermöglicht sofortige Datenlöschung bei Meldung im Portal."
                     },
                     {
                       "id": "ASST.6.1-m4_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung der MDM-Logs auf erfolgreiche Ausführung von Sperrbefehlen."
+                      "prose": "Überprüfung der MDM-Logs auf erfolgreiche Fernlöschungen im Testfall."
                     }
                   ]
                 },
@@ -2246,44 +1586,29 @@
                     {
                       "name": "control_class",
                       "value": "Operational",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "phase",
-                      "value": "Operation",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_c",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_i",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_a",
-                      "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "value": "Implementation",
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "label",
                       "value": "m5"
                     }
                   ],
-                  "prose": "KI-basierte Anomalieerkennung meldet potenzielles Abhandenkommen, bevor der Nutzer es bemerkt.",
+                  "prose": "Vollständig integrierte Asset-Sicherheitsstrategie mit autonomem Selbstschutz.",
                   "parts": [
                     {
                       "id": "ASST.6.1-m5_custom_gdn",
                       "name": "guidance",
-                      "prose": "Implementieren Sie Geofencing, das Assets bei Verlassen definierter Zonen automatisch sperrt."
+                      "prose": "Assets verschlüsseln oder löschen sich bei unautorisierter Abweichung (z.B. Geofencing) selbst."
                     },
                     {
                       "id": "ASST.6.1-m5_custom_asm",
                       "name": "assessment",
-                      "prose": "Test der Geofencing-Funktion und der automatischen Alarmierung."
+                      "prose": "Prüfung der automatischen Sperr-Trigger bei simulierter Richtlinienverletzung."
                     }
                   ]
                 }
@@ -2305,44 +1630,29 @@
                     {
                       "name": "control_class",
                       "value": "Operational",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "phase",
-                      "value": "Operation",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_c",
-                      "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_i",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_a",
-                      "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "value": "Implementation",
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "label",
                       "value": "m1"
                     }
                   ],
-                  "prose": "Wiedergefundene Geräte werden ohne Prüfung direkt wieder in Betrieb genommen.",
+                  "prose": "Wiedergefundene Assets werden ohne Prüfung wieder in Betrieb genommen.",
                   "parts": [
                     {
                       "id": "ASST.6.2-m1_custom_gdn",
                       "name": "guidance",
-                      "prose": "Übergeben Sie gefundene Geräte dem Support zur kurzen Sichtprüfung."
+                      "prose": "Es erfolgt keine Untersuchung auf Manipulationen nach der Rückkehr."
                     },
                     {
                       "id": "ASST.6.2-m1_custom_asm",
                       "name": "assessment",
-                      "prose": "Stichprobenhafte Befragung zur Wiedereingliederung von Assets."
+                      "prose": "Befragung der IT-Technik zur Handhabung von Rückläufern."
                     }
                   ]
                 },
@@ -2353,44 +1663,29 @@
                     {
                       "name": "control_class",
                       "value": "Operational",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "phase",
-                      "value": "Operation",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_c",
-                      "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_i",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_a",
-                      "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "value": "Implementation",
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "label",
                       "value": "m2"
                     }
                   ],
-                  "prose": "Es erfolgt eine manuelle Neuinstallation von Betriebssystemen bei zurückgekehrten Geräten.",
+                  "prose": "Grobe Sichtprüfung und Neuinstallation des Betriebssystems bei Rückkehr.",
                   "parts": [
                     {
                       "id": "ASST.6.2-m2_custom_gdn",
                       "name": "guidance",
-                      "prose": "Stellen Sie sicher, dass zurückgekehrte Hardware vor der Nutzung komplett gelöscht wird."
+                      "prose": "Manuelle Standard-Neuinstallation ohne forensische Analyse."
                     },
                     {
                       "id": "ASST.6.2-m2_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung der Neuinstallationsprotokolle für Rückläufer."
+                      "prose": "Prüfung der Installationsprotokolle für zurückgekehrte Geräte."
                     }
                   ]
                 },
@@ -2401,27 +1696,12 @@
                     {
                       "name": "control_class",
                       "value": "Operational",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "phase",
-                      "value": "Operation",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_c",
-                      "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_i",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_a",
-                      "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "value": "Implementation",
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "label",
@@ -2433,12 +1713,12 @@
                     {
                       "id": "ASST.6.2-m3_custom_gdn",
                       "name": "guidance",
-                      "prose": "Definieren Sie einen Prozess zur Sicherheitsüberprüfung und Integritätsprüfung zurückgekehrter Assets."
+                      "prose": "Legen Sie fest, wie zurückgekehrte Assets vor Wiederverwendung zu prüfen sind."
                     },
                     {
                       "id": "ASST.6.2-m3_custom_asm",
                       "name": "assessment",
-                      "prose": "Audit des Rückkehr-Prozesses. Check: Dokumentation der Integritätsprüfung."
+                      "prose": "Prüfung der Checkliste für die Wiederinbetriebnahme von Fundgeräten."
                     }
                   ]
                 },
@@ -2449,44 +1729,29 @@
                     {
                       "name": "control_class",
                       "value": "Operational",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "phase",
-                      "value": "Operation",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_c",
-                      "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_i",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_a",
-                      "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "value": "Implementation",
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "label",
                       "value": "m4"
                     }
                   ],
-                  "prose": "Zurückgekehrte Hardware durchläuft einen forensischen Standard-Scan vor der Freigabe.",
+                  "prose": "Obligatorische forensische Integritätsprüfung vor der Wiederfreigabe.",
                   "parts": [
                     {
                       "id": "ASST.6.2-m4_custom_gdn",
                       "name": "guidance",
-                      "prose": "Nutzen Sie automatisierte Tools zur Suche nach Malware und Hardware-Manipulationen."
+                      "prose": "Einsatz von Tools zur Erkennung von Firmware-Manipulationen (z.B. UEFI-Check)."
                     },
                     {
                       "id": "ASST.6.2-m4_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung der Scan-Reports für wiedergekehrte Assets."
+                      "prose": "Sichtung der Prüfberichte der IT-Forensik für zurückgekehrte Hardware."
                     }
                   ]
                 },
@@ -2497,44 +1762,29 @@
                     {
                       "name": "control_class",
                       "value": "Operational",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "phase",
-                      "value": "Operation",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_c",
-                      "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_i",
-                      "value": "high",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_a",
-                      "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "value": "Implementation",
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "label",
                       "value": "m5"
                     }
                   ],
-                  "prose": "Assets validieren ihre eigene Hardware-Integrität via Attestierung (z.B. Remote Attestation) nach Rückkehr.",
+                  "prose": "Vollautomatisierte Sicherheitsvalidierung und Re-Provisionierung im isolierten VLAN.",
                   "parts": [
                     {
                       "id": "ASST.6.2-m5_custom_gdn",
                       "name": "guidance",
-                      "prose": "Implementieren Sie hardwarebasierte Vertrauensanker, die Manipulationen sofort beim Booten erkennen."
+                      "prose": "Rückläufer werden automatisch in eine Sandbox verschoben und dort tiefengeprüft."
                     },
                     {
                       "id": "ASST.6.2-m5_custom_asm",
                       "name": "assessment",
-                      "prose": "Simulation einer Manipulation und Test der Erkennung durch das Attestierungs-System."
+                      "prose": "Prüfung der automatisierten Quarantäne-Regeln bei Re-Connect eines Alt-Assets."
                     }
                   ]
                 }
@@ -2556,44 +1806,29 @@
                     {
                       "name": "control_class",
                       "value": "Operational",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "phase",
                       "value": "Operation",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_c",
-                      "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_i",
-                      "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_a",
-                      "value": "low",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "label",
                       "value": "m1"
                     }
                   ],
-                  "prose": "Veräußerungen erfolgen ad-hoc ohne formelle Autorisierung.",
+                  "prose": "Veräußerungen von Assets erfolgen ad-hoc und werden nur vereinzelt durch Vorgesetzte mündlich freigegeben.",
                   "parts": [
                     {
                       "id": "ASST.7.6-m1_custom_gdn",
                       "name": "guidance",
-                      "prose": "Asset-Verkäufe werden informell besprochen, aber nicht zentral dokumentiert oder durch eine feste Instanz genehmigt."
+                      "prose": "Führen Sie eine informelle Rücksprache vor dem Verkauf oder der Abgabe von Hardware durch."
                     },
                     {
                       "id": "ASST.7.6-m1_custom_asm",
                       "name": "assessment",
-                      "prose": "Stichprobenartige Prüfung von Verkaufsbelegen gegen E-Mail-Verläufe zur Identifizierung informeller Freigaben."
+                      "prose": "Befragung von Mitarbeitern zu Stichproben von Veräußerungsvorgängen."
                     }
                   ]
                 },
@@ -2604,44 +1839,29 @@
                     {
                       "name": "control_class",
                       "value": "Operational",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "phase",
                       "value": "Operation",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_c",
-                      "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_i",
-                      "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_a",
-                      "value": "low",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "label",
                       "value": "m2"
                     }
                   ],
-                  "prose": "Veräußerungen werden manuell durch Vorgesetzte auf Basis von Einzelfallentscheidungen autorisiert.",
+                  "prose": "Veräußerungen werden grundsätzlich manuell dokumentiert und durch eine verantwortliche Person abgezeichnet.",
                   "parts": [
                     {
                       "id": "ASST.7.6-m2_custom_gdn",
                       "name": "guidance",
-                      "prose": "Ein einfaches Formular oder eine E-Mail dient als Nachweis der Freigabe vor dem physischen Asset-Transfer."
+                      "prose": "Nutzen Sie einfache Listen oder E-Mails, um die Freigabe der Veräußerung festzuhalten."
                     },
                     {
                       "id": "ASST.7.6-m2_custom_asm",
                       "name": "assessment",
-                      "prose": "Einsicht in die Freigabedokumente der letzten fünf Veräußerungsvorgänge zur Bestätigung einer manuellen Kontrolle."
+                      "prose": "Sichtprüfung der E-Mail-Korrespondenz oder Listen für abgegangene Assets."
                     }
                   ]
                 },
@@ -2652,27 +1872,12 @@
                     {
                       "name": "control_class",
                       "value": "Operational",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "phase",
                       "value": "Operation",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_c",
-                      "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_i",
-                      "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_a",
-                      "value": "low",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "label",
@@ -2684,12 +1889,12 @@
                     {
                       "id": "ASST.7.6-m3_custom_gdn",
                       "name": "guidance",
-                      "prose": "Gemäß dem definierten Prozess autorisiert die genannte Stelle jeden Verkauf schriftlich oder elektronisch."
+                      "prose": "Stellen Sie sicher, dass die benannte Instanz jede Veräußerung prüft und schriftlich oder elektronisch freigibt."
                     },
                     {
                       "id": "ASST.7.6-m3_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung der Autorisierungsprotokolle. SQL-Check: `SELECT * FROM asset_disposal WHERE auth_status != 'approved';`"
+                      "prose": "Prüfung der Freigabedokumente gegen die Asset-Abgangsliste. Audit-Check: `diff inventory_old.csv inventory_new.csv`"
                     }
                   ]
                 },
@@ -2700,44 +1905,29 @@
                     {
                       "name": "control_class",
                       "value": "Operational",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "phase",
                       "value": "Operation",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_c",
-                      "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_i",
-                      "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_a",
-                      "value": "low",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "label",
                       "value": "m4"
                     }
                   ],
-                  "prose": "Workflow-basierte Autorisierung von Asset-Verkäufen mit integrierter Rollentrennung.",
+                  "prose": "Die Autorisierung erfolgt über einen Workflow im IT-Service-Management-System mit digitaler Signatur.",
                   "parts": [
                     {
                       "id": "ASST.7.6-m4_custom_gdn",
                       "name": "guidance",
-                      "prose": "Nutzung eines digitalen Ticketsystems zur Einholung und revisionssicheren Dokumentation der Freigaben."
+                      "prose": "Integrieren Sie die Freigabe in das ITSM-Tool, um Revisionssicherheit und Transparenz zu erhöhen."
                     },
                     {
                       "id": "ASST.7.6-m4_custom_asm",
                       "name": "assessment",
-                      "prose": "Abfrage des Ticketsystems auf Einhaltung der Freigabepflicht: `grep 'status: approved' asset_disposal.log`."
+                      "prose": "Export der Workflow-Logs und Abgleich der Zeitstempel der Autorisierung. API-Abfrage des Ticketstatus."
                     }
                   ]
                 },
@@ -2748,44 +1938,29 @@
                     {
                       "name": "control_class",
                       "value": "Operational",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "phase",
                       "value": "Operation",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_c",
-                      "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_i",
-                      "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_a",
-                      "value": "low",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "label",
                       "value": "m5"
                     }
                   ],
-                  "prose": "Vollständig integrierter, digital signierter Veräußerungs-Workflow mit Anbindung an die Finanzbuchhaltung.",
+                  "prose": "Der gesamte Veräußerungsprozess ist in das ERP-System integriert und erfolgt nach Policy-as-Code-Vorgaben.",
                   "parts": [
                     {
                       "id": "ASST.7.6-m5_custom_gdn",
                       "name": "guidance",
-                      "prose": "Die Autorisierung ist systemseitig erzwungen und nutzt kryptografische Signaturen zur Authentizitätssicherung."
+                      "prose": "Automatisieren Sie den Abgleich zwischen Asset-Status und Verkaufsfreigabe durch systemseitige Sperren."
                     },
                     {
                       "id": "ASST.7.6-m5_custom_asm",
                       "name": "assessment",
-                      "prose": "Automatisierter API-Check der Asset-Management-Software auf Vollständigkeit der kryptografischen Genehmigungs-Flags."
+                      "prose": "Automatisierter Test der Systemsperren bei unautorisiertem Statuswechsel im Asset-Management-System."
                     }
                   ]
                 }
@@ -2807,44 +1982,29 @@
                     {
                       "name": "control_class",
                       "value": "Operational",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "phase",
                       "value": "Operation",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_c",
-                      "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_i",
-                      "value": "low",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_a",
-                      "value": "low",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "label",
                       "value": "m1"
                     }
                   ],
-                  "prose": "Physische Markierungen werden teilweise vor der Abgabe oder dem Verkauf entfernt.",
+                  "prose": "Offensichtliche Aufkleber werden vor der Veräußerung von Assets nach Ermessen des Bearbeiters entfernt.",
                   "parts": [
                     {
                       "id": "ASST.7.7-m1_custom_gdn",
                       "name": "guidance",
-                      "prose": "Mitarbeiter entfernen offensichtliche Aufkleber bei Gelegenheit, jedoch ohne systematische Kontrolle."
+                      "prose": "Achten Sie darauf, dass zumindest Firmenlogos von den Gehäusen abgezogen werden."
                     },
                     {
                       "id": "ASST.7.7-m1_custom_asm",
                       "name": "assessment",
-                      "prose": "Sichtprüfung von zur Abholung bereitstehenden Alt-Geräten auf verbliebene Inventaraufkleber oder Firmenlogos."
+                      "prose": "Stichprobenartige Sichtprüfung von zur Abholung bereitstehenden Altgeräten."
                     }
                   ]
                 },
@@ -2855,44 +2015,29 @@
                     {
                       "name": "control_class",
                       "value": "Operational",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "phase",
                       "value": "Operation",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_c",
-                      "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_i",
-                      "value": "low",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_a",
-                      "value": "low",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "label",
                       "value": "m2"
                     }
                   ],
-                  "prose": "Ein Prozessschritt zum Entfernen von Beschriftungen ist in der Entsorgungsrichtlinie enthalten.",
+                  "prose": "Inventarnummern und Namensschilder werden vor der Veräußerung systematisch manuell entfernt.",
                   "parts": [
                     {
                       "id": "ASST.7.7-m2_custom_gdn",
                       "name": "guidance",
-                      "prose": "Die Richtlinie schreibt das Entfernen aller Tags vor, die Umsetzung wird manuell auf Checklisten abgehakt."
+                      "prose": "Erstellen Sie eine einfache Liste der zu entfernenden Kennzeichnungen für das Personal."
                     },
                     {
                       "id": "ASST.7.7-m2_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung der ausgefüllten Entsorgungs-Checklisten auf den Punkt 'Entfernung von institutionsspezifischen Logos'."
+                      "prose": "Kontrolle der Entsorgungsbereiche auf Rückstände von Inventaraufklebern."
                     }
                   ]
                 },
@@ -2903,27 +2048,12 @@
                     {
                       "name": "control_class",
                       "value": "Operational",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "phase",
                       "value": "Operation",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_c",
-                      "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_i",
-                      "value": "low",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_a",
-                      "value": "low",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "label",
@@ -2935,12 +2065,12 @@
                     {
                       "id": "ASST.7.7-m3_custom_gdn",
                       "name": "guidance",
-                      "prose": "Systematisches Entfernen aller internen Kennzeichnungen wie Inventarnummern oder BIOS-Einträge."
+                      "prose": "Entfernen Sie Inventaraufkleber, Sicherheitssiegel und interne Markierungen, um Rückschlüsse zu verhindern."
                     },
                     {
                       "id": "ASST.7.7-m3_custom_asm",
                       "name": "assessment",
-                      "prose": "Stichprobenprüfung der Assets. Prüfung digitaler Kennungen via: `dmidecode -s system-manufacturer | grep 'Institut'`."
+                      "prose": "Sichtprüfung der Hardware und Abgleich mit dem Löschprotokoll. Check: `ls /var/log/clearing_protocol.log`"
                     }
                   ]
                 },
@@ -2951,44 +2081,29 @@
                     {
                       "name": "control_class",
                       "value": "Operational",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "phase",
                       "value": "Operation",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_c",
-                      "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_i",
-                      "value": "low",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_a",
-                      "value": "low",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "label",
                       "value": "m4"
                     }
                   ],
-                  "prose": "Fotodokumentierte Neutralisierung der Assets inklusive Löschung digitaler Brandings.",
+                  "prose": "Die Entfernung der Beschriftungen wird nach dem Vier-Augen-Prinzip kontrolliert und im Asset-Log dokumentiert.",
                   "parts": [
                     {
                       "id": "ASST.7.7-m4_custom_gdn",
                       "name": "guidance",
-                      "prose": "Der Zustand des neutralisierten Assets wird digital erfasst und im Asset-Management-System als Nachweis hinterlegt."
+                      "prose": "Nutzen Sie Checklisten, die von einer zweiten Person gegengezeichnet werden müssen."
                     },
                     {
                       "id": "ASST.7.7-m4_custom_asm",
                       "name": "assessment",
-                      "prose": "Abgleich der Asset-ID mit den archivierten Fotos der neutralisierten Hardware im zentralen Dokumentenmanagement."
+                      "prose": "Prüfung der dokumentierten Abnahmen im Asset-Management-Tool. Abfrage: `GET /api/assets/disposed/labels_cleared`."
                     }
                   ]
                 },
@@ -2999,46 +2114,50 @@
                     {
                       "name": "control_class",
                       "value": "Operational",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "phase",
                       "value": "Operation",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_c",
-                      "value": "medium",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_i",
-                      "value": "low",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
-                    },
-                    {
-                      "name": "effective_on_a",
-                      "value": "low",
-                      "ns": "https://github.com/BSI-Bund/Stand-der-Technik-Bibliothek/tree/main/Dokumentation/namespaces"
+                      "ns": "https://github.com/NTT-Data-Deutschland-SE/Grundschutz-Plus-Plus-Tools/tree/main/Dokumentation/namespaces/gpp_enhancement_props.md"
                     },
                     {
                       "name": "label",
                       "value": "m5"
                     }
                   ],
-                  "prose": "Zertifizierter Prozess zur Asset-Anonymisierung mit externer Auditierung der Rückstandslosigkeit.",
+                  "prose": "Ein zertifizierter Prozess stellt die rückstandsfreie Bereinigung inklusive Fotodokumentation im System sicher.",
                   "parts": [
                     {
                       "id": "ASST.7.7-m5_custom_gdn",
                       "name": "guidance",
-                      "prose": "Spezialisierte Verfahren garantieren die Entfernung aller Merkmale, inklusive versteckter Asset-Tags in der Firmware."
+                      "prose": "Integrieren Sie Bilderkennung oder Fotobeweise in den Asset-Lifecycle-Prozess zur lückenlosen Nachweisbarkeit."
                     },
                     {
                       "id": "ASST.7.7-m5_custom_asm",
                       "name": "assessment",
-                      "prose": "Prüfung der externen Zertifikate und Audit-Berichte des Entsorgungsdienstleisters auf Konformität."
+                      "prose": "Validierung der im System hinterlegten Fotos der bereinigten Assets gegen die Seriennummern-Datenbank."
                     }
                   ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "back-matter": {
+      "resources": [
+        {
+          "uuid": "944d9eb5-aa84-5c12-86d3-94ed8e2569f5",
+          "title": "Grundschutz++-resolved_catalog.json @ 47de2824a341",
+          "rlinks": [
+            {
+              "href": "https://raw.githubusercontent.com/BSI-Bund/Stand-der-Technik-Bibliothek/47de2824a341812438ef3f044b3f65ce2cad6e32/control_layer/Grundschutz%2B%2B/Grundschutz%2B%2B-resolved_catalog.json",
+              "hashes": [
+                {
+                  "algorithm": "SHA-256",
+                  "value": "db3a1417d7e904315a0886f450129832e19c57324660358c830357349f552332"
                 }
               ]
             }
